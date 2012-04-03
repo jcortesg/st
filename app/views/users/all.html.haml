@@ -1,0 +1,24 @@
+#block-text.block
+  .content
+    %h2.title Usuarios Pendientes de Aprobación con Email Confirmado
+    .inner
+      %table{:class => :table}
+        %tr
+          %th Email
+          %th Tipo de Usuario
+          %th Creado
+          %th Email Verificado                          
+          %th
+          
+          - @users.each do |user|            
+            %tr{ :class => cycle('odd', 'even') }
+              = form_tag "/users/" + user.id.to_s + "/approve", :method => "POST", :class => "form" do
+                %td= user.email
+                %td= user.full_user_type
+                %td= user.created_at ? (localize user.created_at, :format => "%B %e, %Y  %H:%M hs") : ""
+                %td= user.confirmed_at ? "Verificado" : "Esperando Verificación"                                                                        
+                %td.last
+                  %button.button{ :type => "submit" }
+                    = image_tag "web-app-theme/icons/tick.png"
+                    = user.approved ? "Aprobar" : "Desaprobar"
+                    

@@ -1,0 +1,97 @@
+!!!
+%html
+  %head
+    %title Borwin - It's time to go social
+    = stylesheet_link_tag 'web_app_theme'
+    = javascript_include_tag 'application'
+    = csrf_meta_tag
+  %body
+    #container
+      #header
+        - if user_signed_in?
+          = link_to image_tag("logo.png", :height => '55px'), home_path, :class => 'logo-header'
+        - else
+          = link_to image_tag("logo.png", :height => '55px'), root_path, :class => 'logo-header'
+        #user-navigation
+        #main-navigation
+          %ul.wat-cf          
+            - if user_signed_in?
+              /%li
+              /  = link_to "#Cambiar Contraseña", "/users/password/edit" 
+              - if current_user.is? :advertiser
+                %li
+                  = link_to "#Celebridades", "/influencers/list"
+                %li
+                  = link_to "#Campañas", "/campaigns"
+                /%li
+                /  = link_to "#Competidores", "/competitors"
+                %li
+                  = link_to "#Tweets", "/tweets"
+                /%li
+                /  = link_to "#Mensajes", "/messages"                  
+                %li
+                  = link_to "#Transacciones", "/transactions"                 
+              - elsif current_user.is? :influencer                           
+                %li
+                  = link_to "#Referidos", "/referrals"
+                %li
+                  = link_to "#Tweets", "/tweets"
+                /%li
+                /  = link_to "#Mensajes", "/messages"                  
+                %li
+                  = link_to "#Transacciones", "/transactions"   
+              - elsif current_user.is? :affiliate           
+                %li
+                  = link_to "#Referidos", "/referrals"
+                %li
+                  = link_to "#Transacciones", "/transactions"                                  
+              - elsif current_user.is? :administrator        
+                %li
+                  = link_to "#Usuarios", "/users/all" 
+                %li
+                  = link_to "#Comisiones", "/influencers/fees"                  
+                %li
+                  = link_to "#Audiencias", "/audiences"                       
+                %li
+                  = link_to "#Perfiles", "/profiles"     
+                %li
+                  = link_to "#Referidos", "/referrals"
+                %li
+                  = link_to "#Transacciones", "/transactions"                      
+              %li
+                - if current_user_type == "administrators"
+                  %a{ :class => "black" }= current_entity_name
+                - else
+                  = link_to current_entity_name, "/" + current_user_type + "/" + current_entity_id + "/edit", :class => "black"
+              %li                
+                = form_tag(destroy_user_session_path, :class => "form", :method => :delete) do
+                  %button.button{ :type => "submit" }
+                    = image_tag "web-app-theme/icons/cross.png"
+                    Salir  
+            - else
+              %li
+                = link_to "#Plataforma", "about"
+              %li
+                = link_to "#Anunciantes", "borwin-for-advertisers"
+              %li
+                = link_to "#Celebridades", "borwin-for-influencers"
+              %li
+                = link_to "#Analytics", "analytics"
+              %li
+                = link_to "#Contactános", "contact"         
+              %li
+                = form_tag(new_user_session_path, :class => "form", :method => :get) do
+                  %button.button{ :type => "submit" }
+                    = image_tag "web-app-theme/icons/tick.png"
+                    Iniciar sesión                   
+      #wrapper.wat-cf
+        .flash
+          - flash.each do |type, message|
+            %div{:class => "message #{type}"}
+              %p= message
+        #main
+          = yield
+          #footer
+            .block
+              %p
+                Copyright &copy; #{Time.now.year} Borwin

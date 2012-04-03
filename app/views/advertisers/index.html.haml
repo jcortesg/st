@@ -1,0 +1,37 @@
+%h1 Listing advertisers
+
+%table
+  %tr
+    %th User
+    %th Twitter username
+    %th Borwin fee
+    %th Brand
+    %th Address
+    %th City
+    %th State
+    %th Country
+    %th Zip code
+    %th Phone
+    %th
+    %th
+    %th
+
+  - @advertisers.each do |advertiser|
+    %tr
+      %td= advertiser.user_id
+      %td= advertiser.twitter_username
+      %td= advertiser.borwin_fee
+      %td= advertiser.brand
+      %td= advertiser.address
+      %td= advertiser.city
+      %td= advertiser.state
+      %td= advertiser.country
+      %td= advertiser.zip_code
+      %td= advertiser.phone
+      %td= link_to 'Show', advertiser
+      %td= link_to 'Edit', advertiser_path(advertiser)
+      %td= link_to 'Destroy', advertiser, :confirm => 'Are you sure?', :method => :delete
+
+%br
+
+= link_to 'New Advertiser', new_advertiser_path

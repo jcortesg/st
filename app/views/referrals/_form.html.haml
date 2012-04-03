@@ -1,0 +1,29 @@
+= form_for @referral, :html => {:class => "form"} do |f|
+  -if @referral.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@referral.errors.count, "error")} prohibited this referral from being saved:"
+      %ul
+        - @referral.errors.full_messages.each do |msg|
+          %li= msg
+  .group.wat-cf
+    .left= f.label :source_id, :class => "label right"
+    .right= f.select(:source_id, users_for_select)
+  .group.wat-cf
+    .left= f.label :destination_id, :class => "label right"
+    .right= f.select(:destination_id, users_for_select)
+  .group.wat-cf
+    .left= f.label :since, :class => "label right"
+    .right= f.date_select :since, :class => "text_field.short"
+  .group.wat-cf
+    .left= f.label :through, :class => "label right"
+    .right= f.date_select :through, :class => "text_field.short"
+  .group.wat-cf
+    .left= f.label :commission, :class => "label right"
+    .right= f.text_field :commission, :class => "text_field"   
+  .group.wat-cf
+    .right
+      %button.button{ :type => "submit" }
+        = image_tag "web-app-theme/icons/tick.png"
+        Guardar 
+      %span{ :class => "text_button_padding" }o
+      %a{ :class => "text_button_padding link_button", :href => ("/referrals") }Cancelar  

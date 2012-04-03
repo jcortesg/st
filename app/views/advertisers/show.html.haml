@@ -1,0 +1,36 @@
+#block-text.block
+  .content
+    %h2.title Datos Personales
+    .inner
+      %p
+        %b User:
+        = @advertiser.user_id
+      %p
+        %b Twitter username:
+        = @advertiser.twitter_username
+      %p
+        %b Borwin fee:
+        = @advertiser.borwin_fee
+      %p
+        %b Brand:
+        = @advertiser.brand
+      %p
+        %b Address:
+        = @advertiser.address
+      %p
+        %b City:
+        = @advertiser.city
+      %p
+        %b State:
+        = @advertiser.state
+      %p
+        %b Country:
+        = @advertiser.country
+      %p
+        %b Zip code:
+        = @advertiser.zip_code
+      %p
+        %b Phone:
+        = @advertiser.phone
+        
+      = link_to 'Editar', edit_advertiser_path(@advertiser)

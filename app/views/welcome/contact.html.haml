@@ -1,0 +1,24 @@
+#block-text.block
+  .content
+    %h2.title Contactános
+    .inner
+      = form_tag "/contact_post", :method => "POST", :class => "form" do
+        .group.wat-cf
+          .left= label :from, "Nombre", :class => "label right"
+          .right= text_field :message, :from, :class => "text_field"      
+        .group.wat-cf
+          .left= label :email, "Email", :class => "label right"
+          .right= text_field :message, :email, :class => "text_field"
+        .group.wat-cf
+          .left= label :title, "Titulo", :class => "label right"
+          .right= text_field :message, :title, :class => "text_field"
+        .group.wat-cf
+          .left= label :message, "Mensaje", :class => "label right"
+          .right= text_area :message, :message, :class => "text_field"
+        .group.wat-cf
+          .right
+            %button.button{ :type => "submit" }
+              = image_tag "web-app-theme/icons/tick.png"
+              Enviar 
+   
+.clear

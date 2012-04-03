@@ -1,0 +1,26 @@
+!!!
+%html{:xmlns => "http://www.w3.org/1999/xhtml"}
+  %head
+    %meta{:content => "text/html; charset=ISO-8859-1", "http-equiv" => "Content-Type"}/
+    %title Bienvenido a BORWIN - It´s time to go Social!
+    :css
+      .style1 { font-size: 14px; font-family: Calibri; }
+      .style2 { font-size: 12px; font-family: Calibri; color: #666666; }
+      .style3 { color: #333333 }
+      .style4 { font-size: 14px; font-family: Calibri; color: #333333; }    
+  %body
+    %p.style1
+      %br/
+      %span.style3
+        = @user.email
+        \!
+    %p.style4 Borwin® te informa!
+    %p.style4 Tu cuenta ha sido desactivada.
+    %p.style4 Nos comunicaremos con vos a la brevedad,
+    %p.style4
+      \--The Borwin Team
+      %br/
+      %em It’s time to go social!
+      %br/
+      %a{:href => "http://www.borwin.com.ar"} http://www.borwin.com.ar
+    %p.style2 © 2012, Borwin Corporation

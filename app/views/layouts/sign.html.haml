@@ -1,0 +1,18 @@
+!!!
+%html
+  %head
+    %title Borwin
+    = stylesheet_link_tag "web_app_theme"
+    = javascript_include_tag 'helper'    
+    = csrf_meta_tag
+  %body
+    #container
+      #box
+        = link_to image_tag("logo.png", :height => '80px'), root_path, :class => 'logo'
+        %br
+        %br
+        %br
+        = yield
+        #footer
+          %p{:id => "copyright"}
+            Copyright &copy; #{Time.now.year} Borwin

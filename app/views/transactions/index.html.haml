@@ -1,0 +1,26 @@
+#block-text.block
+  .content
+    %h2.title
+      Transacciónes Personales
+    .inner
+      %table{:class => :table}
+        %tr
+          %th Tweet
+          %th Fecha Publicación          
+          %th Anunciante
+          %th Monto del Tweet
+          %th Tipo de Campaña
+          %th Monto Neto
+          %th Estado
+          
+        - @transactions.each do |transaction|
+          %tr{ :class => @cycle = cycle('odd', 'even') }
+            %td= transaction.tweet
+            %td= localize transaction.date_posted, :format => "%B %e, %Y"
+            %td= transaction.brand
+            %td= number_to_currency(transaction.amount, :precision => 2)
+            %td= transaction.description
+            %td= number_to_currency(transaction.amount.to_f - transaction.borwin_amount.to_f, :precision => 2)
+            %td
+              %span{:class => "#{transaction.status} status"}= transaction.status
+  %br 

@@ -1,0 +1,6 @@
+environments:
+  env_production:
+    migrate: false
+    migration_command: rake fancy:migrate
+    branch: master
+    default: true   # make this environment default

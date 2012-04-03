@@ -1,0 +1,51 @@
+%p#notice= notice
+
+%p
+  %b Tweet:
+  = @transaction.tweet_id
+%p
+  %b Payment type:
+  = @transaction.payment_type_id
+%p
+  %b Amount:
+  = @transaction.amount
+%p
+  %b Borwin amount:
+  = @transaction.borwin_amount
+%p
+  %b Avg cpc:
+  = @transaction.avg_cpc
+%p
+  %b Transaction date:
+  = @transaction.transaction_date
+%p
+  %b Dineromail:
+  = @transaction.dineromail_id
+%p
+  %b Payment method:
+  = @transaction.payment_method_id
+%p
+  %b Currency:
+  = @transaction.currency_id
+%p
+  %b Holder:
+  = @transaction.holder
+%p
+  %b Number:
+  = @transaction.number
+%p
+  %b Expiration:
+  = @transaction.expiration
+%p
+  %b Bank:
+  = @transaction.bank
+%p
+  %b Payment date:
+  = @transaction.payment_date
+%p
+  %b Influencer paid date:
+  = @transaction.influencer_paid_date
+
+= link_to 'Edit', edit_transaction_path(@transaction)
+\|
+= link_to 'Back', transactions_path

@@ -1,0 +1,24 @@
+%h1 Medios de Pago
+
+%table{:class => :table}
+  %tr
+    %th Nombre
+    %th Descripción
+    %th Estado
+    %th
+    %th
+
+  - @payment_methods.each do |payment_method|
+    %tr
+      %td= payment_method.name
+      %td= payment_method.description
+      %td= payment_method.full_status
+      %td= link_to 'Editar', edit_payment_method_path(payment_method)
+      - if payment_method.status == 'A'
+        %td= link_to 'Desactivar', payment_method, :confirm => 'Esta seguro que desea desactivar este registro?', :method => :delete
+      - else
+        %td= link_to 'Activar', payment_method, :confirm => 'Esta seguro que desea activar este registro?', :method => :delete
+
+%br
+
+= link_to 'Agregar Medio de Pago', new_payment_method_path

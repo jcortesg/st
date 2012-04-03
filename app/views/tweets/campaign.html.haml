@@ -1,0 +1,36 @@
+#block-text.block
+  .content
+    %h2.title= "Tweets pertenecientes a la campaña #{@campaign_name}"
+    .inner
+      %table{:class => :table}
+        %tr
+          %th Tweet
+          %th Comentarios
+          %th Url
+          %th Celebridad
+          %th Aprovado Celebridad
+          %th Aprovado 
+          %th Fecha de publicación
+          %th Fecha requerido
+          %th Estado
+          %th
+          %th
+
+        - @tweets.each do |tweet|
+          %tr{ :class => cycle('odd', 'even') }
+            %td= tweet.tweet
+            %td= tweet.comments
+            %td= tweet.url
+            %td= tweet.influencer.full_name
+            %td= tweet.influencer_approved
+            %td= tweet.advertiser_approved
+            %td= tweet.date_posted
+            %td= tweet.date_required
+            %td= tweet.status
+            %td= link_to 'Editar', edit_tweet_path(tweet)
+            - if tweet.status == 'A'
+              %td= link_to 'Desaprovar', tweet, :confirm => 'Esta seguro que desea desaprovar este tweet?', :method => :delete
+            - else
+              %td= link_to 'Aprovar', tweet, :confirm => 'Esta seguro que desea aprovar este tweet?', :method => :delete
+
+      %br

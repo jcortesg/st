@@ -1,0 +1,34 @@
+#block-text.block
+  .content
+    %h2.title Usuarios Pendientes de Aprobación
+    .inner
+      %table{:class => :table}
+        %tr
+          %th Email
+          %th Tipo de Usuario
+          %th Borwin Fee (e.j. 0.3)          
+          %th % de Hombres (e.j. 0.75)
+          %th Klout
+          %th Peer Index
+          %th Retweets (e.j. 0.25)
+          %th Deportes
+          %th Mamas                              
+          %th
+          
+          - @users.each do |user|            
+            %tr{ :class => cycle('odd', 'even') }
+              = form_tag "/users/" + user.id.to_s + "/approve", :method => "POST", :class => "form" do
+                %td= user.email
+                %td= user.user_type
+                %td= text_field :influencer, :borwin_fee, :class => "text_field", :size => "15"
+                %td= text_field :influencer, :males, :class => "text_field", :size => "15"                
+                %td= text_field :influencer, :klout, :class => "text_field", :size => "15" 
+                %td= text_field :influencer, :peer_index, :class => "text_field" , :size => "15"  
+                %td= text_field :influencer, :retweets, :class => "text_field", :size => "15" 
+                %td= check_box_tag :sports, 1, false, :class => "text_field"
+                %td= check_box_tag :moms, 1, false, :class => "text_field"                                                            
+                %td.last
+                  %button.button{ :type => "submit" }
+                    = image_tag "web-app-theme/icons/tick.png"
+                    Aprobar
+                    

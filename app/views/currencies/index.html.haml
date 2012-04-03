@@ -1,0 +1,24 @@
+%h1 Monedas
+
+%table{:class => :table}
+  %tr
+    %th Nombre
+    %th Descripción
+    %th Estado
+    %th
+    %th
+
+  - @currencies.each do |currency|
+    %tr
+      %td= currency.name
+      %td= currency.description
+      %td= currency.full_status
+      %td= link_to 'Editar', edit_currency_path(currency)
+      - if currency.status == 'A'
+        %td= link_to 'Desactivar', currency, :confirm => 'Esta seguro que desea desactivar este registro?', :method => :delete
+      - else
+        %td= link_to 'Activar', currency, :confirm => 'Esta seguro que desea activar este registro?', :method => :delete
+        
+%br
+
+= link_to 'Agregar Moneda', new_currency_path

@@ -1,0 +1,21 @@
+%p#notice= notice
+
+%p
+  %b Influencer:
+  = @profile.influencer_id
+%p
+  %b Fee:
+  = @profile.fee
+%p
+  %b Cpc:
+  = @profile.cpc
+%p
+  %b Fee cpc:
+  = @profile.fee_cpc
+%p
+  %b Cpc fee:
+  = @profile.cpc_fee
+
+= link_to 'Edit', edit_profile_path(@profile)
+\|
+= link_to 'Back', profiles_path

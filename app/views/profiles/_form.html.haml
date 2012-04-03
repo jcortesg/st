@@ -1,0 +1,26 @@
+= form_for @profile, :html => { :class => "form" } do |f|
+  -if @profile.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@profile.errors.count, "error")} prohibited this profile from being saved:"
+      %ul
+        - @profile.errors.full_messages.each do |msg|
+          %li= msg
+  .group.wat-cf
+    .left= f.label :fee, :class => "label right"
+    .right= f.text_field :fee, :class => "text_field"
+  .group.wat-cf
+    .left= f.label :cpc, :class => "label right"
+    .right= f.text_field :cpc, :class => "text_field"
+  .group.wat-cf
+    .left= f.label :fee_cpc, :class => "label right"
+    .right= f.text_field :fee_cpc, :class => "text_field"
+  .group.wat-cf
+    .left= f.label :cpc_fee, :class => "label right"
+    .right= f.text_field :cpc_fee, :class => "text_field"
+  .group.wat-cf
+    .right
+      %button.button{ :type => "submit" }
+        = image_tag "web-app-theme/icons/tick.png"
+        Editar 
+      %span{ :class => "text_button_padding" }o
+      %a{ :class => "text_button_padding link_button", :href => "/profiles/" }Cancelar           

@@ -1,0 +1,35 @@
+%h1 Listing affiliates
+
+%table
+  %tr
+    %th User
+    %th Firstname
+    %th Lastname
+    %th Address
+    %th City
+    %th State
+    %th Country
+    %th Zip code
+    %th Phone
+    %th
+    %th
+    %th
+
+  - @affiliates.each do |affiliate|
+    %tr
+      %td= affiliate.user_id
+      %td= affiliate.firstname
+      %td= affiliate.lastname
+      %td= affiliate.address
+      %td= affiliate.city
+      %td= affiliate.state
+      %td= affiliate.country
+      %td= affiliate.zip_code
+      %td= affiliate.phone
+      %td= link_to 'Show', affiliate
+      %td= link_to 'Edit', edit_affiliate_path(affiliate)
+      %td= link_to 'Destroy', affiliate, :confirm => 'Are you sure?', :method => :delete
+
+%br
+
+= link_to 'New Affiliate', new_affiliate_path

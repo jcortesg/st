@@ -1,0 +1,22 @@
+#block-text.block
+  %h2.title Términos y Condiciónes
+  .inner
+    %p.terms.first
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+      = succeed "," do
+        %span.hightlight Excepteur sint occaecat cupidatat non proident
+      sunt in culpa qui officia deserunt mollit anim id est laborum.
+    %p.terms.second
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+      = succeed "," do
+        %span.hightlight Excepteur sint occaecat cupidatat non proident
+      sunt in culpa qui officia deserunt mollit anim id est laborum.      
+  %br 
+.sign-links
+  = link_to "← Volver al sitio web", root_path, :class => "nounderline"
+  |
+  = link_to "Registrarse", new_registration_path(User), :class => "nounderline"
+  |
+  = link_to "Iniciar sesión", new_session_path(User), :class => "nounderline"
+%br
+%br      

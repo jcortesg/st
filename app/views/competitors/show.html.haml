@@ -1,0 +1,12 @@
+%p#notice= notice
+
+%p
+  %b Advertiser:
+  = @competitor.advertiser_id
+%p
+  %b Competitor:
+  = @competitor.competitor_id
+
+= link_to 'Edit', edit_competitor_path(@competitor)
+\|
+= link_to 'Back', competitors_path

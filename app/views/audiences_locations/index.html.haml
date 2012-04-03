@@ -1,0 +1,23 @@
+%h1 Listing audiences_locations
+
+%table
+  %tr
+    %th Audience
+    %th Location
+    %th Percentage
+    %th
+    %th
+    %th
+
+  - @audiences_locations.each do |audiences_location|
+    %tr
+      %td= audiences_location.audience_id
+      %td= audiences_location.location_id
+      %td= audiences_location.percentage
+      %td= link_to 'Show', audiences_location
+      %td= link_to 'Edit', edit_audiences_location_path(audiences_location)
+      %td= link_to 'Destroy', audiences_location, :confirm => 'Are you sure?', :method => :delete
+
+%br
+
+= link_to 'New Audiences location', new_audiences_location_path

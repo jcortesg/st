@@ -1,0 +1,71 @@
+#block-text.block.left.large        
+  .content
+    %h2.title Celebridades en Borwin
+    .inner
+      %br
+      #influencers= render :partial => 'influencers' 
+#block-text.block.right.small
+  .content
+    %h2.title Filtros
+    .inner
+      = form_tag "/influencers/list", :method => "POST", :class => "form" do
+        .group.wat-cf
+          .right= label :followers, "Seguidores", :class => "label right"
+          .right
+            %p
+              Mayor a XX Seguidores
+              = text_field_tag "followers"  
+          .right
+            %p
+              Mayor a XX Amigos
+              = text_field_tag "friends" 
+          .right
+            %p
+              Mayor a % de Retweets
+              = text_field_tag "retweets"              
+          .right
+            %p
+              PeerIndex Mayor a XX
+              = text_field_tag "peerindex"  
+          .right
+            %p
+              Klout Mayor a XX
+              = text_field_tag "klout"   
+          .right
+            %p
+              Costo Fijo Menor a XX
+              = text_field_tag "fee"  
+          .right
+            %p
+              Costo por Click Menor a XX
+              = text_field_tag "cpc"                                                             
+          .right= label :sex, "Tipo de Celebridad", :class => "label right"
+          .right
+            %p
+              - @influencer_types = {"" => "", "Teatro" => "Teatro", "Television" => "Television", "Futbolista" => "Futbolista"}
+              = select :influencer, :type, @influencer_types, :class => "text_field"                      
+          .right= label :sex, "Sexo", :class => "label right"
+          .right
+            %p
+              XX Porciento de Hombre
+              = text_field_tag "male_percentaje"
+            %p
+              = radio_button_tag "male_operation", ">", true, :class => "checkbox"
+              Mayor     
+              = radio_button_tag "male_operation", "<", false, :class => "checkbox"
+              Menor
+              
+          .right
+            %p
+              = check_box_tag "mothers", "1", false, :class => "checkbox"
+              Mamas
+          .right
+            %p
+              = check_box_tag "sports", "1", false, :class => "checkbox"
+              Interesados en Deportes
+        .group.wat-cf
+          .right
+            %button.button{ :type => "submit" }
+              = image_tag "web-app-theme/icons/tick.png"
+              Filtrar 
+.clear

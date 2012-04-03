@@ -1,0 +1,25 @@
+%h1 Listing tweet_details
+
+%table
+  %tr
+    %th Tweet
+    %th Clicks
+    %th Retweets
+    %th Status
+    %th
+    %th
+    %th
+
+  - @tweet_details.each do |tweet_detail|
+    %tr
+      %td= tweet_detail.tweet_id
+      %td= tweet_detail.clicks
+      %td= tweet_detail.retweets
+      %td= tweet_detail.status
+      %td= link_to 'Show', tweet_detail
+      %td= link_to 'Edit', edit_tweet_detail_path(tweet_detail)
+      %td= link_to 'Destroy', tweet_detail, :confirm => 'Are you sure?', :method => :delete
+
+%br
+
+= link_to 'New Tweet detail', new_tweet_detail_path

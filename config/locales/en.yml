@@ -1,0 +1,110 @@
+# Sample localization file for English. Add more files in this directory for other locales.
+# See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
+
+en:
+    activerecord:
+        errors:
+          models:
+            user:
+              attributes:
+                email:
+                  blank: 'es obligatorio' 
+                  invalid: 'es invalido'  
+                  taken: 'ya existe'  
+                password:
+                  blank: 'es obligatoria'
+                  too_short: 'es muy corta (minimo 6 caracteres)' 
+                  confirmation: 'es diferente a repetir contraseña'                       
+                password_confirmation:
+                  blank: 'es obligatoria'     
+                  too_short: 'es muy corta (minimo 6 caracteres)'  
+            influencer:
+              attributes:
+                twitter_username:
+                  blank: 'es obligatorio' 
+                  too_short: 'es muy corto (minimo 3 caracteres)'  
+                  taken: 'ya existe'  
+                firstname:
+                  blank: 'es obligatorio'
+                lastname:
+                  blank: 'es obligatorio'   
+            advertiser:
+              attributes:
+                twitter_username:
+                  blank: 'es obligatorio' 
+                  too_short: 'es muy corto (minimo 3 caracteres)'  
+                  taken: 'ya existe'  
+                brand:
+                  blank: 'es obligatorio'
+                  taken: 'ya existe'  
+            affiliate:
+              attributes:
+                firstname:
+                  blank: 'es obligatorio'
+                lastname:
+                  blank: 'es obligatorio'                                                                        
+        attributes:
+            user:
+              remember_me: "Seguir conectado"
+              user_type: "Tipo de Usuario"
+              password: "Contraseña"
+              password_confirmation: "Repetir Contraseña"
+              current_password: "Contraseña Actual"
+              same_passwords: "Ambas contraseñas"
+              referral: "Referido Por"
+            referral:
+              source_id: "Referido"
+              destination_id: "Referido Por"
+              since: "Desde"
+              through: "Hasta"
+              commission: "Comision"
+            tweet:
+              comments: "Commentarios"
+              url: "Direccion URL"  
+              influencer_id: "Celebridad"
+              date_required: "Fecha Requerida"
+            influencer:
+              twitter_username: "Twitter"
+              influencer_type: "Profesión"
+              firstname: "Nombre"
+              lastname: "Apellido"
+              sex: "Sexo"
+              address: "Dirección"
+              city: "Ciudad"
+              state: "Provincia"
+              country: "Pais"
+              zip_code: "Código Postal"
+              phone: "Telefono"
+              description: "Contanos sobre vos"
+              bank_name: "Banco"
+              cbu: "CBU"
+              account_number: "Numero de Cuenta Bancaria"
+              account_type: "Tipo de Cuenta Bancaria"
+              contact_method: "Forma de Contacto Preferida"
+              cell_phone: "Celular"
+              contact_time: "Hora Preferida de Contacto"
+            advertiser:
+              twitter_username: "Twitter"
+              brand: "Marca"
+              address: "Dirección"
+              city: "Ciudad"
+              state: "Provincia"
+              country: "Pais"
+              zip_code: "Código Postal"
+              phone: "Telefono"       
+            affiliate:
+              firstname: "Nombre"
+              lastname: "Apellido"
+              address: "Dirección"
+              city: "Ciudad"
+              state: "Provincia"
+              country: "Pais"
+              zip_code: "Código Postal"
+              phone: "Telefono"                     
+            profile:
+              fee: "Costo Fijo"
+              cpc: "Costo Por Click"    
+              fee_cpc: "Costo Fijo (+ Costo Por Click)"
+              cpc_fee: "Costo Por Click (+ Costo Fijo)"
+    date:
+      month_names: [~, "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"]

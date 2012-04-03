@@ -1,0 +1,58 @@
+# Additional translations at https://github.com/plataformatec/devise/wiki/I18n
+
+en:
+  errors:
+    messages:
+      expired: "has expired, please request a new one"
+      not_found: "not found"
+      already_confirmed: "was already confirmed, please try signing in"
+      not_locked: "was not locked"
+      not_saved:
+        one: "1 error prohibited this %{resource} from being saved:"
+        other: "%{count} errors prohibited this %{resource} from being saved:"
+  devise:
+    failure:
+      already_authenticated: 'Ya estas logeado'
+      unauthenticated: 'Debes logearte para continuar'
+      unconfirmed: 'Debes confirmar tu cuenta antes de poder logearte'
+      locked: 'Your account is locked.'
+      invalid: 'Email o contraseña invalidos'
+      invalid_token: 'Invalid authentication token.'
+      timeout: 'La sesion expiro, por favor ingresa nuevamente'
+      inactive: 'Your account was not activated yet.'
+      not_approved: 'Tu cuenta aun no ha sido aprobada por el administrador'
+    sessions:
+      signed_in: ''
+      signed_out: ''
+    passwords:
+      send_instructions: 'En unos minutos recibiras instrucciones para resetear tu contraseña'
+      updated: 'Your password was changed successfully. You are now signed in.'
+      updated_not_active: 'Your password was changed successfully.'
+      send_paranoid_instructions: "If your e-mail exists on our database, you will receive a password recovery link on your e-mail"
+    confirmations:
+      send_instructions: 'You will receive an email with instructions about how to confirm your account in a few minutes.'
+      send_paranoid_instructions: 'If your e-mail exists on our database, you will receive an email with instructions about how to confirm your account in a few minutes.'
+      confirmed: 'Tu cuenta ha sido confirmada'
+    users:
+      signed_up: 'Welcome! You have signed up successfully.'
+      inactive_signed_up: 'Su cuenta ha sido verificada con éxito. En las próximas 48hs. recibirá un correo electrónico confirmando que su cuenta ha sido activada. Gracias por utilizar Borwin® It’s time to go social!'
+      updated: 'You updated your account successfully.'
+      destroyed: 'Bye! Your account was successfully cancelled. We hope to see you again soon.'
+      reasons:
+        inactive: 'inactive'
+        unconfirmed: 'unconfirmed'
+        locked: 'locked'
+    unlocks:
+      send_instructions: 'You will receive an email with instructions about how to unlock your account in a few minutes.'
+      unlocked: 'Your account was successfully unlocked. You are now signed in.'
+      send_paranoid_instructions: 'If your account exists, you will receive an email with instructions about how to unlock it in a few minutes.'
+    omniauth_callbacks:
+      success: 'Successfully authorized from %{kind} account.'
+      failure: 'Could not authorize you from %{kind} because "%{reason}".'
+    mailer:
+      confirmation_instructions:
+        subject: 'Bienvenido @ Borwin - Its time to go social'
+      reset_password_instructions:
+        subject: 'Resetear Contraseña @ Borwin - Its time to go social'
+      unlock_instructions:
+        subject: 'Unlock Instructions'

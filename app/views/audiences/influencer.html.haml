@@ -1,0 +1,64 @@
+#block-text.block.left
+  .content
+    .inner
+      %ul{:class => :list}
+        %li
+          .left= image_tag @audience.image_url, :class => "avatar"
+          .item
+            %p
+              Nombre:
+              = @audience.lastname + ', ' + @audience.firstname      
+            %p= @audience.twitter_username
+            %p= @audience.bio
+            %p= @audience.famous_for
+      .info
+        %p
+          Nombre:
+          = @audience.lastname + ', ' + @audience.firstname      
+        %p= @audience.twitter_username
+        %p= @audience.bio
+        %p= @audience.famous_for
+        
+#block-text.block.right
+  .content
+    %h2.title Tweets Recientes
+    .inner
+      %ul{:class => :list}
+        %li
+          .left= image_tag "web-app-theme/avatar.png", :class => "avatar"
+          .item
+            %p sdsdsdsd  
+        %li
+          .left= image_tag "web-app-theme/avatar.png", :class => "avatar"
+          .item 
+            %p hsgdsgdsgd          
+
+#block-text.block.right
+  .content
+    %h2.title Tweets Recientes con Publicidad
+    .inner
+      %ul{:class => :list}
+        %li
+          .left= image_tag "web-app-theme/avatar.png", :class => "avatar"
+          .item
+            %p sdsdsdsd  
+        %li
+          .left= image_tag "web-app-theme/avatar.png", :class => "avatar"
+          .item 
+            %p hsgdsgdsgd 
+.clear
+
+#block-text.block
+  .secondary-navigation
+    %ul{:class => "wat-cf"}
+      %li{:class => "active first"}
+        %a Sexo
+      %li
+        %a Geografia
+  .content
+    .inner
+      %br
+      #bar
+      %br
+
+.clear

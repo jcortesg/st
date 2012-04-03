@@ -1,0 +1,77 @@
+%table{:class => :table}
+  - if current_user.is? :advertiser
+    %tr
+      %th Tweet
+      %th Comentarios
+      %th Fecha Requerido  
+      %th Tipo de Publicación
+      %th Monto
+      %th Celebridad
+      %th Campaña
+      %th Fecha de Publicación      
+      %th Estado
+      %th Acciones
+    - @tweets.each do |tweet|
+      %tr{ :class => cycle('odd', 'even') }
+        %td= tweet.tweet
+        %td= tweet.comments
+        %td= tweet.date_required ? (localize tweet.date_required, :format => "%B %e, %Y %H:%M hs") : "" 
+        %td= tweet.description
+        %td
+          - @amount = tweet.profile_for_tweet(tweet.payment_name, tweet.influencer_id, tweet.created_at)
+          = number_to_currency(@amount.amount, :precision => 2)
+          - @amount.amount_alt == 0 ? "" : " + " + number_to_currency(@amount.amount_alt, :precision => 2).to_s
+        %td= tweet.influencer.twitter_username
+        %td= tweet.campaign_name ? (link_to tweet.campaign_name, "/tweets/" + tweet.campaign_id.to_s + "/campaign") : ""
+        %td= tweet.date_posted ? (localize tweet.date_posted, :format => "%B %e, %Y %H:%M hs") : ""        
+        %td
+          %span{:class => "#{tweet.status} status"}= tweet.full_status
+        %td 
+          - if tweet.status == 'A'
+            = link_to 'Editar', edit_tweet_path(tweet)
+            = link_to 'Finalizar', tweets_url + "/" + tweet.id.to_s + "/finalize", :confirm => 'Esta seguro que desea finalizar este tweet?', :method => :get
+          - else
+            = 'Editar'
+            = 'Finalizar'
+          - if tweet.status == 'A' || tweet.status == 'X'
+            = link_to 'Rechazar', tweet, :confirm => 'Esta seguro que desea rechazar este tweet?', :method => :delete
+          - else
+            = 'Rechazar'
+  - else
+    %tr
+      %th Tweet
+      %th Comentarios
+      %th Fecha Requerido 
+      %th Tipo de Publicación
+      %th Monto
+      %th Empresa           
+      %th Fecha de Publicación
+      %th Estado 
+      %th Acciones
+      
+    - @tweets.each do |tweet|
+      %tr{ :class => cycle('odd', 'even') }
+        %td= tweet.tweet
+        %td= tweet.comments
+        %td= tweet.date_required ? (localize tweet.date_required, :format => "%B %e, %Y  %H:%M hs") : ""
+        %td= tweet.description
+        %td
+          - @amount = tweet.profile_for_tweet(tweet.payment_name, tweet.influencer_id, tweet.created_at)
+          = number_to_currency(@amount.amount, :precision => 2)
+          - @amount.amount_alt == 0 ? "" : " + " + number_to_currency(@amount.amount_alt, :precision => 2).to_s
+        %td= tweet.brand
+        %td= tweet.date_posted ? (localize tweet.date_posted, :format => "%B %e, %Y %H:%M hs") : ""        
+        %td
+          %span{:class => "#{tweet.status} status"}= tweet.full_status
+        %td 
+          - if tweet.status == 'X'
+            = link_to 'Editar', edit_tweet_path(tweet)
+            = link_to 'Aprobar', tweets_url + "/" + tweet.id.to_s + "/approve", :confirm => 'Esta seguro que desea aprobar este tweet?', :method => :get
+          - else
+            = 'Editar'
+            = 'Aprobar'
+          - if tweet.status == 'A' || tweet.status == 'X'
+            = link_to 'Rechazar', tweet, :confirm => 'Esta seguro que desea rechazar este tweet?', :method => :delete
+          - else
+            = 'Rechazar'
+.clear                

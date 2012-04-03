@@ -1,0 +1,39 @@
+#block-text.block
+  .content
+    %h2.title Listing influencers
+    .inner
+      %table{:class => :table}
+        %tr
+          %th User
+          %th Twitter username
+          %th Borwin fee
+          %th Firstname
+          %th Lastname
+          %th Sex
+          %th Address
+          %th City
+          %th State
+          %th Country
+          %th Zip code
+          %th Phone
+          %th
+          %th
+          %th
+
+        - @influencers.each do |influencer|
+          %tr
+            %td= influencer.user_id
+            %td= influencer.twitter_username
+            %td= influencer.borwin_fee
+            %td= influencer.firstname
+            %td= influencer.lastname
+            %td= influencer.sex
+            %td= influencer.address
+            %td= influencer.city
+            %td= influencer.state
+            %td= influencer.country
+            %td= influencer.zip_code
+            %td= influencer.current_profile.fee
+            %td= link_to 'Show', influencer
+            %td= link_to 'Edit', edit_influencer_path(influencer)
+            %td= link_to 'Destroy', influencer, :confirm => 'Are you sure?', :method => :delete

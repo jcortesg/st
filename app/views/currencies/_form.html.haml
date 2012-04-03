@@ -1,0 +1,16 @@
+= form_for @currency do |f|
+  -if @currency.errors.any?
+    #error_explanation
+      %h2= "Se ha producido un error en #{pluralize(@currency.errors.count, "error")}"
+      %ul
+        - @currency.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :name
+    = f.text_field :name
+  .field
+    = f.label :description
+    = f.text_field :description
+  .actions
+    = f.submit 'Guardar'

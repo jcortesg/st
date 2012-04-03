@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b Audience:
+  = @audiences_location.audience_id
+%p
+  %b Location:
+  = @audiences_location.location_id
+%p
+  %b Percentage:
+  = @audiences_location.percentage
+
+= link_to 'Edit', edit_audiences_location_path(@audiences_location)
+\|
+= link_to 'Back', audiences_locations_path

@@ -1,0 +1,51 @@
+= form_for @tweet, :html => {:class => "form"} do |f|
+  - if @tweet.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@tweet.errors.count, "error")} prohibited this tweet from being saved:"
+      %ul
+        - @tweet.errors.full_messages.each do |msg|
+          %li= msg
+  .group.wat-cf
+    .left= f.label :tweet, :class => "label right"
+    :javascript
+      $(document).ready(function(){	
+        $("#tweet").charCount();
+        alert("ddd");
+      });
+    .right= f.text_area :tweet
+  .group.wat-cf
+    .left= f.label :comments, :class => "label right"
+    .right= f.text_area :comments, :class => "text_field", :rows => 6
+  .group.wat-cf
+    .left= f.label :url, :class => "label right"
+    .right
+      %table{:class => "table-large"}
+        %tr
+          %td
+            = f.text_field :url, :class => "text_field"
+          %td.last
+            %button.button{ :type => "submit" }
+              = image_tag "web-app-theme/icons/tick.png"
+  - if @influencers
+    .group.wat-cf
+      .left= f.label 'Celebridades', :class => "label right"
+      .right= hidden_field_tag :ids, @ids
+      - @influencers.each do |influencer|
+        .right= f.label influencer.twitter_username, :value => influencer.twitter_username, :class => "twitter_username"
+  .group.wat-cf
+    .left= f.label :date_required, :class => "label right"
+    .right= f.datetime_select :date_required, :class => "text_field"
+  .group.wat-cf
+    .left= f.label :payment_type, :class => "label right"
+    .right= f.select(:payment_type_id, payment_types_for_select, :prompt => "")
+  - if current_user.user_type == "advertiser"
+    .group.wat-cf
+      .left= f.label :campaign, :class => "label right"
+      .right= f.select(:campaign_id, campaigns_for_select, :prompt => "")
+  .group.wat-cf
+    .right
+      %button.button{ :type => "submit" }
+        = image_tag "web-app-theme/icons/tick.png"
+        Guardar 
+      %span{ :class => "text_button_padding" }o
+      %a{ :class => "text_button_padding link_button", :href => (@influencers ? "/influencers/list" : "/tweets") }Cancelar

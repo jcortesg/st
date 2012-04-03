@@ -1,0 +1,42 @@
+#block-text.block
+  .content
+    %h2.title Datos Personales
+    .inner
+      %p#notice= notice
+
+      %p
+        %b User:
+        = @influencer.user_id
+      %p
+        %b Twitter username:
+        = @influencer.twitter_username
+      %p
+        %b Bio:
+        = @influencer.bio
+      %p
+        %b Firstname:
+        = @influencer.firstname
+      %p
+        %b Lastname:
+        = @influencer.lastname
+      %p
+        %b Sex:
+        = @influencer.sex
+      %p
+        %b Address:
+        = @influencer.address
+      %p
+        %b City:
+        = @influencer.city
+      %p
+        %b State:
+        = @influencer.state
+      %p
+        %b Country:
+        = @influencer.country
+      %p
+        %b Zip code:
+        = @influencer.zip_code
+      %p
+        %b Phone:
+        = @influencer.phone

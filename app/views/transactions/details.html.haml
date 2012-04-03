@@ -1,0 +1,30 @@
+#block-text.block
+  .content
+    %h2.title
+      Transacciónes de
+      = @influencer[:lastname] + ", " + @influencer[:firstname]
+    .inner
+      %table{:class => :table}
+        %tr
+          %th Tweet
+          %th Fecha Publicación          
+          %th Anunciante
+          %th Monto del Tweet
+          %th Comisión
+          %th Monto por Referido
+          %th Estado
+        - @transactions.each do |transaction|
+          %tr{ :class => @cycle = cycle('odd', 'even') }
+            %td= transaction.tweet
+            %td= localize transaction.date_posted, :format => "%B %e, %Y"
+            %td= transaction.brand
+            %td= number_to_currency(transaction.amount, :precision => 2)
+            %td= number_to_percentage(@influencer[:commission].to_f * 100, :precision => 2)
+            %td= number_to_currency(transaction.amount.to_f * @influencer[:commission].to_f, :precision => 2)
+            %td
+              %span{:class => "#{transaction.status} status"}= transaction.status
+              
+  .sign-links
+    = link_to "Volver", "/referrals", :class => "nounderline"
+  %br 
+%br

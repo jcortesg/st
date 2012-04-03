@@ -1,0 +1,64 @@
+= form_for @audience do |f|
+  -if @audience.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@audience.errors.count, "error")} prohibited this audience from being saved:"
+      %ul
+        - @audience.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :influencer_id
+    = f.number_field :influencer_id
+  .field
+    = f.label :followers
+    = f.number_field :followers
+  .field
+    = f.label :followers_followers
+    = f.number_field :followers_followers
+  .field
+    = f.label :males
+    = f.text_field :males
+  .field
+    = f.label :females
+    = f.text_field :females
+  .field
+    = f.label :moms
+    = f.text_field :moms
+  .field
+    = f.label :kids
+    = f.text_field :kids
+  .field
+    = f.label :young_teens
+    = f.text_field :young_teens
+  .field
+    = f.label :mature_teens
+    = f.text_field :mature_teens
+  .field
+    = f.label :young_adults
+    = f.text_field :young_adults
+  .field
+    = f.label :mature_adults
+    = f.text_field :mature_adults
+  .field
+    = f.label :adults
+    = f.text_field :adults
+  .field
+    = f.label :elderly
+    = f.text_field :elderly
+  .field
+    = f.label :sports
+    = f.text_field :sports
+  .field
+    = f.label :fashion
+    = f.text_field :fashion
+  .field
+    = f.label :music
+    = f.text_field :music
+  .field
+    = f.label :movies
+    = f.text_field :movies
+  .field
+    = f.label :politics
+    = f.text_field :politics
+  .actions
+    = f.submit 'Save'

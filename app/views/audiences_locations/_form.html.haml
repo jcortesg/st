@@ -1,0 +1,19 @@
+= form_for @audiences_location do |f|
+  -if @audiences_location.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@audiences_location.errors.count, "error")} prohibited this audiences_location from being saved:"
+      %ul
+        - @audiences_location.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :audience_id
+    = f.number_field :audience_id
+  .field
+    = f.label :location_id
+    = f.number_field :location_id
+  .field
+    = f.label :percentage
+    = f.text_field :percentage
+  .actions
+    = f.submit 'Save'

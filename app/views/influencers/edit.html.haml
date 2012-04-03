@@ -1,0 +1,82 @@
+#block-text.block
+  .content
+    %h2.title Editar Datos Personales
+    .inner
+      = form_for(@influencer, :html => { :class => "form" }, :method => :put) do |f|
+        -if @influencer.errors.any?
+          #error_explanation
+            %h2= "#{pluralize(@influencer.errors.count, "error")} prohibited this influencer from being saved:"
+            %ul
+              - @influencer.errors.full_messages.each do |msg|
+                %li= msg
+        .group.wat-cf
+          .left= f.label :twitter_username, :class => "label right"
+          .right= f.text_field :twitter_username, :class => "text_field"  
+        .group.wat-cf
+          .left= f.label :influencer_type, :class => "label right"
+          - @influencer_types = {"Actor" => "Actor", "Músico" => "Músico", "Deportista" => "Deportista", "Conductor" => "Conductor", "Periodista" => "Periodista", "Modelo" => "Modelo", "Mediático" => "Mediático", "Artista" => "Artista", "Panelista" => "Panelista", "Cheff" => "Cheff", "Humorista" => "Humorista", "Moda" => "Moda", "Twitteros" => "Twitteros", "Otros" => "Otros"}
+          .right= f.select :influencer_type, @influencer_types, :class => "text_field"
+        .group.wat-cf
+          .left= f.label :description, :class => "label right"
+          .right= f.text_area :description, :class => "text_field", :rows => 3          
+        .group.wat-cf
+          .left= f.label :firstname, :class => "label right"
+          .right= f.text_field :firstname, :class => "text_field"
+        .group.wat-cf
+          .left= f.label :lastname, :class => "label right"
+          .right= f.text_field :lastname, :class => "text_field"
+        .group.wat-cf
+          .left= f.label :sex, :class => "label right"
+          - @sex = {"Hombre" => "M", "Mujer" => "F"}
+          .right= f.select :sex, @sex, :class => "text_field"
+        .group.wat-cf
+          .left= f.label :address, :class => "label right"
+          .right= f.text_field :address, :class => "text_field"
+        .group.wat-cf
+          .left= f.label :city, :class => "label right"
+          .right= f.text_field :city, :class => "text_field"
+        .group.wat-cf
+          .left= f.label :state, :class => "label right"
+          .right= f.text_field :state, :class => "text_field"
+        .group.wat-cf
+          .left= f.label :country, :class => "label right"
+          .right= f.text_field :country, :class => "text_field"
+        .group.wat-cf
+          .left= f.label :zip_code, :class => "label right"
+          .right= f.text_field :zip_code, :class => "text_field"
+        .group.wat-cf
+          .left= f.label :phone, :class => "label right"
+          .right= f.text_field :phone, :class => "text_field"
+        .group.wat-cf
+          .left= f.label :cell_phone, :class => "label right"
+          .right= f.text_field :cell_phone, :class => "text_field"    
+        .group.wat-cf
+          .left= f.label :contact_time, :class => "label right"
+          .right
+            = f.text_field :contact_time, :class => "text_field"    
+            %span{ :class => "description" } Opcional. E.j. 10 - 17 
+        .group.wat-cf
+          .left= f.label :account_number, :class => "label right"
+          .right= f.text_field :account_number, :class => "text_field"    
+        .group.wat-cf
+          .left= f.label :account_type, :class => "label right"
+          - @type = {"Caja de Ahorro" => "Caja de Ahorro", "Cuenta Corriente" => "Cuenta Corriente"}
+          .right= f.select :account_type, @type, :class => "text_field"    
+        .group.wat-cf
+          .left= f.label :cbu, :class => "label right"
+          .right= f.text_field :cbu, :class => "text_field"    
+        .group.wat-cf
+          .left= f.label :bank_name, :class => "label right"
+          - @banks = {"Citi" => "Citi", "Standard Bank" => "Standard Bank", "Santander Rio" => "Santander Rio", "Banco Frances" => "Banco Frances", "Banco Macro" => "Banco Macro", "Banco Galicia" => "Banco Galicia"}
+          .right= f.select :bank_name, @banks, :class => "text_field"  
+        .group.wat-cf
+          .left= f.label :contact_method, :class => "label right"
+          - @contact_methods = {"Email" => "Email", "Telefono" => "Telefono", "Direct Message" => "Direct Message"}
+          .right= f.select :contact_method, @contact_methods, :class => "text_field"          
+        .group.wat-cf
+          .right
+            %button.button{ :type => "submit" }
+              = image_tag "web-app-theme/icons/tick.png"
+              Editar 
+            %span{ :class => "text_button_padding" }o
+            %a{ :class => "text_button_padding link_button", :href => home_path }Cancelar

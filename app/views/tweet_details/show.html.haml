@@ -1,0 +1,18 @@
+%p#notice= notice
+
+%p
+  %b Tweet:
+  = @tweet_detail.tweet_id
+%p
+  %b Clicks:
+  = @tweet_detail.clicks
+%p
+  %b Retweets:
+  = @tweet_detail.retweets
+%p
+  %b Status:
+  = @tweet_detail.status
+
+= link_to 'Edit', edit_tweet_detail_path(@tweet_detail)
+\|
+= link_to 'Back', tweet_details_path

@@ -1,0 +1,21 @@
+%h1 Listing competitors
+
+%table
+  %tr
+    %th Advertiser
+    %th Competitor
+    %th
+    %th
+    %th
+
+  - @competitors.each do |competitor|
+    %tr
+      %td= competitor.advertiser_id
+      %td= competitor.competitor_id
+      %td= link_to 'Show', competitor
+      %td= link_to 'Edit', edit_competitor_path(competitor)
+      %td= link_to 'Destroy', competitor, :confirm => 'Are you sure?', :method => :delete
+
+%br
+
+= link_to 'New Competitor', new_competitor_path

@@ -1,0 +1,40 @@
+#block-text.block
+  .content
+    %h2.title Actualizar Datos Personales
+    .inner
+      = form_for @advertiser, :html => {:class => "form"}, :method => :put do |f|
+        -if @advertiser.errors.any?
+          #error_explanation
+            %h2= "#{pluralize(@advertiser.errors.count, "error")} prohibited this advertiser from being saved:"
+            %ul
+              - @advertiser.errors.full_messages.each do |msg|
+                %li= msg
+
+        .group
+          = f.label :twitter_username, :class => "label"
+          = f.text_field :twitter_username, :class => "text_field"
+        .group
+          = f.label :brand, :class => "label"
+          = f.text_field :brand, :class => "text_field"
+        .group
+          = f.label :address, :class => "label"
+          = f.text_field :address, :class => "text_field"
+        .group
+          = f.label :city, :class => "label"
+          = f.text_field :city, :class => "text_field"
+        .group
+          = f.label :state, :class => "label"
+          = f.text_field :state, :class => "text_field"
+        .group
+          = f.label :country, :class => "label"
+          = f.text_field :country, :class => "text_field"
+        .group
+          = f.label :zip_code, :class => "label"
+          = f.text_field :zip_code, :class => "text_field"
+        .group
+          = f.label :phone, :class => "label"
+          = f.text_field :phone, :class => "text_field"
+        .group.navform.wat-cf
+          %button.button{ :type => "submit" }
+            = image_tag "web-app-theme/icons/tick.png"
+            Editar

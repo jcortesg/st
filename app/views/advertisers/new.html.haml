@@ -1,0 +1,9 @@
+.block#block-login
+  %h2 Datos Personales
+  .content.login
+    /.flash
+    /  - flash.each do |type, message|
+    /    %div{ :class => "message #{type}" }
+    /      %p= message unless message.blank?
+          
+    = render 'form'
