@@ -87,9 +87,8 @@ class InfluencersController < ApplicationController
   # POST /influencers
   # POST /influencers.json
   def create
-    params[:influencer][:user_id] = session[:signed_up_user_id]
-
     @influencer = Influencer.new(params[:influencer])
+    @influencer.user_id = session[:signed_up_user_id]
 
     respond_to do |format|
       if @influencer.save
