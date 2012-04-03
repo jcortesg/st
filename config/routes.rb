@@ -10,7 +10,7 @@ Borwin::Application.routes.draw do
 
   root :to => 'welcome#index'
   
-  match "alta" => "users#new"
+  match "alta" => redirect('/users/sign_up')
 
   match "home" => "home#index"
   
