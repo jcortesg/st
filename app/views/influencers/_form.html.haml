@@ -2,7 +2,7 @@
 
 = f.input :twitter_username
 = f.input :influencer_type, :as => :select, :collection => ["Actor", "Músico", "Deportista", "Conductor", "Periodista", "Modelo", "Mediático", "Artista", "Panelista", "Cheff", "Humorista", "Moda", "Twitteros", "Otros"], :include_blank => false
-= f.input :description
+= f.input :description, :as => :text, :input_html => {:rows => 4, :cols => 60 }
 = f.input :firstname
 = f.input :lastname
 = f.input :sex, :as => :radio_buttons, :collection => [['Hombre', 'M'], ['Mujer', 'F']], :include_blank => false

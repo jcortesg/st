@@ -8,12 +8,12 @@ class CreateInfluencers < ActiveRecord::Migration
       t.string :location
       t.date :joined_twitter
       t.string :image_url
-      t.string :bio
-      t.string :description
+      t.text :bio
+      t.text :description
       t.string :contact_method
       t.string :firstname
       t.string :lastname
-      t.text :sex
+      t.char :sex
       t.string :address
       t.string :city
       t.string :state

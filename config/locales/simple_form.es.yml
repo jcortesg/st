@@ -38,6 +38,9 @@ es:
         cbu: CBU
         bank_name: Banco
         contact_method: Forma de contacto preferido
+    hints:
+      influencer:
+        twitter_username: "Tu nombre de usuario en twitter, ej: rorra"
   helpers:
     submit:
       user:
