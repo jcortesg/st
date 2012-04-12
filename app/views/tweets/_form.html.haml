@@ -25,7 +25,7 @@
             = f.text_field :url, :class => "text_field"
           %td.last
             %button.button{ :type => "submit" }
-              = image_tag "web-app-theme/icons/tick.png"
+              = image_tag "theme/tick.png"
   - if @influencers
     .group.wat-cf
       .left= f.label 'Celebridades', :class => "label right"
@@ -45,7 +45,7 @@
   .group.wat-cf
     .right
       %button.button{ :type => "submit" }
-        = image_tag "web-app-theme/icons/tick.png"
+        = image_tag "theme/tick.png"
         Guardar 
       %span{ :class => "text_button_padding" }o
       %a{ :class => "text_button_padding link_button", :href => (@influencers ? "/influencers/list" : "/tweets") }Cancelar

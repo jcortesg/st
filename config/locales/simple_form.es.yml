@@ -1,0 +1,12 @@
+es:
+  simple_form:
+    labels:
+      site_contact:
+        name: Nombre
+        email: Email
+        subject: Asunto
+        message: Mensaje
+  helpers:
+    submit:
+      site_contact:
+        create: Envíar

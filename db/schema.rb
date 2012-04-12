@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120218145310) do
+ActiveRecord::Schema.define(:version => 20120412062936) do
 
   create_table "advertisers", :force => true do |t|
     t.integer "user_id"
@@ -194,6 +194,15 @@ ActiveRecord::Schema.define(:version => 20120218145310) do
   end
 
   add_index "referrals", ["source_id"], :name => "index_referrals_on_source_id"
+
+  create_table "site_contacts", :force => true do |t|
+    t.string   "name"
+    t.string   "email"
+    t.string   "subject"
+    t.text     "message"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "top_followers", :force => true do |t|
     t.integer "influencer_id"

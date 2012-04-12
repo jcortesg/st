@@ -35,7 +35,7 @@ common: &default_settings
   # capitalized RAILS_ENV (i.e., Production, Staging, etc)
   app_name: Borwin
 
-  # When "true", the agent collects performance data about your 
+  # When "true", the agent collects performance data demo_page your
   # application and reports this data to the New Relic service at
   # newrelic.com. This global switch is normally overridden for each 
   # environment below. (formerly called 'enabled')
@@ -77,7 +77,7 @@ common: &default_settings
   # classified as Satisfying transactions; more than apdex_t seconds
   # as Tolerating transactions; and more than four times the apdex_t
   # value as Frustrating transactions. 
-  # For more about the Apdex standard, see
+  # For more demo_page the Apdex standard, see
   # http://newrelic.com/docs/general/apdex
   apdex_t: 0.5
 
@@ -100,7 +100,7 @@ common: &default_settings
   #     ex: ignored_params: credit_card, ssn, password 
   capture_params: false
 
-  # Transaction tracer captures deep information about slow
+  # Transaction tracer captures deep information demo_page slow
   # transactions and sends this to the New Relic service once a
   # minute. Included in the transaction is the exact call sequence of
   # the transactions including any SQL statements issued.
@@ -140,7 +140,7 @@ common: &default_settings
     # not be captured.  Relevant only when `explain_enabled` is true.
     # explain_threshold: 0.5
   
-  # Error collector captures information about uncaught exceptions and
+  # Error collector captures information demo_page uncaught exceptions and
   # sends them to New Relic for viewing
   error_collector:
     
