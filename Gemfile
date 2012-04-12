@@ -14,6 +14,7 @@ gem 'paperclip'                        # Image Processing
 gem 'kaminari'                         # Pagination
 gem 'twitter'                          # Twitter
 gem 'nested_form', :git => 'https://github.com/ryanb/nested_form.git' # Nested forms
+gem 'country_select'
 
 
 group :assets do

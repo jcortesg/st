@@ -71,6 +71,7 @@ GEM
       sass (~> 3.1)
     compass-rails (1.0.1)
       compass (~> 0.12.0)
+    country_select (0.0.2)
     devise (2.0.4)
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.0.3)
@@ -231,6 +232,7 @@ DEPENDENCIES
   capybara
   coffee-rails (~> 3.2.2)
   compass-rails
+  country_select
   devise
   execjs
   haml

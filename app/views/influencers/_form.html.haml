@@ -1,80 +1,22 @@
-= form_for(@influencer, :html => { :class => "form" }, :method => :post) do |f|
-  .flash
-    - @influencer.errors.full_messages.each do |type, message|
-      %div{ :class => "message alert" }
-        %p= type.to_s + " " + message.to_s    
-  .group.wat-cf
-    .left= f.label :twitter_username, :class => "label right"
-    .right
-      = f.text_field :twitter_username, :value => "@", :class => "text_field"
-      %span{ :class => "description" } Obligatorio. E.j. @borwinargentina  
-  .group.wat-cf
-    .left= f.label :influencer_type, :class => "label right"
-    - @influencer_types = {"Actor" => "Actor", "Músico" => "Músico", "Deportista" => "Deportista", "Conductor" => "Conductor", "Periodista" => "Periodista", "Modelo" => "Modelo", "Mediático" => "Mediático", "Artista" => "Artista", "Panelista" => "Panelista", "Cheff" => "Cheff", "Humorista" => "Humorista", "Moda" => "Moda", "Twitteros" => "Twitteros", "Otros" => "Otros"}
-    .right= f.select :influencer_type, @influencer_types, :class => "text_field"
-  .group.wat-cf
-    .left= f.label :description, :class => "label right"
-    .right= f.text_area :description, :class => "text_field", :rows => 3
-  .group.wat-cf
-    .left= f.label :firstname, :class => "label right"
-    .right
-      = f.text_field :firstname, :class => "text_field"
-      %span{ :class => "description" } Obligatorio. E.j. Borwin
-  .group.wat-cf
-    .left= f.label :lastname, :class => "label right"
-    .right
-      = f.text_field :lastname, :class => "text_field"
-      %span{ :class => "description" } Obligatorio. E.j. Argentina
-  .group.wat-cf
-    .left= f.label :sex, :class => "label right"
-    - @sex = {"Hombre" => "M", "Mujer" => "F"}
-    .right= f.select :sex, @sex, :class => "text_field"
-  .group.wat-cf
-    .left= f.label :address, :class => "label right"
-    .right= f.text_field :address, :class => "text_field"
-  .group.wat-cf
-    .left= f.label :city, :class => "label right"
-    .right= f.text_field :city, :class => "text_field"
-  .group.wat-cf
-    .left= f.label :state, :class => "label right"
-    .right= f.text_field :state, :class => "text_field"
-  .group.wat-cf
-    .left= f.label :country, :class => "label right"
-    .right= f.text_field :country, :class => "text_field"
-  .group.wat-cf
-    .left= f.label :zip_code, :class => "label right"
-    .right= f.text_field :zip_code, :class => "text_field"
-  .group.wat-cf
-    .left= f.label :phone, :class => "label right"
-    .right= f.text_field :phone, :class => "text_field"
-  .group.wat-cf
-    .left= f.label :cell_phone, :class => "label right"
-    .right= f.text_field :cell_phone, :class => "text_field"    
-  .group.wat-cf
-    .left= f.label :contact_time, :class => "label right"
-    .right
-      = f.text_field :contact_time, :class => "text_field"    
-      %span{ :class => "description" } Opcional. E.j. 10 - 17 
-  .group.wat-cf
-    .left= f.label :account_number, :class => "label right"
-    .right= f.text_field :account_number, :class => "text_field"    
-  .group.wat-cf
-    .left= f.label :account_type, :class => "label right"
-    - @type = {"Caja de Ahorro" => "Caja de Ahorro", "Cuenta Corriente" => "Cuenta Corriente"}
-    .right= f.select :account_type, @type, :class => "text_field"    
-  .group.wat-cf
-    .left= f.label :cbu, :class => "label right"
-    .right= f.text_field :cbu, :class => "text_field"    
-  .group.wat-cf
-    .left= f.label :bank_name, :class => "label right"
-    - @banks = {"Citi" => "Citi", "Standard Bank" => "Standard Bank", "Santander Rio" => "Santander Rio", "Banco Frances" => "Banco Frances", "Banco Macro" => "Banco Macro", "Banco Galicia" => "Banco Galicia"}
-    .right= f.select :bank_name, @banks, :class => "text_field"  
-  .group.wat-cf
-    .left= f.label :contact_method, :class => "label right"
-    - @contact_methods = {"Email" => "Email", "Telefono" => "Telefono", "Direct Message" => "Direct Message"}
-    .right= f.select :contact_method, @contact_methods, :class => "text_field"              
-  .group.wat-cf
-    .right
-      %button.button{ :type => "submit" }
-        = image_tag "theme/tick.png"
-        Registrarse 
+= render '/shared/simple_form_errors', :f => f
+
+= f.input :twitter_username
+= f.input :influencer_type, :as => :select, :collection => ["Actor", "Músico", "Deportista", "Conductor", "Periodista", "Modelo", "Mediático", "Artista", "Panelista", "Cheff", "Humorista", "Moda", "Twitteros", "Otros"], :include_blank => false
+= f.input :description
+= f.input :firstname
+= f.input :lastname
+= f.input :sex, :as => :radio_buttons, :collection => [['Hombre', 'M'], ['Mujer', 'F']], :include_blank => false
+= f.input :address
+= f.input :city
+= f.input :state
+= f.input :country
+= f.input :zip_code
+= f.input :phone
+= f.input :cell_phone
+= f.input :contact_time
+= f.input :account_number
+= f.input :account_type, :as => :select, :collection => ['Caja de Ahorro', 'Cuenta Corriente'], :include_blank => false
+= f.input :cbu
+= f.input :bank_name, :as => :select, :collection => ["Citi", "Standard Bank", "Santander Rio", "Banco Frances", "Banco Macro", "Banco Galicia"]
+= f.input :contact_method, :as => :select, :collection => ["Email", "Telefono", "Direct Message"]
+

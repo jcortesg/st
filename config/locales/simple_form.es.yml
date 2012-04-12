@@ -18,9 +18,31 @@ es:
         password: Contraseña
         password_confirmation: Repetir contraseña
         user_type: Que eres?
+      influencer:
+        twitter_username: Twitter
+        influencer_type: Profesión
+        description: Contanos sobre vos
+        firstname: Nombre
+        lastname: Apellido
+        sex: Sexo
+        address: Dirección
+        city: Ciudad
+        state: Provincia
+        country: País
+        zip_code: Código Postal
+        phone: Télefono
+        cell_phone: Celular
+        contact_time: Hora de contacto
+        account_number: Número de cuenta bancaria
+        account_type: Tipo de cuenta
+        cbu: CBU
+        bank_name: Banco
+        contact_method: Forma de contacto preferido
   helpers:
     submit:
       user:
         create: Ingresar
       site_contact:
         create: Envíar
+      influencer:
+        create: Registrarse
