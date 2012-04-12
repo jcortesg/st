@@ -9,13 +9,13 @@ Borwin::Application.routes.draw do
   match "alta" => redirect('/users/sign_up')
 
   # Home pages
-  match "borwin-for-advertisers" => "welcome#advertisers"
-  match "borwin-for-influencers" => "welcome#influencers"
-  match "analytics" => "welcome#analytics"
-  match "about" => "welcome#about"
-  match "contact" => "welcome#contact"
+  match "borwin-for-advertisers" => "welcome#advertisers", :as => 'welcome_advertisers'
+  match "borwin-for-influencers" => "welcome#influencers", :as => 'welcome_influencers'
+  match "analytics" => "welcome#analytics", :as => 'welcome_analytics'
+  match "about" => "welcome#about", :as => 'about'
+  match "contact" => "welcome#contact", :as => 'contact'
   match "process_contact" => "welcome#process_contact", :as => 'process_contact'
-  match "terms" => "welcome#terms"
+  match "terms" => "welcome#terms", :as => 'terms'
 
   resources :audiences_locations
 
