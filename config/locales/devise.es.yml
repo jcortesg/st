@@ -18,6 +18,8 @@ es:
       invalid_token: 'Código de autenticación inválido.'
       timeout: 'Tu sesión expiró, por favor inicia sesión nuevamente para continuar.'
       inactive: 'Tu cuenta aún no ha sido activada.'
+      user:
+        not_approved: 'Tu cuenta aún no ha sido activada.'
     sessions:
       signed_in: 'Sesión iniciada.'
       signed_out: 'Sesión finalizada.'
