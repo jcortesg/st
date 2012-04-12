@@ -13,7 +13,14 @@ es:
         email: Email
         subject: Asunto
         message: Mensaje
+      user:
+        email: Email
+        password: Contraseña
+        password_confirmation: Repetir contraseña
+        user_type: Que eres?
   helpers:
     submit:
+      user:
+        create: Ingresar
       site_contact:
         create: Envíar

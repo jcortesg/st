@@ -1,0 +1,5 @@
+- if flash[:notice] || flash[:warning] || flash[:message] || flash[:error] || flash[:alert]
+  .alert.alert-error.fade.in
+    %a.close{'data-dismiss' => 'alert', :href => '#'}= "&times;".html_safe
+    - flash.each do |type, message|
+      %p= message

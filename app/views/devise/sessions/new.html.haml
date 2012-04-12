@@ -1,33 +1,21 @@
-.block#block-login
-  %h2 Iniciar sesión
-  .content.login
-    .flash
-      - flash.each do |type, message|
-        - if type != "timedout"
-          %div{ :class => "message #{type}" }
-            %p= message
-    = form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => { :class => "form login" }) do |f|
-      .group.wat-cf
-        .left= f.label :email, :class => "label right"
-        .right= f.text_field :email, :class => "text_field"
-      .group.wat-cf
-        .left= f.label :password, :class => "label right"
-        .right= f.password_field :password, :class => "text_field"
-      - if devise_mapping.rememberable?
-        .group.wat-cf
-          .right
-            = f.check_box :remember_me, :class => "checkbox"
-            = f.label :remember_me, :class => "checkbox"
-      .group.wat-cf
-        .right
-          %button.button{ :type => "submit" }
-            = image_tag "theme/key.png"
-            Ingresar
+.row.login_container
+  .span6
+    %h1.center_text Inicia sesión con tu cuenta de Twitter
+    = link_to(image_tag('sign-in-with-twitter.png'), login_twitter_credentials_path)
+  .span6
+    %h1.center_text Inicia sesión con tu email
+    = simple_form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => { :class => "form-horizontal" }) do |f|
+      = render '/shared/flash', :flash => flash
+      = f.input :email
+      = f.input :password
+      = f.input :remember_me, :label => "Recordarme", :as => :boolean
+      .form-actions
+        = f.submit
+
+
 .sign-links
-  = link_to "← Volver al sitio web", root_path, :class => "nounderline"
+  = link_to "Registrarse", new_registration_path(resource_name)
   |
-  = link_to "Registrarse", new_registration_path(resource_name), :class => "nounderline"
-  |
-  = link_to "Olvide mi contraseña?", new_password_path(resource_name), :class => "nounderline"
+  = link_to "Olvide mi contraseña?", new_password_path(resource_name)
 %br
 %br
