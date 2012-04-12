@@ -21,7 +21,7 @@
         %td= number_to_currency(influencer.cpc)
         %td= number_to_currency(influencer.fee_cpc) + " + " + number_to_currency(influencer.cpc_fee)
       %tr{ :class => @cycle }
-        %td{:colspan => "7"}= influencer.influencer_type + ": " + influencer.bio
+        %td{:colspan => "7"}= influencer.influencer_type.to_s + ": " + influencer.bio.to_s
   .group.wat-cf
     %button.button{ :type => "submit" }
       = image_tag "web-app-theme/icons/tick.png"

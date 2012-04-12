@@ -7,6 +7,9 @@ class Tweet < ActiveRecord::Base
   has_many :tweet_details
   
   scope :waiting_publication_and_expired, :conditions => "status = 'F' AND date_required <= now()"
+
+  attr_accessible :tweet, :comments, :url, :payment_type_id, :influencer_id, :advertiser_id, :date_posted,
+                  :date_required, :campaign_id
       
   def full_status
   	if self.status == "Z"

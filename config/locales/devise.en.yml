@@ -1,5 +1,3 @@
-# Additional translations at https://github.com/plataformatec/devise/wiki/I18n
-
 en:
   errors:
     messages:
@@ -12,47 +10,45 @@ en:
         other: "%{count} errors prohibited this %{resource} from being saved:"
   devise:
     failure:
-      already_authenticated: 'Ya estas logeado'
-      unauthenticated: 'Debes logearte para continuar'
-      unconfirmed: 'Debes confirmar tu cuenta antes de poder logearte'
+      already_authenticated: 'You are already signed in.'
+      unauthenticated: 'You need to sign in or sign up before continuing.'
+      unconfirmed: 'You have to confirm your account before continuing.'
       locked: 'Your account is locked.'
-      invalid: 'Email o contraseña invalidos'
+      invalid: 'Invalid email or password.'
       invalid_token: 'Invalid authentication token.'
-      timeout: 'La sesion expiro, por favor ingresa nuevamente'
+      timeout: 'Your session expired, please sign in again to continue.'
       inactive: 'Your account was not activated yet.'
-      not_approved: 'Tu cuenta aun no ha sido aprobada por el administrador'
     sessions:
-      signed_in: ''
-      signed_out: ''
+      signed_in: 'Signed in successfully.'
+      signed_out: 'Signed out successfully.'
     passwords:
-      send_instructions: 'En unos minutos recibiras instrucciones para resetear tu contraseña'
+      send_instructions: 'You will receive an email with instructions about how to reset your password in a few minutes.'
       updated: 'Your password was changed successfully. You are now signed in.'
       updated_not_active: 'Your password was changed successfully.'
       send_paranoid_instructions: "If your e-mail exists on our database, you will receive a password recovery link on your e-mail"
     confirmations:
       send_instructions: 'You will receive an email with instructions about how to confirm your account in a few minutes.'
       send_paranoid_instructions: 'If your e-mail exists on our database, you will receive an email with instructions about how to confirm your account in a few minutes.'
-      confirmed: 'Tu cuenta ha sido confirmada'
-    users:
+      confirmed: 'Your account was successfully confirmed. You are now signed in.'
+    registrations:
       signed_up: 'Welcome! You have signed up successfully.'
-      inactive_signed_up: 'Su cuenta ha sido verificada con éxito. En las próximas 48hs. recibirá un correo electrónico confirmando que su cuenta ha sido activada. Gracias por utilizar Borwin® It’s time to go social!'
+      signed_up_but_unconfirmed: 'A message with a confirmation link has been sent to your email address. Please open the link to activate your account.'
+      signed_up_but_inactive: 'You have signed up successfully. However, we could not sign you in because your account is not yet activated.'
+      signed_up_but_locked: 'You have signed up successfully. However, we could not sign you in because your account is locked.'
       updated: 'You updated your account successfully.'
+      update_needs_confirmation: "You updated your account successfully, but we need to verify your new email address. Please check your email and click on the confirm link to finalize confirming your new email address."
       destroyed: 'Bye! Your account was successfully cancelled. We hope to see you again soon.'
-      reasons:
-        inactive: 'inactive'
-        unconfirmed: 'unconfirmed'
-        locked: 'locked'
     unlocks:
       send_instructions: 'You will receive an email with instructions about how to unlock your account in a few minutes.'
-      unlocked: 'Your account was successfully unlocked. You are now signed in.'
+      unlocked: 'Your account has been unlocked successfully. Please sign in to continue.'
       send_paranoid_instructions: 'If your account exists, you will receive an email with instructions about how to unlock it in a few minutes.'
     omniauth_callbacks:
-      success: 'Successfully authorized from %{kind} account.'
-      failure: 'Could not authorize you from %{kind} because "%{reason}".'
+      success: 'Successfully authenticated from %{kind} account.'
+      failure: 'Could not authenticate you from %{kind} because "%{reason}".'
     mailer:
       confirmation_instructions:
-        subject: 'Bienvenido @ Borwin - Its time to go social'
+        subject: 'Confirmation instructions'
       reset_password_instructions:
-        subject: 'Resetear Contraseña @ Borwin - Its time to go social'
+        subject: 'Reset password instructions'
       unlock_instructions:
         subject: 'Unlock Instructions'

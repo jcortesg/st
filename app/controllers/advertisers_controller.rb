@@ -53,9 +53,8 @@ class AdvertisersController < ApplicationController
   # POST /advertisers
   # POST /advertisers.json
   def create    
-    params[:advertiser][:user_id] = session[:signed_up_user_id]
-    
     @advertiser = Advertiser.new(params[:advertiser])
+    @advertiser.user_id = session[:signed_up_user_id]
     
     respond_to do |format|
       if @advertiser.save

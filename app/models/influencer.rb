@@ -13,7 +13,7 @@ class Influencer < ActiveRecord::Base
 
   attr_accessible :twitter_username, :influencer_type, :description, :firstname, :lastname, :sex, :address, :city,
                   :state, :country, :zip_code, :phone, :cell_phone, :contact_time, :contact_time, :account_number,
-                  :account_type, :cbu, :bank_name, :contact_method, :location, :bio
+                  :account_type, :cbu, :bank_name, :contact_method, :bio
   
   def self.influencers_list_with_current_profile_and_audience(filters)    
     followers = filters[:followers]

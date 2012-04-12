@@ -7,6 +7,8 @@ class Advertiser < ActiveRecord::Base
   
   validates :twitter_username, :presence => true, :length => { :within => 3..50 }, :uniqueness => true
   validates :brand, :presence => true
+
+  attr_accessible :twitter_username, :brand, :address, :city, :state, :country, :zip_code, :phone
     
   def self.advertiser_for_user(user)
     return self.find_by_user_id(user.id)

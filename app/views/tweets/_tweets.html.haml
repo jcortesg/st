@@ -19,8 +19,8 @@
         %td= tweet.description
         %td
           - @amount = tweet.profile_for_tweet(tweet.payment_name, tweet.influencer_id, tweet.created_at)
-          = number_to_currency(@amount.amount, :precision => 2)
-          - @amount.amount_alt == 0 ? "" : " + " + number_to_currency(@amount.amount_alt, :precision => 2).to_s
+          = (number_to_currency(@amount.amount, :precision => 2) rescue '')
+          - (@amount.amount_alt == 0 ? "" : " + " + number_to_currency(@amount.amount_alt, :precision => 2).to_s rescue '')
         %td= tweet.influencer.twitter_username
         %td= tweet.campaign_name ? (link_to tweet.campaign_name, "/tweets/" + tweet.campaign_id.to_s + "/campaign") : ""
         %td= tweet.date_posted ? (localize tweet.date_posted, :format => "%B %e, %Y %H:%M hs") : ""        
@@ -57,8 +57,8 @@
         %td= tweet.description
         %td
           - @amount = tweet.profile_for_tweet(tweet.payment_name, tweet.influencer_id, tweet.created_at)
-          = number_to_currency(@amount.amount, :precision => 2)
-          - @amount.amount_alt == 0 ? "" : " + " + number_to_currency(@amount.amount_alt, :precision => 2).to_s
+          = (number_to_currency(@amount.amount, :precision => 2) rescue nil)
+          - (@amount.amount_alt == 0 ? "" : " + " + number_to_currency(@amount.amount_alt, :precision => 2).to_s rescue nil)
         %td= tweet.brand
         %td= tweet.date_posted ? (localize tweet.date_posted, :format => "%B %e, %Y %H:%M hs") : ""        
         %td
