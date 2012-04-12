@@ -1,7 +1,7 @@
 class UsersController < Devise::RegistrationsController
   skip_before_filter :authenticate_user!, :only => [:new, :create]
   load_and_authorize_resource
-  layout :sign
+  layout 'application'
 
   # GET /users/1/all
   # GET /users/1/all.json 
@@ -26,7 +26,7 @@ class UsersController < Devise::RegistrationsController
   private
 
   def sign
-    action_name == "all" || action_name == "fees" ? "application" : "sign"
+    %(all fees).include?(action_name) ? 'application' : 'sign'
   end
   
   def after_inactive_sign_up_path_for(resource_or_scope)

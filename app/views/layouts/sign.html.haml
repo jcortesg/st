@@ -1,18 +1,66 @@
 !!!
 %html
   %head
-    %title Borwin
-    = stylesheet_link_tag "web_app_theme"
-    = javascript_include_tag 'helper'    
+    %title Borwin - It's time to go social
+    = stylesheet_link_tag 'application'
+    /[if IE] <link href="/stylesheets/ie.css" media="screen, projection" rel="stylesheet" type="text/css" />
+    = stylesheet_link_tag 'print', :media => 'print'
+    = javascript_include_tag 'application'
     = csrf_meta_tag
   %body
-    #container
-      #box
-        = link_to image_tag("logo.png", :height => '80px'), root_path, :class => 'logo'
-        %br
-        %br
-        %br
-        = yield
-        #footer
-          %p{:id => "copyright"}
-            Copyright &copy; #{Time.now.year} Borwin
+    .navbar.navbar-fixed-top
+      .navbar-inner
+        .container
+          %a{:class => 'btn btn-navbar', 'data-target' => '.nav-collapse', 'data-toggle' => 'collapse'}
+            %span.icon-bar
+            %span.icon-bar
+            %span.icon-bar
+          = link_to("Borwin", root_path, :class => 'brand')
+          .nav-collapse
+            %ul.nav
+              - if user_signed_in?
+                - if current_user.is? :advertiser
+                  %li= link_to "#Celebridades", "/influencers/list"
+                  %li= link_to "#Campañas", "/campaigns"
+                  %li= link_to "#Tweets", "/tweets"
+                  %li= link_to "#Transacciones", "/transactions"
+                - elsif current_user.is? :influencer
+                  %li= link_to "#Referidos", "/referrals"
+                  %li= link_to "#Tweets", "/tweets"
+                  %li= link_to "#Transacciones", "/transactions"
+                - elsif current_user.is? :affiliate
+                  %li= link_to "#Referidos", "/referrals"
+                  %li= link_to "#Transacciones", "/transactions"
+                - elsif current_user.is? :administrator
+                  %li= link_to "#Usuarios", "/users/all"
+                  %li= link_to "#Comisiones", "/influencers/fees"
+                  %li= link_to "#Audiencias", "/audiences"
+                  %li= link_to "#Perfiles", "/profiles"
+                  %li= link_to "#Referidos", "/referrals"
+                  %li= link_to "#Transacciones", "/transactions"
+                - else
+                  %li= link_to "#Plataforma", "about"
+                  %li= link_to "#Anunciantes", "borwin-for-advertisers"
+                  %li= link_to "#Celebridades", "borwin-for-influencers"
+                  %li= link_to "#Analytics", "analytics"
+                  %li= link_to "#Contactános", "contact"
+              - else
+                %li= link_to "#Plataforma", "about"
+                %li= link_to "#Anunciantes", "borwin-for-advertisers"
+                %li= link_to "#Celebridades", "borwin-for-influencers"
+                %li= link_to "#Analytics", "analytics"
+                %li= link_to "#Contactános", "contact"
+            - if user_signed_in?
+              = form_tag(destroy_user_session_path, :class => 'nav pull-right', :method => :delete) do
+                %button.btn{:type => "submit"} Salir
+            - else
+              = form_tag(new_user_session_path, :class => 'nav pull-right', :method => :get) do
+                %button.btn{:type => "submit"} Iniciar sesión
+
+
+    .main_container.container
+      = yield
+
+      %hr
+      #footer.footer
+        %p Copyright &copy; 2012 Borwin

@@ -1,5 +1,12 @@
 es:
   simple_form:
+    "yes": 'Sí'
+    "no": 'No'
+    required:
+      text: 'requerido'
+      mark: '*'
+    error_notification:
+      default_message: "Se encontraron errores:"
     labels:
       site_contact:
         name: Nombre

@@ -1,6 +1,5 @@
-.row-fluid.show-grid
-  .span2 &nbsp;
-  .span8
+.row
+  .span8.offset2
     %h1 Contactenos
 
     = simple_form_for @site_contact, :url => process_contact_path, :html => {:class => 'form-horizontal'} do |f|
