@@ -19,7 +19,6 @@ class CreateAdvertisers < ActiveRecord::Migration
       t.string :phone
     end
     
-    add_index :advertisers, :user_id, :unique => true    
-    add_index :advertisers, :twitter_username, :unique => true
+    add_index :advertisers, :user_id, :unique => true
   end
 end

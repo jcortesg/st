@@ -1,7 +1,7 @@
 .row.registration_container
   .span6.offset3
     %h1.center_text Registración de Celebridad
-    = simple_form_for(@user, :url => '/influencer/create', :html => { :class => "form-horizontal" }) do |f|
+    = simple_form_for(@user, :url => influencer_registration_path(@user), :html => { :class => "form-horizontal" }) do |f|
       = render '/shared/simple_form_errors', :f => f
       = f.input :email
       = f.simple_fields_for :influencer do |i|
@@ -25,6 +25,6 @@
 .row
   .span6.offset3
     .sign-links.center_text
-      = link_to "Iniciar sesión", new_session_path(resource_name)
+      = link_to "Iniciar sesión", new_session_path('user')
       |
-      = link_to "¿Olvidaste tu contraseña?", new_password_path(resource_name)
+      = link_to "¿Olvidaste tu contraseña?", new_password_path('user')

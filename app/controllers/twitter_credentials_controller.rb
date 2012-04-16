@@ -18,15 +18,24 @@ class TwitterCredentialsController < ApplicationController
   def finalize
     access_token = @client.authorize(params[:oauth_token], session[:request_secret], :oauth_verifier => params[:oauth_verifier])
 
-    TwitterCredential.save_credentials(access_token, session[:signed_up_user_id])
-
-    TwitterCredential.save_twitter_info(session[:signed_up_user_id], session[:signed_up_role])
-
-    session[:request_secret] = nil
-    session[:signed_up_user_id] = nil
-    session[:signed_up_role] = nil
-
-    redirect_to root_path, notice: 'El usuario se creo con exito. En cuanto este activado podras logearte al sistema'
+    if current_user && current_user.twitter_linked?  # The user is logged in and he already linked his account in the past
+      redirect_to root_path, :notice => "Tu cuenta ya esta linkeada a Twitter con el usuario #{current_user.twitter_screen_name}"
+    elsif current_user && !current_user.twitter_linked? # The user is logged in and he's linked his account
+      current_user.twitter_uid = access_token.params['user_id']
+      current_user.twitter_screen_name = access_token.params['screen_name']
+      current_user.twitter_token = access_token.token
+      current_user.twitter_secret = access_token.secret
+      current_user.save
+      redirect_to home_path_for(current_user)
+    else
+      @user = User.new
+      session['twitter_uid'] = access_token.params['twitter_uid']
+      session['twitter_uid'] = access_token.params['user_id']
+      session['twitter_screen_name'] = access_token.params['screen_name']
+      session['twitter_token'] = access_token.token
+      session['twitter_secret'] = access_token.secret
+      redirect_to new_influencer_registration_path
+    end
   end
 
   def publish

@@ -17,9 +17,7 @@ ActiveRecord::Schema.define(:version => 20120412062936) do
     t.integer "user_id"
     t.string  "first_name"
     t.string  "last_name"
-    t.string  "twitter_username"
     t.string  "location"
-    t.date    "joined_twitter"
     t.string  "image_url"
     t.string  "bio"
     t.string  "company"
@@ -31,7 +29,6 @@ ActiveRecord::Schema.define(:version => 20120412062936) do
     t.string  "phone"
   end
 
-  add_index "advertisers", ["twitter_username"], :name => "index_advertisers_on_twitter_username", :unique => true
   add_index "advertisers", ["user_id"], :name => "index_advertisers_on_user_id", :unique => true
 
   create_table "affiliates", :force => true do |t|
@@ -113,9 +110,7 @@ ActiveRecord::Schema.define(:version => 20120412062936) do
     t.integer "user_id"
     t.string  "first_name"
     t.string  "last_name"
-    t.string  "twitter_username"
     t.string  "location"
-    t.date    "joined_twitter"
     t.string  "image_url"
     t.string  "bio"
     t.decimal "borwin_fee",           :precision => 8, :scale => 2, :default => 0.3
@@ -138,7 +133,6 @@ ActiveRecord::Schema.define(:version => 20120412062936) do
     t.string  "bank_name"
   end
 
-  add_index "influencers", ["twitter_username"], :name => "index_influencers_on_twitter_username", :unique => true
   add_index "influencers", ["user_id"], :name => "index_influencers_on_user_id", :unique => true
 
   create_table "locations", :force => true do |t|
@@ -288,6 +282,11 @@ ActiveRecord::Schema.define(:version => 20120412062936) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
+    t.boolean  "twitter_linked",         :default => false, :null => false
+    t.string   "twitter_screen_name"
+    t.string   "twitter_uid"
+    t.string   "twitter_token"
+    t.string   "twitter_secret"
     t.string   "role",                                      :null => false
     t.boolean  "approved",               :default => false, :null => false
     t.datetime "created_at",                                :null => false
@@ -298,5 +297,6 @@ ActiveRecord::Schema.define(:version => 20120412062936) do
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
   add_index "users", ["role"], :name => "index_users_on_role"
+  add_index "users", ["twitter_screen_name"], :name => "index_users_on_twitter_screen_name", :unique => true
 
 end

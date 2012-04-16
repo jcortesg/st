@@ -1,10 +1,9 @@
 Borwin::Application.routes.draw do
   devise_for :users, :controllers => { :registrations => "registrations" } do
-    get '/users/new_influencer', :to => 'registrations#new_influencer', :as => :influencer_registration
-    get '/users/new_affiliate', :to => 'registrations#new_affiliate', :as => :affiliate_registration
-    get '/users/new_advertiser', :to => 'registrations#new', :as => :advertiser_registration
+    get '/users/new_influencer', :to => 'registrations#new_influencer', :as => :influencer_devise_registration
+    get '/users/new_affiliate', :to => 'registrations#new_affiliate', :as => :affiliate_devise_registration
+    get '/users/new_advertiser', :to => 'registrations#new', :as => :advertiser_devise_registration
   end
-
   #do
   #	get "users/password" => "users#edit"
   #	get "users/all" => "users#all", :as => 'all_users'
@@ -37,8 +36,14 @@ Borwin::Application.routes.draw do
 
   # Influencer routes
   match '/influencer' => 'influencer/dashboard#index', :as => :influencer_dashboard
-  namespace :influcencer do
-
+  namespace :influencer do
+    # Registration
+    resource :registration, controller: 'registration' do
+      get :step_2
+      put :process_step2
+      get :step_3
+      put :process_step_3
+    end
   end
 
   # Home pages
@@ -103,15 +108,15 @@ Borwin::Application.routes.draw do
     end
   end
 
-  resources :influencers do
-    collection do
-      get "list"
-      get "filter"
-      post "list"
-      get "fees"
-      post ":influencer_id/:action"
-    end
-  end
+  #resources :influencers do
+  #  collection do
+  #    get "list"
+  #    get "filter"
+  #    post "list"
+  #    get "fees"
+  #    post ":influencer_id/:action"
+  #  end
+  #end
 
   resources :advertisers
   resources :affiliates

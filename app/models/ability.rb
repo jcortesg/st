@@ -32,7 +32,6 @@ class Ability
       can [:details, :read], Transaction   
       can :manage, Affiliate, :user_id => user.id
       can :index, Referral, :source_id => Affiliate.affiliate_for_user(user).id
-      
     else  
       can :create, User
       can :create, Influencer

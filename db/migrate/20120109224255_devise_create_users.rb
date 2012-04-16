@@ -36,5 +36,6 @@ class DeviseCreateUsers < ActiveRecord::Migration
     add_index :users, :role,                 :unique => false
     add_index :users, :reset_password_token, :unique => true
     add_index :users, :approved,             :unique => false
+    add_index :users, :twitter_screen_name, :unique => true
   end
 end

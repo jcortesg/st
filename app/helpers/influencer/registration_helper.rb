@@ -1,0 +1,2 @@
+module Influencer::RegistrationHelper
+end

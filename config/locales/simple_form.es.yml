@@ -19,12 +19,12 @@ es:
         password_confirmation: Repetir contraseña
         role: Tipo
         approved: Approbado?
+        twitter_screen_name: "#Twitter"
+        #twitter_
       advertiser:
         first_name: Nombre
         last_name: Apellido
-        twitter_username: Twitter
         location: Lugar
-        joined_twitter: Fecha registro Twitter
         image_url: Foto
         bio: Bio
         company: Empresa
@@ -47,9 +47,7 @@ es:
       influencer:
         first_name: Nombre
         last_name: Apellido
-        twitter_username: Twitter
         location: Lugar
-        joined_twitter: Fecha registro Twitter
         image_url: Foto
         bio: Bio
         borwin_fee: Comisión

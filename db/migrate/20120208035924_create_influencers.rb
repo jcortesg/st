@@ -35,7 +35,6 @@ class CreateInfluencers < ActiveRecord::Migration
       t.string :bank_name
     end
     
-    add_index :influencers, :user_id, :unique => true       
-    add_index :influencers, :twitter_username, :unique => true    
+    add_index :influencers, :user_id, :unique => true
   end
 end

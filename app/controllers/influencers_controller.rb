@@ -1,7 +1,32 @@
 class InfluencersController < ApplicationController
   before_filter :authenticate_user!, :except => [:new, :create]
-
+  before_filter :check_twitter_credentials, :only => [:new, :create]
   load_and_authorize_resource
+
+  # Shows the form to create a new influencer
+  def new
+    @user = User.new
+    @user.role = 'influencer'
+    @user.build_influencer
+  end
+
+  # Creates a new influencer
+  def create
+    @user = User.new(params[:user])
+
+    respond_to do |format|
+      if @influencer.save
+        format.html { redirect_to "/twitter_credentials/login", notice: 'Influencer was successfully created.' }
+        format.json { render json: @influencer, status: :created, location: @influencer }
+      else
+        format.html { render action: "new" }
+        format.json { render json: @influencer.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+
+
 
   # POST /influencers/filter
   # POST /influencers/filter.json
@@ -59,42 +84,9 @@ class InfluencersController < ApplicationController
     end
   end
 
-  # GET /influencers/new
-  # GET /influencers/new.json
-  def new
-    if session[:signed_up_user_id] == nil
-      redirect_to "/users/sign_up"
-      return
-    end
-
-    @influencer = Influencer.new
-
-    respond_to do |format|
-      format.html # new.html.haml
-      format.json { render json: @influencer }
-    end
-  end
-
   # GET /influencers/1/edit
   def edit
     @influencer = Influencer.find(params[:id])
-  end
-
-  # POST /influencers
-  # POST /influencers.json
-  def create
-    @influencer = Influencer.new(params[:influencer])
-    @influencer.user_id = session[:signed_up_user_id]
-
-    respond_to do |format|
-      if @influencer.save
-        format.html { redirect_to "/twitter_credentials/login", notice: 'Influencer was successfully created.' }
-        format.json { render json: @influencer, status: :created, location: @influencer }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @influencer.errors, status: :unprocessable_entity }
-      end
-    end
   end
 
   # PUT /influencers/1
@@ -122,6 +114,15 @@ class InfluencersController < ApplicationController
     respond_to do |format|
       format.html { redirect_to influencers_url }
       format.json { head :ok }
+    end
+  end
+
+  private
+
+  # Check that the user is logged in with twitter
+  def check_twitter_credentials
+    if session['twitter_token'].blank? || session['twitter_secret'].blank?
+      redirect_to influencer_registration_path, :error => "Debes linkear tu cuenta de twitter antes de continuar" and return
     end
   end
 end
