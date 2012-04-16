@@ -9,7 +9,8 @@ class User < ActiveRecord::Base
   has_many :message_sources, :as => :message, :conditions => 'source_id = #{self.id}'
       
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable, :timeoutable, :confirmable
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :user_type
+
+  attr_accessible :email, :password, :password_confirmation, :remember_me
                                                               
   scope :awaitingapproval, :conditions => "approved = false AND confirmed_at IS NOT NULL", :order => "created_at DESC" 
   scope :active, :conditions => "approved = true", :order => "created_at DESC"

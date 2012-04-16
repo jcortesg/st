@@ -1,10 +1,15 @@
 Borwin::Application.routes.draw do
-  devise_for :users, :controllers => { :registrations => "users" } do
-  	get "users/password" => "users#edit"
-  	get "users/all" => "users#all", :as => 'all_users'
-  	post "users/:id/approve" => "users#approve"
-  	post "users/:id/disapprove" => "users#approve"
+  devise_for :users, :controllers => { :registrations => "registrations" } do
+    get '/influencer/sign_up', :to => 'registrations#new_influencer', :as => 'influencer_registration'
+    get '/affiliate/new', :to => 'registrations#new_affiliate', :as => 'affiliate_registration'
   end
+
+  #do
+  #	get "users/password" => "users#edit"
+  #	get "users/all" => "users#all", :as => 'all_users'
+  #	post "users/:id/approve" => "users#approve"
+  #	post "users/:id/disapprove" => "users#approve"
+  #end
 
   match "alta" => redirect('/users/sign_up')
 

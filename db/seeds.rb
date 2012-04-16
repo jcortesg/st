@@ -1,4 +1,4 @@
-@user = User.create(email: 'admin@borwin.com.ar', password: 'borwin1234', password_confirmation: 'borwin1234', user_type: 'administrator' )
+@user = User.create(email: 'admin@borwin.com.ar', password: 'borwin123', password_confirmation: 'borwin123', user_type: 'administrator' )
 @user.approved = true
 @user.save!
 @user.confirm!

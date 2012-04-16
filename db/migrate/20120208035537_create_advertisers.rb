@@ -2,11 +2,17 @@ class CreateAdvertisers < ActiveRecord::Migration
   def change
     create_table :advertisers do |t|
       t.integer :user_id
+
+      t.string :first_name
+      t.string :last_name
+
       t.string :twitter_username
       t.string :location
       t.date :joined_twitter
-      t.string :image_url      
-      t.string :brand
+      t.string :image_url
+      t.string :bio
+
+      t.string :company
       t.string :address
       t.string :city
       t.string :state
