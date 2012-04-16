@@ -15,35 +15,29 @@
             %span.icon-bar
             %span.icon-bar
             %span.icon-bar
-          = link_to("Borwin", root_path, :class => 'brand')
+          = link_to(image_tag('small_logo.png'), signed_in? ? home_path : root_path, :class => 'brand')
           .nav-collapse
             %ul.nav
               - if user_signed_in?
                 - if current_user.is? :advertiser
-                  %li= link_to "#Celebridades", "/influencers/list"
-                  %li= link_to "#Campañas", "/campaigns"
-                  %li= link_to "#Tweets", "/tweets"
-                  %li= link_to "#Transacciones", "/transactions"
+                  %li= link_to "#Celebridades", list_influencers_path
+                  %li= link_to "#Campañas", campaigns_path
+                  %li= link_to "#Tweets", tweets_path
+                  %li= link_to "#Transacciones", transactions_path
                 - elsif current_user.is? :influencer
-                  %li= link_to "#Referidos", "/referrals"
-                  %li= link_to "#Tweets", "/tweets"
-                  %li= link_to "#Transacciones", "/transactions"
+                  %li= link_to "#Referidos", referrals_path
+                  %li= link_to "#Tweets", tweets_path
+                  %li= link_to "#Transacciones", transactions_path
                 - elsif current_user.is? :affiliate
-                  %li= link_to "#Referidos", "/referrals"
-                  %li= link_to "#Transacciones", "/transactions"
+                  %li= link_to "#Referidos", referrals_path
+                  %li= link_to "#Transacciones", transactions_path
                 - elsif current_user.is? :administrator
                   %li= link_to "#Usuarios", "/users/all"
-                  %li= link_to "#Comisiones", "/influencers/fees"
-                  %li= link_to "#Audiencias", "/audiences"
-                  %li= link_to "#Perfiles", "/profiles"
-                  %li= link_to "#Referidos", "/referrals"
-                  %li= link_to "#Transacciones", "/transactions"
-                - else
-                  %li= link_to "#Plataforma", "about"
-                  %li= link_to "#Anunciantes", "borwin-for-advertisers"
-                  %li= link_to "#Celebridades", "borwin-for-influencers"
-                  %li= link_to "#Analytics", "analytics"
-                  %li= link_to "#Contactános", "contact"
+                  %li= link_to "#Comisiones", fees_influencers_path
+                  %li= link_to "#Audiencias", audiencies_path
+                  %li= link_to "#Perfiles", profiles_path
+                  %li= link_to "#Referidos", referrals_path
+                  %li= link_to "#Transacciones", transactions_path
               - else
                 %li= link_to "#Plataforma", about_path
                 %li= link_to "#Anunciantes", welcome_advertisers_path
