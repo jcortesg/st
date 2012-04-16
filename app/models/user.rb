@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
-  has_one :advertiser, :as => :user, :conditions => "role = 'advertiser'"
-  has_one :influencer, :as => :user, :conditions => "role = 'influencer'"
-  has_one :affiliate, :as => :user, :conditions => "role = 'affiliate'"
+  has_one :advertiser
+  has_one :influencer
+  has_one :affiliate
 
   has_one :twitter_credential
   has_one :referral_destination, :as => :referral, :conditions => 'destination_id = #{self.id}'
