@@ -1,7 +1,8 @@
 Borwin::Application.routes.draw do
   devise_for :users, :controllers => { :registrations => "registrations" } do
-    get '/influencer/sign_up', :to => 'registrations#new_influencer', :as => :influencer_registration
-    get '/affiliate/new', :to => 'registrations#new_affiliate', :as => :affiliate_registration
+    get '/users/new_influencer', :to => 'registrations#new_influencer', :as => :influencer_registration
+    get '/users/new_affiliate', :to => 'registrations#new_affiliate', :as => :affiliate_registration
+    get '/users/new_advertiser', :to => 'registrations#new', :as => :advertiser_registration
   end
 
   #do
