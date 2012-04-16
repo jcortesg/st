@@ -8,16 +8,31 @@ class User < ActiveRecord::Base
   has_many :message_destinations, :as => :message, :conditions => 'destination_id = #{self.id}'
   has_many :message_sources, :as => :message, :conditions => 'source_id = #{self.id}'
       
-  devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable, :timeoutable, :confirmable
+  devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable, :timeoutable
 
   attr_accessible :email, :password, :password_confirmation, :remember_me
                                                               
-  scope :awaitingapproval, :conditions => "approved = false AND confirmed_at IS NOT NULL", :order => "created_at DESC" 
-  scope :active, :conditions => "approved = true", :order => "created_at DESC"
-  
   validates :password_confirmation, :presence => true, :length => { :within => 6..50, :if => :password_confirmation }
 
   validates :user_type, inclusion: {in: %w(administrator advertiser affiliate influencer)}
+
+  class << self
+    # Shows the accounts that are waiting for approbation
+    def awaiting_aproval
+      where(approved: false)
+    end
+
+    # Shows the account that are active
+    def active
+      where(approved: true)
+    end
+
+    # Retrieve all the accounts except the administrator
+    def all_except_admin
+      where("user_type != 'administrator'").order("approved DESC")
+    end
+  end
+
                                                                       
   ####################
   def setaudience(params) 
@@ -44,11 +59,7 @@ class User < ActiveRecord::Base
   end
   ####################
 
-  def self.all_except_admin
-    self.where("user_type != 'administrator'").order("approved DESC, confirmed_at DESC")
-  end
-
-  def disapprove 
+  def disapprove
     self.approved = false
     self.save(:validate => false)
     

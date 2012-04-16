@@ -15,11 +15,14 @@ ActiveRecord::Schema.define(:version => 20120412062936) do
 
   create_table "advertisers", :force => true do |t|
     t.integer "user_id"
+    t.string  "first_name"
+    t.string  "last_name"
     t.string  "twitter_username"
     t.string  "location"
     t.date    "joined_twitter"
     t.string  "image_url"
-    t.string  "brand"
+    t.string  "bio"
+    t.string  "company"
     t.string  "address"
     t.string  "city"
     t.string  "state"
@@ -33,8 +36,8 @@ ActiveRecord::Schema.define(:version => 20120412062936) do
 
   create_table "affiliates", :force => true do |t|
     t.integer "user_id"
-    t.string  "firstname"
-    t.string  "lastname"
+    t.string  "first_name"
+    t.string  "last_name"
     t.string  "address"
     t.string  "city"
     t.string  "state"
@@ -107,18 +110,19 @@ ActiveRecord::Schema.define(:version => 20120412062936) do
 
   create_table "influencers", :force => true do |t|
     t.integer "user_id"
+    t.string  "first_name"
+    t.string  "last_name"
     t.string  "twitter_username"
-    t.string  "influencer_type"
-    t.decimal "borwin_fee",       :precision => 8, :scale => 2, :default => 0.3
     t.string  "location"
     t.date    "joined_twitter"
     t.string  "image_url"
     t.string  "bio"
-    t.string  "description"
-    t.string  "contact_method"
-    t.string  "firstname"
-    t.string  "lastname"
-    t.text    "sex"
+    t.decimal "borwin_fee",           :precision => 8, :scale => 2, :default => 0.3
+    t.string  "influencer_type"
+    t.string  "sex"
+    t.string  "string"
+    t.text    "description"
+    t.string  "referrer_description"
     t.string  "address"
     t.string  "city"
     t.string  "state"
@@ -127,6 +131,7 @@ ActiveRecord::Schema.define(:version => 20120412062936) do
     t.string  "phone"
     t.string  "cell_phone"
     t.string  "contact_time"
+    t.string  "contact_method"
     t.string  "account_number"
     t.string  "account_type"
     t.string  "cbu"
@@ -167,7 +172,7 @@ ActiveRecord::Schema.define(:version => 20120412062936) do
   create_table "payment_types", :force => true do |t|
     t.string "name"
     t.string "description"
-    t.string "status",      :default => "A"
+    t.string "status",      :default => "A", :null => false
   end
 
   add_index "payment_types", ["name"], :name => "index_payment_types_on_name", :unique => true
@@ -273,25 +278,23 @@ ActiveRecord::Schema.define(:version => 20120412062936) do
   end
 
   create_table "users", :force => true do |t|
-    t.string   "email",                                 :default => "",    :null => false
-    t.string   "encrypted_password",     :limit => 128, :default => "",    :null => false
-    t.string   "user_type",                                                :null => false
-    t.boolean  "approved",                              :default => false, :null => false
+    t.string   "email",                  :default => "",    :null => false
+    t.string   "encrypted_password",     :default => "",    :null => false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",                         :default => 0
+    t.integer  "sign_in_count",          :default => 0
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.string   "confirmation_token"
-    t.datetime "confirmed_at"
-    t.datetime "confirmation_sent_at"
-    t.datetime "created_at",                                               :null => false
-    t.datetime "updated_at",                                               :null => false
+    t.string   "user_type",                                 :null => false
+    t.boolean  "approved",               :default => false, :null => false
+    t.datetime "created_at",                                :null => false
+    t.datetime "updated_at",                                :null => false
   end
 
+  add_index "users", ["approved"], :name => "index_users_on_approved"
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
   add_index "users", ["user_type"], :name => "index_users_on_user_type"
