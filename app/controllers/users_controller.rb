@@ -1,5 +1,5 @@
 class UsersController < Devise::RegistrationsController
-  skip_before_filter :authenticate_user!, :only => [:new, :create]
+  before_filter :authenticate_user!, :except => [:new, :create]
   load_and_authorize_resource
   layout 'application'
 

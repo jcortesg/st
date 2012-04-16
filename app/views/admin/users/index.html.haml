@@ -1,0 +1,21 @@
+.row.login_container
+  .span12
+    %h1.title Usuarios Pendientes de Aprobación con Email Confirmado
+    %table.table-bordered
+      %tr
+        %th Email
+        %th Tipo de Usuario
+        %th Creado
+        %th
+
+      - @users.each do |user|
+        %tr{ :class => cycle('odd', 'even') }
+          %td= user.email
+          %td= user.full_user_type
+          %td= user.created_at ? (localize(user.created_at, :format => "%B %e, %Y  %H:%M hs")) : ""
+          %td.last
+            = form_for @user, :url => user.approved? ? disapprove_user_path(user) : approve_user_path(user) do
+              %button.button{ :type => "submit" }
+                = image_tag "theme/tick.png"
+                = user.approved ? "Desaprobar" : "Aprobar"
+

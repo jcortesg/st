@@ -1,7 +1,4 @@
 class WelcomeController < ApplicationController
-  skip_before_filter :authenticate_user!
-  layout :get_layout
-
   # Website main page
   def index
     #redirect_to "http://www.borwin.com.ar"
@@ -47,10 +44,5 @@ class WelcomeController < ApplicationController
   def terms
     render :action => 'demo_page'
   end 
-  
-  private
 
-  def get_layout
-    action_name == :terms ? "sign" : "application"
-  end
 end

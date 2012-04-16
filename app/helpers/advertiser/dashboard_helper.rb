@@ -1,0 +1,2 @@
+module Advertiser::DashboardHelper
+end

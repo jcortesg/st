@@ -1,12 +1,7 @@
 class AdvertisersController < ApplicationController
-  skip_before_filter :authenticate_user!, :only => [:new, :create]
+  before_filter :authenticate_user!, :except => [:new, :create]
   load_and_authorize_resource
-  layout :compute_layout
-  
-  def compute_layout
-    action_name == "new" || action_name == "create" ? "sign" : "application"
-  end
-  
+
   # GET /advertisers
   # GET /advertisers.json
   def index

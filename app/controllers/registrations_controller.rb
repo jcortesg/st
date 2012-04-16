@@ -1,5 +1,5 @@
 class RegistrationsController < Devise::RegistrationsController
-  skip_before_filter :authenticate_user!, :only => [:new, :new_affiliate, :new_influencer, :create]
+  before_filter :authenticate_user!, :except => [:new, :new_affiliate, :new_influencer, :create]
   layout 'application'
 
   def new

@@ -1,7 +1,7 @@
 Borwin::Application.routes.draw do
   devise_for :users, :controllers => { :registrations => "registrations" } do
-    get '/influencer/sign_up', :to => 'registrations#new_influencer', :as => 'influencer_registration'
-    get '/affiliate/new', :to => 'registrations#new_affiliate', :as => 'affiliate_registration'
+    get '/influencer/sign_up', :to => 'registrations#new_influencer', :as => :influencer_registration
+    get '/affiliate/new', :to => 'registrations#new_affiliate', :as => :affiliate_registration
   end
 
   #do
@@ -11,16 +11,51 @@ Borwin::Application.routes.draw do
   #	post "users/:id/disapprove" => "users#approve"
   #end
 
-  match "alta" => redirect('/users/sign_up')
+  # Admin routes
+  match '/admin' => 'admin/dashboard#index', :as => :admin_dashboard
+  namespace :admin do
+    resources :users do
+      member do
+        put :approve
+        put :disapprove
+      end
+    end
+  end
+
+  # Affiliate routes
+  match '/affiliate' => 'affiliate/dashboard#index', :as => :affiliate_dashboard
+  namespace :affiliate do
+
+  end
+
+  # Advertiser routes
+  match '/advertiser' => 'advertiser/dashboard#index', :as => :advertiser_dashboard
+  namespace :advertiser do
+
+  end
+
+  # Influencer routes
+  match '/influencer' => 'influencer/dashboard#index', :as => :influencer_dashboard
+  namespace :influcencer do
+
+  end
 
   # Home pages
-  match "borwin-for-advertisers" => "welcome#advertisers", :as => 'welcome_advertisers'
-  match "borwin-for-influencers" => "welcome#influencers", :as => 'welcome_influencers'
-  match "analytics" => "welcome#analytics", :as => 'welcome_analytics'
-  match "about" => "welcome#about", :as => 'about'
-  match "contact" => "welcome#contact", :as => 'contact'
-  match "process_contact" => "welcome#process_contact", :as => 'process_contact'
-  match "terms" => "welcome#terms", :as => 'terms'
+  match "borwin-for-advertisers" => "welcome#advertisers", :as => :welcome_advertisers
+  match "borwin-for-influencers" => "welcome#influencers", :as => :welcome_influencers
+  match "analytics" => "welcome#analytics", :as => :welcome_analytics
+  match "about" => "welcome#about", :as => :about
+  match "contact" => "welcome#contact", :as => :contact
+  match "process_contact" => "welcome#process_contact", :as => :process_contact
+  match "terms" => "welcome#terms", :as => :terms
+
+
+
+
+
+
+
+
 
   resources :audiences_locations
 
