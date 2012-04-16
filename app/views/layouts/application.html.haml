@@ -34,22 +34,25 @@
                 - elsif current_user.is? :administrator
                   %li= link_to "#Usuarios", "/users/all"
                   %li= link_to "#Comisiones", fees_influencers_path
-                  %li= link_to "#Audiencias", audiencies_path
+                  %li= link_to "#Audiencias", audiences_path
                   %li= link_to "#Perfiles", profiles_path
                   %li= link_to "#Referidos", referrals_path
                   %li= link_to "#Transacciones", transactions_path
               - else
-                %li= link_to "#Plataforma", about_path
-                %li= link_to "#Anunciantes", welcome_advertisers_path
-                %li= link_to "#Celebridades", welcome_influencers_path
-                %li= link_to "#Analytics", welcome_analytics_path
-                %li= link_to "#Contactános", contact_path
+                %li{:class => params[:controller] == 'welcome' && params[:action] == 'about' ? 'active' : ''}= link_to "#Plataforma", about_path
+                %li{:class => params[:controller] == 'welcome' && params[:action] == 'advertisers' ? 'active' : ''}= link_to "#Anunciantes", welcome_advertisers_path
+                %li{:class => params[:controller] == 'welcome' && params[:action] == 'influencers' ? 'active' : ''}= link_to "#Celebridades", welcome_influencers_path
+                %li{:class => params[:controller] == 'welcome' && params[:action] == 'analytics' ? 'active' : ''}= link_to "#Analytics", welcome_analytics_path
+                %li{:class => params[:controller] == 'welcome' && params[:action] == 'contact' ? 'active' : ''}= link_to "#Contactános", contact_path
             - if user_signed_in?
               = form_tag(destroy_user_session_path, :class => 'nav pull-right', :method => :delete) do
                 %button.btn{:type => "submit"} Salir
             - else
-              = form_tag(new_user_session_path, :class => 'nav pull-right', :method => :get) do
-                %button.btn{:type => "submit"} Iniciar sesión
+              %ul.nav.pull-right
+                %li{:class => params[:controller] == 'users' && ['new', 'create'].include?(params[:action]) ? 'active' : ''}= link_to "Registrarse", new_user_registration_path
+                %li
+                  = form_tag(new_user_session_path, :class => 'nav pull-right', :method => :get) do
+                    %button.btn.btn-info{:type => "submit"} Iniciar sesión
 
 
     .main_container.container

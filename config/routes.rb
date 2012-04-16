@@ -1,7 +1,7 @@
 Borwin::Application.routes.draw do
   devise_for :users, :controllers => { :registrations => "users" } do
   	get "users/password" => "users#edit"
-  	get "users/all" => "users#all"
+  	get "users/all" => "users#all", :as => 'all_users'
   	post "users/:id/approve" => "users#approve"
   	post "users/:id/disapprove" => "users#approve"
   end

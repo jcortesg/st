@@ -3,7 +3,7 @@ class HomeController < ApplicationController
   
   def index
     if current_user.user_type == "administrator"
-      redirect_to users_path
+      redirect_to all_users_path
     elsif current_user.user_type == "affiliate"
       redirect_to referrals_path
     else
