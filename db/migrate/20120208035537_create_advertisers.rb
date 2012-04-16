@@ -6,9 +6,7 @@ class CreateAdvertisers < ActiveRecord::Migration
       t.string :first_name
       t.string :last_name
 
-      t.string :twitter_username
       t.string :location
-      t.date :joined_twitter
       t.string :image_url
       t.string :bio
 

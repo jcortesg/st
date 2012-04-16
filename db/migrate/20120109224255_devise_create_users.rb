@@ -19,6 +19,13 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.string   :current_sign_in_ip
       t.string   :last_sign_in_ip
 
+      # Twitter credentials
+      t.boolean :twitter_linked, :null => false, :default => false
+      t.string :twitter_screen_name
+      t.string :twitter_uid
+      t.string :twitter_token
+      t.string :twitter_secret
+
       t.string :role, :null => false
       t.boolean :approved, :null => false, :default => false
 
