@@ -17,11 +17,11 @@ class TwitterCredentialsController < ApplicationController
           
     TwitterCredential.save_credentials(access_token, session[:signed_up_user_id])          
         
-    TwitterCredential.save_twitter_info(session[:signed_up_user_id], session[:signed_up_user_type])
+    TwitterCredential.save_twitter_info(session[:signed_up_user_id], session[:signed_up_role])
                     
     session[:request_secret] = nil
     session[:signed_up_user_id] = nil
-    session[:signed_up_user_type] = nil
+    session[:signed_up_role] = nil
                                 
     redirect_to root_path, notice: 'El usuario se creo con exito. En cuanto este activado podras logearte al sistema'
   end

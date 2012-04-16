@@ -1,7 +1,8 @@
 class User < ActiveRecord::Base
-  has_one :advertiser, :as => :user, :conditions => "user_type = 'advertiser'"
-  has_one :influencer, :as => :user, :conditions => "user_type = 'influencer'"
-  has_one :affiliate, :as => :user, :conditions => "user_type = 'affiliate'"
+  has_one :advertiser, :as => :user, :conditions => "role = 'advertiser'"
+  has_one :influencer, :as => :user, :conditions => "role = 'influencer'"
+  has_one :affiliate, :as => :user, :conditions => "role = 'affiliate'"
+
   has_one :twitter_credential
   has_one :referral_destination, :as => :referral, :conditions => 'destination_id = #{self.id}'
   has_many :referral_sources, :as => :referral, :conditions => 'source_id = #{self.id}'
@@ -10,11 +11,17 @@ class User < ActiveRecord::Base
       
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable, :timeoutable
 
-  attr_accessible :email, :password, :password_confirmation, :remember_me
-                                                              
-  validates :password_confirmation, :presence => true, :length => { :within => 6..50, :if => :password_confirmation }
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :affiliate_attributes, :advertiser_attributes, :influencer_attributes
 
-  validates :user_type, inclusion: {in: %w(administrator advertiser affiliate influencer)}
+  validates :email, presence: true, format: { with: /\A[^@]+@([^@\.]+\.)+[^@\.]+\z/ }
+  validates :password, presence: true, length: { within: 6..20 }
+  validates :password_confirmation, presence: true, length:  { :within => 6..20, if: :password_confirmation }
+
+  accepts_nested_attributes_for :affiliate
+  accepts_nested_attributes_for :advertiser
+  accepts_nested_attributes_for :influencer
+
+  validates :role, inclusion: {in: %w(administrator advertiser affiliate influencer)}
 
   class << self
     # Shows the accounts that are waiting for approbation
@@ -29,14 +36,14 @@ class User < ActiveRecord::Base
 
     # Retrieve all the accounts except the administrator
     def all_except_admin
-      where("user_type != 'administrator'").order("approved DESC")
+      where("role != 'administrator'").order("approved DESC")
     end
   end
 
                                                                       
   ####################
   def setaudience(params) 
-    if self.user_type == "influencer"
+    if self.role == "influencer"
       @influencer = Influencer.influencer_for_user(self)
       
       @audience = Audience.find_by_influencer_id(@influencer.id)
@@ -74,9 +81,9 @@ class User < ActiveRecord::Base
   end
   
   def get_entity_for_user
-    if user.is? :advertiser
+    if user.advertiser?
       Advertiser.advertiser_for_user(self)
-    elsif user.is? :influencer
+    elsif user.influencer?
       Influencer.advertiser_for_user(self)
     else
       Affiliate.advertiser_for_user(self)
@@ -95,8 +102,8 @@ class User < ActiveRecord::Base
     end 
   end
 
-  def full_user_type
-    case self.user_type
+  def full_user
+    case self.role
       when 'influencer'
         'Celebridad'
       when 'advertiser'
@@ -106,11 +113,27 @@ class User < ActiveRecord::Base
       when 'administrator'
         'Administrador'
       else
-        self.user_type
+        self.role
     end
   end
   
-  def is?(user_type)
-    self.user_type == user_type.to_s
+  # Checks if the current user is an admin
+  def admin?
+    role == 'admin'
+  end
+
+  # Checks if the current user is an affiliate
+  def affiliate?
+    role == 'affiliate'
+  end
+
+  # Checks if the current user is an advertiser
+  def advertiser?
+    role == 'advertiser'
+  end
+
+  # Checks if the current user is a influencer
+  def influencer?
+    role == 'influencer'
   end
 end

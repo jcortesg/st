@@ -5,7 +5,7 @@ class Referral < ActiveRecord::Base
   attr_accessible :destination_id, :source_id, :commission, :since, :through
   
   def self.referrals_list_with_full_details(user)
-    if user.user_type == "administrator"
+    if user.admin?
       filter = "IS NOT NULL"
       select = ", (SELECT twitter_username FROM influencers WHERE user_id = t.destination_id) AS destination_twitter_username"
     else

@@ -19,14 +19,14 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.string   :current_sign_in_ip
       t.string   :last_sign_in_ip
 
-      t.string :user_type, :null => false
+      t.string :role, :null => false
       t.boolean :approved, :null => false, :default => false
 
       t.timestamps
     end
 
     add_index :users, :email,                :unique => true
-    add_index :users, :user_type,            :unique => false
+    add_index :users, :role,                 :unique => false
     add_index :users, :reset_password_token, :unique => true
     add_index :users, :approved,             :unique => false
   end

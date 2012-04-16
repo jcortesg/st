@@ -4,13 +4,15 @@ class RegistrationsController < Devise::RegistrationsController
 
   def new
     resource = build_resource
-    resource.user_type = 'advertiser'
+    resource.role = 'advertiser'
+    resource.build_advertiser
     respond_with resource
   end
 
   def new_affiliate
     resource = build_resource
-    resource.user_type = 'affiliate'
+    resource.role = 'affiliate'
+    resource.build_affiliate
     render :action => :new
   end
 

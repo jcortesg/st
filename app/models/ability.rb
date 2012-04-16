@@ -4,13 +4,10 @@ class Ability
   def initialize(user)
     user ||= User.new # guest user
   
-    if user.is? :administrator
+    if user.admin?
       can :manage, :all
       
-    elsif user.is? :super_user
-      can :read, :all
-    
-    elsif user.is? :influencer
+    elsif user.influencer?
       can :manage, Home
       can :manage, Influencer, :user_id => user.id
       can :manage, Audience
@@ -19,7 +16,7 @@ class Ability
       can :manage, Tweet, :influencer_id => Influencer.influencer_for_user(user).id
       can :index, Referral, :source_id => Influencer.influencer_for_user(user).id
     
-    elsif user.is? :advertiser
+    elsif user.advertiser?
       can :manage, Home
       can :list, Influencer
       can :influencer, Audience
@@ -29,7 +26,7 @@ class Ability
       can :manage, Campaign, :advertiser_id => Advertiser.advertiser_for_user(user).id
       can :manage, Tweet, :advertiser_id => Advertiser.advertiser_for_user(user).id
     
-    elsif user.is? :affiliate
+    elsif user.affiliate?
       can :manage, Home
       can :manage, Message
       can [:details, :read], Transaction   

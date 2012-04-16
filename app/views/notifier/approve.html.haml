@@ -20,7 +20,7 @@
       = @user.email
       !
     %p.style4 Tu cuenta ha sido activada con éxito.
-    - if @user.user_type == "influencer"
+    - if @user.influencer?
       %p.style4 Ya puedes comenzar a potenciar tus ingresos. El equipo de Borwin® está buscando una campaña para vos!
     %p.style4 Gracias por elegirnos,
     %p.style4

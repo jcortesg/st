@@ -19,19 +19,19 @@
           .nav-collapse
             %ul.nav
               - if user_signed_in?
-                - if current_user.is? :advertiser
+                - if current_user.advertiser?
                   %li= link_to "#Celebridades", list_influencers_path
                   %li= link_to "#Campañas", campaigns_path
                   %li= link_to "#Tweets", tweets_path
                   %li= link_to "#Transacciones", transactions_path
-                - elsif current_user.is? :influencer
+                - elsif current_user.influencer?
                   %li= link_to "#Referidos", referrals_path
                   %li= link_to "#Tweets", tweets_path
                   %li= link_to "#Transacciones", transactions_path
-                - elsif current_user.is? :affiliate
+                - elsif current_user.affiliate?
                   %li= link_to "#Referidos", referrals_path
                   %li= link_to "#Transacciones", transactions_path
-                - elsif current_user.is? :administrator
+                - elsif current_user.admin?
                   %li= link_to "#Usuarios", admin_users_path
                   %li= link_to "#Comisiones", fees_influencers_path
                   %li= link_to "#Audiencias", audiences_path

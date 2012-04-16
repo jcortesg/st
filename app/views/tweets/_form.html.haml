@@ -38,7 +38,7 @@
   .group.wat-cf
     .left= f.label :payment_type, :class => "label right"
     .right= f.select(:payment_type_id, payment_types_for_select, :prompt => "")
-  - if current_user.user_type == "advertiser"
+  - if current_user.advertiser?
     .group.wat-cf
       .left= f.label :campaign, :class => "label right"
       .right= f.select(:campaign_id, campaigns_for_select, :prompt => "")

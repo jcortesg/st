@@ -13,7 +13,7 @@
         - @users.each do |user|
           %tr{ :class => cycle('odd', 'even') }
             %td= user.email
-            %td= user.full_user_type
+            %td= I18n.t("user.#{user.role}")
             %td= user.created_at ? (localize(user.created_at, :format => "%d/%m/%Y %H:%M hs")) : ""
             %td.last
               = form_for user, :url => user.approved? ? disapprove_admin_user_path(user) : approve_admin_user_path(user) do

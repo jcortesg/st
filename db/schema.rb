@@ -121,7 +121,6 @@ ActiveRecord::Schema.define(:version => 20120412062936) do
     t.decimal "borwin_fee",           :precision => 8, :scale => 2, :default => 0.3
     t.string  "influencer_type"
     t.string  "sex"
-    t.string  "string"
     t.text    "description"
     t.string  "referrer_description"
     t.string  "address"
@@ -289,7 +288,7 @@ ActiveRecord::Schema.define(:version => 20120412062936) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.string   "user_type",                                 :null => false
+    t.string   "role",                                      :null => false
     t.boolean  "approved",               :default => false, :null => false
     t.datetime "created_at",                                :null => false
     t.datetime "updated_at",                                :null => false
@@ -298,6 +297,6 @@ ActiveRecord::Schema.define(:version => 20120412062936) do
   add_index "users", ["approved"], :name => "index_users_on_approved"
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
-  add_index "users", ["user_type"], :name => "index_users_on_user_type"
+  add_index "users", ["role"], :name => "index_users_on_role"
 
 end

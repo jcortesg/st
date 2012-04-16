@@ -2,7 +2,7 @@ module ApplicationHelper
 
   # Gets the home path for the current user profile
   def home_path_for(user)
-    case user.user_type
+    case user.role
       when 'administrator'
         admin_dashboard_path
       when 'advertiser'
@@ -23,10 +23,5 @@ module ApplicationHelper
   # TODO: Delete
   def current_entity_name
     user_session[:entity_name].to_s
-  end
-
-  # TODO: Delete
-  def current_user_type
-    current_user.user_type + "s"
   end
 end

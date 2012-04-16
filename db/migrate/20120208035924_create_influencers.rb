@@ -17,7 +17,7 @@ class CreateInfluencers < ActiveRecord::Migration
       t.string :influencer_type
       t.string :first_name
       t.string :last_name
-      t.string :sex, :string, :size => 1
+      t.string :sex, :size => 1
       t.text :description
       t.string :referrer_description
 

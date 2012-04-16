@@ -212,3 +212,11 @@ es:
           email: Email
           subject: Asunto
           message: Mensaje
+
+
+  user:
+    role:
+      admin: Administrador
+      influencer: Celebridad
+      advertiser: Anunciante
+      affiliate: Agencia

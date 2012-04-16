@@ -10,15 +10,15 @@ class TwitterCredential < ActiveRecord::Base
     @credentials.save
   end
   
-  def self.save_twitter_info(user_id, user_type)
-    if user_type == "affiliate" 
+  def self.save_twitter_info(user_id, role)
+    if role == "affiliate" 
       return  
-    elsif user_type == "influencer"
+    elsif role == "influencer"
     	@entity = Influencer.find_by_user_id(user_id)
     
       self.calculate_audience(@entity.id)    	
     	self.calculate_profile(@entity.id)    	
-    elsif user_type == "advertiser"
+    elsif role == "advertiser"
     	@entity = Advertiser.find_by_user_id(user_id)
     end
 
@@ -28,7 +28,7 @@ class TwitterCredential < ActiveRecord::Base
     @entity.image_url = @twitter_user.profile_image_url
     @entity.location = @twitter_user.location
     
-    if user_type == "influencer"
+    if role == "influencer"
       @entity.bio = @twitter_user.description
     end
     

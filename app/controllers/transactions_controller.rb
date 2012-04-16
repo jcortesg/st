@@ -4,7 +4,7 @@ class TransactionsController < ApplicationController
   # GET /transactions
   # GET /transactions.json
   def index
-    @transactions = Transaction.full_trasactions_for_entity(current_entity_id, current_user_type)
+    @transactions = Transaction.full_trasactions_for_entity(current_entity_id, current_user.role)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -26,7 +26,7 @@ class TransactionsController < ApplicationController
   # GET /transactions/1/details
   # GET /transactions/1/details.json
   def details
-    @transactions = Transaction.full_trasactions_for_entity(params[:influencer_id], current_user_type)
+    @transactions = Transaction.full_trasactions_for_entity(params[:influencer_id], current_user.role)
 
     @influencer = Transaction.referral_and_influencer_data_for_influencer(params[:influencer_id])
 

@@ -32,8 +32,8 @@ class UsersController < Devise::RegistrationsController
   def after_inactive_sign_up_path_for(resource_or_scope)
     if resource_or_scope.is_a?(User)
       session[:signed_up_user_id] = resource_or_scope.id
-      session[:signed_up_user_type] = resource_or_scope.user_type
-      role = resource_or_scope.user_type
+      session[:signed_up_role] = resource_or_scope.role
+      role = resource_or_scope.role
       send("new_#{role}_path")
     else
       super

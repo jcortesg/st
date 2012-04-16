@@ -131,7 +131,7 @@ class TweetsController < ApplicationController
   def destroy    
     @tweet = Tweet.find(params[:id])
     
-    current_user.user_type == "advertiser" ? @tweet.status = 'I' : @tweet.status = 'R'
+    current_user.role == "advertiser" ? @tweet.status = 'I' : @tweet.status = 'R'
 
     @tweet.save
     

@@ -1,5 +1,5 @@
 %table{:class => :table}
-  - if current_user.is? :advertiser
+  - if current_user.advertiser?
     %tr
       %th Tweet
       %th Comentarios
