@@ -49,7 +49,15 @@
                 %button.btn{:type => "submit"} Salir
             - else
               %ul.nav.pull-right
-                %li{:class => params[:controller] == 'users' && ['new', 'create'].include?(params[:action]) ? 'active' : ''}= link_to "Registrarse", new_user_registration_path
+                %li.dropdown
+                  %a{:href => '#', :class => 'dropdown-toggle', 'data-toggle' => 'dropdown'}
+                    Registrarse
+                    %b.caret
+
+                  %ul.dropdown-menu
+                    %li= link_to "Famoso", "#"
+                    %li= link_to "Agencia", "#"
+                    %li= link_to "Afiliado", "#"
                 %li
                   = form_tag(new_user_session_path, :class => 'nav pull-right', :method => :get) do
                     %button.btn.btn-info{:type => "submit"} Iniciar sesión
