@@ -54,10 +54,6 @@ Borwin::Application.routes.draw do
 
 
 
-
-
-
-
   resources :audiences_locations
 
   resources :transactions do
