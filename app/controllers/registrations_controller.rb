@@ -15,10 +15,30 @@ class RegistrationsController < Devise::RegistrationsController
     resource = build_resource
     resource.role = 'affiliate'
     resource.build_affiliate
+    respond_with resource
   end
 
   # Shows the twitter button to link the user account
   def new_influencer
+  end
+
+  def create
+    @user = User.new(params[:user])
+    @user.role = params[:user_role] == 'advertiser' ? 'advertiser' : 'affiliate'
+    if @user.save
+      set_flash_message :notice, :signed_up if is_navigational_format?
+      sign_in('user', @user)
+      respond_with @user, :location => after_sign_up_path_for(@user)
+    else
+      clean_up_passwords @user
+      if @user.advertiser?
+        #@user.advertiser || @user.build_advertiser
+        render action: :new
+      else
+        #@user.affiliate || @user.build_affiliate
+        render action: :new_affiliate
+      end
+    end
   end
 
 
