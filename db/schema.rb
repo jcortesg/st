@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(:version => 20120412062936) do
     t.integer "user_id"
     t.string  "first_name"
     t.string  "last_name"
+    t.string  "company"
     t.string  "address"
     t.string  "city"
     t.string  "state"

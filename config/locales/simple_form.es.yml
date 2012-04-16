@@ -18,6 +18,7 @@ es:
         password: Contraseña
         password_confirmation: Repetir contraseña
         user_type: Que eres?
+        approved: Approbado?
       influencer:
         twitter_username: Twitter
         influencer_type: Profesión
