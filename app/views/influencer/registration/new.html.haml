@@ -1,19 +1,21 @@
 .row.registration_container
   .span6.offset3
-    %h1.center_text Registración de Celebridad
-    = simple_form_for(@user, :url => influencer_registration_path(@user), :html => { :class => "form-horizontal" }) do |f|
+    = simple_form_for(@user, :url => influencer_registration_path(@user), :html => { :class => "form-horizontal round_form" }) do |f|
+      %h1.form_title Registración de Celebridad
       = render '/shared/simple_form_errors', :f => f
       = f.input :email
+      = f.input :password
+      = f.input :password_confirmation
       = f.simple_fields_for :influencer do |i|
         = i.input :first_name
         = i.input :last_name
-        = i.input :sex, :as => :radio_buttons, :collection => [['Hombre', 'M'], ['Mujer', 'F']], :include_blank => false
-        = i.input :influencer_type, :as => :select, :collection => ["Actor", "Músico", "Deportista", "Conductor", "Periodista", "Modelo", "Mediático", "Artista", "Panelista", "Cheff", "Humorista", "Moda", "Twitteros", "Otros"], :include_blank => false
-        = i.input :description, :as => :text, :input_html => {:rows => 4, :cols => 60 }
+        = i.input :sex, :as => :select, :collection => [['Hombre', 'M'], ['Mujer', 'F']], :include_blank => true
+        = i.input :influencer_type, :as => :select, :collection => ["Actor", "Músico", "Deportista", "Conductor", "Periodista", "Modelo", "Mediático", "Artista", "Panelista", "Cheff", "Humorista", "Moda", "Twitteros", "Otros"], :include_blank => true
+        = i.input :description, :as => :text, :input_html => {:rows => 2, :cols => 60 }
         = i.input :referrer_description
 
       .form-actions
-        = f.submit 'Registrarse'
+        = f.submit 'Registrarse', :class => 'btn btn-primary btn-large'
 
 .row.terms_and_conditions
   .span6.offset3

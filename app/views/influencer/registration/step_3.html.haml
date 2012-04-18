@@ -6,8 +6,8 @@
       = f.input :account_number
       = f.input :account_type, :as => :select, :collection => ['Caja de Ahorro', 'Cuenta Corriente'], :include_blank => false
       = f.input :cbu
-      = f.input :bank_name, :as => :select, :collection => ["Citi", "Standard Bank", "Santander Rio", "Banco Frances", "Banco Macro", "Banco Galicia"]
+      = f.input :bank_name, :as => :select, :collection => ["Citi", "Standard Bank", "Santander Río", "Banco Francés", "Banco Macro", "Banco Galicia", "Banco Nación", "Banco Provincia", "Banco Ciudad", "Banco Patagonia", "Banco Hipotecario", "Banco Credicoop"]
 
       .form-actions
-        = f.submit 'Actualizar'
+        = f.submit 'Guardar'
         = link_to 'Cancelar', influencer_dashboard_path
