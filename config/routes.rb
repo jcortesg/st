@@ -4,12 +4,6 @@ Borwin::Application.routes.draw do
     get '/users/new_affiliate', :to => 'registrations#new_affiliate', :as => :affiliate_devise_registration
     get '/users/new_advertiser', :to => 'registrations#new', :as => :advertiser_devise_registration
   end
-  #do
-  #	get "users/password" => "users#edit"
-  #	get "users/all" => "users#all", :as => 'all_users'
-  #	post "users/:id/approve" => "users#approve"
-  #	post "users/:id/disapprove" => "users#approve"
-  #end
 
   # Admin routes
   match '/admin' => 'admin/dashboard#index', :as => :admin_dashboard
@@ -47,17 +41,26 @@ Borwin::Application.routes.draw do
   end
 
   # Home pages
-  match "borwin-for-advertisers" => "welcome#advertisers", :as => :welcome_advertisers
-  match "borwin-for-influencers" => "welcome#influencers", :as => :welcome_influencers
-  match "analytics" => "welcome#analytics", :as => :welcome_analytics
-  match "about" => "welcome#about", :as => :about
-  match "contact" => "welcome#contact", :as => :contact
-  match "process_contact" => "welcome#process_contact", :as => :process_contact
-  match "terms" => "welcome#terms", :as => :terms
+  match "advertisers-general-vision" => "home#advertisers_about", :as => :home_advertisers_about
+  match "advertisers-contact" => "home#advertisers_contact", :as => :home_advertisers_contact
+  match "influencers-about" => "home#influencers_about", :as => :home_influencers_about
+  match "influencers-contact" => "home#influencers_contact", :as => :home_influencers_contact
+  match "tweet-go" => "home#tweet_go", :as => :about_tweet_go
+  match "about-us" => "home#about_us", :as => :about_us
+  match "press" => "home#press", :as => :press
+  match "work-with-us" => "home#work_with_us", :as => :work_with_us
+  match "contact" => "home#contact", :as => :contact
+  match "proces-contact" => "home#process_contact", :as => :process_contact
+
+  match "terms" => "home#terms", :as => :terms
+
+  match "home" => "home#index", :as => 'home'
+  root :to => 'home#index'
 
 
-
-
+  ##########################################
+  # Review all the routes under this comment
+  ##########################################
 
   resources :audiences_locations
 
@@ -120,7 +123,4 @@ Borwin::Application.routes.draw do
 
   resources :advertisers
   resources :affiliates
-
-  match "home" => "home#index", :as => 'home'
-  root :to => 'welcome#index'
 end
