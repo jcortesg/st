@@ -1,6 +1,6 @@
 unless User.where(:email => 'admin@borwin.com.ar').exists?
   @user = User.create(email: 'admin@borwin.com.ar', password: 'borwin123', password_confirmation: 'borwin123')
-  @user.role = 'administrator'
+  @user.role = 'admin'
   @user.approved = true
   @user.save!
 end
