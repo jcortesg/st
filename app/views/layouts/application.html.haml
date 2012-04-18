@@ -46,7 +46,7 @@
                 %li{:class => params[:controller] == 'welcome' && params[:action] == 'contact' ? 'active' : ''}= link_to "#Contactános", contact_path
             - if user_signed_in?
               = form_tag(destroy_user_session_path, :class => 'nav pull-right', :method => :delete) do
-                %button.btn{:type => "submit"} Salir
+                %button.btn.btn-info{:type => "submit"} Salir
             - else
               %ul.nav.pull-right
                 %li.dropdown
