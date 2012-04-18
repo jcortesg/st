@@ -22,6 +22,7 @@ class ApplicationController < ActionController::Base
     else
       super
     end
+    home_path_for(resource_or_scope)
   end
 
   def set_user_session_values(id, name)
