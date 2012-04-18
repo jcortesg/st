@@ -1,0 +1,18 @@
+.row.registration_container
+  .span6.offset3
+    %h1.center_text Datos de contacto
+    = simple_form_for(@influencer, :url => process_step_2_influencer_registration_path, :html => { class: "form-horizontal", method: :put }) do |f|
+      = render '/shared/simple_form_errors', :f => f
+      = f.input :address
+      = f.input :country
+      = f.input :state
+      = f.input :city
+      = f.input :zip_code
+      = f.input :phone
+      = f.input :cell_phone
+      = f.input :contact_time
+      = f.input :contact_method, :as => :select, :collection => [["Email", 'email'], ["Telefono", 'phone'], ["Direct Message", 'direct_message']]
+
+      .form-actions
+        = f.submit 'Actualizar'
+        = link_to 'Cancelar', influencer_dashboard_path

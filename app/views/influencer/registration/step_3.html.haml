@@ -1,0 +1,13 @@
+.row.registration_container
+  .span6.offset3
+    %h1.center_text Datos para cobros
+    = simple_form_for(@influencer, :url => process_step_3_influencer_registration_path, :html => { :class => "form-horizontal" }) do |f|
+      = render '/shared/simple_form_errors', :f => f
+      = f.input :account_number
+      = f.input :account_type, :as => :select, :collection => ['Caja de Ahorro', 'Cuenta Corriente'], :include_blank => false
+      = f.input :cbu
+      = f.input :bank_name, :as => :select, :collection => ["Citi", "Standard Bank", "Santander Rio", "Banco Frances", "Banco Macro", "Banco Galicia"]
+
+      .form-actions
+        = f.submit 'Actualizar'
+        = link_to 'Cancelar', influencer_dashboard_path

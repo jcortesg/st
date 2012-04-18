@@ -40,7 +40,7 @@ Borwin::Application.routes.draw do
     # Registration
     resource :registration, controller: 'registration' do
       get :step_2
-      put :process_step2
+      put :process_step_2
       get :step_3
       put :process_step_3
     end
