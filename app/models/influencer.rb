@@ -6,15 +6,14 @@ class Influencer < ActiveRecord::Base
   has_many :top_followers
   has_many :tweets
   belongs_to :user
-  
-  validates :twitter_username, :presence => true, :length => { :within => 3..50 }, :uniqueness => true
-  validates :firstname, :presence => true
-  validates :lastname, :presence => true
+
+  validates :first_name, :presence => true
+  validates :last_name, :presence => true
   validates :influencer_type, :presence => true
 
-  attr_accessible :twitter_username, :influencer_type, :description, :firstname, :lastname, :sex, :address, :city,
-                  :state, :country, :zip_code, :phone, :cell_phone, :contact_time, :contact_time, :account_number,
-                  :account_type, :cbu, :bank_name, :contact_method, :bio
+  attr_accessible :first_name, :last_name, :location, :image_url, :bio, :influencer_type, :sex, :description,
+                  :referrer_description, :address, :city, :state, :country, :zip_code, :phone, :cell_phone,
+                  :contact_time, :contact_mehod, :account_number, :account_type, :cbu, :bank_name
   
   def self.influencers_list_with_current_profile_and_audience(filters)    
     followers = filters[:followers]

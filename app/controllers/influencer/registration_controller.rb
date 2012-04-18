@@ -13,8 +13,11 @@ class Influencer::RegistrationController < ApplicationController
   def create
     @user = User.new(params[:user])
     @user.role = 'influencer'
+    @user.password = @user.password_confirmation = (0...8).map{65.+(rand(25)).chr}.join
+    @user.approved = true
 
     if @user.save
+      sign_in(:user, @user)
       redirect_to action: :step_2
     else
       render action: :new

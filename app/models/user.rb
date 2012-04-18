@@ -73,7 +73,7 @@ class User < ActiveRecord::Base
     Notifier.disapprove(self).deliver
   end 
     
-  def approve     
+  def approve
     self.approved = true
     self.save(:validate => false)
 

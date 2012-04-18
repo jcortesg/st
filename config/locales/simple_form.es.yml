@@ -54,7 +54,7 @@ es:
         influencer_type: Profesión
         sex: Sexo
         description: Descripción
-        referral_descripcion: Referido
+        referrer_description: Referido
         address: Dirección
         city: Ciudad
         state: Provincia
