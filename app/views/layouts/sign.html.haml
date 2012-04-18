@@ -6,6 +6,7 @@
     /[if IE] <link href="/stylesheets/ie.css" media="screen, projection" rel="stylesheet" type="text/css" />
     = stylesheet_link_tag 'print', :media => 'print'
     = javascript_include_tag 'application'
+    = yield :head
     = csrf_meta_tag
   %body
     .navbar.navbar-fixed-top
@@ -39,13 +40,37 @@
                   %li= link_to "#Referidos", referrals_path
                   %li= link_to "#Transacciones", transactions_path
               - else
-                %li{:class => params[:controller] == 'welcome' && params[:action] == 'about' ? 'active' : ''}= link_to "#Plataforma", about_path
-                %li{:class => params[:controller] == 'welcome' && params[:action] == 'advertisers' ? 'active' : ''}= link_to "#Anunciantes", welcome_advertisers_path
-                %li{:class => params[:controller] == 'welcome' && params[:action] == 'influencers' ? 'active' : ''}= link_to "#Celebridades", welcome_influencers_path
-                %li{:class => params[:controller] == 'welcome' && params[:action] == 'analytics' ? 'active' : ''}= link_to "#Analytics", welcome_analytics_path
-                %li{:class => params[:controller] == 'welcome' && params[:action] == 'contact' ? 'active' : ''}= link_to "#Contactános", contact_path
+                %li.dropdown
+                  %a{:href => '#', :class => 'dropdown-toggle', 'data-toggle' => 'dropdown'}
+                    = "#Anunciantes"
+                    %b.caret
+                  %ul.dropdown-menu
+                    %li= link_to 'Visión General', home_advertisers_about_path
+                    %li= link_to 'Contactenos', home_advertisers_contact_path
+                %li.dropdown
+                  %a{:href => '#', :class => 'dropdown-toggle', 'data-toggle' => 'dropdown'}
+                    = "#Celebridades"
+                    %b.caret
+                  %ul.dropdown-menu
+                    %li= link_to 'Visión General', home_influencers_about_path
+                    %li= link_to 'Contactenos', home_influencers_contact_path
+                %li.dropdown
+                  %a{:href => '#', :class => 'dropdown-toggle', 'data-toggle' => 'dropdown'}
+                    = "#Plataforma"
+                    %b.caret
+                  %ul.dropdown-menu
+                    %li= link_to 'TweetGo!', about_tweet_go_path
+                %li.dropdown
+                  %a{:href => '#', :class => 'dropdown-toggle', 'data-toggle' => 'dropdown'}
+                    = "#Nosotros"
+                    %b.caret
+                  %ul.dropdown-menu
+                    %li= link_to 'La Empresa', about_us_path
+                    %li= link_to 'Prensa', press_path
+                    %li= link_to 'Trabajá con Nosotros', work_with_us_path
+                    %li= link_to 'Contáctenos', contact_path
             - if user_signed_in?
-              = form_tag(destroy_user_session_path, :class => 'nav pull-right', :method => :delete) do
+              = form_tag(destroy_user_session_path, :method => :delete) do
                 %button.btn{:type => "submit"} Salir
             - else
               %ul.nav.pull-right
@@ -59,7 +84,7 @@
                     %li= link_to 'Anunciante', advertiser_devise_registration_path
                     %li= link_to 'Agencia', affiliate_devise_registration_path
                 %li
-                  = form_tag(new_user_session_path, :class => 'nav pull-right', :method => :get) do
+                  = form_tag(new_user_session_path, :method => :get) do
                     %button.btn.btn-info{:type => "submit"} Iniciar sesión
 
 
