@@ -18,9 +18,11 @@ class TwitterCredentialsController < ApplicationController
   def finalize
     access_token = @client.authorize(params[:oauth_token], session[:request_secret], :oauth_verifier => params[:oauth_verifier])
 
-    if current_user && current_user.twitter_linked?  # The user is logged in and he already linked his account in the past
+    if current_user && current_user.twitter_linked?
+      # The user is logged in and he already linked his account in the past
       redirect_to root_path, :notice => "Tu cuenta ya esta linkeada a Twitter con el usuario #{current_user.twitter_screen_name}"
-    elsif current_user && !current_user.twitter_linked? # The user is logged in and he's linked his account
+    elsif current_user && !current_user.twitter_linked?
+      # The user is logged in and he's linked his account
       current_user.twitter_uid = access_token.params['user_id']
       current_user.twitter_screen_name = access_token.params['screen_name']
       current_user.twitter_token = access_token.token
@@ -28,13 +30,21 @@ class TwitterCredentialsController < ApplicationController
       current_user.save
       redirect_to home_path_for(current_user)
     else
-      @user = User.new
-      session['twitter_uid'] = access_token.params['twitter_uid']
-      session['twitter_uid'] = access_token.params['user_id']
-      session['twitter_screen_name'] = access_token.params['screen_name']
-      session['twitter_token'] = access_token.token
-      session['twitter_secret'] = access_token.secret
-      redirect_to new_influencer_registration_path
+      # Check if there is any user with that credential, and if there is, redirects the user
+      if User.where(twitter_token: access_token.token, twitter_secret: access_token.secret).exists?
+        @user = User.where(twitter_token: access_token.token, twitter_secret: access_token.secret).first
+        # Login user and redirect
+        sign_in(:user, @user)
+        redirect_to home_path_for(@user)
+      else
+        # The credentials doesn't exist, create the account
+        @user = User.new
+        session['twitter_uid'] = access_token.params['user_id']
+        session['twitter_screen_name'] = access_token.params['screen_name']
+        session['twitter_token'] = access_token.token
+        session['twitter_secret'] = access_token.secret
+        redirect_to new_influencer_registration_path
+      end
     end
   end
 
