@@ -1,16 +1,18 @@
 .row.login_container
   .span6
-    %h1.center_text Inicia sesión con tu cuenta de Twitter
-    = link_to(image_tag('sign-in-with-twitter.png'), login_twitter_credentials_path)
+    %div.round_form{:style => 'min-height: 300px'}
+      .form_title Inicia sesión con Twitter
+      %div{style: 'width: 100%;margin: 0 auto; text-align: center'}
+        = link_to(image_tag('sign-in-with-twitter.png'), login_twitter_credentials_path)
   .span6
-    %h1.center_text Inicia sesión con tu email
-    = simple_form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => { :class => "form-horizontal" }) do |f|
+    = simple_form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => { :class => "form-horizontal round_form", :style => 'min-height: 300px' }) do |f|
+      .form_title Inicia sesión con tu email
       = render '/shared/flash', :flash => flash
       = f.input :email
       = f.input :password
       = f.input :remember_me, :label => "Recordarme", :as => :boolean
       .form-actions
-        = f.submit
+        = f.submit 'Ingresar', :class => 'btn btn-primary btn-large'
 
 
 .row
