@@ -108,15 +108,15 @@ Borwin::Application.routes.draw do
     end
   end
 
-  #resources :influencers do
-  #  collection do
-  #    get "list"
-  #    get "filter"
-  #    post "list"
-  #    get "fees"
-  #    post ":influencer_id/:action"
-  #  end
-  #end
+  resources :influencers do
+    collection do
+      get "list"
+      get "filter"
+      post "list"
+      get "fees"
+      post ":influencer_id/:action"
+    end
+  end
 
   resources :advertisers
   resources :affiliates
