@@ -60,7 +60,7 @@ es:
         state: Provincia
         country: País
         zip_code: Código Postal
-        phone: Téléfono
+        phone: Teléfono
         cell_phone: Celular
         contact_time: Hora de contacto
         contact_method: Forma de contacto preferido
