@@ -21,7 +21,7 @@ class User < ActiveRecord::Base
   accepts_nested_attributes_for :advertiser
   accepts_nested_attributes_for :influencer
 
-  validates :role, inclusion: {in: %w(administrator advertiser affiliate influencer)}
+  validates :role, inclusion: {in: %w(admin advertiser affiliate influencer)}
 
   class << self
     # Shows the accounts that are waiting for approbation
@@ -34,9 +34,9 @@ class User < ActiveRecord::Base
       where(approved: true)
     end
 
-    # Retrieve all the accounts except the administrator
+    # Retrieve all the accounts except the admin
     def all_except_admin
-      where("role != 'administrator'").order("approved DESC")
+      where("role != 'admin'").order("approved DESC")
     end
   end
 
@@ -110,7 +110,7 @@ class User < ActiveRecord::Base
         'Anunciante'
       when 'affiliate'
         'Agencia'
-      when 'administrator'
+      when 'admin'
         'Administrador'
       else
         self.role

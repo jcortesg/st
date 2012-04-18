@@ -14,7 +14,7 @@ class Transaction < ActiveRecord::Base
 
   def self.full_trasactions_for_entity(id, role)
     case role
-      when 'administrator'
+      when 'admin'
         @transactions = Tweet.select("tweets.tweet, tweets.date_posted, advertisers.brand, transactions.amount, CASE WHEN transactions.influencer_paid =
         true THEN 'pagada' ELSE 'pendiente de pago' END AS status, transactions.borwin_amount, payment_types.description").joins(:transactions, :advertiser,
                                                                                                                                  :payment_type).order("transactions.influencer_paid")

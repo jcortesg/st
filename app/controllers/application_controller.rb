@@ -46,7 +46,7 @@ class ApplicationController < ActionController::Base
   # Gets the home path for the current user profile
   def home_path_for(user)
     case user.role
-      when 'administrator'
+      when 'admin'
         admin_dashboard_path
       when 'advertiser'
         advertiser_dashboard_path
