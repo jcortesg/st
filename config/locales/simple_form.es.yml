@@ -64,6 +64,7 @@ es:
         cell_phone: Celular
         contact_time: Hora de contacto
         contact_method: Forma de contacto preferido
+        preferred_payment: Forma de pago preferida
         account_number: Número de cuenta bancaria
         account_type: Tipo de cuenta
         cbu: CBU

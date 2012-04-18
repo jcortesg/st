@@ -127,6 +127,7 @@ ActiveRecord::Schema.define(:version => 20120412062936) do
     t.string  "cell_phone"
     t.string  "contact_time"
     t.string  "contact_method"
+    t.string  "preferred_payment"
     t.string  "account_number"
     t.string  "account_type"
     t.string  "cbu"

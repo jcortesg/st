@@ -1,7 +1,7 @@
 .row.registration_container
   .span6.offset3
-    %h1.center_text Datos de contacto
-    = simple_form_for(@influencer, :url => process_step_2_influencer_registration_path, :html => { class: "form-horizontal", method: :put }) do |f|
+    = simple_form_for(@influencer, :url => process_step_2_influencer_registration_path, :html => { class: "form-horizontal round_form", method: :put }) do |f|
+      %h1.form_title Datos de contacto
       = render '/shared/simple_form_errors', :f => f
       = f.input :address
       = f.input :country
@@ -14,5 +14,5 @@
       = f.input :contact_method, :as => :select, :collection => [["Email", 'email'], ["Teléfono", 'phone'], ["Direct Message", 'direct_message']]
 
       .form-actions
-        = f.submit 'Guardar'
-        = link_to 'Cancelar', influencer_dashboard_path
+        = f.submit 'Guardar', :class => 'btn btn-primary btn-large'
+        = link_to 'Saltear este paso', step_3_influencer_registration_path, class: 'btn btn-primary btn-large'
