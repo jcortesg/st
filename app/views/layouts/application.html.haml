@@ -70,8 +70,9 @@
                     %li= link_to 'Trabajá con Nosotros', work_with_us_path
                     %li= link_to 'Contáctenos', contact_path
             - if user_signed_in?
-              = form_tag(destroy_user_session_path, :method => :delete) do
-                %button.btn{:type => "submit"} Salir
+              %ul.nav.pull-right
+                = form_tag(destroy_user_session_path, :method => :delete) do
+                  %button.btn.btn-info{:type => "submit"} Salir
             - else
               %ul.nav.pull-right
                 %li.dropdown
