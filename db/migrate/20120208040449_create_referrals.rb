@@ -7,7 +7,9 @@ class CreateReferrals < ActiveRecord::Migration
       t.date :through
       t.decimal :commission, :precision => 3, :scale => 2
     end
-    
-    add_index :referrals, :source_id, :unique => false           
+
+
+    add_index :referrals, :source_id, unique: false
+    add_index :referrals, [:source_id, :destination_id], unique: false
   end
 end

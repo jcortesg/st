@@ -44,7 +44,7 @@ class User < ActiveRecord::Base
   ####################
   def setaudience(params) 
     if self.role == "influencer"
-      @influencer = Influencer.influencer_for_user(self)
+      @influencer = self.influencer
       
       @audience = Audience.find_by_influencer_id(@influencer.id)
       @audience.males = params[:influencer][:males]
@@ -80,17 +80,7 @@ class User < ActiveRecord::Base
     Notifier.approve(self).deliver
   end
   
-  def get_entity_for_user
-    if user.advertiser?
-      Advertiser.advertiser_for_user(self)
-    elsif user.influencer?
-      Influencer.advertiser_for_user(self)
-    else
-      Affiliate.advertiser_for_user(self)
-    end
-  end
-    
-  def active_for_authentication? 
+  def active_for_authentication?
     super && approved? 
   end 
 
@@ -102,6 +92,7 @@ class User < ActiveRecord::Base
     end 
   end
 
+  # Gets the current user role translated
   def full_user
     case self.role
       when 'influencer'

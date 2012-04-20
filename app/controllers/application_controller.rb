@@ -9,13 +9,13 @@ class ApplicationController < ActionController::Base
 
   def after_sign_in_path_for(resource_or_scope)
     if resource_or_scope.advertiser?
-      @entity = Advertiser.advertiser_for_user(resource_or_scope)
+      @entity = resource_or_scope.advertiser
       set_user_session_values(@entity.id, @entity.twitter_username)
     elsif resource_or_scope.influencer?
-      @entity = Influencer.influencer_for_user(resource_or_scope)
+      @entity = resource_or_scope.influencer
       set_user_session_values(@entity.id, @entity.twitter_username)
     elsif resource_or_scope.affiliate?
-      @entity = Affiliate.affiliate_for_user(resource_or_scope)
+      @entity = resource_or_scope.affiliate
       set_user_session_values(@entity.id, "@" + @entity.firstname.downcase[0] + @entity.lastname.downcase)
     elsif resource_or_scope.admin?
       set_user_session_values("0", "@admin")

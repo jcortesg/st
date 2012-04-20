@@ -1,8 +1,6 @@
 class Influencer < ActiveRecord::Base
-  has_many :profiles
-  has_one :current_profile, :class_name => "Profile", :conditions => "profiles.status = 'A'", :order => "created_at DESC"
-  has_many :audiences
-  has_one :current_audience, :class_name => "Audience", :conditions => "audiences.status = 'A'", :order => "created_at DESC"
+  has_one :profile
+  has_one :audience
   has_many :top_followers
   has_many :tweets
   belongs_to :user
@@ -81,10 +79,6 @@ class Influencer < ActiveRecord::Base
           #{male_percentaje} #{peerindex} #{klout} #{fee} #{cpc} #{retweets} #{mothers} #{sports}")  
   end
       
-  def self.influencer_for_user(user)
-    return self.find_by_user_id(user.id)
-  end
-    
   def full_name
   	return self.lastname + ', ' + self.firstname
   end

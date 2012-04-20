@@ -7,9 +7,4 @@ class Affiliate < ActiveRecord::Base
 
   attr_accessible :first_name, :last_name, :company, :address, :city, :state, :country, :zip_code, :phone
 
-  class << self
-    def affiliate_for_user(user)
-      where(user_id: user.try(:id))
-    end
-  end
 end

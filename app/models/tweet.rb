@@ -60,13 +60,13 @@ class Tweet < ActiveRecord::Base
     end
                 
     if user.advertiser?
-      @advertiser_id = Advertiser.advertiser_for_user(user).id
+      @advertiser_id = user.advertiser.id
       @tweets = Tweet.select("tweets.id, tweets.tweet, tweets.comments, tweets.date_posted, tweets.date_required, tweets.status, tweets.created_at,
         tweets.influencer_id, influencers.twitter_username, payment_types.description, payment_types.name AS payment_name, campaigns.name AS campaign_name, 
           campaigns.id AS campaign_id").joins(:influencer, :payment_type, "LEFT JOIN `campaigns` ON `campaigns`.`id` = `tweets`.`campaign_id`").
             where("tweets.advertiser_id = #{@advertiser_id} #{status} #{payment_type}").order("created_at DESC")  
     elsif user.influencer?
-      @influencer_id = Influencer.influencer_for_user(user).id
+      @influencer_id = user.influencer.id
       @tweets = Tweet.select("tweets.id, tweets.tweet, tweets.comments, tweets.date_posted, tweets.date_required, tweets.status, tweets.created_at,
         tweets.influencer_id, advertisers.brand, payment_types.description, payment_types.name AS payment_name").joins(:advertiser, :payment_type).
           where("tweets.influencer_id = #{@influencer_id} #{status} #{payment_type}").order("created_at DESC")

@@ -12,7 +12,4 @@ class Advertiser < ActiveRecord::Base
 
   attr_accessible :first_name, :last_name, :twitter_username, :company, :address, :city, :state, :country, :zip_code, :phone
 
-  def self.advertiser_for_user(user)
-    return self.find_by_user_id(user.id)
-  end
 end
