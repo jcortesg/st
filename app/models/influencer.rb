@@ -94,7 +94,7 @@ class Influencer < ActiveRecord::Base
 
     self.twitter_location = twitter_user.location
     self.twitter_bio = twitter_user.description
-    self.twitter_image_url = user.profile_image_url
+    self.twitter_image_url = twitter_user.profile_image_url
   end
 
 

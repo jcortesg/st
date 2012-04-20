@@ -34,12 +34,12 @@ class Influencer::RegistrationController < ApplicationController
     end
   end
 
-  # Shows the second step to complete the influencer profile
+  # Shows the second step for the registration
   def step_2
     @influencer = current_user.influencer
   end
 
-  # Process the step 2 of the registration
+  # Process the second step for the registration
   def process_step_2
     @influencer = current_user.influencer
     if @influencer.update_attributes(params[:influencer])
@@ -49,20 +49,33 @@ class Influencer::RegistrationController < ApplicationController
     end
   end
 
-  # Shows the third and last to complete the influencer profile
+  # Shows the third step for the registration
   def step_3
     @influencer = current_user.influencer
   end
 
-  # Process the step 3 of the registration
+  # Process the third step for the registration
   def process_step_3
     @influencer = current_user.influencer
     if @influencer.update_attributes(params[:influencer])
-      redirect_to influencer_dashboard_path
+      redirect_to step_4_influencer_registration_path
     else
       render action: :step_3
     end
   end
+
+  # Shows the fourth and last step to complete the user profile
+  def step_4
+    @influencer = current_user.influencer
+  end
+
+  def process_step_4
+    @influencer = current_user.influencer
+    if @influencer.update_attributes(params[:influencer])
+      redirect_to influencer_dashboard_path
+    else
+      render action: :step_4
+    end  end
 
   private
 
