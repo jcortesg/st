@@ -1,6 +1,7 @@
 class TwitterCredential < ActiveRecord::Base
   belongs_to :user
-  
+
+  # Saves the twitter credentials, but its not used anymore
   def self.save_credentials(access_token, user_id)      
     @credentials = TwitterCredential.new
     @credentials.user_id = user_id

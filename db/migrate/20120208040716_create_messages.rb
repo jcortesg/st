@@ -12,6 +12,6 @@ class CreateMessages < ActiveRecord::Migration
 
     add_index :messages, :source_id, unique: false
     add_index :messages, :destination_id, unique: false
-    add_index :messages, [:soruce_id, :destination_id], unique: false
+    add_index :messages, [:source_id, :destination_id], unique: false
   end
 end

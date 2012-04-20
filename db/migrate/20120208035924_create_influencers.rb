@@ -6,9 +6,9 @@ class CreateInfluencers < ActiveRecord::Migration
       t.string :first_name
       t.string :last_name
 
-      t.string :location
-      t.string :image_url
-      t.string :bio
+      t.string :twitter_location
+      t.string :twitter_image_url
+      t.string :twitter_bio
 
       t.decimal :borwin_fee, :default => 0.3, :precision => 8, :scale => 2
 

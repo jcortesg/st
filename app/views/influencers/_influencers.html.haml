@@ -15,7 +15,7 @@
         %td{:rowspan => "2"}= check_box_tag "influencers[]", influencer.id
         %td{:rowspan => "2"}= image_tag influencer.image_url
         %td= link_to influencer.twitter_username, audiences_path + "/influencer/" + influencer.id.to_s
-        %td= influencer.full_name
+        %td= influencer.to_s
         %td= number_with_delimiter(influencer.followers)
         %td= number_to_currency(influencer.fee)
         %td= number_to_currency(influencer.cpc)

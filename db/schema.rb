@@ -17,9 +17,9 @@ ActiveRecord::Schema.define(:version => 20120412062936) do
     t.integer "user_id"
     t.string  "first_name"
     t.string  "last_name"
-    t.string  "location"
-    t.string  "image_url"
-    t.string  "bio"
+    t.string  "twitter_location"
+    t.string  "twitter_image_url"
+    t.string  "twitter_bio"
     t.string  "company"
     t.string  "address"
     t.string  "city"
@@ -110,9 +110,9 @@ ActiveRecord::Schema.define(:version => 20120412062936) do
     t.integer "user_id"
     t.string  "first_name"
     t.string  "last_name"
-    t.string  "location"
-    t.string  "image_url"
-    t.string  "bio"
+    t.string  "twitter_location"
+    t.string  "twitter_image_url"
+    t.string  "twitter_bio"
     t.decimal "borwin_fee",           :precision => 8, :scale => 2, :default => 0.3
     t.string  "influencer_type"
     t.string  "sex"
@@ -155,6 +155,8 @@ ActiveRecord::Schema.define(:version => 20120412062936) do
   end
 
   add_index "messages", ["destination_id"], :name => "index_messages_on_destination_id"
+  add_index "messages", ["source_id", "destination_id"], :name => "index_messages_on_source_id_and_destination_id"
+  add_index "messages", ["source_id"], :name => "index_messages_on_source_id"
 
   create_table "payment_methods", :force => true do |t|
     t.string "name"
@@ -193,6 +195,7 @@ ActiveRecord::Schema.define(:version => 20120412062936) do
     t.decimal "commission",     :precision => 3, :scale => 2
   end
 
+  add_index "referrals", ["source_id", "destination_id"], :name => "index_referrals_on_source_id_and_destination_id"
   add_index "referrals", ["source_id"], :name => "index_referrals_on_source_id"
 
   create_table "site_contacts", :force => true do |t|

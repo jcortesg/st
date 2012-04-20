@@ -9,11 +9,14 @@ class Influencer < ActiveRecord::Base
   validates :last_name, :presence => true
   validates :influencer_type, :presence => true
 
+  before_create :update_twitter_data
+  after_create :update_audience, :create_profile
+
   attr_accessible :first_name, :last_name, :location, :image_url, :bio, :influencer_type, :sex, :description,
                   :referrer_description, :address, :city, :state, :country, :zip_code, :phone, :cell_phone,
                   :contact_time, :contact_method, :account_number, :account_type, :cbu, :bank_name
-  
-  def self.influencers_list_with_current_profile_and_audience(filters)    
+
+  def self.influencers_list_with_current_profile_and_audience(filters)
     followers = filters[:followers]
     friends = filters[:friends]
     retweets = filters[:retweets]
@@ -79,7 +82,47 @@ class Influencer < ActiveRecord::Base
           #{male_percentaje} #{peerindex} #{klout} #{fee} #{cpc} #{retweets} #{mothers} #{sports}")  
   end
       
-  def full_name
-  	return self.lastname + ', ' + self.firstname
+  def to_s
+  	"#{self.last_name}, #{self.first_name}"
+  end
+
+
+  # Updates the twitter data
+  def update_twitter_data
+    twitter_username = user.twitter_screen_name
+    twitter_user = Twitter.user(twitter_username)
+
+    self.twitter_location = twitter_user.location
+    self.twitter_bio = twitter_user.description
+    self.twitter_image_url = user.profile_image_url
+  end
+
+
+  # Updates the user audience
+  def update_audience
+    twitter_username = user.twitter_screen_name
+    twitter_user = Twitter.user(twitter_username)
+
+    audience = self.audience || self.build_audience
+    audience.followers = twitter_user.followers_count
+    audience.friends = twitter_user.friends_count
+    audience.tweets = twitter_user.statuses_count
+    audience.males ||= 0.5
+
+    audience.save
+  end
+
+  # Creates the user profile for payments
+  def create_profile
+    followers = self.audience.followers
+
+    # Calculates the payment cost depending on the followers
+    profile = self.build_profile
+    profile.fee = followers * 0.25
+    profile.cpc = 5
+    profile.fee_cpc = followers * 0.25 / 2.5
+    profile.cpc_fee = 3
+
+    profile.save
   end
 end
