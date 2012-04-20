@@ -56,7 +56,6 @@ Borwin::Application.routes.draw do
 
   match "terms" => "home#terms", :as => :terms
 
-  match "home" => "home#index", :as => 'home'
   root :to => 'home#index'
 
 
