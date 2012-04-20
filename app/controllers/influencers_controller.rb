@@ -1,6 +1,6 @@
 class InfluencersController < ApplicationController
   before_filter :authenticate_user!, :except => [:new, :create]
-  before_filter :check_twitter_credentials, :only => [:new, :create]
+
   load_and_authorize_resource
 
   # Shows the form to create a new influencer
@@ -10,30 +10,6 @@ class InfluencersController < ApplicationController
     @user.build_influencer
   end
 
-  # Creates a new influencer
-  def create
-    @user = User.new(params[:user])
-    @user.role = 'influencer'
-    # Assign twitter credentials
-    @user.twitter_linked = true
-    @user.twitter_screen_name = session['twitter_screen_name']
-    @user.twitter_uid = session['twitter_uid']
-    @user.twitter_token = session['twitter_token']
-    @user.twitter_secret = session['twitter_secret']
-
-    respond_to do |format|
-      if @influencer.save
-        # Clear session values
-        @session['twitter_screen_name'] = session['twitter_uid'] = session['twitter_token'] = session['twitter_secret'] = nil
-
-        format.html { redirect_to "/twitter_credentials/login", notice: 'Influencer was successfully created.' }
-        format.json { render json: @influencer, status: :created, location: @influencer }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @influencer.errors, status: :unprocessable_entity }
-      end
-    end
-  end
 
 
 
@@ -127,12 +103,4 @@ class InfluencersController < ApplicationController
     end
   end
 
-  private
-
-  # Check that the user is logged in with twitter
-  def check_twitter_credentials
-    if session['twitter_token'].blank? || session['twitter_secret'].blank?
-      redirect_to influencer_registration_path, :error => "Debes linkear tu cuenta de twitter antes de continuar" and return
-    end
-  end
 end

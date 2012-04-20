@@ -3,7 +3,6 @@ class User < ActiveRecord::Base
   has_one :influencer
   has_one :affiliate
 
-  has_one :twitter_credential
   has_one :referral_destination, :as => :referral, :conditions => 'destination_id = #{self.id}'
   has_many :referral_sources, :as => :referral, :conditions => 'source_id = #{self.id}'
   has_many :message_destinations, :as => :message, :conditions => 'destination_id = #{self.id}'

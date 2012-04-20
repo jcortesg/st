@@ -80,7 +80,7 @@ Borwin::Application.routes.draw do
     end
   end
 
-  resources :twitter_credentials do
+  resources :twitter_credentials, only: [:index] do
     collection do
       get "login"
       get "finalize"

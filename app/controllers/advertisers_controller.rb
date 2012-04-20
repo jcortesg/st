@@ -45,23 +45,6 @@ class AdvertisersController < ApplicationController
     @advertiser = Advertiser.find(params[:id])
   end
 
-  # POST /advertisers
-  # POST /advertisers.json
-  def create    
-    @advertiser = Advertiser.new(params[:advertiser])
-    @advertiser.user_id = session[:signed_up_user_id]
-    
-    respond_to do |format|
-      if @advertiser.save
-        format.html { redirect_to "/twitter_credentials/login", notice: 'Advertiser was successfully created.' }
-        format.json { render json: @advertiser, status: :created, location: @advertiser }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @advertiser.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-  
   # PUT /advertisers/1
   # PUT /advertisers/1.json
   def update
