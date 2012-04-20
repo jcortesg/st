@@ -34,6 +34,11 @@ class CreateInfluencers < ActiveRecord::Migration
       t.string :account_type
       t.string :cbu
       t.string :bank_name
+
+      t.decimal :fee, :precision => 8, :scale => 2
+      t.decimal :cpc, :precision => 5, :scale => 2
+      t.decimal :fee_cpc, :precision => 8, :scale => 2
+      t.decimal :cpc_fee, :precision => 5, :scale => 2
     end
     
     add_index :influencers, :user_id, :unique => true

@@ -37,8 +37,6 @@ Borwin::Application.routes.draw do
       put :process_step_2
       get :step_3
       put :process_step_3
-      get :step_4
-      put :process_step_4
     end
   end
 

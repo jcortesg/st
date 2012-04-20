@@ -9,12 +9,12 @@ class Influencer < ActiveRecord::Base
   validates :last_name, :presence => true
   validates :influencer_type, :presence => true
 
-  before_create :update_twitter_data
-  after_create :update_audience, :create_profile
+  before_create :update_twitter_data, :assign_default_prices
+  after_create :update_audience
 
   attr_accessible :first_name, :last_name, :location, :image_url, :bio, :influencer_type, :sex, :description,
                   :referrer_description, :address, :city, :state, :country, :zip_code, :phone, :cell_phone,
-                  :contact_time, :contact_method, :account_number, :account_type, :cbu, :bank_name
+                  :contact_time, :contact_method, :preferred_payment, :account_number, :account_type, :cbu, :bank_name
 
   def self.influencers_list_with_current_profile_and_audience(filters)
     followers = filters[:followers]
@@ -113,16 +113,13 @@ class Influencer < ActiveRecord::Base
   end
 
   # Creates the user profile for payments
-  def create_profile
+  def assign_default_prices
     followers = self.audience.followers
 
     # Calculates the payment cost depending on the followers
-    profile = self.build_profile
-    profile.fee = followers * 0.25
-    profile.cpc = 5
-    profile.fee_cpc = followers * 0.25 / 2.5
-    profile.cpc_fee = 3
-
-    profile.save
+    self.fee = followers * 0.25
+    self.cpc = 5
+    self.fee_cpc = followers * 0.25 / 2.5
+    self.cpc_fee = 3
   end
 end

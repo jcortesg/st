@@ -132,6 +132,10 @@ ActiveRecord::Schema.define(:version => 20120412062936) do
     t.string  "account_type"
     t.string  "cbu"
     t.string  "bank_name"
+    t.decimal "fee",                  :precision => 8, :scale => 2
+    t.decimal "cpc",                  :precision => 5, :scale => 2
+    t.decimal "fee_cpc",              :precision => 8, :scale => 2
+    t.decimal "cpc_fee",              :precision => 5, :scale => 2
   end
 
   add_index "influencers", ["user_id"], :name => "index_influencers_on_user_id", :unique => true
@@ -266,14 +270,6 @@ ActiveRecord::Schema.define(:version => 20120412062936) do
   add_index "tweets", ["advertiser_id"], :name => "index_tweets_on_advertiser_id"
   add_index "tweets", ["campaign_id"], :name => "index_tweets_on_campaign_id"
   add_index "tweets", ["influencer_id"], :name => "index_tweets_on_influencer_id"
-
-  create_table "twitter_credentials", :force => true do |t|
-    t.integer  "user_id"
-    t.string   "oauth_token"
-    t.string   "oauth_secret"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
-  end
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "",    :null => false
