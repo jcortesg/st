@@ -17,16 +17,63 @@ body
 .center_text
   text-align: center
 
+.white_box
+  background-color: white
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05) inset
+  border: 1px solid #F5F5F5
+  margin-bottom: 30px
+
+.round_box
+  @include border-radius(8px)
+  #background-color: #F5F5F5
+  background-color: white
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05) inset
+  border: 1px solid #F5F5F5
+  margin-bottom: 30px
+
 // Header updates
 .navbar .nav
   margin-top: 16px
 
 // Footer updates
 .footer
+  background-color: #202020
+  color: #BABABA
   margin: 0 auto
   width: 100%
-  text-align: center
+  min-height: 200px
 
+  .container
+    padding: 24px 0 0
+
+  .col
+    width: 130px
+    margin-left: 20px
+    float: left
+
+    h5
+      border-bottom: 1px solid #373737
+      margin: 0 0 14px
+      padding: 0 2px 0 0
+      font-weight: bold
+      vertical-align: baseline
+
+    ul
+      font-size: 11px
+      list-style-type: none
+      margin: 0 0 60px
+      li
+        margin: 0 0 4px
+        border: 0 none
+        margin: 0
+        padding: 0
+        vertical-align: baseline
+        list-style-type: none
+        a
+          color: #8F8F8F
+          text-decorate: none
+          &:hover
+            color: #FFF
 // Registration
 .registration_container
   h1.center_text
@@ -48,12 +95,13 @@ body
   background-color: transparent
   border: 0 none
 
-.round_form, .round_box
+.round_form
   @include border-radius(8px)
   #background-color: #F5F5F5
   background-color: white
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05) inset
   border: 1px solid #F5F5F5
+  margin-bottom: 30px
 
 .form_title
   text-align: center
