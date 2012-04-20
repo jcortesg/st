@@ -10,7 +10,8 @@ class User < ActiveRecord::Base
       
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable, :timeoutable
 
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :affiliate_attributes, :advertiser_attributes, :influencer_attributes
+  attr_accessible :email, :password, :password_confirmation, :remember_me,
+                  :affiliate_attributes, :advertiser_attributes, :influencer_attributes
 
   validates :email, presence: true, format: { with: /\A[^@]+@([^@\.]+\.)+[^@\.]+\z/ }
   validates :password, presence: true, length: { within: 6..20 }

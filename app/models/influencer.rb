@@ -14,10 +14,10 @@ class Influencer < ActiveRecord::Base
   before_create :update_twitter_data
   after_create :update_audience, :assign_default_prices
 
-  attr_accessible :first_name, :last_name, :location, :image_url, :bio, :influencer_type, :sex, :description,
-                  :referrer_description, :address, :city, :state, :country, :zip_code, :phone, :cell_phone,
-                  :contact_time, :contact_method, :preferred_payment, :account_number, :account_type, :cbu, :bank_name,
-                  :fixed_tweet_fee, :fixed_cpc_fee, :combined_tweet_fee, :combined_cpc_fee
+  attr_accessible :first_name, :last_name, :location, :image_url, :bio, :influencer_type, :birthday, :photo, :sex,
+                  :description, :referrer_description, :address, :city, :state, :country, :zip_code, :phone,
+                  :cell_phone, :contact_time, :contact_method, :preferred_payment, :account_number, :account_type, :cbu,
+                  :bank_name, :fixed_tweet_fee, :fixed_cpc_fee, :combined_tweet_fee, :combined_cpc_fee
 
   def self.influencers_list_with_current_profile_and_audience(filters)
     followers = filters[:followers]

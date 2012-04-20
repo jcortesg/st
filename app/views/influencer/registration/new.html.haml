@@ -27,3 +27,8 @@
       = link_to "Iniciar sesión", new_session_path('user')
       |
       = link_to "¿Olvidaste tu contraseña?", new_password_path('user')
+
+:javascript
+  $(document).ready(function() {
+    $('#user_influencer_attributes_birthday').datepicker();
+  })
