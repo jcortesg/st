@@ -52,6 +52,7 @@ es:
         bio: Bio
         borwin_fee: Comisión
         influencer_type: Profesión
+        birthday: Cumpleaños
         sex: Sexo
         description: Descripción
         referrer_description: Referido
