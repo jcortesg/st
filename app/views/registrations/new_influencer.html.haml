@@ -1,19 +1,16 @@
 .row.registration_container.twitter_registration
   .span6.offset3
-    %h1.center_text Registración de Celebridad
-    %div.center_text
-      = link_to(image_tag('sign-in-with-twitter.png'), '/twitter_credentials/login', :class => 'twitter_registration_link')
+    .round_form
+      %h1.center_text Registración de Celebridad
+      %div.center_text
+        = link_to(image_tag('sign-in-with-twitter.png'), '/twitter_credentials/login', :class => 'twitter_registration_link')
 
-.row.terms_and_conditions
-  .span6.offset3
-    %div.terms_and_conditions.center_text
-      Al registrarse acepta los
-      = link_to("Términos y Condiciónes", "/terms")
-      del servicio
+      %div.terms_and_conditions.center_text
+        Al registrarse acepta los
+        = link_to("Términos y Condiciónes", "/terms")
+        del servicio
 
-.row
-  .span6.offset3
-    .sign-links.center_text
-      = link_to "Iniciar sesión", new_session_path(resource_name)
-      |
-      = link_to "¿Olvidaste tu contraseña?", new_password_path(resource_name)
+      .sign-links.center_text
+        = link_to "Iniciar sesión", new_session_path(resource_name)
+        |
+        = link_to "¿Olvidaste tu contraseña?", new_password_path(resource_name)

@@ -1,6 +1,6 @@
 .row.registration_container
-  .span6.offset3
-    = simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :class => "form-horizontal round_form" }) do |f|
+  .span6.offset3.round_box
+    = simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :class => "form-horizontal" }) do |f|
       %h1.form_title Registración de Anunciante
       = render '/shared/simple_form_errors', :f => f
       = hidden_field_tag :user_role, resource.role
@@ -16,15 +16,11 @@
       .form-actions
         = f.submit 'Registrarse', :class => 'btn btn-primary btn-large'
 
-.row.terms_and_conditions
-  .span6.offset3
     %div.terms_and_conditions.center_text
       Al registrarse acepta los
       = link_to("Términos y Condiciónes", "/terms")
       del servicio
 
-.row
-  .span6.offset3
     .sign-links.center_text
       = link_to "Iniciar sesión", new_session_path(resource_name)
       |
