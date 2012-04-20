@@ -1,16 +1,71 @@
 - content_for :head do
   = javascript_include_tag('home.js')
+  = stylesheet_link_tag 'http://fonts.googleapis.com/css?family=Basic'
 
 #home_carousel.carousel
   .carousel-inner
     .active.item
-      = image_tag('home_slide_1.png')
+      .slide1
+        .title
+          CONECTAMOS TU MARCA
+          %br
+          CON TU TARGET A TRAVÉS
+          %br
+          DEL TWITTER DE LAS
+          %br
+          CELEBRIDADES
+        .subtitle.blue
+          IT'S TIME TO GO SOCIAL!
     .item
-      = image_tag('home_slide_2.png')
+      .slide2
+        .title
+          = 'TWEET<span class="blue">GO!</span> ENCUENTRA'.html_safe
+          %br
+          DÓNDE ESTÁ EL PÚBLICO
+          %br
+          AL QUE TU MARCA QUIERE
+          %br
+          LLEGAR.
+        .subtitle
+          ¿QUERÉS LLEGAR A DOS MILLONES DE JÓVENES FANÁTICOS DEL DEPORTE?
+          %br
+          ¿CONECTARTE CON MÁS DE 1 MILLÓN DE ADOLESCENTES QUE VIVAN EN
+          %br
+          BUENOS AIRES?
     .item
-      = image_tag('home_slide_3.png')
+      .slide3
+        .title
+          CONTAMOS CON CIENTOS DE
+          %br
+          CELEBRIDADES QUE
+          %br
+          RECOMIENDAN TU MARCA A
+          %br
+          TUS SEGUIDORES EN TWITTER
+        .subtitle
+          REALIZA CAMPAÑAS DE MARKETING EFECTIVAS,
+          %br
+          SIMPLES Y MEDIBLES.
     .item
-      = image_tag('home_slide_4.png')
+      .slide4
+        .title
+          MONITOREO EN
+          %br
+          TIEMPO REAL
+        .subtitle
+          TE PERMITIMOS VER A TRAVÉS DE NUESTRA
+          %br
+          PLATAFORMA COMO SE ESTÁ DESARROLLANDO
+          %br
+          TU CAMPAÑA DE MARKETING EN TIEMPO REAL.
+          %br
+          VAS A PODER VER LA CANTIDAD DE MENCIONES,
+          %br
+          CLICKS, RETWEETS,
+          %br
+          CPC Y MUCHOS
+          %br
+          DATOS MÁS.
   %a.carousel-control.left{:href => '#home_carousel', 'data-slide' => 'prev'} &lsaquo;
   %a.carousel-control.right{:href => '#home_carousel', 'data-slide' => 'next'} &rsaquo;
 
