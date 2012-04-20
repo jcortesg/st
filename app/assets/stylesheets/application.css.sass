@@ -1,6 +1,7 @@
 @import "compass"
 @import "bootstrap"
 
+// Updates to the layout
 .main_container
   margin-top: 100px
 
@@ -9,6 +10,10 @@
   margin-right: auto
   width: 940px
 
+body
+  background-color: #EFEFEF
+
+// General styles
 .center_text
   text-align: center
 
@@ -59,10 +64,11 @@
 // Home page
 #home_carousel
   margin: 10px 0 0 0
+  @include single-box-shadow(#888 10px 10px 5px)
   .blue
     color: #1e92d3
   .item
-    background-image: url('/assets/bg_carousel.png')
+    background: url('/assets/bg_carousel.png') repeat-x scroll 0 267px #FFF
     height: 524px
     width: 940px
     .title
