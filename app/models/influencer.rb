@@ -9,8 +9,8 @@ class Influencer < ActiveRecord::Base
   validates :last_name, :presence => true
   validates :influencer_type, :presence => true
 
-  before_create :update_twitter_data, :assign_default_prices
-  after_create :update_audience
+  before_create :update_twitter_data
+  after_create :update_audience, :assign_default_prices
 
   attr_accessible :first_name, :last_name, :location, :image_url, :bio, :influencer_type, :sex, :description,
                   :referrer_description, :address, :city, :state, :country, :zip_code, :phone, :cell_phone,
@@ -118,9 +118,9 @@ class Influencer < ActiveRecord::Base
     followers = self.audience.followers
 
     # Calculates the payment cost depending on the followers
-    self.fixed_tweet_fee = followers * 0.25
-    self.fixed_cpc_fee = 5
-    self.combined_tweet_fee = followers * 0.25 / 2.5
-    self.combined_cpc_fee = 3
+    self.update_attribute(:fixed_tweet_fee, followers * 0.25)
+    self.update_attribute(:fixed_cpc_fee, 5)
+    self.update_attribute(:combined_tweet_fee, followers * 0.25 / 2.5)
+    self.update_attribute(:combined_cpc_fee, 3)
   end
 end

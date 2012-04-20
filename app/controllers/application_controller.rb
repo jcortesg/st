@@ -8,20 +8,20 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_in_path_for(resource_or_scope)
-    if resource_or_scope.advertiser?
-      @entity = resource_or_scope.advertiser
-      set_user_session_values(@entity.id, @entity.twitter_username)
-    elsif resource_or_scope.influencer?
-      @entity = resource_or_scope.influencer
-      set_user_session_values(@entity.id, @entity.twitter_username)
-    elsif resource_or_scope.affiliate?
-      @entity = resource_or_scope.affiliate
-      set_user_session_values(@entity.id, "@#{entity.first_name.downcase[0]}#{@entity.last_name.downcase}")
-    elsif resource_or_scope.admin?
-      set_user_session_values("0", "@admin")
-    else
-      super
-    end
+    #if resource_or_scope.advertiser?
+    #  @entity = resource_or_scope.advertiser
+    #  set_user_session_values(@entity.id, @entity.twitter_username)
+    #elsif resource_or_scope.influencer?
+    #  @entity = resource_or_scope.influencer
+    #  set_user_session_values(@entity.id, @entity.twitter_username)
+    #elsif resource_or_scope.affiliate?
+    #  @entity = resource_or_scope.affiliate
+    #  set_user_session_values(@entity.id, "@#{entity.first_name.downcase[0]}#{@entity.last_name.downcase}")
+    #elsif resource_or_scope.admin?
+    #  set_user_session_values("0", "@admin")
+    #else
+    #  super
+    #end
     home_path_for(resource_or_scope)
   end
 
@@ -30,8 +30,9 @@ class ApplicationController < ActionController::Base
     user_session[:entity_name] = name
   end
 
+  # Handler after the user sign outs of the website
   def after_sign_out_path_for(resource_or_scope)
-    home_path_for(resource_or_scope)
+    root_path
   end
 
   def current_entity_id
