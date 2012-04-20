@@ -14,7 +14,8 @@ class Influencer < ActiveRecord::Base
 
   attr_accessible :first_name, :last_name, :location, :image_url, :bio, :influencer_type, :sex, :description,
                   :referrer_description, :address, :city, :state, :country, :zip_code, :phone, :cell_phone,
-                  :contact_time, :contact_method, :preferred_payment, :account_number, :account_type, :cbu, :bank_name
+                  :contact_time, :contact_method, :preferred_payment, :account_number, :account_type, :cbu, :bank_name,
+                  :fixed_tweet_fee, :fixed_cpc_fee, :combined_tweet_fee, :combined_cpc_fee
 
   def self.influencers_list_with_current_profile_and_audience(filters)
     followers = filters[:followers]
@@ -117,9 +118,9 @@ class Influencer < ActiveRecord::Base
     followers = self.audience.followers
 
     # Calculates the payment cost depending on the followers
-    self.fee = followers * 0.25
-    self.cpc = 5
-    self.fee_cpc = followers * 0.25 / 2.5
-    self.cpc_fee = 3
+    self.fixed_tweet_fee = followers * 0.25
+    self.fixed_cpc_fee = 5
+    self.combined_tweet_fee = followers * 0.25 / 2.5
+    self.combined_cpc_fee = 3
   end
 end
