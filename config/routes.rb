@@ -26,7 +26,7 @@ Borwin::Application.routes.draw do
   # Advertiser routes
   match '/advertiser' => 'advertiser/dashboard#index', :as => :advertiser_dashboard
   namespace :advertiser do
-    resource :profile
+    resource :profile, :controller => 'profile', only: [:show, :edit, :update]
     resources :campaigns, only: [:index, :show]
     resources :referrals, only: [:index, :show]
     resources :transactions, only: [:index, :show]
