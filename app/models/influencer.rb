@@ -84,11 +84,16 @@ class Influencer < ActiveRecord::Base
         audiences.followers").joins(:current_audience, :current_profile, :user).where("users.approved = 1 #{followers} #{friends} #{influencer_type}
           #{male_percentaje} #{peerindex} #{klout} #{fee} #{cpc} #{retweets} #{mothers} #{sports}")  
   end
-      
-  def to_s
-  	"#{self.last_name}, #{self.first_name}"
+
+  # User full name
+  def full_name
+  	"#{self.first_name} #{self.last_name}"
   end
 
+  # String presentation
+  def to_s
+    "#{self.last_name}, #{self.first_name}"
+  end
 
   # Updates the twitter data
   def update_twitter_data

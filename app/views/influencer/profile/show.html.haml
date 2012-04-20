@@ -1,0 +1,70 @@
+.row
+  .span9
+    .profile_round_box
+      .profile_resume_head
+        %h1
+          = @influencer.full_name
+          %span= @influencer.influencer_type
+
+        .price
+          %span= "$#{@influencer.fixed_tweet_fee.to_f.round}"
+          por tweet
+
+      .profile_body
+        .twitter_overview
+          .overview_data
+            %h2= link_to("@#{@influencer.user.twitter_screen_name}", "https://twitter.com/#!/#{@influencer.user.twitter_screen_name}")
+            %p
+              %strong= "Bio:"
+              = @influencer.twitter_bio
+            %p
+              %strong= "Último Tweet:"
+              = @twitter_user.status.try(:text)
+          .twitter_photo
+            - if @influencer.photo.exists?
+              = image_tag(@influencer.photo)
+            - else
+              = image_tag('no_photo.jpg')
+
+
+
+
+      .profile_data{:style => 'font-size: 14px'}
+        = "#{@influencer.audience.followers} seguidores"
+        %br
+        = "#{@influencer.audience.friends} amigos"
+        %br
+        = "#{@influencer.audience.tweets} tweets"
+        %br
+        = "Sexo: #{influencer_sex(@influencer.sex)}"
+        %br
+        = "Edad: #{influencer_age(@influencer.birthday)}"
+        %br
+        = "Ingreso en Twitter: #{@influencer.twitter_joined.strftime("%d/%m/%Y")}"
+        %br
+        = "Ingreso en TweetGo: #{@influencer.user.created_at.strftime("%d/%m/%Y")}"
+        %br
+        = "Costo por tweet fijo: #{@influencer.fixed_tweet_fee}"
+        %br
+        = "Costo for click fijo: #{@influencer.fixed_cpc_fee}"
+        %br
+        = "Costo combinado tweet: #{@influencer.combined_tweet_fee}"
+        %br
+        = "Costo combinado click: #{@influencer.combined_cpc_fee}"
+        %br
+
+  .span3
+    .round_box
+      aca van los tweets del usuario
+
+.row
+  .span9
+    .round_box
+      aca van los tweets del sitio
+
+
+
+
+
+
+
