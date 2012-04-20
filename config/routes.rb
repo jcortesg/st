@@ -26,7 +26,10 @@ Borwin::Application.routes.draw do
   # Advertiser routes
   match '/advertiser' => 'advertiser/dashboard#index', :as => :advertiser_dashboard
   namespace :advertiser do
-
+    resource :profile
+    resources :campaigns, only: [:index, :show]
+    resources :referrals, only: [:index, :show]
+    resources :transactions, only: [:index, :show]
   end
 
   # Influencer routes
@@ -120,7 +123,4 @@ Borwin::Application.routes.draw do
       post ":influencer_id/:action"
     end
   end
-
-  resources :advertisers
-  resources :affiliates
 end
