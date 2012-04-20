@@ -9,15 +9,23 @@ class CreateInfluencers < ActiveRecord::Migration
       t.string :twitter_location
       t.string :twitter_image_url
       t.string :twitter_bio
+      t.datetime :twitter_joined
 
-      t.decimal :borwin_fee, :default => 0.3, :precision => 8, :scale => 2
+      t.decimal :borwin_fee, :null => false, :default => 0.3, :precision => 8, :scale => 2
 
       t.string :influencer_type
       t.string :first_name
       t.string :last_name
       t.string :sex, :size => 1
+      t.date :birthday
       t.text :description
       t.string :referrer_description
+
+      t.string :photo_file_name
+      t.string :photo_content_type
+      t.integer :photo_file_size
+      t.datetime :photo_updated_at
+
 
       t.string :address
       t.string :city

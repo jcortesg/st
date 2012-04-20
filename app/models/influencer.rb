@@ -5,6 +5,8 @@ class Influencer < ActiveRecord::Base
   has_many :tweets
   belongs_to :user
 
+  has_attached_file :photo, :styles => { :medium => "140x200>", :thumb => "100x100>" }
+
   validates :first_name, :presence => true
   validates :last_name, :presence => true
   validates :influencer_type, :presence => true
@@ -96,6 +98,7 @@ class Influencer < ActiveRecord::Base
     self.twitter_location = twitter_user.location
     self.twitter_bio = twitter_user.description
     self.twitter_image_url = twitter_user.profile_image_url
+    self.twitter_joined = twitter_user.created_at
   end
 
 

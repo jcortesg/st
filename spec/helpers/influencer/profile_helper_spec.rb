@@ -1,15 +1,15 @@
 require 'spec_helper'
 
 # Specs in this file have access to a helper object that includes
-# the Advertiser::ReferralsHelper. For example:
+# the Influencer::ProfileHelper. For example:
 #
-# describe Advertiser::ReferralsHelper do
+# describe Influencer::ProfileHelper do
 #   describe "string concat" do
 #     it "concats two strings with spaces" do
 #       helper.concat_strings("this","that").should == "this that"
 #     end
 #   end
 # end
-describe Advertiser::ReferralsHelper do
+describe Influencer::ProfileHelper do
   pending "add some examples to (or delete) #{__FILE__}"
 end

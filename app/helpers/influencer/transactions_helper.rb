@@ -1,0 +1,2 @@
+module Influencer::TransactionsHelper
+end

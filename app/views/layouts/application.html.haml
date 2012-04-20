@@ -26,10 +26,10 @@
                   %li= link_to "#Tweets", tweets_path
                   %li= link_to "#Transacciones", transactions_path
                 - elsif current_user.influencer?
-                  %li= link_to "#Perfil", advertiser_profile_path
-                  %li= link_to "#Referidos", advertiser_referrals_path
-                  %li= link_to "#Campañas", advertiser_campaigns_path
-                  %li= link_to "#Ingresos", advertiser_transactions_path
+                  %li= link_to "#Perfil", influencer_profile_path
+                  %li= link_to "#Referidos", influencer_referrals_path
+                  %li= link_to "#Campañas", influencer_campaigns_path
+                  %li= link_to "#Ingresos", influencer_transactions_path
                 - elsif current_user.affiliate?
                   %li= link_to "#Referidos", referrals_path
                   %li= link_to "#Transacciones", transactions_path

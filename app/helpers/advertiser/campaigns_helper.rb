@@ -1,2 +1,0 @@
-module Advertiser::CampaignsHelper
-end

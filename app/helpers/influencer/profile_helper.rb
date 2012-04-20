@@ -1,0 +1,2 @@
+module Influencer::ProfileHelper
+end
