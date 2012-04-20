@@ -132,10 +132,10 @@ ActiveRecord::Schema.define(:version => 20120412062936) do
     t.string  "account_type"
     t.string  "cbu"
     t.string  "bank_name"
-    t.decimal "fee",                  :precision => 8, :scale => 2
-    t.decimal "cpc",                  :precision => 5, :scale => 2
-    t.decimal "fee_cpc",              :precision => 8, :scale => 2
-    t.decimal "cpc_fee",              :precision => 5, :scale => 2
+    t.decimal "fixed_tweet_fee",      :precision => 8, :scale => 2
+    t.decimal "fixed_cpc_fee",        :precision => 5, :scale => 2
+    t.decimal "combined_tweet_fee",   :precision => 8, :scale => 2
+    t.decimal "combined_cpc_fee",     :precision => 5, :scale => 2
   end
 
   add_index "influencers", ["user_id"], :name => "index_influencers_on_user_id", :unique => true
