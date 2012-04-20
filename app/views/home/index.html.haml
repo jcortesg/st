@@ -1,0 +1,17 @@
+- content_for :head do
+  = javascript_include_tag('home.js')
+
+#home_carousel.carousel
+  .carousel-inner
+    .active.item
+      = image_tag('home_slide_1.png')
+    .item
+      = image_tag('home_slide_2.png')
+    .item
+      = image_tag('home_slide_3.png')
+    .item
+      = image_tag('home_slide_4.png')
+  %a.carousel-control.left{:href => '#home_carousel', 'data-slide' => 'prev'} &lsaquo;
+  %a.carousel-control.right{:href => '#home_carousel', 'data-slide' => 'next'} &rsaquo;
+
+

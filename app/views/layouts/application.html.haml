@@ -16,7 +16,7 @@
             %span.icon-bar
             %span.icon-bar
             %span.icon-bar
-          = link_to(image_tag('small_logo.png'), signed_in? ? home_path_for(current_user) : root_path, :class => 'brand')
+          = link_to(image_tag('logo.png'), signed_in? ? home_path_for(current_user) : root_path, :class => 'brand')
           .nav-collapse
             %ul.nav
               - if user_signed_in?
