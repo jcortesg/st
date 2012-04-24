@@ -57,7 +57,7 @@ Borwin::Application.routes.draw do
   match "proces-contact" => "home#process_contact", :as => :process_contact
 
   match "terms" => "home#terms", :as => :terms
-  match "terms" => "home#privacy", :as => :privacy
+  match "privacy" => "home#privacy", :as => :privacy
 
   root :to => 'home#index'
 
