@@ -60,4 +60,8 @@ class HomeController < ApplicationController
   # Terms
   def terms
   end
+
+  # Privacy
+  def privacy
+  end
 end
