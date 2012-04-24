@@ -7,7 +7,6 @@ class HomeController < ApplicationController
 
   # Anunciantes - Vision General
   def advertisers_about
-    render action: 'demo_page'
   end
 
   # Anunciantes - Contacto
