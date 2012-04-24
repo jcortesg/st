@@ -2,11 +2,16 @@
   .span8.offset2
     .frontend_round_content
 
-      %h2 TweetGo!
+      %div.center_text
+        = image_tag('logo_tweetgo.png', :style => 'margin: 0 auto')
 
-      %p
+      %br
+
+      %p.center_text
         Creá y administrá las campañas de marketing y publicidad más efectivas de twitter
+      %br
 
-      = link_to("Registrarse", new_user_registration_path, :class => 'btn btn-primary btn-large')
-      = link_to("Loguearse", new_user_session_path, :class => 'btn btn-primary btn-large')
+      %div.center_text
+        = link_to("Registrarse", new_user_registration_path, :class => 'btn btn-primary btn-large')
+        = link_to("Loguearse", new_user_session_path, :class => 'btn btn-primary btn-large')
 
