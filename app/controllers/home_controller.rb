@@ -27,22 +27,18 @@ class HomeController < ApplicationController
 
   # Plataforma - Tweet Go
   def tweet_go
-    render action: 'demo_page'
   end
 
   # Nosotros - La Empresa
   def about_us
-    render action: 'demo_page'
   end
 
   # Nosotros - Prensa
   def press
-    render action: 'demo_page'
   end
 
   # Nosotros - Trabaja con Nosotros
   def work_with_us
-    render action: 'demo_page'
   end
 
   # Nosotros - Contactenos
@@ -63,6 +59,5 @@ class HomeController < ApplicationController
 
   # Terms
   def terms
-    render :action => 'demo_page'
   end
 end
