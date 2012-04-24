@@ -21,56 +21,56 @@
             %ul.nav
               - if user_signed_in?
                 - if current_user.advertiser?
-                  %li= link_to "#Celebridades", list_influencers_path
-                  %li= link_to "#Campañas", campaigns_path
-                  %li= link_to "#Tweets", tweets_path
-                  %li= link_to "#Transacciones", transactions_path
+                  %li= link_to "Celebridades", list_influencers_path
+                  %li= link_to "Campañas", campaigns_path
+                  %li= link_to "Tweets", tweets_path
+                  %li= link_to "Transacciones", transactions_path
                 - elsif current_user.influencer?
                   %li.dropdown
                     %a{:href => '#', :class => 'dropdown-toggle', 'data-toggle' => 'dropdown'}
-                      = "#Perfil"
+                      = "Perfil"
                       %b.caret
                     %ul.dropdown-menu
                       %li= link_to 'Mi perfil', influencer_profile_path
                       %li= link_to 'Datos de contacto', '#'
                       %li= link_to 'Datos de pagos', '#'
-                  %li= link_to "#Referidos", influencer_referrals_path
-                  %li= link_to "#Campañas", influencer_campaigns_path
-                  %li= link_to "#Ingresos", influencer_transactions_path
+                  %li= link_to "Referidos", influencer_referrals_path
+                  %li= link_to "Campañas", influencer_campaigns_path
+                  %li= link_to "Ingresos", influencer_transactions_path
                 - elsif current_user.affiliate?
-                  %li= link_to "#Referidos", referrals_path
-                  %li= link_to "#Transacciones", transactions_path
+                  %li= link_to "Referidos", referrals_path
+                  %li= link_to "Transacciones", transactions_path
                 - elsif current_user.admin?
-                  %li= link_to "#Usuarios", admin_users_path
-                  %li= link_to "#Comisiones", fees_influencers_path
-                  %li= link_to "#Audiencias", audiences_path
-                  %li= link_to "#Perfiles", profiles_path
-                  %li= link_to "#Referidos", referrals_path
-                  %li= link_to "#Transacciones", transactions_path
+                  %li= link_to "Usuarios", admin_users_path
+                  %li= link_to "Comisiones", fees_influencers_path
+                  %li= link_to "Audiencias", audiences_path
+                  %li= link_to "Perfiles", profiles_path
+                  %li= link_to "Referidos", referrals_path
+                  %li= link_to "Transacciones", transactions_path
               - else
                 %li.dropdown
                   %a{:href => '#', :class => 'dropdown-toggle', 'data-toggle' => 'dropdown'}
-                    = "#Anunciantes"
+                    = "Anunciantes"
                     %b.caret
                   %ul.dropdown-menu
                     %li= link_to 'Visión General', home_advertisers_about_path
                     %li= link_to 'Contactenos', home_advertisers_contact_path
                 %li.dropdown
                   %a{:href => '#', :class => 'dropdown-toggle', 'data-toggle' => 'dropdown'}
-                    = "#Celebridades"
+                    = "Celebridades"
                     %b.caret
                   %ul.dropdown-menu
                     %li= link_to 'Visión General', home_influencers_about_path
                     %li= link_to 'Contactenos', home_influencers_contact_path
                 %li.dropdown
                   %a{:href => '#', :class => 'dropdown-toggle', 'data-toggle' => 'dropdown'}
-                    = "#Plataforma"
+                    = "Plataforma"
                     %b.caret
                   %ul.dropdown-menu
                     %li= link_to 'TweetGo!', about_tweet_go_path
                 %li.dropdown
                   %a{:href => '#', :class => 'dropdown-toggle', 'data-toggle' => 'dropdown'}
-                    = "#Nosotros"
+                    = "Nosotros"
                     %b.caret
                   %ul.dropdown-menu
                     %li= link_to 'La Empresa', about_us_path
