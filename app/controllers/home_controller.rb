@@ -12,7 +12,6 @@ class HomeController < ApplicationController
   # Anunciantes - Contacto
   def advertisers_contact
     contact
-    render action: 'contact'
   end
 
   # Celebridades - Vision General
@@ -22,7 +21,6 @@ class HomeController < ApplicationController
   # Celebridades - Contacto
   def influencers_contact
     contact
-    render action: 'contact'
   end
 
   # Plataforma - Tweet Go
