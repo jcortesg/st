@@ -17,7 +17,6 @@ class HomeController < ApplicationController
 
   # Celebridades - Vision General
   def influencers_about
-    render action: 'demo_page'
   end
 
   # Celebridades - Contacto
