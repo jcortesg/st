@@ -1,14 +1,13 @@
 .row
-  .span8.offset2
-    .frontend_round_content
+  .span12
+    .frontend_round_content.press_page.clearfix
 
       %h3 Media Downloads
 
-
-      = link_to(image_tag('press/iconosprensalogo.png'), '#')
-      = link_to(image_tag('press/iconosprensatweet.png'), '#')
-      = link_to(image_tag('press/iconosprensawall.png'), '#')
-      = link_to(image_tag('press/iconosprensawall2.png'), '#')
-      = link_to(image_tag('press/iconosprensawall3.png'), '#')
+      .media= link_to(image_tag('press/iconosprensalogo.png'), image_path('press/prensalogo.jpg'))
+      .media= link_to(image_tag('press/iconosprensatweet.png'), image_path('press/prensatweet.jpg'))
+      .media= link_to(image_tag('press/iconosprensawall.png'), image_path('press/prensawall.jpg'))
+      .media= link_to(image_tag('press/iconosprensawall2.png'), image_path('press/prensawall2.jpg'))
+      .media= link_to(image_tag('press/iconosprensawall3.png'), image_path('press/prensawall3.jpg'))
 
 
