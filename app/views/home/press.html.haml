@@ -1,5 +1,5 @@
 .row
-  .span12
+  .span8
     .frontend_round_content.press_page.clearfix
 
       .title Prensa
@@ -23,4 +23,15 @@
         .media= link_to(image_tag('press/iconosprensawall2.png'), image_path('press/prensawall2.jpg'))
         .media= link_to(image_tag('press/iconosprensawall3.png'), image_path('press/prensawall3.jpg'))
 
+  .span4
+    .frontend_round_content
+      %ul.nav.nav-pills.nav-stacked
+        %li
+          %a{:href => about_us_path} La Empresa
+        %li.active
+          %a{:href => press_path} Prensa
+        %li
+          %a{:href => work_with_us_path} Trabajá con Nosotros
+        %li
+          %a{:href => contact_path} Contáctenos
 

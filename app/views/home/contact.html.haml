@@ -1,5 +1,5 @@
 .row
-  .span8.offset2
+  .span8
 
 
     = simple_form_for @site_contact, :url => process_contact_path, :html => {:class => 'form-horizontal round_form'} do |f|
@@ -13,3 +13,16 @@
       = f.input :message, :as => :text, :input_html => {:rows => 5, :cols => 60 }
       .form-actions
         = f.submit 'Envíar', :class => 'btn btn-primary btn-large'
+
+  .span4
+    .frontend_round_content
+      %ul.nav.nav-pills.nav-stacked
+        %li
+          %a{:href => about_us_path} La Empresa
+        %li
+          %a{:href => press_path} Prensa
+        %li
+          %a{:href => work_with_us_path} Trabajá con Nosotros
+        %li.active
+          %a{:href => contact_path} Contáctenos
+

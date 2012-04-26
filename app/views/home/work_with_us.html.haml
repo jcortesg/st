@@ -1,5 +1,5 @@
 .row
-  .span8.offset2
+  .span8
     .frontend_round_content
 
       .title Trabajá con nosotros
@@ -32,5 +32,15 @@
         = link_to("rrhh@borwin.com.ar", "mailto: rrhh@borwin.com.ar")
       %br
 
-
+  .span4
+    .frontend_round_content
+      %ul.nav.nav-pills.nav-stacked
+        %li
+          %a{:href => about_us_path} La Empresa
+        %li
+          %a{:href => press_path} Prensa
+        %li.active
+          %a{:href => work_with_us_path} Trabajá con Nosotros
+        %li
+          %a{:href => contact_path} Contáctenos
 
