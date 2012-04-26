@@ -3,7 +3,7 @@
     %div.round_form{:style => 'min-height: 300px'}
       .form_title Inicia sesión con Twitter
       %div{style: 'width: 100%;margin: 0 auto; text-align: center'}
-        = link_to(image_tag('sign-in-with-twitter.png'), login_twitter_credentials_path)
+        = link_to(image_tag('sign-in-with-twitter.jpg', :style => 'display: inline'), login_twitter_credentials_path)
   .span6
     = simple_form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => { :class => "form-horizontal round_form", :style => 'min-height: 300px' }) do |f|
       .form_title Inicia sesión con tu email
