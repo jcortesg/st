@@ -14,6 +14,10 @@
       .form-actions
         = f.submit 'Envíar', :class => 'btn btn-primary btn-large'
 
+      %p.address
+        Marcelo T. de Alvear 474, CP 1001, Capital Federal, Buenos Aires, Argentina.
+
+
   .span4
     .frontend_round_content
       %ul.nav.nav-pills.nav-stacked
@@ -27,7 +31,7 @@
           %a{:href => contact_path} Contáctenos
       %br
       .google_map
-        .iphone_map
+        .iphone_map.clearfix
           .bg= image_tag('ipad.png')
           .map
             = '<iframe width="227" height="172" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://maps.google.com/maps?q=Marcelo+T.+de+Alvear+464,+Ciudad+Aut%C3%B3noma+de+Buenos+Aires,+Argentina&amp;hl=en&amp;ie=UTF8&amp;sll=37.0625,-95.677068&amp;sspn=39.592876,79.013672&amp;hnear=Marcelo+T.+de+Alvear+464,+Retiro,+Buenos+Aires,+Argentina&amp;t=v&amp;hq=&amp;z=15&amp;ll=-34.596225,-58.373861&amp;output=embed"></iframe>'.html_safe
