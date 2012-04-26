@@ -1,5 +1,5 @@
 .row
-  .span8.offset2
+  .span8
     .frontend_round_content
 
       .title
@@ -20,3 +20,12 @@
 
       %p
         = link_to("Más información", home_influencers_contact_path)
+
+  .span4
+    .frontend_round_content
+      %ul.nav.nav-pills.nav-stacked
+        %li.active
+          %a{:href => home_influencers_about_path} Visión General
+        %li
+          %a{:href => home_influencers_contact_path} Contáctenos
+
