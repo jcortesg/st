@@ -1,13 +1,13 @@
 %h1
   Mensaje de
-  = @from
+  = @site_contact.name
   (
-  = @email
+  = @site_contact.email
   )
 
 %p
   Asunto:
-  = @title
+  = @site_contact.subject
 %p
   Mensaje:
-  = @message
+  = @site_contact.message

@@ -1,11 +1,8 @@
 class Notifier < ActionMailer::Base
   default from: "info@borwin.com.ar"
 
-  def contact(data)    
-    @from = data[:from]
-    @email = data[:email] 
-    @title = data[:title] 
-    @message = data[:message] 
+  def contact(site_contact)
+    @site_contact = site_contact
 
     mail(:to => "info@borwin.com.ar", :from => "contact@borwin.com.ar", :subject => "Contacto @ Borwin - Its time to go social")
   end  
