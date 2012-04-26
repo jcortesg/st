@@ -80,7 +80,7 @@
             - if user_signed_in?
               %ul.nav.pull-right
                 = form_tag(destroy_user_session_path, :method => :delete) do
-                  %button.btn.btn-info{:type => "submit"} Salir
+                  %button.btn.btn-primary{:type => "submit"} Salir
             - else
               %ul.nav.pull-right
                 %li.dropdown
@@ -94,7 +94,7 @@
                     %li= link_to 'Agencia', affiliate_devise_registration_path
                 %li
                   = form_tag(new_user_session_path, :method => :get) do
-                    %button.btn.btn-info{:type => "submit"} Iniciar sesión
+                    %button.btn.btn-primary{:type => "submit"} Iniciar sesión
 
 
     .main_container.container

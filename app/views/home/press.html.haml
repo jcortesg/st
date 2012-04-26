@@ -2,12 +2,25 @@
   .span12
     .frontend_round_content.press_page.clearfix
 
-      %h3 Media Downloads
+      .title Prensa
 
-      .media= link_to(image_tag('press/iconosprensalogo.png'), image_path('press/prensalogo.jpg'))
-      .media= link_to(image_tag('press/iconosprensatweet.png'), image_path('press/prensatweet.jpg'))
-      .media= link_to(image_tag('press/iconosprensawall.png'), image_path('press/prensawall.jpg'))
-      .media= link_to(image_tag('press/iconosprensawall2.png'), image_path('press/prensawall2.jpg'))
-      .media= link_to(image_tag('press/iconosprensawall3.png'), image_path('press/prensawall3.jpg'))
+      %p
+        En esta sección entrarás los logos de Borwin y TweetGo! que podrás utilizar libremente en tus publicaciones.
+        También ofrecemos divertidos Wallpapers que le darán vida y color a tu pantalla.
+        It's Time to Go Social!
+
+      .subtitle Logos
+
+      %div.clearfix
+        .media= link_to(image_tag('press/iconosprensalogo.png'), image_path('press/prensalogo.jpg'))
+        .media= link_to(image_tag('press/iconosprensatweet.png'), image_path('press/prensatweet.jpg'))
+        .media= link_to(image_tag('press/iconosprensabsola.png'), '#')
+
+      .subtitle Wallpapers
+
+      %div.clearfix
+        .media= link_to(image_tag('press/iconosprensawall.png'), image_path('press/prensawall.jpg'))
+        .media= link_to(image_tag('press/iconosprensawall2.png'), image_path('press/prensawall2.jpg'))
+        .media= link_to(image_tag('press/iconosprensawall3.png'), image_path('press/prensawall3.jpg'))
 
 
