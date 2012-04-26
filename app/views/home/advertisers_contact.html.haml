@@ -3,7 +3,7 @@
 
 
     = simple_form_for @site_contact, :url => process_contact_path, :html => {:class => 'form-horizontal round_form'} do |f|
-      .form_title ¡Contáctese con nuestro equipo para comenzar!
+      .main_blue_title ¡Contáctese con nuestro equipo para comenzar!
 
       = render '/shared/simple_form_errors', :f => f
 
@@ -12,7 +12,7 @@
       = f.input :subject
       = f.input :message, :as => :text, :input_html => {:rows => 5, :cols => 60 }
       .form-actions
-        = f.submit 'Envíar', :class => 'btn btn-primary btn-large'
+        = f.submit 'Enviar', :class => 'btn btn-primary btn-large'
 
       %p.address
         Marcelo T. de Alvear 474, CP 1001, Capital Federal, Buenos Aires, Argentina.
