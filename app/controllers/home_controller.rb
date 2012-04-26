@@ -46,7 +46,7 @@ class HomeController < ApplicationController
 
   # Process the contact form
   def process_contact
-    @site_contact = SiteContact.new(params[:contact])
+    @site_contact = SiteContact.new(params[:site_contact])
 
     if @site_contact.save
       redirect_to root_path, :notice => "Tu mensaje fue recibido. Nos pondremos en contacto a la brevedad."
