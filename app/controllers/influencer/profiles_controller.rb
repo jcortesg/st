@@ -12,7 +12,13 @@ class Influencer::ProfilesController < ApplicationController
 
   # Process the user profiles
   def update
-
+    @influencer = current_user.influencer
+    if @influencer.update_attributes(params[:influencer])
+      flash[:success] = "Tus perfil fue actualizado."
+      redirect_to influencer_profile_path
+    else
+      render action: :edit_contact_data
+    end
   end
 
   # Shows the form to edit the contact data

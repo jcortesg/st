@@ -1,0 +1,18 @@
+.row.registration_container
+  .span6.offset3.round_box
+    = simple_form_for(@influencer, :url => influencer_profiles_update_path, :html => { class: "form-horizontal round_form", method: :put }) do |f|
+      = f.input :first_name
+      = f.input :last_name
+      = f.input :birthday, as: :string
+      = f.input :sex, :as => :select, :collection => [['Hombre', 'M'], ['Mujer', 'F']], :include_blank => true
+      = f.input :influencer_type, :as => :select, :collection => ["Actor", "Músico", "Deportista", "Conductor", "Periodista", "Modelo", "Mediático", "Artista", "Panelista", "Cheff", "Humorista", "Moda", "Twitteros", "Otros"], :include_blank => true
+      = f.input :description, :as => :text, :input_html => {:rows => 2, :cols => 60 }
+
+      .form-actions
+        = f.submit 'Guardar', :class => 'btn btn-primary btn-large'
+        = link_to 'Cancelar', influencer_profile_path, class: 'btn btn-warning btn-large'
+
+:javascript
+  $(document).ready(function() {
+    $('#user_influencer_attributes_birthday').datepicker();
+  })
