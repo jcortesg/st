@@ -1,5 +1,9 @@
 .row
   .span9
+
+    - flash[:success] = 'hola mundo'
+    = render '/shared/flash', flash: flash
+
     .profile_round_box
       .profile_resume_head
         %h1

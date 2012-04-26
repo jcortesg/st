@@ -38,7 +38,14 @@ Borwin::Application.routes.draw do
       get :step_3
       put :process_step_3
     end
-    resource :profile, :controller => 'profile', only: [:show, :edit, :update]
+    resource :profile, :controller => 'profile', only: [:show, :edit, :update] do
+      collection do
+        get :edit_contact_data
+        put :process_contact_data
+        get :edit_payment_data
+        put :process_payment_data
+      end
+    end
     resources :campaigns, only: [:index, :show]
     resources :referrals, only: [:index, :show]
     resources :transactions, only: [:index, :show]
