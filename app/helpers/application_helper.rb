@@ -10,7 +10,8 @@ module ApplicationHelper
         affiliate_dashboard_path
       when 'influencer'
         #influencer_dashboard_path
-        influencer_profile_path
+        #influencer_profile_path
+        '/influencer/profile'
     end
   end
 
