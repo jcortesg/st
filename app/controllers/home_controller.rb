@@ -49,7 +49,8 @@ class HomeController < ApplicationController
     @site_contact = SiteContact.new(params[:site_contact])
 
     if @site_contact.save
-      redirect_to root_path, :notice => "Tu mensaje fue recibido. Nos pondremos en contacto a la brevedad."
+      flash[:success] = "Tu mensaje fue recibido. Nos pondremos en contacto a la brevedad."
+      redirect_to root_path,
     else
       render :action => :contact
     end
