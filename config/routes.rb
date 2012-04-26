@@ -38,7 +38,7 @@ Borwin::Application.routes.draw do
       get :step_3
       put :process_step_3
     end
-    match '/profile' => 'profiles#show', as: :profiles
+    match '/profile' => 'profiles#show', as: :profile
     namespace :profiles do
         get :edit
         put :update
