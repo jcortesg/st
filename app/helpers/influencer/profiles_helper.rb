@@ -1,4 +1,4 @@
-module Influencer::ProfileHelper
+module Influencer::ProfilesHelper
   # Gets the influencer sex for presentation
   def influencer_sex(sex)
     case sex

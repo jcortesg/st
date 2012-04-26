@@ -27,7 +27,7 @@ class Influencer::RegistrationController < ApplicationController
       session['twitter_screen_name'] = session['twitter_uid'] = session['twitter_token'] = session['twitter_secret'] = nil
       # Login user
       sign_in(:user, @user)
-      # Complete profile
+      # Complete profiles
       redirect_to action: :step_2
     else
       render action: :new

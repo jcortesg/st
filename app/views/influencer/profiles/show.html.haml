@@ -18,7 +18,10 @@
       .profile_body
         .twitter_overview
           .overview_data
-            %h2= link_to("@#{@influencer.user.twitter_screen_name}", "https://twitter.com/#!/#{@influencer.user.twitter_screen_name}")
+            %h2
+              = link_to("@#{@influencer.user.twitter_screen_name}", "https://twitter.com/#!/#{@influencer.user.twitter_screen_name}")
+              %span.edit_profile
+                = link_to("Editar", influencer_profiles_edit_path, :class => 'btn btn-primary')
             %p
               %strong= "Bio:"
               = @influencer.twitter_bio

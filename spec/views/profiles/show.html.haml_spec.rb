@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe "profiles/show.html.haml" do
   before(:each) do
-    @profile = assign(:profile, stub_model(Profile,
+    @profile = assign(:profiles, stub_model(Profile,
       :influencer_id => 1,
       :fee => "9.99",
       :cpc => "9.99",

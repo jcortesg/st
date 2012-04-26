@@ -121,7 +121,7 @@ class Influencer < ActiveRecord::Base
     audience.save
   end
 
-  # Creates the user profile for payments
+  # Creates the user profiles for payments
   def assign_default_prices
     followers = self.audience.followers
 

@@ -1,16 +1,16 @@
-class Influencer::ProfileController < ApplicationController
-  # Shows the influencer profile
+class Influencer::ProfilesController < ApplicationController
+  # Shows the influencer profiles
   def show
     @influencer = current_user.influencer
     @twitter_user = Twitter.user(@influencer.user.twitter_screen_name)
   end
 
-  # Shows the form to edit the profile
+  # Shows the form to edit the profiles
   def edit
     @influencer = current_user.influencer
   end
 
-  # Process the user profile
+  # Process the user profiles
   def update
 
   end

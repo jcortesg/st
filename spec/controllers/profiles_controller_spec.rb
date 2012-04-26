@@ -36,25 +36,25 @@ describe ProfilesController do
   end
 
   describe "GET show" do
-    it "assigns the requested profile as @profile" do
+    it "assigns the requested profiles as @profiles" do
       profile = Profile.create! valid_attributes
       get :show, :id => profile.id
-      assigns(:profile).should eq(profile)
+      assigns(:profiles).should eq(profile)
     end
   end
 
   describe "GET new" do
-    it "assigns a new profile as @profile" do
+    it "assigns a new profiles as @profiles" do
       get :new
-      assigns(:profile).should be_a_new(Profile)
+      assigns(:profiles).should be_a_new(Profile)
     end
   end
 
   describe "GET edit" do
-    it "assigns the requested profile as @profile" do
+    it "assigns the requested profiles as @profiles" do
       profile = Profile.create! valid_attributes
       get :edit, :id => profile.id
-      assigns(:profile).should eq(profile)
+      assigns(:profiles).should eq(profile)
     end
   end
 
@@ -62,34 +62,34 @@ describe ProfilesController do
     describe "with valid params" do
       it "creates a new Profile" do
         expect {
-          post :create, :profile => valid_attributes
+          post :create, :profiles => valid_attributes
         }.to change(Profile, :count).by(1)
       end
 
-      it "assigns a newly created profile as @profile" do
-        post :create, :profile => valid_attributes
-        assigns(:profile).should be_a(Profile)
-        assigns(:profile).should be_persisted
+      it "assigns a newly created profiles as @profiles" do
+        post :create, :profiles => valid_attributes
+        assigns(:profiles).should be_a(Profile)
+        assigns(:profiles).should be_persisted
       end
 
-      it "redirects to the created profile" do
-        post :create, :profile => valid_attributes
+      it "redirects to the created profiles" do
+        post :create, :profiles => valid_attributes
         response.should redirect_to(Profile.last)
       end
     end
 
     describe "with invalid params" do
-      it "assigns a newly created but unsaved profile as @profile" do
+      it "assigns a newly created but unsaved profiles as @profiles" do
         # Trigger the behavior that occurs when invalid params are submitted
         Profile.any_instance.stub(:save).and_return(false)
-        post :create, :profile => {}
-        assigns(:profile).should be_a_new(Profile)
+        post :create, :profiles => {}
+        assigns(:profiles).should be_a_new(Profile)
       end
 
       it "re-renders the 'new' template" do
         # Trigger the behavior that occurs when invalid params are submitted
         Profile.any_instance.stub(:save).and_return(false)
-        post :create, :profile => {}
+        post :create, :profiles => {}
         response.should render_template("new")
       end
     end
@@ -97,50 +97,50 @@ describe ProfilesController do
 
   describe "PUT update" do
     describe "with valid params" do
-      it "updates the requested profile" do
+      it "updates the requested profiles" do
         profile = Profile.create! valid_attributes
         # Assuming there are no other profiles in the database, this
         # specifies that the Profile created on the previous line
         # receives the :update_attributes message with whatever params are
         # submitted in the request.
         Profile.any_instance.should_receive(:update_attributes).with({'these' => 'params'})
-        put :update, :id => profile.id, :profile => {'these' => 'params'}
+        put :update, :id => profile.id, :profiles => {'these' => 'params'}
       end
 
-      it "assigns the requested profile as @profile" do
+      it "assigns the requested profiles as @profiles" do
         profile = Profile.create! valid_attributes
-        put :update, :id => profile.id, :profile => valid_attributes
-        assigns(:profile).should eq(profile)
+        put :update, :id => profile.id, :profiles => valid_attributes
+        assigns(:profiles).should eq(profile)
       end
 
-      it "redirects to the profile" do
+      it "redirects to the profiles" do
         profile = Profile.create! valid_attributes
-        put :update, :id => profile.id, :profile => valid_attributes
+        put :update, :id => profile.id, :profiles => valid_attributes
         response.should redirect_to(profile)
       end
     end
 
     describe "with invalid params" do
-      it "assigns the profile as @profile" do
+      it "assigns the profiles as @profiles" do
         profile = Profile.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
         Profile.any_instance.stub(:save).and_return(false)
-        put :update, :id => profile.id, :profile => {}
-        assigns(:profile).should eq(profile)
+        put :update, :id => profile.id, :profiles => {}
+        assigns(:profiles).should eq(profile)
       end
 
       it "re-renders the 'edit' template" do
         profile = Profile.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
         Profile.any_instance.stub(:save).and_return(false)
-        put :update, :id => profile.id, :profile => {}
+        put :update, :id => profile.id, :profiles => {}
         response.should render_template("edit")
       end
     end
   end
 
   describe "DELETE destroy" do
-    it "destroys the requested profile" do
+    it "destroys the requested profiles" do
       profile = Profile.create! valid_attributes
       expect {
         delete :destroy, :id => profile.id
