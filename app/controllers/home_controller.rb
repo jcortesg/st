@@ -14,6 +14,10 @@ class HomeController < ApplicationController
     contact
   end
 
+  # Anunciantes - Presentacion
+  def advertisers_presentation
+  end
+
   # Celebridades - Vision General
   def influencers_about
   end
@@ -21,6 +25,10 @@ class HomeController < ApplicationController
   # Celebridades - Contacto
   def influencers_contact
     contact
+  end
+
+  # Celebridades - Presentacion
+  def influencers_presentation
   end
 
   # Plataforma - Tweet Go
