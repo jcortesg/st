@@ -54,7 +54,8 @@ class ApplicationController < ActionController::Base
       when 'affiliate'
         affiliate_dashboard_path
       when 'influencer'
-        influencer_dashboard_path
+        #influencer_dashboard_path
+        influencer_profile_path
     end
   end
 

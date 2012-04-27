@@ -1,0 +1,18 @@
+.row
+  .span6.offset3
+    .frontend_round_content
+      .main_blue_title Datos de contacto
+
+      %p= "Dirección: #{@influencer.address}"
+      %p= "País: #{@influencer.country}"
+      %p= "Provincia: #{@influencer.state}"
+      %p= "Ciudad: #{@influencer.city}"
+      %p= "Código Postal: #{@influencer.zip_code}"
+      %p= "Teléfono: #{@influencer.phone}"
+      %p= "Celular: #{@influencer.cell_phone}"
+      %p= "Horario de contacto: #{@influencer.contact_time}"
+      %p= "Método de contacto: #{@influencer.contact_method}"
+
+      .form-actions
+        = link_to 'Editar', influencer_profiles_edit_contact_data_path, :class => 'btn btn-primary btn-large'
+        = link_to 'Volver', influencer_profile_path, class: 'btn btn-warning btn-large'

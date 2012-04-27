@@ -10,10 +10,6 @@ class InfluencersController < ApplicationController
     @user.build_influencer
   end
 
-
-
-
-
   # POST /influencers/filter
   # POST /influencers/filter.json
   def filter

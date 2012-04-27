@@ -21,6 +21,11 @@ class Influencer::ProfilesController < ApplicationController
     end
   end
 
+  # Shows the contact data
+  def contact_data
+    @influencer = current_user.influencer
+  end
+
   # Shows the form to edit the contact data
   def edit_contact_data
     @influencer = current_user.influencer
@@ -35,6 +40,11 @@ class Influencer::ProfilesController < ApplicationController
     else
       render action: :edit_contact_data
     end
+  end
+
+  # Shows the payment data
+  def payment_data
+    @influencer = current_user.influencer
   end
 
   # Shows the form to edit the payment data

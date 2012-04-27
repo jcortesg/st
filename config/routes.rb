@@ -42,8 +42,10 @@ Borwin::Application.routes.draw do
     namespace :profiles do
         get :edit
         put :update
+        get :contact_data
         get :edit_contact_data
         put :process_contact_data
+        get :payment_data
         get :edit_payment_data
         put :process_payment_data
     end
