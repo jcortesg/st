@@ -55,8 +55,10 @@ Borwin::Application.routes.draw do
   # Home pages
   match "advertisers-general-vision" => "home#advertisers_about", :as => :home_advertisers_about
   match "advertisers-contact" => "home#advertisers_contact", :as => :home_advertisers_contact
+  match "advertisers-presentation" => "home#advertisers_presentation", :as => :home_advertisers_presentation
   match "influencers-about" => "home#influencers_about", :as => :home_influencers_about
   match "influencers-contact" => "home#influencers_contact", :as => :home_influencers_contact
+  match "influencers-presentation" => "home#influencers_presentation", :as => :home_influencers_presentation
   match "tweet-go" => "home#tweet_go", :as => :about_tweet_go
   match "about-us" => "home#about_us", :as => :about_us
   match "press" => "home#press", :as => :press

@@ -16,7 +16,7 @@
         %li Activamos tu cuenta
 
       %p
-        = link_to("Date de alta ahora en TweetGo!", new_user_registration_path)
+        = link_to("Date de alta ahora en TweetGo!", influencer_devise_registration_path)
 
       %p
         = link_to("Más información", home_influencers_contact_path)
@@ -29,4 +29,7 @@
           %a{:href => home_influencers_about_path} Visión General
         %li
           %a{:href => home_influencers_contact_path} Contáctenos
+
+      .presentation_link
+        = link_to(image_tag('presentacion_celebridades.png'), '#')
 
