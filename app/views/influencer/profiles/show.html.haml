@@ -98,8 +98,15 @@
 
 
   .span3
-    .round_box
-      aca van los tweets del usuario
+    .profile_round_box
+      .profile_resume_head
+        %h1{:style => 'margin-left: 10px'}
+          = "Últimos Tweets"
+
+      .profile_body
+        - @tweets.each do |tweet|
+          %ul.tweets
+            %li= tweet.text
 
 /
   .row

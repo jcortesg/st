@@ -5,6 +5,7 @@ class Influencer::ProfilesController < ApplicationController
   def show
     @influencer = current_user.influencer
     @twitter_user = Twitter.user(@influencer.user.twitter_screen_name)
+    @tweets = Twitter.user_timeline(@influencer.user.twitter_screen_name, count: 10)
   end
 
   # Shows the form to edit the profiles
