@@ -5,7 +5,7 @@ class Influencer < ActiveRecord::Base
   has_many :tweets
   belongs_to :user
 
-  has_attached_file :photo, :styles => { :medium => "140x200>", :thumb => "100x100>" }
+  has_attached_file :photo, :styles => { :profile => "140x200#", :thumb => "100x100>" }
 
   validates :first_name, :presence => true
   validates :last_name, :presence => true
@@ -19,6 +19,7 @@ class Influencer < ActiveRecord::Base
                   :cell_phone, :contact_time, :contact_method, :preferred_payment, :account_number, :account_type, :cbu,
                   :bank_name, :fixed_tweet_fee, :fixed_cpc_fee, :combined_tweet_fee, :combined_cpc_fee
 
+  # TODO: Review this method to clean the influencer model
   def self.influencers_list_with_current_profile_and_audience(filters)
     followers = filters[:followers]
     friends = filters[:friends]

@@ -20,7 +20,6 @@ es:
         role: Tipo
         approved: Approbado?
         twitter_screen_name: "#Twitter"
-        #twitter_
       advertiser:
         first_name: Nombre
         last_name: Apellido
@@ -70,6 +69,7 @@ es:
         account_type: Tipo de cuenta
         cbu: CBU
         bank_name: Banco
+        photo: Foto
     hints:
       influencer:
         twitter_username: "Tu nombre de usuario en twitter, ej: rorra"

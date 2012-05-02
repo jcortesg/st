@@ -32,7 +32,7 @@
               = @twitter_user.status.try(:text)
           .twitter_photo
             - if @influencer.photo.exists?
-              = link_to(image_tag(@influencer.photo), '#user_photo', 'data-toggle' => 'modal')
+              = link_to(image_tag(@influencer.photo.url(:profile)), '#user_photo', 'data-toggle' => 'modal')
             - else
               = link_to(image_tag('no_photo.jpg'), '#user_photo', 'data-toggle' => 'modal')
 
@@ -79,31 +79,33 @@
             %p= "-"
 
       #user_photo.modal.hide.fade
-        .modal-header
-          %button.close{'data-dismiss' => 'modal'} x
-          %h3 Foto
-        .modal-body
-          .clearfix
-            .image
-              - if @influencer.photo.exists?
-                = image_tag(@influencer.photo)
-              - else
-                = image_tag('no_photo.jpg')
-            .form
-              hola mundo
-        .modal-footer
-          %a.btn.close_user_photo{:href => '#'} Cerrar
-          %a.btn.btn-primary{:href => '#'} Guardar
+        = simple_form_for @influencer, :url => influencer_profiles_update_photo_path do |f|
+          .modal-header
+            %button.close{'data-dismiss' => 'modal'} x
+            %h3 Foto
+          .modal-body
+            .clearfix
+              .image
+                - if @influencer.photo.exists?
+                  = image_tag(@influencer.photo.url(:profile))
+                - else
+                  = image_tag('no_photo.jpg')
+              .form
+                = f.input :photo
+          .modal-footer
+            %a.btn.close_user_photo{:href => '#'} Cerrar
+            = f.submit 'Guardar', :class => 'btn btn-primary'
 
 
   .span3
     .round_box
       aca van los tweets del usuario
 
-.row
-  .span9
-    .round_box
-      aca van los tweets del sitio
+/
+  .row
+    .span9
+      .round_box
+        aca van los tweets del sitio
 
 
 

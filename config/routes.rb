@@ -1,5 +1,5 @@
 Borwin::Application.routes.draw do
-  devise_for :users, :controllers => { :registrations => "registrations" }
+  devise_for :users, :controllers => {:registrations => "registrations"}
   devise_scope :user do
     get '/users/new_influencer', :to => 'registrations#new_influencer', :as => :influencer_devise_registration
     get '/users/new_affiliate', :to => 'registrations#new_affiliate', :as => :affiliate_devise_registration
@@ -40,14 +40,15 @@ Borwin::Application.routes.draw do
     end
     match '/profile' => 'profiles#show', as: :profile
     namespace :profiles do
-        get :edit
-        put :update
-        get :contact_data
-        get :edit_contact_data
-        put :process_contact_data
-        get :payment_data
-        get :edit_payment_data
-        put :process_payment_data
+      get :edit
+      put :update
+      get :contact_data
+      get :edit_contact_data
+      put :process_contact_data
+      get :payment_data
+      get :edit_payment_data
+      put :process_payment_data
+      put :update_photo
     end
     resources :campaigns, only: [:index, :show]
     resources :referrals, only: [:index, :show]
@@ -112,10 +113,10 @@ Borwin::Application.routes.draw do
   resources :top_followers
 
   resources :audiences #do
-#    collection do
-#      get ":action/:influencer_id"
-#    end
-#  end
+  #    collection do
+  #      get ":action/:influencer_id"
+  #    end
+  #  end
 
   resources :profiles
   resources :competitors

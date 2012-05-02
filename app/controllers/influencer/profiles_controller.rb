@@ -65,4 +65,19 @@ class Influencer::ProfilesController < ApplicationController
     end
   end
 
+  # Updates the photo profile
+  def update_photo
+    @influencer = current_user.influencer
+    if @influencer.update_attributes(params[:influencer])
+      if params[:influencer] && params[:influencer][:photo]
+        flash[:success] = "Tu foto de perfil fue actualizada"
+      else
+        flash[:notice] = "Debes de ingresar una foto para actualizar tu foto de perfil"
+      end
+      redirect_to influencer_profile_path
+    else
+      render action: show
+    end
+  end
+
 end
