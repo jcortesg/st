@@ -1,4 +1,6 @@
 class Influencer::ProfilesController < ApplicationController
+  before_filter :authenticate_user!
+
   # Shows the influencer profiles
   def show
     @influencer = current_user.influencer

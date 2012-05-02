@@ -1,3 +1,5 @@
+- content_for :head do
+  = javascript_include_tag 'user_profile'
 - if flash.any?
   .row
     .span12
@@ -30,9 +32,9 @@
               = @twitter_user.status.try(:text)
           .twitter_photo
             - if @influencer.photo.exists?
-              = image_tag(@influencer.photo)
+              = link_to(image_tag(@influencer.photo), '#user_photo', 'data-toggle' => 'modal')
             - else
-              = image_tag('no_photo.jpg')
+              = link_to(image_tag('no_photo.jpg'), '#user_photo', 'data-toggle' => 'modal')
 
       .profile_data.clearfix
         %ul.stats
@@ -76,6 +78,24 @@
             %h3 CPC totales
             %p= "-"
 
+      #user_photo.modal.hide.fade
+        .modal-header
+          %button.close{'data-dismiss' => 'modal'} x
+          %h3 Foto
+        .modal-body
+          .clearfix
+            .image
+              - if @influencer.photo.exists?
+                = image_tag(@influencer.photo)
+              - else
+                = image_tag('no_photo.jpg')
+            .form
+              hola mundo
+        .modal-footer
+          %a.btn.close_user_photo{:href => '#'} Cerrar
+          %a.btn.btn-primary{:href => '#'} Guardar
+
+
   .span3
     .round_box
       aca van los tweets del usuario
@@ -84,9 +104,6 @@
   .span9
     .round_box
       aca van los tweets del sitio
-
-
-
 
 
 
