@@ -12,10 +12,10 @@ class Referral < ActiveRecord::Base
       filter = "= #{user.id}"
     end
     
-    sql = "SELECT t.destination_id, t.since, t.through, t.commission, t.email, t.firstname, t.lastname, t.influencer_id, SUM(t.amount) AS amount_paid, 
+    sql = "SELECT t.destination_id, t.since, t.through, t.commission, t.email, t.first_name, t.last_name, t.influencer_id, SUM(t.amount) AS amount_paid,
                   SUM(t.amount_pending) AS amount_pending #{select}
-             FROM (SELECT referrals.destination_id, referrals.since, referrals.through, referrals.commission, users.email, influencers.firstname, 
-                          influencers.lastname, influencers.id AS influencer_id, CASE WHEN transactions.influencer_paid = true THEN 
+             FROM (SELECT referrals.destination_id, referrals.since, referrals.through, referrals.commission, users.email, influencers.first_name, 
+                          influencers.last_name, influencers.id AS influencer_id, CASE WHEN transactions.influencer_paid = true THEN 
                           SUM(transactions.amount * referrals.commission) ELSE 0 END AS amount, CASE WHEN transactions.influencer_paid = false THEN 
                           SUM(transactions.amount * referrals.commission) ELSE 0 END AS amount_pending
                      FROM referrals
@@ -24,9 +24,9 @@ class Referral < ActiveRecord::Base
                     LEFT JOIN tweets ON tweets.influencer_id = influencers.id
                     LEFT JOIN transactions ON transactions.tweet_id = tweets.id
                     WHERE referrals.source_id #{filter}
-                    GROUP BY referrals.destination_id, referrals.since, referrals.through, referrals.commission, users.email, influencers.firstname,
-                             influencers.lastname, influencers.id, transactions.influencer_paid) t
-            GROUP BY t.destination_id, t.since, t.through, t.commission, t.email, t.firstname, t.lastname, t.influencer_id
+                    GROUP BY referrals.destination_id, referrals.since, referrals.through, referrals.commission, users.email, influencers.first_name,
+                             influencers.last_name, influencers.id, transactions.influencer_paid) t
+            GROUP BY t.destination_id, t.since, t.through, t.commission, t.email, t.first_name, t.last_name, t.influencer_id
             ORDER BY through DESC"
   
     @referrals = Referral.find_by_sql(sql)   

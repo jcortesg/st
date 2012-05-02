@@ -1,0 +1,20 @@
+.row
+  .span12
+    .round_box
+      .content
+        .title Referidos
+
+        - if @referrals.size > 0
+          %table.table.table-striped
+            %thead
+              %tr
+                %th Referido
+                %th Desde
+                %th Hasta
+                %th Comisión
+                %th Monto Pendiente
+                %th Monto Pagado
+                %th Estado
+                %th Detalles
+        - else
+          %h3 No posee referidos en el sistema.

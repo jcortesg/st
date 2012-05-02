@@ -1,0 +1,16 @@
+.row
+  .span12
+    .round_box
+      .content
+        .title Campañas
+
+        - if false
+          %table.table.table-striped
+            %thead
+              %tr
+                %th Nombre
+                %th Descripción
+                %th Estado
+                %th Tweets
+        - else
+          %h3 No posee campañas en el sistema.
