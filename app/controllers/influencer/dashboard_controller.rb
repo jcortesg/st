@@ -3,6 +3,6 @@ class Influencer::DashboardController < ApplicationController
 
   # Shows the dashboard for the influencer
   def index
-
+    redirect_to influencer_profile_path
   end
 end

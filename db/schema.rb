@@ -14,34 +14,38 @@
 ActiveRecord::Schema.define(:version => 20120412062936) do
 
   create_table "advertisers", :force => true do |t|
-    t.integer "user_id"
-    t.string  "first_name"
-    t.string  "last_name"
-    t.string  "twitter_location"
-    t.string  "twitter_image_url"
-    t.string  "twitter_bio"
-    t.string  "company"
-    t.string  "address"
-    t.string  "city"
-    t.string  "state"
-    t.string  "country"
-    t.integer "zip_code"
-    t.string  "phone"
+    t.integer  "user_id"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "twitter_location"
+    t.string   "twitter_image_url"
+    t.string   "twitter_bio"
+    t.string   "company"
+    t.string   "address"
+    t.string   "city"
+    t.string   "state"
+    t.string   "country"
+    t.integer  "zip_code"
+    t.string   "phone"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
   end
 
   add_index "advertisers", ["user_id"], :name => "index_advertisers_on_user_id", :unique => true
 
   create_table "affiliates", :force => true do |t|
-    t.integer "user_id"
-    t.string  "first_name"
-    t.string  "last_name"
-    t.string  "company"
-    t.string  "address"
-    t.string  "city"
-    t.string  "state"
-    t.string  "country"
-    t.integer "zip_code"
-    t.string  "phone"
+    t.integer  "user_id"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "company"
+    t.string   "address"
+    t.string   "city"
+    t.string   "state"
+    t.string   "country"
+    t.integer  "zip_code"
+    t.string   "phone"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   add_index "affiliates", ["user_id"], :name => "index_affiliates_on_user_id", :unique => true
@@ -77,31 +81,39 @@ ActiveRecord::Schema.define(:version => 20120412062936) do
   add_index "audiences", ["influencer_id"], :name => "index_audiences_on_influencer_id"
 
   create_table "audiences_locations", :force => true do |t|
-    t.integer "audience_id"
-    t.integer "location_id"
-    t.decimal "percentage",  :precision => 3, :scale => 2
+    t.integer  "audience_id"
+    t.integer  "location_id"
+    t.decimal  "percentage",  :precision => 3, :scale => 2
+    t.datetime "created_at",                                :null => false
+    t.datetime "updated_at",                                :null => false
   end
 
   add_index "audiences_locations", ["audience_id"], :name => "index_audiences_locations_on_audience_id"
 
   create_table "campaigns", :force => true do |t|
-    t.integer "advertiser_id"
-    t.string  "name"
-    t.string  "description"
-    t.string  "status",        :default => "A"
+    t.integer  "advertiser_id"
+    t.string   "name"
+    t.string   "description"
+    t.string   "status",        :default => "A"
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
   end
 
   create_table "competitors", :force => true do |t|
-    t.integer "advertiser_id"
-    t.integer "competitor_id"
+    t.integer  "advertiser_id"
+    t.integer  "competitor_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
 
   add_index "competitors", ["advertiser_id"], :name => "index_competitors_on_advertiser_id"
 
   create_table "currencies", :force => true do |t|
-    t.string "name"
-    t.string "description"
-    t.string "status",      :default => "A"
+    t.string   "name"
+    t.string   "description"
+    t.string   "status",      :default => "A"
+    t.datetime "created_at",                   :null => false
+    t.datetime "updated_at",                   :null => false
   end
 
   add_index "currencies", ["name"], :name => "index_currencies_on_name", :unique => true
@@ -142,16 +154,20 @@ ActiveRecord::Schema.define(:version => 20120412062936) do
     t.decimal  "fixed_cpc_fee",        :precision => 5, :scale => 2
     t.decimal  "combined_tweet_fee",   :precision => 8, :scale => 2
     t.decimal  "combined_cpc_fee",     :precision => 5, :scale => 2
+    t.datetime "created_at",                                                          :null => false
+    t.datetime "updated_at",                                                          :null => false
   end
 
   add_index "influencers", ["user_id"], :name => "index_influencers_on_user_id", :unique => true
 
   create_table "locations", :force => true do |t|
-    t.string "suburb"
-    t.string "city"
-    t.string "state"
-    t.string "country"
-    t.string "status",  :default => "A"
+    t.string   "suburb"
+    t.string   "city"
+    t.string   "state"
+    t.string   "country"
+    t.string   "status",     :default => "A"
+    t.datetime "created_at",                  :null => false
+    t.datetime "updated_at",                  :null => false
   end
 
   create_table "messages", :force => true do |t|
@@ -169,40 +185,33 @@ ActiveRecord::Schema.define(:version => 20120412062936) do
   add_index "messages", ["source_id"], :name => "index_messages_on_source_id"
 
   create_table "payment_methods", :force => true do |t|
-    t.string "name"
-    t.string "description"
-    t.string "status",      :default => "A"
+    t.string   "name"
+    t.string   "description"
+    t.string   "status",      :default => "A"
+    t.datetime "created_at",                   :null => false
+    t.datetime "updated_at",                   :null => false
   end
 
   add_index "payment_methods", ["name"], :name => "index_payment_methods_on_name", :unique => true
 
   create_table "payment_types", :force => true do |t|
-    t.string "name"
-    t.string "description"
-    t.string "status",      :default => "A", :null => false
+    t.string   "name"
+    t.string   "description"
+    t.string   "status",      :default => "A", :null => false
+    t.datetime "created_at",                   :null => false
+    t.datetime "updated_at",                   :null => false
   end
 
   add_index "payment_types", ["name"], :name => "index_payment_types_on_name", :unique => true
 
-  create_table "profiles", :force => true do |t|
-    t.integer  "influencer_id"
-    t.decimal  "fee",           :precision => 8, :scale => 2
-    t.decimal  "cpc",           :precision => 5, :scale => 2
-    t.decimal  "fee_cpc",       :precision => 8, :scale => 2
-    t.decimal  "cpc_fee",       :precision => 5, :scale => 2
-    t.string   "status",                                      :default => "A"
-    t.datetime "created_at",                                                   :null => false
-    t.datetime "updated_at",                                                   :null => false
-  end
-
-  add_index "profiles", ["influencer_id"], :name => "index_profiles_on_influencer_id"
-
   create_table "referrals", :force => true do |t|
-    t.integer "source_id"
-    t.integer "destination_id"
-    t.date    "since"
-    t.date    "through"
-    t.decimal "commission",     :precision => 3, :scale => 2
+    t.integer  "source_id"
+    t.integer  "destination_id"
+    t.date     "since"
+    t.date     "through"
+    t.decimal  "commission",     :precision => 3, :scale => 2
+    t.datetime "created_at",                                   :null => false
+    t.datetime "updated_at",                                   :null => false
   end
 
   add_index "referrals", ["source_id", "destination_id"], :name => "index_referrals_on_source_id_and_destination_id"
@@ -218,12 +227,14 @@ ActiveRecord::Schema.define(:version => 20120412062936) do
   end
 
   create_table "top_followers", :force => true do |t|
-    t.integer "influencer_id"
-    t.string  "twitter_username"
-    t.integer "followers"
-    t.integer "followers_followers"
-    t.integer "clicks"
-    t.integer "retweets"
+    t.integer  "influencer_id"
+    t.string   "twitter_username"
+    t.integer  "followers"
+    t.integer  "followers_followers"
+    t.integer  "clicks"
+    t.integer  "retweets"
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
   end
 
   add_index "top_followers", ["influencer_id"], :name => "index_top_followers_on_influencer_id"
@@ -250,9 +261,11 @@ ActiveRecord::Schema.define(:version => 20120412062936) do
   add_index "transactions", ["tweet_id"], :name => "index_transactions_on_tweet_id", :unique => true
 
   create_table "tweet_details", :force => true do |t|
-    t.integer "tweet_id"
-    t.integer "clicks"
-    t.integer "retweets"
+    t.integer  "tweet_id"
+    t.integer  "clicks"
+    t.integer  "retweets"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   add_index "tweet_details", ["tweet_id"], :name => "index_tweet_details_on_tweet_id", :unique => true

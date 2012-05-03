@@ -30,5 +30,11 @@
 
 :javascript
   $(document).ready(function() {
-    $('#user_influencer_attributes_birthday').datepicker();
+    $('#user_influencer_attributes_birthday').datepicker({
+      changeMonth: true,
+      changeYear: true,
+      yearRange: "-100:-10",
+      reverseYearRange: true,
+      defaultDate: "01/01/1994"
+    });
   })
