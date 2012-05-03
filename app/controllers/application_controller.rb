@@ -43,7 +43,6 @@ class ApplicationController < ActionController::Base
     user_session[:entity_name].to_s
   end
 
-
   # Gets the home path for the current user profiles
   def home_path_for(user)
     case user.role
@@ -58,5 +57,11 @@ class ApplicationController < ActionController::Base
         influencer_profile_path
     end
   end
+
+  # Checks that the logged in user is an admin
+  def require_admin
+    current_user && current_user.role == 'admin'
+  end
+
 
 end

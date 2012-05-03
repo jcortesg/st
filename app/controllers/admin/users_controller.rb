@@ -1,4 +1,7 @@
 class Admin::UsersController < ApplicationController
+  before_filter :authenticate_user!
+  before_filter :require_admin
+
   def index
     @users = User.all_except_admin
   end

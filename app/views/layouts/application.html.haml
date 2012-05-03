@@ -41,12 +41,20 @@
                   %li= link_to "Referidos", referrals_path
                   %li= link_to "Transacciones", transactions_path
                 - elsif current_user.admin?
-                  %li= link_to "Usuarios", admin_users_path
-                  %li= link_to "Comisiones", fees_influencers_path
-                  %li= link_to "Audiencias", audiences_path
-                  %li= link_to "Perfiles", profiles_path
-                  %li= link_to "Referidos", referrals_path
-                  %li= link_to "Transacciones", transactions_path
+                  %li.dropdown
+                    %a{:href => '#', :class => 'dropdown-toggle', 'data-toggle' => 'dropdown'}
+                      = "Usuarios"
+                      %b.caret
+                    %ul.dropdown-menu
+                      %li= link_to "Autorizaciones", admin_users_path
+                      %li= link_to "Agencias", admin_affiliates_path
+                      %li= link_to "Anunciantes", admin_advertisers_path
+                      %li= link_to "Celebridades", admin_influencers_path
+                  %li= link_to "Comisiones", "#"
+                  %li= link_to "Audiencias", '#'
+                  %li= link_to "Perfiles", "#"
+                  %li= link_to "Referidos", "#"
+                  %li= link_to "Transacciones", "#"
               - else
                 %li.dropdown
                   %a{:href => '#', :class => 'dropdown-toggle', 'data-toggle' => 'dropdown'}
