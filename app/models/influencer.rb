@@ -5,7 +5,7 @@ class Influencer < ActiveRecord::Base
   has_many :tweets
   belongs_to :user
 
-  has_attached_file :photo, :styles => { :profile => "140x200#", :thumb => "100x100>" }
+  has_attached_file :photo, :styles => { :profile => "140x200#", :small => "100x100>", :thumb => "48x48#"  }
 
   validates :first_name, :presence => true
   validates :last_name, :presence => true

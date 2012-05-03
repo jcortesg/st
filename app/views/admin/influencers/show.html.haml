@@ -1,0 +1,69 @@
+.row
+  .span12
+    .round_box
+      .content
+        %h1.title Celebridad
+        %dl.record_details
+          %dt Email
+          %dd= @influencer.user.email
+          %dt Twitter
+          %dd= @influencer.user.twitter_screen_name
+          %dt Nombre
+          %dd= @influencer.first_name
+          %dt Apellido
+          %dd= @influencer.last_name
+          %dt Twitter - Ubicación
+          %dd= @influencer.twitter_location
+          %dt Twitter - Foto
+          %dd= image_tag(@influencer.twitter_image_url)
+          %dt Twitter - Bio
+          %dd= @influencer.twitter_bio
+          %dt Twitter - Fecha ingreso
+          %dd= @influencer.twitter_joined
+          %dt Comisión Borwin
+          %dd= @influencer.borwin_fee
+          %dt Tipo
+          %dd= @influencer.influencer_type
+          %dt Sexo
+          %dd= @influencer.sex
+          %dt Cumpleaños
+          %dd= @influencer.birthday
+          %dt Descripción
+          %dd= @influencer.description
+          %dt Foto de perfil
+          %dd
+            - if @influencer.photo.exists?
+              = link_to(image_tag(@influencer.photo.url(:thumb)), @influencer.photo.url)
+            - else
+              = image_tag('no_photo.jpg', style: 'height: 48px;width: 48px;')
+          %dt Dirección
+          %dd= @influencer.address
+          %dt Ciudad
+          %dd= @influencer.city
+          %dt Provincia
+          %dd= @influencer.state
+          %dt País
+          %dd= @influencer.country
+          %dt Código Postal
+          %dd= @influencer.zip_code
+          %dt Télefono
+          %dd= @influencer.phone
+          %dt Celular
+          %dd= @influencer.cell_phone
+          %dt Horario de contacto preferido
+          %dd= @influencer.contact_time
+          %dt Método de contacto preferido
+          %dd= @influencer.contact_method
+          %dt Pago preferido
+          %dd= @influencer.preferred_payment
+          %dt Número de cuenta
+          %dd= @influencer.account_number
+          %dt Tipo de cuenta
+          %dd= @influencer.account_type
+          %dt CBU
+          %dd= @influencer.cbu
+          %dt Banco
+          %dd= @influencer.bank_name
+          %dt Precio Tweet
+
+

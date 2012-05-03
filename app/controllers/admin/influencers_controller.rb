@@ -2,7 +2,7 @@
 class Admin::InfluencersController < ApplicationController
   before_filter :authenticate_user!
   before_filter :require_admin
-  before_filter :find_influencer, only: [:new, :edit, :update, :destroy]
+  before_filter :find_influencer, only: [:show, :edit, :update, :destroy]
 
   # Show the list of influencers
   def index
