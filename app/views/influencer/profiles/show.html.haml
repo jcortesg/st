@@ -40,33 +40,33 @@
         .influencer_stats
           .box_container.clearfix
             .box
-              .stat Seguidores
+              .stat Seguidores:
               .data= @influencer.audience.followers
-              .stat Amigos
+              .stat Amigos:
               .data= @influencer.audience.friends
-              .stat Tweets
+              .stat Tweets:
               .data= @influencer.audience.tweets
-              .stat Sexo
+              .stat Sexo:
               .data= influencer_sex(@influencer.sex)
-              .stat Años
+              .stat Años:
               .data= influencer_age(@influencer.birthday)
-              .stat Ingreso Twitter
+              .stat Ingreso Twitter:
               .data= @influencer.twitter_joined.strftime("%d/%m/%y")
-              .stat Ingreso TweetGo
+              .stat Ingreso TweetGo:
               .data= @influencer.user.created_at.strftime("%d/%m/%y")
 
             .box.last
-              .stat Tweet fijo
+              .stat Tweet fijo:
               .data= number_to_currency(@influencer.fixed_tweet_fee)
-              .stat Tweet combinado
+              .stat Tweet combinado:
               .data= number_to_currency(@influencer.combined_tweet_fee)
-              .stat CPC fijo
+              .stat CPC fijo:
               .data= number_to_currency(@influencer.fixed_cpc_fee)
-              .stat CPC combinado
+              .stat CPC combinado:
               .data= number_to_currency(@influencer.combined_cpc_fee)
-              .stat CPC medio
+              .stat CPC medio:
               .data= "-"
-              .stat CPC totales
+              .stat CPC totales:
               .data= "-"
 
 

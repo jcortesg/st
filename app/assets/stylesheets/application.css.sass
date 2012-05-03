@@ -242,16 +242,17 @@ body
 // Profile page
 .profile_round_box
   background-color: white
-  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05) inset
   @include border-radius(8px)
-  border-color: #E7E7E7
-  border-style: solid
+  #border-color: #E7E7E7
+  #border-style: solid
+  #box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05) inset
 
   .profile_resume_head
     position: relative
     border-bottom: 1px solid #D4D4D4
     height: 70px
     background: -moz-linear-gradient(center top , #FFFFFF, #EDEDED) repeat scroll 0 0 transparent
+    @include border-radius(8px 8px 0 0)
     h1
       font-size: 27px
       line-height: 30px
@@ -345,6 +346,7 @@ body
           clear: right
           font-size: 15px
           line-height: 20px
+          color: #1F91D0
       .box.last
         float: right
   #user_photo
