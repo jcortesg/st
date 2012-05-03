@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
-  has_one :advertiser
-  has_one :influencer
-  has_one :affiliate
+  has_one :advertiser, dependent: :destroy
+  has_one :influencer, dependent: :destroy
+  has_one :affiliate, dependent: :destroy
 
   has_one :referral_destination, :as => :referral, :conditions => 'destination_id = #{self.id}'
   has_many :referral_sources, :as => :referral, :conditions => 'source_id = #{self.id}'
