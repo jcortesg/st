@@ -5,7 +5,8 @@ class Admin::UsersController < ApplicationController
 
   # Shows the list of users that requires authorization to be able to access the website
   def index
-    @search = User.search(params[:search])
+    search_params = {"approved_equals" => "false", "meta_sort" => "created_at.desc"}.merge(params[:search] || {})
+    @search = User.search(search_params)
     @users = @search.page(params[:page])
   end
 
