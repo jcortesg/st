@@ -1,3 +1,4 @@
+# encoding: utf-8
 class TwitterCredentialsController < ApplicationController
   before_filter :setup_client
 

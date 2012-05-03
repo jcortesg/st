@@ -1,3 +1,4 @@
+# encoding: utf-8
 class RegistrationsController < Devise::RegistrationsController
   before_filter :authenticate_user!, :except => [:new, :new_affiliate, :new_influencer, :create]
   layout 'application'
