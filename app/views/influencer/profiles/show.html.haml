@@ -1,5 +1,7 @@
 - content_for :head do
+  = javascript_include_tag 'http://widgets.twimg.com/j/2/widget.js'
   = javascript_include_tag 'user_profile'
+
 - if flash.any?
   .row
     .span12
@@ -24,7 +26,7 @@
             %h2
               = link_to("@#{@influencer.user.twitter_screen_name}", "https://twitter.com/#!/#{@influencer.user.twitter_screen_name}")
               %span.edit_profile
-                = link_to("Editar", influencer_profiles_edit_path, :class => 'btn btn-primary')
+                = link_to("Editar Perfil", influencer_profiles_edit_path, :class => 'btn btn-primary')
             %p
               %strong= "Bio:"
               = @influencer.twitter_bio
@@ -92,14 +94,33 @@
 
   .span3
     .profile_round_box
-      .profile_resume_head
-        %h1{:style => 'margin-left: 10px'}
-          = "Últimos Tweets"
+      :javascript
+        new TWTR.Widget({
+          version: 2,
+          type: 'profile',
+          rpp: 4,
+          interval: 30000,
+          width: 250,
+          height: 300,
+          theme: {
+            shell: {
+              background: '#56cfed',
+              color: '#ffffff'
+            },
+            tweets: {
+              background: '#ffffff',
+              color: '#2f8dcc',
+              links: '#6b6b6b'
+            }
+          },
+          features: {
+            scrollbar: false,
+            loop: false,
+            live: false,
+            behavior: 'all'
+          }
+        }).render().setUser('#{@influencer.user.twitter_screen_name}').start();
 
-      .profile_body
-        - @tweets.each do |tweet|
-          %ul.tweets
-            %li= tweet.text
 
 /
   .row
