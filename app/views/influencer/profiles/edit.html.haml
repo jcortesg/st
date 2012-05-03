@@ -1,6 +1,7 @@
 .row.registration_container
   .span6.offset3.round_box
     = simple_form_for(@influencer, :url => influencer_profiles_update_path, :html => { class: "form-horizontal round_form", method: :put }) do |f|
+      %h1.form_title Perfil
       = f.input :first_name
       = f.input :last_name
       = f.input :birthday, as: :string
@@ -10,7 +11,7 @@
 
       .form-actions
         = f.submit 'Guardar', :class => 'btn btn-primary btn-large'
-        = link_to 'Cancelar', influencer_profile_path, class: 'btn btn-warning btn-large'
+        = link_to 'Cancelar', influencer_profile_path, class: 'btn btn-large'
 
 :javascript
   $(document).ready(function() {
