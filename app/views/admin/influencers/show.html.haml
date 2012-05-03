@@ -3,6 +3,7 @@
     .round_box
       .content
         %h1.title Celebridad
+        .subtitle Datos de la cuenta
         %dl.record_details
           %dt Email
           %dd= @influencer.user.email
@@ -12,6 +13,12 @@
           %dd= @influencer.first_name
           %dt Apellido
           %dd= @influencer.last_name
+          %dt Fecha creación
+          %dd= @influencer.created_at
+          %dt Fecha actualización
+          %dd= @influencer.updated_at
+        .subtitle Datos de Twitter
+        %dl.record_details
           %dt Twitter - Ubicación
           %dd= @influencer.twitter_location
           %dt Twitter - Foto
@@ -20,6 +27,8 @@
           %dd= @influencer.twitter_bio
           %dt Twitter - Fecha ingreso
           %dd= @influencer.twitter_joined
+        .subtitle Datos de la celebridad
+        %dl.record_details
           %dt Comisión Borwin
           %dd= @influencer.borwin_fee
           %dt Tipo
@@ -36,6 +45,8 @@
               = link_to(image_tag(@influencer.photo.url(:thumb)), @influencer.photo.url)
             - else
               = image_tag('no_photo.jpg', style: 'height: 48px;width: 48px;')
+        .subtitle Datos de contacto
+        %dl.record_details
           %dt Dirección
           %dd= @influencer.address
           %dt Ciudad
@@ -54,6 +65,8 @@
           %dd= @influencer.contact_time
           %dt Método de contacto preferido
           %dd= @influencer.contact_method
+        .subtitle Datos para pagos
+        %dl.record_details
           %dt Pago preferido
           %dd= @influencer.preferred_payment
           %dt Número de cuenta
@@ -64,6 +77,8 @@
           %dd= @influencer.cbu
           %dt Banco
           %dd= @influencer.bank_name
+        .subtitle Precios
+        %dl.record_details
           %dt Precio Tweet
           %dd= @influencer.fixed_tweet_fee
           %dt Precio Click
@@ -72,8 +87,5 @@
           %dd= @influencer.combined_tweet_fee
           %dt Precio Click Combinado
           %dd= @influencer.combined_cpc_fee
-          %dt Fecha creación
-          %dd= @influencer.created_at
-          %dt Fecha actualización
-          %dd= @influencer.updated_at
+        .subtitle Audiencia
 

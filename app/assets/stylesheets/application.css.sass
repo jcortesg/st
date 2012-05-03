@@ -287,7 +287,6 @@ body
         font-weight: normal
         line-height: 37px
   .profile_body
-    border-bottom: 3px solid #E7E7E7
     color: #7B7B7B
     font-size: 17px
     padding: 20px 20px 0
@@ -298,7 +297,7 @@ body
       p
         margin-top: 10px
         color: #7B7B7B
-        font-size: 17px
+        font-size: 14px
         strong
           color: #7B7B7B
       .overview_data
@@ -321,33 +320,33 @@ body
         border-bottom: solid 1px #DFDFDF
         padding: 5px 0 5px 0
   .profile_data
-    .stats
-      float: left
-      padding: 20px 20px 0
-      li
-        color: #6D6D6D
+    .influencer_stats
+      width: 100%
+      .box_container
+        margin: 0 auto
+        width: 90%
+      .box
         float: left
-        list-style: none outside none
-        margin-bottom: 32px
-        width: 298px
-        h3
-          line-height: 50px
-          float: right
-          font-size: 18px
-          font-weight: normal
-          margin: 0 10px
-          width: 150px
-        p
-          background: none repeat scroll 0 0 #1F91D0
-          border: 3px solid #91CAE0
-          border-radius: 10px 10px 10px 10px
-          color: #FFF
+        width: 44%
+        border: solid 1px #E1E1E8
+        background: #F7F7F9
+        @include border-radius(6px)
+        padding: 15px
+        min-height: 150px
+        margin: 20px 0 20px 0
+        .stat
           float: left
-          font-size: 26px
-          height: 47px
-          line-height: 47px
-          text-align: center
-          width: 122px
+          width: 150px
+          font-size: 15px
+          line-height: 20px
+          font-weight: bolder
+        .data
+          float: left
+          clear: right
+          font-size: 15px
+          line-height: 20px
+      .box.last
+        float: right
   #user_photo
     .image
       float: left

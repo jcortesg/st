@@ -19,7 +19,7 @@
 
       .profile_body
         .twitter_overview
-          .overview_data
+          .overview_data.clearfix
             %h2
               = link_to("@#{@influencer.user.twitter_screen_name}", "https://twitter.com/#!/#{@influencer.user.twitter_screen_name}")
               %span.edit_profile
@@ -37,46 +37,38 @@
               = link_to(image_tag('no_photo.jpg'), '#user_photo', 'data-toggle' => 'modal')
 
       .profile_data.clearfix
-        %ul.stats
-          %li
-            %h3 seguidores
-            %p= @influencer.audience.followers
-          %li
-            %h3 amigos
-            %p= @influencer.audience.friends
-          %li
-            %h3 tweets
-            %p= @influencer.audience.tweets
-          %li
-            %h3 sexo
-            %p= influencer_sex(@influencer.sex)
-          %li
-            %h3 ingreso Twitter
-            %p= @influencer.twitter_joined.strftime("%d/%m/%y")
-          %li
-            %h3 años
-            %p= influencer_age(@influencer.birthday)
-          %li
-            %h3 ingreso TweetGo
-            %p= @influencer.user.created_at.strftime("%d/%m/%y")
-          %li
-            %h3 tweet fijo
-            %p= number_to_currency(@influencer.fixed_tweet_fee)
-          %li
-            %h3 tweet combinado
-            %p= number_to_currency(@influencer.combined_tweet_fee)
-          %li
-            %h3 CPC fijo
-            %p= number_to_currency(@influencer.fixed_cpc_fee)
-          %li
-            %h3 CPC combinado
-            %p= number_to_currency(@influencer.combined_cpc_fee)
-          %li
-            %h3 CPC medio
-            %p= "-"
-          %li
-            %h3 CPC totales
-            %p= "-"
+        .influencer_stats
+          .box_container.clearfix
+            .box
+              .stat Seguidores
+              .data= @influencer.audience.followers
+              .stat Amigos
+              .data= @influencer.audience.friends
+              .stat Tweets
+              .data= @influencer.audience.tweets
+              .stat Sexo
+              .data= influencer_sex(@influencer.sex)
+              .stat Años
+              .data= influencer_age(@influencer.birthday)
+              .stat Ingreso Twitter
+              .data= @influencer.twitter_joined.strftime("%d/%m/%y")
+              .stat Ingreso TweetGo
+              .data= @influencer.user.created_at.strftime("%d/%m/%y")
+
+            .box.last
+              .stat Tweet fijo
+              .data= number_to_currency(@influencer.fixed_tweet_fee)
+              .stat Tweet combinado
+              .data= number_to_currency(@influencer.combined_tweet_fee)
+              .stat CPC fijo
+              .data= number_to_currency(@influencer.fixed_cpc_fee)
+              .stat CPC combinado
+              .data= number_to_currency(@influencer.combined_cpc_fee)
+              .stat CPC medio
+              .data= "-"
+              .stat CPC totales
+              .data= "-"
+
 
       #user_photo.modal.hide.fade
         = simple_form_for @influencer, :url => influencer_profiles_update_photo_path do |f|
