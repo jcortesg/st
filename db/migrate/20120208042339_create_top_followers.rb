@@ -7,6 +7,8 @@ class CreateTopFollowers < ActiveRecord::Migration
       t.integer :followers_followers
       t.integer :clicks
       t.integer :retweets
+
+      t.timestamps
     end
 
     add_index :top_followers, :influencer_id, :unique => false        

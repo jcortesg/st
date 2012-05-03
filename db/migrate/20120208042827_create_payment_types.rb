@@ -4,6 +4,8 @@ class CreatePaymentTypes < ActiveRecord::Migration
       t.string :name
       t.string :description
       t.string :status, :null => false, :size => 1, :default => "A"
+
+      t.timestamps
     end 
     
     add_index :payment_types, :name, :unique => true    

@@ -11,6 +11,7 @@
               %th= sort_link(@search, :first_name_and_last_name, 'Nombre')
               %th= sort_link(@search, :user_email, 'Email')
               %th= sort_link(@search, :user_twitter_screen_name, 'Twitter')
+              %th= sort_link(@search, :created_at, "Creado")
               %th Acciones
 
           %tbody
@@ -20,6 +21,7 @@
                 %td= link_to(influencer.full_name, [:admin, influencer])
                 %td= influencer.user.email
                 %td= influencer.user.twitter_screen_name
+                %td= influencer.created_at ? (localize(influencer.created_at, :format => "%d/%m/%Y")) : ""
                 %td
                   = link_to('Editar', [:admin, influencer], class: 'btn btn-primary')
                   = link_to('Audiencia', '#', :class => 'btn btn-primary')

@@ -17,6 +17,8 @@ class CreateAdvertisers < ActiveRecord::Migration
       t.string :country
       t.integer :zip_code
       t.string :phone
+
+      t.timestamps
     end
     
     add_index :advertisers, :user_id, :unique => true

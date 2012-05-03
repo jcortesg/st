@@ -6,6 +6,8 @@ class CreateLocations < ActiveRecord::Migration
       t.string :state
       t.string :country
       t.string :status, :lenght => 1, :default => "A"
+
+      t.timestamps
     end
   end
 end

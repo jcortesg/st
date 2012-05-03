@@ -12,6 +12,7 @@ class CreateTweets < ActiveRecord::Migration
       t.datetime :date_required
       t.integer :campaign_id
       t.string :status, :lenght => 1, :default => "X"
+
       t.timestamps
     end
 

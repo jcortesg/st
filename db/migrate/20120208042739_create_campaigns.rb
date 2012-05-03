@@ -5,6 +5,8 @@ class CreateCampaigns < ActiveRecord::Migration
       t.string :name
       t.string :description
       t.string :status, :lenght => 1, :default => "A"
+
+      t.timestamps
     end
   end
 end

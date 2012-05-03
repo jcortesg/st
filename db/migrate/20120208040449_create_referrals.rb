@@ -6,6 +6,8 @@ class CreateReferrals < ActiveRecord::Migration
       t.date :since
       t.date :through
       t.decimal :commission, :precision => 3, :scale => 2
+
+      t.timestamps
     end
 
 

@@ -47,6 +47,8 @@ class CreateInfluencers < ActiveRecord::Migration
       t.decimal :fixed_cpc_fee, :precision => 5, :scale => 2
       t.decimal :combined_tweet_fee, :precision => 8, :scale => 2
       t.decimal :combined_cpc_fee, :precision => 5, :scale => 2
+
+      t.timestamps
     end
     
     add_index :influencers, :user_id, :unique => true
