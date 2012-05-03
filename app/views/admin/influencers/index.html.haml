@@ -1,0 +1,30 @@
+.row
+  .span12
+    .round_box
+      .content
+        %h1.title Celebridades
+
+        %table.table.table-striped
+          %thead
+            %tr
+              %th &nbsp;
+              %th= sort_link(@search, :first_name_and_last_name, 'Nombre')
+              %th= sort_link(@search, :user_email, 'Email')
+              %th= sort_link(@search, :user_twitter_screen_name, 'Twitter')
+              %th Acciones
+
+          %tbody
+            - @influencers.each do |influencer|
+              %tr{ :class => cycle('odd', 'even') }
+                %td= img_link_to_twitter(influencer)
+                %td= link_to(influencer.full_name, [:admin, influencer])
+                %td= influencer.user.email
+                %td= influencer.user.twitter_screen_name
+                %td
+                  = link_to('Editar', [:admin, influencer], class: 'btn btn-primary')
+                  = link_to('Audiencia', '#', :class => 'btn btn-primary')
+        .center_text
+          = paginate @influencers
+
+
+
