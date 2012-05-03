@@ -1,23 +1,39 @@
-.row.login_container
+.row
   .span12
-    %h1.title Usuarios Pendientes de Aprobación con Email Confirmado
-    %table.table.table-bordered
-      %thead
-        %tr
-          %th Email
-          %th Tipo de Usuario
-          %th Creado
-          %th Acciones
+    .round_box
+      .content
+        %h1.title Autorizaciones
 
-      %tbody
-        - @users.each do |user|
-          %tr{ :class => cycle('odd', 'even') }
-            %td= user.email
-            %td= I18n.t("user.#{user.role}")
-            %td= user.created_at ? (localize(user.created_at, :format => "%d/%m/%Y %H:%M hs")) : ""
-            %td.last
-              = form_for user, :url => user.approved? ? disapprove_admin_user_path(user) : approve_admin_user_path(user) do
-                %button.button{ :type => "submit" }
-                  = image_tag "theme/tick.png"
-                  = user.approved ? "Desaprobar" : "Aprobar"
+        %table.table.table-striped
+          %thead
+            %tr
+              %th= sort_link(@search, :email)
+              %th= sort_link(@search, :role, "Tipo de Usuario")
+              %th= sort_link(@search, :created_at, "Creado")
+              %th Acciones
+
+          %tbody
+            - @users.each do |user|
+              %tr{ :class => cycle('odd', 'even') }
+                %td= user.email
+                %td= I18n.t("user.role.#{user.role}")
+                %td= user.created_at ? (localize(user.created_at, :format => "%d/%m/%Y %H:%M hs")) : ""
+                %td.center_text.last
+                  = form_for user, :url => user.approved? ? disapprove_admin_user_path(user) : approve_admin_user_path(user) do
+                    - if user.approved?
+                      %button.btn.btn-primary Desaprobar
+                    - else
+                      %button.btn.btn-primary Aprobar
+        .center_text
+          = paginate @users
+
+        .filters
+          .subtitle Filtros
+          = simple_form_for @search, :url => admin_users_path, html: {method: :get, id: 'filter_form', class: 'form-horizontal'} do |f|
+            = f.input :role_equals, as: :select, collection: [['Administrador', 'admin'], ['Agencia', 'affiliate'], ['Anunciante', 'advertiser'], ['Celebridad', 'influencer']], label: 'Rol', required: false
+            = f.input :approved_equals, as: :select, collection: [['Sí', true], ['No', false]], label: 'Aprobado?', required: false
+            .form-actions
+              = f.submit 'Filtrar', :class => 'btn btn-primary'
+
+
 

@@ -203,3 +203,11 @@ en:
   activerecord:
     errors:
       <<: *errors
+
+  user:
+    role:
+      admin: Administrator
+      influencer: Celebrity
+      advertiser: Advertiser
+      affiliate: Affiliate
+

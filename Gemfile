@@ -12,9 +12,10 @@ gem 'cancan'                           # Permissions
 gem 'simple_form'                      # Rails form builder
 gem 'paperclip'                        # Image Processing
 gem 'kaminari'                         # Pagination
+gem 'meta_search'                      # For column sort and search of tables
 gem 'twitter'                          # Twitter
 gem 'nested_form', :git => 'https://github.com/ryanb/nested_form.git' # Nested forms
-gem 'country_select'
+gem 'country_select'                   # For country select on user registration
 
 
 group :assets do

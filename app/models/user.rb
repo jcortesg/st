@@ -33,15 +33,11 @@ class User < ActiveRecord::Base
     def active
       where(approved: true)
     end
-
-    # Retrieve all the accounts except the admin
-    def all_except_admin
-      where("role != 'admin'").order("approved DESC")
-    end
   end
 
                                                                       
   ####################
+  #TODO: Remove this method
   def setaudience(params) 
     if self.role == "influencer"
       @influencer = self.influencer
@@ -66,24 +62,28 @@ class User < ActiveRecord::Base
   end
   ####################
 
+  # Disables a user account
   def disapprove
     self.approved = false
     self.save(:validate => false)
     
     Notifier.disapprove(self).deliver
   end 
-    
+
+  # Approves a user account
   def approve
     self.approved = true
     self.save(:validate => false)
 
     Notifier.approve(self).deliver
   end
-  
+
+  # Tells devise if the account is confirmed to sign_in
   def active_for_authentication?
     super && approved? 
   end 
 
+  # The message to be shown if the account is disabled
   def inactive_message 
     if !approved? 
       :not_approved 
