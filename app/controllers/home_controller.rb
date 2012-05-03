@@ -58,7 +58,7 @@ class HomeController < ApplicationController
 
     if @site_contact.save
       flash[:success] = "Tu mensaje fue recibido. Nos pondremos en contacto a la brevedad."
-      redirect_to root_path,
+      redirect_to root_path
     else
       render :action => :contact
     end
