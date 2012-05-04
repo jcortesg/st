@@ -24,12 +24,12 @@ es:
       signed_in: 'Sesión iniciada.'
       signed_out: 'Sesión finalizada.'
     passwords:
-      send_instructions: 'Vas a recibir un correo con instrucciones sobre cómo resetear tu contraseña en unos pocos minutos.'
+      send_instructions: 'Hemos enviado las instrucciones de restablecimiento de contraseña a tu dirección de correo electrónico.'
       updated: 'Tu contraseña fue cambiada. Ya iniciaste sesión.'
       updated_not_active: 'Tu contraseña fue cambiada.'
       send_paranoid_instructions: "Si tu correo existe en nuestra base de datos, vas a recibir un correo con instrucciones sobre cómo resetear tu contraseña en tu bandeja de entrada."
     confirmations:
-      send_instructions: 'Vas a recibir un correo con instrucciones sobre cómo confirmar tu cuenta en unos pocos minutos.'
+      send_instructions: 'Hemos enviado las instrucciones de confirmación de tu cuenta a tu dirección de correo electrónico.'
       send_paranoid_instructions: 'Si tu correo existe en nuestra base de datos, vas a recibir un correo con instrucciones sobre cómo confirmar tu cuenta en unos pocos minutos.'
       confirmed: 'Tu cuenta fue confirmada. Ya iniciaste sesión.'
     registrations:
