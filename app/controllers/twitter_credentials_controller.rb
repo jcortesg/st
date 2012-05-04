@@ -28,8 +28,9 @@ class TwitterCredentialsController < ApplicationController
       current_user.twitter_screen_name = access_token.params['screen_name']
       current_user.twitter_token = access_token.token
       current_user.twitter_secret = access_token.secret
+      current_user.twitter_linked = true
       current_user.save
-      redirect_to home_path_for(current_user)
+      redirect_to home_path_for(current_user), :notice => "Has linkeado tu cuenta de Tweeter"
     else
       # Check if there is any user with that credential, and if there is, redirects the user
       if User.where(twitter_token: access_token.token, twitter_secret: access_token.secret).exists?

@@ -1,0 +1,11 @@
+.row.registration_container
+  .span6.offset3.round_box
+    %h1.form_title Linkear tu cuenta de Twitter
+
+    %p.center_text
+      Antes de continuar, debemos pedirte que inicies sesión con tu cuenta de twitter, a fin de sacar estadísticas
+      sobre tu perfil, seguidores, etc. y poder así incluirte en la búsquedas de los anunciantes.
+
+    %br
+    .center_text
+      = link_to(image_tag('sign-in-with-twitter.jpg', :style => 'display: inline'), login_twitter_credentials_path)

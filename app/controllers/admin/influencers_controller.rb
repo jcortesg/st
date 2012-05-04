@@ -27,6 +27,8 @@ class Admin::InfluencersController < ApplicationController
     @user = User.new(params[:user])
     @user.twitter_screen_name = twitter_screen_name
     @user.role = 'influencer'
+    # Account approved
+    @user.approved = true
 
     if @user.valid? && @user.check_twitter_screen_name && @user.save
       @influencer = @user.influencer

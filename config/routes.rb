@@ -38,6 +38,7 @@ Borwin::Application.routes.draw do
   namespace :influencer do
     # Registration
     resource :registration, controller: 'registration' do
+      get :link_twitter
       get :step_2
       put :process_step_2
       get :step_3

@@ -1,7 +1,8 @@
 # encoding: utf-8
 class Influencer::RegistrationController < ApplicationController
-  before_filter :authenticate_user!, :except => [:new, :create]
-  before_filter :check_twitter_credentials, :only => [:new, :create]
+  before_filter :authenticate_user!, except: [:new, :create]
+  before_filter :check_twitter_credentials, only:  [:new, :create]
+  before_filter :check_twitter_linked, except: [:new, :create, :link_twitter]
 
   # Shows the form to create a new influencer
   def new
@@ -63,6 +64,11 @@ class Influencer::RegistrationController < ApplicationController
     else
       render action: :step_3
     end
+  end
+
+  # Ask the influencer to link his twitter account
+  def link_twitter
+
   end
 
   private

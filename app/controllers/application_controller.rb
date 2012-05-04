@@ -53,14 +53,25 @@ class ApplicationController < ActionController::Base
       when 'affiliate'
         affiliate_dashboard_path
       when 'influencer'
+        if user.twitter_linked?
+          influencer_profile_path
+        else
+          link_twitter_influencer_registration_path
+        end
         #influencer_dashboard_path
-        influencer_profile_path
     end
   end
 
   # Checks that the logged in user is an admin
   def require_admin
     current_user && current_user.role == 'admin'
+  end
+
+  # Check that the influencer logged in has his twitter account linke
+  def check_twitter_linked
+    unless current_user.twitter_linked?
+      redirect_to link_twitter_influencer_registration_path
+    end
   end
 
 
