@@ -18,9 +18,9 @@
           %dt Apellido
           %dd= @influencer.last_name
           %dt Fecha creación
-          %dd= @influencer.created_at.strftime("%d/%m/%Y")
+          %dd= @influencer.created_at.try(:strftime, "%d/%m/%Y")
           %dt Fecha actualización
-          %dd= @influencer.updated_at.strftime("%d/%m/%Y")
+          %dd= @influencer.updated_at.try(:strftime, "%d/%m/%Y")
         .subtitle Datos de Twitter
         %dl.record_details
           %dt Twitter - Ubicación
@@ -30,7 +30,7 @@
           %dt Twitter - Bio
           %dd= @influencer.twitter_bio
           %dt Twitter - Fecha ingreso
-          %dd= @influencer.twitter_joined.strftime("%d/%m/%Y")
+          %dd= @influencer.twitter_joined.try(:strftime, "%d/%m/%Y")
         .subtitle Datos de la celebridad
         %dl.record_details
           %dt Comisión Borwin
