@@ -54,7 +54,7 @@ class Admin::InfluencersController < ApplicationController
     @user = @influencer.user
     if @user.update_attributes(params[:influencer])
       flash[:notice] = "La celebridad #{@influencer.full_name} fue actualizada con éxito"
-      redirect_to action: :index
+      redirect_to [:admin, @influencer]
     else
       flash[:error] = "Hubo un error al intentar actualizar la celebridad"
       render action: :edit
