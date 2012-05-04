@@ -1,11 +1,12 @@
 class Influencer < ActiveRecord::Base
-  has_one :profile
-  has_one :audience
-  has_many :top_followers
-  has_many :tweets
+  has_one :audience, dependent: :destroy
   belongs_to :user
 
   has_attached_file :photo, :styles => { :profile => "140x200#", :small => "100x100>", :thumb => "48x48#"  }
+
+  # TODO: Revisar estas dos lineas
+  has_many :top_followers
+  has_many :tweets
 
   validates :first_name, :presence => true
   validates :last_name, :presence => true

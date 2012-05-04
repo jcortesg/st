@@ -9,7 +9,9 @@ Borwin::Application.routes.draw do
   # Admin routes
   match '/admin' => 'admin/dashboard#index', :as => :admin_dashboard
   namespace :admin do
-    resources :advertisers
+    resources :advertisers do
+      resource :audience
+    end
     resources :affiliates
     resources :influencers
 

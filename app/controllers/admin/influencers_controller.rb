@@ -64,7 +64,8 @@ class Admin::InfluencersController < ApplicationController
   # Deletes a influencer
   def destroy
     @influencer = Influencer.find(params[:id])
-    if @influencer.destroy
+    @user = @influencer.user
+    if @user.destroy
       flash[:notice] = "La celebridad #{@influencer.full_name} fue eliminada del sistema"
     else
       flash[:notice] = "Hubo un error al intentar eliminar la celebridad"
