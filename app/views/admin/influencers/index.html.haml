@@ -26,7 +26,7 @@
                 %td= influencer.created_at ? (localize(influencer.created_at, :format => "%d/%m/%Y")) : ""
                 %td
                   = link_to('Editar', [:edit, :admin, influencer], class: 'btn btn-primary')
-                  = link_to('Audiencia', '#', class: 'btn btn-primary')
+                  = link_to('Audiencia', [:admin, influencer, :audience], class: 'btn btn-primary')
                   = link_to('Eliminar', [:admin, influencer], method: :delete, class: 'btn btn-danger', confirm: "Esta seguro que desea eliminar a la celebridad y todo su historial?" )
         .center_text
           = paginate @influencers
