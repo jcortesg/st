@@ -1,9 +1,10 @@
+- if flash.any?
+  .row
+    .span12
+      = render '/shared/flash', flash: flash
+
 .row
-  - if flash.any?
-    .row
-      .span12
-        = render '/shared/flash', flash: flash
-.span12
+  .span12
     .round_box
       .content
         .right
