@@ -2,6 +2,8 @@
   .span12
     .round_box
       .content
+        .right
+          = link_to('Crear Celebridad', [:new, :admin, :influencer], :class => 'btn btn-primary')
         %h1.title Celebridades
 
         %table.table.table-striped
@@ -23,10 +25,19 @@
                 %td= influencer.user.twitter_screen_name
                 %td= influencer.created_at ? (localize(influencer.created_at, :format => "%d/%m/%Y")) : ""
                 %td
-                  = link_to('Editar', [:admin, influencer], class: 'btn btn-primary')
-                  = link_to('Audiencia', '#', :class => 'btn btn-primary')
+                  = link_to('Editar', [:edit, :admin, influencer], class: 'btn btn-primary')
+                  = link_to('Audiencia', '#', class: 'btn btn-primary')
+                  = link_to('Eliminar', '#', class: 'btn', confirm: "Esta seguro que desea eliminar a la celebridad y todo su historial?" )
         .center_text
           = paginate @influencers
 
+        .filters
+          .subtitle Filtros
+          = simple_form_for @search, :url => [:admin, :influencers], html: {method: :get, id: 'filter_form', class: 'form-horizontal'} do |f|
+            = f.input :first_name_or_last_name_contains, label: "Nombre", required: false
+            = f.input :user_email_equals, label: "Email", required: false
+            = f.input :user_twitter_screen_name_equals, label: "Twitter", required: false
+            .form-actions
+              = f.submit 'Filtrar', :class => 'btn btn-primary'
 
 

@@ -88,4 +88,8 @@
           %dt Precio Click Combinado
           %dd= number_to_currency(@influencer.combined_cpc_fee)
         .subtitle Audiencia
+      .clear.center_text
+        = link_to('Editar', [:edit, :admin, @influencer], class: 'btn btn-primary')
+        = link_to('Audiencia', '#', class: 'btn btn-primary')
+        = link_to('Listado', [:admin, :influencers], class: 'btn btn-primary')
 

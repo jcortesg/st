@@ -29,7 +29,7 @@
 
         .filters
           .subtitle Filtros
-          = simple_form_for @search, :url => admin_users_path, html: {method: :get, id: 'filter_form', class: 'form-horizontal'} do |f|
+          = simple_form_for @search, :url => [:admin, :users], html: {method: :get, id: 'filter_form', class: 'form-horizontal'} do |f|
             = f.input :role_equals, as: :select, collection: [['Administrador', 'admin'], ['Agencia', 'affiliate'], ['Anunciante', 'advertiser'], ['Celebridad', 'influencer']], label: 'Rol', required: false
             = f.input :approved_equals, as: :select, collection: [['Sí', true], ['No', false]], label: 'Aprobado?', required: false
             .form-actions
