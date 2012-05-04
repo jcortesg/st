@@ -1,3 +1,7 @@
+- if flash.any?
+  .row
+    .span12
+      = render '/shared/flash', flash: flash
 .row
   .span12
     .round_box
@@ -88,7 +92,7 @@
           %dt Precio Click Combinado
           %dd= number_to_currency(@influencer.combined_cpc_fee)
         .subtitle Audiencia
-      .clear.center_text
+      .clear.center_text.show_buttons
         = link_to('Editar', [:edit, :admin, @influencer], class: 'btn btn-primary')
         = link_to('Audiencia', '#', class: 'btn btn-primary')
         = link_to('Listado', [:admin, :influencers], class: 'btn btn-primary')

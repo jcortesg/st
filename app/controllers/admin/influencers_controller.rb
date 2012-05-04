@@ -26,10 +26,12 @@ class Admin::InfluencersController < ApplicationController
     params[:user].delete(:twitter_screen_name)
     @user = User.new(params[:user])
     @user.twitter_screen_name = twitter_screen_name
+    @user.role = 'influencer'
 
     if @user.valid? && @user.check_twitter_screen_name && @user.save
+      @influencer = @user.influencer
       flash[:notice] = "La celebridad #{@influencer.full_name} fue creada con éxito"
-      redirect_to action: :index
+      redirect_to [:admin, @influencer]
     else
       @user.check_twitter_screen_name
       flash[:error] = "Hubo un error al intentar crear la celebridad"
