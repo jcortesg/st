@@ -1,3 +1,4 @@
+# encoding: utf-8
 class Audience < ActiveRecord::Base
   belongs_to :influencer
   has_many :audience_locations

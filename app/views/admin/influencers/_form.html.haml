@@ -1,0 +1,26 @@
+- if f.object.new_record?
+  = f.input :twitter_screen_name, required: true
+= f.input :email
+= f.input :password
+= f.input :password_confirmation
+= f.simple_fields_for :influencer do |i|
+  = i.input :first_name
+  = i.input :last_name
+  = i.input :birthday, as: :string
+  = i.input :sex, :as => :select, :collection => [['Hombre', 'M'], ['Mujer', 'F']], :include_blank => true
+  = i.input :influencer_type, :as => :select, :collection => ["Actor", "Músico", "Deportista", "Conductor", "Periodista", "Modelo", "Mediático", "Artista", "Panelista", "Cheff", "Humorista", "Moda", "Twitteros", "Otros"], :include_blank => true
+  = i.input :description, :as => :text, :input_html => {:rows => 2, :cols => 60 }
+  = i.input :address
+  = i.input :country
+  = i.input :state
+  = i.input :city
+  = i.input :zip_code
+  = i.input :phone
+  = i.input :cell_phone
+  = i.input :contact_time
+  = i.input :contact_method, :as => :select, :collection => [["Email", 'email'], ["Teléfono", 'phone'], ["Direct Message", 'direct_message']]
+  = i.input :preferred_payment, :as => :select, collection: ['Cheque', 'Transferencia Bancaria']
+  = i.input :account_number
+  = i.input :account_type, as: :select, collection: ['Caja de Ahorro', 'Cuenta Corriente'], include_blank: false
+  = i.input :cbu
+  = i.input :bank_name, as: :select, collection: ["Citi", "Standard Bank", "Santander Río", "Banco Francés", "Banco Macro", "Banco Galicia", "Banco Nación", "Banco Provincia", "Banco Ciudad", "Banco Patagonia", "Banco Hipotecario", "Banco Credicoop"]

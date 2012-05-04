@@ -1,3 +1,4 @@
+# encoding: utf-8
 class User < ActiveRecord::Base
   has_one :advertiser, dependent: :destroy
   has_one :influencer, dependent: :destroy
@@ -61,6 +62,21 @@ class User < ActiveRecord::Base
     Notifier.approve(self).deliver
   end
   ####################
+
+
+  # Check that the twitter name has been assigned and that is not already on the deb
+  def check_twitter_screen_name
+    if self.twitter_screen_name.blank? || User.where(twitter_screen_name: self.twitter_screen_name).exists?
+      if self.twitter_screen_name.blank?
+        errors.add(:twitter_screen_name, 'no puede estar en blanco')
+      else
+        errors.add(:twitter_screen_name, 'ya esta en uso')
+      end
+      false
+    else
+      true
+    end
+  end
 
   # Disables a user account
   def disapprove

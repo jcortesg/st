@@ -1,0 +1,20 @@
+.row
+  .span6.offset3.round_box
+    = simple_form_for(@user, url: admin_influencers_path(@user), method: :put, html:  { class: "form-horizontal round_form", method: :put }) do |f|
+      %h1.form_title Celebridad
+      = render partial: 'form', locals: {f: f}
+
+      .form-actions
+        = f.submit 'Guardar', :class => 'btn btn-primary btn-large'
+        = link_to 'Cancelar', influencer_profile_path, class: 'btn btn-large'
+
+:javascript
+  $(document).ready(function() {
+    $('#user_influencer_attributes_birthday').datepicker({
+      changeMonth: true,
+      changeYear: true,
+      yearRange: "-100:-10",
+      reverseYearRange: true,
+      defaultDate: "01/01/1994"
+    });
+  })

@@ -1,3 +1,4 @@
+# encoding: utf-8
 class Affiliate < ActiveRecord::Base
   belongs_to :user
   
