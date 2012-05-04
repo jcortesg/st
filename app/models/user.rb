@@ -15,8 +15,8 @@ class User < ActiveRecord::Base
                   :affiliate_attributes, :advertiser_attributes, :influencer_attributes
 
   validates :email, presence: true, format: { with: /\A[^@]+@([^@\.]+\.)+[^@\.]+\z/ }
-  validates :password, presence: true, length: { within: 6..20 }
-  validates :password_confirmation, presence: true, length:  { :within => 6..20, if: :password_confirmation }
+  validates :password, presence: true, length: { within: 6..20 }, if: :needs_password?
+  validates :password_confirmation, presence: true, length:  { :within => 6..20, if: :password_confirmation }, if: :needs_password?
 
   accepts_nested_attributes_for :affiliate
   accepts_nested_attributes_for :advertiser
@@ -142,5 +142,12 @@ class User < ActiveRecord::Base
   # Checks if the current user is a influencer
   def influencer?
     role == 'influencer'
+  end
+
+  private
+
+  # Just needs password if the encrypted password is not there
+  def needs_password?
+    encrypted_password.nil?
   end
 end
