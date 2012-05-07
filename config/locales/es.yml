@@ -213,6 +213,9 @@ es:
           subject: Asunto
           message: Mensaje
 
+  general:
+    vfalse: No
+    vfalse: Sí
 
   user:
     role:

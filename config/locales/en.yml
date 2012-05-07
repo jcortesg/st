@@ -203,6 +203,9 @@ en:
   activerecord:
     errors:
       <<: *errors
+  general:
+    false: False
+    true: True
 
   user:
     role:

@@ -4,10 +4,6 @@ class Influencer < ActiveRecord::Base
 
   has_attached_file :photo, :styles => { :profile => "140x200#", :small => "100x100>", :thumb => "48x48#"  }
 
-  # TODO: Revisar estas dos lineas
-  has_many :top_followers
-  has_many :tweets
-
   validates :first_name, :presence => true
   validates :last_name, :presence => true
   validates :influencer_type, :presence => true
@@ -19,73 +15,6 @@ class Influencer < ActiveRecord::Base
                   :description, :referrer_description, :address, :city, :state, :country, :zip_code, :phone,
                   :cell_phone, :contact_time, :contact_method, :preferred_payment, :account_number, :account_type, :cbu,
                   :bank_name, :fixed_tweet_fee, :fixed_cpc_fee, :combined_tweet_fee, :combined_cpc_fee
-
-  # TODO: Review this method to clean the influencer model
-  def self.influencers_list_with_current_profile_and_audience(filters)
-    followers = filters[:followers]
-    friends = filters[:friends]
-    retweets = filters[:retweets]
-    fee = filters[:fee]
-    cpc = filters[:cpc]
-    peerindex = filters[:peerindex]
-    klout = filters[:klout]
-    influencer_type = filters[:influencer] ? filters[:influencer][:type] : nil
-    male_percentaje = filters[:male_percentaje]
-    male_operation = filters[:male_operation]
-    mothers = filters[:mothers]
-    sports = filters[:sports]
-      
-    if followers && followers != ""
-      followers = "AND audiences.followers >= #{followers}"
-    end
-    
-    if retweets && retweets != ""
-      retweets = retweets.to_f / 100
-      retweets = "AND audiences.retweets >= #{retweets}"
-    end
-
-    if fee && fee != ""
-      fee = "AND profiles.fee <= #{fee}"
-    end
-    
-    if mothers && mothers != ""
-      mothers = "AND audiences.moms = 1"
-    end
-    
-    if sports && sports != ""
-      sports = "AND audiences.sports = 1"
-    end        
-    
-    if cpc && cpc != ""
-      cpc = "AND profiles.cpc <= #{cpc}"
-    end
-    
-    if friends && friends != ""
-      friends = "AND audiences.friends >= #{friends}"
-    end        
-
-    if influencer_type && influencer_type != ""
-      influencer_type = "AND influencers.influencer_type = '#{influencer_type}'"
-    end
-
-    if male_percentaje && male_percentaje != ""
-      male_percentaje = male_percentaje.to_f / 100
-      male_percentaje = "AND audiences.males #{male_operation} #{male_percentaje}"    
-    end
-
-    if peerindex && peerindex != ""
-      peerindex = "AND audiences.peerindex >= #{peerindex}"
-    end
-    
-    if klout && klout != ""
-      klout = "AND audiences.klout >= #{klout}"
-    end    
-    
-    @influencers = Influencer.select("influencers.id, influencers.image_url, influencers.twitter_username, influencers.firstname,
-      influencers.lastname, influencers.influencer_type, influencers.bio, profiles.fee, profiles.cpc, profiles.fee_cpc, profiles.cpc_fee, 
-        audiences.followers").joins(:current_audience, :current_profile, :user).where("users.approved = 1 #{followers} #{friends} #{influencer_type}
-          #{male_percentaje} #{peerindex} #{klout} #{fee} #{cpc} #{retweets} #{mothers} #{sports}")  
-  end
 
   # User full name
   def full_name
@@ -107,7 +36,6 @@ class Influencer < ActiveRecord::Base
     self.twitter_image_url = twitter_user.profile_image_url
     self.twitter_joined = twitter_user.created_at
   end
-
 
   # Updates the user audience
   def update_audience

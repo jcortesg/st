@@ -92,9 +92,10 @@
           %dt Precio Click Combinado
           %dd= number_to_currency(@influencer.combined_cpc_fee)
         .subtitle Audiencia
+        = render '/admin/audiences/audience_table', audience: @influencer.audience
       .clear.center_text.show_buttons
         = link_to('Editar', [:edit, :admin, @influencer], class: 'btn btn-primary')
-        = link_to('Audiencia', '#', class: 'btn btn-primary')
+        = link_to('Audiencia', [:admin, @influencer, :audience], class: 'btn btn-primary')
         = link_to('Eliminar', [:admin, @influencer], method: :delete, class: 'btn btn-danger', confirm: "Esta seguro que desea eliminar a la celebridad y todo su historial?" )
         = link_to('Listado', [:admin, :influencers], class: 'btn btn-primary')
 

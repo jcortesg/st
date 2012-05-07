@@ -1,0 +1,56 @@
+%table.table.table-striped
+  %thead
+    %tr
+      %th Seguidores
+      %th Seguidores 2°
+      %th Amigos
+      %th Tweets
+      %th Retweets
+  %tbody
+    %tr
+      %td= audience.followers
+      %td= audience.followers_followers
+      %td= audience.friends
+      %td= audience.tweets
+      %td= audience.retweets
+
+%table.table.table-striped
+  %thead
+    %tr
+      %th Hombres
+      %th Mamas
+      %th Chicos
+      %th Adolecentes Jovenes
+      %th Adolecentes Maduros
+      %th Adultos Jovenes
+      %th Adultos Maduros
+      %th Adultos
+      %th Ancianos
+
+  %tbody
+    %tr
+      %td= audience.males
+      %td= audience.moms
+      %td= audience.kids
+      %td= audience.young_teens
+      %td= audience.mature_teens
+      %td= audience.young_adults
+      %td= audience.mature_adults
+      %td= audience.adults
+      %td= audience.elderly
+
+%table.table.table-striped
+  %thead
+    %tr
+      %th Deportes
+      %th Moda
+      %th Música
+      %th Películas
+      %th Política
+  %tbody
+    %tr
+      %td= I18n.t("general.v#{audience.sports}")
+      %td= I18n.t("general.v#{audience.fashion}")
+      %td= I18n.t("general.v#{audience.music}")
+      %td= I18n.t("general.v#{audience.movies}")
+      %td= I18n.t("general.v#{audience.politics}")
