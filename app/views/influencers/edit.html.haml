@@ -1,8 +1,0 @@
-.row.registration_container
-  .span6.offset3
-    %h1.center_text Editar Datos Personales
-    = simple_form_for(@influencer, :html => { :class => "form-horizontal" }) do |f|
-      = render 'form', :f => f
-      .form-actions
-        = f.submit
-        = link_to('Cancelar', home_path, :class => 'link_button')

@@ -18,6 +18,11 @@ module ApplicationHelper
     end
   end
 
+  # Shows a value or &nbsp; for the dl tag
+  def dl_value(value)
+    value.nil? || value.size == 0 ? '&nbsp;'.html_safe : value
+  end
+
   # TODO: Delete
   def current_entity_id
     user_session[:entity_id].to_s

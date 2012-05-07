@@ -10,39 +10,39 @@
         .subtitle Datos de la cuenta
         %dl.record_details
           %dt Email
-          %dd= @influencer.user.email
+          %dd= dl_value @influencer.user.email
           %dt Twitter
-          %dd= @influencer.user.twitter_screen_name
+          %dd= dl_value @influencer.user.twitter_screen_name
           %dt Nombre
-          %dd= @influencer.first_name
+          %dd= dl_value @influencer.first_name
           %dt Apellido
-          %dd= @influencer.last_name
+          %dd= dl_value @influencer.last_name
           %dt Fecha creación
-          %dd= @influencer.created_at.try(:strftime, "%d/%m/%Y")
+          %dd= dl_value @influencer.created_at.try(:strftime, "%d/%m/%Y")
           %dt Fecha actualización
-          %dd= @influencer.updated_at.try(:strftime, "%d/%m/%Y")
+          %dd= dl_value @influencer.updated_at.try(:strftime, "%d/%m/%Y")
         .subtitle Datos de Twitter
         %dl.record_details
           %dt Twitter - Ubicación
-          %dd= @influencer.twitter_location
+          %dd= dl_value @influencer.twitter_location
           %dt Twitter - Foto
-          %dd= image_tag(@influencer.twitter_image_url)
+          %dd= dl_value image_tag(@influencer.twitter_image_url)
           %dt Twitter - Bio
-          %dd= @influencer.twitter_bio
+          %dd= dl_value @influencer.twitter_bio
           %dt Twitter - Fecha ingreso
-          %dd= @influencer.twitter_joined.try(:strftime, "%d/%m/%Y")
+          %dd= dl_value @influencer.twitter_joined.try(:strftime, "%d/%m/%Y")
         .subtitle Datos de la celebridad
         %dl.record_details
           %dt Comisión Borwin
           %dd= @influencer.borwin_fee
           %dt Tipo
-          %dd= @influencer.influencer_type
+          %dd= dl_value @influencer.influencer_type
           %dt Sexo
-          %dd= @influencer.sex
+          %dd= dl_value @influencer.sex
           %dt Cumpleaños
-          %dd= @influencer.birthday.try(:strftime, "%d/%m/%Y")
+          %dd= dl_value @influencer.birthday.try(:strftime, "%d/%m/%Y")
           %dt Descripción
-          %dd= @influencer.description
+          %dd= dl_value @influencer.description
           %dt Foto de perfil
           %dd
             - if @influencer.photo.exists?
@@ -52,35 +52,35 @@
         .subtitle Datos de contacto
         %dl.record_details
           %dt Dirección
-          %dd= @influencer.address
+          %dd= dl_value @influencer.address
           %dt Ciudad
-          %dd= @influencer.city
+          %dd= dl_value @influencer.city
           %dt Provincia
-          %dd= @influencer.state
+          %dd= dl_value @influencer.state
           %dt País
-          %dd= @influencer.country
+          %dd= dl_value @influencer.country
           %dt Código Postal
-          %dd= @influencer.zip_code
+          %dd= dl_value @influencer.zip_code
           %dt Télefono
-          %dd= @influencer.phone
+          %dd= dl_value @influencer.phone
           %dt Celular
-          %dd= @influencer.cell_phone
+          %dd= dl_value @influencer.cell_phone
           %dt Horario de contacto preferido
-          %dd= @influencer.contact_time
+          %dd= dl_value @influencer.contact_time
           %dt Método de contacto preferido
-          %dd= @influencer.contact_method
+          %dd= dl_value @influencer.contact_method
         .subtitle Datos para pagos
         %dl.record_details
           %dt Pago preferido
-          %dd= @influencer.preferred_payment
+          %dd= dl_value @influencer.preferred_payment
           %dt Número de cuenta
-          %dd= @influencer.account_number
+          %dd= dl_value @influencer.account_number
           %dt Tipo de cuenta
-          %dd= @influencer.account_type
+          %dd= dl_value @influencer.account_type
           %dt CBU
-          %dd= @influencer.cbu
+          %dd= dl_value @influencer.cbu
           %dt Banco
-          %dd= @influencer.bank_name
+          %dd= dl_value @influencer.bank_name
         .subtitle Precios
         %dl.record_details
           %dt Precio Tweet
