@@ -20,7 +20,7 @@
     .round_box
       .content
         .title Referidos
-        - unless @referrals.count > 0
+        - if @referrals.count > 0
           %table.table.table-striped
             %thead
               %tr
