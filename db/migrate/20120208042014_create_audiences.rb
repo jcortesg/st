@@ -15,8 +15,8 @@ class CreateAudiences < ActiveRecord::Migration
       t.integer :klout, default: 0, null: false
 
       # Percent values
-      t.decimal :males, precision: 3, scale: 2, null: false
-      t.boolean :moms, precision: 3, scale: 2, null: false
+      t.decimal :males, precision: 3, scale: 2, default: 0, null: false
+      t.boolean :moms, precision: 3, scale: 2, default: 0, null: false
       t.decimal :kids, precision: 3, scale: 2, default: 0, null: false
       t.decimal :young_teens, precision: 3, scale: 2, default: 0, null: false
       t.decimal :mature_teens, precision: 3, scale: 2, default: 0, null: false

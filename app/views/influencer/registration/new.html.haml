@@ -4,8 +4,8 @@
       %h1.form_title Registración de Celebridad
       = render '/shared/simple_form_errors', :f => f
       = f.input :email
-      = f.input :password
-      = f.input :password_confirmation
+      = f.input :password, required: true
+      = f.input :password_confirmation, required: true
       = f.simple_fields_for :influencer do |i|
         = i.input :first_name
         = i.input :last_name

@@ -59,8 +59,8 @@ ActiveRecord::Schema.define(:version => 20120412062936) do
     t.decimal  "retweets",            :precision => 3, :scale => 2, :default => 0.0,   :null => false
     t.integer  "peerindex",                                         :default => 0,     :null => false
     t.integer  "klout",                                             :default => 0,     :null => false
-    t.decimal  "males",               :precision => 3, :scale => 2,                    :null => false
-    t.boolean  "moms",                                                                 :null => false
+    t.decimal  "males",               :precision => 3, :scale => 2, :default => 0.0,   :null => false
+    t.boolean  "moms",                                              :default => false, :null => false
     t.decimal  "kids",                :precision => 3, :scale => 2, :default => 0.0,   :null => false
     t.decimal  "young_teens",         :precision => 3, :scale => 2, :default => 0.0,   :null => false
     t.decimal  "mature_teens",        :precision => 3, :scale => 2, :default => 0.0,   :null => false
