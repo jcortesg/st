@@ -10,7 +10,10 @@
         .title Referidos
 
         %p
-          = "Referiste #{@referrals.count} personas que te genero $0 ingresos"
+          - if @referrals.count == 0
+            = "Hasta el momento no has referido a ninguna persona. Recomendá Borwin para comenzar a generar ingresos."
+          - else
+            = "Referiste #{@referrals.count} persona#{@referrals.count > 1 ? 's' : ''} que te genero $0 ingresos."
 
         %p
           ¿No estás conforme? ¡Probá refiriendo más amigos!
@@ -42,12 +45,14 @@
 
         %hr
 
-        = simple_form_for @user, url: [:update_options, :influencer, :referrals], html: { class: "form-horizontal", method: :put } do |f|
-          = f.input :mail_on_referral_singup, label: "Enviarme un email cuando un usuario se registre con mi código de referido"
-          = f.input :mail_on_referral_profit, label: "Enviarme un email cuando mis referidos me generen ingresos"
+        = form_for @user, url: [:update_options, :influencer, :referrals], html: { class: "form-referrals-options", method: :put } do |f|
+          = f.check_box :mail_on_referral_singup
+          %span.desc Enviarme un email cuando un usuario se registre con mi código de referido
+          %br
+          = f.check_box :mail_on_referral_profit, label: false
+          %span.desc Enviarme un email cuando mis referidos me generen ingresos
 
-          .form-actions
-            = f.submit 'Guardar', :class => 'btn btn-primary btn-large'
+          = f.submit 'Guardar', :class => 'btn btn-primary btn-large', style: 'display: block'
 
 
 
