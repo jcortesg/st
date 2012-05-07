@@ -12,6 +12,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable, :timeoutable
 
   before_create :set_invitation_code
+  after_create :send_referral_mail
 
   validates :email, presence: true, format: { with: /\A[^@]+@([^@\.]+\.)+[^@\.]+\z/ }
   validates :password, presence: true, length: { within: 6..20 }, if: :needs_password?
@@ -134,5 +135,12 @@ class User < ActiveRecord::Base
   # Just needs password if the encrypted password is not there
   def needs_password?
     encrypted_password.nil?
+  end
+
+  # Send the email to the referral if they expect an email
+  def send_referral_mail
+    if referrer && referrer.mail_on_referral_singup
+      Notifier.referral_sign_up(self.referrer, self).deliver
+    end
   end
 end
