@@ -204,8 +204,8 @@ en:
     errors:
       <<: *errors
   general:
-    false: False
-    true: True
+    vfalse: "False"
+    vtrue: "True"
 
   user:
     role:

@@ -31,7 +31,6 @@ class CreateAudiences < ActiveRecord::Migration
       t.boolean :music, default: false, null: false
       t.boolean :movies, default: false, null: false
       t.boolean :politics, default: false, null: false
-      t.string :status, lenght: 1, default: "A"
 
       t.timestamps
     end

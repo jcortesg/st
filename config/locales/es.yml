@@ -214,8 +214,8 @@ es:
           message: Mensaje
 
   general:
-    vfalse: No
-    vfalse: Sí
+    vfalse: "No"
+    vtrue: "Sí"
 
   user:
     role:
