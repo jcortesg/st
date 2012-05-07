@@ -1,0 +1,35 @@
+.row
+  .span6.offset3.round_box
+    = simple_form_for(@audience, url: [:admin, @influencer, :audience], html:  { class: "form-horizontal round_form", method: :put }) do |f|
+      %h1.form_title Datos Twitter
+      = f.input :followers, label: 'Seguidores'
+      = f.input :followers_followers, label: 'Seguidores 2° Nivel'
+      = f.input :friends, label: 'Amigos'
+      = f.input :tweets, label: 'Tweets'
+      = f.input :retweets, label: 'Retweets'
+
+      %h1.form_title Porcentajes
+      = f.input :males, label: 'Hombres'
+      = f.input :moms, label: 'Mamas'
+      = f.input :kids, label: 'Chicos'
+      = f.input :young_teens, label: 'Adolecentes Jovenes'
+      = f.input :mature_teens, label: 'Adolecentes Maduros'
+      = f.input :young_adults, label: 'Adultos Jovenes'
+      = f.input :mature_adults, label: 'Adultos Maduros'
+      = f.input :adults, label: 'Adultos'
+      = f.input :elderly, label: 'Ancianos'
+
+      %h1.form_title Banderas
+      = f.input :sports, label: 'Deportes'
+      = f.input :fashion, label: 'Moda'
+      = f.input :music, label: 'Música'
+      = f.input :movies, label: 'Películas'
+      = f.input :politics, label: 'Política'
+
+
+
+
+      .form-actions
+        = f.submit 'Guardar', :class => 'btn btn-primary btn-large'
+        = link_to 'Cancelar', influencer_profile_path, class: 'btn btn-large'
+
