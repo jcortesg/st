@@ -12,13 +12,19 @@ class Audience < ActiveRecord::Base
   validates :tweets, presence: true, numericality: {greater_than_or_equal_to: 0}
   validates :retweets, presence: true, numericality: {greater_than_or_equal_to: 0}
 
-  validates :males, numericality: {greater_than_or_equal_to: 0, less_than_or_equal_to: 1}
-  validates :moms, numericality: {greater_than_or_equal_to: 0, less_than_or_equal_to: 1}
-  validates :kids, numericality: {greater_than_or_equal_to: 0, less_than_or_equal_to: 1}
-  validates :young_teens, numericality: {greater_than_or_equal_to: 0, less_than_or_equal_to: 1}
-  validates :mature_teens, numericality: {greater_than_or_equal_to: 0, less_than_or_equal_to: 1}
-  validates :young_adults, numericality: {greater_than_or_equal_to: 0, less_than_or_equal_to: 1}
-  validates :mature_adults, numericality: {greater_than_or_equal_to: 0, less_than_or_equal_to: 1}
-  validates :adults, numericality: {greater_than_or_equal_to: 0, less_than_or_equal_to: 1}
-  validates :elderly, numericality: {greater_than_or_equal_to: 0, less_than_or_equal_to: 1}
+  validates :males, numericality: {greater_than_or_equal_to: 0, less_than_or_equal_to: 100}
+  validates :moms, numericality: {greater_than_or_equal_to: 0, less_than_or_equal_to: 100}
+  validates :kids, numericality: {greater_than_or_equal_to: 0, less_than_or_equal_to: 100}
+  validates :young_teens, numericality: {greater_than_or_equal_to: 0, less_than_or_equal_to: 100}
+  validates :mature_teens, numericality: {greater_than_or_equal_to: 0, less_than_or_equal_to: 100}
+  validates :young_adults, numericality: {greater_than_or_equal_to: 0, less_than_or_equal_to: 100}
+  validates :mature_adults, numericality: {greater_than_or_equal_to: 0, less_than_or_equal_to: 100}
+  validates :adults, numericality: {greater_than_or_equal_to: 0, less_than_or_equal_to: 100}
+  validates :elderly, numericality: {greater_than_or_equal_to: 0, less_than_or_equal_to: 100}
+
+  validates :sports, numericality: {greater_than_or_equal_to: 0, less_than_or_equal_to: 100}
+  validates :fashion, numericality: {greater_than_or_equal_to: 0, less_than_or_equal_to: 100}
+  validates :music, numericality: {greater_than_or_equal_to: 0, less_than_or_equal_to: 100}
+  validates :movies, numericality: {greater_than_or_equal_to: 0, less_than_or_equal_to: 100}
+  validates :politics, numericality: {greater_than_or_equal_to: 0, less_than_or_equal_to: 100}
 end
