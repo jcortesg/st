@@ -19,16 +19,18 @@
           %p
             ¿No estás conforme? ¡Probá refiriendo más amigos!
 
-        .title Como funciona
+        .title.title-margin Como funciona
 
         %p
           Utilizá tu link para sumar gente a la plataforma de Borwin y comenzá a generar ingresos.
           Cuando una persona se registre utilizando tu link recibirás el 5% de los ingresos que la
           persona referida genere en Borwin a través de sus campañas.
 
-        .title Tu link
+        .title.title-margin Tu link
 
-        = "http://borwin.net/I#{current_user.invitation_code}"
+        .share_link
+          .twitter_link
+            = link_to("http://borwin.net/I#{current_user.invitation_code}", "http://borwin.net/I#{current_user.invitation_code}", target: "_blank")
 
         %p
           Este es el link que le tenés que envíar a las personas que referís y a través del cuál ellos se tienen
