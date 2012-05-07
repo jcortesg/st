@@ -1,3 +1,4 @@
+# encoding: utf-8
 class Influencer < ActiveRecord::Base
   has_one :audience, dependent: :destroy
   belongs_to :user

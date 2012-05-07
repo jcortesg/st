@@ -59,7 +59,10 @@ Borwin::Application.routes.draw do
       put :update_photo
     end
     resources :campaigns, only: [:index, :show]
-    resources :referrals, only: [:index, :show]
+    resources :referrals, only: [:index, :show] do
+      get :list, on: :collection
+      put :update_options, on: :collection
+    end
     resources :transactions, only: [:index, :show]
   end
 

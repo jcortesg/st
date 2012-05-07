@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120507133225) do
+ActiveRecord::Schema.define(:version => 20120507155723) do
 
   create_table "advertisers", :force => true do |t|
     t.integer  "user_id"
@@ -131,31 +131,37 @@ ActiveRecord::Schema.define(:version => 20120507133225) do
   end
 
   create_table "users", :force => true do |t|
-    t.string   "email",                  :default => "",    :null => false
-    t.string   "encrypted_password",     :default => "",    :null => false
+    t.string   "email",                                                 :default => "",    :null => false
+    t.string   "encrypted_password",                                    :default => "",    :null => false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          :default => 0
+    t.integer  "sign_in_count",                                         :default => 0
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.boolean  "twitter_linked",         :default => false, :null => false
+    t.boolean  "twitter_linked",                                        :default => false, :null => false
     t.string   "twitter_screen_name"
     t.string   "twitter_uid"
     t.string   "twitter_token"
     t.string   "twitter_secret"
-    t.string   "role",                                      :null => false
+    t.string   "role",                                                                     :null => false
     t.string   "invitation_code"
-    t.boolean  "approved",               :default => false, :null => false
-    t.datetime "created_at",                                :null => false
-    t.datetime "updated_at",                                :null => false
+    t.boolean  "approved",                                              :default => false, :null => false
+    t.integer  "referral_id"
+    t.date     "referral_on"
+    t.decimal  "referral_commission",     :precision => 3, :scale => 2, :default => 0.05,  :null => false
+    t.boolean  "mail_on_referral_singup",                               :default => true,  :null => false
+    t.boolean  "mail_on_referral_profit",                               :default => true,  :null => false
+    t.datetime "created_at",                                                               :null => false
+    t.datetime "updated_at",                                                               :null => false
   end
 
   add_index "users", ["approved"], :name => "index_users_on_approved"
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["invitation_code"], :name => "index_users_on_invitation_code", :unique => true
+  add_index "users", ["referral_id"], :name => "index_users_on_referral_id"
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
   add_index "users", ["role"], :name => "index_users_on_role"
   add_index "users", ["twitter_screen_name"], :name => "index_users_on_twitter_screen_name", :unique => true

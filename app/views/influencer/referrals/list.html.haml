@@ -8,28 +8,26 @@
     .round_box
       .content
         .title Referidos
-
-        %p
-          = "Referiste #{@referrals.count} personas que te genero $0 ingresos"
-
-        %p
-          ¿No estás conforme? ¡Probá refiriendo más amigos!
-
-        .title Como funciona
-
-        %p
-          Utilizá tu link para sumar gente a la plataforma de Borwin y comenzá a generar ingresos.
-          Cuando una persona se registre utilizando tu link recibirás el 5% de los ingresos que la
-          persona referida genere en Borwin a través de sus campañas.
-
-        .title Tu link
-
-        = "http://borwin.net/I#{current_user.invitation_code}"
-
-        %p
-          Este es el link que le tenés que envíar a las personas que referís y a través del cuál ellos se tienen
-          que dar de alta en Borwin.
-
+        - if @referrals.count > 0
+          %table.table.table-striped
+            %thead
+              %tr
+                %th Referido
+                %th Seguidores
+                %th Ingreso por referido
+                %th Referido desde
+            %tbody
+              - @referrals.each do |referral|
+                %tr
+                  %td= "#{image_tag(referral.twitter_image_url)} #{referral.user.try(:twitter_screen_name)}"
+                  %td= referral.audience.followers
+                  %td= "$ 0.00"
+                  %td= referral.referral_on.try(:strftime, "%d/%m/%Y")
+        - else
+          .center_text
+            %h1 Anyone you refer will show up here
+            %p
+              Start referring people and this list will fill up!
 
   .span4
     .round_box

@@ -1,8 +1,13 @@
 # encoding: utf-8
 class User < ActiveRecord::Base
+  # User types
   has_one :advertiser, dependent: :destroy
   has_one :influencer, dependent: :destroy
   has_one :affiliate, dependent: :destroy
+
+  # Referrals
+  belongs_to :referrer, foreign_key: "referral_id", class_name: "User"
+  has_many :referrals, foreign_key: "referral_id", class_name: "User"
 
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable, :timeoutable
 
@@ -20,7 +25,8 @@ class User < ActiveRecord::Base
   validates :invitation_code, uniqueness: true
 
   attr_accessible :email, :password, :password_confirmation, :remember_me,
-                  :affiliate_attributes, :advertiser_attributes, :influencer_attributes
+                  :affiliate_attributes, :advertiser_attributes, :influencer_attributes,
+                  :referral_id, :referral_on, :referral_commission, :mail_on_referral_singup, :mail_on_referral_profit
 
   class << self
     # Shows the accounts that are waiting for approbation
