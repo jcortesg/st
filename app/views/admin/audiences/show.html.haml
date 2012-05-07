@@ -1,0 +1,61 @@
+- if flash.any?
+  .row
+    .span12
+      = render '/shared/flash', flash: flash
+.row
+  .span12
+    .round_box
+      .content
+        %h1.title= @influencer.full_name
+
+        .subtitle Datos Twitter
+        %dl.record_details
+          %dt Seguidores
+          %dd= dl_value @audience.followers
+          %dt Seguidores 2° Nivel
+          %dd= dl_value @audience.followers_followers
+          %dt Amigos
+          %dd= dl_value @audience.friends
+          %dt Tweets
+          %dd= @audience.tweets
+          %dt Retweets
+          %dd= @audience.retweets
+
+        .subtitle Porcentajes
+        %dl.record_details
+          %dt Hombres
+          %dd= @audience.males
+          %dt Mamas
+          %dd= @audience.moms
+          %dt Chicos
+          %dd= @audience.kids
+          %dt Adolecentes Jovenes
+          %dd= @audience.young_teens
+          %dt Adolecentes Maduros
+          %dd= @audience.mature_teens
+          %dt Adultos Jovenes
+          %dd= @audience.mature_teens
+          %dt Adultos Maduros
+          %dd= @audience.mature_adults
+          %dt Adultos
+          %dd= @audience.adults
+          %dt Ancianos
+          %dd= @audience.elderly
+
+        .subtitle Banderas
+        %dl.record_details
+          %dt Deportes
+          %dd= dl_value I18n.t("general.v#{@audience.sports}")
+          %dt Moda
+          %dd= dl_value I18n.t("general.v#{@audience.fashion}")
+          %dt Música
+          %dd= dl_value I18n.t("general.v#{@audience.music}")
+          %dt Películas
+          %dd= dl_value I18n.t("general.v#{@audience.movies}")
+          %dt Política
+          %dd= dl_value I18n.t("general.v#{@audience.politics}")
+
+      .clear.center_text.show_buttons
+        = link_to('Editar Audiencia', [:edit, :admin, @influencer], class: 'btn btn-primary')
+        = link_to('Celebridad', [:admin, @influencer], class: 'btn btn-primary')
+
