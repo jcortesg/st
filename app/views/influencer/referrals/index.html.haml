@@ -40,9 +40,9 @@
       .content
         %ul.nav.nav-pills.nav-stacked
           %li.active
-            = link_to("Información", [:influencer, :referrals])
+            = link_to("#{content_tag('i', '&nbsp;'.html_safe, class: 'icon-info-sign icon-white').html_safe} &nbsp; Información".html_safe, [:influencer, :referrals])
           %li
-            = link_to("Listado de Rereridos", [:list, :influencer, :referrals])
+            = link_to("#{content_tag('i', '&nbsp;'.html_safe, class: 'icon-list-alt').html_safe} &nbsp; Listado de Referidos".html_safe, [:list, :influencer, :referrals])
 
         %hr
 
