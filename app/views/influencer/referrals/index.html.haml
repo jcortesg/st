@@ -15,8 +15,9 @@
           - else
             = "Referiste #{@referrals.count} persona#{@referrals.count > 1 ? 's' : ''} que te genero $0 ingresos."
 
-        %p
-          ¿No estás conforme? ¡Probá refiriendo más amigos!
+        - if @referrals.count > 0
+          %p
+            ¿No estás conforme? ¡Probá refiriendo más amigos!
 
         .title Como funciona
 
