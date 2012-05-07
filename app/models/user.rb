@@ -4,15 +4,9 @@ class User < ActiveRecord::Base
   has_one :influencer, dependent: :destroy
   has_one :affiliate, dependent: :destroy
 
-  has_one :referral_destination, :as => :referral, :conditions => 'destination_id = #{self.id}'
-  has_many :referral_sources, :as => :referral, :conditions => 'source_id = #{self.id}'
-  has_many :message_destinations, :as => :message, :conditions => 'destination_id = #{self.id}'
-  has_many :message_sources, :as => :message, :conditions => 'source_id = #{self.id}'
-      
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable, :timeoutable
 
-  attr_accessible :email, :password, :password_confirmation, :remember_me,
-                  :affiliate_attributes, :advertiser_attributes, :influencer_attributes
+  before_create :set_invitation_code
 
   validates :email, presence: true, format: { with: /\A[^@]+@([^@\.]+\.)+[^@\.]+\z/ }
   validates :password, presence: true, length: { within: 6..20 }, if: :needs_password?
@@ -23,6 +17,10 @@ class User < ActiveRecord::Base
   accepts_nested_attributes_for :influencer
 
   validates :role, inclusion: {in: %w(admin advertiser affiliate influencer)}
+  validates :invitation_code, uniqueness: true
+
+  attr_accessible :email, :password, :password_confirmation, :remember_me,
+                  :affiliate_attributes, :advertiser_attributes, :influencer_attributes
 
   class << self
     # Shows the accounts that are waiting for approbation
@@ -35,34 +33,6 @@ class User < ActiveRecord::Base
       where(approved: true)
     end
   end
-
-                                                                      
-  ####################
-  #TODO: Remove this method
-  def setaudience(params) 
-    if self.role == "influencer"
-      @influencer = self.influencer
-      
-      @audience = Audience.find_by_influencer_id(@influencer.id)
-      @audience.males = params[:influencer][:males]
-      @audience.klout = params[:influencer][:klout]
-      @audience.peerindex = params[:influencer][:peer_index]
-      @audience.retweets = params[:influencer][:retweets]
-      @audience.moms = params[:moms]
-      @audience.sports = params[:sports]
-      @audience.save
-      
-      @influencer.borwin_fee = params[:influencer][:borwin_fee]
-      @influencer.save
-    end
-    
-    self.approved = true 
-    self.save
-        
-    Notifier.approve(self).deliver
-  end
-  ####################
-
 
   # Check that the twitter name has been assigned and that is not already on the deb
   def check_twitter_screen_name
@@ -142,6 +112,15 @@ class User < ActiveRecord::Base
   # Checks if the current user is a influencer
   def influencer?
     role == 'influencer'
+  end
+
+  # Sets the unique invitation code for the suer
+  def set_invitation_code
+    o =  [('A'..'Z'),(0..9)].map{|i| i.to_a}.flatten
+    begin
+      code = (0..5).map{ o[rand(o.length)] }.join
+    end while User.where(:invitation_code => code).exists?
+    self.invitation_code = code
   end
 
   private

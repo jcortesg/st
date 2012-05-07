@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120412062936) do
+ActiveRecord::Schema.define(:version => 20120507133225) do
 
   create_table "advertisers", :force => true do |t|
     t.integer  "user_id"
@@ -60,7 +60,7 @@ ActiveRecord::Schema.define(:version => 20120412062936) do
     t.integer  "peerindex",                                         :default => 0,     :null => false
     t.integer  "klout",                                             :default => 0,     :null => false
     t.decimal  "males",               :precision => 3, :scale => 2, :default => 0.0,   :null => false
-    t.boolean  "moms",                                              :default => false, :null => false
+    t.decimal  "moms",                :precision => 3, :scale => 2, :default => 0.0,   :null => false
     t.decimal  "kids",                :precision => 3, :scale => 2, :default => 0.0,   :null => false
     t.decimal  "young_teens",         :precision => 3, :scale => 2, :default => 0.0,   :null => false
     t.decimal  "mature_teens",        :precision => 3, :scale => 2, :default => 0.0,   :null => false
@@ -73,7 +73,6 @@ ActiveRecord::Schema.define(:version => 20120412062936) do
     t.boolean  "music",                                             :default => false, :null => false
     t.boolean  "movies",                                            :default => false, :null => false
     t.boolean  "politics",                                          :default => false, :null => false
-    t.string   "status",                                            :default => "A"
     t.datetime "created_at",                                                           :null => false
     t.datetime "updated_at",                                                           :null => false
   end
@@ -148,6 +147,7 @@ ActiveRecord::Schema.define(:version => 20120412062936) do
     t.string   "twitter_token"
     t.string   "twitter_secret"
     t.string   "role",                                      :null => false
+    t.string   "invitation_code"
     t.boolean  "approved",               :default => false, :null => false
     t.datetime "created_at",                                :null => false
     t.datetime "updated_at",                                :null => false
@@ -155,6 +155,7 @@ ActiveRecord::Schema.define(:version => 20120412062936) do
 
   add_index "users", ["approved"], :name => "index_users_on_approved"
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
+  add_index "users", ["invitation_code"], :name => "index_users_on_invitation_code", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
   add_index "users", ["role"], :name => "index_users_on_role"
   add_index "users", ["twitter_screen_name"], :name => "index_users_on_twitter_screen_name", :unique => true
