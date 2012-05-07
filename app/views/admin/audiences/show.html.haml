@@ -45,15 +45,15 @@
         .subtitle Banderas
         %dl.record_details
           %dt Deportes
-          %dd= I18n.t("general.v#{@audience.sports}")
+          %dd= @audience.sports
           %dt Moda
-          %dd= I18n.t("general.v#{@audience.fashion}")
+          %dd= @audience.fashion
           %dt Música
-          %dd= I18n.t("general.v#{@audience.music}")
+          %dd= @audience.music
           %dt Películas
-          %dd= I18n.t("general.v#{@audience.movies}")
+          %dd= @audience.movies
           %dt Política
-          %dd= I18n.t("general.v#{@audience.politics}")
+          %dd= @audience.politics
 
       .clear.center_text.show_buttons
         = link_to('Editar Audiencia', [:edit, :admin, @influencer, :audience], class: 'btn btn-primary')
