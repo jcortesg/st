@@ -56,6 +56,6 @@
           %dd= dl_value I18n.t("general.v#{@audience.politics}")
 
       .clear.center_text.show_buttons
-        = link_to('Editar Audiencia', [:edit, :admin, @influencer], class: 'btn btn-primary')
+        = link_to('Editar Audiencia', [:edit, :admin, @influencer, :audience], class: 'btn btn-primary')
         = link_to('Celebridad', [:admin, @influencer], class: 'btn btn-primary')
 
