@@ -9,6 +9,9 @@ class Influencer::RegistrationController < ApplicationController
     @user = User.new
     @user.role = 'influencer'
     @user.build_influencer
+    if session[:referrer_id]
+      @referrer = User.where(:id => session[:referrer_id]).first
+    end
   end
 
   # Creates a new influencer

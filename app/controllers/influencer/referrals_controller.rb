@@ -5,13 +5,13 @@ class Influencer::ReferralsController < ApplicationController
   # Shows the information for getting referrals and the money so far
   def index
     @user = current_user
-    @referrals = User.where(referral_id: current_user.id)
+    @referrals = User.where(referrer_id: current_user.id)
   end
 
   # Shows the list of referrals for the user
   def list
     @user = current_user
-    @referrals = User.where(referral_id: current_user.id)
+    @referrals = User.where(referrer_id: current_user.id)
   end
 
   # Update the referral options for the current_user

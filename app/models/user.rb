@@ -6,8 +6,8 @@ class User < ActiveRecord::Base
   has_one :affiliate, dependent: :destroy
 
   # Referrals
-  belongs_to :referrer, foreign_key: "referral_id", class_name: "User"
-  has_many :referrals, foreign_key: "referral_id", class_name: "User"
+  belongs_to :referrer, foreign_key: "referrer_id", class_name: "User"
+  has_many :referrals, foreign_key: "referrer_id", class_name: "User"
 
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable, :timeoutable
 

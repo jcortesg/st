@@ -149,9 +149,9 @@ ActiveRecord::Schema.define(:version => 20120507155723) do
     t.string   "role",                                                                     :null => false
     t.string   "invitation_code"
     t.boolean  "approved",                                              :default => false, :null => false
-    t.integer  "referral_id"
-    t.date     "referral_on"
-    t.decimal  "referral_commission",     :precision => 3, :scale => 2, :default => 0.05,  :null => false
+    t.integer  "referrer_id"
+    t.date     "referrer_on"
+    t.decimal  "referrer_commission",     :precision => 3, :scale => 2, :default => 0.05,  :null => false
     t.boolean  "mail_on_referral_singup",                               :default => true,  :null => false
     t.boolean  "mail_on_referral_profit",                               :default => true,  :null => false
     t.datetime "created_at",                                                               :null => false
@@ -161,7 +161,7 @@ ActiveRecord::Schema.define(:version => 20120507155723) do
   add_index "users", ["approved"], :name => "index_users_on_approved"
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["invitation_code"], :name => "index_users_on_invitation_code", :unique => true
-  add_index "users", ["referral_id"], :name => "index_users_on_referral_id"
+  add_index "users", ["referrer_id"], :name => "index_users_on_referrer_id"
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
   add_index "users", ["role"], :name => "index_users_on_role"
   add_index "users", ["twitter_screen_name"], :name => "index_users_on_twitter_screen_name", :unique => true
