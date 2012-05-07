@@ -66,6 +66,16 @@ Borwin::Application.routes.draw do
     resources :transactions, only: [:index, :show]
   end
 
+  # Twitter credentials
+  resources :twitter_credentials, only: [:index] do
+    collection do
+      get "login"
+      get "finalize"
+      get "publish"
+      get "finalize_tweet"
+    end
+  end
+
   # Home pages
   match "advertisers-general-vision" => "home#advertisers_about", :as => :home_advertisers_about
   match "advertisers-contact" => "home#advertisers_contact", :as => :home_advertisers_contact

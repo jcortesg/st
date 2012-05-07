@@ -2,6 +2,14 @@
   .span6.offset3
     .round_form
       %h1.center_text Registración de Celebridad
+
+      - if session[:referrer_id]
+        - referrer = User.where(id: session[:referrer_id]).first
+        - if ['advertiser', 'influencer'].include? referrer.role
+          .center_text
+            = image_tag(referrer.influencer.twitter_image_url, style: 'display: inline')
+            = "Fuiste invitado al sition por #{referrer.influencer.full_name}"
+
       %div.center_text
         = link_to(image_tag('sign-in-with-twitter.jpg', :style => 'display: inline'), '/twitter_credentials/login', :class => 'twitter_registration_link')
 

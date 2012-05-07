@@ -23,6 +23,7 @@ class RegistrationsController < Devise::RegistrationsController
   def new_influencer
   end
 
+  # Creates the user
   def create
     @user = User.new(params[:user])
     @user.role = params[:user_role] == 'advertiser' ? 'advertiser' : 'affiliate'
