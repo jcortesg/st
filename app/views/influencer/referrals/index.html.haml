@@ -1,3 +1,14 @@
+- content_for :head do
+  = javascript_include_tag 'http://s7.addthis.com/js/250/addthis_widget.js#username=rorra'
+:javascript
+  var addthis_config = {
+    ui_language: 'es',
+  }
+  var addthis_share = {
+    url: 'http://borwin.net/I#{current_user.invitation_code}',
+    title: 'Registrate en BorwinAR y gana dinero por twittear'
+  }
+
 - if flash.any?
   .row
     .span12
@@ -31,6 +42,10 @@
         .share_link
           .twitter_link
             = link_to("http://borwin.net/I#{current_user.invitation_code}", "http://borwin.net/I#{current_user.invitation_code}", target: "_blank")
+            .center_text
+              %a.sharing-button
+            :javascript
+              addthis.button('.sharing-button', {}, {url: "http://borwin.net/I#{current_user.invitation_code}", title: "Registrate en BorwinAR y gana dinero por twittear"});
 
         %p
           Este es el link que le tenés que envíar a las personas que referís y a través del cuál ellos se tienen
