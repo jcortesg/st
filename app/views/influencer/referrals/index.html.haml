@@ -6,7 +6,7 @@
   }
   var addthis_share = {
     url: 'http://borwin.net/I#{current_user.invitation_code}',
-    title: 'Registrate en BorwinAR y gana dinero por twittear'
+    title: 'Registrate en Borwin y ganá dinero por twittear'
   }
 
 - if flash.any?
@@ -45,7 +45,7 @@
             .center_text
               %a.sharing-button
             :javascript
-              addthis.button('.sharing-button', {}, {url: "http://borwin.net/I#{current_user.invitation_code}", title: "Registrate en BorwinAR y gana dinero por twittear"});
+              addthis.button('.sharing-button', {}, {url: "http://borwin.net/I#{current_user.invitation_code}", title: "Registrate en Borwin y ganá dinero por twittear"});
 
         %p
           Este es el link que le tenés que envíar a las personas que referís y a través del cuál ellos se tienen
