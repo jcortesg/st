@@ -83,68 +83,8 @@ Borwin::Application.routes.draw do
   match "terms" => "home#terms", :as => :terms
   match "privacy" => "home#privacy", :as => :privacy
 
+  # Invitation route
+  match "/I:invitation_code", to: "home#invitation", contrainsts: {invitation_code: /[A-Z0-9]{6}/}
+
   root :to => 'home#index'
-
-
-  ##########################################
-  # Review all the routes under this comment
-  ##########################################
-
-  resources :audiences_locations
-
-  resources :transactions do
-    collection do
-      get ":influencer_id/:action"
-    end
-  end
-
-  resources :tweets do
-    collection do
-      get ":id/:action"
-      #get ":action/:id"
-      post ":action"
-    end
-  end
-
-  resources :twitter_credentials, only: [:index] do
-    collection do
-      get "login"
-      get "finalize"
-      get "publish"
-      get "finalize_tweet"
-    end
-  end
-
-  resources :tweet_details
-  resources :currencies
-  resources :payment_methods
-  resources :payment_types
-  resources :campaigns
-  resources :locations
-  resources :top_followers
-
-  resources :audiences #do
-  #    collection do
-  #      get ":action/:influencer_id"
-  #    end
-  #  end
-
-  resources :competitors
-  resources :messages
-
-  resources :referrals do
-    collection do
-      get "all"
-    end
-  end
-
-  resources :influencers do
-    collection do
-      get "list"
-      get "filter"
-      post "list"
-      get "fees"
-      post ":influencer_id/:action"
-    end
-  end
 end
