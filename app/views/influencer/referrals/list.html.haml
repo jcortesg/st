@@ -19,10 +19,13 @@
             %tbody
               - @referrals.each do |referral|
                 %tr
-                  %td= "#{image_tag(referral.twitter_image_url)} #{referral.user.try(:twitter_screen_name)}"
-                  %td= referral.audience.followers
+                  %td
+                    = "#{image_tag(referral.influencer.try(:twitter_image_url), style: 'display: inline')}".html_safe
+                    &nbsp;
+                    = link_to("@#{referral.twitter_screen_name}", "http://twitter.com/#!/#{referral.twitter_screen_name}", target: "_blank")
+                  %td= referral.influencer.try(:audience).try(:followers)
                   %td= "$ 0.00"
-                  %td= referral.referral_on.try(:strftime, "%d/%m/%Y")
+                  %td= referral.referrer_on.try(:strftime, "%d/%m/%Y")
         - else
           .center_text
             %h1 Tus referidos se mostraran aquí
@@ -31,20 +34,21 @@
 
   .span4
     .round_box
-      %ul.nav.nav-pills.nav-stacked
-        %li.active
-          = link_to("Información", [:influencer, :referrals])
-        %li
-          = link_to("Listado", [:list, :influencer, :referrals])
+      .content
+        %ul.nav.nav-pills.nav-stacked
+          %li
+            = link_to("Información", [:influencer, :referrals])
+          %li.active
+            = link_to("Listado", [:list, :influencer, :referrals])
 
-      %hr
+        %hr
 
-      = simple_form_for @user, url: [:update_options, :influencer, :referrals], html: { class: "form-horizontal", method: :put } do |f|
-        = f.input :mail_on_referral_singup, label: "Enviarme un email cuando un usuario se registre con mi código de referido"
-        = f.input :mail_on_referral_profit, label: "Enviarme un email cuando mis referidos me generen ingresos"
+        = simple_form_for @user, url: [:update_options, :influencer, :referrals], html: { class: "form-horizontal", method: :put } do |f|
+          = f.input :mail_on_referral_singup, label: "Enviarme un email cuando un usuario se registre con mi código de referido"
+          = f.input :mail_on_referral_profit, label: "Enviarme un email cuando mis referidos me generen ingresos"
 
-        .form-actions
-          = f.submit 'Guardar', :class => 'btn btn-primary btn-large'
+          .form-actions
+            = f.submit 'Guardar', :class => 'btn btn-primary btn-large'
 
 
 

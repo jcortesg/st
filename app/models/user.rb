@@ -27,7 +27,7 @@ class User < ActiveRecord::Base
 
   attr_accessible :email, :password, :password_confirmation, :remember_me,
                   :affiliate_attributes, :advertiser_attributes, :influencer_attributes,
-                  :referral_id, :referral_on, :referral_commission, :mail_on_referral_singup, :mail_on_referral_profit
+                  :referrer_id, :referrer_on, :referrer_commission, :mail_on_referral_singup, :mail_on_referral_profit
 
   class << self
     # Shows the accounts that are waiting for approbation
