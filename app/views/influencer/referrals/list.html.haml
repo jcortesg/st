@@ -28,9 +28,7 @@
                   %td= referral.referrer_on.try(:strftime, "%d/%m/%Y")
         - else
           .center_text
-            %h1 Tus referidos se mostraran aquí
-            %p
-              Empieza a referrir personas y la lista se llenará.
+            %h3 Hasta el momento no has referido a ninguna persona. Recomendá Borwin para comenzar a generar ingresos.
 
   .span4
     .round_box
@@ -39,7 +37,7 @@
           %li
             = link_to("Información", [:influencer, :referrals])
           %li.active
-            = link_to("Listado", [:list, :influencer, :referrals])
+            = link_to("Listado de Referidos", [:list, :influencer, :referrals])
 
         %hr
 
