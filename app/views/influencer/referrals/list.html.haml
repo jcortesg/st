@@ -36,9 +36,9 @@
     .round_box
       .content
         %ul.nav.nav-pills.nav-stacked
-          %li.active
-            = link_to("Información", [:influencer, :referrals])
           %li
+            = link_to("Información", [:influencer, :referrals])
+          %li.active
             = link_to("Listado", [:list, :influencer, :referrals])
 
         %hr
