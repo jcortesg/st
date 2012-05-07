@@ -18,18 +18,13 @@
       = f.input :mature_adults, label: 'Adultos Maduros'
       = f.input :adults, label: 'Adultos'
       = f.input :elderly, label: 'Ancianos'
-
-      %h1.form_title Banderas
       = f.input :sports, label: 'Deportes'
       = f.input :fashion, label: 'Moda'
       = f.input :music, label: 'Música'
       = f.input :movies, label: 'Películas'
       = f.input :politics, label: 'Política'
 
-
-
-
       .form-actions
         = f.submit 'Guardar', :class => 'btn btn-primary btn-large'
-        = link_to 'Cancelar', influencer_profile_path, class: 'btn btn-large'
+        = link_to 'Cancelar', [:admin, @influencer], class: 'btn btn-large'
 
