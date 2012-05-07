@@ -52,29 +52,29 @@ ActiveRecord::Schema.define(:version => 20120507155723) do
 
   create_table "audiences", :force => true do |t|
     t.integer  "influencer_id"
-    t.integer  "followers",                                         :default => 0,     :null => false
-    t.integer  "followers_followers",                               :default => 0,     :null => false
-    t.integer  "friends",                                           :default => 0,     :null => false
-    t.integer  "tweets",                                            :default => 0,     :null => false
-    t.decimal  "retweets",            :precision => 3, :scale => 2, :default => 0.0,   :null => false
-    t.integer  "peerindex",                                         :default => 0,     :null => false
-    t.integer  "klout",                                             :default => 0,     :null => false
-    t.decimal  "males",               :precision => 3, :scale => 2, :default => 0.0,   :null => false
-    t.decimal  "moms",                :precision => 3, :scale => 2, :default => 0.0,   :null => false
-    t.decimal  "kids",                :precision => 3, :scale => 2, :default => 0.0,   :null => false
-    t.decimal  "young_teens",         :precision => 3, :scale => 2, :default => 0.0,   :null => false
-    t.decimal  "mature_teens",        :precision => 3, :scale => 2, :default => 0.0,   :null => false
-    t.decimal  "young_adults",        :precision => 3, :scale => 2, :default => 0.0,   :null => false
-    t.decimal  "mature_adults",       :precision => 3, :scale => 2, :default => 0.0,   :null => false
-    t.decimal  "adults",              :precision => 3, :scale => 2, :default => 0.0,   :null => false
-    t.decimal  "elderly",             :precision => 3, :scale => 2, :default => 0.0,   :null => false
-    t.boolean  "sports",                                            :default => false, :null => false
-    t.boolean  "fashion",                                           :default => false, :null => false
-    t.boolean  "music",                                             :default => false, :null => false
-    t.boolean  "movies",                                            :default => false, :null => false
-    t.boolean  "politics",                                          :default => false, :null => false
-    t.datetime "created_at",                                                           :null => false
-    t.datetime "updated_at",                                                           :null => false
+    t.integer  "followers",           :default => 0, :null => false
+    t.integer  "followers_followers", :default => 0, :null => false
+    t.integer  "friends",             :default => 0, :null => false
+    t.integer  "tweets",              :default => 0, :null => false
+    t.integer  "retweets",            :default => 0, :null => false
+    t.integer  "peerindex",           :default => 0, :null => false
+    t.integer  "klout",               :default => 0, :null => false
+    t.integer  "males",               :default => 0, :null => false
+    t.integer  "moms",                :default => 0, :null => false
+    t.integer  "kids",                :default => 0, :null => false
+    t.integer  "young_teens",         :default => 0, :null => false
+    t.integer  "mature_teens",        :default => 0, :null => false
+    t.integer  "young_adults",        :default => 0, :null => false
+    t.integer  "mature_adults",       :default => 0, :null => false
+    t.integer  "adults",              :default => 0, :null => false
+    t.integer  "elderly",             :default => 0, :null => false
+    t.integer  "sports",              :default => 0, :null => false
+    t.integer  "fashion",             :default => 0, :null => false
+    t.integer  "music",               :default => 0, :null => false
+    t.integer  "movies",              :default => 0, :null => false
+    t.integer  "politics",            :default => 0, :null => false
+    t.datetime "created_at",                         :null => false
+    t.datetime "updated_at",                         :null => false
   end
 
   add_index "audiences", ["influencer_id"], :name => "index_audiences_on_influencer_id"
