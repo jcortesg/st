@@ -8,7 +8,7 @@
         - if ['advertiser', 'influencer'].include? referrer.role
           .center_text
             = image_tag(referrer.influencer.twitter_image_url, style: 'display: inline')
-            = "Fuiste invitado al sition por #{referrer.influencer.full_name}"
+            = "Fuiste invitado al sitio por #{referrer.influencer.full_name}"
 
       %div.center_text
         = link_to(image_tag('sign-in-with-twitter.jpg', :style => 'display: inline'), '/twitter_credentials/login', :class => 'twitter_registration_link')
