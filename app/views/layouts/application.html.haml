@@ -23,10 +23,10 @@
             %ul.nav
               - if user_signed_in?
                 - if current_user.advertiser?
-                  %li= link_to "Celebridades", list_influencers_path
-                  %li= link_to "Campañas", campaigns_path
-                  %li= link_to "Tweets", tweets_path
-                  %li= link_to "Transacciones", transactions_path
+                  %li= link_to "Celebridades", "#"
+                  %li= link_to "Campañas", "#"
+                  %li= link_to "Tweets", "#"
+                  %li= link_to "Transacciones", "#"
                 - elsif current_user.influencer?
                   %li.dropdown
                     %a{:href => '#', :class => 'dropdown-toggle', 'data-toggle' => 'dropdown'}
@@ -40,8 +40,8 @@
                   %li= link_to "Campañas", influencer_campaigns_path
                   %li= link_to "Ingresos", influencer_transactions_path
                 - elsif current_user.affiliate?
-                  %li= link_to "Referidos", referrals_path
-                  %li= link_to "Transacciones", transactions_path
+                  %li= link_to "Referidos", "#"
+                  %li= link_to "Transacciones", "#"
                 - elsif current_user.admin?
                   %li.dropdown
                     %a{:href => '#', :class => 'dropdown-toggle', 'data-toggle' => 'dropdown'}
