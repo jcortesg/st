@@ -21,7 +21,7 @@ class Affiliate::ProfilesController < ApplicationController
     @affiliate = current_user.affiliate
     if @affiliate.update_attributes(params[:affiliate])
       flash[:success] = "Tus datos de contacto fueron actualizados."
-      redirect_to affiliate_profile_path
+      redirect_to action: :contact_data
     else
       render action: :edit_contact_data
     end
@@ -42,7 +42,7 @@ class Affiliate::ProfilesController < ApplicationController
     @affiliate = current_user.affiliate
     if @affiliate.update_attributes(params[:affiliate])
       flash[:success] = "Tus datos de cobros fueron actualizados."
-      redirect_to affiliate_profile_path
+      redirect_to action: :payment_data
     else
       render action: :edit_payment_data
     end

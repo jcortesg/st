@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120507155723) do
+ActiveRecord::Schema.define(:version => 20120509152238) do
 
   create_table "advertisers", :force => true do |t|
     t.integer  "user_id"
@@ -44,8 +44,13 @@ ActiveRecord::Schema.define(:version => 20120507155723) do
     t.string   "country"
     t.integer  "zip_code"
     t.string   "phone"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.string   "preferred_payment"
+    t.string   "account_number"
+    t.string   "account_type"
+    t.string   "bank_name"
+    t.string   "cbu"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
   end
 
   add_index "affiliates", ["user_id"], :name => "index_affiliates_on_user_id", :unique => true
