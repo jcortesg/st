@@ -21,23 +21,27 @@
       .content
         .title Referidos
         - if @referrals.count > 0
-          %table.table.table-striped
+          %table.table.table-striped.table-bordered.referrals_table
             %thead
               %tr
-                %th Referido
-                %th Seguidores
-                %th Ingreso por referido
-                %th Referido desde
+                %th.th1 Referido
+                %th.th2 Costo por tweet
+                %th.th3 Ingreso por referido
+                %th.th4 Referido desde
             %tbody
               - @referrals.each do |referral|
                 %tr
-                  %td
-                    = "#{image_tag(referral.influencer.try(:twitter_image_url), style: 'display: inline')}".html_safe
-                    &nbsp;
-                    = link_to("@#{referral.twitter_screen_name}", "http://twitter.com/#!/#{referral.twitter_screen_name}", target: "_blank")
-                  %td= referral.influencer.try(:audience).try(:followers)
-                  %td= "$ 0.00"
-                  %td= referral.referrer_on.try(:strftime, "%d/%m/%Y")
+                  %td.td1
+                    .photo
+                      = "#{image_tag(referral.influencer.try(:twitter_image_url), style: 'display: inline')}".html_safe
+                    .data
+                      = link_to("@#{referral.twitter_screen_name}", "http://twitter.com/#!/#{referral.twitter_screen_name}", target: "_blank")
+                      %br
+                      = referral.influencer.try(:audience).try(:followers)
+                      seguidores
+                  %td.td2= number_to_currency referral.influencer.fixed_tweet_fee.to_f
+                  %td.td3= "$ 0.00"
+                  %td.td4= referral.referrer_on.try(:strftime, "%d/%m/%Y")
         - else
           %p
             Hasta el momento no has referido a ninguna persona. Recomendá Borwin para comenzar a generar ingresos.
