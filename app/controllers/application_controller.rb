@@ -26,7 +26,8 @@ class ApplicationController < ActionController::Base
       when 'advertiser'
         advertiser_dashboard_path
       when 'affiliate'
-        affiliate_dashboard_path
+        #affiliate_dashboard_path
+        affiliate_referrals_path
       when 'influencer'
         if user.twitter_linked?
           influencer_profile_path
@@ -39,7 +40,34 @@ class ApplicationController < ActionController::Base
 
   # Checks that the logged in user is an admin
   def require_admin
-    current_user && current_user.role == 'admin'
+    unless current_user && current_user.role == 'admin'
+      flash[:error] = "Usted no es un administrador"
+      redirect_to(current_user ? home_path_for(current_user) : root_path)
+    end
+  end
+
+  # Checks that the logged in user is a influencer
+  def require_influencer
+    unless current_user && current_user.role == 'influencer'
+      flash[:error] = "Usted no es una celebridad"
+      redirect_to(current_user ? home_path_for(current_user) : root_path)
+    end
+  end
+
+  # Checks that the logged in user is an affiliate
+  def require_affiliate
+    unless current_user && current_user.role == 'affiliate'
+      flash[:error] = "Usted no es una agencia"
+      redirect_to(current_user ? home_path_for(current_user) : root_path)
+    end
+  end
+
+  # Checks that the logged in user is an advertiser
+  def require_advertiser
+    unless current_user && current_user.role == 'affiliate'
+      flash[:error] = "Usted no es un anunciante"
+      redirect_to(current_user ? home_path_for(current_user) : root_path)
+    end
   end
 
   # Check that the influencer logged in has his twitter account linke

@@ -27,7 +27,20 @@ Borwin::Application.routes.draw do
   # Affiliate routes
   match '/affiliate' => 'affiliate/dashboard#index', :as => :affiliate_dashboard
   namespace :affiliate do
-
+    match '/profile' => 'profiles#show', as: :profile
+    namespace :profiles do
+      get :contact_data
+      get :edit_contact_data
+      put :process_contact_data
+      get :payment_data
+      get :edit_payment_data
+      put :process_payment_data
+    end
+    resources :referrals, only: [:index, :show] do
+      get :list, on: :collection
+      put :update_options, on: :collection
+    end
+    resources :transactions, only: [:index, :show]
   end
 
   # Advertiser routes

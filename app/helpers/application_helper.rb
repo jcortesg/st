@@ -7,7 +7,8 @@ module ApplicationHelper
       when 'advertiser'
         advertiser_dashboard_path
       when 'affiliate'
-        affiliate_dashboard_path
+        #affiliate_dashboard_path
+        affiliate_referrals_path
       when 'influencer'
         if user.twitter_linked?
           influencer_profile_path

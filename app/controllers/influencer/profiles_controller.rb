@@ -1,6 +1,6 @@
 # encoding: utf-8
 class Influencer::ProfilesController < ApplicationController
-  before_filter :authenticate_user!, :check_twitter_linked
+  before_filter :authenticate_user!, :require_advertiser, :check_twitter_linked
 
   # Shows the influencer profiles
   def show
