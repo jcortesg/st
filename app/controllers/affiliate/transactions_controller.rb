@@ -1,5 +1,5 @@
 class Affiliate::TransactionsController < ApplicationController
-  before_filter :authenticate_user!, :require_advertiser
+  before_filter :authenticate_user!
 
   # Shows the influencer income
   def index
