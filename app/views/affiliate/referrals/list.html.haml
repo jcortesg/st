@@ -1,0 +1,99 @@
+- if @referrals.count == 0
+  - content_for :head do
+    = javascript_include_tag 'http://s7.addthis.com/js/250/addthis_widget.js#username=rorra'
+  :javascript
+    var addthis_config = {
+      ui_language: 'es',
+    }
+    var addthis_share = {
+      url: 'http://borwin.net/I#{current_user.invitation_code}',
+      title: 'Registrate en Borwin y ganá dinero por twittear'
+    }
+
+- if flash.any?
+  .row
+    .span12
+      = render '/shared/flash', flash: flash
+
+.row
+  .span8
+    .round_box
+      .content
+        .title Referidos
+        - if @referrals.count > 0
+          %table.table.table-striped.table-bordered.referrals_table
+            %thead
+              %tr
+                %th.th1 Referido
+                %th.th2 Costo por tweet
+                %th.th3 Ingreso por referido
+                %th.th4 Referido desde
+            %tbody
+              - @referrals.each do |referral|
+                %tr
+                  %td.td1
+                    .photo
+                      = "#{image_tag(referral.influencer.try(:twitter_image_url), style: 'display: inline')}".html_safe
+                    .data
+                      = link_to("@#{referral.twitter_screen_name}", "http://twitter.com/#!/#{referral.twitter_screen_name}", target: "_blank")
+                      %br
+                      = referral.influencer.try(:audience).try(:followers)
+                      seguidores
+                  %td.td2= number_to_currency referral.influencer.fixed_tweet_fee.to_f
+                  %td.td3= "$ 0.00"
+                  %td.td4= referral.referrer_on.try(:strftime, "%d/%m/%Y")
+        - else
+          %p
+            Hasta el momento no has referido a ninguna persona. Recomendá Borwin para comenzar a generar ingresos.
+
+          .title.title-margin Tu link
+
+          %p
+            Utilizá tu link para sumar gente a la plataforma de Borwin y comenzá a generar ingresos.
+            Cuando una persona se registre utilizando tu link recibirás el 5% de los ingresos que la
+            persona referida genere en Borwin a través de sus campañas.
+
+          .share_link
+            .twitter_link
+              = link_to("http://borwin.net/I#{current_user.invitation_code}", "http://borwin.net/I#{current_user.invitation_code}", target: "_blank")
+              .center_text
+                %a.sharing-button
+              :javascript
+                addthis.button('.sharing-button', {}, {url: "http://borwin.net/I#{current_user.invitation_code}", title: "Registrate en Borwin y ganá dinero por twittear"});
+
+          %p
+            Este es el link que le tenés que envíar a las personas que referís y a través del cuál ellos se tienen
+            que dar de alta en Borwin.
+
+  .span4
+    .round_box
+      .content
+        %ul.nav.nav-pills.nav-stacked
+          %li
+            = link_to("#{content_tag('i', '&nbsp;'.html_safe, class: 'icon-info-sign').html_safe} &nbsp; Información".html_safe, [:affiliate, :referrals])
+          %li.active
+            = link_to("#{content_tag('i', '&nbsp;'.html_safe, class: 'icon-list-alt icon-white').html_safe} &nbsp; Listado de Referidos".html_safe, [:list, :affiliate, :referrals])
+
+        %hr
+
+        = form_for @user, url: [:update_options, :affiliate, :referrals], html: { class: "form-referrals-options", method: :put } do |f|
+          = f.check_box :mail_on_referral_singup
+          %span.desc Enviarme un email cuando un usuario se registre con mi código de referido
+          %br
+          = f.check_box :mail_on_referral_profit, label: false
+          %span.desc Enviarme un email cuando mis referidos me generen ingresos
+
+          .center_text
+            = f.submit 'Guardar', :class => 'btn btn-primary btn-large'
+
+        %hr
+
+        .center_text
+          = '<a href="https://twitter.com/BorwinAR" class="twitter-follow-button" data-show-count="false" data-lang="es" data-size="large">Seguir en @BorwinAR</a>'.html_safe
+        :javascript
+          !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
+
+
+
+
+

@@ -1,0 +1,85 @@
+- content_for :head do
+  = javascript_include_tag 'http://s7.addthis.com/js/250/addthis_widget.js#username=rorra'
+:javascript
+  var addthis_config = {
+    ui_language: 'es',
+  }
+  var addthis_share = {
+    url: 'http://borwin.net/I#{current_user.invitation_code}',
+    title: 'Registrate en Borwin y ganá dinero por twittear'
+  }
+
+- if flash.any?
+  .row
+    .span12
+      = render '/shared/flash', flash: flash
+
+.row
+  .span8
+    .round_box
+      .content
+        .title Referidos
+
+        %p
+          - if @referrals.count == 0
+            = "Hasta el momento no has referido a ninguna persona. Recomendá Borwin para comenzar a generar ingresos."
+          - else
+            = "Referiste #{@referrals.count} persona#{@referrals.count > 1 ? 's' : ''} que te genero $0 ingresos."
+
+        - if @referrals.count > 0
+          %p
+            ¿No estás conforme? ¡Probá refiriendo más amigos!
+
+        .title.title-margin Como funciona
+
+        %p
+          Utilizá tu link para sumar gente a la plataforma de Borwin y comenzá a generar ingresos.
+          Cuando una persona se registre utilizando tu link recibirás el 5% de los ingresos que la
+          persona referida genere en Borwin a través de sus campañas.
+
+        .title.title-margin Tu link
+
+        .share_link
+          .twitter_link
+            = link_to("http://borwin.net/I#{current_user.invitation_code}", "http://borwin.net/I#{current_user.invitation_code}", target: "_blank")
+            .center_text
+              %a.sharing-button
+            :javascript
+              addthis.button('.sharing-button', {}, {url: "http://borwin.net/I#{current_user.invitation_code}", title: "Registrate en Borwin y ganá dinero por twittear"});
+
+        %p
+          Este es el link que le tenés que envíar a las personas que referís y a través del cuál ellos se tienen
+          que dar de alta en Borwin.
+
+
+  .span4
+    .round_box
+      .content
+        %ul.nav.nav-pills.nav-stacked
+          %li.active
+            = link_to("#{content_tag('i', '&nbsp;'.html_safe, class: 'icon-info-sign icon-white').html_safe} &nbsp; Información".html_safe, [:affiliate, :referrals])
+          %li
+            = link_to("#{content_tag('i', '&nbsp;'.html_safe, class: 'icon-list-alt').html_safe} &nbsp; Listado de Referidos".html_safe, [:list, :affiliate, :referrals])
+
+        %hr
+
+        = form_for @user, url: [:update_options, :affiliate, :referrals], html: { class: "form-referrals-options", method: :put } do |f|
+          = f.check_box :mail_on_referral_singup
+          %span.desc Enviarme un email cuando un usuario se registre con mi código de referido
+          %br
+          = f.check_box :mail_on_referral_profit, label: false
+          %span.desc Enviarme un email cuando mis referidos me generen ingresos
+
+          .center_text
+            = f.submit 'Guardar', :class => 'btn btn-primary btn-large'
+
+        %hr
+
+        .center_text
+          = '<a href="https://twitter.com/BorwinAR" class="twitter-follow-button" data-show-count="false" data-lang="es" data-size="large">Seguir en @BorwinAR</a>'.html_safe
+        :javascript
+          !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
+
+
+
+

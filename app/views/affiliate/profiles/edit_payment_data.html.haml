@@ -1,0 +1,14 @@
+.row
+  .span6.offset3
+    = simple_form_for(@influencer, :url => influencer_profiles_process_payment_data_path, :html => { :class => "form-horizontal round_form" }) do |f|
+      %h1.form_title Datos para cobros
+      = render '/shared/simple_form_errors', :f => f
+      = f.input :preferred_payment, :as => :select, collection: ['Cheque', 'Transferencia Bancaria']
+      = f.input :account_number
+      = f.input :account_type, as: :select, collection: ['Caja de Ahorro', 'Cuenta Corriente'], include_blank: false
+      = f.input :cbu
+      = f.input :bank_name, as: :select, collection: ["Citi", "Standard Bank", "Santander Río", "Banco Francés", "Banco Macro", "Banco Galicia", "Banco Nación", "Banco Provincia", "Banco Ciudad", "Banco Patagonia", "Banco Hipotecario", "Banco Credicoop"]
+
+      .form-actions
+        = f.submit 'Guardar', :class => 'btn btn-primary btn-large'
+        = link_to 'Cancelar', influencer_dashboard_path, class: 'btn btn-large'
