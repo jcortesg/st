@@ -15,7 +15,6 @@ Borwin::Application.routes.draw do
       resource :audience, only: [:show, :edit, :update]
     end
 
-
     resources :users do
       member do
         put :approve

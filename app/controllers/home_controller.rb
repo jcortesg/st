@@ -77,9 +77,9 @@ class HomeController < ApplicationController
   # http://localhost:3000/IRI55AU
   def invitation
     if User.where(invitation_code: params[:invitation_code]).exists?
-      user = User.where(invitation_code: params[:invitation_code]).first
-      session[:referrer_id] = user.id
-      redirect_to influencer_devise_registration_path
+      @referrer = User.where(invitation_code: params[:invitation_code]).first
+      session[:referrer_id] = @referrer.id
+      #redirect_to influencer_devise_registration_path
     else
       flash[:error] = "El código de invitación no es válido"
       redirect_to root_path

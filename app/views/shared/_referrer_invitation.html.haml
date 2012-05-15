@@ -1,0 +1,6 @@
+.center_text
+  - if referrer.role == 'influencer'
+    = image_tag(referrer.influencer.twitter_image_url, style: 'display: inline')
+    = "Fuiste invitado al sitio por #{referrer.influencer.full_name}"
+  - elsif referrer.role == 'advertiser'
+    = "Fuiste invitado al sitio por #{referrer.advertiser.full_name}"
