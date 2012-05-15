@@ -1,6 +1,6 @@
 # encoding: utf-8
 class Influencer::ReferralsController < ApplicationController
-  before_filter :authenticate_user!, :check_twitter_linked
+  before_filter :authenticate_user!, :check_twitter_linked, :require_influencer
 
   # Shows the information for getting referrals and the money so far
   def index

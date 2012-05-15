@@ -1,7 +1,7 @@
 # encoding: utf-8
 class Influencer::RegistrationController < ApplicationController
   before_filter :authenticate_user!, except: [:new, :create]
-  #before_filter :require_influencer, except: [:new, :create]
+  before_filter :require_influencer, except: [:new, :create]
   before_filter :check_twitter_credentials, only:  [:new, :create]
   before_filter :check_twitter_linked, except: [:new, :create, :link_twitter]
 

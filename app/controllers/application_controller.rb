@@ -64,7 +64,7 @@ class ApplicationController < ActionController::Base
 
   # Checks that the logged in user is an advertiser
   def require_advertiser
-    unless current_user && current_user.role == 'affiliate'
+    unless current_user && current_user.role == 'advertiser'
       flash[:error] = "Usted no es un anunciante"
       redirect_to(current_user ? home_path_for(current_user) : root_path)
     end

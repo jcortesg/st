@@ -1,5 +1,5 @@
 class Affiliate::ProfilesController < ApplicationController
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, :require_affiliate
 
   # Shows the affiliate profiles
   def show

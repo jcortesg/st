@@ -1,5 +1,5 @@
 class Affiliate::ReferralsController < ApplicationController
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, :require_affiliate
 
   # Shows the information for getting referrals and the money so far
   def index
