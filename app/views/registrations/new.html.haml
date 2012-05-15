@@ -18,6 +18,9 @@
         = a.input :last_name
         = a.input :company
         = a.input :phone
+      - if @referrer
+        = f.input :referrer_id, as: :hidden, input_html: { value: @referrer.id }
+        = f.input :referrer_on, as: :hidden, input_html: { value: Date.today.strftime("%m-%d-%Y") }
 
       .form-actions
         = f.submit 'Registrarse', :class => 'btn btn-primary btn-large'

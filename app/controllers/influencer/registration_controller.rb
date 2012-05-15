@@ -10,9 +10,7 @@ class Influencer::RegistrationController < ApplicationController
     @user = User.new
     @user.role = 'influencer'
     @user.build_influencer
-    if session[:referrer_id]
-      @referrer = User.where(:id => session[:referrer_id]).first
-    end
+    @referrer = User.where(:id => session[:referrer_id]).first if session[:referrer_id]
   end
 
   # Creates a new influencer
@@ -30,12 +28,13 @@ class Influencer::RegistrationController < ApplicationController
 
     if @user.save
       # Clear session values
-      session['twitter_screen_name'] = session['twitter_uid'] = session['twitter_token'] = session['twitter_secret'] = nil
+      session[:referrer_id] = session['twitter_screen_name'] = session['twitter_uid'] = session['twitter_token'] = session['twitter_secret'] = nil
       # Login user
       sign_in(:user, @user)
       # Complete profiles
       redirect_to action: :step_2
     else
+      @referrer = User.where(:id => session[:referrer_id]).first if session[:referrer_id]
       render action: :new
     end
   end
