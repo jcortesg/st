@@ -32,14 +32,22 @@
               - @referrals.each do |referral|
                 %tr
                   %td.td1
-                    .photo
-                      = "#{image_tag(referral.influencer.try(:twitter_image_url), style: 'display: inline')}".html_safe
-                    .data
-                      = link_to("@#{referral.twitter_screen_name}", "http://twitter.com/#!/#{referral.twitter_screen_name}", target: "_blank")
-                      %br
-                      = referral.influencer.try(:audience).try(:followers)
-                      seguidores
-                  %td.td2= number_to_currency referral.influencer.fixed_tweet_fee.to_f
+                    - if referral.role == 'influencer'
+                      .photo
+                        = "#{image_tag(referral.influencer.try(:twitter_image_url), style: 'display: inline')}".html_safe
+                      .data
+                        = link_to("@#{referral.twitter_screen_name}", "http://twitter.com/#!/#{referral.twitter_screen_name}", target: "_blank")
+                        %br
+                        = referral.influencer.try(:audience).try(:followers)
+                        seguidores
+                    - elsif referral.role == 'advertiser'
+                      .data
+                        = referral.advertiser.try(:full_name)
+                  %td.td2
+                    - if referral.role == 'influencer'
+                      = number_to_currency referral.influencer.fixed_tweet_fee.to_f
+                    - elsif referral.role == 'advertiser'
+                      = "-"
                   %td.td3= "$ 0.00"
                   %td.td4= referral.referrer_on.try(:strftime, "%d/%m/%Y")
         - else
