@@ -8,4 +8,12 @@ class Advertiser < ActiveRecord::Base
   validates :phone, :presence => true
 
   attr_accessible :first_name, :last_name, :twitter_username, :company, :address, :city, :state, :country, :zip_code, :phone
+
+  def full_name
+    if company.blank?
+      "#{self.first_name} #{self.last_name}"
+    else
+      self.company
+    end
+  end
 end
