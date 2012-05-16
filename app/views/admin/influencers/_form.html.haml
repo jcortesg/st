@@ -1,8 +1,9 @@
 - if f.object.new_record?
   = f.input :twitter_screen_name, required: true
 = f.input :email
-= f.input :password, required: true
-= f.input :password_confirmation, required: true
+- if f.object.new_record?
+  = f.input :password, required: true
+  = f.input :password_confirmation, required: true
 = f.simple_fields_for :influencer do |i|
   = i.input :first_name
   = i.input :last_name

@@ -1,0 +1,14 @@
+= f.input :email
+- if f.object.new_record?
+  = f.input :password, required: true
+  = f.input :password_confirmation, required: true
+= f.simple_fields_for :advertiser do |i|
+  = i.input :first_name
+  = i.input :last_name
+  = i.input :company
+  = i.input :address
+  = i.input :city
+  = i.input :state
+  = i.input :country
+  = i.input :zip_code
+  = i.input :phone

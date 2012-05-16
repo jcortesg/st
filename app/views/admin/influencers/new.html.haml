@@ -6,7 +6,7 @@
 
       .form-actions
         = f.submit 'Guardar', :class => 'btn btn-primary btn-large'
-        = link_to 'Cancelar', influencer_profile_path, class: 'btn btn-large'
+        = link_to 'Cancelar', [:admin, :influencers], class: 'btn btn-large'
 
 :javascript
   $(document).ready(function() {
