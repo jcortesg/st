@@ -10,6 +10,10 @@ class Advertiser < ActiveRecord::Base
   attr_accessible :first_name, :last_name, :twitter_username, :company, :address, :city, :state, :country, :zip_code, :phone
 
   def full_name
+    "#{self.first_name} #{self.last_name}"
+  end
+
+  def to_s
     if company.blank?
       "#{self.first_name} #{self.last_name}"
     else

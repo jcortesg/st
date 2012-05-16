@@ -42,7 +42,7 @@
                         seguidores
                     - elsif referral.role == 'advertiser'
                       .data
-                        = referral.advertiser.try(:full_name)
+                        = referral.advertiser.to_s
                   %td.td2
                     - if referral.role == 'influencer'
                       = number_to_currency referral.influencer.fixed_tweet_fee.to_f

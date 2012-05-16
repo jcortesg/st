@@ -21,7 +21,7 @@
       - if @referral.role == 'influencer'
         = "#{@referral.influencer.full_name} (#{link_to("@" + @referral.twitter_screen_name, "http://twitter.com/#!/" + @referral.twitter_screen_name)}"
       - elsif @referral.role == 'advertiser'
-        = "#{@referral.advertiser.full_name}"
+        = "#{@referral.advertiser.to_s}"
       se ha registrado en el sitio y ahora es parte de tus referidos.
     %p.style4 Gracias por elegirnos,
     %p.style4
