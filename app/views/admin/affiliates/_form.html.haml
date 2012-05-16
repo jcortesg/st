@@ -1,0 +1,19 @@
+= f.input :email
+- if f.object.new_record?
+  = f.input :password, required: true
+  = f.input :password_confirmation, required: true
+= f.simple_fields_for :affiliate do |i|
+  = i.input :first_name
+  = i.input :last_name
+  = i.input :company
+  = i.input :address
+  = i.input :city
+  = i.input :state
+  = i.input :country
+  = i.input :zip_code
+  = i.input :phone
+  = i.input :preferred_payment, :as => :select, collection: ['Cheque', 'Transferencia Bancaria']
+  = i.input :account_number
+  = i.input :account_type, as: :select, collection: ['Caja de Ahorro', 'Cuenta Corriente'], include_blank: false
+  = i.input :cbu
+  = i.input :bank_name, as: :select, collection: ["Citi", "Standard Bank", "Santander Río", "Banco Francés", "Banco Macro", "Banco Galicia", "Banco Nación", "Banco Provincia", "Banco Ciudad", "Banco Patagonia", "Banco Hipotecario", "Banco Credicoop"]
