@@ -12,5 +12,15 @@ class Affiliate < ActiveRecord::Base
                   :cell_phone, :contact_time, :contact_method, :preferred_payment, :account_number, :account_type, :cbu,
                   :bank_name, :fixed_tweet_fee, :fixed_cpc_fee, :combined_tweet_fee, :combined_cpc_fee
 
+  def full_name
+    "#{self.first_name} #{self.last_name}"
+  end
 
+  def to_s
+    if company.blank?
+      "#{self.first_name} #{self.last_name}"
+    else
+      self.company
+    end
+  end
 end

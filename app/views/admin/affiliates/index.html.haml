@@ -1,0 +1,46 @@
+- if flash.any?
+  .row
+    .span12
+      = render '/shared/flash', flash: flash
+
+.row
+  .span12
+    .round_box
+      .content
+        .right
+          = link_to('Crear Agencia', [:new, :admin, :affiliate], :class => 'btn btn-primary')
+        %h1.title Agencias
+
+        %table.table.table-striped
+          %thead
+            %tr
+              %th= sort_link(@search, :first_name_and_last_name, 'Nombre')
+              %th= sort_link(@search, :company, 'Empresa')
+              %th= sort_link(@search, :user_email, 'Email')
+              %th= sort_link(@search, :created_at, "Creado")
+              %th Acciones
+
+          %tbody
+            - @affiliates.each do |affiliate|
+              %tr{ :class => cycle('odd', 'even') }
+                %td= link_to(affiliate.full_name, [:admin, affiliate])
+                %td= affiliate.company
+                %td= affiliate.user.email
+                %td= affiliate.created_at ? (localize(affiliate.created_at, :format => "%d/%m/%Y")) : ""
+                %td
+                  = link_to('Editar', [:edit, :admin, affiliate], class: 'btn btn-primary')
+                  = link_to('Eliminar', [:admin, affiliate], method: :delete, class: 'btn btn-danger', confirm: "Esta seguro que desea eliminar al anunciante y todo su historial?" )
+        .center_text
+          = paginate @affiliates
+
+        .filters
+          .subtitle Filtros
+          = simple_form_for @search, :url => [:admin, :affiliates], html: {method: :get, id: 'filter_form', class: 'form-horizontal'} do |f|
+            = f.input :first_name_or_last_name_contains, label: "Nombre", required: false
+            = f.input :company_contains, label: "Empresa", required: false
+            = f.input :user_email_equals, label: "Email", required: false
+            .form-actions
+              = f.submit 'Filtrar', :class => 'btn btn-primary'
+              = link_to 'Resetear', '#', :class => 'btn reset'
+
+
