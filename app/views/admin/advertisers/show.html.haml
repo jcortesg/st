@@ -1,0 +1,39 @@
+- if flash.any?
+  .row
+    .span12
+      = render '/shared/flash', flash: flash
+.row
+  .span12
+    .round_box
+      .content
+        %h1.title Anunciante
+        %dl.record_details
+          %dt Email
+          %dd= dl_value @advertiser.user.email
+          %dt Nombre
+          %dd= dl_value @advertiser.first_name
+          %dt Apellido
+          %dd= dl_value @advertiser.last_name
+          %dt Empresa
+          %dd= dl_value @advertiser.company
+          %dt Dirección
+          %dd= dl_value @advertiser.address
+          %dt Ciudad
+          %dd= dl_value @advertiser.city
+          %dt Provincia
+          %dd= dl_value @advertiser.state
+          %dt País
+          %dd= dl_value @advertiser.country
+          %dt Código Postal
+          %dd= dl_value @advertiser.zip_code
+          %dt Teléfono
+          %dd= dl_value @advertiser.phone
+          %dt Fecha creación
+          %dd= dl_value @advertiser.created_at.try(:strftime, "%d/%m/%Y")
+          %dt Fecha actualización
+          %dd= dl_value @advertiser.updated_at.try(:strftime, "%d/%m/%Y")
+      .clear.center_text.show_buttons
+        = link_to('Editar', [:edit, :admin, @advertiser], class: 'btn btn-primary')
+        = link_to('Eliminar', [:admin, @advertiser], method: :delete, class: 'btn btn-danger', confirm: "Esta seguro que desea eliminar al anunciante y todo su historial?" )
+        = link_to('Listado', [:admin, :advertisers], class: 'btn btn-primary')
+
