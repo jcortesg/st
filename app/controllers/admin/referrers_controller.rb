@@ -38,21 +38,19 @@ class Admin::ReferrersController < ApplicationController
   end
 
 
-  # Shows the form to edit a referrer
+  # Shows the form to edit a referral
   def edit
-    @referrer = Referrer.find(params[:id])
-    @user = @referrer.user
+    @referral = User.find(params[:id])
   end
 
-  # Process the update of a referrer
+  # Process the update of a referral
   def update
-    @referrer = Referrer.find(params[:id])
-    @user = @referrer.user
-    if @user.update_attributes(params[:referrer])
-      flash[:notice] = "El anunciante #{@referrer.full_name} fue actualizado con éxito"
-      redirect_to [:admin, @referrer]
+    @referral = User.find(params[:id])
+    if @referral.update_attributes(params[:user])
+      flash[:notice] = "El referido ha sido actualizado con éxito"
+      redirect_to admin_referrer_path(@referral)
     else
-      flash[:error] = "Hubo un error al intentar actualizar el anuncianate"
+      flash[:error] = "Hubo un error al intentar actualizar el referido"
       render action: :edit
     end
   end

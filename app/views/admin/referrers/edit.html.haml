@@ -1,0 +1,17 @@
+.row
+  .span6.offset3.round_box
+    = simple_form_for(@referral, url: admin_referrer_path(@referral), html:  { class: "form-horizontal round_form", method: :put }) do |f|
+      %h1.form_title Referido
+      .control-group.string.optional
+        = label_tag 'Usuario', nil, class: 'string optional control-label'
+        .controls
+          = text_field_tag 'usuario', @referral.referrer.full_name, class: 'string optional', size: 50, disabled: 'disabled'
+      .control-group.string.optional
+        = label_tag 'Referido', nil, class: 'string optional control-label'
+        .controls
+          = text_field_tag 'referido', @referral.full_name, class: 'string optional', size: 50, disabled: 'disabled'
+      = f.input :referrer_commission, label: "Comisión"
+
+      .form-actions
+        = f.submit 'Guardar', :class => 'btn btn-primary btn-large'
+        = link_to 'Cancelar', [:admin, :referrers], class: 'btn btn-large'
