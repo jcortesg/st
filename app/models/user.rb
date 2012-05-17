@@ -132,6 +132,19 @@ class User < ActiveRecord::Base
     self.invitation_code = code
   end
 
+  # Gets the full name for the user
+  def full_name
+    if advertiser
+      advertiser.full_name
+    elsif influencer
+      influencer.full_name
+    elsif affiliate
+      affiliate.full_name
+    else
+      email
+    end
+  end
+
   private
 
   # Just needs password if the encrypted password is not there

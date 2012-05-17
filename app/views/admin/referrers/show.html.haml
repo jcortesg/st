@@ -1,0 +1,23 @@
+- if flash.any?
+  .row
+    .span12
+      = render '/shared/flash', flash: flash
+.row
+  .span12
+    .round_box
+      .content
+        %h1.title Referido
+        %dl.record_details
+          %dt Usuario
+          %dd= dl_value @referral.referrer.full_name
+          %dt Referido
+          %dd= dl_value @referral.full_name
+          %dt Comisión
+          %dd= dl_value "#{@referral.referrer_commission} %"
+          %dt Fecha creación
+          %dd= dl_value @referral.referrer_on.try(:strftime, "%d/%m/%Y")
+      .clear.center_text.show_buttons
+        = link_to('Editar', edit_admin_referrer_path(@referral), class: 'btn btn-primary')
+        = link_to('Eliminar', admin_referrer_path(@referral), method: :delete, class: 'btn btn-danger', confirm: "Esta seguro que desea eliminar al referido?" )
+        = link_to('Listado', [:admin, :referrers], class: 'btn btn-primary')
+

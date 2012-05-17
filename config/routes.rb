@@ -22,7 +22,7 @@ Borwin::Application.routes.draw do
       end
     end
 
-    resources :referrers, only: [:index, :show, :edit, :update]
+    resources :referrers
   end
 
   # Affiliate routes

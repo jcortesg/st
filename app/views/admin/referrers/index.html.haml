@@ -1,0 +1,46 @@
+- if flash.any?
+  .row
+    .span12
+      = render '/shared/flash', flash: flash
+
+.row
+  .span12
+    .round_box
+      .content
+        .right
+          = link_to('Crear Referido', [:new, :admin, :referrer], :class => 'btn btn-primary')
+        %h1.title Agencias
+
+        %table.table.table-striped
+          %thead
+            %tr
+              %th= sort_link(@search, :referrer_first_name_and_last_name, 'Usuario')
+              %th= sort_link(@search, :user_first_name_and_last_name, 'Referido')
+              %th= sort_link(@search, :referrer_commission, 'Comisión (%)')
+              %th= sort_link(@search, :referrer_on, "Creado")
+              %th Acciones
+
+          %tbody
+            - @referrals.each do |referral|
+              %tr{ :class => cycle('odd', 'even') }
+                %td= link_to(referral.referrer.full_name, admin_referrer_path(referral))
+                %td= referral.full_name
+                %td= referral.referrer_commission
+                %td= localize(referral.referrer_on, :format => "%d/%m/%Y")
+                %td
+                  = link_to('Editar', edit_admin_referrer_path(referral), class: 'btn btn-primary')
+                  = link_to('Eliminar', admin_referrer_path(referral), method: :delete, class: 'btn btn-danger', confirm: "Esta seguro que desea eliminar la relación de referido?" )
+        .center_text
+          = paginate @referrals
+
+        .filters
+          .subtitle Filtros
+          = simple_form_for @search, :url => [:admin, :referrers], html: {method: :get, id: 'filter_form', class: 'form-horizontal'} do |f|
+            = f.input :email_equals, label: "Email", required: false
+            .form-actions
+              = f.submit 'Filtrar', :class => 'btn btn-primary'
+              = link_to 'Resetear', '#', :class => 'btn reset'
+
+
+
+
