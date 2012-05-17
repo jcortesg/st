@@ -27,6 +27,10 @@ class Influencer::RegistrationController < ApplicationController
     @user.twitter_secret = session['twitter_secret']
 
     if @user.save
+      # Set the referrer commission
+      if session[:referrer_id]
+        @user.update_attribute(:referrer_commission, 5)
+      end
       # Clear session values
       session[:referrer_id] = session['twitter_screen_name'] = session['twitter_uid'] = session['twitter_token'] = session['twitter_secret'] = nil
       # Login user

@@ -21,6 +21,8 @@ Borwin::Application.routes.draw do
         put :disapprove
       end
     end
+
+    resources :referrers, only: [:index, :show, :edit, :update]
   end
 
   # Affiliate routes

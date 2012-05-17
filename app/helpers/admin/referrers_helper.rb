@@ -1,0 +1,2 @@
+module Admin::ReferrersHelper
+end

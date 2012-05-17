@@ -31,7 +31,10 @@ class RegistrationsController < Devise::RegistrationsController
     if @user.save
       # Update the commission if the created user is an advertiser and there is a session for the invitation
       if session[:referrer_id] && @user.role == 'advertiser'
-        @user.update_attribute(:referrer_commission, 0.10)
+        @user.update_attribute(:referrer_commission, 10)
+      end
+      if session[:referrer_id] && @user.role == 'influencer'
+        @user.update_attribute(:referrer_commission, 5)
       end
       session[:referrer_id] = nil
 
