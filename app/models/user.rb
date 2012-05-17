@@ -18,6 +18,8 @@ class User < ActiveRecord::Base
   validates :password, presence: true, length: { within: 6..20 }, if: :needs_password?
   validates :password_confirmation, presence: true, length:  { :within => 6..20, if: :password_confirmation }, if: :needs_password?
 
+  validates :referrer_commission, numericality: { greater_than: 0, less_than_or_equal_to: 100, allow_nil: true}
+
   accepts_nested_attributes_for :affiliate
   accepts_nested_attributes_for :advertiser
   accepts_nested_attributes_for :influencer
