@@ -26,7 +26,7 @@
                 %td= link_to(referral.referrer.full_name, admin_referrer_path(referral))
                 %td= referral.full_name
                 %td= referral.referrer_commission
-                %td= localize(referral.referrer_on, :format => "%d/%m/%Y")
+                %td= referral.referrer_on.blank? ? '' : localize(referral.referrer_on, :format => "%d/%m/%Y")
                 %td
                   = link_to('Editar', edit_admin_referrer_path(referral), class: 'btn btn-primary')
                   = link_to('Eliminar', admin_referrer_path(referral), method: :delete, class: 'btn btn-danger', confirm: "Esta seguro que desea eliminar la relación de referido?" )
