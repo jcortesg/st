@@ -5,5 +5,6 @@ namespace :borwin do
       next unless influencer.user.twitter_linked?
       influencer.update_audience
     end
+    puts "#{Influencer.count} influencer accounts updated"
   end
 end
