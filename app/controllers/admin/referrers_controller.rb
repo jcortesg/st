@@ -59,14 +59,12 @@ class Admin::ReferrersController < ApplicationController
 
   # Deletes a referrer
   def destroy
-    @referrer = Referrer.find(params[:id])
-    @user = @referrer.user
-    if @user.destroy
-      flash[:notice] = "El anunciante #{@referrer.full_name} fue eliminado del sistema"
-    else
-      flash[:notice] = "Hubo un error al intentar eliminar el anunciante"
-    end
-
+    @referral = User.find(params[:id])
+    @referral.referrer_id = nil
+    @referral.referrer_on = nil
+    @referrer.referrer_commission = nil
+    @referrer.save
+    flash[:notice] = "La relación de refrido fue eliminada"
     redirect_to action: :index
-  end  
+  end
 end
