@@ -35,6 +35,7 @@ group :test do
   gem 'simplecov'                      # Code coverage
   gem 'database_cleaner'               # Clean database strategy
   gem 'factory_girl_rails'             # Fixtures
+  gem 'ffaker'                         # Generate test data
 end
 
 group :development, :test do

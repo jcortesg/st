@@ -17,6 +17,13 @@ class Influencer < ActiveRecord::Base
                   :cell_phone, :contact_time, :contact_method, :preferred_payment, :account_number, :account_type, :cbu,
                   :bank_name, :fixed_tweet_fee, :fixed_cpc_fee, :combined_tweet_fee, :combined_cpc_fee
 
+
+  class << self
+    def influencer_types
+      ["Actor", "Músico", "Deportista", "Conductor", "Periodista", "Modelo", "Mediático", "Artista", "Panelista", "Cheff", "Humorista", "Moda", "Twitteros", "Otros"]
+    end
+  end
+
   # User full name
   def full_name
   	"#{self.first_name} #{self.last_name}"
