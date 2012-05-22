@@ -11,8 +11,8 @@
       = render '/shared/simple_form_errors', :f => f
       = hidden_field_tag :user_role, resource.role
       = f.input :email
-      = f.input :password
-      = f.input :password_confirmation
+      = f.input :password, required: true
+      = f.input :password_confirmation, required: true
       = f.simple_fields_for :advertiser do |a|
         = a.input :first_name
         = a.input :last_name
