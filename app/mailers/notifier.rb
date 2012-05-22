@@ -36,4 +36,14 @@ class Notifier < ActionMailer::Base
     
     mail(to: referrer.email, subject: "Notificaciones @ Borwin - Tienes un nuevo referido")
   end
+
+  # A user has sign up
+  def user_sign_up(user)
+    @user = user
+
+    attachments.inline['logo.jpg'] = File.read(Rails.root.join('app/assets/images/logo.jpg'))
+    attachments.inline['sellochico.jpg'] = File.read(Rails.root.join('app/assets/images/sellochico.jpg'))
+
+    mail(to: 'info@borwin.com.ar', subject: "Notificaciones @ Borwin - Nuevo usuario registrado")
+  end
 end

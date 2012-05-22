@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable, :timeoutable
 
   before_create :set_invitation_code
-  after_create :send_referral_mail
+  after_create :send_referral_mail, :send_registration_email
 
   validates :email, presence: true, format: { with: /\A[^@]+@([^@\.]+\.)+[^@\.]+\z/ }
   validates :password, presence: true, length: { within: 6..20 }, if: :needs_password?
@@ -157,5 +157,10 @@ class User < ActiveRecord::Base
     if referrer && referrer.mail_on_referral_singup
       Notifier.referral_sign_up(self.referrer, self).deliver
     end
+  end
+
+  # Sens the email to the admin when a user registers into the website
+  def send_registration_email
+    Notifier.user_sign_up(self).deliver
   end
 end
