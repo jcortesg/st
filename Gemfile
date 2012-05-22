@@ -33,6 +33,8 @@ end
 group :test do
   gem 'turn', :require => false        # Test output
   gem 'simplecov'                      # Code coverage
+  gem 'database_cleaner'               # Clean database strategy
+  gem 'factory_girl_rails'             # Fixtures
 end
 
 group :development, :test do
