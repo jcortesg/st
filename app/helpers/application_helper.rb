@@ -24,13 +24,15 @@ module ApplicationHelper
     value.nil? || value.size == 0 ? '&nbsp;'.html_safe : value
   end
 
-  # TODO: Delete
-  def current_entity_id
-    user_session[:entity_id].to_s
-  end
-
-  # TODO: Delete
-  def current_entity_name
-    user_session[:entity_name].to_s
+  # Gets the change password path for the current user
+  def change_password_path(user)
+    case user.role
+      when 'affiliate'
+        affiliate_profiles_update_password_path
+      when 'advertiser'
+        advertiser_profiles_update_password_path
+      when 'influencer'
+        influencer_profiles_update_password_path
+    end
   end
 end

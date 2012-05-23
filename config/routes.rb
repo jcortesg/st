@@ -55,6 +55,10 @@ Borwin::Application.routes.draw do
   # Advertiser routes
   match '/advertiser' => 'advertiser/dashboard#index', :as => :advertiser_dashboard
   namespace :advertiser do
+    namespace :profiles do
+      get :change_password
+      put :update_password
+    end
   end
 
   # Influencer routes
@@ -79,6 +83,8 @@ Borwin::Application.routes.draw do
       get :edit_payment_data
       put :process_payment_data
       put :update_photo
+      get :change_password
+      put :update_password
     end
     resources :campaigns, only: [:index, :show]
     resources :referrals, only: [:index, :show] do

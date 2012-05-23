@@ -67,6 +67,7 @@ class Affiliate::ProfilesController < ApplicationController
   # Shows the form to change the password
   def change_password
     @user = current_user
+    render template: '/shared/profiles/change_password'
   end
 
   # Updates the password
@@ -74,10 +75,12 @@ class Affiliate::ProfilesController < ApplicationController
     @user = current_user
     if @user.update_attributes(params[:user])
       flash[:success] = "Tu contraseña fue modificada."
-      redirect_to home_path_for(@suer)
+      @user.reload
+      sign_in(@user)
+      redirect_to home_path_for(@user)
     else
       flash[:error] = "Hubo un error al actualizar tu contraseña."
-      render action: :change_password
+      render template: '/shared/profiles/change_password'
     end
   end
 end
