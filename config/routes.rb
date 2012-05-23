@@ -55,6 +55,9 @@ Borwin::Application.routes.draw do
   # Advertiser routes
   match '/advertiser' => 'advertiser/dashboard#index', :as => :advertiser_dashboard
   namespace :advertiser do
+    resources :campaigns do
+      get :archived, on: :collection
+    end
     namespace :profiles do
       get :show
       get :edit

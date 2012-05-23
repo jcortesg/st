@@ -5,7 +5,8 @@ module ApplicationHelper
       when 'admin'
         admin_dashboard_path
       when 'advertiser'
-        advertiser_dashboard_path
+        #advertiser_dashboard_path
+        advertiser_campaigns_path
       when 'affiliate'
         #affiliate_dashboard_path
         affiliate_referrals_path
