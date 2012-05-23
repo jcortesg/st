@@ -25,10 +25,15 @@
             %ul.nav
               - if user_signed_in?
                 - if current_user.advertiser?
-                  %li= link_to "Celebridades", "#"
                   %li= link_to "Campañas", "#"
-                  %li= link_to "Tweets", "#"
                   %li= link_to "Transacciones", "#"
+                  %li.dropdown
+                    %a{:href => '#', :class => 'dropdown-toggle', 'data-toggle' => 'dropdown'}
+                      = "Perfil"
+                      %b.caret
+                    %ul.dropdown-menu
+                      %li= link_to 'Mis Datos', advertiser_profiles_show_path
+                      %li= link_to 'Cambiar Contraseña', advertiser_profiles_change_password_path
                 - elsif current_user.influencer?
                   %li.dropdown
                     %a{:href => '#', :class => 'dropdown-toggle', 'data-toggle' => 'dropdown'}

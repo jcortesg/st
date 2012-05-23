@@ -56,6 +56,9 @@ Borwin::Application.routes.draw do
   match '/advertiser' => 'advertiser/dashboard#index', :as => :advertiser_dashboard
   namespace :advertiser do
     namespace :profiles do
+      get :show
+      get :edit
+      put :update
       get :change_password
       put :update_password
     end

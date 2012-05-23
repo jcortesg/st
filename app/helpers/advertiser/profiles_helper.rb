@@ -1,0 +1,2 @@
+module Advertiser::ProfilesHelper
+end

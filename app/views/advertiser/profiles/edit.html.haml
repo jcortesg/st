@@ -1,0 +1,21 @@
+.row.registration_container
+  .span6.offset3.round_box
+    = simple_form_for(@user, :url => advertiser_profiles_update_path, :html => { class: "form-horizontal round_form", method: :put }) do |f|
+      %h1.form_title Perfil
+      = render '/shared/simple_form_errors', :f => f
+      = f.input :email
+      = f.simple_fields_for :advertiser do |a|
+        = a.input :first_name
+        = a.input :last_name
+        = a.input :company
+        = a.input :phone
+        = a.input :address
+        = a.input :city
+        = a.input :state
+        = a.input :country
+        = a.input :zip_code
+        = a.input :phone
+
+      .form-actions
+        = f.submit 'Guardar', :class => 'btn btn-primary btn-large'
+        = link_to 'Cancelar', advertiser_profiles_show_path, class: 'btn btn-large'
