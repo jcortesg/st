@@ -1,0 +1,22 @@
+.row
+  .span6.offset3.round_box
+    = simple_form_for(@referralship, url: admin_referrers_path, method: :post, html:  { class: "form-horizontal round_form", method: :put }) do |f|
+      %h1.form_title Referido
+
+      = render '/shared/simple_form_errors', :f => f
+
+      = f.input :referrer, as: :select, collection: User.where("role = 'influencer' or role = 'affiliate'").all, label: 'Usuario'
+      = f.input :referral, as: :select, collection: User.where("role = 'influencer' or role = 'advertiser'").all, label: 'Referido'
+      = f.input :referral_on, label: 'Referido desde'
+
+      .form-actions
+        = f.submit 'Guardar', :class => 'btn btn-primary btn-large'
+        = link_to 'Cancelar', [:admin, :affiliates], class: 'btn btn-large'
+
+:javascript
+  $(document).ready(function() {
+    $('#referralship_referral_on').datepicker({
+      changeMonth: true,
+      changeYear: true
+    });
+  })

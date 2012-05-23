@@ -16,6 +16,7 @@ gem 'meta_search'                      # For column sort and search of tables
 gem 'twitter'                          # Twitter
 gem 'nested_form', :git => 'https://github.com/ryanb/nested_form.git' # Nested forms
 gem 'country_select'                   # For country select on user registration
+gem 'active_attr'                      # Tableless models
 
 
 group :assets do

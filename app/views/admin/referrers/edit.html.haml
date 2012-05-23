@@ -2,6 +2,9 @@
   .span6.offset3.round_box
     = simple_form_for(@referral, url: admin_referrer_path(@referral), html:  { class: "form-horizontal round_form", method: :put }) do |f|
       %h1.form_title Referido
+
+      = render '/shared/simple_form_errors', :f => f
+
       .control-group.string.optional
         = label_tag 'Usuario', nil, class: 'string optional control-label'
         .controls

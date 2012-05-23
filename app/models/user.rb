@@ -145,6 +145,11 @@ class User < ActiveRecord::Base
     end
   end
 
+  # Puts the user full name
+  def to_s
+    full_name
+  end
+
   private
 
   # Just needs password if the encrypted password is not there

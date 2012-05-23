@@ -1,3 +1,5 @@
+= render '/shared/simple_form_errors', :f => f
+
 = f.input :email
 - if f.object.new_record?
   = f.input :password, required: true

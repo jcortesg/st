@@ -1,3 +1,4 @@
+= render '/shared/simple_form_errors', :f => f
 - if f.object.new_record?
   = f.input :twitter_screen_name, required: true
 = f.input :email

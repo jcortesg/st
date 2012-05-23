@@ -23,4 +23,5 @@ class Affiliate::ReferralsController < ApplicationController
     end
     redirect_to action: :index
   end
+
 end

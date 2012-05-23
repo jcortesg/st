@@ -14,25 +14,29 @@ class Admin::ReferrersController < ApplicationController
     @referral = User.find(params[:id])
   end
 
-  # Show the form to create a new referrer
+
+  # Shows the form to create a new referrer
   def new
-    @user = User.new
-    @user.build_referrer
+    @referralship = Referralship.new(referral_on: Date.today)
   end
 
-  # Process the creation of a new referrer
+  # Creates a new referrer
   def create
-    @user = User.new(params[:user])
-    @user.role = 'referrer'
-    # Account approved
-    @user.approved = true
+    @referralship = Referralship.new(params[:referralship])
+    if @referralship.valid?
+      # First get the referrer and the referral
+      @referrer = User.find(@referralship.referrer)
+      @referral = User.find(@referralship.referral)
 
-    if @user.save
-      @referrer = @user.referrer
-      flash[:notice] = "El anunciante #{@referrer.full_name} fue creado con éxito"
-      redirect_to [:admin, @referrer]
+      # Now create the referral relationship
+      @referral.referrer = @referrer
+      @referral.referrer_on = Date.today
+      @referral.referrer_commission = @referral.role == 'advertiser' ? 10 : 5
+      @referral.save!
+
+      redirect_to admin_referrer_path(@referral)
     else
-      flash[:error] = "Hubo un error al intentar crear el anunciante"
+      flash[:error] = "Hubo un error al intentar crear la relación de referidos"
       render action: :new
     end
   end

@@ -1,6 +1,8 @@
 .row
   .span6.offset3.round_box
     = simple_form_for(@audience, url: [:admin, @influencer, :audience], html:  { class: "form-horizontal round_form", method: :put }) do |f|
+      = render '/shared/simple_form_errors', :f => f
+
       %h1.form_title Datos Twitter
       = f.input :followers, label: 'Seguidores'
       = f.input :followers_followers, label: 'Seguidores 2° Nivel'
