@@ -38,7 +38,11 @@ FactoryGirl.define do
   end
 
   factory :influencer_user, parent: :user do
-    association :influencer, factory: :influencer
+    twitter_screen_name 'rorra'
+    twitter_token '1'
+    twitter_secret '2'
+    association :influencer, factory: :influencer, strategy: :build
+    twitter_linked true
   end
 
 end

@@ -46,6 +46,16 @@ RSpec.configure do |config|
   end
 
   # Support integration
-  config.include Devise::TestHelpers, :type => :controller
+  config.include Devise::TestHelpers, type: :controller
+  config.include IntegrationSpecHelper, type: :request
 
+  Capybara.default_host = 'http://localhost:3000'
+
+  # Omniauth test configuration
+  OmniAuth.config.test_mode = true
+  OmniAuth.config.add_mock(:twitter, {
+      uid: '12345',
+      info: { nickname: 'rorra' },
+      credentials: { token: '1', secret: '2' }
+  })
 end

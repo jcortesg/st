@@ -31,12 +31,13 @@ group :assets do
 end
 
 group :test do
-  gem 'turn', :require => false        # Test output
-  gem 'simplecov'                      # Code coverage
-  gem 'database_cleaner'               # Clean database strategy
-  gem 'factory_girl_rails'             # Fixtures
-  gem 'ffaker'                         # Generate test data
-  gem 'launchy'                        # To open pages when developing capybara tests
+  gem 'turn', :require => false                  # Test output
+  gem 'simplecov'                                # Code coverage
+  gem 'database_cleaner'                         # Clean database strategy
+  gem 'factory_girl_rails'                       # Fixtures
+  gem 'ffaker'                                   # Generate test data
+  gem 'launchy'                                  # To open pages when developing capybara tests
+  gem 'ruby-debug19', :require => 'ruby-debug'   # Debug on testing
 end
 
 group :development, :test do
