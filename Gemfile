@@ -7,7 +7,7 @@ gem 'capistrano'                       # Deploy
 gem 'haml'                             # Vies
 gem 'mysql2'                           # Database
 gem 'devise'                           # Authentication
-gem 'twitter_oauth'                    # Authentication with twitter
+gem 'omniauth-twitter'                 # Authentication with twitter
 gem 'cancan'                           # Permissions
 gem 'simple_form'                      # Rails form builder
 gem 'paperclip'                        # Image Processing

@@ -83,7 +83,7 @@ class Influencer::RegistrationController < ApplicationController
   # Check that the user is logged in with twitter
   def check_twitter_credentials
     if session['twitter_token'].blank? || session['twitter_secret'].blank?
-      redirect_to influencer_registration_path, :error => "Debes linkear tu cuenta de twitter antes de continuar" and return
+      redirect_to new_user_registration_path, :error => "Debes linkear tu cuenta de twitter antes de continuar" and return
     end
   end
 

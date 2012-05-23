@@ -6,6 +6,12 @@ Borwin::Application.routes.draw do
     get '/users/new_advertiser', :to => 'registrations#new', :as => :advertiser_devise_registration
   end
 
+  # Omniauth
+  match '/auth/:provider/callback' => 'sessions#create'
+  match '/signin' => 'sessions#new', :as => :signin
+  match '/signout' => 'sessions#destroy', :as => :signout
+  match '/auth/failure' => 'sessions#failure'
+
   # Admin routes
   match '/admin' => 'admin/dashboard#index', :as => :admin_dashboard
   namespace :admin do
@@ -78,16 +84,6 @@ Borwin::Application.routes.draw do
       put :update_options, on: :collection
     end
     resources :transactions, only: [:index, :show]
-  end
-
-  # Twitter credentials
-  resources :twitter_credentials, only: [:index] do
-    collection do
-      get "login"
-      get "finalize"
-      get "publish"
-      get "finalize_tweet"
-    end
   end
 
   # Home pages
