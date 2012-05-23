@@ -62,6 +62,7 @@
                     %ul.dropdown-menu
                       %li= link_to 'Datos de contacto', affiliate_profiles_contact_data_path
                       %li= link_to 'Datos de pagos', affiliate_profiles_payment_data_path
+                      %li= link_to 'Cambiar Contraseña', affiliate_profiles_change_password_path
                   %li= link_to "Transacciones", affiliate_transactions_path
                 - elsif current_user.admin?
                   %li.dropdown

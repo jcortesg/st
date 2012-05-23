@@ -1,3 +1,4 @@
+# encoding: utf-8
 class Affiliate::ProfilesController < ApplicationController
   before_filter :authenticate_user!, :require_affiliate
 
@@ -60,6 +61,23 @@ class Affiliate::ProfilesController < ApplicationController
       redirect_to affiliate_profile_path
     else
       render action: show
+    end
+  end
+
+  # Shows the form to change the password
+  def change_password
+    @user = current_user
+  end
+
+  # Updates the password
+  def update_password
+    @user = current_user
+    if @user.update_attributes(params[:user])
+      flash[:success] = "Tu contraseña fue modificada."
+      redirect_to home_path_for(@suer)
+    else
+      flash[:error] = "Hubo un error al actualizar tu contraseña."
+      render action: :change_password
     end
   end
 end

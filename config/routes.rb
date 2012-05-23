@@ -42,6 +42,8 @@ Borwin::Application.routes.draw do
       get :payment_data
       get :edit_payment_data
       put :process_payment_data
+      get :change_password
+      put :update_password
     end
     resources :referrals, only: [:index, :show] do
       get :list, on: :collection
