@@ -16,7 +16,7 @@ FactoryGirl.define do
     phone Faker::PhoneNumber.phone_number
   end
 
-  factory :advertiser_user, class: User do
+  factory :advertiser_user, parent: :user do
     association :advertiser, factory: :advertiser
   end
 
@@ -27,7 +27,7 @@ FactoryGirl.define do
     phone Faker::PhoneNumber.phone_number
   end
 
-  factory :affiliate_user, class: User do
+  factory :affiliate_user, parent: :user do
     association :affiliate, factory: :affiliate
   end
 
@@ -37,7 +37,7 @@ FactoryGirl.define do
     influencer_type Influencer.influencer_types.sample
   end
 
-  factory :influencer_user, class: User do
+  factory :influencer_user, parent: :user do
     association :influencer, factory: :influencer
   end
 

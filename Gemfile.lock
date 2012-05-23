@@ -110,6 +110,8 @@ GEM
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
       railties (>= 3.0.0)
+    launchy (2.1.0)
+      addressable (~> 2.2.6)
     libv8 (3.3.10.4)
     libwebsocket (0.1.3)
       addressable
@@ -254,6 +256,7 @@ DEPENDENCIES
   haml-rails
   jquery-rails
   kaminari
+  launchy
   meta_search
   mysql2
   nested_form!

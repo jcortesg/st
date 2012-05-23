@@ -36,6 +36,7 @@ group :test do
   gem 'database_cleaner'               # Clean database strategy
   gem 'factory_girl_rails'             # Fixtures
   gem 'ffaker'                         # Generate test data
+  gem 'launchy'                        # To open pages when developing capybara tests
 end
 
 group :development, :test do
