@@ -22,7 +22,7 @@ module ApplicationHelper
 
   # Shows a value or &nbsp; for the dl tag
   def dl_value(value)
-    value.nil? || value.size == 0 ? '&nbsp;'.html_safe : value
+    value.blank? || value.size == 0 ? '&nbsp;'.html_safe : value
   end
 
   # Gets the change password path for the current user
