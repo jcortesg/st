@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
 
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable, :timeoutable
 
-  before_create :set_invitation_code
+  before_create :set_invitation_code, :set_referrer_on_date
   after_create :send_referral_mail, :send_registration_email
 
   validates :email, presence: true, format: { with: /\A[^@]+@([^@\.]+\.)+[^@\.]+\z/ }
@@ -151,6 +151,11 @@ class User < ActiveRecord::Base
   end
 
   private
+
+  # When creating a referrer relationship, make sure to add the referrer date
+  def set_referrer_on_date
+    self.referrer_on = Date.today if !referrer_id.blank? && referrer_on.blank?
+  end
 
   # Just needs password if the encrypted password is not there
   def needs_password?

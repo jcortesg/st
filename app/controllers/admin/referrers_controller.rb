@@ -64,9 +64,9 @@ class Admin::ReferrersController < ApplicationController
     @referral = User.find(params[:id])
     @referral.referrer_id = nil
     @referral.referrer_on = nil
-    @referrer.referrer_commission = nil
-    @referrer.save
-    flash[:notice] = "La relación de refrido fue eliminada"
+    @referral.referrer_commission = nil
+    @referral.save
+    flash[:notice] = "La relación de referido fue eliminada"
     redirect_to action: :index
   end
 end
