@@ -19,6 +19,14 @@ class Advertiser::CampaignsController < ApplicationController
     @campaigns = @search.page(params[:page])
   end
 
+  # Shows a campaign
+  def show
+    @campaign = current_role.campaigns.find(params[:id])
+    if @campaign.tweets.count == 0
+      render action: 'no_tweets'
+    end
+  end
+
   # Shows the form to create a new campaign
   def new
     @campaign = Campaign.new
@@ -66,7 +74,7 @@ class Advertiser::CampaignsController < ApplicationController
   def set_audience
     @campaign = current_role.campaigns.find(params[:id])
 
-    if @campaign.udpate_attributes(params[:campaign])
+    if @campaign.update_attributes(params[:campaign])
       flash[:notice] = "Has configurado la audiencia para tu campaña"
       redirect_to [:advertiser, @campaign]
     else

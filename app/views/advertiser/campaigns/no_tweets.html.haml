@@ -1,0 +1,21 @@
+- if flash.any?
+  .row
+    .span12
+      = render '/shared/flash', flash: flash
+
+.row
+  .span12
+    .round_box
+      .content
+        .right
+          = link_to('Crear Nuevo Tweet', [:new, :advertiser, @campaign, :tweet], class: 'btn btn-primary')
+        %h1.title Campañas
+
+
+        %h2
+          Todavía no has creado ningún tweet.
+
+        %br
+        %br
+
+        = link_to("Crear Nuevo Tweet", [:new, :advertiser, @campaign, :tweet], class: 'btn btn-primary')

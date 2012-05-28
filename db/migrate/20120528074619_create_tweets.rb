@@ -14,6 +14,8 @@ class CreateTweets < ActiveRecord::Migration
 
       t.integer :clicks_count, null: false, default: 0
 
+      t.string :status
+
       t.timestamps
     end
 

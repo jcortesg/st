@@ -7,9 +7,43 @@
           %h3 Paso 2 de 2
       = render '/shared/simple_form_errors', :f => f
 
+      = f.input :min_followers
+      = f.input :max_followers
+      = f.input :min_males
+      = f.input :max_males
+      = f.input :min_females
+      = f.input :max_females
+      = f.input :min_kids
+      = f.input :max_kids
+      = f.input :min_adults
+      = f.input :max_adults
+      = f.input :min_elderly
+      = f.input :max_elderly
+      = f.input :min_young_teens
+      = f.input :max_young_teens
+      = f.input :min_mature_teens
+      = f.input :max_mature_teens
+      = f.input :min_young_adults
+      = f.input :max_young_adults
+      = f.input :min_mature_adults
+      = f.input :max_mature_adults
+      = f.input :min_sports
+      = f.input :max_sports
+      = f.input :min_fashion
+      = f.input :max_fashion
+      = f.input :min_music
+      = f.input :max_music
+      = f.input :min_movies
+      = f.input :max_movies
+      = f.input :min_politics
+      = f.input :max_politics
+
+
+
+
 
 
       .form-actions
-        = f.submit 'Crear', :class => 'btn btn-primary btn-large'
+        = f.submit 'Aceptar', :class => 'btn btn-primary btn-large'
         = link_to 'Cancelar', [:advertiser, :campaigns], class: 'btn btn-large'
 
