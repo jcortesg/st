@@ -3,6 +3,8 @@ class CreateCampaigns < ActiveRecord::Migration
     create_table :campaigns do |t|
       t.references :influencer
 
+      t.string :name
+
       t.integer :min_followers
       t.integer :max_followers
 
@@ -14,9 +16,9 @@ class CreateCampaigns < ActiveRecord::Migration
       t.integer :min_kids
       t.integer :max_kids
       t.integer :min_adults
-      t.integer :max_aduls
-      t.integer :min_ederly
-      t.integer :max_ederly
+      t.integer :max_adults
+      t.integer :min_elderly
+      t.integer :max_elderly
 
       t.integer :min_young_teens
       t.integer :max_young_teens
@@ -30,13 +32,16 @@ class CreateCampaigns < ActiveRecord::Migration
       t.integer :min_sports
       t.integer :max_sports
       t.integer :min_fashion
-      t.integer :max_fasion
+      t.integer :max_fashion
       t.integer :min_music
       t.integer :max_music
       t.integer :min_movies
       t.integer :max_movies
       t.integer :min_politics
       t.integer :max_politics
+
+      t.integer :clicks, null: false, default: 0
+      t.decimal :cost, precision: 8, scale: 2, null: false, default: 0
 
       t.timestamps
     end

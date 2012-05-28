@@ -86,6 +86,7 @@ ActiveRecord::Schema.define(:version => 20120528031013) do
 
   create_table "campaigns", :force => true do |t|
     t.integer  "influencer_id"
+    t.string   "name"
     t.integer  "min_followers"
     t.integer  "max_followers"
     t.integer  "min_males"
@@ -95,9 +96,9 @@ ActiveRecord::Schema.define(:version => 20120528031013) do
     t.integer  "min_kids"
     t.integer  "max_kids"
     t.integer  "min_adults"
-    t.integer  "max_aduls"
-    t.integer  "min_ederly"
-    t.integer  "max_ederly"
+    t.integer  "max_adults"
+    t.integer  "min_elderly"
+    t.integer  "max_elderly"
     t.integer  "min_young_teens"
     t.integer  "max_young_teens"
     t.integer  "min_mature_teens"
@@ -109,15 +110,17 @@ ActiveRecord::Schema.define(:version => 20120528031013) do
     t.integer  "min_sports"
     t.integer  "max_sports"
     t.integer  "min_fashion"
-    t.integer  "max_fasion"
+    t.integer  "max_fashion"
     t.integer  "min_music"
     t.integer  "max_music"
     t.integer  "min_movies"
     t.integer  "max_movies"
     t.integer  "min_politics"
     t.integer  "max_politics"
-    t.datetime "created_at",        :null => false
-    t.datetime "updated_at",        :null => false
+    t.integer  "clicks",                                          :default => 0,   :null => false
+    t.decimal  "cost",              :precision => 8, :scale => 2, :default => 0.0, :null => false
+    t.datetime "created_at",                                                       :null => false
+    t.datetime "updated_at",                                                       :null => false
   end
 
   add_index "campaigns", ["influencer_id"], :name => "index_campaigns_on_influencer_id"
