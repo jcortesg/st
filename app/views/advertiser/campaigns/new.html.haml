@@ -1,0 +1,12 @@
+.row
+  .span6.offset3.round_box
+    = simple_form_for(@campaign, url: [:advertiser, @campaign], html:  { class: "form-horizontal round_form" }) do |f|
+      %h1.form_title Nueva Campaña
+      = render '/shared/simple_form_errors', :f => f
+
+      = f.input :name
+
+      .form-actions
+        = f.submit 'Crear', :class => 'btn btn-primary btn-large'
+        = link_to 'Cancelar', [:advertiser, :campaigns], class: 'btn btn-large'
+

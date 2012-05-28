@@ -78,5 +78,17 @@ class ApplicationController < ActionController::Base
     end
   end
 
-
+  # Gets the current role
+  def current_role
+    case current_user.role
+      when 'advertiser'
+        current_user.advertiser
+      when 'influencer'
+        current_user.influencer
+      when 'affiliate'
+        current_user.affiliate
+      else
+        nil
+    end
+  end
 end
