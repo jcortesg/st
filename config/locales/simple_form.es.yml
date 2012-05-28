@@ -70,6 +70,45 @@ es:
         cbu: CBU
         bank_name: Banco
         photo: Foto
+      campaign:
+        advertiser_id: Anunciante
+        name: Nombre
+        archived: Archivada?
+        min_followers: Mínimo seguidores
+        max_followers: Máximo seguidores
+        min_males: Mínimo hombres
+        max_males: Máximo hombres
+        min_females: Mínimo mujeres
+        max_males: Máximo mujeres
+        min_kids: Mínimo chicos
+        max_kids: Máximo chicos
+        min_adults: Mínimo adultos
+        max_adults: Máximo adultos
+        min_elderly: Mínimo ancianos
+        max_elderly: Máximo ancianos
+        min_young_teens: Mínimo Adolecentes Jóvenes
+        max_young_teens: Máximo Adolecentes Jóvenes
+        min_mature_teens: Mínimo Adolecentes Maduros
+        max_mature_teens: Máximo Adolecentes Maduros
+        min_young_adults: Mínimo Adultos Jóvenes
+        max_young_adults: Máximo Adultos Jóvenes
+        min_mature_adults: Mínimo Adultos Maduros
+        max_mature_adults: Máximo Adultos Maduros
+        min_sports: Mínimo deporte
+        max_sports: Máximo deporte
+        min_fashion: Mínimo moda
+        max_fashion: Máximo moda
+        min_music: Mínimo música
+        max_music: Máximo música
+        min_movies: Mínimo películas
+        max_movies: Máximo películas
+        min_politics: Mínimo politicas
+        max_politics: Máximo politicas
+        clicks: Clicks
+        cost: Costo
+
+
+
     hints:
       influencer:
         twitter_username: "Tu nombre de usuario en twitter, ej: rorra"
