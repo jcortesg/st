@@ -77,11 +77,27 @@ class Advertiser::CampaignsController < ApplicationController
 
   # Archives a campaign
   def archive
+    @campaign = current_role.campaigns.find(params[:id])
 
+    if @campaign.update_attribute(:archived, true)
+      flash[:notice] = "La campanaña #{@campaign.name} ha sido archivada"
+      redirect_to [:advertiser, @campaign]
+    else
+      flash[:error] = "Hubo un error al archivar la campaña"
+      redirect_to :back
+    end
   end
 
   # Activates a campaign
   def activate
+    @campaign = current_role.campaigns.find(params[:id])
 
+    if @campaign.update_attribute(:archived, false)
+      flash[:notice] = "La campaña #{@campaign.name} ha sido activada"
+      redirect_to [:advertiser, @campaign]
+    else
+      flash[:error] = "Hubo un error al reactivar la campaña"
+      redirect_to :back
+    end
   end
 end
