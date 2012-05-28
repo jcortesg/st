@@ -23,13 +23,14 @@
           %tbody
             - @campaigns.each do |campaign|
               %tr{ :class => cycle('odd', 'even') }
-                %td= link_to(campaign.name, [:advertiser, @campaign])
+                %td= link_to(campaign.name, [:advertiser, campaign])
                 %td= link_to(campaign.clicks, "#")
                 %td= campaign.cost
                 %td= localize(campaign.created_at, :format => "%d/%m/%Y")
                 %td
-                  = link_to('Editar', [:edit, :influencer, campaign], class: 'btn btn-primary')
-                  = link_to('Archivar', [:archive, :influencer, campaign], method: :put, class: 'btn btn-danger', confirm: "Esta seguro que desea archivar la campaña?" )
+                  = link_to('Ver', [:advertiser, campaign], class: 'btn btn-primary')
+                  = link_to('Audiencia', [:audience, :advertiser, campaign], class: 'btn btn-primary')
+                  = link_to('Archivar', [:archive, :advertiser, campaign], method: :put, class: 'btn btn-danger', confirm: "Esta seguro que desea archivar la campaña?" )
         .center_text
           = paginate @campaigns
 

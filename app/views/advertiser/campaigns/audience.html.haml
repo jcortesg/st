@@ -1,0 +1,15 @@
+.row
+  .span6.offset3.round_box
+    = simple_form_for(@campaign, url: [:set_audience, :advertiser, @campaign], html:  { class: "form-horizontal round_form", method: :put }) do |f|
+      %h1.form_title Audiencia
+      - if @campaign.created_at > Time.now - 1.minute
+        .center_text{style: 'margin: -20px 0 20px 0;'}
+          %h3 Paso 2 de 2
+      = render '/shared/simple_form_errors', :f => f
+
+
+
+      .form-actions
+        = f.submit 'Crear', :class => 'btn btn-primary btn-large'
+        = link_to 'Cancelar', [:advertiser, :campaigns], class: 'btn btn-large'
+

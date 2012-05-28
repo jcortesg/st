@@ -31,7 +31,7 @@ class Advertiser::CampaignsController < ApplicationController
 
     if @campaign.save
       flash[:notice] = "La campaña #{@campaign.name} fue creada con éxito"
-      redirect_to [:influencer, @campaign]
+      redirect_to [:audience, :advertiser, @campaign]
     else
       flash[:error] = "Hubo un error al intentar crear la campaña"
       render action: :new
@@ -50,7 +50,7 @@ class Advertiser::CampaignsController < ApplicationController
 
     if @campaign.update_attributes(params[:campaign])
       flash[:notice] = "La campaña #{@campaign.name} fue actualizada"
-      redirect_to [:campaign, :advertiser, @campaign]
+      redirect_to [:advertiser, @campaign]
     else
       flash[:error] = "Hubo un error al intentar actualizar la campaña"
       render action: :edit
