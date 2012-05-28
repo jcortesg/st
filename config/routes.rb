@@ -104,7 +104,9 @@ Borwin::Application.routes.draw do
       get :change_password
       put :update_password
     end
-    resources :campaigns, only: [:index, :show]
+    resources :tweets, only: [:index, :show] do
+
+    end
     resources :referrals, only: [:index, :show] do
       get :list, on: :collection
       put :update_options, on: :collection

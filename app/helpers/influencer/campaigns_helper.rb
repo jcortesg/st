@@ -1,2 +1,0 @@
-module Influencer::CampaignsHelper
-end
