@@ -85,8 +85,9 @@ ActiveRecord::Schema.define(:version => 20120528031013) do
   add_index "audiences", ["influencer_id"], :name => "index_audiences_on_influencer_id"
 
   create_table "campaigns", :force => true do |t|
-    t.integer  "influencer_id"
+    t.integer  "advertiser_id"
     t.string   "name"
+    t.boolean  "archived",                                        :default => false, :null => false
     t.integer  "min_followers"
     t.integer  "max_followers"
     t.integer  "min_males"
@@ -117,13 +118,14 @@ ActiveRecord::Schema.define(:version => 20120528031013) do
     t.integer  "max_movies"
     t.integer  "min_politics"
     t.integer  "max_politics"
-    t.integer  "clicks",                                          :default => 0,   :null => false
-    t.decimal  "cost",              :precision => 8, :scale => 2, :default => 0.0, :null => false
-    t.datetime "created_at",                                                       :null => false
-    t.datetime "updated_at",                                                       :null => false
+    t.integer  "clicks",                                          :default => 0,     :null => false
+    t.decimal  "cost",              :precision => 8, :scale => 2, :default => 0.0,   :null => false
+    t.datetime "created_at",                                                         :null => false
+    t.datetime "updated_at",                                                         :null => false
   end
 
-  add_index "campaigns", ["influencer_id"], :name => "index_campaigns_on_influencer_id"
+  add_index "campaigns", ["advertiser_id"], :name => "index_campaigns_on_advertiser_id"
+  add_index "campaigns", ["archived"], :name => "index_campaigns_on_archived"
 
   create_table "influencers", :force => true do |t|
     t.integer  "user_id"

@@ -33,4 +33,16 @@ class Campaign < ActiveRecord::Base
   validates :min_politics, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 100 }
   validates :max_politics, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 100 }
 
+  class << self
+    # Brings the archived campaigns
+    def archived
+      where(archived: true)
+    end
+
+    # Brings the active campaigns
+    def active
+      where(archived: false)
+    end
+  end
+
 end

@@ -7,9 +7,7 @@
   .span12
     .round_box
       .content
-        .right
-          = link_to('Crear Nueva Campaña', [:new, :advertiser, :campaign], :class => 'btn btn-primary')
-        %h1.title Campañas
+        %h1.title Campañas Historicas
 
         %table.table.table-striped
           %thead
@@ -28,8 +26,7 @@
                 %td= campaign.cost
                 %td= localize(campaign.created_at, :format => "%d/%m/%Y")
                 %td
-                  = link_to('Editar', [:edit, :influencer, campaign], class: 'btn btn-primary')
-                  = link_to('Archivar', [:archive, :influencer, campaign], method: :put, class: 'btn btn-danger', confirm: "Esta seguro que desea archivar la campaña?" )
+                  = link_to('Activar', [:restore, :influencer, campaign], method: :put, class: 'btn btn-danger', confirm: "Esta seguro que desea activar la campaña?" )
         .center_text
           = paginate @campaigns
 

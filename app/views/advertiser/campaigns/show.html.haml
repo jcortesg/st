@@ -1,0 +1,30 @@
+- if flash.any?
+  .row
+    .span12
+      = render '/shared/flash', flash: flash
+
+.row
+  .span12
+    .round_box
+      .content
+        .right
+          = link_to('Crear Nuevo Tweet', [:new, :advertiser, @campaign, :tweet], :class => 'btn btn-primary')
+        %h1.title= "Campaña #{@campaign.name}"
+
+        %table.table.table-striped
+          %thead
+            %tr
+              %th Celebridad
+              %th tweet
+              %th Clicks
+              %th Costo
+              %th Estado
+
+          %tbody
+            - @campaign.tweets.each do |tweet|
+              %tr{ :class => cycle('odd', 'even') }
+                %td= tweet_link(tweet.influencer)
+                %td= link_to("Ver Tweeet", "#", class: 'btn')
+                %td= link_to(tweet.clicks_count, "#")
+                %td= tweet.cost
+                %td= tweet.status

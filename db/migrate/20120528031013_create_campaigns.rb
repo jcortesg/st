@@ -1,9 +1,11 @@
 class CreateCampaigns < ActiveRecord::Migration
   def change
     create_table :campaigns do |t|
-      t.references :influencer
+      t.references :advertiser
 
       t.string :name
+
+      t.boolean :archived, null: false, default: false
 
       t.integer :min_followers
       t.integer :max_followers
@@ -46,6 +48,7 @@ class CreateCampaigns < ActiveRecord::Migration
       t.timestamps
     end
 
-    add_index :campaigns, :influencer_id
+    add_index :campaigns, :advertiser_id
+    add_index :campaigns, :archived
   end
 end
