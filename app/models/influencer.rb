@@ -20,7 +20,7 @@ class Influencer < ActiveRecord::Base
 
   class << self
     def influencer_types
-      ["Actor", "Músico", "Deportista", "Conductor", "Periodista", "Modelo", "Mediático", "Artista", "Panelista", "Cheff", "Humorista", "Moda", "Twitteros", "Otros"]
+      ["Actor", "Actriz", "Músico", "Deportista", "Conductor", "Periodista", "Modelo", "Mediático", "Artista", "Panelista", "Cheff", "Humorista", "Moda", "Twitteros", "Otros"]
     end
   end
 

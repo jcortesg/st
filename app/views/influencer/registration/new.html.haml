@@ -11,7 +11,7 @@
         = i.input :last_name
         = i.input :birthday, as: :string
         = i.input :sex, :as => :select, :collection => [['Hombre', 'M'], ['Mujer', 'F']], :include_blank => true
-        = i.input :influencer_type, :as => :select, :collection => ["Actor", "Músico", "Deportista", "Conductor", "Periodista", "Modelo", "Mediático", "Artista", "Panelista", "Cheff", "Humorista", "Moda", "Twitteros", "Otros"], :include_blank => true
+        = i.input :influencer_type, :as => :select, :collection => ["Actor", "Actriz", "Músico", "Deportista", "Conductor", "Periodista", "Modelo", "Mediático", "Artista", "Panelista", "Cheff", "Humorista", "Moda", "Twitteros", "Otros"], :include_blank => true
         = i.input :description, :as => :text, :input_html => {:rows => 2, :cols => 60 }
         - if @referrer
           = i.input :referrer_description, input_html: {value: @referrer.influencer.full_name, disabled: 'disabled'}
