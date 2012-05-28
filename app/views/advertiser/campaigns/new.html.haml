@@ -2,6 +2,8 @@
   .span6.offset3.round_box
     = simple_form_for(@campaign, url: [:advertiser, @campaign], html:  { class: "form-horizontal round_form" }) do |f|
       %h1.form_title Nueva Campaña
+      .center_text{style: 'margin: -20px 0 20px 0;'}
+        %h3 Paso 1 de 2
       = render '/shared/simple_form_errors', :f => f
 
       = f.input :name

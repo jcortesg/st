@@ -87,41 +87,41 @@ ActiveRecord::Schema.define(:version => 20120528031013) do
   create_table "campaigns", :force => true do |t|
     t.integer  "advertiser_id"
     t.string   "name"
-    t.boolean  "archived",                                        :default => false, :null => false
-    t.integer  "min_followers"
-    t.integer  "max_followers"
-    t.integer  "min_males"
-    t.integer  "max_males"
-    t.integer  "min_females"
-    t.integer  "max_females"
-    t.integer  "min_kids"
-    t.integer  "max_kids"
-    t.integer  "min_adults"
-    t.integer  "max_adults"
-    t.integer  "min_elderly"
-    t.integer  "max_elderly"
-    t.integer  "min_young_teens"
-    t.integer  "max_young_teens"
-    t.integer  "min_mature_teens"
-    t.integer  "max_mature_teens"
-    t.integer  "min_young_adults"
-    t.integer  "max_young_adults"
-    t.integer  "min_mature_adults"
-    t.integer  "max_mature_adults"
-    t.integer  "min_sports"
-    t.integer  "max_sports"
-    t.integer  "min_fashion"
-    t.integer  "max_fashion"
-    t.integer  "min_music"
-    t.integer  "max_music"
-    t.integer  "min_movies"
-    t.integer  "max_movies"
-    t.integer  "min_politics"
-    t.integer  "max_politics"
-    t.integer  "clicks",                                          :default => 0,     :null => false
-    t.decimal  "cost",              :precision => 8, :scale => 2, :default => 0.0,   :null => false
-    t.datetime "created_at",                                                         :null => false
-    t.datetime "updated_at",                                                         :null => false
+    t.boolean  "archived",                                        :default => false,   :null => false
+    t.integer  "min_followers",                                   :default => 0,       :null => false
+    t.integer  "max_followers",                                   :default => 2000000, :null => false
+    t.integer  "min_males",                                       :default => 0,       :null => false
+    t.integer  "max_males",                                       :default => 100,     :null => false
+    t.integer  "min_females",                                     :default => 0,       :null => false
+    t.integer  "max_females",                                     :default => 100,     :null => false
+    t.integer  "min_kids",                                        :default => 0,       :null => false
+    t.integer  "max_kids",                                        :default => 100,     :null => false
+    t.integer  "min_adults",                                      :default => 0,       :null => false
+    t.integer  "max_adults",                                      :default => 100,     :null => false
+    t.integer  "min_elderly",                                     :default => 0,       :null => false
+    t.integer  "max_elderly",                                     :default => 100,     :null => false
+    t.integer  "min_young_teens",                                 :default => 0,       :null => false
+    t.integer  "max_young_teens",                                 :default => 100,     :null => false
+    t.integer  "min_mature_teens",                                :default => 0,       :null => false
+    t.integer  "max_mature_teens",                                :default => 100,     :null => false
+    t.integer  "min_young_adults",                                :default => 0,       :null => false
+    t.integer  "max_young_adults",                                :default => 100,     :null => false
+    t.integer  "min_mature_adults",                               :default => 0,       :null => false
+    t.integer  "max_mature_adults",                               :default => 100,     :null => false
+    t.integer  "min_sports",                                      :default => 0,       :null => false
+    t.integer  "max_sports",                                      :default => 100,     :null => false
+    t.integer  "min_fashion",                                     :default => 0,       :null => false
+    t.integer  "max_fashion",                                     :default => 100,     :null => false
+    t.integer  "min_music",                                       :default => 0,       :null => false
+    t.integer  "max_music",                                       :default => 100,     :null => false
+    t.integer  "min_movies",                                      :default => 0,       :null => false
+    t.integer  "max_movies",                                      :default => 100,     :null => false
+    t.integer  "min_politics",                                    :default => 0,       :null => false
+    t.integer  "max_politics",                                    :default => 100,     :null => false
+    t.integer  "clicks",                                          :default => 0,       :null => false
+    t.decimal  "cost",              :precision => 8, :scale => 2, :default => 0.0,     :null => false
+    t.datetime "created_at",                                                           :null => false
+    t.datetime "updated_at",                                                           :null => false
   end
 
   add_index "campaigns", ["advertiser_id"], :name => "index_campaigns_on_advertiser_id"

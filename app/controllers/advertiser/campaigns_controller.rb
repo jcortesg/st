@@ -50,10 +50,28 @@ class Advertiser::CampaignsController < ApplicationController
 
     if @campaign.update_attributes(params[:campaign])
       flash[:notice] = "La campaña #{@campaign.name} fue actualizada"
-      redirect_to [:advertiser, @campaign]
+      redirect_to [:campaign, :advertiser, @campaign]
     else
       flash[:error] = "Hubo un error al intentar actualizar la campaña"
       render action: :edit
+    end
+  end
+
+  # Shows the form to set the audience for the campaign
+  def audience
+    @campaign = current_role.campaigns.find(params[:id])
+  end
+
+  # Sets the audience for the campaign
+  def set_audience
+    @campaign = current_role.campaigns.find(params[:id])
+
+    if @campaign.udpate_attributes(params[:campaign])
+      flash[:notice] = "Has configurado la audiencia para tu campaña"
+      redirect_to [:advertiser, @campaign]
+    else
+      flash[:error] = "Hubo un error al configurar la audiencia de la campaña"
+      render action :audience
     end
   end
 
