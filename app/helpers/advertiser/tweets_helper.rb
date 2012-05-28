@@ -1,0 +1,2 @@
+module Advertiser::TweetsHelper
+end

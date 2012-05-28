@@ -133,6 +133,7 @@ Borwin::Application.routes.draw do
 
   # Invitation route
   match "/I:invitation_code", to: "home#invitation", contrainsts: {invitation_code: /[A-Z0-9]{6}/}
+  match "/L:link_code", to: "home#invitation", contrainsts: {invitation_code: /[A-Z0-9]{5}/}
 
   root :to => 'home#index'
 end
