@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120528023555) do
+ActiveRecord::Schema.define(:version => 20120528031013) do
 
   create_table "advertisers", :force => true do |t|
     t.integer  "user_id"
@@ -65,7 +65,7 @@ ActiveRecord::Schema.define(:version => 20120528023555) do
     t.integer  "peerindex",           :default => 0, :null => false
     t.integer  "klout",               :default => 0, :null => false
     t.integer  "males",               :default => 0, :null => false
-    t.integer  "moms",                :default => 0, :null => false
+    t.integer  "females",             :default => 0, :null => false
     t.integer  "kids",                :default => 0, :null => false
     t.integer  "young_teens",         :default => 0, :null => false
     t.integer  "mature_teens",        :default => 0, :null => false
@@ -83,6 +83,44 @@ ActiveRecord::Schema.define(:version => 20120528023555) do
   end
 
   add_index "audiences", ["influencer_id"], :name => "index_audiences_on_influencer_id"
+
+  create_table "campaigns", :force => true do |t|
+    t.integer  "influencer_id"
+    t.integer  "min_followers"
+    t.integer  "max_followers"
+    t.integer  "min_males"
+    t.integer  "max_males"
+    t.integer  "min_females"
+    t.integer  "max_females"
+    t.integer  "min_kids"
+    t.integer  "max_kids"
+    t.integer  "min_adults"
+    t.integer  "max_aduls"
+    t.integer  "min_ederly"
+    t.integer  "max_ederly"
+    t.integer  "min_young_teens"
+    t.integer  "max_young_teens"
+    t.integer  "min_mature_teens"
+    t.integer  "max_mature_teens"
+    t.integer  "min_young_adults"
+    t.integer  "max_young_adults"
+    t.integer  "min_mature_adults"
+    t.integer  "max_mature_adults"
+    t.integer  "min_sports"
+    t.integer  "max_sports"
+    t.integer  "min_fashion"
+    t.integer  "max_fasion"
+    t.integer  "min_music"
+    t.integer  "max_music"
+    t.integer  "min_movies"
+    t.integer  "max_movies"
+    t.integer  "min_politics"
+    t.integer  "max_politics"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+  end
+
+  add_index "campaigns", ["influencer_id"], :name => "index_campaigns_on_influencer_id"
 
   create_table "influencers", :force => true do |t|
     t.integer  "user_id"

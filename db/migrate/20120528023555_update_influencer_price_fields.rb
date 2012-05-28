@@ -1,4 +1,4 @@
-class UpadteInfluencerPriceFields < ActiveRecord::Migration
+class UpdateInfluencerPriceFields < ActiveRecord::Migration
   def up
     rename_column :influencers, :fixed_tweet_fee, :tweet_fee
     rename_column :influencers, :fixed_cpc_fee, :cpc_fee
