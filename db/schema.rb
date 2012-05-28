@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120528031013) do
+ActiveRecord::Schema.define(:version => 20120528080413) do
 
   create_table "advertisers", :force => true do |t|
     t.integer  "user_id"
@@ -118,7 +118,7 @@ ActiveRecord::Schema.define(:version => 20120528031013) do
     t.integer  "max_movies",                                      :default => 100,     :null => false
     t.integer  "min_politics",                                    :default => 0,       :null => false
     t.integer  "max_politics",                                    :default => 100,     :null => false
-    t.integer  "clicks",                                          :default => 0,       :null => false
+    t.integer  "clicks_count",                                    :default => 0,       :null => false
     t.decimal  "cost",              :precision => 8, :scale => 2, :default => 0.0,     :null => false
     t.datetime "created_at",                                                           :null => false
     t.datetime "updated_at",                                                           :null => false
@@ -126,6 +126,16 @@ ActiveRecord::Schema.define(:version => 20120528031013) do
 
   add_index "campaigns", ["advertiser_id"], :name => "index_campaigns_on_advertiser_id"
   add_index "campaigns", ["archived"], :name => "index_campaigns_on_archived"
+
+  create_table "clicks", :force => true do |t|
+    t.integer  "tweet_id"
+    t.string   "remote_ip"
+    t.string   "remote_agent"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  add_index "clicks", ["tweet_id"], :name => "index_clicks_on_tweet_id"
 
   create_table "influencers", :force => true do |t|
     t.integer  "user_id"
@@ -175,6 +185,22 @@ ActiveRecord::Schema.define(:version => 20120528031013) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  create_table "tweets", :force => true do |t|
+    t.integer  "campaign_id"
+    t.string   "text"
+    t.string   "link_code"
+    t.string   "link_url"
+    t.string   "fee_type"
+    t.decimal  "tweet_fee",    :precision => 8, :scale => 2, :default => 0.0, :null => false
+    t.decimal  "cpc",          :precision => 8, :scale => 2, :default => 0.0, :null => false
+    t.integer  "clicks_count",                               :default => 0,   :null => false
+    t.datetime "created_at",                                                  :null => false
+    t.datetime "updated_at",                                                  :null => false
+  end
+
+  add_index "tweets", ["campaign_id"], :name => "index_tweets_on_campaign_id"
+  add_index "tweets", ["link_code"], :name => "index_tweets_on_link_code", :unique => true
 
   create_table "users", :force => true do |t|
     t.string   "email",                   :default => "",    :null => false

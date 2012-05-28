@@ -15,7 +15,7 @@
           %thead
             %tr
               %th= sort_link(@search, :name, 'Nombre')
-              %th= sort_link(@search, :clicks, 'Clicks')
+              %th= sort_link(@search, :clicks_count, 'Clicks')
               %th= sort_link(@search, :cost, 'Costo')
               %th= sort_link(@search, :created_at, "Creado")
               %th Acciones
@@ -24,7 +24,7 @@
             - @campaigns.each do |campaign|
               %tr{ :class => cycle('odd', 'even') }
                 %td= link_to(campaign.name, [:advertiser, campaign])
-                %td= link_to(campaign.clicks, "#")
+                %td= link_to(campaign.clicks_count, "#")
                 %td= campaign.cost
                 %td= localize(campaign.created_at, :format => "%d/%m/%Y")
                 %td

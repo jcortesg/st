@@ -42,7 +42,7 @@ class CreateCampaigns < ActiveRecord::Migration
       t.integer :min_politics, null: false, default: 0
       t.integer :max_politics, null: false, default: 100
 
-      t.integer :clicks, null: false, default: 0
+      t.integer :clicks_count, null: false, default: 0
       t.decimal :cost, precision: 8, scale: 2, null: false, default: 0
 
       t.timestamps

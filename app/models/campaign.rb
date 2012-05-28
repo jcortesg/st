@@ -1,5 +1,7 @@
 class Campaign < ActiveRecord::Base
   belongs_to :advertiser
+  has_many :tweets
+  has_many :clicks, through: :tweets
 
   attr_accessible :name, :min_followers, :max_followers, :min_males, :max_males, :min_females, :max_females,
                   :min_kids, :max_kids, :min_adults, :max_adults, :min_elderly, :max_elderly,

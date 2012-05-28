@@ -65,6 +65,10 @@ Borwin::Application.routes.draw do
         put :archive
         put :activate
       end
+      resources :clicks
+      resources :tweets do
+        resources :clicks, only: [:index, :show]
+      end
     end
     namespace :profiles do
       get :show
