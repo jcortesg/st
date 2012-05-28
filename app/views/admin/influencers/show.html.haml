@@ -84,13 +84,9 @@
         .subtitle Precios
         %dl.record_details
           %dt Precio Tweet
-          %dd= number_to_currency(@influencer.fixed_tweet_fee)
+          %dd= number_to_currency(@influencer.tweet_fee)
           %dt Precio Click
-          %dd= number_to_currency(@influencer.fixed_cpc_fee)
-          %dt Precio Tweet Combinado
-          %dd= number_to_currency(@influencer.combined_tweet_fee)
-          %dt Precio Click Combinado
-          %dd= number_to_currency(@influencer.combined_cpc_fee)
+          %dd= number_to_currency(@influencer.cpc_fee)
         .subtitle Audiencia
         = render '/admin/audiences/audience_table', audience: @influencer.audience
       .clear.center_text.show_buttons

@@ -21,6 +21,6 @@ class CreateAdvertisers < ActiveRecord::Migration
       t.timestamps
     end
     
-    add_index :advertisers, :user_id, :unique => true
+    add_index :advertisers, :user_id, unique: true
   end
 end

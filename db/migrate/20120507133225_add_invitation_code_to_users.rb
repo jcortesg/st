@@ -11,6 +11,6 @@ class AddInvitationCodeToUsers < ActiveRecord::Migration
       end
     end
 
-    add_index :users, :invitation_code, :unique => true
+    add_index :users, :invitation_code, unique: true
   end
 end

@@ -15,7 +15,7 @@ class Influencer < ActiveRecord::Base
   attr_accessible :first_name, :last_name, :location, :image_url, :bio, :influencer_type, :birthday, :photo, :sex,
                   :description, :referrer_description, :address, :city, :state, :country, :zip_code, :phone,
                   :cell_phone, :contact_time, :contact_method, :preferred_payment, :account_number, :account_type, :cbu,
-                  :bank_name, :fixed_tweet_fee, :fixed_cpc_fee, :combined_tweet_fee, :combined_cpc_fee
+                  :bank_name, :tweet_fee, :cpc_fee
 
 
   class << self
@@ -64,9 +64,7 @@ class Influencer < ActiveRecord::Base
     followers = self.audience.followers
 
     # Calculates the payment cost depending on the followers
-    self.update_attribute(:fixed_tweet_fee, followers * 0.02)
-    self.update_attribute(:fixed_cpc_fee, 30)
-    self.update_attribute(:combined_tweet_fee, (followers * 0.02) * 0.30)
-    self.update_attribute(:combined_cpc_fee, 10)
+    self.update_attribute(:tweet_fee, followers * 0.02)
+    self.update_attribute(:cpc_fee, 30)
   end
 end

@@ -11,7 +11,7 @@ class CreateInfluencers < ActiveRecord::Migration
       t.string :twitter_bio
       t.datetime :twitter_joined
 
-      t.decimal :borwin_fee, :null => false, :default => 0.3, :precision => 8, :scale => 2
+      t.decimal :borwin_fee, null: false, default: 0.3, precision: 8, scale: 2
 
       t.string :influencer_type
       t.string :first_name
@@ -43,14 +43,14 @@ class CreateInfluencers < ActiveRecord::Migration
       t.string :cbu
       t.string :bank_name
 
-      t.decimal :fixed_tweet_fee, :precision => 8, :scale => 2
-      t.decimal :fixed_cpc_fee, :precision => 5, :scale => 2
-      t.decimal :combined_tweet_fee, :precision => 8, :scale => 2
-      t.decimal :combined_cpc_fee, :precision => 5, :scale => 2
+      t.decimal :fixed_tweet_fee, precision: 8, scale: 2
+      t.decimal :fixed_cpc_fee, precision: 5, scale: 2
+      t.decimal :combined_tweet_fee, precision: 8, scale: 2
+      t.decimal :combined_cpc_fee, precision: 5, scale: 2
 
       t.timestamps
     end
     
-    add_index :influencers, :user_id, :unique => true
+    add_index :influencers, :user_id, unique: true
   end
 end

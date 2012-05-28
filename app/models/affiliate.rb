@@ -10,7 +10,7 @@ class Affiliate < ActiveRecord::Base
                   :location, :image_url, :bio, :influencer_type, :birthday, :photo, :sex,
                   :description, :referrer_description, :address, :city, :state, :country, :zip_code, :phone,
                   :cell_phone, :contact_time, :contact_method, :preferred_payment, :account_number, :account_type, :cbu,
-                  :bank_name, :fixed_tweet_fee, :fixed_cpc_fee, :combined_tweet_fee, :combined_cpc_fee
+                  :bank_name
 
   def full_name
     "#{self.first_name} #{self.last_name}"
