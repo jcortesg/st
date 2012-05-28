@@ -9,7 +9,7 @@
       .content
         .right
           = link_to('Crear Nuevo Tweet', [:new, :advertiser, @campaign, :tweet], class: 'btn btn-primary')
-        %h1.title Campañas
+        %h1.title= "Campaña #{@campaign.name}"
 
 
         %h2
