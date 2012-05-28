@@ -65,6 +65,6 @@ class Influencer < ActiveRecord::Base
 
     # Calculates the payment cost depending on the followers
     self.update_attribute(:tweet_fee, followers * 0.02)
-    self.update_attribute(:cpc_fee, 30)
+    self.update_attribute(:cpc_fee, followers * 0.0002)
   end
 end
