@@ -10,5 +10,11 @@
         = "En total hay #{Influencer.count} celebridades."
         %br
         = "La cantidad actual de seguidores es #{Audience.sum(:followers)}"
+        %br
+        %br
+        %br
+        %br
+        %br
+        = link_to("Cambiar Password", admin_dashboard_change_password_path, class: 'btn btn-large')
 
 
