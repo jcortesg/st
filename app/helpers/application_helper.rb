@@ -34,6 +34,8 @@ module ApplicationHelper
         advertiser_profiles_update_password_path
       when 'influencer'
         influencer_profiles_update_password_path
+      when 'admin'
+        admin_dashboard_update_password_path
     end
   end
 end
