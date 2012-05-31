@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120528080413) do
+ActiveRecord::Schema.define(:version => 20120531171648) do
 
   create_table "advertisers", :force => true do |t|
     t.integer  "user_id"
@@ -169,8 +169,10 @@ ActiveRecord::Schema.define(:version => 20120528080413) do
     t.string   "account_type"
     t.string   "cbu"
     t.string   "bank_name"
-    t.decimal  "tweet_fee",            :precision => 8, :scale => 2
-    t.decimal  "cpc_fee",              :precision => 5, :scale => 2
+    t.decimal  "automatic_tweet_fee",  :precision => 8, :scale => 2
+    t.decimal  "automatic_cpc_fee",    :precision => 5, :scale => 2
+    t.decimal  "manual_tweet_fee",     :precision => 8, :scale => 2
+    t.decimal  "manual_cpc_fee",       :precision => 8, :scale => 2
     t.datetime "created_at",                                                          :null => false
     t.datetime "updated_at",                                                          :null => false
   end

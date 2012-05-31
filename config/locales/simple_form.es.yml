@@ -70,6 +70,10 @@ es:
         cbu: CBU
         bank_name: Banco
         photo: Foto
+        automatic_tweet_fee: Precio Tweet (Automático)
+        automatic_cpc_fee: Precio CPC (Automático)
+        manual_tweet_fee: Precio Tweet (Manual)
+        manual_cpc_fee: Precio CPC (Manual)
       campaign:
         advertiser_id: Anunciante
         name: Nombre

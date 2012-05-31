@@ -52,7 +52,7 @@ class Admin::InfluencersController < ApplicationController
   def update
     @influencer = Influencer.find(params[:id])
     @user = @influencer.user
-    if @user.update_attributes(params[:influencer])
+    if @user.update_attributes(params[:user])
       flash[:notice] = "La celebridad #{@influencer.full_name} fue actualizada con éxito"
       redirect_to [:admin, @influencer]
     else
