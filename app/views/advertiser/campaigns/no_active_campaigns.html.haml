@@ -7,8 +7,9 @@
   .span12
     .round_box
       .content
-        .right
-          = link_to('Crear Nueva Campaña', [:new, :advertiser, :campaign], class: 'btn btn-primary')
+        - if current_user.advertiser.can_create_campaigns?
+          .right
+            = link_to('Crear Nueva Campaña', [:new, :advertiser, :campaign], class: 'btn btn-primary')
         %h1.title Campañas
 
 

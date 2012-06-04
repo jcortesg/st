@@ -1,7 +1,7 @@
 # encoding: utf-8
 class Advertiser < ActiveRecord::Base
   belongs_to :user
-  has_many :campaigns
+  has_many :campaigns, dependent: :destroy
 
   validates :company, :presence => true
   validates :first_name, :presence => true
