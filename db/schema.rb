@@ -198,6 +198,7 @@ ActiveRecord::Schema.define(:version => 20120604042334) do
     t.decimal  "tweet_fee",    :precision => 8, :scale => 2, :default => 0.0, :null => false
     t.decimal  "cpc",          :precision => 8, :scale => 2, :default => 0.0, :null => false
     t.integer  "clicks_count",                               :default => 0,   :null => false
+    t.string   "status"
     t.datetime "created_at",                                                  :null => false
     t.datetime "updated_at",                                                  :null => false
   end
