@@ -18,6 +18,7 @@
               %th= sort_link(@search, :company, 'Empresa')
               %th= sort_link(@search, :user_email, 'Email')
               %th= sort_link(@search, :created_at, "Creado")
+              %th= sort_link(@search, :can_create_campaign, "Crear Campañas?")
               %th Acciones
 
           %tbody
@@ -27,6 +28,7 @@
                 %td= advertiser.company
                 %td= advertiser.user.email
                 %td= advertiser.created_at ? (localize(advertiser.created_at, :format => "%d/%m/%Y")) : ""
+                %td= advertiser.can_create_campaigns? ? 'Sí' : 'No'
                 %td
                   = link_to('Editar', [:edit, :admin, advertiser], class: 'btn btn-primary')
                   = link_to('Eliminar', [:admin, advertiser], method: :delete, class: 'btn btn-danger', confirm: "Esta seguro que desea eliminar al anunciante y todo su historial?" )
@@ -39,6 +41,7 @@
             = f.input :first_name_or_last_name_contains, label: "Nombre", required: false
             = f.input :company_contains, label: "Empresa", required: false
             = f.input :user_email_equals, label: "Email", required: false
+            = f.input :can_create_campaigns_equals, label: "Crear Campañas?", required: false, as: :select, collection: [['No', false], ['Sí', true]]
             .form-actions
               = f.submit 'Filtrar', :class => 'btn btn-primary'
               = link_to 'Resetear', '#', :class => 'btn reset'
