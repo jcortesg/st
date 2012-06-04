@@ -1,0 +1,10 @@
+- if object.errors.any?
+  .error_explanation
+    - if object.errors.count == 1
+      %h2 Por favor, corrija el error encontrado
+    - else
+      %h2 Por favor, corrija los errores encontrados
+
+    %ul
+      - object.errors.full_messages.each do |msg|
+        %li= msg
