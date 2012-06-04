@@ -1,6 +1,7 @@
 # encoding: utf-8
 class Advertiser::CampaignsController < ApplicationController
   before_filter :authenticate_user!, :require_advertiser
+  before_filter :verify_can_create_campaign, only: [:new, :create]
 
   # Shows the campaigns
   def index
@@ -106,6 +107,16 @@ class Advertiser::CampaignsController < ApplicationController
     else
       flash[:error] = "Hubo un error al reactivar la campaña"
       redirect_to :back
+    end
+  end
+
+  private
+
+  # Verifies that the current user can create a campaign
+  def verify_can_create_campaign
+    unless current_user.advertiser.can_create_campaigns?
+      flash[:error] = "No tiene permitido create campañas"
+      redirect_to action: :index
     end
   end
 end

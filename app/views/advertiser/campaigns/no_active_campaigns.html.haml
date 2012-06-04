@@ -18,4 +18,5 @@
         %br
         %br
 
-        = link_to("Crear Nueva Campaña", [:new, :advertiser, :campaign], class: 'btn btn-primary')
+        - if current_user.advertiser.can_create_campaigns?
+          = link_to("Crear Nueva Campaña", [:new, :advertiser, :campaign], class: 'btn btn-primary')
