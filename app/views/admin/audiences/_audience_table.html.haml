@@ -2,14 +2,12 @@
   %thead
     %tr
       %th Seguidores
-      %th Seguidores 2° Nivel
       %th Amigos
       %th Tweets
       %th Retweets
   %tbody
     %tr
       %td= audience.followers
-      %td= audience.followers_followers
       %td= audience.friends
       %td= audience.tweets
       %td= audience.retweets
@@ -19,25 +17,25 @@
     %tr
       %th Hombres
       %th Mujeres
-      %th Chicos
-      %th Adolecentes Jovenes
-      %th Adolecentes Maduros
-      %th Adultos Jovenes
-      %th Adultos Maduros
-      %th Adultos
-      %th Ancianos
+      %th Mamás
+      %th Adolescentes
+      %th Universitarios
+      %th Mujeres (18 a 35)
+      %th Hombres (18 a 35)
+      %th Mujeres (+ de 35)
+      %th Hombres (+ de 35)
 
   %tbody
     %tr
       %td= audience.males
       %td= audience.females
-      %td= audience.kids
-      %td= audience.young_teens
-      %td= audience.mature_teens
-      %td= audience.young_adults
-      %td= audience.mature_adults
-      %td= audience.adults
-      %td= audience.elderly
+      %td= audience.moms
+      %td= audience.teens
+      %td= audience.college_students
+      %td= audience.young_women
+      %td= audience.young_men
+      %td= audience.adult_women
+      %td= audience.adult_men
 
 %table.table.table-striped
   %thead

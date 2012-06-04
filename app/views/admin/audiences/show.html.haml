@@ -12,8 +12,6 @@
         %dl.record_details
           %dt Seguidores
           %dd= dl_value @audience.followers
-          %dt Seguidores 2° Nivel
-          %dd= dl_value @audience.followers_followers
           %dt Amigos
           %dd= dl_value @audience.friends
           %dt Tweets
@@ -27,20 +25,21 @@
           %dd= @audience.males
           %dt Mujeres
           %dd= @audience.females
-          %dt Chicos
-          %dd= @audience.kids
-          %dt Adolecentes Jovenes
-          %dd= @audience.young_teens
-          %dt Adolecentes Maduros
-          %dd= @audience.mature_teens
-          %dt Adultos Jovenes
-          %dd= @audience.mature_teens
-          %dt Adultos Maduros
-          %dd= @audience.mature_adults
-          %dt Adultos
-          %dd= @audience.adults
-          %dt Ancianos
-          %dd= @audience.elderly
+          %dt Mamás
+          %dd= @audience.moms
+          %dt Adolescentes
+          %dd= @audience.teens
+          %dt Universitarios
+          %dd= @audience.college_students
+          %dt Mujeres (18 a 35)
+          %dd= @audience.young_women
+          %dt Hombres (18 a 35)
+          %dd= @audience.young_men
+          %dt Mujeres (+ de 35)
+          %dd= @audience.young_women
+          %dt Hombres (+ de 35)
+          %dd= @audience.young_men
+
           %dt Deportes
           %dd= @audience.sports
           %dt Moda

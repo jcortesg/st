@@ -5,7 +5,6 @@ class CreateAudiences < ActiveRecord::Migration
 
       # Twitter data
       t.integer :followers, default: 0, null: false
-      t.integer :followers_followers, default: 0, null: false
       t.integer :friends, default: 0, null: false
       t.integer :tweets, default: 0, null: false
       t.integer :retweets, default: 0, null: false
@@ -16,14 +15,15 @@ class CreateAudiences < ActiveRecord::Migration
 
       # Percent values
       t.integer :males, default: 0, null: false
+      t.integer :females, default: 0, null: false
       t.integer :moms, default: 0, null: false
-      t.integer :kids, default: 0, null: false
-      t.integer :young_teens, default: 0, null: false
-      t.integer :mature_teens, default: 0, null: false
-      t.integer :young_adults, default: 0, null: false
-      t.integer :mature_adults, default: 0, null: false
-      t.integer :adults, default: 0, null: false
-      t.integer :elderly, default: 0, null: false
+      t.integer :teens, default: 0, null: false
+      t.integer :college_students, default: 0, null: false
+      t.integer :young_women, default: 0, null: false
+      t.integer :young_men, default: 0, null: false
+      t.integer :adult_women, default: 0, null: false
+      t.integer :adult_men, default: 0, null: false
+
       t.integer :sports, default: 0, null: false
       t.integer :fashion, default: 0, null: false
       t.integer :music, default: 0, null: false

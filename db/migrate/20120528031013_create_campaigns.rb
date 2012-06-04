@@ -4,43 +4,29 @@ class CreateCampaigns < ActiveRecord::Migration
       t.references :advertiser
 
       t.string :name
+      t.text :objective
 
       t.boolean :archived, null: false, default: false
 
-      t.integer :min_followers, null: false, default: 0
-      t.integer :max_followers, null: false, default: 2000000
+      t.text :locations
 
-      t.integer :min_males, null: false, default: 0
-      t.integer :max_males, null: false, default: 100
-      t.integer :min_females, null: false, default: 0
-      t.integer :max_females, null: false, default: 100
+      t.boolean :males
+      t.boolean :females
+      t.boolean :moms
+      t.boolean :teens
+      t.boolean :college_students
+      t.boolean :young_women
+      t.boolean :young_men
+      t.boolean :adult_women
+      t.boolean :adult_men
 
-      t.integer :min_kids, null: false, default: 0
-      t.integer :max_kids, null: false, default: 100
-      t.integer :min_adults, null: false, default: 0
-      t.integer :max_adults, null: false, default: 100
-      t.integer :min_elderly, null: false, default: 0
-      t.integer :max_elderly, null: false, default: 100
+      t.boolean :sports
+      t.boolean :fashion
+      t.boolean :music
+      t.boolean :movies
+      t.boolean :politics
 
-      t.integer :min_young_teens, null: false, default: 0
-      t.integer :max_young_teens, null: false, default: 100
-      t.integer :min_mature_teens, null: false, default: 0
-      t.integer :max_mature_teens, null: false, default: 100
-      t.integer :min_young_adults, null: false, default: 0
-      t.integer :max_young_adults, null: false, default: 100
-      t.integer :min_mature_adults, null: false, default: 0
-      t.integer :max_mature_adults, null: false, default: 100
-
-      t.integer :min_sports, null: false, default: 0
-      t.integer :max_sports, null: false, default: 100
-      t.integer :min_fashion, null: false, default: 0
-      t.integer :max_fashion, null: false, default: 100
-      t.integer :min_music, null: false, default: 0
-      t.integer :max_music, null: false, default: 100
-      t.integer :min_movies, null: false, default: 0
-      t.integer :max_movies, null: false, default: 100
-      t.integer :min_politics, null: false, default: 0
-      t.integer :max_politics, null: false, default: 100
+      t.string :followers_quantity
 
       t.integer :clicks_count, null: false, default: 0
       t.decimal :cost, precision: 8, scale: 2, null: false, default: 0

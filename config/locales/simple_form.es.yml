@@ -75,45 +75,53 @@ es:
         automatic_cpc_fee: Precio CPC (Automático)
         manual_tweet_fee: Precio Tweet (Manual)
         manual_cpc_fee: Precio CPC (Manual)
+      audience:
+        followers: Seguidores
+        friends: Amigos
+        tweets: Tweets
+        retweets: Retweets
+        peerindex: PeerIndex
+        klout: Klout
+        males: Hombres
+        females: Mujeres
+        moms: Mamás
+        teens: Adolecentes
+        college_students: Universitarios
+        young_women: Mujeres (18-34 años)
+        young_men: Hombres (18-34 años)
+        adult_women: Mujeres (Más de 35 años)
+        adult_men: Hombres (Más de 35 años)
+        sports: Deportes
+        fashion: Moda
+        music: Música
+        movies: Películas
+        politics: Política
+        created_at: Fecha de creación
+        updated_at: Fecha de actualización
       campaign:
         advertiser_id: Anunciante
         name: Nombre
+        objective: Objetivo
         archived: Archivada?
-        min_followers: Mínimo seguidores
-        max_followers: Máximo seguidores
-        min_males: Mínimo hombres
-        max_males: Máximo hombres
-        min_females: Mínimo mujeres
-        max_males: Máximo mujeres
-        min_kids: Mínimo chicos
-        max_kids: Máximo chicos
-        min_adults: Mínimo adultos
-        max_adults: Máximo adultos
-        min_elderly: Mínimo ancianos
-        max_elderly: Máximo ancianos
-        min_young_teens: Mínimo Adolecentes Jóvenes
-        max_young_teens: Máximo Adolecentes Jóvenes
-        min_mature_teens: Mínimo Adolecentes Maduros
-        max_mature_teens: Máximo Adolecentes Maduros
-        min_young_adults: Mínimo Adultos Jóvenes
-        max_young_adults: Máximo Adultos Jóvenes
-        min_mature_adults: Mínimo Adultos Maduros
-        max_mature_adults: Máximo Adultos Maduros
-        min_sports: Mínimo deporte
-        max_sports: Máximo deporte
-        min_fashion: Mínimo moda
-        max_fashion: Máximo moda
-        min_music: Mínimo música
-        max_music: Máximo música
-        min_movies: Mínimo películas
-        max_movies: Máximo películas
-        min_politics: Mínimo politicas
-        max_politics: Máximo politicas
+        locations: Zona Geográfica
+        males: Hombres
+        females: Mujeres
+        moms: Mamás
+        teens: Adolecentes
+        college_students: Universitarios
+        young_women: Mujeres (18-34 años)
+        young_men: Hombres (18-34 años)
+        adult_women: Mujeres (Más de 35 años)
+        adult_men: Hombres (Más de 35 años)
+        sports: Deportes
+        fashion: Moda
+        music: Música
+        movies: Películas
+        politics: Política
         clicks: Clicks
         cost: Costo
-
-
-
+        created_at: Fecha de creación
+        updated_at: Fecha de actualización
     hints:
       influencer:
         twitter_username: "Tu nombre de usuario en twitter, ej: rorra"

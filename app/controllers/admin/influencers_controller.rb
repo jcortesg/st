@@ -41,7 +41,6 @@ class Admin::InfluencersController < ApplicationController
     end
   end
 
-
   # Shows the form to edit a influencer
   def edit
     @influencer = Influencer.find(params[:id])

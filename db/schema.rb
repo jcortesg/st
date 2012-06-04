@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120604042334) do
+ActiveRecord::Schema.define(:version => 20120604063657) do
 
   create_table "advertisers", :force => true do |t|
     t.integer  "user_id"
@@ -59,7 +59,6 @@ ActiveRecord::Schema.define(:version => 20120604042334) do
   create_table "audiences", :force => true do |t|
     t.integer  "influencer_id"
     t.integer  "followers",           :default => 0, :null => false
-    t.integer  "followers_followers", :default => 0, :null => false
     t.integer  "friends",             :default => 0, :null => false
     t.integer  "tweets",              :default => 0, :null => false
     t.integer  "retweets",            :default => 0, :null => false
@@ -67,13 +66,13 @@ ActiveRecord::Schema.define(:version => 20120604042334) do
     t.integer  "klout",               :default => 0, :null => false
     t.integer  "males",               :default => 0, :null => false
     t.integer  "females",             :default => 0, :null => false
-    t.integer  "kids",                :default => 0, :null => false
-    t.integer  "young_teens",         :default => 0, :null => false
-    t.integer  "mature_teens",        :default => 0, :null => false
-    t.integer  "young_adults",        :default => 0, :null => false
-    t.integer  "mature_adults",       :default => 0, :null => false
-    t.integer  "adults",              :default => 0, :null => false
-    t.integer  "elderly",             :default => 0, :null => false
+    t.integer  "moms",                :default => 0, :null => false
+    t.integer  "teens",               :default => 0, :null => false
+    t.integer  "college_students",    :default => 0, :null => false
+    t.integer  "young_women",         :default => 0, :null => false
+    t.integer  "young_men",           :default => 0, :null => false
+    t.integer  "adult_women",         :default => 0, :null => false
+    t.integer  "adult_men",           :default => 0, :null => false
     t.integer  "sports",              :default => 0, :null => false
     t.integer  "fashion",             :default => 0, :null => false
     t.integer  "music",               :default => 0, :null => false
@@ -88,41 +87,28 @@ ActiveRecord::Schema.define(:version => 20120604042334) do
   create_table "campaigns", :force => true do |t|
     t.integer  "advertiser_id"
     t.string   "name"
-    t.boolean  "archived",                                        :default => false,   :null => false
-    t.integer  "min_followers",                                   :default => 0,       :null => false
-    t.integer  "max_followers",                                   :default => 2000000, :null => false
-    t.integer  "min_males",                                       :default => 0,       :null => false
-    t.integer  "max_males",                                       :default => 100,     :null => false
-    t.integer  "min_females",                                     :default => 0,       :null => false
-    t.integer  "max_females",                                     :default => 100,     :null => false
-    t.integer  "min_kids",                                        :default => 0,       :null => false
-    t.integer  "max_kids",                                        :default => 100,     :null => false
-    t.integer  "min_adults",                                      :default => 0,       :null => false
-    t.integer  "max_adults",                                      :default => 100,     :null => false
-    t.integer  "min_elderly",                                     :default => 0,       :null => false
-    t.integer  "max_elderly",                                     :default => 100,     :null => false
-    t.integer  "min_young_teens",                                 :default => 0,       :null => false
-    t.integer  "max_young_teens",                                 :default => 100,     :null => false
-    t.integer  "min_mature_teens",                                :default => 0,       :null => false
-    t.integer  "max_mature_teens",                                :default => 100,     :null => false
-    t.integer  "min_young_adults",                                :default => 0,       :null => false
-    t.integer  "max_young_adults",                                :default => 100,     :null => false
-    t.integer  "min_mature_adults",                               :default => 0,       :null => false
-    t.integer  "max_mature_adults",                               :default => 100,     :null => false
-    t.integer  "min_sports",                                      :default => 0,       :null => false
-    t.integer  "max_sports",                                      :default => 100,     :null => false
-    t.integer  "min_fashion",                                     :default => 0,       :null => false
-    t.integer  "max_fashion",                                     :default => 100,     :null => false
-    t.integer  "min_music",                                       :default => 0,       :null => false
-    t.integer  "max_music",                                       :default => 100,     :null => false
-    t.integer  "min_movies",                                      :default => 0,       :null => false
-    t.integer  "max_movies",                                      :default => 100,     :null => false
-    t.integer  "min_politics",                                    :default => 0,       :null => false
-    t.integer  "max_politics",                                    :default => 100,     :null => false
-    t.integer  "clicks_count",                                    :default => 0,       :null => false
-    t.decimal  "cost",              :precision => 8, :scale => 2, :default => 0.0,     :null => false
-    t.datetime "created_at",                                                           :null => false
-    t.datetime "updated_at",                                                           :null => false
+    t.text     "objective"
+    t.boolean  "archived",                                         :default => false, :null => false
+    t.text     "locations"
+    t.boolean  "males"
+    t.boolean  "females"
+    t.boolean  "moms"
+    t.boolean  "teens"
+    t.boolean  "college_students"
+    t.boolean  "young_women"
+    t.boolean  "young_men"
+    t.boolean  "adult_women"
+    t.boolean  "adult_men"
+    t.boolean  "sports"
+    t.boolean  "fashion"
+    t.boolean  "music"
+    t.boolean  "movies"
+    t.boolean  "politics"
+    t.string   "followers_quantity"
+    t.integer  "clicks_count",                                     :default => 0,     :null => false
+    t.decimal  "cost",               :precision => 8, :scale => 2, :default => 0.0,   :null => false
+    t.datetime "created_at",                                                          :null => false
+    t.datetime "updated_at",                                                          :null => false
   end
 
   add_index "campaigns", ["advertiser_id"], :name => "index_campaigns_on_advertiser_id"

@@ -12,6 +12,7 @@ if Rails.env == 'development'
     @user.approved = true
     @user.save!
     @advertiser = Advertiser.new(company: 'Anunciantes SA', first_name: 'Juan', last_name: 'Perez', phone: '4040-2341')
+    @advertiser.can_create_campaigns = true
     @advertiser.user_id = @user.id
     @advertiser.save!
   end

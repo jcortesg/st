@@ -3,28 +3,22 @@
     = simple_form_for(@audience, url: [:admin, @influencer, :audience], html:  { class: "form-horizontal round_form", method: :put }) do |f|
       = render '/shared/simple_form_errors', :f => f
 
-      %h1.form_title Datos Twitter
-      = f.input :followers, label: 'Seguidores'
-      = f.input :followers_followers, label: 'Seguidores 2° Nivel'
-      = f.input :friends, label: 'Amigos'
-      = f.input :tweets, label: 'Tweets'
-      = f.input :retweets, label: 'Retweets'
-
       %h1.form_title Porcentajes
-      = f.input :males, label: 'Hombres'
-      = f.input :females, label: 'Mujeres'
-      = f.input :kids, label: 'Chicos'
-      = f.input :young_teens, label: 'Adolecentes Jovenes'
-      = f.input :mature_teens, label: 'Adolecentes Maduros'
-      = f.input :young_adults, label: 'Adultos Jovenes'
-      = f.input :mature_adults, label: 'Adultos Maduros'
-      = f.input :adults, label: 'Adultos'
-      = f.input :elderly, label: 'Ancianos'
-      = f.input :sports, label: 'Deportes'
-      = f.input :fashion, label: 'Moda'
-      = f.input :music, label: 'Música'
-      = f.input :movies, label: 'Películas'
-      = f.input :politics, label: 'Política'
+      = f.input :males, input_html: { disabled: 'disabled' }
+      = f.input :females, input_html: { disabled: 'disabled' }
+      = f.input :moms
+      = f.input :teens
+      = f.input :college_students
+      = f.input :young_women
+      = f.input :young_men
+      = f.input :adult_women
+      = f.input :adult_men
+
+      = f.input :sports
+      = f.input :fashion
+      = f.input :music
+      = f.input :movies
+      = f.input :politics
 
       .form-actions
         = f.submit 'Guardar', :class => 'btn btn-primary btn-large'
