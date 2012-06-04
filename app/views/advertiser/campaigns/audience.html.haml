@@ -1,62 +1,87 @@
 .row
   .span8.offset2.round_box
     = form_for(@campaign, url: [:set_audience, :advertiser, @campaign], html:  { id: "audience_campaign_form", class: "form-horizontal round_form", method: :put }) do |f|
-      %h1.form_title Audiencia
+      %h1.form_title Target
       - if @campaign.created_at > Time.now - 1.minute
         .center_text{style: 'margin: -20px 0 20px 0;'}
           %h3 Paso 2 de 2
       = render '/shared/form_errors', :object => f.object
 
-      = f.label :locations, "Zona Geográfica"
+      %h2 Zona Geográfica
+      .geographic_zones
+        .geographic_zone
+          = check_box_tag "campaign[locations][]", "Argentina", f.object.locations.include?("Argentina")
+          = label_tag "Argentina"
+        .geographic_zone
+          = check_box_tag "campaign[locations][]", "Latinoamérica", f.object.locations.include?("Latinoamerica")
+          = label_tag "Latinoamérica"
+        .geographic_zone
+          = check_box_tag "campaign[locations][]", "Norteamérica", f.object.locations.include?("Norteamerica")
+          = label_tag "Norteamérica"
+        .geographic_zone
+          = check_box_tag "campaign[locations][]", "Europa", f.object.locations.include?("Europa")
+          = label_tag "Europa"
+        .geographic_zone
+          = check_box_tag "campaign[locations][]", "Asia", f.object.locations.include?("Asia")
+          = label_tag "Asia"
+        .geographic_zone
+          = check_box_tag "campaign[locations][]", "Africa", f.object.locations.include?("Africa")
+          = label_tag "Africa"
 
+      %h2 Género
 
-      = f.label :males, "Hombres"
-      = f.check_box :males
+      .option
+        = f.check_box :males
+        = f.label :males, "Hombres"
 
-      = f.label :females, "Mujeres"
-      = f.check_box :females
+      .option
+        = f.check_box :females
+        = f.label :females, "Mujeres"
 
-      = f.label :moms, "Mamás"
-      = f.check_box :moms
+      %h2 Edades
+      .option
+        = f.check_box :moms
+        = f.label :moms, "Mamás"
+      .option
+        = f.check_box :teens
+        = f.label :teens, "Adolesecentes"
+      .option
+        = f.check_box :college_students
+        = f.label :college_students, "Universitarios"
+      .option
+        = f.check_box :young_women
+        = f.label :young_women, "Mujeres (18 a 35 años)"
+      .option
+        = f.check_box :young_men
+        = f.label :young_men, "Hombres (18 a 35 años)"
+      .option
+        = f.check_box :adult_women
+        = f.label :adult_women, "Mujeres (más de 35 años)"
+      .option
+        = f.check_box :adult_men
+        = f.label :adult_men, "Hombres (más de 35 años)"
 
-      = f.label :teens, "Adolesecentes"
-      = f.check_box :teens
+      %h2  Estilo de vida
+      .option
+        = f.check_box :sports
+        = f.label :sports, "Deportes"
+      .option
+        = f.check_box :fashion
+        = f.label :fashion, "Moda"
+      .option
+        = f.check_box :music
+        = f.label :music, "Música"
+      .option
+        = f.check_box :movies
+        = f.label :movies, "Películas"
+      .option
+        = f.check_box :politics
+        = f.label :politics, "Política"
 
-      = f.label :college_students, "Universitarios"
-      = f.check_box :college_students
-
-      = f.label :young_women, "Mujeres (18 a 35 años)"
-      = f.check_box :young_women
-
-      = f.label :young_men, "Hombres (18 a 35 años)"
-      = f.check_box :young_men
-
-      = f.label :adult_women, "Mujeres (más de 35 años)"
-      = f.check_box :adult_women
-
-      = f.label :adult_men, "Hombres (más de 35 años)"
-      = f.check_box :adult_men
-
-      = f.label :sports, "Deportes"
-      = f.check_box :sports
-
-      = f.label :fashion, "Moda"
-      = f.check_box :fashion
-
-      = f.label :music, "Música"
-      = f.check_box :music
-
-      = f.label :movies, "Películas"
-      = f.check_box :movies
-
-      = f.label :politics, "Política"
-      = f.check_box :politics
-
-      = f.label :followers_quantity, "Seguidores"
-      = f.select :followers_quantity, followers_quantity_options
-
-
-
+      %h2 Audiencia
+      .common_option
+        = f.label :followers_quantity, "Seguidores"
+        = f.select :followers_quantity, followers_quantity_options
 
       .form-actions
         = f.submit 'Aceptar', :class => 'btn btn-primary btn-large'
