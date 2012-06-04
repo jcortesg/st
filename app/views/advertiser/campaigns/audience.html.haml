@@ -1,46 +1,11 @@
 .row
-  .span6.offset3.round_box
-    = simple_form_for(@campaign, url: [:set_audience, :advertiser, @campaign], html:  { class: "form-horizontal round_form", method: :put }) do |f|
+  .span8.offset2.round_box
+    = simple_form_for(@campaign, url: [:set_audience, :advertiser, @campaign], html:  { id: "new_campaign_form", class: "form-horizontal round_form", method: :put }) do |f|
       %h1.form_title Audiencia
       - if @campaign.created_at > Time.now - 1.minute
         .center_text{style: 'margin: -20px 0 20px 0;'}
           %h3 Paso 2 de 2
       = render '/shared/simple_form_errors', :f => f
-
-      = f.input :min_followers
-      = f.input :max_followers
-      = f.input :min_males
-      = f.input :max_males
-      = f.input :min_females
-      = f.input :max_females
-      = f.input :min_kids
-      = f.input :max_kids
-      = f.input :min_adults
-      = f.input :max_adults
-      = f.input :min_elderly
-      = f.input :max_elderly
-      = f.input :min_young_teens
-      = f.input :max_young_teens
-      = f.input :min_mature_teens
-      = f.input :max_mature_teens
-      = f.input :min_young_adults
-      = f.input :max_young_adults
-      = f.input :min_mature_adults
-      = f.input :max_mature_adults
-      = f.input :min_sports
-      = f.input :max_sports
-      = f.input :min_fashion
-      = f.input :max_fashion
-      = f.input :min_music
-      = f.input :max_music
-      = f.input :min_movies
-      = f.input :max_movies
-      = f.input :min_politics
-      = f.input :max_politics
-
-
-
-
 
 
       .form-actions
