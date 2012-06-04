@@ -9,7 +9,7 @@
       .content
         - if current_user.advertiser.can_create_campaigns?
           .right
-            = link_to('Crear Nuevo Tweet', [:new, :advertiser, @campaign, :tweet], :class => 'btn btn-primary')
+            = link_to('Crear Nuevo Tweet', [:advertiser, @campaign, :tweets], :class => 'btn btn-primary')
         %h1.title= "Campaña #{@campaign.name}"
 
         %table.table.table-striped

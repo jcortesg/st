@@ -1,0 +1,35 @@
+- if flash.any?
+  .row
+    .span12
+      = render '/shared/flash', flash: flash
+
+.row
+  .span12
+    .round_box
+      .content
+        %h1.title Celebridades
+
+        %table.table.table-striped
+          %thead
+            %tr
+              %th Celebridad
+              %th Precio
+              %th Seguidores
+              %th Amigos
+              %th Klout
+              %th Acciones
+
+          %tbody
+            - @influencers.each do |influencer|
+              %tr{ :class => cycle('odd', 'even') }
+                %td= link_to(influencer.full_name, '#')
+                %td= sprintf("$ %.02f", influencer.tweet_fee)
+                %td= influencer.audience.followers
+                %td= influencer.audience.friends
+                %td= rand(11)
+                %td
+                  = link_to('Proponer Tweet', '#', class: 'btn btn-primary')
+        .center_text
+          = paginate @influencers
+          = link_to("Volver a la Campaña", [:advertiser, @campaign], class: 'btn')
+
