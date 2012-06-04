@@ -48,7 +48,7 @@ class Admin::AdvertisersController < ApplicationController
   def update
     @advertiser = Advertiser.find(params[:id])
     @user = @advertiser.user
-    if @user.update_attributes(params[:advertiser])
+    if @user.update_attributes(params[:user])
       flash[:notice] = "El anunciante #{@advertiser.full_name} fue actualizado con éxito"
       redirect_to [:admin, @advertiser]
     else

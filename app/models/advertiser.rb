@@ -8,7 +8,8 @@ class Advertiser < ActiveRecord::Base
   validates :last_name, :presence => true
   validates :phone, :presence => true
 
-  attr_accessible :first_name, :last_name, :twitter_username, :company, :address, :city, :state, :country, :zip_code, :phone
+  attr_accessible :first_name, :last_name, :twitter_username, :company, :address, :city, :state, :country, :zip_code,
+                  :phone, :can_create_campaigns
 
   def full_name
     "#{self.first_name} #{self.last_name}"

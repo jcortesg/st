@@ -32,6 +32,8 @@
           %dd= dl_value @advertiser.created_at.try(:strftime, "%d/%m/%Y")
           %dt Fecha actualización
           %dd= dl_value @advertiser.updated_at.try(:strftime, "%d/%m/%Y")
+          %dt Crear Campañas?
+          %dd= @advertiser.can_create_campaigns? ? 'Sí' : 'No'
       .clear.center_text.show_buttons
         = link_to('Editar', [:edit, :admin, @advertiser], class: 'btn btn-primary')
         = link_to('Eliminar', [:admin, @advertiser], method: :delete, class: 'btn btn-danger', confirm: "Esta seguro que desea eliminar al anunciante y todo su historial?" )
