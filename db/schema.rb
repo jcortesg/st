@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120604063657) do
+ActiveRecord::Schema.define(:version => 20120604220054) do
 
   create_table "advertisers", :force => true do |t|
     t.integer  "user_id"
@@ -58,28 +58,31 @@ ActiveRecord::Schema.define(:version => 20120604063657) do
 
   create_table "audiences", :force => true do |t|
     t.integer  "influencer_id"
-    t.integer  "followers",           :default => 0, :null => false
-    t.integer  "friends",             :default => 0, :null => false
-    t.integer  "tweets",              :default => 0, :null => false
-    t.integer  "retweets",            :default => 0, :null => false
-    t.integer  "peerindex",           :default => 0, :null => false
-    t.integer  "klout",               :default => 0, :null => false
-    t.integer  "males",               :default => 0, :null => false
-    t.integer  "females",             :default => 0, :null => false
-    t.integer  "moms",                :default => 0, :null => false
-    t.integer  "teens",               :default => 0, :null => false
-    t.integer  "college_students",    :default => 0, :null => false
-    t.integer  "young_women",         :default => 0, :null => false
-    t.integer  "young_men",           :default => 0, :null => false
-    t.integer  "adult_women",         :default => 0, :null => false
-    t.integer  "adult_men",           :default => 0, :null => false
-    t.integer  "sports",              :default => 0, :null => false
-    t.integer  "fashion",             :default => 0, :null => false
-    t.integer  "music",               :default => 0, :null => false
-    t.integer  "movies",              :default => 0, :null => false
-    t.integer  "politics",            :default => 0, :null => false
-    t.datetime "created_at",                         :null => false
-    t.datetime "updated_at",                         :null => false
+    t.integer  "followers",        :default => 0, :null => false
+    t.integer  "friends",          :default => 0, :null => false
+    t.integer  "tweets",           :default => 0, :null => false
+    t.integer  "retweets",         :default => 0, :null => false
+    t.integer  "peerindex",        :default => 0, :null => false
+    t.integer  "klout",            :default => 0, :null => false
+    t.integer  "males",            :default => 0, :null => false
+    t.integer  "females",          :default => 0, :null => false
+    t.integer  "moms",             :default => 0, :null => false
+    t.integer  "teens",            :default => 0, :null => false
+    t.integer  "college_students", :default => 0, :null => false
+    t.integer  "young_women",      :default => 0, :null => false
+    t.integer  "young_men",        :default => 0, :null => false
+    t.integer  "adult_women",      :default => 0, :null => false
+    t.integer  "adult_men",        :default => 0, :null => false
+    t.integer  "sports",           :default => 0, :null => false
+    t.integer  "fashion",          :default => 0, :null => false
+    t.integer  "music",            :default => 0, :null => false
+    t.integer  "movies",           :default => 0, :null => false
+    t.integer  "politics",         :default => 0, :null => false
+    t.integer  "technology"
+    t.integer  "travel"
+    t.integer  "luxury"
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
   end
 
   add_index "audiences", ["influencer_id"], :name => "index_audiences_on_influencer_id"
@@ -88,8 +91,10 @@ ActiveRecord::Schema.define(:version => 20120604063657) do
     t.integer  "advertiser_id"
     t.string   "name"
     t.text     "objective"
-    t.boolean  "archived",                                         :default => false, :null => false
+    t.boolean  "archived",                                       :default => false, :null => false
     t.text     "locations"
+    t.text     "followers_qty"
+    t.text     "tweet_price"
     t.boolean  "males"
     t.boolean  "females"
     t.boolean  "moms"
@@ -104,11 +109,13 @@ ActiveRecord::Schema.define(:version => 20120604063657) do
     t.boolean  "music"
     t.boolean  "movies"
     t.boolean  "politics"
-    t.string   "followers_quantity"
-    t.integer  "clicks_count",                                     :default => 0,     :null => false
-    t.decimal  "cost",               :precision => 8, :scale => 2, :default => 0.0,   :null => false
-    t.datetime "created_at",                                                          :null => false
-    t.datetime "updated_at",                                                          :null => false
+    t.boolean  "technology"
+    t.boolean  "travel"
+    t.boolean  "luxury"
+    t.integer  "clicks_count",                                   :default => 0,     :null => false
+    t.decimal  "cost",             :precision => 8, :scale => 2, :default => 0.0,   :null => false
+    t.datetime "created_at",                                                        :null => false
+    t.datetime "updated_at",                                                        :null => false
   end
 
   add_index "campaigns", ["advertiser_id"], :name => "index_campaigns_on_advertiser_id"

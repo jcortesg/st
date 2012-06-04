@@ -38,6 +38,12 @@ class Advertiser::CampaignsController < ApplicationController
     @campaign = Campaign.new(params[:campaign])
     @campaign.advertiser_id = current_role.id
 
+    # Set default values for the campaign
+    @campaign.followers_qty = ["0-500", "500-2000", "2000-10000", "10000-100000", "100000-300000", "300000-600000",
+                               "600000-900000", "900000-2000000"]
+    @campaign.tweet_price = ["0-300", "300-1000", "1000-2000", "2000-3000", "3000-5000", "5000-7000", "7000-10000",
+                             "10000-20000", "20000-50000"]
+
     if @campaign.save
       flash[:notice] = "La campaña #{@campaign.name} fue creada con éxito"
       redirect_to [:audience, :advertiser, @campaign]

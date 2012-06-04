@@ -4,7 +4,8 @@ class Audience < ActiveRecord::Base
 
   attr_accessible :followers, :followers_followers, :friends, :tweets, :retweets, :peerindex, :klout,
                   :males, :females, :kids, :young_teens, :mature_teens, :young_adults, :mature_adults,
-                  :adults, :elderly, :sports, :fashion, :music, :movies, :politics
+                  :adults, :elderly, :sports, :fashion, :music, :movies, :politics, :technology,
+                  :travel, :luxury
 
   validates :followers, presence: true, numericality: { greater_than_or_equal_to: 0 }
   validates :friends, presence: true, numericality: { greater_than_or_equal_to: 0 }
@@ -26,4 +27,7 @@ class Audience < ActiveRecord::Base
   validates :music, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 100 }
   validates :movies, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 100 }
   validates :politics, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 100 }
+  validates :technology, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 100 }
+  validates :travel, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 100 }
+  validates :luxury, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 100 }
 end

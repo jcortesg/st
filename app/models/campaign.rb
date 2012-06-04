@@ -4,10 +4,12 @@ class Campaign < ActiveRecord::Base
   has_many :clicks, through: :tweets, dependent: :destroy
 
   serialize :locations, Array
+  serialize :followers_qty, Array
+  serialize :tweet_price, Array
 
   attr_accessible :name, :objective, :locations, :males, :females, :moms, :teens, :college_students,
                   :young_women, :young_men, :adult_women, :adult_men, :sports, :fashion, :music,
-                  :movies, :politics, :followers_quantity
+                  :movies, :politics, :technology, :travel, :luxury, :followers_qty, :tweet_price
 
   validates :name, uniqueness: { scope: :advertiser_id }
   validates :objective, presence: true

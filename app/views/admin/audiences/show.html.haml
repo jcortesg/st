@@ -46,10 +46,16 @@
           %dd= @audience.fashion
           %dt Música
           %dd= @audience.music
-          %dt Películas
+          %dt Cine
           %dd= @audience.movies
           %dt Política
           %dd= @audience.politics
+          %dt Tecnología
+          %dd= @audience.technology
+          %dt Viajes
+          %dd= @audience.travel
+          %dt Lujos
+          %dd= @audience.luxury
 
       .clear.center_text.show_buttons
         = link_to('Editar Audiencia', [:edit, :admin, @influencer, :audience], class: 'btn btn-primary')
