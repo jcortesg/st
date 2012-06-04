@@ -27,7 +27,6 @@
                 %td= localize(campaign.created_at, :format => "%d/%m/%Y")
                 %td
                   = link_to('Ver', [:advertiser, campaign], class: 'btn btn-primary')
-                  = link_to('Activar', [:activate, :advertiser, campaign], method: :put, class: 'btn btn-danger', confirm: "Esta seguro que desea activar la campaña?" )
         .center_text
           = paginate @campaigns
 
