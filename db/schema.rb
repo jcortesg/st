@@ -78,9 +78,9 @@ ActiveRecord::Schema.define(:version => 20120604220054) do
     t.integer  "music",            :default => 0, :null => false
     t.integer  "movies",           :default => 0, :null => false
     t.integer  "politics",         :default => 0, :null => false
-    t.integer  "technology"
-    t.integer  "travel"
-    t.integer  "luxury"
+    t.integer  "technology",       :default => 0, :null => false
+    t.integer  "travel",           :default => 0, :null => false
+    t.integer  "luxury",           :default => 0, :null => false
     t.datetime "created_at",                      :null => false
     t.datetime "updated_at",                      :null => false
   end
