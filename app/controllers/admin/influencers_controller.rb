@@ -5,7 +5,9 @@ class Admin::InfluencersController < ApplicationController
 
   # Show the list of influencers
   def index
-    @search = Influencer.includes(:user).search(params[:search])
+    search_params = params[:search] || {}
+    search_params.reverse_merge!({"meta_sort" => "audience_followers.desc"})
+    @search = Influencer.includes(:user).search(search_params)
     @influencers = @search.page(params[:page])
   end
 

@@ -19,6 +19,7 @@
               %th= sort_link(@search, :user_email, 'Email')
               %th= sort_link(@search, :user_twitter_screen_name, 'Twitter')
               %th= sort_link(@search, :created_at, "Creado")
+              %th= sort_link(@search, :audience_followers, "Seguidores")
               %th Acciones
 
           %tbody
@@ -29,9 +30,9 @@
                 %td= influencer.user.email
                 %td= influencer.user.twitter_screen_name
                 %td= influencer.created_at ? (localize(influencer.created_at, :format => "%d/%m/%Y")) : ""
+                %td= influencer.audience.followers
                 %td
                   = link_to('Editar', [:edit, :admin, influencer], class: 'btn btn-primary')
-                  = link_to('Audiencia', [:admin, influencer, :audience], class: 'btn btn-primary')
                   = link_to('Eliminar', [:admin, influencer], method: :delete, class: 'btn btn-danger', confirm: "Esta seguro que desea eliminar a la celebridad y todo su historial?" )
         .center_text
           = paginate @influencers
