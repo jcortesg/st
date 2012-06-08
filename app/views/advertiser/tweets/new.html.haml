@@ -41,8 +41,6 @@
           .overview_data.clearfix
             %h2
               = link_to("@#{@influencer.user.twitter_screen_name}", "https://twitter.com/#!/#{@influencer.user.twitter_screen_name}")
-              %span.edit_profile
-                = link_to('Proponer Tweet', new_advertiser_campaign_tweet_path(@campaign, influencer_id: @influencer.id), class: 'btn btn-primary')
             %p
               %strong= "Bio:"
               = @influencer.twitter_bio
