@@ -23,7 +23,22 @@ class Advertiser::TweetsController < ApplicationController
 
   # Creates a new tweet
   def create
-    a = 1
+    @tweet = Tweet.new(params[:tweet])
+    @influencer = Influencer.find(@tweet.influencer_id)
+    @tweet.campaign = @campaign
+    if @tweet.save
+      if params[:commit] == 'Proponer y volver a la campaña'
+        flash[:success] = "Se ha propuesto el tweet a #{@influencer.full_name}"
+        redirect_to advertiser_campaign_path(@campaign)
+      else
+        flash[:success] = "Se ha propuesto el tweet a #{@influencer.full_name}"
+        new_advertiser_campaign_tweet_path(@campaign, influencer_id: @influencer.id)
+      end
+    else
+      @twitter_user = Twitter.user(@influencer.user.twitter_screen_name)
+      flash[:error] = "Hubo errores al proponer el tweet"
+      render action: :new
+    end
   end
 
   # Edit a tweet
