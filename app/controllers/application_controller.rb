@@ -1,3 +1,4 @@
+# encoding: utf-8
 class ApplicationController < ActionController::Base
   protect_from_forgery
   helper :all
@@ -89,6 +90,14 @@ class ApplicationController < ActionController::Base
         current_user.affiliate
       else
         nil
+    end
+  end
+
+  # Verifies that the current user can create a campaign
+  def verify_can_create_campaign
+    unless current_user.advertiser.can_create_campaigns?
+      flash[:error] = "No tiene permitido create campañas"
+      redirect_to action: :index
     end
   end
 end

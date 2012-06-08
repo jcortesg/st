@@ -5,6 +5,14 @@
 
 .row
   .span12
+    %ul.breadcrumb
+      %li
+        = link_to("Campañas", [:advertiser, :campaigns])
+        %span.divider /
+      %li.active= @campaign.name
+
+.row
+  .span12
     .round_box
       .content
         - if current_user.advertiser.can_create_campaigns?

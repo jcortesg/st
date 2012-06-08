@@ -1,4 +1,16 @@
 .row
+  .span8.offset2
+    %ul.breadcrumb
+      %li
+        = link_to("Campañas", [:advertiser, :campaigns])
+        %span.divider /
+      %li.active
+        - if @campaign.created_at > Time.now - 1.minute
+          Nueva Campaña
+        - else
+          Audiencia
+
+.row
   .span8.offset2.round_box
     = form_for(@campaign, url: [:set_audience, :advertiser, @campaign], html:  { id: "audience_campaign_form", class: "form-horizontal round_form", method: :put }) do |f|
       %h1.form_title Target

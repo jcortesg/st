@@ -56,7 +56,6 @@ Borwin::Application.routes.draw do
   end
 
   # Advertiser routes
-  match '/advertiser' => 'advertiser/dashboard#index', :as => :advertiser_dashboard
   namespace :advertiser do
     resources :campaigns, except: [:delete] do
       collection do
@@ -69,6 +68,7 @@ Borwin::Application.routes.draw do
         put :activate
       end
       resources :clicks
+      match '/influencer_profile/:influencer_id' => 'tweets#influencer_profile', :as => :influencer_profile
       resources :tweets do
         resources :clicks, only: [:index, :show]
       end

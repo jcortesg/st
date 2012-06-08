@@ -1,4 +1,12 @@
 .row
+  .span8.offset2
+    %ul.breadcrumb
+      %li
+        = link_to("Campañas", [:advertiser, :campaigns])
+        %span.divider /
+      %li.active Nueva Campaña
+
+.row
   .span8.offset2.round_box
     = simple_form_for(@campaign, url: [:advertiser, @campaign], html:  { id: "new_campaign_form", class: "form-horizontal round_form" }) do |f|
       %h1.form_title Nueva Campaña

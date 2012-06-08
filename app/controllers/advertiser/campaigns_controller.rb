@@ -115,14 +115,4 @@ class Advertiser::CampaignsController < ApplicationController
       redirect_to :back
     end
   end
-
-  private
-
-  # Verifies that the current user can create a campaign
-  def verify_can_create_campaign
-    unless current_user.advertiser.can_create_campaigns?
-      flash[:error] = "No tiene permitido create campañas"
-      redirect_to action: :index
-    end
-  end
 end

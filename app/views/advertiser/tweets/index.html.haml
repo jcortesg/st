@@ -1,3 +1,18 @@
+- content_for :head do
+  = javascript_include_tag 'http://widgets.twimg.com/j/2/widget.js'
+
+.row
+  .span12
+    %ul.breadcrumb
+      %li
+        = link_to("Campañas", [:advertiser, :campaigns])
+        %span.divider /
+      %li
+        = link_to(@campaign.name, [:advertiser, @campaign])
+        %span.divider /
+      %li.active Tweets
+
+
 - if flash.any?
   .row
     .span12
@@ -22,14 +37,15 @@
           %tbody
             - @influencers.each do |influencer|
               %tr{ :class => cycle('odd', 'even') }
-                %td= link_to(influencer.full_name, '#')
+                %td= link_to(influencer.full_name, advertiser_campaign_influencer_profile_path(@campaign, influencer))
                 %td= sprintf("$ %.02f", influencer.tweet_fee)
                 %td= influencer.audience.followers
                 %td= influencer.audience.friends
                 %td= rand(11)
                 %td
-                  = link_to('Proponer Tweet', '#', class: 'btn btn-primary')
+                  = link_to('Proponer Tweet', [:new, :advertiser, @campaign, :tweet], class: 'btn btn-primary')
         .center_text
           = paginate @influencers
           = link_to("Volver a la Campaña", [:advertiser, @campaign], class: 'btn')
+
 

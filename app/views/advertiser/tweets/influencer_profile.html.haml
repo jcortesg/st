@@ -1,0 +1,150 @@
+- content_for :head do
+  = javascript_include_tag 'http://widgets.twimg.com/j/2/widget.js'
+
+.row
+  .span12{style: 'width: 970px'}
+    %ul.breadcrumb
+      %li
+        = link_to("Campañas", [:advertiser, :campaigns])
+        %span.divider /
+      %li
+        = link_to(@campaign.name, [:advertiser, @campaign])
+        %span.divider /
+      %li
+        = link_to("Tweets", [:advertiser, @campaign, :tweets])
+        %span.divider /
+      %li.active= @influencer.full_name
+
+
+- if flash.any?
+  .row
+    .span12
+      = render '/shared/flash', flash: flash
+.row
+  .span9
+
+    .profile_round_box
+      .profile_resume_head
+        %h1
+          = @influencer.full_name
+        .influencer_type
+          %span= @influencer.influencer_type
+
+        .price
+          %span= "$#{@influencer.tweet_fee.to_f.round}"
+          por tweet
+
+      .profile_body
+        .twitter_overview
+          .overview_data.clearfix
+            %h2
+              = link_to("@#{@influencer.user.twitter_screen_name}", "https://twitter.com/#!/#{@influencer.user.twitter_screen_name}")
+              %span.edit_profile
+                = link_to('Proponer Tweet', [:new, :advertiser, @campaign, :tweet], class: 'btn btn-primary')
+            %p
+              %strong= "Bio:"
+              = @influencer.twitter_bio
+            %p
+              %strong= "Último Tweet:"
+              = @twitter_user.status.try(:text)
+          .twitter_photo
+            - if @influencer.photo.exists?
+              = image_tag(@influencer.photo.url(:profile))
+            - else
+              = image_tag('no_photo.jpg')
+
+      .profile_data.clearfix
+        .influencer_stats
+          .box_container.clearfix
+            .box
+              .stat Seguidores:
+              .data= @influencer.audience.followers
+              .stat Amigos:
+              .data= @influencer.audience.friends
+              .stat Tweets:
+              .data= @influencer.audience.tweets
+              .stat Sexo:
+              .data= influencer_sex(@influencer.sex)
+              .stat Años:
+              .data= influencer_age(@influencer.birthday)
+              .stat Ingreso Twitter:
+              .data= @influencer.twitter_joined.strftime("%d/%m/%y")
+              .stat Ingreso TweetGo:
+              .data= @influencer.user.created_at.strftime("%d/%m/%y")
+
+            .box.last
+              .stat Tweet:
+              .data= number_to_currency(@influencer.tweet_fee)
+              .stat CPC:
+              .data= number_to_currency(@influencer.cpc_fee)
+              .stat CPC medio:
+              .data= "-"
+              .stat CPC totales:
+              .data= "-"
+
+
+      #user_photo.modal.hide.fade
+        = simple_form_for @influencer, :url => influencer_profiles_update_photo_path do |f|
+          .modal-header
+            %button.close{'data-dismiss' => 'modal'} x
+            %h3 Foto
+          .modal-body
+            .clearfix
+              .image
+                - if @influencer.photo.exists?
+                  = image_tag(@influencer.photo.url(:profile))
+                - else
+                  = image_tag('no_photo.jpg')
+              .form
+                = f.input :photo
+          .modal-footer
+            %a.btn.close_user_photo{:href => '#'} Cerrar
+            = f.submit 'Guardar', :class => 'btn btn-primary'
+
+
+  .span3
+    .profile_round_box
+      :javascript
+        new TWTR.Widget({
+          version: 2,
+          type: 'profile',
+          rpp: 4,
+          interval: 30000,
+          width: 250,
+          height: 300,
+          theme: {
+            shell: {
+              background: '#1F91D0',
+              color: '#ffffff'
+            },
+            tweets: {
+              background: '#ffffff',
+              color: '#6b6b6b',
+              links: '#2f8dcc'
+            }
+          },
+          features: {
+            scrollbar: false,
+            loop: false,
+            live: false,
+            behavior: 'all'
+          }
+        }).render().setUser('#{@influencer.user.twitter_screen_name}').start();
+
+.row
+  .span9
+    .round_box
+      %h1.form_title Audiencia
+
+      = render '/admin/audiences/audience_table', audience: @influencer.audience
+
+.row
+  .span9
+    .round_box_2{style: 'margin-bottom: 20px'}
+      .center_text{style: 'padding: 10px 0 10px 0'}
+        = link_to('Proponer Tweet', [:new, :advertiser, @campaign, :tweet], class: 'btn btn-primary btn-large', style: 'margin-right: 20px')
+        = link_to("Volver a Twets", [:advertiser, @campaign, :tweets], class: 'btn btn-large')
+
+
+
+

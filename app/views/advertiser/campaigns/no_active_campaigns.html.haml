@@ -5,6 +5,11 @@
 
 .row
   .span12
+    %ul.breadcrumb
+      %li.active Campañas
+
+.row
+  .span12
     .round_box
       .content
         - if current_user.advertiser.can_create_campaigns?
