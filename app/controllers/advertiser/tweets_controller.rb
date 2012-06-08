@@ -44,6 +44,7 @@ class Advertiser::TweetsController < ApplicationController
       end
     else
       @twitter_user = Twitter.user(@influencer.user.twitter_screen_name)
+      @tweets = Tweet.where(campaign_id: @campaign.id, influencer_id: @influencer.id)
       flash[:error] = "Hubo errores al proponer el tweet"
       render action: :new
     end

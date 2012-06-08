@@ -12,13 +12,16 @@ class Tweet < ActiveRecord::Base
   validates :text, presence: true
   validate :text_contains_link
 
+  before_create :set_prices
+  before_create :create_borwin_link
+
   # Tweet status:
   # * created: Created by the advertiser
   # * influencer_reviewed: Revised by the Influencer
   # * influencer_rejected: Rejected by the Influencer
   # * advertiser_reviewed: Revised by the Advertiser
   # * advertiser_rejected: Rejected by the Advertiser
-  # * accepted: Accepted either by advertiser or influencer
+  # * accepted: Accepted either by Advertiser or Influencer
 
   state_machine :status, initial: :created do
     event :reviewed_by_influencer do
@@ -50,12 +53,28 @@ class Tweet < ActiveRecord::Base
     "AR$ 0.0"
   end
 
+  # Check that the text contains a link
   def text_contains_link
     matches = text.scan(/\b(?:https?:\/\/|www\.)\S+\b/)
     if matches.size == 0
       errors.add(:text, "no tiene ningún link")
     elsif matches.size > 1
       errors.add(:text, "tiene más de un link")
+    end
+  end
+
+  private
+
+  # Replaces the link on the text with a borwin link
+  def create_borwin_link
+
+  end
+
+  # Set the prices for the tweet when its created
+  def set_prices
+    if self.influencer
+      self.tweet_fee = influencer.tweet_fee
+      self.cpc_fee = influencer.cpc_fee
     end
   end
 end
