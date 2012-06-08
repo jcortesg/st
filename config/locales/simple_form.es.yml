@@ -122,6 +122,18 @@ es:
         cost: Costo
         created_at: Fecha de creación
         updated_at: Fecha de actualización
+      tweet:
+        text: Tweet
+        tweet_at: Fecha y hora de tweet
+        link_code: Código de link
+        link_url: URL
+        fee_type: Tipo de pago
+        cpc: CPC
+        tweet_fee: Costo del tweet
+        clicks_count: Clicks
+        status: Estado
+        created_at: Fecha de creación
+        updated_at: Fecha de actualización
     hints:
       influencer:
         twitter_username: "Tu nombre de usuario en twitter, ej: rorra"

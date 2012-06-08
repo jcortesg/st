@@ -16,11 +16,14 @@ class Advertiser::TweetsController < ApplicationController
       redirect_to action: :index
     end
     @twitter_user = Twitter.user(@influencer.user.twitter_screen_name)
+    @tweet = Tweet.new
+    @tweet.influencer_id = @influencer.id
+    @tweet.campaign_id = @campaign.id
   end
 
   # Creates a new tweet
   def create
-
+    a = 1
   end
 
   # Edit a tweet

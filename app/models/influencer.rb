@@ -1,7 +1,8 @@
 # encoding: utf-8
 class Influencer < ActiveRecord::Base
-  has_one :audience, dependent: :destroy
   belongs_to :user
+  has_one :audience, dependent: :destroy
+  has_many :tweets
 
   has_attached_file :photo, :styles => { :profile => "140x200#", :small => "100x100>", :thumb => "48x48#"  }
 

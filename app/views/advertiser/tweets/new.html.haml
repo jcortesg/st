@@ -1,5 +1,6 @@
 - content_for :head do
   = javascript_include_tag 'http://widgets.twimg.com/j/2/widget.js'
+  = javascript_include_tag 'advertiser/new_tweet'
 
 .row
   .span12{style: 'width: 970px'}
@@ -54,8 +55,18 @@
             - else
               = image_tag('no_photo.jpg')
       %hr
-      .clearfix
-        Formulario
+      .tweet_proposal.clearfix
+        = simple_form_for @tweet, url: advertiser_campaign_tweets_path(@campaign), html: { class: 'vertical-form' } do |f|
+          = f.input :text, as: :text, input_html: { style: 'width: 650px;height: 40px' }
+          = f.input :tweet_at, minute_step: 15, start_year: Time.now.year, end_year: Time.now.year + 1, input_html: { class: 'tweet_time' }
+          = f.input :fee_type, as: :radio, collection: [["Precio por Tweet - AR$ #{sprintf("%.02f", @influencer.tweet_fee)}", 'twwet_fee'], ["Precio por Click - AR$ #{sprintf("%.02f", @influencer.cpc_fee)}", 'cpc']]
+
+          = f.input :campaign_id, as: :hidden
+          = f.input :influencer_id, as: :hidden
+
+          .form-actions
+            = f.submit 'Proponer y volver a la campaña', class: 'btn btn-primary btn-large', id: 'create_and_back'
+            = f.submit 'Proponer y agregar otro tweet', class: 'btn btn-primary btn-large', id: 'create_and_add_new'
 
 
 

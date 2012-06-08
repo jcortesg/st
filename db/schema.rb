@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120604220054) do
+ActiveRecord::Schema.define(:version => 20120608090213) do
 
   create_table "advertisers", :force => true do |t|
     t.integer  "user_id"
@@ -184,20 +184,24 @@ ActiveRecord::Schema.define(:version => 20120604220054) do
 
   create_table "tweets", :force => true do |t|
     t.integer  "campaign_id"
+    t.integer  "influencer_id"
     t.string   "text"
+    t.datetime "tweet_at"
     t.string   "link_code"
     t.string   "link_url"
     t.string   "fee_type"
-    t.decimal  "tweet_fee",    :precision => 8, :scale => 2, :default => 0.0, :null => false
-    t.decimal  "cpc",          :precision => 8, :scale => 2, :default => 0.0, :null => false
-    t.integer  "clicks_count",                               :default => 0,   :null => false
+    t.decimal  "tweet_fee",     :precision => 8, :scale => 2, :default => 0.0, :null => false
+    t.decimal  "cpc_fee",       :precision => 8, :scale => 2, :default => 0.0, :null => false
+    t.integer  "clicks_count",                                :default => 0,   :null => false
     t.string   "status"
-    t.datetime "created_at",                                                  :null => false
-    t.datetime "updated_at",                                                  :null => false
+    t.datetime "created_at",                                                   :null => false
+    t.datetime "updated_at",                                                   :null => false
   end
 
   add_index "tweets", ["campaign_id"], :name => "index_tweets_on_campaign_id"
+  add_index "tweets", ["influencer_id"], :name => "index_tweets_on_influencer_id"
   add_index "tweets", ["link_code"], :name => "index_tweets_on_link_code", :unique => true
+  add_index "tweets", ["tweet_at"], :name => "index_tweets_on_tweet_at"
 
   create_table "users", :force => true do |t|
     t.string   "email",                   :default => "",    :null => false

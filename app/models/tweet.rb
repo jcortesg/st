@@ -1,8 +1,12 @@
 class Tweet < ActiveRecord::Base
   belongs_to :campaign
+  belongs_to :influencer
   has_many :clicks
 
-  attr_accessible :campaign_id, :text, :link_url, :fee_type
+  attr_accessible :campaign_id, :influencer_id, :text, :link_url, :fee_type, :tweet_at
+
+  validates :campaign_id, presence: true
+  validates :influencer_id, presence: true
 
   # Tweet status:
   # * created: Created by the advertiser
