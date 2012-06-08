@@ -10,7 +10,7 @@ class Tweet < ActiveRecord::Base
   validates :influencer_id, presence: true
   validates :fee_type, presence: true
   validates :text, presence: true
-  validate :text_contains_link
+  validate :tweet_text_validation
 
   before_create :set_prices
   before_create :create_borwin_link
@@ -54,12 +54,17 @@ class Tweet < ActiveRecord::Base
   end
 
   # Check that the text contains a link
-  def text_contains_link
+  def tweet_text_validation
     matches = text.scan(/\b(?:https?:\/\/|www\.)\S+\b/)
     if matches.size == 0
       errors.add(:text, "no tiene ningún link")
     elsif matches.size > 1
       errors.add(:text, "tiene más de un link")
+    else
+      template_text = text.sub(/\b(?:https?:\/\/|www\.)\S+\b/, 'http://bwn.tw/L1234')
+      if template_text.size > 150
+        errors.add(:text, "tiene #{template_text.size} carácteres, el máximo es de 140")
+      end
     end
   end
 
@@ -67,7 +72,22 @@ class Tweet < ActiveRecord::Base
 
   # Replaces the link on the text with a borwin link
   def create_borwin_link
+    # Generate the link code
+    o =  [('A'..'Z'),('a'..'z'),(0..9)].map{|i| i.to_a}.flatten
+    begin
+      code = (0..3).map{ o[rand(o.length)] }.join
+    end while Tweet.where(link_code: code).exists?
 
+    # Now parse and create the data
+    self.link_code = code
+
+    # Get the link from the tweet
+    matches = text.scan(/\b(?:https?:\/\/|www\.)\S+\b/)
+    self.link_url = matches[0]
+    self.link_url = "http://#{self.link_url}" unless self.link_url =~ /http/
+
+    # Finally replace the text link on the text
+    self.text.sub!(/\b(?:https?:\/\/|www\.)\S+\b/, "http://bwn.tw/L#{self.link_code}")
   end
 
   # Set the prices for the tweet when its created
