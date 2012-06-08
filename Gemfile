@@ -17,6 +17,7 @@ gem 'twitter'                          # Twitter
 gem 'nested_form', :git => 'https://github.com/ryanb/nested_form.git' # Nested forms
 gem 'country_select'                   # For country select on user registration
 gem 'active_attr'                      # Tableless models
+gem 'state_machine'                    # State machine, used mainly for tweet states
 
 
 group :assets do

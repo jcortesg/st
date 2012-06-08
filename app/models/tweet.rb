@@ -14,12 +14,37 @@ class Tweet < ActiveRecord::Base
 
   # Tweet status:
   # * created: Created by the advertiser
-  # * influencer_revised: Revised by the Influencer
-  # * influencer_accepted: Accepted by the Influencer
+  # * influencer_reviewed: Revised by the Influencer
   # * influencer_rejected: Rejected by the Influencer
-  # * advertiser_revised: Revised by the Advertiser
-  # * advertiser_accepted: Accepted by the Advertiser
+  # * advertiser_reviewed: Revised by the Advertiser
   # * advertiser_rejected: Rejected by the Advertiser
+  # * accepted: Accepted either by advertiser or influencer
+
+  state_machine :status, initial: :created do
+    event :reviewed_by_influencer do
+      transition [:created, :advertiser_reviewed, :advertiser_rejected] => [:influencer_reviewed]
+    end
+
+    event :reviewed_by_advertiser do
+      transition [:influencer_reviewed] => [:advertiser_reviewed]
+    end
+
+    event :accepted_by_influencer do
+      transition [:created, :advertiser_reviewed, :influencer_reviewed] => [:accepted]
+    end
+
+    event :accepted_by_advertiser do
+      transition [:influencer_reviewed] => [:accepted]
+    end
+
+    event :rejected_by_influencer do
+      transition [:created, :advertiser_reviewed] => [:influencer_rejected]
+    end
+
+    event :rejected_by_advertiser do
+      transition [:influencer_reviewed] => [:advertiser_rejected]
+    end
+  end
 
   def cost
     "AR$ 0.0"
