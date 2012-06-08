@@ -10,12 +10,20 @@ class Advertiser::TweetsController < ApplicationController
 
   # Shows the form to propose a new tweet
   def new
+    # Get the influencer for the new tweet
     if params[:influencer_id]
       @influencer = Influencer.find(params[:influencer_id])
     else
       redirect_to action: :index
     end
+
+    # Get the latest tweet of the influencer
     @twitter_user = Twitter.user(@influencer.user.twitter_screen_name)
+
+    # Check if there are other tweets on this campaign with this user
+    @tweets = Tweet.where(campaign_id: @campaign.id, influencer_id: @influencer.id)
+
+    # New tweet with default values
     @tweet = Tweet.new
     @tweet.influencer_id = @influencer.id
     @tweet.campaign_id = @campaign.id
