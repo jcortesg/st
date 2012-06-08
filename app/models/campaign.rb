@@ -14,7 +14,7 @@ class Campaign < ActiveRecord::Base
   validates :name, uniqueness: { scope: :advertiser_id }
   validates :objective, presence: true
 
-  validates :followers_quantity, presence: true, on: :update
+  validates :followers_qty, presence: true, on: :update
 
   class << self
     # Brings the archived campaigns
