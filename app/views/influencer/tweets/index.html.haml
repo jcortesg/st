@@ -12,6 +12,7 @@
                 %th Campaña
                 %th Tweet
                 %th Estado
+                %th Ingresos
                 %th Acciones
             %tbody
               - @tweets.each do |tweet|
@@ -20,6 +21,7 @@
                   %td= tweet.campaign.name
                   %td= tweet.text
                   %td= influencer_tweet_status(tweet.status)
+                  %td= tweet.fee_type == 'tweet_fee' ? "Tweet: $#{sprintf("%.02f", tweet.tweet_fee)}" : "Click: $#{sprintf("%.02f", tweet.cpc_fee)}"
                   %td= link_to("Detalle", [:influencer, tweet], class: 'btn btn-primary')
           .center_text
             = paginate @tweets
