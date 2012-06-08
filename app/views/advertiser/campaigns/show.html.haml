@@ -24,16 +24,16 @@
           %thead
             %tr
               %th Celebridad
-              %th Tweet
               %th Clicks
               %th Costo
               %th Estado
+              %th Acciones
 
           %tbody
             - @campaign.tweets.each do |tweet|
               %tr{ :class => cycle('odd', 'even') }
                 %td= tweet.influencer.full_name
-                %td= link_to("Ver Tweeet", "#", class: 'btn')
                 %td= link_to(tweet.clicks_count, "#")
-                %td= tweet.cost
-                %td= tweet.status
+                %td= tweet.fee_type == 'tweet_fee' ? "Tweet: $#{sprintf("%.02f", tweet.tweet_fee)}" : "Click: $#{sprintf("%.02f", tweet.cpc_fee)}"
+                %td= advertiser_tweet_status(tweet.status)
+                %td= link_to("Detalle", [:advertiser, @campaign, tweet], class: 'btn')

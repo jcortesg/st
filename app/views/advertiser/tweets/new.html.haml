@@ -69,7 +69,7 @@
                   %td= tweet.text
                   %td= (localize(tweet.tweet_at, :format => "%d/%m/%Y %H:%M"))
                   %td= tweet.fee_type == 'tweet_fee' ? "Tweet: $#{sprintf("%.02f", tweet.tweet_fee)}" : "Click: $#{sprintf("%.02f", tweet.cpc_fee)}"
-                  %td= tweet.status
+                  %td= advertiser_tweet_status(tweet.status)
 
       %hr
       .tweet_proposal.clearfix

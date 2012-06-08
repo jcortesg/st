@@ -49,10 +49,6 @@ class Tweet < ActiveRecord::Base
     end
   end
 
-  def cost
-    "AR$ 0.0"
-  end
-
   # Check that the text contains a link
   def tweet_text_validation
     matches = text.scan(/\b(?:https?:\/\/|www\.)\S+\b/)
