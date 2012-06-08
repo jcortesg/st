@@ -16,7 +16,7 @@ class Advertiser::CampaignsController < ApplicationController
 
   # Shows the archived campaigns
   def archived
-    @search = Campaign.archived.where(advertiser_id: current_role).search(params[:search])
+    @search = Campaign.archived.where(advertiser_id: current_role.id).search(params[:search])
     @campaigns = @search.page(params[:page])
   end
 

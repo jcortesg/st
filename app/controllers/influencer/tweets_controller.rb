@@ -4,6 +4,7 @@ class Influencer::TweetsController < ApplicationController
 
   # Shows the tweets for the influencer
   def index
-
+    @search = Tweet.where(influencer_id: current_role.id).search(params[:search])
+    @tweets = @search.page(params[:page])
   end
 end
