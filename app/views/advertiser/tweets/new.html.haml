@@ -1,0 +1,89 @@
+- content_for :head do
+  = javascript_include_tag 'http://widgets.twimg.com/j/2/widget.js'
+
+.row
+  .span12{style: 'width: 970px'}
+    %ul.breadcrumb
+      %li
+        = link_to("Campañas", [:advertiser, :campaigns])
+        %span.divider /
+      %li
+        = link_to(@campaign.name, [:advertiser, @campaign])
+        %span.divider /
+      %li
+        = link_to("Tweets", [:advertiser, @campaign, :tweets])
+        %span.divider /
+      %li.active
+        Proponwer Tweet -
+        = @influencer.full_name
+
+- if flash.any?
+  .row
+    .span12
+      = render '/shared/flash', flash: flash
+.row
+  .span9
+
+    .profile_round_box
+      .profile_resume_head
+        %h1
+          = @influencer.full_name
+        .influencer_type
+          %span= @influencer.influencer_type
+
+        .price
+          %span= "$#{@influencer.tweet_fee.to_f.round}"
+          por tweet
+
+      .profile_body
+        .twitter_overview
+          .overview_data.clearfix
+            %h2
+              = link_to("@#{@influencer.user.twitter_screen_name}", "https://twitter.com/#!/#{@influencer.user.twitter_screen_name}")
+              %span.edit_profile
+                = link_to('Proponer Tweet', new_advertiser_campaign_tweet_path(@campaign, influencer_id: @influencer.id), class: 'btn btn-primary')
+            %p
+              %strong= "Bio:"
+              = @influencer.twitter_bio
+            %p
+              %strong= "Último Tweet:"
+              = @twitter_user.status.try(:text)
+          .twitter_photo
+            - if @influencer.photo.exists?
+              = image_tag(@influencer.photo.url(:profile))
+            - else
+              = image_tag('no_photo.jpg')
+      %hr
+      .clearfix
+        Formulario
+
+
+
+  .span3
+    .profile_round_box
+      :javascript
+        new TWTR.Widget({
+          version: 2,
+          type: 'profile',
+          rpp: 4,
+          interval: 30000,
+          width: 250,
+          height: 300,
+          theme: {
+            shell: {
+              background: '#1F91D0',
+              color: '#ffffff'
+            },
+            tweets: {
+              background: '#ffffff',
+              color: '#6b6b6b',
+              links: '#2f8dcc'
+            }
+          },
+          features: {
+            scrollbar: false,
+            loop: false,
+            live: false,
+            behavior: 'all'
+          }
+        }).render().setUser('#{@influencer.user.twitter_screen_name}').start();

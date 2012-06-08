@@ -43,7 +43,7 @@
                 %td= influencer.audience.friends
                 %td= rand(11)
                 %td
-                  = link_to('Proponer Tweet', [:new, :advertiser, @campaign, :tweet], class: 'btn btn-primary')
+                  = link_to('Proponer Tweet', new_advertiser_campaign_tweet_path(@campaign, influencer_id: influencer.id), class: 'btn btn-primary')
         .center_text
           = paginate @influencers
           = link_to("Volver a la Campaña", [:advertiser, @campaign], class: 'btn')

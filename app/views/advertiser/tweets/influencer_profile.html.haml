@@ -40,7 +40,7 @@
             %h2
               = link_to("@#{@influencer.user.twitter_screen_name}", "https://twitter.com/#!/#{@influencer.user.twitter_screen_name}")
               %span.edit_profile
-                = link_to('Proponer Tweet', [:new, :advertiser, @campaign, :tweet], class: 'btn btn-primary')
+                = link_to('Proponer Tweet', new_advertiser_campaign_tweet_path(@campaign, influencer_id: @influencer.id), class: 'btn btn-primary')
             %p
               %strong= "Bio:"
               = @influencer.twitter_bio
@@ -142,8 +142,9 @@
   .span9
     .round_box_2{style: 'margin-bottom: 20px'}
       .center_text{style: 'padding: 10px 0 10px 0'}
-        = link_to('Proponer Tweet', [:new, :advertiser, @campaign, :tweet], class: 'btn btn-primary btn-large', style: 'margin-right: 20px')
+        = link_to('Proponer Tweet', new_advertiser_campaign_tweet_path(@campaign, influencer_id: @influencer.id), class: 'btn btn-primary btn-large', style: 'margin-right: 20px')
         = link_to("Volver a Twets", [:advertiser, @campaign, :tweets], class: 'btn btn-large')
+    .round_box
 
 
 

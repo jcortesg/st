@@ -10,7 +10,12 @@ class Advertiser::TweetsController < ApplicationController
 
   # Shows the form to propose a new tweet
   def new
-
+    if params[:influencer_id]
+      @influencer = Influencer.find(params[:influencer_id])
+    else
+      redirect_to action: :index
+    end
+    @twitter_user = Twitter.user(@influencer.user.twitter_screen_name)
   end
 
   # Creates a new tweet
