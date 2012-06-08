@@ -24,7 +24,7 @@
           %thead
             %tr
               %th Celebridad
-              %th tweet
+              %th Tweet
               %th Clicks
               %th Costo
               %th Estado
@@ -32,7 +32,7 @@
           %tbody
             - @campaign.tweets.each do |tweet|
               %tr{ :class => cycle('odd', 'even') }
-                %td= tweet_link(tweet.influencer)
+                %td= tweet.influencer.full_name
                 %td= link_to("Ver Tweeet", "#", class: 'btn')
                 %td= link_to(tweet.clicks_count, "#")
                 %td= tweet.cost

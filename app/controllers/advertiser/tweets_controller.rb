@@ -32,7 +32,7 @@ class Advertiser::TweetsController < ApplicationController
         redirect_to advertiser_campaign_path(@campaign)
       else
         flash[:success] = "Se ha propuesto el tweet a #{@influencer.full_name}"
-        new_advertiser_campaign_tweet_path(@campaign, influencer_id: @influencer.id)
+        redirect_to new_advertiser_campaign_tweet_path(@campaign, influencer_id: @influencer.id)
       end
     else
       @twitter_user = Twitter.user(@influencer.user.twitter_screen_name)

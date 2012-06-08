@@ -21,6 +21,10 @@ class Tweet < ActiveRecord::Base
   # * advertiser_accepted: Accepted by the Advertiser
   # * advertiser_rejected: Rejected by the Advertiser
 
+  def cost
+    "AR$ 0.0"
+  end
+
   def text_contains_link
     matches = text.scan(/\b(?:https?:\/\/|www\.)\S+\b/)
     if matches.size == 0
