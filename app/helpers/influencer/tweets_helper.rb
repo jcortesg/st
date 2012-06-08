@@ -13,6 +13,8 @@ module Influencer::TweetsHelper
       when 'advertiser_rejected'
         'Rechazado'
       when 'accepted'
+        'Aceptado'
+      when 'active'
         'Activo'
     end
   end

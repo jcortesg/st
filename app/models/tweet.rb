@@ -22,8 +22,16 @@ class Tweet < ActiveRecord::Base
   # * advertiser_reviewed: Revised by the Advertiser
   # * advertiser_rejected: Rejected by the Advertiser
   # * accepted: Accepted either by Advertiser or Influencer
+  # * active: The tweet was tweeted on twitter
 
   state_machine :status, initial: :created do
+    after_transition on: [:created], do: :mail_tweet_creation
+    after_transition on: [:reviewed_by_advertiser], do: :mail_reviewed_by_advertiser
+    after_transition on: [:reviewed_by_influencer], do: :mail_reviewed_by_influencer
+    after_transition on: [:accepted_by_advertiser], do: :mail_accepted_by_advertiser
+    after_transition on: [:accepted_by_influencer], do: :mail_accepted_by_influencer
+    after_transition on: [:activate], do: :mail_tweet_activated
+
     event :reviewed_by_influencer do
       transition [:created, :advertiser_reviewed, :advertiser_rejected] => [:influencer_reviewed]
     end
@@ -46,6 +54,10 @@ class Tweet < ActiveRecord::Base
 
     event :rejected_by_advertiser do
       transition [:influencer_reviewed] => [:advertiser_rejected]
+    end
+
+    event :activate do
+      transition [:accepted] => [:activated]
     end
   end
 
@@ -92,5 +104,36 @@ class Tweet < ActiveRecord::Base
       self.tweet_fee = influencer.tweet_fee
       self.cpc_fee = influencer.cpc_fee
     end
+  end
+
+  # Send a email when the tweet was created
+  def mail_tweet_creation
+    Notifier.tweet_creation(self).deliver
+  end
+
+  # Send a email when the tweet was reviewed by advertiser
+  def mail_reviewed_by_advertiser
+    Notifier.tweet_reviewed_by_advertiser(self).deliver
+  end
+
+  # Send a email when the tweet was reviewed by influencer
+  def mail_reviewed_by_influencer
+    Notifier.tweet_reviewed_by_influencer(self).deliver
+  end
+
+  # Send a email when the tweet was accepted by advertiser
+  def mail_accepted_by_advertiser
+    Notifier.tweet_accepted_by_advertiser(self).deliver
+  end
+
+  # Send a email when the tweet was accepted by influencer
+  def mail_accepted_by_influencer
+    Notifier.tweet_accepted_by_influencer(self).deliver
+  end
+
+  # Send a email when the twwet was published on twitter
+  def mail_tweet_activated
+    Notifier.tweet_activated_to_advertiser(self).deliver
+    Notifier.tweet_activated_to_influencer(self).deliver
   end
 end

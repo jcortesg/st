@@ -7,4 +7,9 @@ class Influencer::TweetsController < ApplicationController
     @search = Tweet.where(influencer_id: current_role.id).search(params[:search])
     @tweets = @search.page(params[:page])
   end
+
+  # Shows the details of a tweet
+  def show
+    @tweet = current_role.tweets.find(params[:id])
+  end
 end

@@ -46,4 +46,39 @@ class Notifier < ActionMailer::Base
 
     mail(to: 'info@borwin.com.ar', subject: "Notificaciones @ Borwin - Nuevo usuario registrado")
   end
+
+  # Sends an email to the influencer to let him know that he has a new tweet proposal
+  def tweet_creation(tweet)
+
+  end
+
+  # Sends a tweet to the influencer to let him know that the tweet was reviewed
+  def tweet_reviewed_by_advertiser(tweet)
+
+  end
+
+  # Sends an email to the advertiser to let him know that the tweet was reviewed
+  def tweet_reviewed_by_influencer(tweet)
+
+  end
+
+  # Sends an email to the influencer to let him know that the tweet was accepted
+  def tweet_accepted_by_advertiser(tweet)
+
+  end
+
+  # Sends an email to the advertiser to let him know the tweet was accepted
+  def tweet_accepted_by_influencer(tweet)
+
+  end
+
+  # Sends an email to the advertiser when a tweet is activated
+  def tweet_activated_to_advertiser(tweet)
+
+  end
+
+  # Sends an email to the influencer when a tweet is activated
+  def tweet_activated_to_influencer(tweet)
+
+  end
 end
