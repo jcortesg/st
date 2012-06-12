@@ -60,7 +60,7 @@ Borwin::Application.configure do
   config.active_support.deprecation = :notify
   
   # Devise mailer
-  config.action_mailer.default_url_options = { :host => 'ec2-23-21-138-146.compute-1.amazonaws.com/' }  
+  config.action_mailer.default_url_options = { :host => 'www.borwin.net' }
 end
 
 ActionMailer::Base.delivery_method = :smtp

@@ -74,7 +74,7 @@ class HomeController < ApplicationController
   end
 
   # Invitation registration
-  # http://localhost:3000/IRI55AU
+  # http://localhost:3000/I123456
   def invitation
     if User.where(invitation_code: params[:invitation_code]).exists?
       @referrer = User.where(invitation_code: params[:invitation_code]).first
@@ -85,4 +85,19 @@ class HomeController < ApplicationController
       redirect_to root_path
     end
   end
+
+  # Tweet link redirection
+  # http://localhost:3000/L1234
+  def tweet_link_redirection
+    if Tweet.where(link_code: params[:link_code]).exists?
+      tweet = Tweet.where(link_code: params[:link_code]).first
+      Click.create(tweet: tweet, remote_ip: request.env['REMOTE_ADDR'], remote_agent: request.env['HTTP_USER_AGENT'])
+      redirect_to tweet.link_url
+    else
+      flash[:error] = "El código de tweet no existe"
+      redirect_to root_url
+    end
+  end
+
+
 end
