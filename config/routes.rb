@@ -67,7 +67,7 @@ Borwin::Application.routes.draw do
         put :archive
         put :activate
       end
-      resources :clicks
+      resources :clicks, only: [:index, :show]
       match '/influencer_profile/:influencer_id' => 'tweets#influencer_profile', :as => :influencer_profile
       resources :tweets do
         resources :clicks, only: [:index, :show]

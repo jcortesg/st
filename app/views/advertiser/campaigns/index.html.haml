@@ -30,7 +30,7 @@
             - @campaigns.each do |campaign|
               %tr{ :class => cycle('odd', 'even') }
                 %td= link_to(campaign.name, [:advertiser, campaign])
-                %td= link_to(campaign.clicks_count, "#")
+                %td= link_to(campaign.clicks_count, [:advertiser, campaign, :clicks])
                 %td= campaign.cost
                 %td= localize(campaign.created_at, :format => "%d/%m/%Y")
                 %td
