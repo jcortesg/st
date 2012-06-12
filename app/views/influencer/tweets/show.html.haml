@@ -26,3 +26,10 @@
         %dd= @tweet.fee_type == 'tweet_fee' ? "$#{sprintf("%.02f", @tweet.tweet_fee)}" : "$#{sprintf("%.02f", @tweet.cpc_fee)}"
         %dt Estado
         %dd= tweet_status_explanation(@tweet.status)
+
+      .form-actions.center_text
+        - if ['created', 'advertiser_reviewed'].include?(@tweet.status)
+          = link_to('Aprobar', [:accept, :influencer, @tweet], class: 'btn btn-large btn-primary')
+          = link_to('Modificar', [:edit, :influencer, @tweet], class: 'btn btn-large btn-warning')
+          = link_to('Rechazar', [:influencer, @tweet], method: :delete, class: 'btn btn-large btn-danger')
+        = link_to('Listado', [:influencer, :tweets], class: 'btn btn-large')

@@ -108,7 +108,7 @@ Borwin::Application.routes.draw do
       put :update_password
     end
     resources :tweets, except: [:new, :create] do
-
+      put :accept, on: :member
     end
     resources :referrals, only: [:index, :show] do
       get :list, on: :collection
