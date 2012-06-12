@@ -18,16 +18,4 @@ module Influencer::TweetsHelper
         'Activo'
     end
   end
-
-  def influencer_tweet_title(status)
-    case status
-      when 'created'
-      when 'influencer_reviewed'
-      when 'influencer_rejected'
-      when 'advertiser_reviewed'
-      when 'advertiser_rejected'
-      when 'accepted'
-      when 'active'
-    end
-  end
 end
