@@ -18,14 +18,7 @@
     %p.style4
       Recibiste una propuesta para un nuevo tweet
     %p.style4
-      %ul
-        %li= "Empresa: #{@tweet.campaign.advertiser.company}"
-        %li
-          = "Celebridad: "
-          = link_to('@' + @tweet.influencer.user.twitter_screen_name, twitter_url(@tweet.influencer.user.twitter_screen_name))
-        %li= "Tweet: #{@tweet.text}"
-        %li= "Fecha y hora: #{localize(tweet.tweet_at, :format => "%d/%m/%Y %H:%M")}"
-        %li= "Link: #{@tweet.link_url}"
+      = render partial: 'tweet_details'
     %p.style4
       Para aceptar, revisar o rechazar el tweet,
       = link_to("entra a tu cuenta", [:influencer, @tweet])

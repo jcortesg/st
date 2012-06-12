@@ -12,6 +12,7 @@ class Tweet < ActiveRecord::Base
   validates :text, presence: true
   validate :tweet_text_validation
 
+  after_create :mail_tweet_creation
   before_create :set_prices
   before_create :create_borwin_link
 
@@ -25,7 +26,7 @@ class Tweet < ActiveRecord::Base
   # * active: The tweet was tweeted on twitter
 
   state_machine :status, initial: :created do
-    after_transition on: [:created], do: :mail_tweet_creation
+    #after_transition on: [:created], do: :mail_tweet_creation
     after_transition on: [:reviewed_by_advertiser], do: :mail_reviewed_by_advertiser
     after_transition on: [:reviewed_by_influencer], do: :mail_reviewed_by_influencer
     after_transition on: [:accepted_by_advertiser], do: :mail_accepted_by_advertiser
@@ -72,7 +73,7 @@ class Tweet < ActiveRecord::Base
       errors.add(:text, "tiene más de un link")
     else
       template_text = text.sub(/\b(?:https?:\/\/|www\.)\S+\b/, 'http://bwn.tw/L1234')
-      if template_text.size > 150
+      if template_text.size > 157
         errors.add(:text, "tiene #{template_text.size} carácteres, el máximo es de 140")
       end
     end

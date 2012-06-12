@@ -1,0 +1,8 @@
+%ul
+  %li= "Empresa: #{@tweet.campaign.advertiser.company}"
+  %li
+    = "Celebridad: "
+    = link_to('@' + @tweet.influencer.user.twitter_screen_name, "https://twitter.com/#!/#{@tweet.influencer.user.twitter_screen_name}")
+  %li= "Tweet: #{@tweet.text}"
+  %li= "Fecha y hora: #{localize(@tweet.tweet_at, :format => "%d/%m/%Y %H:%M")}"
+  %li= "Link: #{@tweet.link_url}"
