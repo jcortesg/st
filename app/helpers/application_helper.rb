@@ -1,3 +1,4 @@
+# encoding: utf-8
 module ApplicationHelper
   # Gets the home path for the current user profiles
   def home_path_for(user)
@@ -42,5 +43,26 @@ module ApplicationHelper
   # Gets the url to twitter
   def twitter_url(username)
     "https://twitter.com/#!/#{username}"
+  end
+
+
+  # Explains the current status of the tweet
+  def tweet_status_explanation(status)
+    case status
+      when 'created'
+        'Pendiente de aprobación o rechazo por la celebridad'
+      when 'influencer_reviewed'
+        'Pendiente de aprobación o rechazo por el anunciante'
+      when 'influencer_rejected'
+        'Rechazado por la celebridad'
+      when 'advertiser_reviewed'
+        'Pendiente de aprobación o rechazo por la celebridad'
+      when 'advertiser_rejected'
+        'Rechazado por el anunciante'
+      when 'accepted'
+        'Aceptado, se publicara en la fecha y hora convenidas'
+      when 'active'
+        'Activo, el Tweet ya fue públicado'
+    end
   end
 end

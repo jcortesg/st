@@ -18,4 +18,5 @@ module Influencer::TweetsHelper
         'Activo'
     end
   end
+
 end
