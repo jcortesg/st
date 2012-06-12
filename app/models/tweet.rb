@@ -27,35 +27,35 @@ class Tweet < ActiveRecord::Base
 
   state_machine :status, initial: :created do
     #after_transition on: [:created], do: :mail_tweet_creation
-    after_transition on: [:reviewed_by_advertiser], do: :mail_reviewed_by_advertiser
-    after_transition on: [:reviewed_by_influencer], do: :mail_reviewed_by_influencer
-    after_transition on: [:accepted_by_advertiser], do: :mail_accepted_by_advertiser
-    after_transition on: [:accepted_by_influencer], do: :mail_accepted_by_influencer
-    after_transition on: [:rejected_by_advertiser], do: :mail_rejected_by_advertiser
-    after_transition on: [:rejected_by_influencer], do: :mail_rejected_by_influencer
+    after_transition on: [:advertiser_review], do: :mail_reviewed_by_advertiser
+    after_transition on: [:influencer_review], do: :mail_reviewed_by_influencer
+    after_transition on: [:advertiser_accept], do: :mail_accepted_by_advertiser
+    after_transition on: [:influencer_accept], do: :mail_accepted_by_influencer
+    after_transition on: [:advertiser_reject], do: :mail_rejected_by_advertiser
+    after_transition on: [:influencer_reject], do: :mail_rejected_by_influencer
     after_transition on: [:activate], do: :mail_tweet_activated
 
-    event :reviewed_by_advertiser do
+    event :advertiser_review do
       transition [:influencer_reviewed] => [:advertiser_reviewed]
     end
 
-    event :reviewed_by_influencer do
+    event :influencer_review do
       transition [:created, :advertiser_reviewed, :advertiser_rejected] => [:influencer_reviewed]
     end
 
-    event :accepted_by_advertiser do
+    event :advertiser_accept do
       transition [:influencer_reviewed] => [:accepted]
     end
 
-    event :accepted_by_influencer do
+    event :influencer_accept do
       transition [:created, :advertiser_reviewed, :influencer_reviewed] => [:accepted]
     end
 
-    event :rejected_by_advertiser do
+    event :advertiser_reject do
       transition [:influencer_reviewed] => [:advertiser_rejected]
     end
 
-    event :rejected_by_influencer do
+    event :influencer_reject do
       transition [:created, :advertiser_reviewed] => [:influencer_rejected]
     end
 
