@@ -6,9 +6,17 @@
 .row
   .span12
     %ul.breadcrumb
-      %li
-        = link_to("Campañas", [:advertiser, :campaigns])
-        %span.divider /
+      - if @tweet
+        %li
+          = link_to("Campañas", [:advertiser, :campaigns])
+          %span.divider /
+        %li
+          = link_to(@campaign.name, [:advertiser, @campaign])
+          %span.divider /
+      - else
+        %li
+          = link_to("Campañas", [:advertiser, :campaigns])
+          %span.divider /
       %li.active Clicks
 
 .row
