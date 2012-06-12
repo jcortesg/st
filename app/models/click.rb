@@ -8,7 +8,7 @@ class Click < ActiveRecord::Base
   private
 
   # Updates the campaign counter
-  def update_campaign_tweets
+  def update_counters
     ActiveRecord::Base.connection.execute("UPDATE campaigns SET clicks_count = clicks_count + 1 WHERE id = #{tweet.campaign_id}")
     ActiveRecord::Base.connection.execute("UPDATE tweets SET clicks_count = clicks_count + 1 WHERE id = #{tweet.id}")
   end
