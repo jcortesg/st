@@ -54,7 +54,7 @@ class Admin::ReferrersController < ApplicationController
       flash[:notice] = "El referido ha sido actualizado con éxito"
       redirect_to admin_referrer_path(@referral)
     else
-      flash[:error] = "Hubo un error al intentar actualizar el referido"
+      flash.now[:error] = "Hubo un error al intentar actualizar el referido"
       render action: :edit
     end
   end

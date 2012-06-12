@@ -16,7 +16,7 @@ class Admin::AudiencesController < ApplicationController
       flash[:notice] = "La audiencia para la celebridad #{@influencer.full_name} fue actualizada con éxito"
       redirect_to [:admin, @influencer, :audience]
     else
-      flash[:error] = "Hubo un error al intentar actualizar la audiencia"
+      flash.now[:error] = "Hubo un error al intentar actualizar la audiencia"
       render action: :edit
     end
   end

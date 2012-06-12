@@ -52,7 +52,7 @@ class Admin::AffiliatesController < ApplicationController
       flash[:notice] = "El anunciante #{@affiliate.full_name} fue actualizado con éxito"
       redirect_to [:admin, @affiliate]
     else
-      flash[:error] = "Hubo un error al intentar actualizar el anuncianate"
+      flash.now[:error] = "Hubo un error al intentar actualizar el anuncianate"
       render action: :edit
     end
   end

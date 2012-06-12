@@ -57,7 +57,7 @@ class Admin::InfluencersController < ApplicationController
       flash[:notice] = "La celebridad #{@influencer.full_name} fue actualizada con éxito"
       redirect_to [:admin, @influencer]
     else
-      flash[:error] = "Hubo un error al intentar actualizar la celebridad"
+      flash.now[:error] = "Hubo un error al intentar actualizar la celebridad"
       render action: :edit
     end
   end

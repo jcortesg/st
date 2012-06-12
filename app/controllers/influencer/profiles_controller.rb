@@ -20,6 +20,7 @@ class Influencer::ProfilesController < ApplicationController
       flash[:success] = "Tus perfil fue actualizado."
       redirect_to influencer_profile_path
     else
+      flash.now[:error] = "No se pudo actualizar tu perfil."
       render action: :edit_contact_data
     end
   end
@@ -41,6 +42,7 @@ class Influencer::ProfilesController < ApplicationController
       flash[:success] = "Tus datos de contacto fueron actualizados."
       redirect_to influencer_profile_path
     else
+      flash.now[:error] = "No se pudo actualizar tus datos de contacto."
       render action: :edit_contact_data
     end
   end
@@ -62,6 +64,7 @@ class Influencer::ProfilesController < ApplicationController
       flash[:success] = "Tus datos de cobros fueron actualizados."
       redirect_to influencer_profile_path
     else
+      flash.now[:error] = "No se pudo actualizar tus datos de cobros."
       render action: :edit_payment_data
     end
   end

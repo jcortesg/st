@@ -67,7 +67,7 @@ class Advertiser::CampaignsController < ApplicationController
       flash[:notice] = "La campaña #{@campaign.name} fue actualizada"
       redirect_to [:advertiser, @campaign]
     else
-      flash[:error] = "Hubo un error al intentar actualizar la campaña"
+      flash.now[:error] = "Hubo un error al intentar actualizar la campaña"
       render action: :edit
     end
   end

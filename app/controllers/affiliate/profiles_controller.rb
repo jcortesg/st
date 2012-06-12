@@ -24,6 +24,7 @@ class Affiliate::ProfilesController < ApplicationController
       flash[:success] = "Tus datos de contacto fueron actualizados."
       redirect_to action: :contact_data
     else
+      flash.now[:error] = "No se pudo actualizar tus datos de contacto."
       render action: :edit_contact_data
     end
   end
@@ -45,6 +46,7 @@ class Affiliate::ProfilesController < ApplicationController
       flash[:success] = "Tus datos de cobros fueron actualizados."
       redirect_to action: :payment_data
     else
+      flash.now[:error] = "No se pudo actualizar tus datos de cobros."
       render action: :edit_payment_data
     end
   end

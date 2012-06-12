@@ -19,6 +19,7 @@ class Advertiser::ProfilesController < ApplicationController
       flash[:success] = "Tus datos fueron actualizados."
       redirect_to action: :show
     else
+      flash.now[:error] = "Hubo un error al actualizar tus datos."
       render action: :edit
     end
   end
