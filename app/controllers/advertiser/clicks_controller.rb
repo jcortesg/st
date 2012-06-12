@@ -3,6 +3,9 @@ class Advertiser::ClicksController < ApplicationController
   before_filter :find_campaign
 
   def index
+    search_params = params[:search] || {}
+    search_params.reverse_merge!({"meta_sort" => "created_at.desc"})
+
     @search = Click.where("tweet_id in (?)", @campaign.tweets.all.collect { |t| t.id }).search(params[:search])
     @clicks = @search.page(params[:page])
   end
