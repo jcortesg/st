@@ -38,11 +38,23 @@ class Influencer::TweetsController < ApplicationController
     end
   end
 
+  # Accepts a twitter proposition
+  def accept
+    @tweet = current_role.tweets.find(params[:id])
+    unless ['created', 'advertiser_reviewed'].include?(@tweet.status)
+      flash[:notice] = "El estado actual del tweet no permite su aceptación"
+      redirect_to action: index and return
+    end
+    @tweet.influencer_accept
+    flash[:success] = "El Tweet ha sido aceptado"
+    redirect_to [:influencer, @tweet]
+  end
+
   # Rejects a tweet
   def destroy
     @tweet = current_role.tweets.find(params[:id])
     unless ['created', 'advertiser_reviewed'].include?(@tweet.status)
-      flash[:notice] = "El estado actual del tweet no permite su modificación"
+      flash[:notice] = "El estado actual del tweet no permite su rechazo"
       redirect_to action: index and return
     end
     @tweet.influencer_reject
