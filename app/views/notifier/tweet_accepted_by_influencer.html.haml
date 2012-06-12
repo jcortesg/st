@@ -21,7 +21,7 @@
       = render partial: 'tweet_details'
     %p.style4
       Para ver los detalles del tweet aceptado
-      = link_to("entra a tu cuenta", [:advertiser, @tweet.campaign, @tweet])
+      = link_to("entra a tu cuenta", advertiser_campaign_tweet_url(@tweet.campaign, @tweet))
     %p.style4
       = image_tag attachments['sellochico.jpg'].url
     %p.style4
