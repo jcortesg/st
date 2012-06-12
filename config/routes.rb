@@ -71,6 +71,7 @@ Borwin::Application.routes.draw do
       match '/influencer_profile/:influencer_id' => 'tweets#influencer_profile', :as => :influencer_profile
       resources :tweets do
         resources :clicks, only: [:index, :show]
+        put :accept, on: :member
       end
     end
     namespace :profiles do

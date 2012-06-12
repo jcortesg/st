@@ -50,19 +50,59 @@ class Advertiser::TweetsController < ApplicationController
     end
   end
 
-  # Edit a tweet
+  # Shows the tweet
+  def show
+    @tweet = @campaign.tweets.find(params[:id])
+  end
+
+  # Shows the form to modify a tweet proposition
   def edit
-
+    @tweet = @campaign.tweets.find(params[:id])
+    unless ['influencer_reviewed'].include?(@tweet.status)
+      flash[:notice] = "El estado actual del tweet no permite su modificación"
+      redirect_to action: index
+    end
   end
 
-  # Updates a tweet
+  # Process the tweet modification proposition
   def update
-
+    @tweet = @campaign.tweets.find(params[:id])
+    unless ['influencer_reviewed'].include?(@tweet.status)
+      flash[:notice] = "El estado actual del tweet no permite su modificación"
+      redirect_to action: index and return
+    end
+    if @tweet.update_attributes(params[:tweet])
+      @tweet.advertiser_review
+      flash[:success] = "El Tweet fue modificado y remitido a la celebridad para su evaluación"
+      redirect_to [:advertiser, @campaign, @tweet]
+    else
+      flash.now[:error] = "El Tweet no pudo ser modificado"
+      render action: :edit
+    end
   end
 
-  # Destroys a tweet
-  def destroy
+  # Accepts a twitter proposition
+  def accept
+    @tweet = @campaign.tweets.find(params[:id])
+    unless ['influencer_reviewed'].include?(@tweet.status)
+      flash[:notice] = "El estado actual del tweet no permite su aceptación"
+      redirect_to action: index and return
+    end
+    @tweet.advertiser_accept
+    flash[:success] = "El Tweet ha sido aceptado"
+    redirect_to [:advertiser, @campaign, @tweet]
+  end
 
+  # Rejects a tweet
+  def destroy
+    @tweet = @campaign.tweets.find(params[:id])
+    unless ['influencer_reviewed'].include?(@tweet.status)
+      flash[:notice] = "El estado actual del tweet no permite su rechazo"
+      redirect_to action: index and return
+    end
+    @tweet.advertiser_reject
+    flash[:success] = "El Tweet ha sido rechazado"
+    redirect_to [:advertiser, @campaign, @tweet]
   end
 
   # Shows the profile of a influencer
