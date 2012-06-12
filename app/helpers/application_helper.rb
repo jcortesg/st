@@ -38,4 +38,9 @@ module ApplicationHelper
         admin_dashboard_update_password_path
     end
   end
+
+  # Gets the url to twitter
+  def twitter_url(username)
+    "https://twitter.com/#!/#{username}"
+  end
 end

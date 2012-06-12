@@ -107,7 +107,7 @@ Borwin::Application.routes.draw do
       get :change_password
       put :update_password
     end
-    resources :tweets, only: [:index, :show] do
+    resources :tweets, except: [:new, :create] do
 
     end
     resources :referrals, only: [:index, :show] do

@@ -30,30 +30,32 @@ class Tweet < ActiveRecord::Base
     after_transition on: [:reviewed_by_influencer], do: :mail_reviewed_by_influencer
     after_transition on: [:accepted_by_advertiser], do: :mail_accepted_by_advertiser
     after_transition on: [:accepted_by_influencer], do: :mail_accepted_by_influencer
+    after_transition on: [:rejected_by_advertiser], do: :mail_rejected_by_advertiser
+    after_transition on: [:rejected_by_influencer], do: :mail_rejected_by_influencer
     after_transition on: [:activate], do: :mail_tweet_activated
-
-    event :reviewed_by_influencer do
-      transition [:created, :advertiser_reviewed, :advertiser_rejected] => [:influencer_reviewed]
-    end
 
     event :reviewed_by_advertiser do
       transition [:influencer_reviewed] => [:advertiser_reviewed]
     end
 
-    event :accepted_by_influencer do
-      transition [:created, :advertiser_reviewed, :influencer_reviewed] => [:accepted]
+    event :reviewed_by_influencer do
+      transition [:created, :advertiser_reviewed, :advertiser_rejected] => [:influencer_reviewed]
     end
 
     event :accepted_by_advertiser do
       transition [:influencer_reviewed] => [:accepted]
     end
 
-    event :rejected_by_influencer do
-      transition [:created, :advertiser_reviewed] => [:influencer_rejected]
+    event :accepted_by_influencer do
+      transition [:created, :advertiser_reviewed, :influencer_reviewed] => [:accepted]
     end
 
     event :rejected_by_advertiser do
       transition [:influencer_reviewed] => [:advertiser_rejected]
+    end
+
+    event :rejected_by_influencer do
+      transition [:created, :advertiser_reviewed] => [:influencer_rejected]
     end
 
     event :activate do
@@ -106,32 +108,42 @@ class Tweet < ActiveRecord::Base
     end
   end
 
-  # Send a email when the tweet was created
+  # Sends a mail when the tweet was created by the advertiser
   def mail_tweet_creation
     Notifier.tweet_creation(self).deliver
   end
 
-  # Send a email when the tweet was reviewed by advertiser
+  # Sends a mail when the tweet has been reviewed by the advertiser
   def mail_reviewed_by_advertiser
     Notifier.tweet_reviewed_by_advertiser(self).deliver
   end
 
-  # Send a email when the tweet was reviewed by influencer
+  # Sends a mail when the tweet has been reviewed by the influencer
   def mail_reviewed_by_influencer
     Notifier.tweet_reviewed_by_influencer(self).deliver
   end
 
-  # Send a email when the tweet was accepted by advertiser
+  # Sends a mail when the tweet has been accepted by the advertiser
   def mail_accepted_by_advertiser
     Notifier.tweet_accepted_by_advertiser(self).deliver
   end
 
-  # Send a email when the tweet was accepted by influencer
+  # Sends a mail when the tweet has been accepted by the influencer
   def mail_accepted_by_influencer
     Notifier.tweet_accepted_by_influencer(self).deliver
   end
 
-  # Send a email when the twwet was published on twitter
+  # Sends a mail when the tweet has been rejected by the advertiser
+  def mail_rejected_by_advertiser
+    Notifier.tweet_rejected_by_advertiser(self).deliver
+  end
+
+  # Sends a mail when the tweet has been rejected by the influencer
+  def mail_rejected_by_influencer
+    Notifier.tweet_rejected_by_influencer(self).deliver
+  end
+
+  # Sends a mail when the tweet has been published
   def mail_tweet_activated
     Notifier.tweet_activated_to_advertiser(self).deliver
     Notifier.tweet_activated_to_influencer(self).deliver

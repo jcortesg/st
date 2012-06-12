@@ -49,36 +49,91 @@ class Notifier < ActionMailer::Base
 
   # Sends an email to the influencer to let him know that he has a new tweet proposal
   def tweet_creation(tweet)
+    @tweet = tweet
 
+    attachments.inline['logo.jpg'] = File.read(Rails.root.join('app/assets/images/logo.jpg'))
+    attachments.inline['sellochico.jpg'] = File.read(Rails.root.join('app/assets/images/sellochico.jpg'))
+
+    mail(to: tweet.influencer.user.email, subject: "Notificaciones @ Borwin - Recibiste una propuesta para un nuevo tweet")
   end
 
   # Sends a tweet to the influencer to let him know that the tweet was reviewed
   def tweet_reviewed_by_advertiser(tweet)
+    @tweet = tweet
 
+    attachments.inline['logo.jpg'] = File.read(Rails.root.join('app/assets/images/logo.jpg'))
+    attachments.inline['sellochico.jpg'] = File.read(Rails.root.join('app/assets/images/sellochico.jpg'))
+
+    mail(to: tweet.influencer.user.email, subject: "Notificaciones @ Borwin - Uno de tus tweets fue revisado/modificado por una celebridad")
   end
 
   # Sends an email to the advertiser to let him know that the tweet was reviewed
   def tweet_reviewed_by_influencer(tweet)
+    @tweet = tweet
 
+    attachments.inline['logo.jpg'] = File.read(Rails.root.join('app/assets/images/logo.jpg'))
+    attachments.inline['sellochico.jpg'] = File.read(Rails.root.join('app/assets/images/sellochico.jpg'))
+
+    mail(to: tweet.campaign.advertiser.user.email, subject: "Notificaciones @ Borwin - Uno de tus tweets fue revisado/modificado por una empresa")
   end
 
   # Sends an email to the influencer to let him know that the tweet was accepted
   def tweet_accepted_by_advertiser(tweet)
+    @tweet = tweet
 
+    attachments.inline['logo.jpg'] = File.read(Rails.root.join('app/assets/images/logo.jpg'))
+    attachments.inline['sellochico.jpg'] = File.read(Rails.root.join('app/assets/images/sellochico.jpg'))
+
+    mail(to: tweet.influencer.user.email, subject: "Notificaciones @ Borwin - Uno de tus tweets revisados, fue aceptado por una empresa y esta listo para ser públicado")
   end
 
   # Sends an email to the advertiser to let him know the tweet was accepted
   def tweet_accepted_by_influencer(tweet)
+    @tweet = tweet
 
+    attachments.inline['logo.jpg'] = File.read(Rails.root.join('app/assets/images/logo.jpg'))
+    attachments.inline['sellochico.jpg'] = File.read(Rails.root.join('app/assets/images/sellochico.jpg'))
+
+    mail(to: tweet.campaign.advertiser.user.email, subject: "Notificaciones @ Borwin - Uno de tus tweets fue confirmado y esta listo para ser públicado")
+  end
+
+  # Sends an email to the influencer to let him know that the tweet was rejected
+  def tweet_rejected_by_advertiser(tweet)
+    @tweet = tweet
+
+    attachments.inline['logo.jpg'] = File.read(Rails.root.join('app/assets/images/logo.jpg'))
+    attachments.inline['sellochico.jpg'] = File.read(Rails.root.join('app/assets/images/sellochico.jpg'))
+
+    mail(to: tweet.influencer.user.email, subject: "Notificaciones @ Borwin - Una propuesta de tweet que has modificado, ha sido rechazada por el anunciante")
+  end
+
+  # Sends an email to the advertiser to let him know the tweet was rejected
+  def tweet_rejected_by_influencer(tweet)
+    @tweet = tweet
+
+    attachments.inline['logo.jpg'] = File.read(Rails.root.join('app/assets/images/logo.jpg'))
+    attachments.inline['sellochico.jpg'] = File.read(Rails.root.join('app/assets/images/sellochico.jpg'))
+
+    mail(to: tweet.campaign.advertiser.user.email, subject: "Notificaciones @ Borwin - Una propuesta de tweet que has relizado ha sido rechazada por una celebridad")
   end
 
   # Sends an email to the advertiser when a tweet is activated
   def tweet_activated_to_advertiser(tweet)
+    @tweet = tweet
 
+    attachments.inline['logo.jpg'] = File.read(Rails.root.join('app/assets/images/logo.jpg'))
+    attachments.inline['sellochico.jpg'] = File.read(Rails.root.join('app/assets/images/sellochico.jpg'))
+
+    mail(to: tweet.campaign.advertiser.user.email, subject: "Notificaciones @ Borwin - Uno de tus tweets fue públicado")
   end
 
   # Sends an email to the influencer when a tweet is activated
   def tweet_activated_to_influencer(tweet)
+    @tweet = tweet
 
+    attachments.inline['logo.jpg'] = File.read(Rails.root.join('app/assets/images/logo.jpg'))
+    attachments.inline['sellochico.jpg'] = File.read(Rails.root.join('app/assets/images/sellochico.jpg'))
+
+    mail(to: tweet.influencer.user.email, subject: "Notificaciones @ Borwin - Uno de tus tweets fue publicado")
   end
 end
