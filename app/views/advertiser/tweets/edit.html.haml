@@ -1,0 +1,38 @@
+- if flash.any?
+  .row
+    .span8.offset2
+      = render '/shared/flash', flash: flash
+.row
+  .span8.offset2
+    .frontend_round_content
+      .main_blue_title Modificación de propuesta de Tweet
+
+      %h3 Datos Originales
+      %dl.record_details
+        %dt Campaña
+        %dd= dl_value @tweet.campaign.name
+        %dt Empresa
+        %dd= dl_value @tweet.campaign.advertiser.company
+        %dt Celebridad
+        %dd= dl_value @tweet.influencer.full_name
+        %dt Tweet
+        %dd= dl_value @tweet.text
+        %dt Fecha y hora del tweet
+        %dd= localize(@tweet.tweet_at, :format => "%d/%m/%Y %H:%M")
+        %dt Link
+        %dd= @tweet.link_url
+        %dt Tipo de pago
+        %dd= @tweet.fee_type == 'tweet_fee' ? "Pago por publicación" : "Pago por click"
+        %dt Precio
+        %dd= @tweet.fee_type == 'tweet_fee' ? "$#{sprintf("%.02f", @tweet.tweet_fee)}" : "$#{sprintf("%.02f", @tweet.cpc_fee)}"
+        %dt Estado
+        %dd= tweet_status_explanation(@tweet.status)
+
+      = simple_form_for @tweet, url: [:advertiser, @campaign, @tweet], html: { class: 'vertical-form tweet_proposal' } do |f|
+        = f.input :text, as: :text, input_html: { style: 'width: 523px;height: 40px' }
+        = f.input :tweet_at, minute_step: 15, start_year: Time.now.year, end_year: Time.now.year + 1, input_html: { class: 'tweet_time' }
+
+        .form-actions
+          = f.submit('Aceptar', class: 'btn btn-large btn-primary')
+          = link_to('Cancelar', [:influencer, @tweet], class: 'btn btn-large')
+
