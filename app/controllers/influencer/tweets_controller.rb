@@ -30,6 +30,7 @@ class Influencer::TweetsController < ApplicationController
       redirect_to action: index and return
     end
     if @tweet.update_attributes(params[:tweet])
+      @tweet.influencer_review
       flash[:success] = "El Tweet fue modificado y remitido al anunciante para su evaluación"
       redirect_to [:influencer, @tweet]
     else
