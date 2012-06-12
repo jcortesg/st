@@ -86,7 +86,7 @@ class Advertiser::CampaignsController < ApplicationController
       redirect_to [:advertiser, @campaign]
     else
       flash[:error] = "Hubo un error al configurar la audiencia de la campaña"
-      render action :audience
+      render action: :audience
     end
   end
 

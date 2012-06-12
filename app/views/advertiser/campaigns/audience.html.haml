@@ -25,20 +25,14 @@
           = check_box_tag "campaign[locations][]", "Argentina", f.object.locations.include?("Argentina")
           = label_tag "Argentina"
         .geographic_zone
-          = check_box_tag "campaign[locations][]", "Colombia", f.object.locations.include?("Colombia")
-          = label_tag "Colombia"
-        .geographic_zone
-          = check_box_tag "campaign[locations][]", "Chile", f.object.locations.include?("Chile")
-          = label_tag "Chile"
-        .geographic_zone
-          = check_box_tag "campaign[locations][]", "Ecuador", f.object.locations.include?("Ecuador")
-          = label_tag "Ecuador"
-        .geographic_zone
-          = check_box_tag "campaign[locations][]", "Paraguay", f.object.locations.include?("Paraguay")
-          = label_tag "Paraguay"
-        .geographic_zone
-          = check_box_tag "campaign[locations][]", "Uruguay", f.object.locations.include?("Uruguay")
-          = label_tag "Uruguay"
+          - ["Buenos Aires",  "Catamarca",  "Chaco", "Córdoba", "Corrientes", "Entre Ríos", "Formosa", "Jujuy", "La Pampa", "La Rioja", "Mendoza", "Misiones", "Neuquén", "Rio Negro", "Salta", "San Juan", "San Luis", "Santa Cruz", "Santa Fe", "Sgo. del Estero", "Tierra del Fuego", "Tucumán"].each do |province|
+            %div{style: 'display: inline-block'}
+              = check_box_tag "campaign[locations][]", province, f.object.locations.include?("province")
+              = label_tag province, province, style: 'margin-right: 8px'
+        - ["Colombia", "Chile", "Ecuador", "Paraguay", "Uruguay"].each do |country|
+          .geographic_zone
+            = check_box_tag "campaign[locations][]", country, f.object.locations.include?("country")
+            = label_tag country
 
       %h2 Género
 
