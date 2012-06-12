@@ -1,7 +1,12 @@
+TWITTER_CONSUMER_KEY = 'SF8RlPZT7bUW5QI173sJdg'
+TWITTER_CONSUMER_SECRET = 'JopN0OyZ7QQVpkO1DUEkQ5g8q5RlF17kHfEsU9NKo'
+TWITTER_OAUTH_TOKEN = '144391600-S1sNJxqZI3NaO5zC1NtKGOGi2uWyr05vP9yjAt9k'
+TWITTER_OAUTH_SECRET = '4PYb6smt0R9Izj2oFly1w9kHOBbIkpqj9mvV1KkUAPw'
+
 Twitter.configure do |config|
-  config.consumer_key = 'SF8RlPZT7bUW5QI173sJdg'
-  config.consumer_secret = 'JopN0OyZ7QQVpkO1DUEkQ5g8q5RlF17kHfEsU9NKo'
-  config.oauth_token = '144391600-S1sNJxqZI3NaO5zC1NtKGOGi2uWyr05vP9yjAt9k'
-  config.oauth_token_secret = '4PYb6smt0R9Izj2oFly1w9kHOBbIkpqj9mvV1KkUAPw'
+  config.consumer_key = TWITTER_CONSUMER_KEY
+  config.consumer_secret = TWITTER_CONSUMER_SECRET
+  config.oauth_token = TWITTER_OAUTH_TOKEN
+  config.oauth_token_secret = TWITTER_OAUTH_SECRET
 end
 
