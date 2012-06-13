@@ -10,7 +10,7 @@ namespace :borwin do
 
   desc 'Publish active tweets'
   task public_active_tweets: :environment do
-    tweets = Tweet.where("status = ? and tweet_at > ? and tweet_at < ?", 'accepted', Time.now - 5.minutes, Time.now + 5.minutes).all
+    tweets = Tweet.where("status = 'accepted' and tweet_at > ? and tweet_at < ?", Time.now - 5.minutes, Time.now + 5.minutes).all
     tweets.each do |tweet|
       influencer = tweet.influencer
       Twitter.configure do |config|
