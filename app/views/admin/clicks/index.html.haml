@@ -1,0 +1,45 @@
+- if flash.any?
+  .row
+    .span12
+      = render '/shared/flash', flash: flash
+
+.row
+  .span12
+    %ul.breadcrumb
+      - if @tweet
+        %li
+          = link_to("Campañas", [:admin, :campaigns])
+          %span.divider /
+        %li
+          = link_to(@campaign.name, [:admin, @campaign])
+          %span.divider /
+      - else
+        %li
+          = link_to("Campañas", [:admin, :campaigns])
+          %span.divider /
+      %li.active Clicks
+
+.row
+  .span12
+    .round_box
+      .content
+        %h1.title Clicks
+
+        %table.table.table-striped
+          %thead
+            %tr
+              %th= Tweet
+              %th= sort_link(@search, :remote_ip, 'IP')
+              %th= sort_link(@search, :remote_agent, 'Navegador')
+              %th= sort_link(@search, :created_at, 'Fecha')
+
+          %tbody
+            - @clicks.each do |click|
+              %tr{ :class => cycle('odd', 'even') }
+                %td= link_to(truncate(click.tweet.text, length: 100), [:admin, click.tweet.campaign, click.tweet])
+                %td= click.remote_ip
+                %td= click.remote_agent
+                %td= localize(click.created_at, :format => "%d/%m/%Y %H:%M:%S")
+        .center_text
+          = paginate @clicks
+
