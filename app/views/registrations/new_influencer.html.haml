@@ -11,6 +11,14 @@
         = link_to(image_tag('sign-in-with-twitter.jpg', :style => 'display: inline'), signin_path, :class => 'twitter_registration_link')
 
       %div.terms_and_conditions.center_text
+        %span{style: 'color: #1E92D3;'}
+          BORWIN SRL
+        cumple y respeta las normas y políticas de uso de
+        = link_to('Twitter', 'http://twitter.com/tos', target: '_blank')
+
+        %br
+        %br
+
         Al registrarse acepta los
         = link_to("Términos y Condiciones", terms_path)
         del servicio
