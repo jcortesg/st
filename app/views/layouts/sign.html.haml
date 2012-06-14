@@ -30,7 +30,8 @@
                       = "Campañas"
                       %b.caret
                     %ul.dropdown-menu
-                      %li= link_to 'Nueva Campaña', new_advertiser_campaign_path
+                      - if current_user.advertiser.can_create_campaigns?
+                        %li= link_to 'Nueva Campaña', new_advertiser_campaign_path
                       %li= link_to 'Campañas Actuales', advertiser_campaigns_path
                       %li= link_to 'Historial de Campañas', archived_advertiser_campaigns_path
                   %li= link_to "Transacciones", "#"
@@ -88,6 +89,13 @@
                       %li= link_to "Anunciantes", admin_advertisers_path
                       %li= link_to "Celebridades", admin_influencers_path
                   %li= link_to "Referidos", admin_referrers_path
+                  %li.dropdown
+                    %a{:href => '#', :class => 'dropdown-toggle', 'data-toggle' => 'dropdown'}
+                      = "Campañas"
+                      %b.caret
+                    %ul.dropdown-menu
+                      %li= link_to 'Campañas Actuales', admin_campaigns_path
+                      %li= link_to 'Historial de Campañas', archived_admin_campaigns_path
                   %li= link_to "Transacciones", "#"
               - else
                 %li.dropdown

@@ -1,0 +1,38 @@
+- if flash.any?
+  .row
+    .span12
+      = render '/shared/flash', flash: flash
+
+.row
+  .span12
+    %ul.breadcrumb
+      %li
+        = link_to("Campañas", [:admin, :campaigns])
+        %span.divider /
+      %li.active= @campaign.name
+
+.row
+  .span12
+    .round_box
+      .content
+        .right
+          = link_to('Editar', [:edit, :admin, @campaign], :class => 'btn btn-primary')
+        %h1.title= "Campaña #{@campaign.name}"
+
+        %table.table.table-striped
+          %thead
+            %tr
+              %th Celebridad
+              %th Clicks
+              %th Costo
+              %th Estado
+              %th Acciones
+
+          %tbody
+            - @campaign.tweets.each do |tweet|
+              %tr{ :class => cycle('odd', 'even') }
+                %td= tweet.influencer.full_name
+                %td= link_to(tweet.clicks_count, [:admin, tweet.campaign, tweet, :clicks])
+                %td= tweet.fee_type == 'tweet_fee' ? "Tweet: $#{sprintf("%.02f", tweet.tweet_fee)}" : "Click: $#{sprintf("%.02f", tweet.cpc_fee)}"
+                %td= advertiser_tweet_status(tweet.status)
+                %td= link_to("Detalle", [:admin, @campaign, tweet], class: 'btn')

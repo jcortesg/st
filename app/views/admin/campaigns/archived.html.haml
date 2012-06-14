@@ -1,0 +1,45 @@
+.row
+  .span12
+    %ul.breadcrumb
+      %li
+        = link_to("Campañas", [:admin, :campaigns])
+        %span.divider /
+      %li.active
+        Historial de Campañas
+
+- if flash.any?
+  .row
+    .span12
+      = render '/shared/flash', flash: flash
+
+.row
+  .span12
+    .round_box
+      .content
+        %h1.title Campañas Historicas
+
+        %table.table.table-striped
+          %thead
+            %tr
+              %th= sort_link(@search, :advertiser_company, 'Empresa')
+              %th= sort_link(@search, :name, 'Nombre')
+              %th= sort_link(@search, :clicks_count, 'Clicks')
+              %th= sort_link(@search, :cost, 'Costo')
+              %th= sort_link(@search, :created_at, "Creado")
+              %th Acciones
+
+          %tbody
+            - @campaigns.each do |campaign|
+              %tr{ :class => cycle('odd', 'even') }
+                %td= link_to(campaign.advertiser.company, admin_advertiser_path(campaign.advertiser))
+                %td= link_to(campaign.name, [:admin, campaign])
+                %td= link_to(campaign.clicks_count, "#")
+                %td= campaign.cost
+                %td= localize(campaign.created_at, :format => "%d/%m/%Y")
+                %td
+                  = link_to('Ver', [:admin, campaign], class: 'btn btn-primary')
+                  = link_to('Activar', [:activate, :admin, campaign], method: :put, class: 'btn btn-warning', confirm: "¿Desea activar la campaña?")
+                  = link_to('Destruir', [:admin, campaign], method: :delete, class: 'btn btn-danger', confirm: "Esta acción eliminara la campaña, sus tweets y clicks del sistema. ¿Esta seguro?")
+        .center_text
+          = paginate @campaigns
+

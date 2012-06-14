@@ -1,0 +1,156 @@
+.row
+  .span8.offset2
+    %ul.breadcrumb
+      %li
+        = link_to("Campañas", [:admin, :campaigns])
+        %span.divider /
+      %li.active
+        - if @campaign.created_at > Time.now - 1.minute
+          Nueva Campaña
+        - else
+          Audiencia
+
+.row
+  .span8.offset2.round_box
+    = form_for(@campaign, url: [:set_audience, :admin, @campaign], html:  { id: "audience_campaign_form", class: "form-horizontal round_form", method: :put }) do |f|
+      %h1.form_title Target
+      - if @campaign.created_at > Time.now - 1.minute
+        .center_text{style: 'margin: -20px 0 20px 0;'}
+          %h3 Paso 2 de 2
+      = render '/shared/form_errors', :object => f.object
+
+      %h2 Zona Geográfica
+      .geographic_zones
+        .geographic_zone
+          = check_box_tag "campaign[locations][]", "Argentina", f.object.locations.include?("Argentina")
+          = label_tag "Argentina"
+        .geographic_zone
+          - ["Buenos Aires",  "Catamarca",  "Chaco", "Córdoba", "Corrientes", "Entre Ríos", "Formosa", "Jujuy", "La Pampa", "La Rioja", "Mendoza", "Misiones", "Neuquén", "Rio Negro", "Salta", "San Juan", "San Luis", "Santa Cruz", "Santa Fe", "Sgo. del Estero", "Tierra del Fuego", "Tucumán"].each do |province|
+            %div{style: 'display: inline-block'}
+              = check_box_tag "campaign[locations][]", province, f.object.locations.include?("province")
+              = label_tag province, province, style: 'margin-right: 8px'
+        - ["Colombia", "Chile", "Ecuador", "Paraguay", "Uruguay"].each do |country|
+          .geographic_zone
+            = check_box_tag "campaign[locations][]", country, f.object.locations.include?("country")
+            = label_tag country
+
+      %h2 Género
+
+      .option
+        = f.check_box :males
+        = f.label :males, "Hombres"
+
+      .option
+        = f.check_box :females
+        = f.label :females, "Mujeres"
+
+      %h2 Edades
+      .option
+        = f.check_box :moms
+        = f.label :moms, "Mamás"
+      .option
+        = f.check_box :teens
+        = f.label :teens, "Adolescentes"
+      .option
+        = f.check_box :college_students
+        = f.label :college_students, "Universitarios"
+      .option
+        = f.check_box :young_women
+        = f.label :young_women, "Mujeres (18 a 35 años)"
+      .option
+        = f.check_box :young_men
+        = f.label :young_men, "Hombres (18 a 35 años)"
+      .option
+        = f.check_box :adult_women
+        = f.label :adult_women, "Mujeres (más de 35 años)"
+      .option
+        = f.check_box :adult_men
+        = f.label :adult_men, "Hombres (más de 35 años)"
+
+      %h2  Hobbys
+      .option
+        = f.check_box :sports
+        = f.label :sports, "Deportes"
+      .option
+        = f.check_box :fashion
+        = f.label :fashion, "Moda"
+      .option
+        = f.check_box :music
+        = f.label :music, "Música"
+      .option
+        = f.check_box :movies
+        = f.label :movies, "Cine"
+      .option
+        = f.check_box :politics
+        = f.label :politics, "Política"
+      .option
+        = f.check_box :technology
+        = f.label :technology, "Tecnología"
+      .option
+        = f.check_box :travel
+        = f.label :travel, "Viajes"
+      .option
+        = f.check_box :luxury
+        = f.label :luxury, "Lujos"
+
+      %h2 Seguidores
+      .option
+        = check_box_tag "campaign[followers_qty][]", "0-500", f.object.followers_qty.include?("0-500")
+        = label_tag "0 a 500"
+      .option
+        = check_box_tag "campaign[followers_qty][]", "500-2000", f.object.followers_qty.include?("500-2000")
+        = label_tag "500 a 2.000"
+      .option
+        = check_box_tag "campaign[followers_qty][]", "2000-10000", f.object.followers_qty.include?("2000-10000")
+        = label_tag "2.000 a 10.000"
+      .option
+        = check_box_tag "campaign[followers_qty][]", "10000-100000", f.object.followers_qty.include?("10000-100000")
+        = label_tag "10.000 a 100.000"
+      .option
+        = check_box_tag "campaign[followers_qty][]", "100000-300000", f.object.followers_qty.include?("100000-300000")
+        = label_tag "100.000 a 300.000"
+      .option
+        = check_box_tag "campaign[followers_qty][]", "300000-600000", f.object.followers_qty.include?("300000-600000")
+        = label_tag "300.000 a 600.000"
+      .option
+        = check_box_tag "campaign[followers_qty][]", "600000-900000", f.object.followers_qty.include?("600000-900000")
+        = label_tag "600.000 a 900.000"
+      .option
+        = check_box_tag "campaign[followers_qty][]", "900000-2000000", f.object.followers_qty.include?("900000-2000000")
+        = label_tag "900.000 a 2.000.000"
+
+      %h2 Precio del Tweet
+      .option
+        = check_box_tag "campaign[tweet_price][]", "0-300", f.object.tweet_price.include?("0-300")
+        = label_tag "$0 a $300"
+      .option
+        = check_box_tag "campaign[tweet_price][]", "300-1000", f.object.tweet_price.include?("300-1000")
+        = label_tag "$300 a $1.000"
+      .option
+        = check_box_tag "campaign[tweet_price][]", "1000-2000", f.object.tweet_price.include?("1000-2000")
+        = label_tag "$1.000 a $2.000"
+      .option
+        = check_box_tag "campaign[tweet_price][]", "2000-3000", f.object.tweet_price.include?("2000-3000")
+        = label_tag "$2.000 a $3.000"
+      .option
+        = check_box_tag "campaign[tweet_price][]", "3000-5000", f.object.tweet_price.include?("3000-5000")
+        = label_tag "$3.000 a $5.000"
+      .option
+        = check_box_tag "campaign[tweet_price][]", "5000-7000", f.object.tweet_price.include?("5000-7000")
+        = label_tag "$5.000 a $7.000"
+      .option
+        = check_box_tag "campaign[tweet_price][]", "7000-10000", f.object.tweet_price.include?("7000-10000")
+        = label_tag "$7.000 a $10.000"
+      .option
+        = check_box_tag "campaign[tweet_price][]", "10000-20000", f.object.tweet_price.include?("10000-20000")
+        = label_tag "$10.000 a $20.000"
+      .option
+        = check_box_tag "campaign[tweet_price][]", "20000-50000", f.object.tweet_price.include?("20000-50000")
+        = label_tag "$20.000 a $50.000"
+
+
+
+      .form-actions
+        = f.submit 'Aceptar', :class => 'btn btn-primary btn-large'
+        = link_to 'Cancelar', [:admin, :campaigns], class: 'btn btn-large'
+

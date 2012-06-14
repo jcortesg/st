@@ -30,7 +30,21 @@ Borwin::Application.routes.draw do
 
     resources :referrers
 
-    resources :campaigns
+    resources :campaigns do
+      collection do
+        get :archived
+      end
+      member do
+        get :audience
+        put :set_audience
+        put :archive
+        put :activate
+      end
+      resources :clicks, only: [:index]
+      resources :tweets do
+        resources :clicks, only: [:index]
+      end
+    end
 
     match 'change_password' => 'dashboard#change_password', as: :dashboard_change_password
     match 'update_password' => 'dashboard#update_password', as: :dashboard_update_password
@@ -69,10 +83,10 @@ Borwin::Application.routes.draw do
         put :archive
         put :activate
       end
-      resources :clicks, only: [:index, :show]
+      resources :clicks, only: [:index]
       match '/influencer_profile/:influencer_id' => 'tweets#influencer_profile', :as => :influencer_profile
       resources :tweets do
-        resources :clicks, only: [:index, :show]
+        resources :clicks, only: [:index]
         put :accept, on: :member
       end
     end

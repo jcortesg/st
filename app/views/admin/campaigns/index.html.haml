@@ -1,0 +1,41 @@
+- if flash.any?
+  .row
+    .span12
+      = render '/shared/flash', flash: flash
+
+.row
+  .span12
+    %ul.breadcrumb
+      %li.active Campañas
+
+.row
+  .span12
+    .round_box
+      .content
+        %h1.title Campañas
+
+        %table.table.table-striped
+          %thead
+            %tr
+              %th= sort_link(@search, :advertiser_company, 'Empresa')
+              %th= sort_link(@search, :name, 'Nombre')
+              %th= sort_link(@search, :clicks_count, 'Clicks')
+              %th= sort_link(@search, :cost, 'Costo')
+              %th= sort_link(@search, :created_at, "Creado")
+              %th Acciones
+
+          %tbody
+            - @campaigns.each do |campaign|
+              %tr{ :class => cycle('odd', 'even') }
+                %td= link_to(campaign.advertiser.company, admin_advertiser_path(campaign.advertiser))
+                %td= link_to(campaign.name, [:admin, campaign])
+                %td= link_to(campaign.clicks_count, [:admin, campaign, :clicks])
+                %td= campaign.cost
+                %td= localize(campaign.created_at, :format => "%d/%m/%Y")
+                %td
+                  = link_to('Ver', [:admin, campaign], class: 'btn btn-primary')
+                  = link_to('Audiencia', [:audience, :admin, campaign], class: 'btn btn-primary')
+                  = link_to('Archivar', [:archive, :admin, campaign], method: :put, class: 'btn btn-danger', confirm: '¿Esta seguro que quiere archivar la campaña?')
+        .center_text
+          = paginate @campaigns
+

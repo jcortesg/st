@@ -48,7 +48,7 @@ class Advertiser::CampaignsController < ApplicationController
       flash[:notice] = "La campaña #{@campaign.name} fue creada con éxito"
       redirect_to [:audience, :advertiser, @campaign]
     else
-      flash[:error] = "Hubo un error al intentar crear la campaña"
+      flash.now[:error] = "Hubo un error al intentar crear la campaña"
       render action: :new
     end
 
@@ -85,7 +85,7 @@ class Advertiser::CampaignsController < ApplicationController
       flash[:notice] = "Has configurado la audiencia para tu campaña"
       redirect_to [:advertiser, @campaign]
     else
-      flash[:error] = "Hubo un error al configurar la audiencia de la campaña"
+      flash.now[:error] = "Hubo un error al configurar la audiencia de la campaña"
       render action: :audience
     end
   end
