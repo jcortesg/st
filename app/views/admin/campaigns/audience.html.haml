@@ -1,3 +1,6 @@
+- content_for :head do
+  = javascript_include_tag 'advertiser/audience'
+
 .row
   .span8.offset2
     %ul.breadcrumb
@@ -21,10 +24,10 @@
 
       %h2 Zona Geográfica
       .geographic_zones
-        .geographic_zone
+        .geographic_zone.argentine
           = check_box_tag "campaign[locations][]", "Argentina", f.object.locations.include?("Argentina")
           = label_tag "Argentina"
-        .geographic_zone
+        .geographic_zone.provinces
           - ["Buenos Aires",  "Catamarca",  "Chaco", "Córdoba", "Corrientes", "Entre Ríos", "Formosa", "Jujuy", "La Pampa", "La Rioja", "Mendoza", "Misiones", "Neuquén", "Rio Negro", "Salta", "San Juan", "San Luis", "Santa Cruz", "Santa Fe", "Sgo. del Estero", "Tierra del Fuego", "Tucumán"].each do |province|
             %div{style: 'display: inline-block'}
               = check_box_tag "campaign[locations][]", province, f.object.locations.include?("province")
@@ -34,15 +37,6 @@
             = check_box_tag "campaign[locations][]", country, f.object.locations.include?("country")
             = label_tag country
 
-      %h2 Género
-
-      .option
-        = f.check_box :males
-        = f.label :males, "Hombres"
-
-      .option
-        = f.check_box :females
-        = f.label :females, "Mujeres"
 
       %h2 Edades
       .option
@@ -66,6 +60,16 @@
       .option
         = f.check_box :adult_men
         = f.label :adult_men, "Hombres (más de 35 años)"
+
+      %h2 Sexo
+
+      .option
+        = f.check_box :males
+        = f.label :males, "Hombres"
+
+      .option
+        = f.check_box :females
+        = f.label :females, "Mujeres"
 
       %h2  Hobbys
       .option
