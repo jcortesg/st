@@ -26,7 +26,28 @@ class Influencer < ActiveRecord::Base
 
     # Apply the filters
     def apply_filters(campaign)
-      influencers = scoped.joins(:audience)
+      influencers = joins(:audience)
+      # Apply age filter
+      influencers = influencers.where("audiences.moms > 0") if campaign.moms
+      influencers = influencers.where("audiences.teens > 0") if campaign.teens
+      influencers = influencers.where("audiences.college_students > 0") if campaign.college_students
+      influencers = influencers.where("audiences.young_women > 0") if campaign.young_women
+      influencers = influencers.where("audiences.young_men > 0") if campaign.young_men
+      influencers = influencers.where("audiences.adult_women > 0") if campaign.adult_women
+      influencers = influencers.where("audiences.adult_men > 0") if campaign.adult_men
+      # Apply gender filter
+      influencers = influencers.where("audiences.males > 0") if campaign.males
+      influencers = influencers.where("audiences.females > 0") if campaign.females
+      # Apply hobbies
+      influencers = influencers.where("audiences.sports > 0") if campaign.sports
+      influencers = influencers.where("audiences.fashion > 0") if campaign.fashion
+      influencers = influencers.where("audiences.music > 0") if campaign.music
+      influencers = influencers.where("audiences.movies > 0") if campaign.movies
+      influencers = influencers.where("audiences.politics > 0") if campaign.politics
+      influencers = influencers.where("audiences.technology > 0") if campaign.technology
+      influencers = influencers.where("audiences.travel > 0") if campaign.travel
+      influencers = influencers.where("audiences.luxury > 0") if campaign.luxury
+      # Apply followers filters
       if campaign.followers_qty.try(:size) > 0
         conditions = ["(1 = 0)"]
         campaign.followers_qty.each do |fq|
@@ -51,6 +72,7 @@ class Influencer < ActiveRecord::Base
         end
         influencers = influencers.where(conditions.join(" or "))
       end
+      # Apply price filters
       if campaign.tweet_price.try(:size) > 0
         conditions = ["(1 = 0)"]
         campaign.tweet_price.each do |tp|
