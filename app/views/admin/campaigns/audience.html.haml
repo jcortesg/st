@@ -37,7 +37,6 @@
             = check_box_tag "campaign[locations][]", country, f.object.locations.include?("country")
             = label_tag country
 
-
       %h2 Edades
       .option
         = f.check_box :moms
@@ -151,7 +150,6 @@
       .option
         = check_box_tag "campaign[tweet_price][]", "20000-50000", f.object.tweet_price.include?("20000-50000")
         = label_tag "$20.000 a $50.000"
-
 
 
       .form-actions
