@@ -1,0 +1,32 @@
+- if flash.any?
+  .row
+    .span8.offset2
+      = render '/shared/flash', flash: flash
+.row
+  .span8.offset2
+    .frontend_round_content
+      .main_blue_title Detalles de Tweet
+
+      %dl.record_details
+        %dt Campaña
+        %dd= dl_value @tweet.campaign.name
+        %dt Empresa
+        %dd= dl_value @tweet.campaign.advertiser.company
+        %dt Celebridad
+        %dd= dl_value @tweet.influencer.full_name
+        %dt Tweet
+        %dd= dl_value @tweet.text
+        %dt Fecha y hora del tweet
+        %dd= localize(@tweet.tweet_at, :format => "%d/%m/%Y %H:%M")
+        %dt Link
+        %dd= @tweet.link_url
+        %dt Tipo de pago
+        %dd= @tweet.fee_type == 'tweet_fee' ? "Pago por publicación" : "Pago por click"
+        %dt Precio
+        %dd= @tweet.fee_type == 'tweet_fee' ? "$#{sprintf("%.02f", @tweet.tweet_fee)}" : "$#{sprintf("%.02f", @tweet.cpc_fee)}"
+        %dt Estado
+        %dd= tweet_status_explanation(@tweet.status)
+
+      .form-actions.center_text
+        = link_to('Listado', [:admin, @campaign], class: 'btn btn-large btn-primary')
+        = link_to('Editar', [:edit, :admin, @campaign], class: 'btn btn-large btn-warning')

@@ -61,7 +61,7 @@ module ApplicationHelper
         'Rechazado por el anunciante'
       when 'accepted'
         'Aceptado, se publicara en la fecha y hora convenidas'
-      when 'active'
+      when 'activated'
         'Activo, el Tweet ya fue públicado'
     end
   end

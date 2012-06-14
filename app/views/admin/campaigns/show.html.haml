@@ -35,4 +35,7 @@
                 %td= link_to(tweet.clicks_count, [:admin, tweet.campaign, tweet, :clicks])
                 %td= tweet.fee_type == 'tweet_fee' ? "Tweet: $#{sprintf("%.02f", tweet.tweet_fee)}" : "Click: $#{sprintf("%.02f", tweet.cpc_fee)}"
                 %td= advertiser_tweet_status(tweet.status)
-                %td= link_to("Detalle", [:admin, @campaign, tweet], class: 'btn')
+                %td
+                  = link_to("Detalle", [:admin, @campaign, tweet], class: 'btn btn-primary')
+                  = link_to("Editar", [:edit, :admin, @campaign, tweet], class: 'btn btn-warning')
+
