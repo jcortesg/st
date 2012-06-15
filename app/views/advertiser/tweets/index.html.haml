@@ -37,13 +37,13 @@
           %tbody
             - @influencers.each do |influencer|
               %tr{ :class => cycle('odd', 'even') }
-                %td= link_to(influencer.full_name, advertiser_campaign_influencer_profile_path(@campaign, influencer))
+                %td= link_to(influencer.full_name, advertiser_campaign_influencer_profile_path(@campaign, influencer.influencer_id))
                 %td= sprintf("$ %.02f", influencer.tweet_fee)
                 %td= influencer.audience.followers rescue influencer.followers
                 %td= influencer.audience.friends rescue influencer.friends
                 %td= rand(11)
                 %td
-                  = link_to('Proponer Tweet', new_advertiser_campaign_tweet_path(@campaign, influencer_id: influencer.id), class: 'btn btn-primary')
+                  = link_to('Proponer Tweet', new_advertiser_campaign_tweet_path(@campaign, influencer_id: influencer.influencer_id), class: 'btn btn-primary')
         .center_text
           = paginate @influencers
           = link_to("Volver a la Campaña", [:advertiser, @campaign], class: 'btn')

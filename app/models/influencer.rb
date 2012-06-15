@@ -110,9 +110,9 @@ class Influencer < ActiveRecord::Base
 
       # Sort option for sex
       if campaign.males && !campaign.females
-        influencers = influencers.order("males")
+        influencers = influencers.order("males desc")
       elsif campaign.females && !campaign.males
-        influencers = influencers.order("females")
+        influencers = influencers.order("females desc")
       end
 
       # Sort options for age
@@ -125,7 +125,7 @@ class Influencer < ActiveRecord::Base
       columns << "audiences.adult_women" if campaign.adult_women
       columns << "audiences.adult_men" if campaign.adult_men
       if columns.size > 0
-        influencers = influencers.select("(#{columns.join(' + ')}) as sum_age").order('sum_age')
+        influencers = influencers.select("(#{columns.join(' + ')}) as sum_age").order('sum_age desc')
       end
 
       # Sort options for hobbies
@@ -139,10 +139,10 @@ class Influencer < ActiveRecord::Base
       columns << "audiences.travel" if campaign.travel
       columns << "audiences.luxury" if campaign.luxury
       if columns.size > 0
-        influencers = influencers.select("(#{columns.join(' + ')}) as sum_hobbies").order('sum_hobbies')
+        influencers = influencers.select("(#{columns.join(' + ')}) as sum_hobbies").order('sum_hobbies desc')
       end
 
-      influencers.order('audiences.followers')
+      influencers.order('audiences.followers desc')
     end
   end
 
