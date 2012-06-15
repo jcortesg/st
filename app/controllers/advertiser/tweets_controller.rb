@@ -5,7 +5,7 @@ class Advertiser::TweetsController < ApplicationController
 
   # Shows the list of celebrities (based on the campaigns) to create a new tweet
   def index
-    @influencers = Influencer.apply_filters(@campaign).order('audiences.followers').page(params[:page]).per(50)
+    @influencers = Influencer.apply_filters(@campaign).page(params[:page]).per(50)
   end
 
   # Shows the form to propose a new tweet

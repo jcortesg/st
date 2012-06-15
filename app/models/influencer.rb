@@ -27,6 +27,7 @@ class Influencer < ActiveRecord::Base
     # Apply the filters
     def apply_filters(campaign)
       influencers = joins(:audience)
+
       # Apply age filter
       influencers = influencers.where("audiences.moms > 0") if campaign.moms
       influencers = influencers.where("audiences.teens > 0") if campaign.teens
@@ -35,9 +36,11 @@ class Influencer < ActiveRecord::Base
       influencers = influencers.where("audiences.young_men > 0") if campaign.young_men
       influencers = influencers.where("audiences.adult_women > 0") if campaign.adult_women
       influencers = influencers.where("audiences.adult_men > 0") if campaign.adult_men
+
       # Apply gender filter
       influencers = influencers.where("audiences.males > 0") if campaign.males
       influencers = influencers.where("audiences.females > 0") if campaign.females
+
       # Apply hobbies
       influencers = influencers.where("audiences.sports > 0") if campaign.sports
       influencers = influencers.where("audiences.fashion > 0") if campaign.fashion
@@ -47,6 +50,7 @@ class Influencer < ActiveRecord::Base
       influencers = influencers.where("audiences.technology > 0") if campaign.technology
       influencers = influencers.where("audiences.travel > 0") if campaign.travel
       influencers = influencers.where("audiences.luxury > 0") if campaign.luxury
+
       # Apply followers filters
       if campaign.followers_qty.try(:size) > 0
         conditions = ["(1 = 0)"]
@@ -72,6 +76,7 @@ class Influencer < ActiveRecord::Base
         end
         influencers = influencers.where(conditions.join(" or "))
       end
+
       # Apply price filters
       if campaign.tweet_price.try(:size) > 0
         conditions = ["(1 = 0)"]
@@ -99,7 +104,45 @@ class Influencer < ActiveRecord::Base
         end
         influencers = influencers.where(conditions.join(" or "))
       end
-      influencers
+
+      # Before the sort options, we have all the columns
+      influencers = influencers.select('influencers.*, audiences.*')
+
+      # Sort option for sex
+      if campaign.males && !campaign.females
+        influencers = influencers.order("males")
+      elsif campaign.females && !campaign.males
+        influencers = influencers.order("females")
+      end
+
+      # Sort options for age
+      columns = []
+      columns << "audiences.moms" if campaign.moms
+      columns << "audiences.teens" if campaign.teens
+      columns << "audiences.college_students" if campaign.college_students
+      columns << "audiences.young_women" if campaign.young_women
+      columns << "audiences.young_men" if campaign.young_men
+      columns << "audiences.adult_women" if campaign.adult_women
+      columns << "audiences.adult_men" if campaign.adult_men
+      if columns.size > 0
+        influencers = influencers.select("(#{columns.join(' + ')}) as sum_age").order('sum_age')
+      end
+
+      # Sort options for hobbies
+      columns = []
+      columns << "audiences.sports" if campaign.sports
+      columns << "audiences.fashion" if campaign.fashion
+      columns << "audiences.music" if campaign.music
+      columns << "audiences.movies" if campaign.movies
+      columns << "audiences.politics" if campaign.politics
+      columns << "audiences.technology" if campaign.technology
+      columns << "audiences.travel" if campaign.travel
+      columns << "audiences.luxury" if campaign.luxury
+      if columns.size > 0
+        influencers = influencers.select("(#{columns.join(' + ')}) as sum_hobbies").order('sum_hobbies')
+      end
+
+      influencers.order('audiences.followers')
     end
   end
 
