@@ -39,8 +39,8 @@
               %tr{ :class => cycle('odd', 'even') }
                 %td= link_to(influencer.full_name, advertiser_campaign_influencer_profile_path(@campaign, influencer.influencer_id))
                 %td= sprintf("$ %.02f", influencer.tweet_fee)
-                %td= influencer.audience.followers rescue influencer.followers
-                %td= influencer.audience.friends rescue influencer.friends
+                %td= influencer.followers
+                %td= influencer.friends
                 %td= rand(11)
                 %td
                   = link_to('Proponer Tweet', new_advertiser_campaign_tweet_path(@campaign, influencer_id: influencer.influencer_id), class: 'btn btn-primary')
