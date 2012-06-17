@@ -39,4 +39,9 @@
 
       .presentation_link
         = link_to(image_tag('presentacion_anunciantes.png'), home_advertisers_presentation_path)
+        .center_text
+          = link_to("Ver Presentación", home_advertisers_presentation_path)
 
+      .borwin_twitter
+        .center_text
+          = '<a href="https://twitter.com/BorwinAR" class="twitter-follow-button" data-show-count="false" data-lang="es" data-size="large">Seguir en @BorwinAR</a>'.html_safe

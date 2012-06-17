@@ -90,6 +90,9 @@
             = f.submit 'Proponer y volver a la campaña', class: 'btn btn-primary btn-large', id: 'create_and_back'
             = f.submit 'Proponer y agregar otro tweet', class: 'btn btn-primary btn-large', id: 'create_and_add_new'
 
+          .center_text
+            = link_to('Volver a la campaña', [:admin, @campaign], class: 'btn btn-large')
+
 
 
   .span3

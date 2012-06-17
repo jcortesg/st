@@ -55,7 +55,7 @@ es:
         birthday: Cumpleaños
         sex: Sexo
         description: Descripción
-        referrer_description: Referido
+        referrer_description: Referido por
         address: Dirección
         city: Ciudad
         state: Provincia
