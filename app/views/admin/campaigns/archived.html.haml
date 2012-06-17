@@ -12,6 +12,9 @@
     .span12
       = render '/shared/flash', flash: flash
 
+- params[:page] ||= 1
+- row_number = (params[:page].to_i - 1) * 25
+
 .row
   .span12
     .round_box
@@ -21,6 +24,7 @@
         %table.table.table-striped
           %thead
             %tr
+              %th &nbsp;
               %th= sort_link(@search, :advertiser_company, 'Empresa')
               %th= sort_link(@search, :name, 'Nombre')
               %th= sort_link(@search, :clicks_count, 'Clicks')
@@ -31,6 +35,7 @@
           %tbody
             - @campaigns.each do |campaign|
               %tr{ :class => cycle('odd', 'even') }
+                %td= row_number = row_number + 1
                 %td= link_to(campaign.advertiser.company, admin_advertiser_path(campaign.advertiser))
                 %td= link_to(campaign.name, [:admin, campaign])
                 %td= link_to(campaign.clicks_count, "#")

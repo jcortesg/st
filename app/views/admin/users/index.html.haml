@@ -1,3 +1,6 @@
+- params[:page] ||= 1
+- row_number = (params[:page].to_i - 1) * 25
+
 .row
   .span12
     .round_box
@@ -7,6 +10,7 @@
         %table.table.table-striped
           %thead
             %tr
+              %th &nbsp;
               %th= sort_link(@search, :email)
               %th= sort_link(@search, :role, "Tipo de Usuario")
               %th= sort_link(@search, :created_at, "Creado")
@@ -15,6 +19,7 @@
           %tbody
             - @users.each do |user|
               %tr{ :class => cycle('odd', 'even') }
+                %td= row_number = row_number + 1
                 %td= user.email
                 %td= I18n.t("user.role.#{user.role}")
                 %td= user.created_at ? (localize(user.created_at, :format => "%d/%m/%Y")) : ""

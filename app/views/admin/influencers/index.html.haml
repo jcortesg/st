@@ -3,6 +3,9 @@
     .span12
       = render '/shared/flash', flash: flash
 
+- params[:page] ||= 1
+- row_number = (params[:page].to_i - 1) * 25
+
 .row
   .span12
     .round_box
@@ -15,6 +18,7 @@
           %thead
             %tr
               %th &nbsp;
+              %th &nbsp;
               %th= sort_link(@search, :first_name_and_last_name, 'Nombre')
               %th= sort_link(@search, :user_email, 'Email')
               %th= sort_link(@search, :user_twitter_screen_name, 'Twitter')
@@ -25,6 +29,7 @@
           %tbody
             - @influencers.each do |influencer|
               %tr{ :class => cycle('odd', 'even') }
+                %td= row_number = row_number + 1
                 %td= img_link_to_twitter(influencer)
                 %td= link_to(influencer.full_name, [:admin, influencer])
                 %td= influencer.user.email

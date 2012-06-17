@@ -3,6 +3,9 @@
     .span12
       = render '/shared/flash', flash: flash
 
+- params[:page] ||= 1
+- row_number = (params[:page].to_i - 1) * 25
+
 .row
   .span12
     .round_box
@@ -14,6 +17,7 @@
         %table.table.table-striped
           %thead
             %tr
+              %th &nbsp;
               %th= sort_link(@search, :referrer_first_name_and_last_name, 'Usuario')
               %th= sort_link(@search, :user_first_name_and_last_name, 'Referido')
               %th= sort_link(@search, :referrer_commission, 'Comisión (%)')
@@ -23,6 +27,7 @@
           %tbody
             - @referrals.each do |referral|
               %tr{ :class => cycle('odd', 'even') }
+                %td= row_number = row_number + 1
                 %td= link_to(referral.referrer.full_name, admin_referrer_path(referral))
                 %td= referral.full_name
                 %td= referral.referrer_commission
