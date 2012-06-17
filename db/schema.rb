@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120608090213) do
+ActiveRecord::Schema.define(:version => 20120617203510) do
 
   create_table "advertisers", :force => true do |t|
     t.integer  "user_id"
@@ -91,6 +91,7 @@ ActiveRecord::Schema.define(:version => 20120608090213) do
     t.integer  "advertiser_id"
     t.string   "name"
     t.text     "objective"
+    t.boolean  "price_per_click",                                :default => false, :null => false
     t.boolean  "archived",                                       :default => false, :null => false
     t.text     "locations"
     t.text     "followers_qty"

@@ -102,6 +102,7 @@ es:
         advertiser_id: Anunciante
         name: Nombre
         objective: Objetivo
+        price_per_click: Precio por Click
         archived: Archivada?
         locations: Zona Geográfica
         males: Hombres
