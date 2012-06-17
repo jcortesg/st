@@ -7,6 +7,7 @@ $(document).ready ->
   $('.argentine input[type=checkbox]').live('click', ->
     if ($(this)).is(':checked')
       $('.provinces').show()
+      $('.provinces input').attr('checked', true)
     else
       $('.provinces').hide()
   )

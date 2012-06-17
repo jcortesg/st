@@ -83,7 +83,7 @@ class Advertiser::CampaignsController < ApplicationController
 
     if @campaign.update_attributes(params[:campaign])
       flash[:notice] = "Has configurado la audiencia para tu campaña"
-      redirect_to [:advertiser, @campaign]
+      redirect_to [:advertiser, @campaign, :tweets]
     else
       flash.now[:error] = "Hubo un error al configurar la audiencia de la campaña"
       render action: :audience

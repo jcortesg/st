@@ -121,6 +121,9 @@
       .option
         = check_box_tag "campaign[followers_qty][]", "900000-2000000", f.object.followers_qty.include?("900000-2000000")
         = label_tag "900.000 a 2.000.000"
+      .option
+        = check_box_tag "campaign[followers_qty][]", "2000000-50000000", f.object.followers_qty.include?("2000000-50000000")
+        = label_tag "2.000.000 a 50.000.000"
 
       %h2 Precio del Tweet
       .option

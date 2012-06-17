@@ -72,6 +72,8 @@ class Influencer < ActiveRecord::Base
               conditions << "(audiences.followers >= 600000 and audiences.followers <= 900000)"
             when '900000-2000000'
               conditions << "(audiences.followers >= 900000 and audiences.followers <= 2000000)"
+            when '2000000-50000000'
+              conditions << "(audiences.followers >= 2000000 and audiences.followers <= 50000000)"
           end
         end
         influencers = influencers.where(conditions.join(" or "))
@@ -106,8 +108,11 @@ class Influencer < ActiveRecord::Base
       end
 
       # Before the sort options, we have all the columns
-      influencers = influencers.select('influencers.*, audiences.*')
+      influencers.select('influencers.*, audiences.*')
+    end
 
+    # Applies the default sort
+    def apply_default_sort(campaign, influencers)
       # Sort option for sex
       if campaign.males && !campaign.females
         influencers = influencers.order("males desc")
