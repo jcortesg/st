@@ -11,16 +11,19 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120617203510) do
+ActiveRecord::Schema.define(:version => 20120618135618) do
 
   create_table "advertisers", :force => true do |t|
     t.integer  "user_id"
     t.string   "first_name"
     t.string   "last_name"
+    t.string   "position"
     t.string   "twitter_location"
     t.string   "twitter_image_url"
     t.string   "twitter_bio"
     t.string   "company"
+    t.string   "web"
+    t.string   "advertising_source"
     t.string   "address"
     t.string   "city"
     t.string   "state"

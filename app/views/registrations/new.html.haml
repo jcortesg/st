@@ -16,8 +16,11 @@
       = f.simple_fields_for :advertiser do |a|
         = a.input :first_name
         = a.input :last_name
+        = a.input :position
         = a.input :company
         = a.input :phone
+        = a.input :web
+        = a.input :advertising_source
       - if @referrer
         = f.input :referrer_id, as: :hidden, input_html: { value: @referrer.id }
         = f.input :referrer_on, as: :hidden, input_html: { value: Date.today.strftime("%m-%d-%Y") }

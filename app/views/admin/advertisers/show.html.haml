@@ -14,8 +14,12 @@
           %dd= dl_value @advertiser.first_name
           %dt Apellido
           %dd= dl_value @advertiser.last_name
+          %dt Cargo
+          %dd= dl_value @advertiser.position
           %dt Empresa
           %dd= dl_value @advertiser.company
+          %dt Página Web
+          %dd= dl_value @adveriser.web
           %dt Dirección
           %dd= dl_value @advertiser.address
           %dt Ciudad
@@ -28,6 +32,8 @@
           %dd= dl_value @advertiser.zip_code
           %dt Teléfono
           %dd= dl_value @advertiser.phone
+          %dt Como conocio Borwin
+          %dd= dl_value @advertiser.advertising_source
           %dt Fecha creación
           %dd= dl_value @advertiser.created_at.try(:strftime, "%d/%m/%Y")
           %dt Fecha actualización

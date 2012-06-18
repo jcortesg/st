@@ -7,11 +7,14 @@
 = f.simple_fields_for :advertiser do |i|
   = i.input :first_name
   = i.input :last_name
+  = i.input :position
   = i.input :company
+  = i.input :web
   = i.input :address
   = i.input :city
   = i.input :state
   = i.input :country
   = i.input :zip_code
   = i.input :phone
+  = i.input :advertising_source
   = i.input :can_create_campaigns, as: :select, collection: [['No', false], ['Sí', true]], include_blank: false
