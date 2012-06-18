@@ -37,6 +37,7 @@ class Advertiser::TweetsController < ApplicationController
     @tweet = Tweet.new(params[:tweet])
     @influencer = Influencer.find(@tweet.influencer_id)
     @tweet.campaign = @campaign
+    @tweet.fee_type = 'tweet_fee' if @campaign.price_per_click == false
     if @tweet.save
       if params[:commit] == 'Proponer y volver a la campaña'
         flash[:success] = "Se ha propuesto el tweet a #{@influencer.full_name}"
