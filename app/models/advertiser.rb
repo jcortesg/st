@@ -9,7 +9,7 @@ class Advertiser < ActiveRecord::Base
   validates :phone, :presence => true
 
   attr_accessible :first_name, :last_name, :twitter_username, :company, :address, :city, :state, :country, :zip_code,
-                  :phone, :can_create_campaigns
+                  :phone, :can_create_campaigns, :position, :web, :advertising_source
 
   def full_name
     "#{self.first_name} #{self.last_name}"
