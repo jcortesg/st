@@ -10,12 +10,7 @@
 
       %p Como funciona
 
-      %ol{style: 'font-size: 16px; color: #1E92D3'}
-        %li Segmentar la audiencia
-        %li Crear el mensaje
-        %li Esperar la aprobación
-        %li Lanzar la campaña
-        %li Reportes
+      %p= image_tag('como_funciona.jpg')
 
       %p
         TweetGo! Es una plataforma que le permite a las empresas contactarse con su target a través del Twitter de las celebridades mas influyentes.
@@ -44,4 +39,6 @@
 
       .borwin_twitter
         .center_text
-          = '<a href="https://twitter.com/BorwinAR" class="twitter-follow-button" data-show-count="false" data-lang="es" data-size="large">Seguir en @BorwinAR</a>'.html_safe
+          = '<a href="https://twitter.com/BorwinAR" class="twitter-follow-button" data-show-count="false" data-lang="es" data-size="large">Seguir a @BorwinAR</a>'.html_safe
+          :javascript
+            !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
