@@ -41,7 +41,7 @@
                 %td= sprintf("$ %.02f", influencer.tweet_fee)
                 %td= influencer.followers
                 %td= influencer.friends
-                %td= rand(11)
+                %td= influencer.audience.klout
                 %td
                   = link_to('Proponer Tweet', new_advertiser_campaign_tweet_path(@campaign, influencer_id: influencer.influencer_id), class: 'btn btn-primary')
         .center_text
