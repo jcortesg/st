@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120618135618) do
+ActiveRecord::Schema.define(:version => 20120621224606) do
 
   create_table "advertisers", :force => true do |t|
     t.integer  "user_id"
@@ -176,6 +176,13 @@ ActiveRecord::Schema.define(:version => 20120618135618) do
   end
 
   add_index "influencers", ["user_id"], :name => "index_influencers_on_user_id", :unique => true
+
+  create_table "keywords", :force => true do |t|
+    t.string   "name"
+    t.text     "keywords"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "site_contacts", :force => true do |t|
     t.string   "name"

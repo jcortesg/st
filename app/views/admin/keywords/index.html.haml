@@ -1,0 +1,33 @@
+- if flash.any?
+  .row
+    .span12
+      = render '/shared/flash', flash: flash
+
+.row
+  .span12
+    .round_box
+      .content
+        %h1.title Keywords
+
+        %table.table.table-striped
+          %thead
+            %tr
+              %th= sort_link(@search, :name, 'Nombre')
+              %th= sort_link(@search, :keywords, 'Keywords')
+              %th= sort_link(@search, :created_at, "Creado")
+              %th= sort_link(@search, :updated_at, "Modificado")
+              %th Acciones
+
+          %tbody
+            - @keywords.each do |keyword|
+              %tr{ :class => cycle('odd', 'even') }
+                %td= I18n.translate("keywords.#{keyword.name}")
+                %td= truncate(keyword.keywords, length: 100)
+                %td= localize(keyword.created_at, :format => "%d/%m/%Y")
+                %td= localize(keyword.updated_at, :format => "%d/%m/%Y")
+                %td
+                  = link_to('Ver', [:admin, keyword], class: 'btn btn-primary')
+                  = link_to('Editar', [:edit, :admin, keyword], class: 'btn btn-primary')
+        .center_text
+          = paginate @keywords
+

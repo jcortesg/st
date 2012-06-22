@@ -223,3 +223,15 @@ es:
       influencer: Celebridad
       advertiser: Anunciante
       affiliate: Agencia
+
+  keywords:
+    males: Hombres
+    females: Mujeres
+    sports: Deportes
+    fashion: Moda
+    music: Música
+    movies: Cine
+    politics: Política
+    technology: Tecnología
+    travel: Viajes
+    luxury: Lujos

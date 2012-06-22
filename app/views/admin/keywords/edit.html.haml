@@ -1,0 +1,10 @@
+.row
+  .span8.offset2.round_box
+    = simple_form_for(@keyword, url: [:admin, @keyword], html:  { class: "form-horizontal round_form keywords_form", method: :put }) do |f|
+      %h1.form_title= I18n.t("keywords.#{@keyword.name}")
+      = render '/shared/simple_form_errors', f: f
+      = f.input :keywords
+
+      .form-actions
+        = f.submit 'Guardar', :class => 'btn btn-primary btn-large'
+        = link_to 'Cancelar', [:admin, :keywords], class: 'btn btn-large'

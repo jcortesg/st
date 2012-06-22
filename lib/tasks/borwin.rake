@@ -23,4 +23,11 @@ namespace :borwin do
       tweet.activate
     end
   end
+
+  desc 'Generate default keywords'
+  task generate_default_keywords: :environment do
+    ['males', 'females', 'sports', 'fashion', 'music', 'movies', 'politics', 'technology', 'travel', 'luxury'].each do |keyword_name|
+        Keyword.create(name: keyword_name) unless Keyword.where(name: keyword_name).exists?
+    end
+  end
 end

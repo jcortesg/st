@@ -138,9 +138,14 @@ es:
         status: Estado
         created_at: Fecha de creación
         updated_at: Fecha de actualización
+      keyword:
+        name: Nombre
+        keywords: Keywords
     hints:
       influencer:
         twitter_username: "Tu nombre de usuario en twitter, ej: rorra"
+      keyword:
+        keywords: "Los keywords deben ser ingresados separados por coma"
   helpers:
     submit:
       user:

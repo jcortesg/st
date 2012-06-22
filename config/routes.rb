@@ -47,6 +47,8 @@ Borwin::Application.routes.draw do
       end
     end
 
+    resources :keywords, except: [:new, :destroy]
+
     match 'change_password' => 'dashboard#change_password', as: :dashboard_change_password
     match 'update_password' => 'dashboard#update_password', as: :dashboard_update_password
   end
