@@ -13,6 +13,7 @@ class User < ActiveRecord::Base
 
   before_create :set_invitation_code, :set_referrer_on_date
   after_create :send_referral_mail, :send_registration_email
+  before_destroy :dont_delete_admin
 
   validates :email, presence: true, format: { with: /\A[^@]+@([^@\.]+\.)+[^@\.]+\z/ }
   validates :password, presence: true, length: { within: 6..20 }, if: :needs_password?
@@ -172,5 +173,10 @@ class User < ActiveRecord::Base
   # Sens the email to the admin when a user registers into the website
   def send_registration_email
     Notifier.user_sign_up(self).deliver
+  end
+
+  # Avoid deleting the admin user
+  def dont_delete_admin
+    raise "Cannot delete admin account" if self.id == 1
   end
 end
