@@ -355,6 +355,7 @@ namespace :borwin do
         audience.klout = user.score.score.round
         audience.save
         puts "New Klout index: #{audience.klout}"
+        sleep(1)
       rescue
         puts "Unable to get a klout index for #{influencer.full_name}"
       end
