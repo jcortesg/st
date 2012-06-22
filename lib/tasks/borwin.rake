@@ -1,3 +1,4 @@
+# encoding: utf-8
 namespace :borwin do
   desc 'Updates the influencers twitter data'
   task update_influencer_twitter_data: :environment do
@@ -28,6 +29,23 @@ namespace :borwin do
   task generate_default_keywords: :environment do
     ['males', 'females', 'sports', 'fashion', 'music', 'movies', 'politics', 'technology', 'travel', 'luxury'].each do |keyword_name|
         Keyword.create(name: keyword_name) unless Keyword.where(name: keyword_name).exists?
+    end
+  end
+
+  desc 'Generate the default countries'
+  task generate_default_countries: :environment do
+    ['Argentina', 'Colombia', 'Chile', 'Ecuador', 'Paraguay', 'Uruguay'].each do |country_name|
+      TwitterCountry.create(name: country_name) unless TwitterCountry.where(name: country_name).exists?
+    end
+  end
+
+  desc 'Generate the default states'
+  task genreate_default_states: :environment do
+    argentina = TwitterCountry.where(name: 'Argentina').first
+    ['Buenos Aires', 'Catamarca', 'Chaco', 'Córdoba', 'Corrientes', 'Entre Ríos', 'Formosa', 'Jujuy', 'La Pampa',
+     'La Rioja', 'Mendoza', 'Misiones', 'Neuquén', 'Rio Negro', 'Salta', 'San Juan', 'San Luis', 'Santa Cruz',
+     'Santa Fe', 'Sgo. del Estero', 'Tierra del Fuego', 'Tucumán'].each do |state_name|
+      TwitterState.create(name: state_name, twitter_country: argentina) unless TwitterState.where(name: state_name).exists?
     end
   end
 end

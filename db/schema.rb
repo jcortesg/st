@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120621224606) do
+ActiveRecord::Schema.define(:version => 20120622044841) do
 
   create_table "advertisers", :force => true do |t|
     t.integer  "user_id"
@@ -213,6 +213,43 @@ ActiveRecord::Schema.define(:version => 20120621224606) do
   add_index "tweets", ["influencer_id"], :name => "index_tweets_on_influencer_id"
   add_index "tweets", ["link_code"], :name => "index_tweets_on_link_code", :unique => true
   add_index "tweets", ["tweet_at"], :name => "index_tweets_on_tweet_at"
+
+  create_table "twitter_countries", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "twitter_countries", ["name"], :name => "index_twitter_countries_on_name", :unique => true
+
+  create_table "twitter_states", :force => true do |t|
+    t.integer  "twitter_country_id"
+    t.string   "name"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+  end
+
+  add_index "twitter_states", ["name"], :name => "index_twitter_states_on_name", :unique => true
+
+  create_table "twitter_users", :force => true do |t|
+    t.string   "screen_name"
+    t.integer  "twitter_country_id"
+    t.integer  "twitter_state_id"
+    t.boolean  "gender_male"
+    t.boolean  "gender_female"
+    t.boolean  "sports"
+    t.boolean  "fashion"
+    t.boolean  "music"
+    t.boolean  "movies"
+    t.boolean  "politics"
+    t.boolean  "technology"
+    t.boolean  "travel"
+    t.boolean  "luxury"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+  end
+
+  add_index "twitter_users", ["screen_name"], :name => "index_twitter_users_on_screen_name", :unique => true
 
   create_table "users", :force => true do |t|
     t.string   "email",                   :default => "",    :null => false
