@@ -68,7 +68,7 @@ ActionMailer::Base.smtp_settings = {
   address: "smtp.gmail.com",
   port: 587,
   domain: 'borwin.net',
-  user_name: 'noreply',
+  user_name: 'noreply@borwin.net',
   password: 'borwin474%',
   authentication: 'plain',
   enable_starttls_auto: true
