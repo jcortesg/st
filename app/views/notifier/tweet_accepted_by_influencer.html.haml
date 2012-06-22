@@ -16,12 +16,12 @@
       %span.style3
 
     %p.style4
-      = "#{@tweet.influencer.full_name} ha aceptado una propuesta de un tweet, y el mismo esta listo para públicarse."
+      = "#{@tweet.influencer.full_name} ha aceptado una propuesta de un tweet y esta listo para publicarse."
     %p.style4
       = render partial: 'tweet_details'
     %p.style4
       Para ver los detalles del tweet aceptado
-      = link_to("entra a tu cuenta", advertiser_campaign_tweet_url(@tweet.campaign, @tweet))
+      = link_to("entrá a tu cuenta", advertiser_campaign_tweet_url(@tweet.campaign, @tweet))
     %p.style4
       = image_tag attachments['sellochico.jpg'].url
     %p.style4
