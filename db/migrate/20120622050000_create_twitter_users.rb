@@ -3,6 +3,7 @@ class CreateTwitterUsers < ActiveRecord::Migration
     create_table :twitter_users do |t|
       t.string :twitter_uid
       t.string :twitter_screen_name
+      t.string :name
       t.string :location
       t.string :profile_image_url
       t.integer :followers
@@ -12,17 +13,17 @@ class CreateTwitterUsers < ActiveRecord::Migration
       t.references :twitter_country
       t.references :twitter_state
 
-      t.boolean :gender_male
-      t.boolean :gender_female
+      t.boolean :gender_male, default: false, null: false
+      t.boolean :gender_female, default: false, null: false
 
-      t.boolean :sports
-      t.boolean :fashion
-      t.boolean :music
-      t.boolean :movies
-      t.boolean :politics
-      t.boolean :technology
-      t.boolean :travel
-      t.boolean :luxury
+      t.boolean :sports, default: false, null: false
+      t.boolean :fashion, default: false, null: false
+      t.boolean :music, default: false, null: false
+      t.boolean :movies, default: false, null: false
+      t.boolean :politics, default: false, null: false
+      t.boolean :technology, default: false, null: false
+      t.boolean :travel, default: false, null: false
+      t.boolean :luxury, default: false, null: false
 
       t.timestamps
     end

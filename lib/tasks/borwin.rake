@@ -51,11 +51,8 @@ namespace :borwin do
 
   desc 'Updates the list of twitter users and followership relations'
   task update_twitter_users: :environment do
-    # First we destroy all the twitter follower relationships
-    TwitterFollower.delete_all
-    # Now we iterate on every influencer, to get who follows him
-    #Influencer.joins(:audience).includes(:user).order('audiences.followers desc').all.each do |influencer|
-    Influencer.joins(:audience).includes(:user).order('audiences.followers desc').all.each do |influencer|
+    # Itarate on every influencer, to get who follows him
+    Influencer.joins(:audience).includes(:user).order('audiences.followers asc').all.each do |influencer|
       puts "Fetching #{influencer.full_name} followers"
       # First we get the list of all the followers
       cursor = "-1"
@@ -68,7 +65,8 @@ namespace :borwin do
         sleep(1)
       end
 
-      puts "Fetching #{influencer.full_name} followers on twitter"
+      puts "Updating #{influencer.full_name} followers on twitter"
+      TwitterFollower.delete_all("influencer_id = ?", influencer.id)
 
       # Now we create the user if it doesn't exist
       follower_ids.each do |follower_id|
@@ -78,10 +76,14 @@ namespace :borwin do
         twitter_user.save
       end
 
-      puts "Followers created into the system"
+      puts "Followers for #{influencer.full_name} updated"
     end
 
-    # Now we fetch all the user ids for which we don't have a twitter screen name
+    puts "Followers update process done"
+  end
+
+  desc 'Fetch screen names for the twitter users'
+  task fetch_screen_names: :environment do
     TwitterUser.where("twitter_screen_name is null").find_in_batches(batch_size: 100) do |twitter_users|
       puts "Updating a batch of 100 twitter users without screen name"
 
@@ -101,30 +103,93 @@ namespace :borwin do
     end
 
     puts "Screen names fetched"
+  end
 
-    ## We setup mechanize to start fetching each one of the user details
-    #agent = Mechanize.new { |agent|
-    #  agent.user_agent_alias = 'Mac Safari'
-    #  agent.verify_mode = OpenSSL::SSL::VERIFY_NONE
-    #}
-    #
-    ## Now we fetch all the data for each one of the twitter users
-    #TwitterUser.find_each(batch_size: 10000) do |twitter_user|
-    #  page = agent.get("https://mobile.twitter.com/#{twitter_user.twitter_screen_name}")
-    #
-    #  # First we get the location
-    #  location = page.parser.css('.location').text
-    #  twitter_user.location = location if location.to_s.size > 0
-    #
-    #  # Get the bio and tweets
-    #  bio = page.parser.css('.bio').text.to_s
-    #  tweets = []
-    #  page.parser.css('.tweet-text').each {|tt| tweets << tt.text}
-    #
-    #  # Parse bio and tweets for each one of the keywords
-    #  text_to_parse = bio.to_s + "\n" + tweets.join("\n")
-    #
-    #  puts twitter_user.twitter_uid
-    #end
+  desc 'Fetch twitter user stats to update the audiences'
+  task fetch_twitter_user_stats: :environment do
+    # First we get the different keywords
+    keywords_males = Keyword.where(name: 'males').first.keywords.split(',')
+    keywords_females = Keyword.where(name: 'females').first.keywords.split(',')
+    keywords_sports = Keyword.where(name: 'sports').first.keywords.split(',')
+    keywords_fashion = Keyword.where(name: 'fashion').first.keywords.split(',')
+    keywords_music = Keyword.where(name: 'music').first.keywords.split(',')
+    keywords_movies = Keyword.where(name: 'movies').first.keywords.split(',')
+    keywords_politics = Keyword.where(name: 'politics').first.keywords.split(',')
+    keywords_technology = Keyword.where(name: 'technology').first.keywords.split(',')
+    keywords_travel = Keyword.where(name: 'travel').first.keywords.split(',')
+    keywords_luxury = Keyword.where(name: 'luxury').first.keywords.split(',')
+
+    # We setup mechanize to start fetching each one of the user details
+    agent = Mechanize.new { |agent|
+      agent.user_agent_alias = 'Mac Safari'
+      agent.verify_mode = OpenSSL::SSL::VERIFY_NONE
+    }
+
+    # Now we fetch all the data for each one of the twitter users
+    TwitterUser.where("twitter_screen_name is not null").find_each(batch_size: 10000) do |twitter_user|
+      page = agent.get("https://mobile.twitter.com/#{twitter_user.twitter_screen_name}")
+
+      # First we get the location
+      location = page.parser.css('.location').text
+      twitter_user.location = location if location.to_s.size > 0
+
+      # Get the bio and tweets
+      bio = page.parser.css('.bio').text.to_s
+      tweets = []
+      page.parser.css('.tweet-text').each {|tt| tweets << tt.text}
+
+      # Parse bio and tweets for each one of the keywords
+      text_to_parse = bio.to_s + "\n" + tweets.join("\n")
+
+      # Test category keywords
+      twitter_user.sports = true if keywords_sports.detect { |k| text_to_parse.include?("#{k} ") }
+      twitter_user.fashion = true if keywords_fashion.detect { |k| text_to_parse.include?("#{k} ") }
+      twitter_user.music = true if keywords_music.detect { |k| text_to_parse.include?("#{k} ") }
+      twitter_user.movies = true if keywords_movies.detect { |k| text_to_parse.include?("#{k} ") }
+      twitter_user.politics = true if keywords_politics.detect { |k| text_to_parse.include?("#{k} ") }
+      twitter_user.technology = true if keywords_technology.detect { |k| text_to_parse.include?("#{k} ") }
+      twitter_user.travel = true if keywords_travel.detect { |k| text_to_parse.include?("#{k} ") }
+      twitter_user.luxury = true if keywords_luxury.detect { |k| text_to_parse.include?("#{k} ") }
+
+      # Update the user
+      twitter_user.save
+    end
+  end
+
+  desc 'Updates audiences'
+  task update_audiences: :environment do
+    Audience.includes(:influencer).order('audiences.followers asc').all.each do |audience|
+      # First we update the gender
+      gender_total = TwitterUser.joins(:twitter_followers).where("influencer_id = ?", audience.influencer_id).
+        where("(gender_male = 1 and gender_female = 0) or (gender_male = 0 and gender_female = 1)").count
+      gender_male = TwitterUser.joins(:twitter_followers).where("influencer_id = ?", audience.influencer_id).
+        where("gender_male = 1 and gender_female = 0").count
+      percent_males = ((gender_male * 100) / gender_total).round
+      percent_females = 100 - percent_males
+      audience.males = percent_males
+      audience.females = percent_females
+
+      # Now we update the different keyword categories
+      followers_total = TwitterUser.joins(:twitter_followers).where("influencer_id = ?", audience.influencer_id).count
+      sports = TwitterUser.joins(:twitter_followers).where("influencer_id = ?", audience.influencer_id).where("sports = 1").count
+      fashion = TwitterUser.joins(:twitter_followers).where("influencer_id = ?", audience.influencer_id).where("fashion = 1").count
+      music = TwitterUser.joins(:twitter_followers).where("influencer_id = ?", audience.influencer_id).where("music = 1").count
+      movies = TwitterUser.joins(:twitter_followers).where("influencer_id = ?", audience.influencer_id).where("movies = 1").count
+      politics = TwitterUser.joins(:twitter_followers).where("influencer_id = ?", audience.influencer_id).where("politics = 1").count
+      technology = TwitterUser.joins(:twitter_followers).where("influencer_id = ?", audience.influencer_id).where("technology = 1").count
+      travel = TwitterUser.joins(:twitter_followers).where("influencer_id = ?", audience.influencer_id).where("travel = 1").count
+      luxury = TwitterUser.joins(:twitter_followers).where("influencer_id = ?", audience.influencer_id).where("luxury = 1").count
+
+      audience.sports = ((sports * 100) / followers_total).round
+      audience.fashion = ((fashion * 100) / followers_total).round
+      audience.music = ((music * 100) / followers_total).round
+      audience.movies = ((movies * 100) / followers_total).round
+      audience.politics = ((politics * 100) / followers_total).round
+      audience.technology = ((technology * 100) / followers_total).round
+      audience.travel = ((travel * 100) / followers_total).round
+      audience.luxury = ((luxury * 100) / followers_total).round
+
+      audience.save
+    end
   end
 end
