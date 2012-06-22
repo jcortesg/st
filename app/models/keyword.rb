@@ -6,6 +6,6 @@ class Keyword < ActiveRecord::Base
   before_save :normalize_keywords
 
   def normalize_keywords
-    self.keywords = self.keywords.gsub(/ +,/, ',').gsub(/, +/, ',').gsub(/ +/, ' ').gsub("\n", "").gsub("-", ",").downcase
+    self.keywords = self.keywords.to_s.gsub(/ +,/, ',').gsub(/, +/, ',').gsub(/ +/, ' ').gsub("\n", "").gsub("-", ",").downcase
   end
 end
