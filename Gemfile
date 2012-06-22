@@ -19,6 +19,7 @@ gem 'country_select'                   # For country select on user registration
 gem 'active_attr'                      # Tableless models
 gem 'state_machine'                    # State machine, used mainly for tweet states
 gem 'mechanize'                        # Robot to brose twitter users
+gem 'klout'                            # Klout index
 
 
 group :assets do

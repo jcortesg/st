@@ -1,0 +1,1 @@
+Klout.api_key = '2pkpd7xcaztvceqds37vcxyc'
