@@ -214,6 +214,7 @@ namespace :borwin do
 
       # Parse bio and tweets for each one of the keywords
       text_to_parse = bio.to_s + "\n" + tweets.join("\n")
+      text_to_parse = text_to_parse.downcase
 
       # Test category keywords
       twitter_user.sports = true if keywords_sports.detect { |k| text_to_parse.include?("#{k} ") }
