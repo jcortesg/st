@@ -346,12 +346,14 @@ namespace :borwin do
 
   desc "Updates the klout index for each one of the influencers"
   task update_klout: :environment do
-    Influencer.includes(:user).all.order('id').each do |influencer|
+    Influencer.includes(:user).order('id').all.each do |influencer|
+      puts "Updating klout for #{influencer.full_name}"
       klout_id = Klout::Identity.find_by_screen_name(influencer.user.twitter_screen_name)
       user = Klout::User.new(klout_id.id)
       audience = Audience.where(influencer_id: influencer.id).first
       audience.klout = user.score.score.round
       audience.save
+      puts "New Klout index: #{audience.klout}"
     end
   end
 end
