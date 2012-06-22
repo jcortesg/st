@@ -28,7 +28,7 @@
                 %td= sprintf("%.02f", transaction.amount)
                 %td= sprintf("%.02f", transaction.balance)
                 %td
-                  = link_to('Ver', [:admin, transaction], class: 'btn btn-primary')
+                  = link_to('Ver', [:advertiser, transaction], class: 'btn btn-primary')
         .center_text
           = paginate @transactions
 

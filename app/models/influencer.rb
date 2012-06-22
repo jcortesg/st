@@ -168,6 +168,17 @@ class Influencer < ActiveRecord::Base
     manual_tweet_fee.blank? ? automatic_tweet_fee : manual_tweet_fee
   end
 
+  # Influencer CPC price with commission applied
+  def cpc_fee_influencer
+    cpc_fee - (cpc_fee * borwin_fee)
+  end
+
+  # Influencer Tweet price with commission applied
+  def tweet_fee_influencer
+    tweet_fee - (tweet_fee * borwin_fee)
+  end
+
+
   # String presentation
   def to_s
     "#{self.last_name}, #{self.first_name}"

@@ -28,4 +28,6 @@
   = i.input :bank_name, as: :select, collection: ["Citi", "Standard Bank", "Santander Río", "Banco Francés", "Banco Macro", "Banco Galicia", "Banco Nación", "Banco Provincia", "Banco Ciudad", "Banco Patagonia", "Banco Hipotecario", "Banco Credicoop"]
   = i.input :manual_tweet_fee, hint: sprintf("$ %.02f", f.object.influencer.automatic_tweet_fee.to_f)
   = i.input :manual_cpc_fee, hint: sprintf("$ %.02f", f.object.influencer.automatic_cpc_fee.to_f)
+  - unless f.object.new_record?
+    = i.input :borwin_fee, hint: "Porcentaje, por ejemplo: 0.30 (30%)"
 

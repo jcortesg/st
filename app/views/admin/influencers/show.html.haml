@@ -87,6 +87,12 @@
           %dd= number_to_currency(@influencer.tweet_fee)
           %dt Precio Click
           %dd= number_to_currency(@influencer.cpc_fee)
+          %dt Comisión Borwin
+          %dd= "% #{@influencer.borwin_fee}"
+          %dt Precio Tweet Celebridad
+          %dd= number_to_currency(@influencer.tweet_fee_influencer)
+          %dt Precio Click Celebridad
+          %dd= number_to_currency(@influencer.cpc_fee_influencer)
         .subtitle Audiencia
         = render '/admin/audiences/audience_table', audience: @influencer.audience
       .clear.center_text.show_buttons
