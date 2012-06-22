@@ -263,6 +263,69 @@ namespace :borwin do
       audience.travel = ((travel * 100) / followers_total).round
       audience.luxury = ((luxury * 100) / followers_total).round
 
+      # Finally update the audiences for countries and states
+      country_users = TwitterUser.joins(:twitter_followers).where("influencer_id = ?", audience.influencer_id).where("twitter_country_id is not null").count
+      country_argentina = TwitterUser.joins(:twitter_followers, :twitter_country).where("influencer_id = ?", audience.influencer_id).where("twitter_country_id is not null").where("twitter_countries.name = 'Argentina'").count
+      country_colombia = TwitterUser.joins(:twitter_followers, :twitter_country).where("influencer_id = ?", audience.influencer_id).where("twitter_country_id is not null").where("twitter_countries.name = 'Colombia'").count
+      country_chile = TwitterUser.joins(:twitter_followers, :twitter_country).where("influencer_id = ?", audience.influencer_id).where("twitter_country_id is not null").where("twitter_countries.name = 'Chile'").count
+      country_ecuador = TwitterUser.joins(:twitter_followers, :twitter_country).where("influencer_id = ?", audience.influencer_id).where("twitter_country_id is not null").where("twitter_countries.name = 'Ecuador'").count
+      country_paraguay = TwitterUser.joins(:twitter_followers, :twitter_country).where("influencer_id = ?", audience.influencer_id).where("twitter_country_id is not null").where("twitter_countries.name = 'Paraguay'").count
+      country_uruguay = TwitterUser.joins(:twitter_followers, :twitter_country).where("influencer_id = ?", audience.influencer_id).where("twitter_country_id is not null").where("twitter_countries.name = 'Uruguay'").count
+
+      audience.country_argentina = ((country_argentina * 100) / country_users).round
+      audience.country_colombia = ((country_colombia * 100) / country_users).round
+      audience.country_chile = ((country_chile * 100) / country_users).round
+      audience.country_ecuador = ((country_ecuador * 100) / country_users).round
+      audience.country_paraguay = ((country_paraguay * 100) / country_users).round
+      audience.country_uruguay = ((country_uruguay * 100) / country_users).round
+
+      states_users = TwitterUser.joins(:twitter_followers).where("influencer_id = ?", audience.influencer_id).where("twitter_state_id is not null").count
+      state_buenos_aires = TwitterUser.joins(:twitter_followers, :twitter_state).where("influencer_id = ?", audience.influencer_id).where("twitter_state_id is not null").where("twitter_states.name = 'Buenos Aires'").count
+      state_catamarca = TwitterUser.joins(:twitter_followers, :twitter_state).where("influencer_id = ?", audience.influencer_id).where("twitter_state_id is not null").where("twitter_states.name = 'Catamarca'").count
+      state_chaco = TwitterUser.joins(:twitter_followers, :twitter_state).where("influencer_id = ?", audience.influencer_id).where("twitter_state_id is not null").where("twitter_states.name = 'Chaco'").count
+      state_cordoba = TwitterUser.joins(:twitter_followers, :twitter_state).where("influencer_id = ?", audience.influencer_id).where("twitter_state_id is not null").where("twitter_states.name = 'Córdoba'").count
+      state_corrientes = TwitterUser.joins(:twitter_followers, :twitter_state).where("influencer_id = ?", audience.influencer_id).where("twitter_state_id is not null").where("twitter_states.name = 'Corrientes'").count
+      state_entre_rios = TwitterUser.joins(:twitter_followers, :twitter_state).where("influencer_id = ?", audience.influencer_id).where("twitter_state_id is not null").where("twitter_states.name = 'Entre Ríos'").count
+      state_formosa = TwitterUser.joins(:twitter_followers, :twitter_state).where("influencer_id = ?", audience.influencer_id).where("twitter_state_id is not null").where("twitter_states.name = 'Formosa'").count
+      state_jujuy = TwitterUser.joins(:twitter_followers, :twitter_state).where("influencer_id = ?", audience.influencer_id).where("twitter_state_id is not null").where("twitter_states.name = 'Jujuy'").count
+      state_la_pampa = TwitterUser.joins(:twitter_followers, :twitter_state).where("influencer_id = ?", audience.influencer_id).where("twitter_state_id is not null").where("twitter_states.name = 'La Pampa'").count
+      state_la_rioja = TwitterUser.joins(:twitter_followers, :twitter_state).where("influencer_id = ?", audience.influencer_id).where("twitter_state_id is not null").where("twitter_states.name = 'La Rioja'").count
+      state_mendoza = TwitterUser.joins(:twitter_followers, :twitter_state).where("influencer_id = ?", audience.influencer_id).where("twitter_state_id is not null").where("twitter_states.name = 'Mendoza'").count
+      state_misiones = TwitterUser.joins(:twitter_followers, :twitter_state).where("influencer_id = ?", audience.influencer_id).where("twitter_state_id is not null").where("twitter_states.name = 'Misiones'").count
+      state_neuquen = TwitterUser.joins(:twitter_followers, :twitter_state).where("influencer_id = ?", audience.influencer_id).where("twitter_state_id is not null").where("twitter_states.name = 'Neuquén'").count
+      state_rio_negro = TwitterUser.joins(:twitter_followers, :twitter_state).where("influencer_id = ?", audience.influencer_id).where("twitter_state_id is not null").where("twitter_states.name = 'Rio Negro'").count
+      state_salta = TwitterUser.joins(:twitter_followers, :twitter_state).where("influencer_id = ?", audience.influencer_id).where("twitter_state_id is not null").where("twitter_states.name = 'Salta'").count
+      state_san_juan = TwitterUser.joins(:twitter_followers, :twitter_state).where("influencer_id = ?", audience.influencer_id).where("twitter_state_id is not null").where("twitter_states.name = 'San Juan'").count
+      state_san_luis = TwitterUser.joins(:twitter_followers, :twitter_state).where("influencer_id = ?", audience.influencer_id).where("twitter_state_id is not null").where("twitter_states.name = 'San Luis'").count
+      state_santa_cruz = TwitterUser.joins(:twitter_followers, :twitter_state).where("influencer_id = ?", audience.influencer_id).where("twitter_state_id is not null").where("twitter_states.name = 'Santa Cruz'").count
+      state_santa_fe = TwitterUser.joins(:twitter_followers, :twitter_state).where("influencer_id = ?", audience.influencer_id).where("twitter_state_id is not null").where("twitter_states.name = 'Santa Fe'").count
+      state_sgo_del_estero = TwitterUser.joins(:twitter_followers, :twitter_state).where("influencer_id = ?", audience.influencer_id).where("twitter_state_id is not null").where("twitter_states.name = 'Sgo. del Estero'").count
+      state_tierra_del_fuego = TwitterUser.joins(:twitter_followers, :twitter_state).where("influencer_id = ?", audience.influencer_id).where("twitter_state_id is not null").where("twitter_states.name = 'Tierra del Fuego'").count
+      state_tucuman = TwitterUser.joins(:twitter_followers, :twitter_state).where("influencer_id = ?", audience.influencer_id).where("twitter_state_id is not null").where("twitter_states.name = 'Tucumán'").count
+
+      audience.state_buenos_aires = ((state_buenos_aires * 100) / states_users).round
+      audience.state_catamarca = ((state_catamarca * 100) / states_users).round
+      audience.state_chaco = ((state_chaco * 100) / states_users).round
+      audience.state_cordoba = ((state_cordoba * 100) / states_users).round
+      audience.state_corrientes = ((state_corrientes * 100) / states_users).round
+      audience.state_entre_rios = ((state_entre_rios * 100) / states_users).round
+      audience.state_formosa = ((state_formosa * 100) / states_users).round
+      audience.state_jujuy = ((state_jujuy * 100) / states_users).round
+      audience.state_la_pampa = ((state_la_pampa * 100) / states_users).round
+      audience.state_la_rioja = ((state_la_rioja * 100) / states_users).round
+      audience.state_mendoza = ((state_mendoza * 100) / states_users).round
+      audience.state_misiones = ((state_misiones * 100) / states_users).round
+      audience.state_neuquen = ((state_neuquen * 100) / states_users).round
+      audience.state_rio_negro = ((state_rio_negro * 100) / states_users).round
+      audience.state_salta = ((state_salta * 100) / states_users).round
+      audience.state_san_juan = ((state_san_juan * 100) / states_users).round
+      audience.state_san_luis = ((state_san_luis * 100) / states_users).round
+      audience.state_santa_cruz = ((state_santa_cruz * 100) / states_users).round
+      audience.state_santa_fe = ((state_santa_fe * 100) / states_users).round
+      audience.state_sgo_del_estero = ((state_sgo_del_estero * 100) / states_users).round
+      audience.state_tierra_del_fuego = ((state_tierra_del_fuego * 100) / states_users).round
+      audience.state_tucuman = ((state_tucuman * 100) / states_users).round
+
       audience.save
     end
   end
