@@ -49,6 +49,8 @@ Borwin::Application.routes.draw do
 
     resources :keywords, except: [:new, :destroy]
 
+    resources :transactions
+
     match 'change_password' => 'dashboard#change_password', as: :dashboard_change_password
     match 'update_password' => 'dashboard#update_password', as: :dashboard_update_password
   end
@@ -100,6 +102,7 @@ Borwin::Application.routes.draw do
       get :change_password
       put :update_password
     end
+    resources :transactions, only: [:index, :show]
   end
 
   # Influencer routes
