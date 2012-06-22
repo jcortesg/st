@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120622161624) do
+ActiveRecord::Schema.define(:version => 20120622195757) do
 
   create_table "advertisers", :force => true do |t|
     t.integer  "user_id"
@@ -245,12 +245,14 @@ ActiveRecord::Schema.define(:version => 20120622161624) do
     t.string   "link_code"
     t.string   "link_url"
     t.string   "fee_type"
-    t.decimal  "tweet_fee",     :precision => 8, :scale => 2, :default => 0.0, :null => false
-    t.decimal  "cpc_fee",       :precision => 8, :scale => 2, :default => 0.0, :null => false
-    t.integer  "clicks_count",                                :default => 0,   :null => false
+    t.decimal  "tweet_fee",            :precision => 8, :scale => 2, :default => 0.0, :null => false
+    t.decimal  "cpc_fee",              :precision => 8, :scale => 2, :default => 0.0, :null => false
+    t.integer  "clicks_count",                                       :default => 0,   :null => false
     t.string   "status"
-    t.datetime "created_at",                                                   :null => false
-    t.datetime "updated_at",                                                   :null => false
+    t.datetime "created_at",                                                          :null => false
+    t.datetime "updated_at",                                                          :null => false
+    t.decimal  "influencer_tweet_fee", :precision => 8, :scale => 2, :default => 0.0, :null => false
+    t.decimal  "influencer_cpc_fee",   :precision => 8, :scale => 2, :default => 0.0, :null => false
   end
 
   add_index "tweets", ["campaign_id"], :name => "index_tweets_on_campaign_id"
