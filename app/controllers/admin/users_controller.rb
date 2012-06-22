@@ -27,4 +27,14 @@ class Admin::UsersController < ApplicationController
     redirect_to [:admin, :users]
   end
 
+  # Destroys a user
+  def destroy
+    @user = User.find(params[:id])
+    @user.destroy
+
+    flash.now[:notice] = "El usuario ha sido eliminado"
+
+    redirect_to [:admin, :users]
+  end
+
 end

@@ -24,11 +24,12 @@
                 %td= I18n.t("user.role.#{user.role}")
                 %td= user.created_at ? (localize(user.created_at, :format => "%d/%m/%Y")) : ""
                 %td.center_text.last
-                  = form_for user, :url => user.approved? ? disapprove_admin_user_path(user) : approve_admin_user_path(user) do
+                  = form_for user, :url => user.approved? ? disapprove_admin_user_path(user) : approve_admin_user_path(user), html: { style: 'display: inline' } do
                     - if user.approved?
                       %button.btn.btn-primary Desaprobar
                     - else
                       %button.btn.btn-primary Aprobar
+                  = link_to('Eliminar', [:admin, user], method: :delete, class: 'btn btn-danger', confirm: "Esta seguro que desea eliminar al usuario?" )
         .center_text
           = paginate @users
 
