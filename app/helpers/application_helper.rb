@@ -83,6 +83,8 @@ module ApplicationHelper
     case transaction_type
       when 'initial_fee'
         'Fee de Campaña'
+      when 'payment'
+        'Pago'
     end
   end
 end

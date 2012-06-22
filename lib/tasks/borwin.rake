@@ -203,13 +203,18 @@ namespace :borwin do
     TwitterUser.where("twitter_screen_name is not null and id > 970").find_each(batch_size: 10000) do |twitter_user|
       tries = 100
       begin
-        page = agent.get("https://mobile.twitter.com/#{twitter_user.twitter_screen_name}")
-        page.parser.css('.bio')
-      rescue Exception
+        page = agent.get("http://mobile.twitter.com/#{twitter_user.twitter_screen_name}")
+      rescue Net::HTTPForbidden, Net::HTTPNotFound, Mechanize::ResponseCodeError
+        tries = 0
+        sleep(1)
+        next
+      rescue Exception => e
         tries -= 1
         sleep(1)
         retry if tries > 0
       end
+
+      next if page.parser.css('.protected').size > 0
 
       # First we get the location
       #location = page.parser.css('.location').text
