@@ -361,4 +361,15 @@ namespace :borwin do
       end
     end
   end
+
+  desc "Update the twitter fees for influencers"
+  task update_twitter_prices: :environment do
+    Tweet.all.each do |tweet|
+      tweet.tweet_fee = tweet.influencer.tweet_fee
+      tweet.influencer_tweet_fee = tweet.influencer.influencer_tweet_fee
+      tweet.cpc_fee = tweet.influencer.cpc_fee
+      tweet.influencer_cpc_fee = tweet.influencer.influencer_cpc_fee
+      tweet.save
+    end
+  end
 end

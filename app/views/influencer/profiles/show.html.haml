@@ -17,7 +17,7 @@
           %span= @influencer.influencer_type
 
         .price
-          %span= "$#{@influencer.tweet_fee_influencer.to_f.round}"
+          %span= "$#{@influencer.influencer_tweet_fee.to_f.round}"
           por tweet
 
       .profile_body
@@ -60,9 +60,9 @@
 
             .box.last
               .stat Tweet:
-              .data= number_to_currency(@influencer.tweet_fee_influencer)
+              .data= number_to_currency(@influencer.influencer_tweet_fee)
               .stat CPC:
-              .data= number_to_currency(@influencer.cpc_fee_influencer)
+              .data= number_to_currency(@influencer.influencer_cpc_fee)
               .stat CPC medio:
               .data= "-"
               .stat CPC totales:

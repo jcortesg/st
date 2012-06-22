@@ -169,12 +169,12 @@ class Influencer < ActiveRecord::Base
   end
 
   # Influencer CPC price with commission applied
-  def cpc_fee_influencer
+  def influencer_cpc_fee
     cpc_fee - (cpc_fee * borwin_fee)
   end
 
   # Influencer Tweet price with commission applied
-  def tweet_fee_influencer
+  def influencer_tweet_fee
     tweet_fee - (tweet_fee * borwin_fee)
   end
 
