@@ -75,5 +75,47 @@ namespace :borwin do
         twitter_user.save
       end
     end
+
+    # Now we fetch all the user ids for which we don't have a twitter screen name
+    TwitterUser.where("twitter_screen_name is null").find_in_batches(batch_size: 100) do |twitter_users|
+      # Get the user ids
+      twitter_user_ids = twitter_users.collect { |tu| tu.twitter_uid }
+      users = Twitter.users(user_id: twitter_user_ids.join(','))
+      users.each do |user|
+        twitter_user = twitter_users.detect { |tu| tu.twitter_uid.to_i == user.id.to_i }
+        twitter_user.twitter_screen_name = user.screen_name
+        twitter_user.location = user.location
+        twitter_user.profile_image_url = user.profile_image_url
+        twitter_user.followers = user.followers
+        twitter_user.friends = user.friends
+        twitter_user.tweets = user.statuses_count
+        twitter_user.save
+      end
+    end
+
+    ## We setup mechanize to start fetching each one of the user details
+    #agent = Mechanize.new { |agent|
+    #  agent.user_agent_alias = 'Mac Safari'
+    #  agent.verify_mode = OpenSSL::SSL::VERIFY_NONE
+    #}
+    #
+    ## Now we fetch all the data for each one of the twitter users
+    #TwitterUser.find_each(batch_size: 10000) do |twitter_user|
+    #  page = agent.get("https://mobile.twitter.com/#{twitter_user.twitter_screen_name}")
+    #
+    #  # First we get the location
+    #  location = page.parser.css('.location').text
+    #  twitter_user.location = location if location.to_s.size > 0
+    #
+    #  # Get the bio and tweets
+    #  bio = page.parser.css('.bio').text.to_s
+    #  tweets = []
+    #  page.parser.css('.tweet-text').each {|tt| tweets << tt.text}
+    #
+    #  # Parse bio and tweets for each one of the keywords
+    #  text_to_parse = bio.to_s + "\n" + tweets.join("\n")
+    #
+    #  puts twitter_user.twitter_uid
+    #end
   end
 end
