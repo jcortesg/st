@@ -22,7 +22,7 @@
             - @keywords.each do |keyword|
               %tr{ :class => cycle('odd', 'even') }
                 %td= I18n.translate("keywords.#{keyword.name}")
-                %td= truncate(keyword.keywords, length: 100)
+                %td= truncate(keyword.keywords, length: 70)
                 %td= localize(keyword.created_at, :format => "%d/%m/%Y")
                 %td= localize(keyword.updated_at, :format => "%d/%m/%Y")
                 %td

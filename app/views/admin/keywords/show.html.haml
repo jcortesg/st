@@ -11,7 +11,7 @@
           %dt Nombre
           %dd= dl_value I18n.t("keywords.#{@keyword.name}")
           %dt Keywords
-          %dd= dl_value @keyword.keywords
+          %dd= dl_value @keyword.keywords.gsub(',', ', ') rescue '&nbsp;'.html_safe
           %dt Fecha creación
           %dd= dl_value @keyword.created_at.try(:strftime, "%d/%m/%Y")
           %dt Fecha actualización
