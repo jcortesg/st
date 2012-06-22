@@ -3,6 +3,8 @@ class Influencer < ActiveRecord::Base
   belongs_to :user
   has_one :audience, dependent: :destroy
   has_many :tweets
+  has_many :twitter_followers
+  has_many :twitter_users, through: :twitter_followers
 
   has_attached_file :photo, :styles => { :profile => "140x200#", :small => "100x100>", :thumb => "48x48#"  }
 
@@ -16,7 +18,7 @@ class Influencer < ActiveRecord::Base
   attr_accessible :first_name, :last_name, :location, :image_url, :bio, :influencer_type, :birthday, :photo, :sex,
                   :description, :referrer_description, :address, :city, :state, :country, :zip_code, :phone,
                   :cell_phone, :contact_time, :contact_method, :preferred_payment, :account_number, :account_type, :cbu,
-                  :bank_name, :manual_tweet_fee, :manual_cpc_fee, :automatic_tweet_fee, :automatic_cpc_fee
+                  :bank_name, :manual_tweet_fee, :manual_cpc_fee, :automatic_tweet_fee, :automatic_cpc_fee, :twitter_users
 
 
   class << self

@@ -84,6 +84,8 @@ GEM
       railties (~> 3.1)
       warden (~> 1.1.1)
     diff-lcs (1.1.3)
+    domain_name (0.5.3)
+      unf (~> 0.0.3)
     erubis (2.7.0)
     execjs (1.4.0)
       multi_json (~> 1.0)
@@ -127,6 +129,14 @@ GEM
       i18n (>= 0.4.0)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
+    mechanize (2.5.1)
+      domain_name (~> 0.5, >= 0.5.1)
+      mime-types (~> 1.17, >= 1.17.2)
+      net-http-digest_auth (~> 1.1, >= 1.1.1)
+      net-http-persistent (~> 2.5, >= 2.5.2)
+      nokogiri (~> 1.4)
+      ntlm-http (~> 0.1, >= 0.1.1)
+      webrobots (~> 0.0, >= 0.0.9)
     meta_search (1.1.3)
       actionpack (~> 3.1)
       activerecord (~> 3.1)
@@ -136,6 +146,8 @@ GEM
     multi_json (1.3.6)
     multipart-post (1.1.5)
     mysql2 (0.3.11)
+    net-http-digest_auth (1.2.1)
+    net-http-persistent (2.7)
     net-scp (1.0.4)
       net-ssh (>= 1.99.1)
     net-sftp (2.0.5)
@@ -144,6 +156,7 @@ GEM
     net-ssh-gateway (1.1.0)
       net-ssh (>= 1.99.1)
     nokogiri (1.5.3)
+    ntlm-http (0.1.1)
     oauth (0.4.6)
     omniauth (1.1.0)
       hashie (~> 1.2)
@@ -254,8 +267,12 @@ GEM
     uglifier (1.2.4)
       execjs (>= 0.3.0)
       multi_json (>= 1.0.2)
+    unf (0.0.5)
+      unf_ext
+    unf_ext (0.0.5)
     warden (1.1.1)
       rack (>= 1.0)
+    webrobots (0.0.13)
     xpath (0.1.4)
       nokogiri (~> 1.3)
 
@@ -281,6 +298,7 @@ DEPENDENCIES
   jquery-rails
   kaminari
   launchy
+  mechanize
   meta_search
   mysql2
   nested_form!

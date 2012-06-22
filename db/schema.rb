@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120622044841) do
+ActiveRecord::Schema.define(:version => 20120622055904) do
 
   create_table "advertisers", :force => true do |t|
     t.integer  "user_id"
@@ -222,6 +222,15 @@ ActiveRecord::Schema.define(:version => 20120622044841) do
 
   add_index "twitter_countries", ["name"], :name => "index_twitter_countries_on_name", :unique => true
 
+  create_table "twitter_followers", :force => true do |t|
+    t.integer  "influencer_id"
+    t.integer  "twitter_user_id"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+  end
+
+  add_index "twitter_followers", ["influencer_id", "twitter_user_id"], :name => "index_twitter_followers_on_influencer_id_and_twitter_user_id", :unique => true
+
   create_table "twitter_states", :force => true do |t|
     t.integer  "twitter_country_id"
     t.string   "name"
@@ -232,7 +241,8 @@ ActiveRecord::Schema.define(:version => 20120622044841) do
   add_index "twitter_states", ["name"], :name => "index_twitter_states_on_name", :unique => true
 
   create_table "twitter_users", :force => true do |t|
-    t.string   "screen_name"
+    t.string   "twitter_uid"
+    t.string   "twitter_screen_name"
     t.integer  "twitter_country_id"
     t.integer  "twitter_state_id"
     t.boolean  "gender_male"
@@ -245,11 +255,11 @@ ActiveRecord::Schema.define(:version => 20120622044841) do
     t.boolean  "technology"
     t.boolean  "travel"
     t.boolean  "luxury"
-    t.datetime "created_at",         :null => false
-    t.datetime "updated_at",         :null => false
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
   end
 
-  add_index "twitter_users", ["screen_name"], :name => "index_twitter_users_on_screen_name", :unique => true
+  add_index "twitter_users", ["twitter_uid"], :name => "index_twitter_users_on_twitter_uid", :unique => true
 
   create_table "users", :force => true do |t|
     t.string   "email",                   :default => "",    :null => false

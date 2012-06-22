@@ -48,4 +48,32 @@ namespace :borwin do
       TwitterState.create(name: state_name, twitter_country: argentina) unless TwitterState.where(name: state_name).exists?
     end
   end
+
+  desc 'Updates the list of twitter users and followership relations'
+  task update_twitter_users: :environment do
+    # First we destroy all the twitter follower relationships
+    TwitterFollower.delete_all
+    # Now we iterate on every influencer, to get who follows him
+    #Influencer.joins(:audience).includes(:user).order('audiences.followers desc').all.each do |influencer|
+    Influencer.joins(:audience).includes(:user).where(id: 70).order('audiences.followers desc').all.each do |influencer|
+      # First we get the list of all the followers
+      cursor = "-1"
+      follower_ids = []
+      while cursor != 0 do
+        followers = Twitter.follower_ids(influencer.user.twitter_screen_name, {cursor: cursor})
+
+        cursor = followers.next_cursor
+        follower_ids += followers.ids
+        sleep(1)
+      end
+
+      # Now we create the user if it doesn't exist
+      follower_ids.each do |follower_id|
+        # Find or create the twitter user
+        twitter_user = TwitterUser.where(twitter_uid: follower_id).first || TwitterUser.create(twitter_uid: follower_id)
+        twitter_user.influencers << influencer
+        twitter_user.save
+      end
+    end
+  end
 end

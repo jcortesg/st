@@ -1,9 +1,11 @@
 class TwitterUser < ActiveRecord::Base
   belongs_to :twitter_country
   belongs_to :twitter_state
+  has_many :twitter_followers
+  has_many :influencers, through: :twitter_followers
 
-  attr_accessible :screen_name, :twitter_country_id, :twitter_state_id, :male, :female,
-                  :sports, :fashion, :music, :movies, :politics, :technology, :travel, :luxury
+  attr_accessible :twitter_uid, :twitter_screen_name, :twitter_country_id, :twitter_state_id, :male, :female,
+                  :sports, :fashion, :music, :movies, :politics, :technology, :travel, :luxury, :influencers
 
-  validates :screen_name, uniqueness: true, presence: true
+  validates :twitter_uid, uniqueness: true, presence: true
 end
