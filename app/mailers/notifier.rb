@@ -137,4 +137,12 @@ class Notifier < ActionMailer::Base
 
     mail(to: tweet.influencer.user.email, subject: "Notificaciones @ Borwin - Uno de tus tweets fue publicado")
   end
+
+  # Sends an email to a user that was converted from an advertiser to an affiliate
+  def influencer_converted_to_affiliate(user)
+    attachments.inline['logo.jpg'] = File.read(Rails.root.join('app/assets/images/logo.jpg'))
+    attachments.inline['sellochico.jpg'] = File.read(Rails.root.join('app/assets/images/sellochico.jpg'))
+
+    mail(to: user.email, subject: "Notificaciones @ Borwin - Has sido recategorizado en Borwin")
+  end
 end

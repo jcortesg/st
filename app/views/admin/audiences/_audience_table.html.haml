@@ -133,3 +133,49 @@
       %td.center_text= "#{audience.state_sgo_del_estero}%"
       %td.center_text= "#{audience.state_tierra_del_fuego}%"
       %td.center_text= "#{audience.state_tucuman}%"
+
+#graph_sex
+
+:javascript
+  var chart;
+  $(document).ready(function() {
+    chart = new Highcharts.Chart({
+      chart: {
+        renderTo: 'graph_sex',
+        plotBackgroundColor: null,
+        plotBorderWidth: null,
+        plotShadow: false
+      },
+      title: {
+        text: 'Sexo'
+      },
+      tooltip: {
+        formatter: function() {
+          return '<b>'+ this.point.name +'</b>: '+ this.percentage +' %';
+        }
+      },
+      plotOptions: {
+        pie: {
+          allowPointSelect: true,
+          cursor: 'pointer',
+          dataLabels: {
+            enabled: true,
+            color: '#000000',
+            connectorColor: '#000000',
+            formatter: function() {
+              return '<b>'+ this.point.name +'</b>: '+ this.percentage +' %';
+            }
+          },
+          showInLegend: true
+        }
+      },
+      series: [{
+        type: 'pie',
+        name: 'Porcentage según genero',
+        data: [
+          ['Hombres', #{audience.males}],
+          ['Mujeres', #{audience.females}]
+        ]
+      }]
+    });
+  });
