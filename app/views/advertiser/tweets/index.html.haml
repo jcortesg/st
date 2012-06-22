@@ -41,7 +41,9 @@
                 %td= sprintf("$ %.02f", influencer.tweet_fee)
                 %td= influencer.followers
                 %td= influencer.friends
-                %td= Audience.where(influencer_id: influencer.influencer_id).first.klout rescue ''
+                %td
+                  .mini-flag.score.kscore
+                    .value= Audience.where(influencer_id: influencer.influencer_id).first.klout rescue 0
                 %td
                   = link_to('Proponer Tweet', new_advertiser_campaign_tweet_path(@campaign, influencer_id: influencer.influencer_id), class: 'btn btn-primary')
         .center_text
