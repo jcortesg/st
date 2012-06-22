@@ -65,4 +65,24 @@ module ApplicationHelper
         'Activo, el Tweet ya fue públicado'
     end
   end
+
+  # Gets a link for the admin to a user
+  def admin_link_to_user(user)
+    case user.role
+      when 'influencer'
+        link_to(user.full_name, admin_influencer_path(user.influencer))
+      when 'affiliate'
+        link_to(user.full_name, admin_affiliate_path(user.affiliate))
+      when 'advertiser'
+        link_to(user.full_name, admin_advertiser_path(user.advertiser))
+    end
+  end
+
+  # Gets a nice description for a tranasction type
+  def transaction_type_description(transaction_type)
+    case transaction_type
+      when 'initial_fee'
+        'Fee de Campaña'
+    end
+  end
 end

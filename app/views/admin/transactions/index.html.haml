@@ -8,7 +8,8 @@
     .round_box
       .content
         .right
-          = link_to('Crear Transaccion', [:new, :admin, :transaction], :class => 'btn btn-primary')
+          = link_to('Crear Fee', [:new, :admin, :transaction], :class => 'btn btn-primary')
+          = link_to('Crear Pago', [:new_payment, :admin, :transactions], :class => 'btn btn-primary')
         %h1.title Transacciónes
 
         %table.table.table-striped
@@ -27,14 +28,13 @@
             - @transactions.each do |transaction|
               %tr{ :class => cycle('odd', 'even') }
                 %td= localize(transaction.transaction_on, :format => "%d/%m/%Y")
-                %td= transaction.user.full_name rescue ''
+                %td= transaction.user ? admin_link_to_user(transaction.user) : ''
                 %td= transaction.borwin_transaction? ? 'Sí' : 'No'
-                %td= transaction.type
+                %td= transaction_type_description(transaction.transaction_type)
                 %td= transaction.attachable.to_s if transaction.attachable
                 %td= sprintf("%.02f", transaction.amount)
                 %td= sprintf("%.02f", transaction.balance)
                 %td
                   = link_to('Ver', [:admin, transaction], class: 'btn btn-primary')
-                  = link_to('Editar', [:edit, :admin, transaction], class: 'btn btn-primary')
         .center_text
           = paginate @transactions

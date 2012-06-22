@@ -6,7 +6,7 @@ class CreateTransactions < ActiveRecord::Migration
 
       t.date :transaction_on, null: false
 
-      t.string :type, null: false
+      t.string :transaction_type, null: false
       t.text :details
 
       t.boolean :borwin_transaction, null: false, default: false

@@ -1,0 +1,15 @@
+.row
+  .span6.offset3.round_box
+    = simple_form_for(@transaction, url: [:admin, @transaction], method: :post, html:  { class: "form-horizontal round_form", method: :put }) do |f|
+      %h1.form_title Nuevo Fee de Campaña
+      = render '/shared/simple_form_errors', :f => f
+      = f.input :user_id, as: :select, collection: User.joins(:advertiser).order("advertisers.company").all.collect { |u| [u.advertiser.company, u.id] }, label: "Anunciante", include_blank: false
+      = f.input :transaction_on
+      = f.input :transaction_type, as: :select, collection: [['Fee Inicial de Campaña', 'initial_fee']], include_blank: false
+      = f.input :details, input_html: { style: 'height: 100px'}
+      = f.input :amount
+
+      .form-actions
+        = f.submit 'Guardar', :class => 'btn btn-primary btn-large'
+        = link_to 'Cancelar', [:admin, :transactions], class: 'btn btn-large'
+

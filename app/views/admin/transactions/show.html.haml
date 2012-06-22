@@ -1,0 +1,28 @@
+- if flash.any?
+  .row
+    .span12
+      = render '/shared/flash', flash: flash
+.row
+  .span12
+    .round_box
+      .content
+        %h1.title Transacción
+        %dl.record_details
+          %dt Fecha
+          %dd= dl_value @transaction.transaction_on.try(:strftime, "%d/%m/%Y")
+          %dt Usuario
+          %dd= dl_value @transaction.user ? admin_link_to_user(@transaction.user) : ''
+          %dt Transacción de Borwin?
+          %dd= @transaction.borwin_transaction? ? 'Sí' : 'No'
+          %dt Tipo
+          %dd= dl_value transaction_type_description(@transaction.transaction_type)
+          %dt Detalle
+          %dd= dl_value @transaction.details
+          %dt Importe
+          %dd= dl_value sprintf("%.02f", @transaction.amount)
+          %dt Balance
+          %dd= dl_value sprintf("%.02f", @transaction.balance)
+
+      .clear.center_text.show_buttons
+        = link_to('Listado', [:admin, :transactions], class: 'btn btn-primary')
+

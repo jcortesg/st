@@ -14,6 +14,24 @@ class Admin::TransactionsController < ApplicationController
     @transaction = Transaction.find(params[:id])
   end
 
+  # Shows the form to create a new payment
+  def new_payment
+    @transaction = Transaction.new
+  end
+
+  # Creates a new payment
+  def create_new_payment
+    @transaction = Transactio.new(params[:transaction])
+
+    if @transaction.save
+      flash[:notice] = "La transacción ha sido creada"
+      redirect_to [:admin, @transaction]
+    else
+      flash.now[:error] = "Hubo un error al intentar crear el pago"
+      render action: :new_payment
+    end
+  end
+
   # Shows the form to create a new transaction
   def new
     @transaction = Transaction.new

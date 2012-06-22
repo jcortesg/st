@@ -49,7 +49,12 @@ Borwin::Application.routes.draw do
 
     resources :keywords, except: [:new, :destroy]
 
-    resources :transactions
+    resources :transactions do
+      collection do
+        get :new_payment
+        post :create_new_payment
+      end
+    end
 
     match 'change_password' => 'dashboard#change_password', as: :dashboard_change_password
     match 'update_password' => 'dashboard#update_password', as: :dashboard_update_password

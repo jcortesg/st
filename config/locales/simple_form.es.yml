@@ -141,6 +141,15 @@ es:
       keyword:
         name: Nombre
         keywords: Keywords
+      transaction:
+        attachable: Objeto
+        user: Usuario
+        transaction_on: Fecha
+        type: Tipo
+        details: Detalle
+        borwint_transaction: Borwin?
+        amount: Importe
+        balance: Balance
     hints:
       influencer:
         twitter_username: "Tu nombre de usuario en twitter, ej: rorra"

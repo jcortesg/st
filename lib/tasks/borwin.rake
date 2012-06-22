@@ -200,8 +200,16 @@ namespace :borwin do
     }
 
     # Now we fetch all the data for each one of the twitter users
-    TwitterUser.where("twitter_screen_name is not null").find_each(batch_size: 10000) do |twitter_user|
-      page = agent.get("https://mobile.twitter.com/#{twitter_user.twitter_screen_name}")
+    TwitterUser.where("twitter_screen_name is not null and id > 400").find_each(batch_size: 10000) do |twitter_user|
+      tries = 100
+      begin
+        page = agent.get("https://mobile.twitter.com/#{twitter_user.twitter_screen_name}")
+        page.parser.css('.bio')
+      rescue Exception
+        tries -= 1
+        sleep(1)
+        retry if tries > 0
+      end
 
       # First we get the location
       #location = page.parser.css('.location').text

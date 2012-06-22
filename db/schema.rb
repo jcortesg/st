@@ -226,7 +226,7 @@ ActiveRecord::Schema.define(:version => 20120622161624) do
     t.string   "attachable_type"
     t.integer  "user_id"
     t.date     "transaction_on",                                                      :null => false
-    t.string   "type",                                                                :null => false
+    t.string   "transaction_type",                                                    :null => false
     t.text     "details"
     t.boolean  "borwin_transaction",                               :default => false, :null => false
     t.decimal  "amount",             :precision => 8, :scale => 2, :default => 0.0,   :null => false
