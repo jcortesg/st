@@ -55,7 +55,7 @@ namespace :borwin do
     TwitterFollower.delete_all
     # Now we iterate on every influencer, to get who follows him
     #Influencer.joins(:audience).includes(:user).order('audiences.followers desc').all.each do |influencer|
-    Influencer.joins(:audience).includes(:user).where(id: 70).order('audiences.followers desc').all.each do |influencer|
+    Influencer.joins(:audience).includes(:user).order('audiences.followers desc').all.each do |influencer|
       # First we get the list of all the followers
       cursor = "-1"
       follower_ids = []
