@@ -200,7 +200,7 @@ namespace :borwin do
     }
 
     # Now we fetch all the data for each one of the twitter users
-    TwitterUser.where("twitter_screen_name is not null and id > 400").find_each(batch_size: 10000) do |twitter_user|
+    TwitterUser.where("twitter_screen_name is not null and id > 970").find_each(batch_size: 10000) do |twitter_user|
       tries = 100
       begin
         page = agent.get("https://mobile.twitter.com/#{twitter_user.twitter_screen_name}")

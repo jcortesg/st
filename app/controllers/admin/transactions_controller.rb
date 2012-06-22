@@ -21,7 +21,9 @@ class Admin::TransactionsController < ApplicationController
 
   # Creates a new payment
   def create_new_payment
-    @transaction = Transactio.new(params[:transaction])
+    @transaction = Transaction.new(params[:transaction])
+
+    @transaction.amount = @transaction.amount * -1 if @transaction.amount >= 0
 
     if @transaction.save
       flash[:notice] = "La transacción ha sido creada"
