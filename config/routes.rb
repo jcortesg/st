@@ -18,6 +18,10 @@ Borwin::Application.routes.draw do
     resources :advertisers
     resources :affiliates
     resources :influencers do
+      member do
+        get :recategorize
+        put :do_recategorize
+      end
       resource :audience, only: [:show, :edit, :update]
     end
 

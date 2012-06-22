@@ -102,4 +102,5 @@
         = link_to('Audiencia', [:admin, @influencer, :audience], class: 'btn btn-primary')
         = link_to('Eliminar', [:admin, @influencer], method: :delete, class: 'btn btn-danger', confirm: "Esta seguro que desea eliminar a la celebridad y todo su historial?" )
         = link_to('Listado', [:admin, :influencers], class: 'btn btn-primary')
+        = link_to('Recategorizar', [:recategorize, :admin, @influencer], class: 'btn btn-warning', confirm: "Esta seguro que quiere acceder a la pantalla para recategorizar a la celebridad?")
 

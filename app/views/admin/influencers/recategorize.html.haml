@@ -1,0 +1,15 @@
+- if flash.any?
+  .row
+    .span8.offset2
+      = render '/shared/flash', flash: flash
+
+.row
+  .span8.offset2.round_box
+    = simple_form_for(@user, url: do_recategorize_admin_influencer_path(@influencer), method: :put, html:  { class: "form-horizontal round_form", method: :put }) do |f|
+      %h1.form_title= "Recategorización de la Celebridad #{@influencer.full_name} (@#{@influencer.user.twitter_screen_name})"
+      = render '/shared/simple_form_errors', :f => f
+      = f.input :role, as: :select, collection: [['Anunciante', 'advertiser'], ['Agencia', 'affiliate'], ['Celebridad', 'influencer']], include_blank: false
+
+      .form-actions
+        = f.submit 'Recategorizar', :class => 'btn btn-danger btn-large', confirm: "Esta seguro? Esta acción no puede deshacerse"
+        = link_to 'Cancelar', [:admin, @influencer], class: 'btn btn-large'

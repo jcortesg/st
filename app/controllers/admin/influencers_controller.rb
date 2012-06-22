@@ -75,4 +75,71 @@ class Admin::InfluencersController < ApplicationController
     redirect_to action: :index
   end
 
+  # Shows the form to recategorize a celebrity
+  def recategorize
+    @influencer = Influencer.find(params[:id])
+    @user = @influencer.user
+  end
+
+  # Recategorizes a celebrity
+  def do_recategorize
+    @influencer = Influencer.find(params[:id])
+    @user = @influencer.user
+
+    if params[:user][:role] == 'influencer'
+      flash.now[:error] = "El usuario ya es una celebridad"
+      render action: :recategorize
+    elsif params[:user][:role] == 'advertiser'
+      User.transaction do
+        advertiser = Advertiser.new
+        advertiser.user = @user
+        advertiser.company = "#{@influencer.first_name} - #{@influencer.last_name}"
+        advertiser.first_name = @influencer.first_name
+        advertiser.last_name = @influencer.last_name
+        advertiser.address = @influencer.address
+        advertiser.city = @influencer.city
+        advertiser.state = @influencer.state
+        advertiser.country = @influencer.country
+        advertiser.zip_code = @influencer.zip_code
+        advertiser.phone = @influencer.phone
+        advertiser.phone = rand(10) if advertiser.phone.blank?
+        advertiser.user = @user
+        advertiser.save!
+        @user.role = 'advertiser'
+        @user.save!
+        @influencer.destroy
+
+        flash[:success] = "El usuario ha sido recategorizado"
+        redirect_to [:admin, advertiser]
+      end
+    elsif params[:user][:role] == 'affiliate'
+      User.transaction do
+        affiliate = Affiliate.new
+        affiliate.user = @user
+        affiliate.company = "#{@influencer.first_name} - #{@influencer.last_name}"
+        affiliate.first_name = @influencer.first_name
+        affiliate.last_name = @influencer.last_name
+        affiliate.address = @influencer.address
+        affiliate.city = @influencer.city
+        affiliate.state = @influencer.state
+        affiliate.country = @influencer.country
+        affiliate.zip_code = @influencer.zip_code
+        affiliate.phone = @influencer.phone
+        affiliate.phone = rand(10) if affiliate.phone.blank?
+        affiliate.user = @user
+        affiliate.save!
+        @user.role = 'affiliate'
+        @user.save!
+        @influencer.destroy
+
+        flash[:success] = "El usuario ha sido recategorizado"
+        redirect_to [:admin, affiliate]
+      end
+    else
+      flash.now[:error] = "Rol no reconocido"
+      render action: :recategorize
+    end
+
+
+  end
 end
