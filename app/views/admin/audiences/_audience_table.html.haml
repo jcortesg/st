@@ -135,6 +135,9 @@
       %td.center_text= "#{audience.state_tucuman}%"
 
 #graph_sex
+#graph_hobbies
+#graph_countries
+#graph_states
 
 :javascript
   var chart;
@@ -147,7 +150,7 @@
         plotShadow: false
       },
       title: {
-        text: 'Sexo'
+        text: 'Género'
       },
       tooltip: {
         formatter: function() {
@@ -178,4 +181,163 @@
         ]
       }]
     });
+
+    chart = new Highcharts.Chart({
+      chart: {
+        renderTo: 'graph_hobbies',
+        plotBackgroundColor: null,
+        plotBorderWidth: null,
+        plotShadow: false
+      },
+      title: {
+        text: 'Intereses'
+      },
+      tooltip: {
+        formatter: function() {
+          return '<b>'+ this.point.name +'</b>: '+ this.percentage +' %';
+        }
+      },
+      plotOptions: {
+        pie: {
+          allowPointSelect: true,
+          cursor: 'pointer',
+          dataLabels: {
+            enabled: true,
+            color: '#000000',
+            connectorColor: '#000000',
+            formatter: function() {
+              return '<b>'+ this.point.name +'</b>: '+ this.percentage +' %';
+            }
+          },
+          showInLegend: true
+        }
+      },
+      series: [{
+        type: 'pie',
+        name: 'Porcentage según intereses',
+        data: [
+          ['Deportes', #{audience.sports}],
+          ['Moda', #{audience.fashion}],
+          ['Música', #{audience.music}],
+          ['Cine', #{audience.movies}],
+          ['Política', #{audience.politics}],
+          ['Tecnología', #{audience.technology}],
+          ['Viajes', #{audience.travel}],
+          ['Lujos', #{audience.luxury}],
+          ['Otros', #{audience.hobbies_others}]
+        ]
+      }]
+    });
+
+    chart = new Highcharts.Chart({
+      chart: {
+        renderTo: 'graph_countries',
+        plotBackgroundColor: null,
+        plotBorderWidth: null,
+        plotShadow: false
+      },
+      title: {
+        text: 'Pais'
+      },
+      tooltip: {
+        formatter: function() {
+          return '<b>'+ this.point.name +'</b>: '+ this.percentage +' %';
+        }
+      },
+      plotOptions: {
+        pie: {
+          allowPointSelect: true,
+          cursor: 'pointer',
+          dataLabels: {
+            enabled: true,
+            color: '#000000',
+            connectorColor: '#000000',
+            formatter: function() {
+              return '<b>'+ this.point.name +'</b>: '+ this.percentage +' %';
+            }
+          },
+          showInLegend: true
+        }
+      },
+      series: [{
+        type: 'pie',
+        name: 'Porcentage según nacionalidad',
+        data: [
+          ['Argentina', #{audience.country_argentina}],
+          ['Colombia', #{audience.country_colombia}],
+          ['Chile', #{audience.country_chile}],
+          ['Ecuador', #{audience.country_ecuador}],
+          ['Paraguay', #{audience.country_paraguay}],
+          ['Uruguay', #{audience.country_uruguay}],
+          ['Otros', #{audience.country_others}]
+        ]
+      }]
+    });
+
+    chart = new Highcharts.Chart({
+      chart: {
+        renderTo: 'graph_states',
+        plotBackgroundColor: null,
+        plotBorderWidth: null,
+        plotShadow: false
+      },
+      title: {
+        text: 'Pais'
+      },
+      tooltip: {
+        formatter: function() {
+          return '<b>'+ this.point.name +'</b>: '+ this.percentage +' %';
+        }
+      },
+      plotOptions: {
+        pie: {
+          allowPointSelect: true,
+          cursor: 'pointer',
+          dataLabels: {
+            enabled: true,
+            color: '#000000',
+            connectorColor: '#000000',
+            formatter: function() {
+              return '<b>'+ this.point.name +'</b>: '+ this.percentage +' %';
+            }
+          },
+          showInLegend: true
+        }
+      },
+      series: [{
+        type: 'pie',
+        name: 'Porcentage según provincia',
+        data: [
+          ['Buenos Aires', #{audience.state_buenos_aires}],
+          ['Catamarca', #{audience.state_catamarca}],
+          ['Chaco', #{audience.state_chaco}],
+          ['Córdoba', #{audience.state_cordoba}],
+          ['Corrientes', #{audience.state_corrientes}],
+          ['Entre Rios', #{audience.state_entre_rios}],
+          ['Formosa', #{audience.state_formosa}],
+          ['Jujuy', #{audience.state_jujuy}],
+          ['La Pampa', #{audience.state_la_pampa}],
+          ['La Rioja', #{audience.state_la_rioja}],
+          ['Mendoza', #{audience.state_mendoza}],
+          ['Misiones', #{audience.state_misiones}],
+          ['Neuquén', #{audience.state_neuquen}],
+          ['Rio Negro', #{audience.state_rio_negro}],
+          ['Salta', #{audience.state_salta}],
+          ['San Juan', #{audience.state_san_juan}],
+          ['San Luis', #{audience.state_san_luis}],
+          ['Santa Cruz', #{audience.state_santa_cruz}],
+          ['Santa Fe', #{audience.state_santa_fe}],
+          ['Sgo. del Estero', #{audience.state_sgo_del_estero}],
+          ['Tierra del Fuego', #{audience.state_tierra_del_fuego}],
+          ['Tucumán', #{audience.state_tucuman}],
+          ['NS/NC', #{audience.state_others}]
+        ]
+      }]
+    });
+
+
+
   });
+
+%h1
+  = "MIRA: #{audience.state_others}"

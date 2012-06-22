@@ -30,4 +30,20 @@ class Audience < ActiveRecord::Base
   validates :technology, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 100 }
   validates :travel, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 100 }
   validates :luxury, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 100 }
+
+
+  def hobbies_others
+    100 - sports - fashion - music - movies - politics - technology - travel - luxury
+  end
+
+  def country_others
+    100 - country_argentina - country_colombia - country_chile - country_ecuador - country_paraguay - country_uruguay
+  end
+
+  def state_others
+    100 - state_buenos_aires - state_catamarca - state_chaco - state_cordoba - state_corrientes - state_entre_rios -
+      state_formosa - state_jujuy - state_la_pampa - state_la_rioja - state_mendoza - state_misiones - state_neuquen -
+      state_rio_negro - state_salta - state_san_juan - state_san_luis - state_santa_cruz - state_santa_fe -
+      state_sgo_del_estero - state_tierra_del_fuego - state_tucuman
+  end
 end
