@@ -13,8 +13,8 @@ class CreateTwitterUsers < ActiveRecord::Migration
       t.references :twitter_country
       t.references :twitter_state
 
-      t.boolean :gender_male, default: false, null: false
-      t.boolean :gender_female, default: false, null: false
+      t.boolean :male, default: false, null: false
+      t.boolean :female, default: false, null: false
 
       t.boolean :sports, default: false, null: false
       t.boolean :fashion, default: false, null: false

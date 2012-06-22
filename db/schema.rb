@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120622123055) do
+ActiveRecord::Schema.define(:version => 20120622133835) do
 
   create_table "advertisers", :force => true do |t|
     t.integer  "user_id"
@@ -61,31 +61,59 @@ ActiveRecord::Schema.define(:version => 20120622123055) do
 
   create_table "audiences", :force => true do |t|
     t.integer  "influencer_id"
-    t.integer  "followers",        :default => 0, :null => false
-    t.integer  "friends",          :default => 0, :null => false
-    t.integer  "tweets",           :default => 0, :null => false
-    t.integer  "retweets",         :default => 0, :null => false
-    t.integer  "peerindex",        :default => 0, :null => false
-    t.integer  "klout",            :default => 0, :null => false
-    t.integer  "males",            :default => 0, :null => false
-    t.integer  "females",          :default => 0, :null => false
-    t.integer  "moms",             :default => 0, :null => false
-    t.integer  "teens",            :default => 0, :null => false
-    t.integer  "college_students", :default => 0, :null => false
-    t.integer  "young_women",      :default => 0, :null => false
-    t.integer  "young_men",        :default => 0, :null => false
-    t.integer  "adult_women",      :default => 0, :null => false
-    t.integer  "adult_men",        :default => 0, :null => false
-    t.integer  "sports",           :default => 0, :null => false
-    t.integer  "fashion",          :default => 0, :null => false
-    t.integer  "music",            :default => 0, :null => false
-    t.integer  "movies",           :default => 0, :null => false
-    t.integer  "politics",         :default => 0, :null => false
-    t.integer  "technology",       :default => 0, :null => false
-    t.integer  "travel",           :default => 0, :null => false
-    t.integer  "luxury",           :default => 0, :null => false
-    t.datetime "created_at",                      :null => false
-    t.datetime "updated_at",                      :null => false
+    t.integer  "followers",              :default => 0, :null => false
+    t.integer  "friends",                :default => 0, :null => false
+    t.integer  "tweets",                 :default => 0, :null => false
+    t.integer  "retweets",               :default => 0, :null => false
+    t.integer  "peerindex",              :default => 0, :null => false
+    t.integer  "klout",                  :default => 0, :null => false
+    t.integer  "males",                  :default => 0, :null => false
+    t.integer  "females",                :default => 0, :null => false
+    t.integer  "moms",                   :default => 0, :null => false
+    t.integer  "teens",                  :default => 0, :null => false
+    t.integer  "college_students",       :default => 0, :null => false
+    t.integer  "young_women",            :default => 0, :null => false
+    t.integer  "young_men",              :default => 0, :null => false
+    t.integer  "adult_women",            :default => 0, :null => false
+    t.integer  "adult_men",              :default => 0, :null => false
+    t.integer  "sports",                 :default => 0, :null => false
+    t.integer  "fashion",                :default => 0, :null => false
+    t.integer  "music",                  :default => 0, :null => false
+    t.integer  "movies",                 :default => 0, :null => false
+    t.integer  "politics",               :default => 0, :null => false
+    t.integer  "technology",             :default => 0, :null => false
+    t.integer  "travel",                 :default => 0, :null => false
+    t.integer  "luxury",                 :default => 0, :null => false
+    t.datetime "created_at",                            :null => false
+    t.datetime "updated_at",                            :null => false
+    t.integer  "country_argentina",      :default => 0, :null => false
+    t.integer  "country_colombia",       :default => 0, :null => false
+    t.integer  "country_chile",          :default => 0, :null => false
+    t.integer  "country_ecuador",        :default => 0, :null => false
+    t.integer  "country_paraguay",       :default => 0, :null => false
+    t.integer  "country_uruguay",        :default => 0, :null => false
+    t.integer  "state_buenos_aires",     :default => 0, :null => false
+    t.integer  "state_catamarca",        :default => 0, :null => false
+    t.integer  "state_chaco",            :default => 0, :null => false
+    t.integer  "state_cordoba",          :default => 0, :null => false
+    t.integer  "state_corrientes",       :default => 0, :null => false
+    t.integer  "state_entre_rios",       :default => 0, :null => false
+    t.integer  "state_formosa",          :default => 0, :null => false
+    t.integer  "state_jujuy",            :default => 0, :null => false
+    t.integer  "state_la_pampa",         :default => 0, :null => false
+    t.integer  "state_la_rioja",         :default => 0, :null => false
+    t.integer  "state_mendoza",          :default => 0, :null => false
+    t.integer  "state_misiones",         :default => 0, :null => false
+    t.integer  "state_neuquen",          :default => 0, :null => false
+    t.integer  "state_rio_negro",        :default => 0, :null => false
+    t.integer  "state_salta",            :default => 0, :null => false
+    t.integer  "state_san_juan",         :default => 0, :null => false
+    t.integer  "state_san_luis",         :default => 0, :null => false
+    t.integer  "state_santa_cruz",       :default => 0, :null => false
+    t.integer  "state_santa_fe",         :default => 0, :null => false
+    t.integer  "state_sgo_del_estero",   :default => 0, :null => false
+    t.integer  "state_tierra_del_fuego", :default => 0, :null => false
+    t.integer  "state_tucuman",          :default => 0, :null => false
   end
 
   add_index "audiences", ["influencer_id"], :name => "index_audiences_on_influencer_id"
@@ -251,8 +279,8 @@ ActiveRecord::Schema.define(:version => 20120622123055) do
     t.integer  "friends"
     t.integer  "tweets"
     t.integer  "twitter_state_id"
-    t.boolean  "gender_male",         :default => false, :null => false
-    t.boolean  "gender_female",       :default => false, :null => false
+    t.boolean  "male",                :default => false, :null => false
+    t.boolean  "female",              :default => false, :null => false
     t.boolean  "sports",              :default => false, :null => false
     t.boolean  "fashion",             :default => false, :null => false
     t.boolean  "music",               :default => false, :null => false
