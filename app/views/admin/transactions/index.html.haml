@@ -1,0 +1,40 @@
+- if flash.any?
+  .row
+    .span12
+      = render '/shared/flash', flash: flash
+
+.row
+  .span12
+    .round_box
+      .content
+        .right
+          = link_to('Crear Transaccion', [:new, :admin, :transaction], :class => 'btn btn-primary')
+        %h1.title Transacciónes
+
+        %table.table.table-striped
+          %thead
+            %tr
+              %th= sort_link(@search, :transaction_on, 'Fecha')
+              %th Usuario
+              %th= sort_link(@search, :borwin_transaction, "Borwin?")
+              %th= sort_link(@search, :type, "Tipo")
+              %th Link
+              %th= sort_link(@search, :amount, "Importe")
+              %th= sort_link(@search, :balance, "balance")
+              %th Acciones
+
+          %tbody
+            - @transactions.each do |transaction|
+              %tr{ :class => cycle('odd', 'even') }
+                %td= localize(transaction.transaction_on, :format => "%d/%m/%Y")
+                %td= transaction.user.full_name rescue ''
+                %td= transaction.borwin_transaction? ? 'Sí' : 'No'
+                %td= transaction.type
+                %td= transaction.attachable.to_s if transaction.attachable
+                %td= sprintf("%.02f", transaction.amount)
+                %td= sprintf("%.02f", transaction.balance)
+                %td
+                  = link_to('Ver', [:admin, transaction], class: 'btn btn-primary')
+                  = link_to('Editar', [:edit, :admin, transaction], class: 'btn btn-primary')
+        .center_text
+          = paginate @transactions

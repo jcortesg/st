@@ -1,12 +1,12 @@
 # encoding: utf-8
 class Notifier < ActionMailer::Base
-  default from: "info@borwin.com.ar"
+  default from: "noreply@borwin.net"
 
   # Site contact
   def contact(site_contact)
     @site_contact = site_contact
 
-    mail(to: "info@borwin.com.ar", from: "contact@borwin.com.ar", subject: "Contacto @ Borwin - Its time to go social")
+    mail(to: "info@borwin.net", subject: "Contacto @ Borwin - Its time to go social")
   end  
 
   # A user was approved

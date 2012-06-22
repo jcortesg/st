@@ -64,12 +64,12 @@ Borwin::Application.configure do
 end
 
 ActionMailer::Base.delivery_method = :smtp
-
 ActionMailer::Base.smtp_settings = {
-  :address => "smtpout.secureserver.net",
-  :port => 25,
-  :domain => "borwin.com.ar",
-  :authentication => :login,
-  :user_name => "nicolas@borwin.com.ar",
-  :password => "nico123",
+  address: "smtp.gmail.com",
+  port: 587,
+  domain: 'borwin.net',
+  user_name: 'noreply',
+  password: 'borwin474%',
+  authentication: 'plain',
+  enable_starttls_auto: true
 }

@@ -9,6 +9,9 @@ class User < ActiveRecord::Base
   belongs_to :referrer, foreign_key: "referrer_id", class_name: "User"
   has_many :referrals, foreign_key: "referrer_id", class_name: "User"
 
+  # Transactions
+  has_many :transactions
+
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable
 
   before_create :set_invitation_code, :set_referrer_on_date

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120622133835) do
+ActiveRecord::Schema.define(:version => 20120622161624) do
 
   create_table "advertisers", :force => true do |t|
     t.integer  "user_id"
@@ -220,6 +220,22 @@ ActiveRecord::Schema.define(:version => 20120622133835) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  create_table "transactions", :force => true do |t|
+    t.integer  "attachable_id"
+    t.string   "attachable_type"
+    t.integer  "user_id"
+    t.date     "transaction_on",                                                      :null => false
+    t.string   "type",                                                                :null => false
+    t.text     "details"
+    t.boolean  "borwin_transaction",                               :default => false, :null => false
+    t.decimal  "amount",             :precision => 8, :scale => 2, :default => 0.0,   :null => false
+    t.decimal  "balance",            :precision => 8, :scale => 2, :default => 0.0,   :null => false
+    t.datetime "created_at",                                                          :null => false
+    t.datetime "updated_at",                                                          :null => false
+  end
+
+  add_index "transactions", ["user_id"], :name => "index_transactions_on_user_id"
 
   create_table "tweets", :force => true do |t|
     t.integer  "campaign_id"
