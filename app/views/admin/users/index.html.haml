@@ -30,6 +30,7 @@
                     - else
                       %button.btn.btn-primary Aprobar
                   = link_to('Eliminar', [:admin, user], method: :delete, class: 'btn btn-danger', confirm: "Esta seguro que desea eliminar al usuario?" )
+                  = link_to('Recategorizar', [:recategorize, :admin, user], class: 'btn btn-danger', confirm: "Esta seguro que desea recategorizar al usuario?")
         .center_text
           = paginate @users
 

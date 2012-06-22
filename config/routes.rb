@@ -29,6 +29,8 @@ Borwin::Application.routes.draw do
       member do
         put :approve
         put :disapprove
+        get :recategorize
+        put :do_recategorize
       end
     end
 

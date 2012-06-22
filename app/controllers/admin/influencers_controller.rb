@@ -139,7 +139,5 @@ class Admin::InfluencersController < ApplicationController
       flash.now[:error] = "Rol no reconocido"
       render action: :recategorize
     end
-
-
   end
 end
