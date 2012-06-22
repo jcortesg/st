@@ -56,6 +56,7 @@ namespace :borwin do
     # Now we iterate on every influencer, to get who follows him
     #Influencer.joins(:audience).includes(:user).order('audiences.followers desc').all.each do |influencer|
     Influencer.joins(:audience).includes(:user).order('audiences.followers desc').all.each do |influencer|
+      puts "Fetching #{influencer.full_name} followers"
       # First we get the list of all the followers
       cursor = "-1"
       follower_ids = []
@@ -67,6 +68,8 @@ namespace :borwin do
         sleep(1)
       end
 
+      puts "Fetching #{influencer.full_name} followers on twitter"
+
       # Now we create the user if it doesn't exist
       follower_ids.each do |follower_id|
         # Find or create the twitter user
@@ -74,10 +77,14 @@ namespace :borwin do
         twitter_user.influencers << influencer
         twitter_user.save
       end
+
+      puts "Followers created into the system"
     end
 
     # Now we fetch all the user ids for which we don't have a twitter screen name
     TwitterUser.where("twitter_screen_name is null").find_in_batches(batch_size: 100) do |twitter_users|
+      puts "Updating a batch of 100 twitter users without screen name"
+
       # Get the user ids
       twitter_user_ids = twitter_users.collect { |tu| tu.twitter_uid }
       users = Twitter.users(user_id: twitter_user_ids.join(','))
@@ -92,6 +99,8 @@ namespace :borwin do
         twitter_user.save
       end
     end
+
+    puts "Screen names fetched"
 
     ## We setup mechanize to start fetching each one of the user details
     #agent = Mechanize.new { |agent|
