@@ -1,6 +1,10 @@
 - params[:page] ||= 1
 - row_number = (params[:page].to_i - 1) * 25
 
+- if flash.any?
+  .row
+    .span12
+      = render '/shared/flash', flash: flash
 .row
   .span12
     .round_box
