@@ -73,8 +73,6 @@
               .data= @influencer.user.created_at.strftime("%d/%m/%y")
 
             .box.last
-              .stat Klout:
-              .data= @influencer.audience.klout
               .stat Tweet:
               .data= number_to_currency(@influencer.tweet_fee)
               .stat CPC:
@@ -83,6 +81,10 @@
               .data= "-"
               .stat CPC totales:
               .data= "-"
+              .stat Klout:
+              .data
+                .mini-flag.score.kscore
+                  .value= @influencer.audience.klout
 
 
       #user_photo.modal.hide.fade
