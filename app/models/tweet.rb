@@ -34,6 +34,7 @@ class Tweet < ActiveRecord::Base
     after_transition on: [:advertiser_reject], do: :mail_rejected_by_advertiser
     after_transition on: [:influencer_reject], do: :mail_rejected_by_influencer
     after_transition on: [:activate], do: :mail_tweet_activated
+    after_transition on: [:advertiser_accept, :influencer_accept], do: :create_fee_for_tweet
 
     event :advertiser_review do
       transition [:influencer_reviewed] => [:advertiser_reviewed]
@@ -77,6 +78,60 @@ class Tweet < ActiveRecord::Base
         errors.add(:text, "tiene #{template_text.size} carácteres, el máximo es de 140")
       end
     end
+  end
+
+  # Creates the transaction when a tweet is accepted
+  def create_fee_for_tweet
+    # First lets get the advertiser and the influencer
+    advertiser = tweet.campaign.advertiser
+    influencer = tweet.influencer
+
+    # Now get the referrers and their commission
+    advertiser_referrer = advertiser.user.referrer
+    advertiser_referrer_commission = advertiser.user.referrer_commission
+    advertiser_referrer_fee = 0
+    influencer_referrer = influencer.user.referrer
+    influencer_referrer_commission = influencer.user.referrer_commission
+    influencer_referrer_fee = 0
+
+
+    # Calculate the fees for the advertiser, influencer and borwin
+    tweet_fee = tweet.tweet_fee
+    influencer_tweet_fee = tweet.influencer_tweet_fee
+    borwin_fee = tweet_fee - influencer_tweet_fee
+
+    # Calculate if there is any feee for the referrers
+    if advertiser_referrer
+      advertiser_referrer_fee = (borwin_fee * (advertiser_referrer_commission / 100)).round(2)
+    end
+    if influencer_referrer
+      influencer_referrer_fee = (borwin_fee * (influencer_referrer_commission / 100)).round(2)
+    end
+
+    # Finally get the borwin fee after the influencer and affiliate fees
+    borwin_fee = borwin_fee - advertiser_referrer_fee - influencer_referrer_fee
+
+
+    # First lets create the transaction to take the money from the advertiser
+    Transaction.create(user: advertiser.user, transaction_on: Date.today,
+                       transaction_type: 'tweet_fee', amount: tweet_fee * -1, attachable: :tweet)
+    # Create the earnings for the influencer
+    Transaction.create(user: influencer.user, transaction_on: Date.today,
+                       transaction_type: 'tweet_revenue', amount: influencer_tweet_fee, attachable: :tweet)
+    # Create the borwin fee
+    Transaction.create(borwin_transaction: true, transaction_on: Date.today,
+                       transaction_type: 'tweet_borwin_fee', amount: borwin_fee, attachable: tweet)
+    # Create the fee for the advertiser referrer
+    if advertiser_referrer
+      Transaction.create(user: advertiser_referrer, transaction_on: Date.today,
+                         transaction_type: 'advertiser_referrer_fee', amount: advertiser_referrer_fee, attachable: tweet)
+    end
+    # Create the fee for the influencer referrer
+    if influencer_referrer
+      Transaction.create(user: influencer_referrer, transaction_on: Date.today,
+                         transaction_type: 'influencer_referrer_fee', amount: influencer_referrer_fee, attachable: tweet)
+    end
+
   end
 
   private

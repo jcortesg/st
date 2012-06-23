@@ -2,12 +2,14 @@ class Transaction < ActiveRecord::Base
   belongs_to :attachable, polymorphic: true
   belongs_to :user
 
-  attr_accessible :attachable, :attachable_id, :attachable_type, :user, :user_id, :transaction_on, :transaction_type,
-                  :details, :borwin_transaction, :amount, :balance
-
   before_save :set_balance
   after_save :update_user_balance
 
+  attr_accessible :attachable, :attachable_id, :attachable_type, :user, :user_id, :transaction_on, :transaction_type,
+                  :details, :borwin_transaction, :amount, :balance
+
+  validates_inclusion_of :transaction_type, :on => ['initial_fee', 'payment', 'tweet_fee', 'tweet_revenue',
+                                                    'influencer_referrer_fee', 'advertiser_referrer_fee', 'tweet_borwin_fee']
 
   # Sets the balance before saving the record
   def set_balance
