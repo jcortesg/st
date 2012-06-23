@@ -131,12 +131,12 @@ class Admin::InfluencersController < ApplicationController
         @user.role = 'affiliate'
         @user.save!
         @influencer.destroy
+
+        Notifier.influencer_converted_to_affiliate(@user).deliver
+
+        flash[:success] = "El usuario ha sido recategorizado"
+        redirect_to [:admin, affiliate]
       end
-
-      Notifier.influencer_converted_to_affiliate(@user).deliver
-
-      flash[:success] = "El usuario ha sido recategorizado"
-      redirect_to [:admin, affiliate]
     else
       flash.now[:error] = "Rol no reconocido"
       render action: :recategorize
