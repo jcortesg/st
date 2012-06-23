@@ -31,7 +31,7 @@
                 %td= transaction.user ? admin_link_to_user(transaction.user) : ''
                 %td= transaction.borwin_transaction? ? 'Sí' : 'No'
                 %td= transaction_type_description(transaction.transaction_type)
-                %td= transaction.attachable.to_s if transaction.attachable
+                %td= admin_attachable_link(transaction.attachable)
                 %td= sprintf("%.02f", transaction.amount)
                 %td= sprintf("%.02f", transaction.balance)
                 %td
@@ -42,7 +42,8 @@
         .filters
           .subtitle Filtros
           = simple_form_for @search, :url => [:admin, :transactions], html: {method: :get, id: 'filter_form', class: 'form-horizontal'} do |f|
-            = f.input :user_id_equals, as: :select, collection: User.where('role in (?)', ['advertiser', 'influencer', 'affiliate']).all.collect {|u| [u.full_name, u.id]}, label: 'Usuario', required: :false
+            = f.input :borwin_transaction_equals, as: :select, required: false, collection: [["Sí", true], ["No", false]], label: "Transacción Borwin?"
+            = f.input :user_id_equals, as: :select, required: false, collection: User.where('role in (?)', ['advertiser', 'influencer', 'affiliate']).all.collect {|u| [u.full_name, u.id]}, label: 'Usuario'
             = f.input :transaction_on_greater_than_or_equal_to, as: :date, label: 'Desde', required: false
             = f.input :transaction_on_less_than_or_equal_to, as: :date, label: 'Hasta', required: false
             = f.input :amount_greater_than, label: 'Importe mayor a', required: false
