@@ -8,8 +8,8 @@ class Transaction < ActiveRecord::Base
   attr_accessible :attachable, :attachable_id, :attachable_type, :user, :user_id, :transaction_on, :transaction_type,
                   :details, :borwin_transaction, :amount, :balance
 
-  validates_inclusion_of :transaction_type, :on => ['initial_fee', 'payment', 'tweet_fee', 'tweet_revenue',
-                                                    'influencer_referrer_fee', 'advertiser_referrer_fee', 'tweet_borwin_fee']
+  validates :transaction_type, inclusion: { in: ['initial_fee', 'payment', 'tweet_fee', 'tweet_revenue',
+                                                 'influencer_referrer_fee', 'advertiser_referrer_fee', 'tweet_borwin_fee'] }
 
   # Sets the balance before saving the record
   def set_balance

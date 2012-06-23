@@ -84,7 +84,17 @@ module ApplicationHelper
       when 'initial_fee'
         'Fee de Campaña'
       when 'payment'
-        'Pago'
+        'Pago de Borwin'
+      when 'tweet_fee'
+        'Públicación Tweet'
+      when 'tweet_revenue'
+        'Ingreso por Tweet'
+      when 'influencer_referrer_fee'
+        'Comisión referido de Celebridad'
+      when 'advertiser_referrer_fee'
+        'Comisión referido de Anunciante'
+      when 'tweet_borwin_fee'
+        'Comisión por Tweet para Borwin'
     end
   end
 end

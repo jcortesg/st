@@ -7,7 +7,7 @@
   .span12
     .round_box
       .content
-        %h1.title Transacciónes
+        %h1.title Transacciones
 
         %table.table.table-striped
           %thead
@@ -24,7 +24,7 @@
               %tr{ :class => cycle('odd', 'even') }
                 %td= localize(transaction.transaction_on, :format => "%d/%m/%Y")
                 %td= transaction_type_description(transaction.transaction_type)
-                %td= transaction.attachable.to_s if transaction.attachable
+                %td= influencer_attachable_link(transaction.attachable)
                 %td= sprintf("%.02f", transaction.amount)
                 %td= sprintf("%.02f", transaction.balance)
                 %td

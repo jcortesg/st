@@ -17,4 +17,11 @@ module Advertiser::TweetsHelper
         'Activo'
     end
   end
+
+  def advertiser_attachable_link(attachable)
+    return '&nbsp'.html_safe if attachable.nil?
+    if attachable.class.to_s == "Tweet"
+      link_to("Tweet", [:advertiser, attachable.campaign, attachable])
+    end
+  end
 end
