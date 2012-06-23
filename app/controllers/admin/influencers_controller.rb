@@ -107,6 +107,7 @@ class Admin::InfluencersController < ApplicationController
         advertiser.save!
         @user.role = 'advertiser'
         @user.save!
+        @influencer.photo.destroy
         @influencer.destroy
 
         flash[:success] = "El usuario ha sido recategorizado"
@@ -130,6 +131,7 @@ class Admin::InfluencersController < ApplicationController
         affiliate.save!
         @user.role = 'affiliate'
         @user.save!
+        @influencer.photo.destroy
         @influencer.destroy
 
         Notifier.influencer_converted_to_affiliate(@user).deliver
