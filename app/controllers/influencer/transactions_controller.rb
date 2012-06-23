@@ -4,7 +4,10 @@ class Influencer::TransactionsController < ApplicationController
 
   # Show the list of transactions
   def index
-    @search = Transaction.where(user_id: current_user.id).search(params[:search])
+    search_params = params[:search] || {}
+    search_params.reverse_merge!({"meta_sort" => "transaction_on.asc"})
+
+    @search = Transaction.where(user_id: current_user.id).search(search_params)
     @transactions = @search.page(params[:page])
   end
 
