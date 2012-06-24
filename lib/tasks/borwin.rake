@@ -57,13 +57,17 @@ namespace :borwin do
       # First we get the list of all the followers
       cursor = "-1"
       follower_ids = []
-      while cursor != 0 do
-        followers = Twitter.follower_ids(influencer.user.twitter_screen_name, {cursor: cursor})
+      begin
+        while cursor != 0 do
+          followers = Twitter.follower_ids(influencer.user.twitter_screen_name, {cursor: cursor})
 
-        cursor = followers.next_cursor
-        follower_ids += followers.ids
-        sleep(1)
-      end
+          cursor = followers.next_cursor
+          follower_ids += followers.ids
+          sleep(1)
+        end
+      rescue Exception => e
+	      puts "There was a problem fetching followers for #{influencer.full_name}: #{e.message}"
+	    end
 
       puts "Updating #{influencer.full_name} followers on twitter"
       TwitterFollower.delete_all(["influencer_id = ?", influencer.id])
