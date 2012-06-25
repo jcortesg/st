@@ -28,7 +28,7 @@ namespace :borwin do
   desc 'Generate default keywords'
   task generate_default_keywords: :environment do
     ['males', 'females', 'sports', 'fashion', 'music', 'movies', 'politics', 'technology', 'travel', 'luxury'].each do |keyword_name|
-        Keyword.create(name: keyword_name) unless Keyword.where(name: keyword_name).exists?
+      Keyword.create(name: keyword_name) unless Keyword.where(name: keyword_name).exists?
     end
   end
 
@@ -66,8 +66,8 @@ namespace :borwin do
           sleep(1)
         end
       rescue Exception => e
-	      puts "There was a problem fetching followers for #{influencer.full_name}: #{e.message}"
-	    end
+        puts "There was a problem fetching followers for #{influencer.full_name}: #{e.message}"
+      end
 
       puts "Updating #{influencer.full_name} followers on twitter"
       TwitterFollower.delete_all(["influencer_id = ?", influencer.id])
@@ -76,7 +76,7 @@ namespace :borwin do
       follower_ids.each do |follower_id|
         # Find or create the twitter user
         twitter_user = TwitterUser.where(twitter_uid: follower_id).first || TwitterUser.create(twitter_uid: follower_id)
-        twitter_user.influencers << influencer
+        twitter_user.influencers << influencer unless twitter_user.influencers.include?(influencer)
         twitter_user.save
       end
 
@@ -92,93 +92,97 @@ namespace :borwin do
     keywords_females = Keyword.where(name: 'females').first.keywords.split(',')
 
     TwitterUser.where("twitter_screen_name is null").find_in_batches(batch_size: 100) do |twitter_users|
-      puts "Updating a batch of 100 twitter users without screen name"
+      begin
+        puts "Updating a batch of 100 twitter users without screen name"
 
-      # Get the user ids
-      twitter_user_ids = twitter_users.collect { |tu| tu.twitter_uid }
-      users = Twitter.users(user_id: twitter_user_ids.join(','))
-      users.each do |user|
-        twitter_user = twitter_users.detect { |tu| tu.twitter_uid.to_i == user.id.to_i }
-        twitter_user.twitter_screen_name = user.screen_name
-        twitter_user.name = user.name
-        twitter_user.location = user.location
-        twitter_user.profile_image_url = user.profile_image_url
-        twitter_user.followers = user.followers
-        twitter_user.friends = user.friends
-        twitter_user.tweets = user.statuses_count
+        # Get the user ids
+        twitter_user_ids = twitter_users.collect { |tu| tu.twitter_uid }
+        users = Twitter.users(user_id: twitter_user_ids.join(','))
+        users.each do |user|
+          twitter_user = twitter_users.detect { |tu| tu.twitter_uid.to_i == user.id.to_i }
+          twitter_user.twitter_screen_name = user.screen_name
+          twitter_user.name = user.name
+          twitter_user.location = user.location
+          twitter_user.profile_image_url = user.profile_image_url
+          twitter_user.followers = user.followers
+          twitter_user.friends = user.friends
+          twitter_user.tweets = user.statuses_count
 
-        # We check if the user is a male or female
-        if keywords_males.detect { |k| twitter_user.name.downcase.include?("#{k} ") || twitter_user.name.downcase == k }
-          twitter_user.male = true
-        elsif keywords_females.detect { |k| twitter_user.name.downcase.include?("#{k} ") || twitter_user.name.downcase == k }
-          twitter_user.female = true
+          # We check if the user is a male or female
+          if keywords_males.detect { |k| twitter_user.name.downcase.include?("#{k} ") || twitter_user.name.downcase == k }
+            twitter_user.male = true
+          elsif keywords_females.detect { |k| twitter_user.name.downcase.include?("#{k} ") || twitter_user.name.downcase == k }
+            twitter_user.female = true
+          end
+
+          location = twitter_user.location.to_s.downcase
+
+          # And now check the state
+          if (location.match /buenos/) || (location.match(/bs/) && location.match(/as/))
+            twitter_user.twitter_state = TwitterState.where(name: 'Buenos Aires').first
+          elsif location.match /catamarca/
+            twitter_user.twitter_state = TwitterState.where(name: 'Catamarca').first
+          elsif location.match /chaco/
+            twitter_user.twitter_state = TwitterState.where(name: 'Chaco').first
+          elsif location.match(/cordoba/) || location.match(/córdoba/)
+            twitter_user.twitter_state = TwitterState.where(name: 'Córdoba').first
+          elsif location.match /corrientes/
+            twitter_user.twitter_state = TwitterState.where(name: 'Corrientes').first
+          elsif location.match(/entre/) && (location.match(/ríos/) || location.match(/rios/))
+            twitter_user.twitter_state = TwitterState.where(name: 'Entre Ríos').first
+          elsif location.match /formosa/
+            twitter_user.twitter_state = TwitterState.where(name: 'Formosa').first
+          elsif location.match /jujuy/
+            twitter_user.twitter_state = TwitterState.where(name: 'Jujuy').first
+          elsif location.match /pampa/
+            twitter_user.twitter_state = TwitterState.where(name: 'La Pampa').first
+          elsif location.match /rioja/
+            twitter_user.twitter_state = TwitterState.where(name: 'La Rioja').first
+          elsif location.match /mendoza/
+            twitter_user.twitter_state = TwitterState.where(name: 'Mendoza').first
+          elsif location.match /misiones/
+            twitter_user.twitter_state = TwitterState.where(name: 'Misiones').first
+          elsif location.match(/neuquen/)|| location.match(/neuquén/)
+            twitter_user.twitter_state = TwitterState.where(name: 'Neuquén').first
+          elsif location.match /negro/
+            twitter_user.twitter_state = TwitterState.where(name: 'Rio Negro').first
+          elsif location.match /salta/
+            twitter_user.twitter_state = TwitterState.where(name: 'Salta').first
+          elsif location.match(/san/) && location.match(/juan/)
+            twitter_user.twitter_state = TwitterState.where(name: 'San Juan').first
+          elsif location.match(/san/) && location.match(/luis/)
+            twitter_user.twitter_state = TwitterState.where(name: 'San Luis').first
+          elsif location.match(/santa/) && location.match(/cruz/)
+            twitter_user.twitter_state = TwitterState.where(name: 'Santa Cruz').first
+          elsif location.match(/santa/) && location.match(/fe/)
+            twitter_user.twitter_state = TwitterState.where(name: 'Santa Fe').first
+          elsif location.match(/estero/) && (location.match(/santiago/) || location.match(/sgo/))
+            twitter_user.twitter_state = TwitterState.where(name: 'Sgo. del Estero').first
+          elsif location.match(/tierra/) && location.match(/fuego/)
+            twitter_user.twitter_state = TwitterState.where(name: 'Tierra del Fuego').first
+          elsif location.match(/tucumán/) || location.match(/tucuman/)
+            twitter_user.twitter_state = TwitterState.where(name: 'Tucumán').first
+          end
+
+          # Finally check the country
+          if twitter_user.twitter_state || location.match(/argentin/)
+            twitter_user.twitter_country = TwitterCountry.where(name: 'Argentina').first
+          elsif location.match /colombia/
+            twitter_user.twitter_country = TwitterCountry.where(name: 'Colombia').first
+          elsif location.match /chile/
+            twitter_user.twitter_country = TwitterCountry.where(name: 'Chile').first
+          elsif location.match /ecuador/
+            twitter_user.twitter_country = TwitterCountry.where(name: 'Ecuador').first
+          elsif location.match /paraguay/
+            twitter_user.twitter_country = TwitterCountry.where(name: 'Paraguay').first
+          elsif location.match /uruguay/
+            twitter_user.twitter_country = TwitterCountry.where(name: 'Uruguay').first
+          end
+
+          twitter_user.save
         end
-
-        location = twitter_user.location.to_s.downcase
-
-        # And now check the state
-        if (location.match /buenos/) || (location.match(/bs/) && location.match(/as/))
-          twitter_user.twitter_state = TwitterState.where(name: 'Buenos Aires').first
-        elsif location.match /catamarca/
-          twitter_user.twitter_state = TwitterState.where(name: 'Catamarca').first
-        elsif location.match /chaco/
-          twitter_user.twitter_state = TwitterState.where(name: 'Chaco').first
-        elsif location.match(/cordoba/) || location.match(/córdoba/)
-          twitter_user.twitter_state = TwitterState.where(name: 'Córdoba').first
-        elsif location.match /corrientes/
-          twitter_user.twitter_state = TwitterState.where(name: 'Corrientes').first
-        elsif location.match(/entre/) && (location.match(/ríos/) || location.match(/rios/))
-          twitter_user.twitter_state = TwitterState.where(name: 'Entre Ríos').first
-        elsif location.match /formosa/
-          twitter_user.twitter_state = TwitterState.where(name: 'Formosa').first
-        elsif location.match /jujuy/
-          twitter_user.twitter_state = TwitterState.where(name: 'Jujuy').first
-        elsif location.match /pampa/
-          twitter_user.twitter_state = TwitterState.where(name: 'La Pampa').first
-        elsif location.match /rioja/
-          twitter_user.twitter_state = TwitterState.where(name: 'La Rioja').first
-        elsif location.match /mendoza/
-          twitter_user.twitter_state = TwitterState.where(name: 'Mendoza').first
-        elsif location.match /misiones/
-          twitter_user.twitter_state = TwitterState.where(name: 'Misiones').first
-        elsif location.match(/neuquen/)|| location.match(/neuquén/)
-          twitter_user.twitter_state = TwitterState.where(name: 'Neuquén').first
-        elsif location.match /negro/
-          twitter_user.twitter_state = TwitterState.where(name: 'Rio Negro').first
-        elsif location.match /salta/
-          twitter_user.twitter_state = TwitterState.where(name: 'Salta').first
-        elsif location.match(/san/) && location.match(/juan/)
-          twitter_user.twitter_state = TwitterState.where(name: 'San Juan').first
-        elsif location.match(/san/) && location.match(/luis/)
-          twitter_user.twitter_state = TwitterState.where(name: 'San Luis').first
-        elsif location.match(/santa/) && location.match(/cruz/)
-          twitter_user.twitter_state = TwitterState.where(name: 'Santa Cruz').first
-        elsif location.match(/santa/) && location.match(/fe/)
-          twitter_user.twitter_state = TwitterState.where(name: 'Santa Fe').first
-        elsif location.match(/estero/) && (location.match(/santiago/) || location.match(/sgo/))
-          twitter_user.twitter_state = TwitterState.where(name: 'Sgo. del Estero').first
-        elsif location.match(/tierra/) && location.match(/fuego/)
-          twitter_user.twitter_state = TwitterState.where(name: 'Tierra del Fuego').first
-        elsif location.match(/tucumán/) || location.match(/tucuman/)
-          twitter_user.twitter_state = TwitterState.where(name: 'Tucumán').first
-        end
-
-        # Finally check the country
-        if twitter_user.twitter_state || location.match(/argentin/)
-          twitter_user.twitter_country = TwitterCountry.where(name: 'Argentina').first
-        elsif location.match /colombia/
-          twitter_user.twitter_country = TwitterCountry.where(name: 'Colombia').first
-        elsif location.match /chile/
-          twitter_user.twitter_country = TwitterCountry.where(name: 'Chile').first
-        elsif location.match /ecuador/
-          twitter_user.twitter_country = TwitterCountry.where(name: 'Ecuador').first
-        elsif location.match /paraguay/
-          twitter_user.twitter_country = TwitterCountry.where(name: 'Paraguay').first
-        elsif location.match /uruguay/
-          twitter_user.twitter_country = TwitterCountry.where(name: 'Uruguay').first
-        end
-
-        twitter_user.save
+      rescue Exception => e
+        puts "There was a problem fetching the twitter user ids: #{twitter_user_ids.join(',')}: #{e.message}"
       end
     end
 
@@ -227,7 +231,7 @@ namespace :borwin do
       # Get the bio and tweets
       bio = page.parser.css('.bio').text.to_s
       tweets = []
-      page.parser.css('.tweet-text').each {|tt| tweets << tt.text}
+      page.parser.css('.tweet-text').each { |tt| tweets << tt.text }
 
       # Parse bio and tweets for each one of the keywords
       text_to_parse = bio.to_s + "\n" + tweets.join("\n")
