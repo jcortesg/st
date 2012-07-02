@@ -23,7 +23,7 @@
         %dt Tipo de pago
         %dd= @tweet.fee_type == 'tweet_fee' ? "Pago por publicación" : "Pago por click"
         %dt Precio
-        %dd= @tweet.fee_type == 'tweet_fee' ? "$#{sprintf("%.02f", @tweet.tweet_fee)}" : "$#{sprintf("%.02f", @tweet.cpc_fee)}"
+        %dd= @tweet.fee_type == 'tweet_fee' ? "$#{sprintf("%.02f", @tweet.influencer_tweet_fee)}" : "$#{sprintf("%.02f", @tweet.influencer_cpc_fee)}"
         %dt Estado
         %dd= tweet_status_explanation(@tweet.status)
 

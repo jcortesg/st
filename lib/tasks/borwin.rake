@@ -260,7 +260,7 @@ namespace :borwin do
         where("(male = 1 and female = 0) or (male = 0 and female = 1)").count
       male = TwitterUser.joins(:twitter_followers).where("influencer_id = ?", audience.influencer_id).
         where("male = 1 and female = 0").count
-      percent_males = ((male * 100) / gender_total).round
+      percent_males = ((male * 100) / gender_total).round rescue 0
       percent_females = 100 - percent_males
       audience.males = percent_males
       audience.females = percent_females
@@ -276,14 +276,14 @@ namespace :borwin do
       travel = TwitterUser.joins(:twitter_followers).where("influencer_id = ?", audience.influencer_id).where("travel = 1").count
       luxury = TwitterUser.joins(:twitter_followers).where("influencer_id = ?", audience.influencer_id).where("luxury = 1").count
 
-      audience.sports = ((sports * 100) / followers_total).round
-      audience.fashion = ((fashion * 100) / followers_total).round
-      audience.music = ((music * 100) / followers_total).round
-      audience.movies = ((movies * 100) / followers_total).round
-      audience.politics = ((politics * 100) / followers_total).round
-      audience.technology = ((technology * 100) / followers_total).round
-      audience.travel = ((travel * 100) / followers_total).round
-      audience.luxury = ((luxury * 100) / followers_total).round
+      audience.sports = ((sports * 100) / followers_total).round rescue 0
+      audience.fashion = ((fashion * 100) / followers_total).round rescue 0
+      audience.music = ((music * 100) / followers_total).round rescue 0
+      audience.movies = ((movies * 100) / followers_total).round rescue 0
+      audience.politics = ((politics * 100) / followers_total).round rescue 0
+      audience.technology = ((technology * 100) / followers_total).round rescue 0
+      audience.travel = ((travel * 100) / followers_total).round rescue 0
+      audience.luxury = ((luxury * 100) / followers_total).round rescue 0
 
       # Finally update the audiences for countries and states
       country_users = TwitterUser.joins(:twitter_followers).where("influencer_id = ?", audience.influencer_id).where("twitter_country_id is not null").count
@@ -294,12 +294,12 @@ namespace :borwin do
       country_paraguay = TwitterUser.joins(:twitter_followers, :twitter_country).where("influencer_id = ?", audience.influencer_id).where("twitter_country_id is not null").where("twitter_countries.name = 'Paraguay'").count
       country_uruguay = TwitterUser.joins(:twitter_followers, :twitter_country).where("influencer_id = ?", audience.influencer_id).where("twitter_country_id is not null").where("twitter_countries.name = 'Uruguay'").count
 
-      audience.country_argentina = ((country_argentina * 100) / country_users).round
-      audience.country_colombia = ((country_colombia * 100) / country_users).round
-      audience.country_chile = ((country_chile * 100) / country_users).round
-      audience.country_ecuador = ((country_ecuador * 100) / country_users).round
-      audience.country_paraguay = ((country_paraguay * 100) / country_users).round
-      audience.country_uruguay = ((country_uruguay * 100) / country_users).round
+      audience.country_argentina = ((country_argentina * 100) / country_users).round rescue 0
+      audience.country_colombia = ((country_colombia * 100) / country_users).round rescue 0
+      audience.country_chile = ((country_chile * 100) / country_users).round rescue 0
+      audience.country_ecuador = ((country_ecuador * 100) / country_users).round rescue 0
+      audience.country_paraguay = ((country_paraguay * 100) / country_users).round rescue 0
+      audience.country_uruguay = ((country_uruguay * 100) / country_users).round rescue 0
 
       states_users = TwitterUser.joins(:twitter_followers).where("influencer_id = ?", audience.influencer_id).where("twitter_state_id is not null").count
       state_buenos_aires = TwitterUser.joins(:twitter_followers, :twitter_state).where("influencer_id = ?", audience.influencer_id).where("twitter_state_id is not null").where("twitter_states.name = 'Buenos Aires'").count
@@ -325,28 +325,28 @@ namespace :borwin do
       state_tierra_del_fuego = TwitterUser.joins(:twitter_followers, :twitter_state).where("influencer_id = ?", audience.influencer_id).where("twitter_state_id is not null").where("twitter_states.name = 'Tierra del Fuego'").count
       state_tucuman = TwitterUser.joins(:twitter_followers, :twitter_state).where("influencer_id = ?", audience.influencer_id).where("twitter_state_id is not null").where("twitter_states.name = 'Tucumán'").count
 
-      audience.state_buenos_aires = ((state_buenos_aires * 100) / states_users).round
-      audience.state_catamarca = ((state_catamarca * 100) / states_users).round
-      audience.state_chaco = ((state_chaco * 100) / states_users).round
-      audience.state_cordoba = ((state_cordoba * 100) / states_users).round
-      audience.state_corrientes = ((state_corrientes * 100) / states_users).round
-      audience.state_entre_rios = ((state_entre_rios * 100) / states_users).round
-      audience.state_formosa = ((state_formosa * 100) / states_users).round
-      audience.state_jujuy = ((state_jujuy * 100) / states_users).round
-      audience.state_la_pampa = ((state_la_pampa * 100) / states_users).round
-      audience.state_la_rioja = ((state_la_rioja * 100) / states_users).round
-      audience.state_mendoza = ((state_mendoza * 100) / states_users).round
-      audience.state_misiones = ((state_misiones * 100) / states_users).round
-      audience.state_neuquen = ((state_neuquen * 100) / states_users).round
-      audience.state_rio_negro = ((state_rio_negro * 100) / states_users).round
-      audience.state_salta = ((state_salta * 100) / states_users).round
-      audience.state_san_juan = ((state_san_juan * 100) / states_users).round
-      audience.state_san_luis = ((state_san_luis * 100) / states_users).round
-      audience.state_santa_cruz = ((state_santa_cruz * 100) / states_users).round
-      audience.state_santa_fe = ((state_santa_fe * 100) / states_users).round
-      audience.state_sgo_del_estero = ((state_sgo_del_estero * 100) / states_users).round
-      audience.state_tierra_del_fuego = ((state_tierra_del_fuego * 100) / states_users).round
-      audience.state_tucuman = ((state_tucuman * 100) / states_users).round
+      audience.state_buenos_aires = ((state_buenos_aires * 100) / states_users).round rescue 0
+      audience.state_catamarca = ((state_catamarca * 100) / states_users).round rescue 0
+      audience.state_chaco = ((state_chaco * 100) / states_users).round rescue 0
+      audience.state_cordoba = ((state_cordoba * 100) / states_users).round rescue 0
+      audience.state_corrientes = ((state_corrientes * 100) / states_users).round rescue 0
+      audience.state_entre_rios = ((state_entre_rios * 100) / states_users).round rescue 0
+      audience.state_formosa = ((state_formosa * 100) / states_users).round rescue 0
+      audience.state_jujuy = ((state_jujuy * 100) / states_users).round rescue 0
+      audience.state_la_pampa = ((state_la_pampa * 100) / states_users).round rescue 0
+      audience.state_la_rioja = ((state_la_rioja * 100) / states_users).round rescue 0
+      audience.state_mendoza = ((state_mendoza * 100) / states_users).round rescue 0
+      audience.state_misiones = ((state_misiones * 100) / states_users).round rescue 0
+      audience.state_neuquen = ((state_neuquen * 100) / states_users).round rescue 0
+      audience.state_rio_negro = ((state_rio_negro * 100) / states_users).round rescue 0
+      audience.state_salta = ((state_salta * 100) / states_users).round rescue 0
+      audience.state_san_juan = ((state_san_juan * 100) / states_users).round rescue 0
+      audience.state_san_luis = ((state_san_luis * 100) / states_users).round rescue 0
+      audience.state_santa_cruz = ((state_santa_cruz * 100) / states_users).round rescue 0
+      audience.state_santa_fe = ((state_santa_fe * 100) / states_users).round rescue 0
+      audience.state_sgo_del_estero = ((state_sgo_del_estero * 100) / states_users).round rescue 0
+      audience.state_tierra_del_fuego = ((state_tierra_del_fuego * 100) / states_users).round rescue 0
+      audience.state_tucuman = ((state_tucuman * 100) / states_users).round rescue 0
 
       audience.save
     end
