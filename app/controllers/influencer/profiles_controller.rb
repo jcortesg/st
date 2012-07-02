@@ -5,7 +5,7 @@ class Influencer::ProfilesController < ApplicationController
   # Shows the influencer profiles
   def show
     @influencer = current_user.influencer
-    @twitter_user = Twitter.user(@influencer.user.twitter_screen_name)
+    @twitter_user = Twitter.user(@influencer.user.twitter_screen_name) rescue nil
   end
 
   # Shows the form to edit the profiles
