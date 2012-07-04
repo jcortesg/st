@@ -158,7 +158,7 @@ class User < ActiveRecord::Base
 
   # When creating a referrer relationship, make sure to add the referrer date
   def set_referrer_on_date
-    self.referrer_on = Date.today if !referrer_id.blank? && referrer_on.blank?
+    self.referrer_on = Date.today if !referrer_id.blank?
   end
 
   # Just needs password if the encrypted password is not there
