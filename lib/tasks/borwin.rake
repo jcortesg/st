@@ -20,7 +20,13 @@ namespace :borwin do
         config.oauth_token = influencer.user.twitter_token
         config.oauth_token_secret = influencer.user.twitter_secret
       end
-      Twitter.update(tweet.text)
+      tweet = Twitter.update(tweet.text)
+      # Update the tweet fields
+      tweet.twitter_id = tweet.attrs['id_str']
+      tweet.twitter_created_at = tweet.attrs['created_at']
+      tweet.retweet_count = 0
+      tweet.save
+      # Now activate the tweet
       tweet.activate
     end
   end
