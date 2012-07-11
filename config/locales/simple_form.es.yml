@@ -105,6 +105,7 @@ es:
         advertiser_id: Anunciante
         name: Nombre
         objective: Objetivo
+        twitter_screen_name: Twitter
         price_per_click: Precio por Click
         archived: Archivada?
         locations: Zona Geográfica
@@ -155,6 +156,8 @@ es:
         twitter_username: "Tu nombre de usuario en twitter, ej: rorra"
       keyword:
         keywords: "Los keywords deben ser ingresados separados por coma"
+      campaign:
+        twitter_screen_name: "Twitter de la empresa, ejemplo: @JuanaRepetto"
   helpers:
     submit:
       user:
