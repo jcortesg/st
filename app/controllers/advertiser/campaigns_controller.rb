@@ -5,7 +5,7 @@ class Advertiser::CampaignsController < ApplicationController
 
   # Shows the campaigns
   def index
-    @campaign_count = Campaign.active.where(advertiser_id: current_role.id).count
+    @campaign_count = Campaign.created_and_active.where(advertiser_id: current_role.id).count
     if @campaign_count > 0
       @search = Campaign.active.where(advertiser_id: current_role.id).search(params[:search])
       @campaigns = @search.page(params[:page])
@@ -94,7 +94,7 @@ class Advertiser::CampaignsController < ApplicationController
   def archive
     @campaign = current_role.campaigns.find(params[:id])
 
-    if @campaign.update_attribute(:archived, true)
+    if @campaign.archive_campaign
       flash[:notice] = "La campanaña #{@campaign.name} ha sido archivada"
       redirect_to [:advertiser, @campaign]
     else
@@ -107,7 +107,7 @@ class Advertiser::CampaignsController < ApplicationController
   def activate
     @campaign = current_role.campaigns.find(params[:id])
 
-    if @campaign.update_attribute(:archived, false)
+    if @campaign.activate_campaign
       flash[:notice] = "La campaña #{@campaign.name} ha sido activada"
       redirect_to [:advertiser, @campaign]
     else

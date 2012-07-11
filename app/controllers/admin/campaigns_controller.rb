@@ -4,7 +4,7 @@ class Admin::CampaignsController < ApplicationController
 
   # Shows the campaigns
   def index
-    @search = Campaign.active.search(params[:search])
+    @search = Campaign.created_and_active.search(params[:search])
     @campaigns = @search.page(params[:page])
   end
 

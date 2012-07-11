@@ -43,7 +43,6 @@
                 %td= localize(campaign.created_at, :format => "%d/%m/%Y")
                 %td
                   = link_to('Ver', [:admin, campaign], class: 'btn btn-primary')
-                  = link_to('Activar', [:activate, :admin, campaign], method: :put, class: 'btn btn-warning', confirm: "¿Desea activar la campaña?")
                   = link_to('Destruir', [:admin, campaign], method: :delete, class: 'btn btn-danger', confirm: "Esta acción eliminara la campaña, sus tweets y clicks del sistema. ¿Esta seguro?")
         .center_text
           = paginate @campaigns

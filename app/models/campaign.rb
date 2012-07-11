@@ -18,15 +18,41 @@ class Campaign < ActiveRecord::Base
 
   validates :followers_qty, presence: true, on: :update
 
+  # Tweet status:
+  # * created: Campaign created
+  # * active: Campaign has been started
+  # * archived: Campaign has finished
+
+  state_machine :status, initial: :created do
+
+    event :activate_campaign do
+      transition [:created] => [:active]
+    end
+
+    event :archive_campaign do
+      transition [:active] => [:archived]
+    end
+  end
+
   class << self
+    # Brings the created and active campaign
+    def created_and_active
+      where("status = 'created' or status = 'active'")
+    end
+
+    # Brings the created campaigns
+    def created
+      where(status: 'created')
+    end
+
     # Brings the archived campaigns
     def archived
-      where(archived: true)
+      where(status: 'archived')
     end
 
     # Brings the active campaigns
     def active
-      where(archived: false)
+      where(statuc: 'active')
     end
   end
 

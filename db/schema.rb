@@ -139,7 +139,6 @@ ActiveRecord::Schema.define(:version => 20120711083155) do
     t.datetime "starts_at"
     t.datetime "ends_at"
     t.boolean  "price_per_click",                                     :default => false, :null => false
-    t.boolean  "archived",                                            :default => false, :null => false
     t.text     "locations"
     t.text     "followers_qty"
     t.text     "tweet_price"
@@ -174,7 +173,6 @@ ActiveRecord::Schema.define(:version => 20120711083155) do
   end
 
   add_index "campaigns", ["advertiser_id"], :name => "index_campaigns_on_advertiser_id"
-  add_index "campaigns", ["archived"], :name => "index_campaigns_on_archived"
 
   create_table "clicks", :force => true do |t|
     t.integer  "tweet_id"
