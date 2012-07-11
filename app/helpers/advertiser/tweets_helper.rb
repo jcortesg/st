@@ -1,3 +1,4 @@
+# encoding: utf-8
 module Advertiser::TweetsHelper
   def advertiser_tweet_status(status)
     case status
@@ -13,8 +14,8 @@ module Advertiser::TweetsHelper
         'Rechazado'
       when 'accepted'
         'Aceptado'
-      when 'active'
-        'Activo'
+      when 'activated'
+        'Públicado'
     end
   end
 

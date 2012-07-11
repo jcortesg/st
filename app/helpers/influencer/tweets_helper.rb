@@ -14,8 +14,8 @@ module Influencer::TweetsHelper
         'Rechazado'
       when 'accepted'
         'Aceptado'
-      when 'active'
-        'Activo'
+      when 'activated'
+        'Públicado'
     end
   end
 
