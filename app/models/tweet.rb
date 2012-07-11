@@ -30,11 +30,11 @@ class Tweet < ActiveRecord::Base
     #after_transition on: [:created], do: :mail_tweet_creation
     after_transition on: [:advertiser_review], do: :mail_reviewed_by_advertiser
     after_transition on: [:influencer_review], do: :mail_reviewed_by_influencer
-    after_transition on: [:advertiser_accept], do: :mail_accepted_by_advertiser
-    after_transition on: [:influencer_accept], do: :mail_accepted_by_influencer
+    after_transition on: [:advertiser_accept], do: :create_hashtags_and_mail_accepted_by_advertiser
+    after_transition on: [:influencer_accept], do: :create_hashtags_and_mail_accepted_by_influencer
     after_transition on: [:advertiser_reject], do: :mail_rejected_by_advertiser
     after_transition on: [:influencer_reject], do: :mail_rejected_by_influencer
-    after_transition on: [:activate], do: :create_hashtags_and_mail_tweet_activated
+    after_transition on: [:activate], do: :mail_tweet_activated
     after_transition on: [:advertiser_accept, :influencer_accept], do: :create_fee_for_tweet
 
     event :advertiser_review do
@@ -183,12 +183,14 @@ class Tweet < ActiveRecord::Base
   end
 
   # Sends a mail when the tweet has been accepted by the advertiser
-  def mail_accepted_by_advertiser
+  def create_hashtags_and_mail_accepted_by_advertiser
+    create_hashtags
     Notifier.tweet_accepted_by_advertiser(self).deliver
   end
 
   # Sends a mail when the tweet has been accepted by the influencer
-  def mail_accepted_by_influencer
+  def create_hashtags_and_mail_accepted_by_influencer
+    create_hashtags
     Notifier.tweet_accepted_by_influencer(self).deliver
   end
 
@@ -203,8 +205,7 @@ class Tweet < ActiveRecord::Base
   end
 
   # Sends a mail when the tweet has been published
-  def create_hashtags_and_mail_tweet_activated
-    create_hashtags
+  def mail_tweet_activated
     Notifier.tweet_activated_to_advertiser(self).deliver
     Notifier.tweet_activated_to_influencer(self).deliver
   end
