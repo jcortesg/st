@@ -56,7 +56,7 @@ class Campaign < ActiveRecord::Base
 
     # Brings the active campaigns
     def active
-      where(statuc: 'active')
+      where(status: 'active')
     end
   end
 
