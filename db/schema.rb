@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120622195757) do
+ActiveRecord::Schema.define(:version => 20120711083155) do
 
   create_table "advertisers", :force => true do |t|
     t.integer  "user_id"
@@ -118,12 +118,28 @@ ActiveRecord::Schema.define(:version => 20120622195757) do
 
   add_index "audiences", ["influencer_id"], :name => "index_audiences_on_influencer_id"
 
+  create_table "campaign_metrics", :force => true do |t|
+    t.integer  "campaign_id"
+    t.date     "metric_on"
+    t.integer  "clicks",      :default => 0, :null => false
+    t.integer  "retweets",    :default => 0, :null => false
+    t.integer  "mentions",    :default => 0, :null => false
+    t.integer  "hashtags",    :default => 0, :null => false
+    t.integer  "followers",   :default => 0, :null => false
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
+  end
+
   create_table "campaigns", :force => true do |t|
     t.integer  "advertiser_id"
     t.string   "name"
     t.text     "objective"
-    t.boolean  "price_per_click",                                :default => false, :null => false
-    t.boolean  "archived",                                       :default => false, :null => false
+    t.string   "twitter_screen_name"
+    t.string   "status"
+    t.datetime "starts_at"
+    t.datetime "ends_at"
+    t.boolean  "price_per_click",                                     :default => false, :null => false
+    t.boolean  "archived",                                            :default => false, :null => false
     t.text     "locations"
     t.text     "followers_qty"
     t.text     "tweet_price"
@@ -144,10 +160,17 @@ ActiveRecord::Schema.define(:version => 20120622195757) do
     t.boolean  "technology"
     t.boolean  "travel"
     t.boolean  "luxury"
-    t.integer  "clicks_count",                                   :default => 0,     :null => false
-    t.decimal  "cost",             :precision => 8, :scale => 2, :default => 0.0,   :null => false
-    t.datetime "created_at",                                                        :null => false
-    t.datetime "updated_at",                                                        :null => false
+    t.integer  "clicks_count",                                        :default => 0,     :null => false
+    t.integer  "retweets_count",                                      :default => 0,     :null => false
+    t.integer  "mentions_count",                                      :default => 0,     :null => false
+    t.integer  "hashtag_count",                                       :default => 0,     :null => false
+    t.integer  "followers_start_count"
+    t.integer  "followers_end_count"
+    t.integer  "reach",                                               :default => 0,     :null => false
+    t.integer  "share",                                               :default => 0,     :null => false
+    t.decimal  "cost",                  :precision => 8, :scale => 2, :default => 0.0,   :null => false
+    t.datetime "created_at",                                                             :null => false
+    t.datetime "updated_at",                                                             :null => false
   end
 
   add_index "campaigns", ["advertiser_id"], :name => "index_campaigns_on_advertiser_id"
@@ -162,6 +185,13 @@ ActiveRecord::Schema.define(:version => 20120622195757) do
   end
 
   add_index "clicks", ["tweet_id"], :name => "index_clicks_on_tweet_id"
+
+  create_table "hashtags", :force => true do |t|
+    t.integer  "campaign_id"
+    t.string   "hashtag"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
 
   create_table "influencers", :force => true do |t|
     t.integer  "user_id"
@@ -212,6 +242,19 @@ ActiveRecord::Schema.define(:version => 20120622195757) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "retweets", :force => true do |t|
+    t.integer  "tweet_id"
+    t.string   "twitter_id"
+    t.string   "twitter_screen_name"
+    t.datetime "twitter_created_at"
+    t.integer  "twitter_retweet_count"
+    t.integer  "twitter_friends_count"
+    t.integer  "twitter_followers_count"
+    t.string   "twitter_image_url"
+    t.datetime "created_at",              :null => false
+    t.datetime "updated_at",              :null => false
+  end
+
   create_table "site_contacts", :force => true do |t|
     t.string   "name"
     t.string   "email"
@@ -253,6 +296,9 @@ ActiveRecord::Schema.define(:version => 20120622195757) do
     t.datetime "updated_at",                                                          :null => false
     t.decimal  "influencer_tweet_fee", :precision => 8, :scale => 2, :default => 0.0, :null => false
     t.decimal  "influencer_cpc_fee",   :precision => 8, :scale => 2, :default => 0.0, :null => false
+    t.string   "twitter_id"
+    t.datetime "twitter_created_at"
+    t.integer  "retweet_count",                                      :default => 0,   :null => false
   end
 
   add_index "tweets", ["campaign_id"], :name => "index_tweets_on_campaign_id"
@@ -292,10 +338,10 @@ ActiveRecord::Schema.define(:version => 20120622195757) do
     t.string   "name"
     t.string   "location"
     t.string   "profile_image_url"
-    t.integer  "twitter_country_id"
     t.integer  "followers"
     t.integer  "friends"
     t.integer  "tweets"
+    t.integer  "twitter_country_id"
     t.integer  "twitter_state_id"
     t.boolean  "male",                :default => false, :null => false
     t.boolean  "female",              :default => false, :null => false

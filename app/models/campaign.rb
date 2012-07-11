@@ -1,7 +1,9 @@
 class Campaign < ActiveRecord::Base
   belongs_to :advertiser
   has_many :tweets, dependent: :destroy
+  has_many :hashtags, dependent: :destroy
   has_many :clicks, through: :tweets, dependent: :destroy
+  has_many :campaign_metrics, dependent: :destroy
 
   serialize :locations, Array
   serialize :followers_qty, Array
