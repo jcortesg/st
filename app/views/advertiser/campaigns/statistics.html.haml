@@ -1,0 +1,44 @@
+- if flash.any?
+  .row
+    .span12
+      = render '/shared/flash', flash: flash
+
+.row
+  .span12
+    %ul.breadcrumb
+      %li
+        = link_to("Campañas", [:advertiser, :campaigns])
+        %span.divider /
+      %li
+        = link_to(@campaign.name, [:advertiser, @campaign])
+        %span.divider /
+      %li.active
+        Estadísticas
+
+.row
+  .span12
+    .round_box
+      .content
+        .right
+          = link_to('Imprimir', '#', :class => 'btn btn-primary')
+          = link_to('PDF', '#', :class => 'btn btn-primary')
+        %h1.title= "Campaña #{@campaign.name} - Estadísticas"
+
+        %table.table.table-striped
+          %thead
+            %tr
+              %th Celebridad
+              %th Clicks
+              %th CPC
+              %th Acciones
+
+          %tbody
+            - @campaign.tweets.activated.each do |tweet|
+              %tr{ :class => cycle('odd', 'even') }
+                %td= tweet.influencer.full_name
+                %td= link_to(tweet.clicks_count, [:advertiser, tweet.campaign, tweet, :clicks])
+                %td= 0.0
+                %td= link_to("Detalle", [:advertiser, @campaign, tweet], class: 'btn')
+
+        = link_to("Volver", [:advertiser, @campaign], class: 'btn btn-primary')
+

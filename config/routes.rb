@@ -94,6 +94,7 @@ Borwin::Application.routes.draw do
         get :archived
       end
       member do
+        get :statistics
         get :audience
         put :set_audience
         put :archive

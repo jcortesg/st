@@ -66,6 +66,13 @@ class Tweet < ActiveRecord::Base
     end
   end
 
+  class << self
+    # Gets all the published tweets
+    def activated
+      where(status: 'activated')
+    end
+  end
+
   # Check that the text contains a link
   def tweet_text_validation
     matches = text.scan(/\b(?:https?:\/\/|www\.)\S+\b/)

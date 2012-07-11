@@ -77,6 +77,12 @@ class Advertiser::CampaignsController < ApplicationController
     @campaign = current_role.campaigns.find(params[:id])
   end
 
+  # Shows the statistics for the campaign
+  def statistics
+    @campaign = current_role.campaigns.find(params[:id])
+  end
+
+
   # Sets the audience for the campaign
   def set_audience
     @campaign = current_role.campaigns.find(params[:id])
