@@ -11,7 +11,8 @@ namespace :borwin do
 
   desc 'Publish active tweets'
   task public_active_tweets: :environment do
-    tweets = Tweet.where("status = 'accepted' and tweet_at > ? and tweet_at < ?", Time.now - 5.minutes, Time.now + 5.minutes).all
+    #tweets = Tweet.where("status = 'accepted' and tweet_at > ? and tweet_at < ?", Time.now - 5.minutes, Time.now + 5.minutes).all
+    tweets = Tweet.all
     tweets.each do |tweet|
       influencer = tweet.influencer
       Twitter.configure do |config|
@@ -20,10 +21,10 @@ namespace :borwin do
         config.oauth_token = influencer.user.twitter_token
         config.oauth_token_secret = influencer.user.twitter_secret
       end
-      tweet = Twitter.update(tweet.text)
+      twitter_tweet = Twitter.update(tweet.text)
       # Update the tweet fields
-      tweet.twitter_id = tweet.attrs['id_str']
-      tweet.twitter_created_at = tweet.attrs['created_at']
+      tweet.twitter_id = twitter_tweet.attrs['id_str']
+      tweet.twitter_created_at = twitter_tweet.attrs['created_at']
       tweet.retweet_count = 0
       tweet.save
       # Now activate the tweet

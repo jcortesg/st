@@ -44,7 +44,7 @@
         .content
           %h1.title Hashtags
 
-            - @campaign.hashtags.all.each do |hashtag|
-              = link_to(hashtag.hashtag, "https://twitter.com/#!/search/#{hashtag.hashtag}")
-              %br
+          - @campaign.hashtags.all.each do |hashtag|
+            = link_to(hashtag.hashtag, "https://twitter.com/#!/search/#{hashtag.hashtag}", target: '_blank')
+            = "&nbsp;&nbsp;".html_safe
 

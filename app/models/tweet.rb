@@ -34,7 +34,7 @@ class Tweet < ActiveRecord::Base
     after_transition on: [:influencer_accept], do: :create_hashtags_and_mail_accepted_by_influencer
     after_transition on: [:advertiser_reject], do: :mail_rejected_by_advertiser
     after_transition on: [:influencer_reject], do: :mail_rejected_by_influencer
-    after_transition on: [:activate], do: :mail_tweet_activated
+    after_transition on: [:activate], do: :activate_and_mail_tweet_activated
     after_transition on: [:advertiser_accept, :influencer_accept], do: :create_fee_for_tweet
 
     event :advertiser_review do
@@ -205,7 +205,12 @@ class Tweet < ActiveRecord::Base
   end
 
   # Sends a mail when the tweet has been published
-  def mail_tweet_activated
+  def activate_and_mail_tweet_activated
+    # Activate the campaign if needed
+    campaign.activate_campaign unless campaign.status == 'active'
+    # Update campaign reach and share
+    campaign.update_reach_and_share
+    # Send emails
     Notifier.tweet_activated_to_advertiser(self).deliver
     Notifier.tweet_activated_to_influencer(self).deliver
   end

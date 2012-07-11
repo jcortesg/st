@@ -26,6 +26,9 @@
         %dd= @tweet.fee_type == 'tweet_fee' ? "$#{sprintf("%.02f", @tweet.tweet_fee)}" : "$#{sprintf("%.02f", @tweet.cpc_fee)}"
         %dt Estado
         %dd= tweet_status_explanation(@tweet.status)
+        - if @tweet.status = 'active'
+          %dt Tweet
+          %dd= link_to('Tweet', "https://twitter.com/rorra/status/#{tweet.twitter_id}", target: '_blank')
 
       .form-actions.center_text
         - if ['influencer_reviewed'].include?(@tweet.status)

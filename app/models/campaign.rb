@@ -2,6 +2,7 @@
 class Campaign < ActiveRecord::Base
   belongs_to :advertiser
   has_many :tweets, dependent: :destroy
+  has_many :influencers, through: :tweets
   has_many :hashtags, dependent: :destroy
   has_many :clicks, through: :tweets, dependent: :destroy
   has_many :campaign_metrics, dependent: :destroy
@@ -26,6 +27,7 @@ class Campaign < ActiveRecord::Base
   # * archived: Campaign has finished
 
   state_machine :status, initial: :created do
+    after_transition on: [:activate_campaign], do: :mark_campaign_as_activated
 
     event :activate_campaign do
       transition [:created] => [:active]
@@ -58,6 +60,18 @@ class Campaign < ActiveRecord::Base
     end
   end
 
+  # Updates a campaign reach and share
+  def update_reach_and_share
+    reach = 0
+    share = 0
+    self.influencers.each do |influencer|
+      audience = influencer.audience
+      reach = reach + audience.followers
+      share = share + audience.followers
+    end
+    self.save
+  end
+
   private
 
   # Check the twitter screen name
@@ -73,6 +87,23 @@ class Campaign < ActiveRecord::Base
         errors.add(:twitter_screen_name, 'El usuario de Twitter no existe')
       end
     end
+  end
+
+  # Marks the campaign as activated
+  def mark_campaign_as_activated
+    self.starts_at = DateTime.now
+    unless twitter_screen_name.blank?
+      influencer = Influencer.order('id').first
+      Twitter.configure do |config|
+        config.consumer_key = TWITTER_CONSUMER_KEY
+        config.consumer_secret = TWITTER_CONSUMER_SECRET
+        config.oauth_token = influencer.user.twitter_token
+        config.oauth_token_secret = influencer.user.twitter_secret
+      end
+      twitter_user = Twitter.user(twitter_screen_name)
+      self.followers_start_count = twitter_user.followers_count
+    end
+    self.save
   end
 
 end
