@@ -14,14 +14,19 @@ class SessionsController < ApplicationController
       # The user is logged in and he already linked his account in the past
       redirect_to root_path, :notice => "Tu cuenta ya esta linkeada a Twitter con el usuario #{current_user.twitter_screen_name}"
     elsif current_user && !current_user.twitter_linked?
-      # The user is logged in and he's linked his account
-      current_user.twitter_uid = omniauth['uid']
-      current_user.twitter_screen_name = omniauth['info']['nickname']
-      current_user.twitter_token = credentials['token']
-      current_user.twitter_secret = credentials['secret']
-      current_user.twitter_linked = true
-      current_user.save!
-      redirect_to home_path_for(current_user), :notice => "Has linkeado tu cuenta de Tweeter"
+      if User.where(twitter_uid: omniauth['uid']).exists?
+        # The user exists, show the error
+        redirect_to root_path, :notice => "Ya hay un usuario registrado con el Twitter #{omniauth['info']['nickname']}"
+      else
+        # The user is logged in and he's linked his account
+        current_user.twitter_uid = omniauth['uid']
+        current_user.twitter_screen_name = omniauth['info']['nickname']
+        current_user.twitter_token = credentials['token']
+        current_user.twitter_secret = credentials['secret']
+        current_user.twitter_linked = true
+        current_user.save!
+        redirect_to home_path_for(current_user), :notice => "Has linkeado tu cuenta de Tweeter"
+      end
     else
       # Check if there is any user with that credential, and if there is, redirects the user
       if User.where(twitter_token: credentials['token'], twitter_secret: credentials['secret']).exists?
