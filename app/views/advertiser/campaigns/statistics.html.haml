@@ -41,6 +41,7 @@
               %th Clicks
               %th CPC
               %th CPMS
+              %th Share
               %th Acciones
 
           %tbody
@@ -53,6 +54,7 @@
                 %td= link_to(tweet.clicks_count, [:advertiser, tweet.campaign, tweet, :clicks])
                 %td= statistics_tweet_cpc(tweet)
                 %td= statistics_tweet_cpms(tweet)
+                %td= tweet.influencer.audience.followers
                 %td= link_to("Detalle", [:advertiser, @campaign, tweet], class: 'btn')
 
         %h3 Clicks
@@ -88,11 +90,10 @@
             - @campaign.retweets.order('twitter_created_at asc').each do |retweet|
               %tr{ :class => cycle('odd', 'even') }
                 %td= img_link_to_user(retweet.twitter_image_url, retweet.twitter_screen_name)
-                %td= retweet.twitter_screen_name
-                %td= link_to(truncate(retweet.tweet.text, length: 20), [:advertiser, retweet.tweet.campaign, retweet.tweet])
-                %td= click.remote_ip
-                %td= click.remote_agent
-                %td= localize(click.created_at, :format => "%d/%m/%Y %H:%M:%S")
+                %td= link_to_twitter_screen_name(retweet.twitter_screen_name)
+                %td= link_to(truncate(retweet.tweet.text, length: 20), "http://twitter.com/#{retweet.twitter_screen_name}/status/#{retweet.twitter_id}", target: '_blank')
+                %td= retweet.twitter_followers_count
+                %td= localize(retweet.twitter_created_at, :format => "%d/%m/%Y %H:%M:%S")
 
         = link_to("Volver", [:advertiser, @campaign], class: 'btn btn-primary')
 

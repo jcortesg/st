@@ -2,6 +2,7 @@
 class Campaign < ActiveRecord::Base
   belongs_to :advertiser
   has_many :tweets, dependent: :destroy
+  has_many :retweets, through: :tweets
   has_many :influencers, through: :tweets
   has_many :hashtags, dependent: :destroy
   has_many :clicks, through: :tweets, dependent: :destroy
