@@ -225,9 +225,9 @@ class Campaign < ActiveRecord::Base
     # Start time for the campaign
     self.starts_at = DateTime.now
     # If there is a twitter user for the campaign, get the number of followers
-    unless twitter_screen_name.blank?
+    unless self.twitter_screen_name.blank?
       Campaign.twitter_connection
-      twitter_user = Twitter.user(twitter_screen_name)
+      twitter_user = Twitter.user(self.twitter_screen_name)
       self.followers_start_count = twitter_user.followers_count
     end
     self.save
