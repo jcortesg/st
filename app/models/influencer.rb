@@ -20,6 +20,8 @@ class Influencer < ActiveRecord::Base
                   :cell_phone, :contact_time, :contact_method, :preferred_payment, :account_number, :account_type, :cbu,
                   :bank_name, :manual_tweet_fee, :manual_cpc_fee, :automatic_tweet_fee, :automatic_cpc_fee, :twitter_users
 
+  attr_accessor :clicks_count
+
 
   class << self
     def influencer_types

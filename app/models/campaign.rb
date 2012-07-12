@@ -73,6 +73,15 @@ class Campaign < ActiveRecord::Base
     end
   end
 
+  def influent_celebrities
+    influencers_ids = (self.tweets.collect {|t| t.influencer}.collect {|i| i.id}).uniq
+    influencers = Influencer.where("id in (?)", influencer_ids).all
+    influencers.each do |influencer|
+      influencer.clicks_count = self.tweets.where(influencer_id: influencer.id).sum('clicks_count')
+    end
+    influencers.sort {|x, y| x.clicks_count <=> y.clicks_count }
+  end
+
   # Updates a campaign reach and share
   def update_reach_and_share
     reach = 0
@@ -129,7 +138,7 @@ class Campaign < ActiveRecord::Base
   def highrise_reach
     result = ''
 
-    influencers_ids = (Campaign.first.tweets.collect {|t| t.influencer}.collect {|i| i.id}).uniq
+    influencers_ids = (self.tweets.collect {|t| t.influencer}.collect {|i| i.id}).uniq
     influencers = Influencer.where("id in (?)", influencer_ids).all
     influencers.each do |influencer|
       if result.size == 0
@@ -143,7 +152,7 @@ class Campaign < ActiveRecord::Base
   end
 
   def highrise_reach_bar_label
-    influencers_ids = (Campaign.first.tweets.collect {|t| t.influencer}.collect {|i| i.id}).uniq
+    influencers_ids = (self.tweets.collect {|t| t.influencer}.collect {|i| i.id}).uniq
     influencers = Influencer.where("id in (?)", influencer_ids).order('id').all
     result = ''
     influencers.each do |influencer|
@@ -157,7 +166,7 @@ class Campaign < ActiveRecord::Base
   end
 
   def highrise_reach_bar_data
-    influencers_ids = (Campaign.first.tweets.collect {|t| t.influencer}.collect {|i| i.id}).uniq
+    influencers_ids = (self.tweets.collect {|t| t.influencer}.collect {|i| i.id}).uniq
     influencers = Influencer.where("id in (?)", influencer_ids).order('id').all
     result = ''
     influencers.each do |influencer|

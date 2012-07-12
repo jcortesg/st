@@ -46,17 +46,31 @@
               Incremento de seguidores:
               = @campaign.followers_end_count - @campaign.followers_start_count
 
+        %br
+        %br
+        %br
+
         %h3 Reach
 
         #graph_reach_area
+        %br
+        %br
         #graph_reach_bar
 
 
         %h3 Evolución
 
         #evolution_clicks
+        %br
+        %br
+        %br
         #evolution_retweets
+        %br
+        %br
+        %br
         #evolution_followers
+        %br
+        %br
 
         %h3 Tweets
 
@@ -68,7 +82,7 @@
               %th Clicks
               %th CPC
               %th CPMS
-              %th Share
+              %th Reach
               %th Acciones
 
           %tbody
@@ -101,6 +115,26 @@
                 %td= click.remote_ip
                 %td= click.remote_agent
                 %td= localize(click.created_at, :format => "%d/%m/%Y %H:%M:%S")
+
+        %h3 Celebridades más influyentes
+
+        %table.table.table-striped
+          %thead
+            %tr
+              %th{style: 'width: 45px'} &nbsp;
+              %th Celebridad
+              %th Clicks
+              %th Reach
+
+          %tbody
+            - @campaign.influent_celebrities.each do |influencer|
+              %tr{ :class => cycle('odd', 'even') }
+                %td= img_link_to_twitter(influencer)
+                %td
+                  = link_to("@#{influencer.user.twitter_screen_name}", "http://twitter.com/#{influencer.user.twitter_screen_name}", target: '_blank').html_safe
+                  = "(#{influencer.full_name})"
+                %td= influencer.clicks_count
+                %td= influencer.audience.followers
 
         %h3 Retweets
 
