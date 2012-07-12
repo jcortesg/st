@@ -126,10 +126,47 @@ class Campaign < ActiveRecord::Base
 
   # Highrise reach
   def highrise_reach
-    #influencers = self.tweets.
-    "          ['Hombres', #{audience.males}],
-          ['Mujeres', #{audience.females}]
-"
+    result = ''
+
+    influencers_ids = (Campaign.first.tweets.collect {|t| t.influencer}.collect {|i| i.id}).uniq
+    influencers = Influencer.where("id in (?)", influencer_ids).all
+    influencers.each do |influencer|
+      if result.size == 0
+        result += "['#{influencer.user.twitter_screen_name}', #{influencer.audience.followers}]"
+      else
+        result += ",['#{influencer.user.twitter_screen_name}', #{influencer.audience.followers}]"
+      end
+    end
+
+    result
+  end
+
+  def highrise_reach_bar_label
+    influencers_ids = (Campaign.first.tweets.collect {|t| t.influencer}.collect {|i| i.id}).uniq
+    influencers = Influencer.where("id in (?)", influencer_ids).order('id').all
+    result = ''
+    influencers.each do |influencer|
+      if result.size == 0
+        result += "'#{influencer.user.twitter_screen_name}'"
+      else
+        result += ", '#{influencer.user.twitter_screen_name}'"
+      end
+    end
+    result
+  end
+
+  def highrise_reach_bar_data
+    influencers_ids = (Campaign.first.tweets.collect {|t| t.influencer}.collect {|i| i.id}).uniq
+    influencers = Influencer.where("id in (?)", influencer_ids).order('id').all
+    result = ''
+    influencers.each do |influencer|
+      if result.size == 0
+        result += "#{influencer.audience.followers}"
+      else
+        result += ", #{influencer.audience.followers}"
+      end
+    end
+    result
   end
 
   private
