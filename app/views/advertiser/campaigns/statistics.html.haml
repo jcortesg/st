@@ -73,5 +73,26 @@
                 %td= click.remote_agent
                 %td= localize(click.created_at, :format => "%d/%m/%Y %H:%M:%S")
 
+        %h3 Retweets
+
+        %table.table.table-striped
+          %thead
+            %tr
+              %th{style: 'width: 45px'} &nbsp;
+              %th Usuario
+              %th Tweet
+              %th Seguidores
+              %th{style: 'width: 140px'} Fecha
+
+          %tbody
+            - @campaign.retweets.order('twitter_created_at asc').each do |retweet|
+              %tr{ :class => cycle('odd', 'even') }
+                %td= img_link_to_user(retweet.twitter_image_url, retweet.twitter_screen_name)
+                %td= retweet.twitter_screen_name
+                %td= link_to(truncate(retweet.tweet.text, length: 20), [:advertiser, retweet.tweet.campaign, retweet.tweet])
+                %td= click.remote_ip
+                %td= click.remote_agent
+                %td= localize(click.created_at, :format => "%d/%m/%Y %H:%M:%S")
+
         = link_to("Volver", [:advertiser, @campaign], class: 'btn btn-primary')
 

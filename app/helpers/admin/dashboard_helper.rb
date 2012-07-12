@@ -6,4 +6,8 @@ module Admin::DashboardHelper
       "&nbsp;"
     end
   end
+
+  def img_link_to_user(image_url, screen_name)
+    link_to(image_tag(image_url), "https://twitter.com/#!/#{screen_name}", target: '_blank')
+  end
 end
