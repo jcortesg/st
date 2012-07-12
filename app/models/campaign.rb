@@ -75,7 +75,7 @@ class Campaign < ActiveRecord::Base
 
   def influent_celebrities
     influencers_ids = (self.tweets.collect {|t| t.influencer}.collect {|i| i.id}).uniq
-    influencers = Influencer.where("id in (?)", influencer_ids).all
+    influencers = Influencer.where("id in (?)", influencers_ids).all
     influencers.each do |influencer|
       influencer.clicks_count = self.tweets.where(influencer_id: influencer.id).sum('clicks_count')
     end
