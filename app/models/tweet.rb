@@ -228,6 +228,7 @@ class Tweet < ActiveRecord::Base
   # Sends a mail when the tweet was created by the advertiser
   def mail_tweet_creation
     Notifier.tweet_creation(self).deliver
+    Notifier.tweet_creation_to_admin(self).deliver
   end
 
   # Sends a mail when the tweet has been reviewed by the advertiser

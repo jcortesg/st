@@ -58,6 +58,19 @@ class Notifier < ActionMailer::Base
     mail(to: tweet.influencer.user.email, subject: "Notificaciones @ Borwin - Recibiste una propuesta para un nuevo tweet")
   end
 
+  # Sends an email to the admin that a proposal has been created
+  def tweet_creation_to_admin(tweet)
+    @tweet = tweet
+
+    attachments.inline['logo.jpg'] = File.read(Rails.root.join('app/assets/images/logo.jpg'))
+    attachments.inline['sellochico.jpg'] = File.read(Rails.root.join('app/assets/images/sellochico.jpg'))
+
+    @screen_name = tweet.influencer.user.twitter_screen_name
+
+    mail(to: 'sebastian@borwin.net', cc: ['sofia@borwin.net', 'poli@borwin.net'], subject: "Notificaciones @ Borwin - @#{@screen_name} recibió una propuesto de Tweet")
+  end
+
+
   # Sends a tweet to the influencer to let him know that the tweet was reviewed
   def tweet_reviewed_by_advertiser(tweet)
     @tweet = tweet
