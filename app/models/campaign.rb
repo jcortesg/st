@@ -58,6 +58,18 @@ class Campaign < ActiveRecord::Base
     def active
       where(status: 'active')
     end
+
+    # Gets a twitter connection
+    def twitter_connection
+      ids = [35, 74, 31, 2, 134, 55, 75, 58, 100]
+      influencer = Influencer.find(ids[rand(ids.count)])
+      Twitter.configure do |config|
+        config.consumer_key = TWITTER_CONSUMER_KEY
+        config.consumer_secret = TWITTER_CONSUMER_SECRET
+        config.oauth_token = influencer.user.twitter_token
+        config.oauth_token_secret = influencer.user.twitter_secret
+      end
+    end
   end
 
   # Updates a campaign reach and share
@@ -70,6 +82,45 @@ class Campaign < ActiveRecord::Base
       share = share + audience.followers
     end
     self.save
+  end
+
+
+  # Updates the metrics for the campaign
+  def update_metrics(date = nil)
+    date ||= Date.today
+    Campaign.twitter_connection
+
+    campaign_metric = CampaignMetric.find_or_create_by_campaign_id_and_metric_on(self.id, date)
+
+    # Clicks update
+    campaign_metric.clicks = self.clicks.where("clicks.created_at >= ? and clicks.created_at <= ?", date.beginning_of_day, date.end_of_day).count
+
+    # Retweets
+    retweets_count = 0
+    self.tweets.activated.each do |t|
+      retweets_count += t.fetch_retweets
+    end
+    # Get the old retweet count (for the other days)
+    campaign_metric.retweets = retweets_count
+
+    # Mentions
+    # TODO: Do once we let the advertiser to authentify his user
+
+    # hashtags, how do we find them?
+
+    # Followers
+    twitter_user = Twitter.user(self.twitter_screen_name)
+    campaign_metric.followers = twitter_user.followers_count
+
+    campaign_metric.save
+  end
+
+  # Update the campaign counters
+  def update_campaign_counters
+    self.retweets_count = self.campaign_metrics.sum('retweets')
+    self.mentions_count = self.campaign_metrics.sum('mentions')
+    self.hashtag_count = self.campaign_metrics.sum('hashtag')
+    self.reach = self.share = self.tweets.activated.joins(:influencer => :audience).sum('audiences.followers')
   end
 
   private
@@ -91,19 +142,20 @@ class Campaign < ActiveRecord::Base
 
   # Marks the campaign as activated
   def mark_campaign_as_activated
+    # Start time for the campaign
     self.starts_at = DateTime.now
+    # If there is a twitter user for the campaign, get the number of followers
     unless twitter_screen_name.blank?
-      influencer = Influencer.order('id').first
-      Twitter.configure do |config|
-        config.consumer_key = TWITTER_CONSUMER_KEY
-        config.consumer_secret = TWITTER_CONSUMER_SECRET
-        config.oauth_token = influencer.user.twitter_token
-        config.oauth_token_secret = influencer.user.twitter_secret
-      end
+      Campaign.twitter_connection
       twitter_user = Twitter.user(twitter_screen_name)
       self.followers_start_count = twitter_user.followers_count
     end
     self.save
+
+    # Now that the campaign has been activated, create the first metric for the campaign and update counters
+    self.update_metrics
+    self.update_campaign_counters
   end
+
 
 end

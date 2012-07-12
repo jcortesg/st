@@ -31,7 +31,7 @@
               %tr{ :class => cycle('odd', 'even') }
                 %td= link_to(campaign.name, [:advertiser, campaign])
                 %td= link_to(campaign.clicks_count, [:advertiser, campaign, :clicks])
-                %td= campaign.cost
+                %td= number_to_currency(campaign.cost, unit: '')
                 %td= localize(campaign.created_at, :format => "%d/%m/%Y")
                 %td
                   = link_to('Ver', [:advertiser, campaign], class: 'btn btn-primary')

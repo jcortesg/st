@@ -139,7 +139,42 @@ class Tweet < ActiveRecord::Base
       Transaction.create(user: influencer_referrer, transaction_on: Date.today,
                          transaction_type: 'influencer_referrer_fee', amount: influencer_referrer_fee, attachable: self)
     end
+  end
 
+  # Fetchs the retweets for the campaign tweets
+  def fetch_retweets
+    Campaign.twitter_connection
+
+    page = 1
+    begin
+      tweets = Twitter.search("http://bwn.tw/L#{self.link_code}", page: page, rpp: 100)
+      tweets.each {|t| insert_retweet(t)}
+      while tweets.count == 100 do
+        tweets = Twitter.search("http://bwn.tw/L#{self.link_code}", page: page, rpp: 100)
+        tweets.each {|t| insert_retweet(t)}
+      end
+    rescue Exception => e
+      Rails.logger.warning("There was a problem fetching retweets for Tweet #{self.id}")
+    end
+
+    Campaign.twitter_connection
+
+    twitter_tweet = Twitter.status(self.twitter_id)
+    self.retweet_count = twitter_tweet.retweet_count
+    self.save
+
+    twitter_tweet.retweet_count
+  end
+
+  # Creates a retweet if it doesn't exists
+  def insert_retweet(tweet)
+    if tweet.attrs['id_str'] != self.twitter_id
+      retweet = Retweet.find_or_create_by_twitter_id(tweet.attrs['id_str'])
+      retweet.tweet_id = self.id
+      retweet.twitter_screen_name = tweet.attrs['from_user']
+      retweet.twitter_image_url = tweet.attrs['profile_image_url']
+      retweet.save
+    end
   end
 
   private
