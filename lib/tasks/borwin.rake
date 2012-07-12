@@ -386,4 +386,12 @@ namespace :borwin do
       tweet.save
     end
   end
+
+  desc "Update the campaign analytics"
+  task update_campaign_analytics: :environment do
+    Campaign.where(status: 'active').all.each do |campaign|
+      campaign.update_metrics
+      campaign.update_campaign_counters
+    end
+  end
 end
