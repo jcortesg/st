@@ -1,3 +1,6 @@
+- content_for :head do
+  = javascript_include_tag 'http://widgets.twimg.com/j/2/widget.js'
+
 - if flash.any?
   .row
     .span12
@@ -24,21 +27,52 @@
           = link_to('PDF', '#', :class => 'btn btn-primary')
         %h1.title= "Campaña #{@campaign.name} - Estadísticas"
 
+        %h3 Datos Generales
+
+
+
+
+        %h3 Tweets
+
         %table.table.table-striped
           %thead
             %tr
+              %th{style: 'width: 45px'} &nbsp;
               %th Celebridad
               %th Clicks
               %th CPC
+              %th CPMS
               %th Acciones
 
           %tbody
             - @campaign.tweets.activated.each do |tweet|
               %tr{ :class => cycle('odd', 'even') }
-                %td= tweet.influencer.full_name
+                %td= img_link_to_twitter(tweet.influencer)
+                %td
+                  = link_to("@#{tweet.influencer.user.twitter_screen_name}", "http://twitter.com/#{tweet.influencer.user.twitter_screen_name}", target: '_blank').html_safe
+                  = "(#{tweet.influencer.full_name})"
                 %td= link_to(tweet.clicks_count, [:advertiser, tweet.campaign, tweet, :clicks])
-                %td= 0.0
+                %td= statistics_tweet_cpc(tweet)
+                %td= statistics_tweet_cpms(tweet)
                 %td= link_to("Detalle", [:advertiser, @campaign, tweet], class: 'btn')
+
+        %h3 Clicks
+
+        %table.table.table-striped
+          %thead
+            %tr
+              %th Tweet
+              %th IP
+              %th Navegador
+              %th{style: 'width: 140px'} Fecha
+
+          %tbody
+            - @campaign.clicks.each do |click|
+              %tr{ :class => cycle('odd', 'even') }
+                %td= link_to(truncate(click.tweet.text, length: 100), [:advertiser, click.tweet.campaign, click.tweet])
+                %td= click.remote_ip
+                %td= click.remote_agent
+                %td= localize(click.created_at, :format => "%d/%m/%Y %H:%M:%S")
 
         = link_to("Volver", [:advertiser, @campaign], class: 'btn btn-primary')
 

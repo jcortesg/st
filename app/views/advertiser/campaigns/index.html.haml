@@ -36,6 +36,7 @@
                 %td
                   = link_to('Ver', [:advertiser, campaign], class: 'btn btn-primary')
                   = link_to('Audiencia', [:audience, :advertiser, campaign], class: 'btn btn-primary')
+                  = link_to('Estadísticas', [:statistics, :advertiser, campaign], :class => 'btn btn-primary')
         .center_text
           = paginate @campaigns
 

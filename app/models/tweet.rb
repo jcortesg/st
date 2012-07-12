@@ -88,6 +88,7 @@ class Tweet < ActiveRecord::Base
     end
   end
 
+
   # Creates the transaction when a tweet is accepted
   def create_fee_for_tweet
     # First lets get the advertiser and the influencer
