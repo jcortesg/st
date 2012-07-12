@@ -54,7 +54,9 @@
 
         %h3 Evolución
 
-
+        #evolution_clicks
+        #evolution_retweets
+        #evolution_followers
 
         %h3 Tweets
 
@@ -221,6 +223,138 @@
     			}
     		}
     	}]
+    });
+
+
+    chart = new Highcharts.Chart({
+      chart: {
+        renderTo: 'evolution_clicks',
+        type: 'line',
+        marginRight: 130,
+        marginBottom: 25
+      },
+      title: {
+        text: 'Clicks',
+        x: -20 //center
+      },
+      xAxis: {
+        categories: [#{@campaign.highrise_metrics_label}]
+      },
+      yAxis: {
+        title: {
+          text: 'Clicks'
+        },
+        plotLines: [{
+          value: 0,
+          width: 1,
+          color: '#808080'
+        }]
+      },
+      tooltip: {
+        formatter: function() {
+          return '<b>'+ this.series.name +'</b><br/>'+ this.x +': '+ this.y;
+        }
+      },
+      legend: {
+        layout: 'vertical',
+        align: 'right',
+        verticalAlign: 'top',
+        x: -10,
+        y: 100,
+        borderWidth: 0
+      },
+      series: [{
+        name: 'Clicks',
+        data: [#{@campaign.highrise_clicks_evolution}]
+      }]
+    });
+
+
+    chart = new Highcharts.Chart({
+      chart: {
+        renderTo: 'evolution_retweets',
+        type: 'line',
+        marginRight: 130,
+        marginBottom: 25
+      },
+      title: {
+        text: 'Retweets',
+        x: -20 //center
+      },
+      xAxis: {
+        categories: [#{@campaign.highrise_metrics_label}]
+      },
+      yAxis: {
+        title: {
+          text: 'Retweets'
+        },
+        plotLines: [{
+          value: 0,
+          width: 1,
+          color: '#808080'
+        }]
+      },
+      tooltip: {
+        formatter: function() {
+          return '<b>'+ this.series.name +'</b><br/>'+ this.x +': '+ this.y;
+        }
+      },
+      legend: {
+        layout: 'vertical',
+        align: 'right',
+        verticalAlign: 'top',
+        x: -10,
+        y: 100,
+        borderWidth: 0
+      },
+      series: [{
+        name: 'Retweets',
+        data: [#{@campaign.highrise_retweets_evolution}]
+      }]
+    });
+
+
+    chart = new Highcharts.Chart({
+      chart: {
+        renderTo: 'evolution_followers',
+        type: 'line',
+        marginRight: 130,
+        marginBottom: 25
+      },
+      title: {
+        text: 'Seguidores',
+        x: -20 //center
+      },
+      xAxis: {
+        categories: [#{@campaign.highrise_metrics_label}]
+      },
+      yAxis: {
+        title: {
+          text: 'Seguidores'
+        },
+        plotLines: [{
+          value: 0,
+          width: 1,
+          color: '#808080'
+        }]
+      },
+      tooltip: {
+        formatter: function() {
+          return '<b>'+ this.series.name +'</b><br/>'+ this.x +': '+ this.y;
+        }
+      },
+      legend: {
+        layout: 'vertical',
+        align: 'right',
+        verticalAlign: 'top',
+        x: -10,
+        y: 100,
+        borderWidth: 0
+      },
+      series: [{
+        name: 'Seguidores',
+        data: [#{@campaign.highrise_followers_evolution}]
+      }]
     });
 
   });

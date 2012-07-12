@@ -169,6 +169,30 @@ class Campaign < ActiveRecord::Base
     result
   end
 
+  def highrise_metrics_label
+    result = ''
+    self.campaign_metrics.order('metric_on asc').all.each do |cm|
+      if result.size == 0
+        result = "'#{cm.metric_on.strftime('%d-%m')}'"
+      else
+        result += ", '#{cm.metric_on.strftime('%d-%m')}'"
+      end
+    end
+    result
+  end
+
+  def highrise_clicks_evolution
+    self.campaign_metrics.order('metric_on asc').all.collect {|cm| cm.clicks}.join(',')
+  end
+
+  def highrise_retweets_evolution
+    self.campaign_metrics.order('metric_on asc').all.collect {|cm| cm.retweets}.join(',')
+  end
+
+  def highrise_followers_evolution
+    self.campaign_metrics.order('metric_on asc').all.collect {|cm| cm.followers}.join(',')
+  end
+
   private
 
   # Check the twitter screen name
