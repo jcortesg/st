@@ -1,6 +1,3 @@
-- content_for :head do
-  = javascript_include_tag 'http://widgets.twimg.com/j/2/widget.js'
-
 - if flash.any?
   .row
     .span12
@@ -28,6 +25,33 @@
         %h1.title= "Campaña #{@campaign.name} - Estadísticas"
 
         %h3 Datos Generales
+
+        %div
+          Twets:
+          = @campaign.tweets.count
+        %div
+          Clicks:
+          = @campaign.clicks_count
+        %div
+          Retweets:
+          = @campaign.retweets_count
+        %div
+          Seguidores al inicio de la campaña:
+          = @campaign.followers_start_count
+        - if @campaign.status == 'archived'
+          Seguidores al final de la campaña:
+          = @campaign.followers_end_count
+          - if @campaign.followers_end_count > @campaign.followers_start_count
+            %div
+              Incremento de seguidores:
+              = @campaign.followers_end_count - @campaign.followers_start_count
+
+        %h3 Reach
+
+        #graph_reach
+
+
+        %h3 Evolución
 
 
 
@@ -97,3 +121,46 @@
 
         = link_to("Volver", [:advertiser, @campaign], class: 'btn btn-primary')
 
+
+
+:javascript
+  var chart;
+  $(document).ready(function() {
+    chart = new Highcharts.Chart({
+      chart: {
+        renderTo: 'graph_reach',
+        plotBackgroundColor: null,
+        plotBorderWidth: null,
+        plotShadow: false
+      },
+      title: {
+        text: 'Reach de la campaña'
+      },
+      tooltip: {
+        formatter: function() {
+          return '<b>'+ this.point.name +'</b>: '+ this.percentage +' %';
+        }
+      },
+      plotOptions: {
+        pie: {
+          allowPointSelect: true,
+          cursor: 'pointer',
+          dataLabels: {
+            enabled: true,
+            color: '#000000',
+            connectorColor: '#000000',
+            formatter: function() {
+              return '<b>'+ this.point.name +'</b>: '+ this.percentage +' %';
+            }
+          },
+          showInLegend: true
+        }
+      },
+      series: [{
+        type: 'pie',
+        name: 'Porcentage según reach de celebridad',
+        data: [
+          #{@campaign.highrise_reach}
+        ]
+      }]
+    });

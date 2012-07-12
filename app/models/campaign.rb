@@ -124,6 +124,14 @@ class Campaign < ActiveRecord::Base
     self.reach = self.share = self.tweets.activated.joins(:influencer => :audience).sum('audiences.followers')
   end
 
+  # Highrise reach
+  def highrise_reach
+    #influencers = self.tweets.
+    "          ['Hombres', #{audience.males}],
+          ['Mujeres', #{audience.females}]
+"
+  end
+
   private
 
   # Check the twitter screen name
