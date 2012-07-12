@@ -46,33 +46,51 @@
               Incremento de seguidores:
               = @campaign.followers_end_count - @campaign.followers_start_count
 
-        %br
-        %br
-        %br
+.row
+  .span12
+    .round_box
+      .content
 
-        %h3 Reach
+        %h1.title Reach
 
         #graph_reach_area
+
         %br
+        %hr
         %br
+
         #graph_reach_bar
 
+.row
+  .span12
+    .round_box
+      .content
 
-        %h3 Evolución
+        %h1.title Evolución
 
         #evolution_clicks
         %br
         %br
+        %hr
+        %br
         %br
         #evolution_retweets
         %br
+        %br
+        %hr
         %br
         %br
         #evolution_followers
         %br
         %br
 
-        %h3 Tweets
+
+.row
+  .span12
+    .round_box
+      .content
+
+        %h1.title Tweets
 
         %table.table.table-striped
           %thead
@@ -98,7 +116,12 @@
                 %td= tweet.influencer.audience.followers
                 %td= link_to("Detalle", [:advertiser, @campaign, tweet], class: 'btn')
 
-        %h3 Clicks
+.row
+  .span12
+    .round_box
+      .content
+
+        %h1.title Clicks
 
         %table.table.table-striped
           %thead
@@ -116,7 +139,12 @@
                 %td= click.remote_agent
                 %td= localize(click.created_at, :format => "%d/%m/%Y %H:%M:%S")
 
-        %h3 Celebridades más influyentes
+.row
+  .span12
+    .round_box
+      .content
+
+        %h1.title Celebridades más influyentes
 
         %table.table.table-striped
           %thead
@@ -136,7 +164,12 @@
                 %td= influencer.clicks_count
                 %td= influencer.audience.followers
 
-        %h3 Retweets
+.row
+  .span12
+    .round_box
+      .content
+
+        %h1.title Retweets
 
         %table.table.table-striped
           %thead
