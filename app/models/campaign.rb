@@ -122,6 +122,7 @@ class Campaign < ActiveRecord::Base
     self.mentions_count = self.campaign_metrics.sum('mentions')
     self.hashtag_count = self.campaign_metrics.sum('hashtags')
     self.reach = self.share = self.tweets.activated.joins(:influencer => :audience).sum('audiences.followers')
+    self.save
   end
 
   # Highrise reach
