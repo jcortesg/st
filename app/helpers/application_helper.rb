@@ -50,13 +50,13 @@ module ApplicationHelper
   def tweet_status_explanation(status)
     case status
       when 'created'
-        'Pendiente de aprobación o rechazo por la celebridad'
+        'Pendiente de aprobación por la celebridad'
       when 'influencer_reviewed'
-        'Pendiente de aprobación o rechazo por el anunciante'
+        'Pendiente de aprobación por el anunciante'
       when 'influencer_rejected'
         'Rechazado por la celebridad'
       when 'advertiser_reviewed'
-        'Pendiente de aprobación o rechazo por la celebridad'
+        'Pendiente de aprobación por la celebridad'
       when 'advertiser_rejected'
         'Rechazado por el anunciante'
       when 'accepted'
