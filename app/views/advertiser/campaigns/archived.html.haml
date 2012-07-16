@@ -36,6 +36,9 @@
                 %td= localize(campaign.created_at, :format => "%d/%m/%Y")
                 %td
                   = link_to('Ver', [:advertiser, campaign], class: 'btn btn-primary')
+                  - if campaign.status != 'created'
+                    = link_to('Estadísticas', [:statistics, :advertiser, campaign], :class => 'btn btn-primary')
+
         .center_text
           = paginate @campaigns
 
