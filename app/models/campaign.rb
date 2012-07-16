@@ -134,6 +134,34 @@ class Campaign < ActiveRecord::Base
     self.save
   end
 
+  def statistics_cpc
+    prom = 0
+    self.tweets.each do |tweet|
+      if tweet.fee_type = 'tweet_fee'
+        prom += tweet.tweet_fee / tweet.clicks_count
+      end
+    end
+    if prom > 0
+      sprintf("$ %.02f", prom / self.tweets.count)
+    else
+      " - "
+    end
+  end
+
+  def statistics_cpms
+    prom = 0
+    self.tweets.each do |tweet|
+      tweet_cost = tweet.fee_type == 'tweet_fee' ? tweet.tweet_fee : tweet.cpc_fee * tweet.clicks_count
+      prom += (tweet_cost * (1000.0 / tweet.influencer.audience.followers) rescue 0)
+    end
+    if prom > 0
+      sprintf("$ %.02f", prom / self.tweets.count)
+    else
+      " - "
+    end
+  end
+
+
   # Highrise reach
   def highrise_reach
     result = ''

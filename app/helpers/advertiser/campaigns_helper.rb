@@ -20,6 +20,6 @@ module Advertiser::CampaignsHelper
 
   def statistics_tweet_cpms(tweet)
     tweet_cost = tweet.fee_type == 'tweet_fee' ? tweet.tweet_fee : tweet.cpc_fee * tweet.clicks_count
-    sprintf("$ %.02f", tweet_cost * (1000 / tweet.influencer.audience.followers))
+    sprintf("$ %.02f", tweet_cost * (1000.0 / tweet.influencer.audience.followers))
   end
 end

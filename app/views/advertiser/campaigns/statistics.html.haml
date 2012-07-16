@@ -39,6 +39,12 @@
           Retweets:
           = @campaign.retweets_count
         %div
+          CPC de la campaña:
+          = @campaign.statistics_cpc
+        %div
+          CPMS de la campaña:
+          = @campaign.statistics_cpms
+        %div
           Seguidores al inicio de la campaña:
           = @campaign.followers_start_count
         - if @campaign.status == 'archived'
