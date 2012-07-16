@@ -213,6 +213,14 @@ es:
           subject: Asunto
           message: Mensaje
 
+  views:
+    pagination:
+      first: "<<"
+      previous: "<"
+      next: ">"
+      last: ">>"
+      truncate: '...'
+
   general:
     vfalse: "No"
     vtrue: "Sí"

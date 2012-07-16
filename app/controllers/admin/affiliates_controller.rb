@@ -48,7 +48,7 @@ class Admin::AffiliatesController < ApplicationController
   def update
     @affiliate = Affiliate.find(params[:id])
     @user = @affiliate.user
-    if @user.update_attributes(params[:affiliate])
+    if @user.update_attributes(params[:user])
       flash[:notice] = "El anunciante #{@affiliate.full_name} fue actualizado con éxito"
       redirect_to [:admin, @affiliate]
     else
