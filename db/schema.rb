@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120711083155) do
+ActiveRecord::Schema.define(:version => 20120716072752) do
 
   create_table "advertisers", :force => true do |t|
     t.integer  "user_id"
@@ -229,6 +229,7 @@ ActiveRecord::Schema.define(:version => 20120711083155) do
     t.decimal  "manual_cpc_fee",       :precision => 8, :scale => 2
     t.datetime "created_at",                                                          :null => false
     t.datetime "updated_at",                                                          :null => false
+    t.decimal  "campaign_fee",         :precision => 8, :scale => 2, :default => 0.0, :null => false
   end
 
   add_index "influencers", ["user_id"], :name => "index_influencers_on_user_id", :unique => true

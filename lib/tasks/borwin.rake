@@ -56,6 +56,20 @@ namespace :borwin do
     end
   end
 
+  desc 'Normalize tweets fee'
+  task normalize_tweet_fee: :environment do
+    Influencer.all.each do |influencer|
+      next unless influencer.campaign_fee == 0
+      influencer.campaign_fee = influencer.tweet_fee
+      unless influencer.manual_tweet_fee.blank?
+        influencer.manual_tweet_fee = influencer.manual_tweet_fee / 3
+      end
+      unless influencer.automatic_tweet_fee.blank?
+        influencer.automatic_tweet_fee = influencer.automatic_tweet_fee / 3
+      end
+    end
+  end
+
   desc 'Updates the list of twitter users and followership relations'
   task update_twitter_users: :environment do
     # Itarate on every influencer, to get who follows him
