@@ -222,6 +222,14 @@ namespace :borwin do
     keywords_technology = Keyword.where(name: 'technology').first.keywords.split(',')
     keywords_travel = Keyword.where(name: 'travel').first.keywords.split(',')
     keywords_luxury = Keyword.where(name: 'luxury').first.keywords.split(',')
+    keywords_moms = Keyword.where(name: 'moms').first.keywords.split(',')
+    keywords_teens = Keyword.where(name: 'teens').first.keywords.split(',')
+    keywords_college_students = Keyword.where(name: 'college_students').first.keywords.split(',')
+    keywords_young_women = Keyword.where(name: 'young_women').first.keywords.split(',')
+    keywords_young_men = Keyword.where(name: 'young_men').first.keywords.split(',')
+    keywords_adult_women = Keyword.where(name: 'adult_women').first.keywords.split(',')
+    keywords_adult_men = Keyword.where(name: 'adult_men').first.keywords.split(',')
+
 
     # We setup mechanize to start fetching each one of the user details
     agent = Mechanize.new { |agent|
@@ -268,6 +276,13 @@ namespace :borwin do
       twitter_user.technology = true if keywords_technology.detect { |k| text_to_parse.include?("#{k} ") }
       twitter_user.travel = true if keywords_travel.detect { |k| text_to_parse.include?("#{k} ") }
       twitter_user.luxury = true if keywords_luxury.detect { |k| text_to_parse.include?("#{k} ") }
+      twitter_user.moms = true if keywords_moms.detect {|k| text_to_parse.include?("#{k} ")}
+      twitter_user.teens = true if keywords_teens.detect {|k| text_to_parse.include?("#{k} ")}
+      twitter_user.college_students = true if keywords_college_students.detect {|k| text_to_parse.include?("#{k} ")}
+      twitter_user.young_women = true if keywords_young_women.detect {|k| text_to_parse.include?("#{k} ")}
+      twitter_user.young_men = true if keywords_young_men.detect {|k| text_to_parse.include?("#{k}" )}
+      twitter_user.adult_women = true if keywords_adult_women.detect {|k| text_to_parse.include?("#{k} ")}
+      twitter_user.adult_men = true if keywords_adult_men.detect {|k| text_to_parse.include?("#{k}" )}
 
       # Update the user
       twitter_user.save
@@ -297,6 +312,14 @@ namespace :borwin do
       technology = TwitterUser.joins(:twitter_followers).where("influencer_id = ?", audience.influencer_id).where("technology = 1").count
       travel = TwitterUser.joins(:twitter_followers).where("influencer_id = ?", audience.influencer_id).where("travel = 1").count
       luxury = TwitterUser.joins(:twitter_followers).where("influencer_id = ?", audience.influencer_id).where("luxury = 1").count
+      moms = TwitterUser.joins(:twitter_followers).where("influencer_id = ?", audience.influencer_id).where("moms = 1").count
+      teens = TwitterUser.joins(:twitter_followers).where("influencer_id = ?", audience.influencer_id).where("teens = 1").count
+      college_students = TwitterUser.joins(:twitter_followers).where("influencer_id = ?", audience.influencer_id).where("college_students = 1").count
+      young_women = TwitterUser.joins(:twitter_followers).where("influencer_id = ?", audience.influencer_id).where("young_women = 1").count
+      young_men = TwitterUser.joins(:twitter_followers).where("influencer_id = ?", audience.influencer_id).where("young_men = 1").count
+      adult_women = TwitterUser.joins(:twitter_followers).where("influencer_id = ?", audience.influencer_id).where("adult_women = 1").count
+      adult_men = TwitterUser.joins(:twitter_followers).where("influencer_id = ?", audience.influencer_id).where("adult_men = 1").count
+
 
       audience.sports = ((sports * 100) / followers_total).round rescue 0
       audience.fashion = ((fashion * 100) / followers_total).round rescue 0
@@ -306,6 +329,13 @@ namespace :borwin do
       audience.technology = ((technology * 100) / followers_total).round rescue 0
       audience.travel = ((travel * 100) / followers_total).round rescue 0
       audience.luxury = ((luxury * 100) / followers_total).round rescue 0
+      audience.moms = ((moms * 100) / followers_total).round rescue 0
+      audience.teens = ((teens * 100) / followers_total).round rescue 0
+      audience.college_students = ((college_students * 100) / followers_total).round rescue 0
+      audience.young_women = ((young_women * 100) / followers_total).round rescue 0
+      audience.young_men = ((young_men * 100) / followers_total).round rescue 0
+      audience.adult_women = ((adult_women * 100) / followers_total).round rescue 0
+      audience.adult_men = ((adult_men * 100) / followers_total).round rescue 0
 
       # Finally update the audiences for countries and states
       country_users = TwitterUser.joins(:twitter_followers).where("influencer_id = ?", audience.influencer_id).where("twitter_country_id is not null").count

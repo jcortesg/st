@@ -6,7 +6,8 @@ class TwitterUser < ActiveRecord::Base
 
   attr_accessible :twitter_uid, :twitter_screen_name, :twitter_country_id, :twitter_state_id, :male, :female,
                   :sports, :fashion, :music, :movies, :politics, :technology, :travel, :luxury, :influencers,
-                  :location, :profile_image_url, :followers, :friends, :tweets
+                  :location, :profile_image_url, :followers, :friends, :tweets, :moms, :teens, :college_students,
+                  :young_women, :young_men, :adult_women, :adult_men
 
   validates :twitter_uid, uniqueness: true, presence: true
 end

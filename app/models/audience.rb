@@ -6,7 +6,10 @@ class Audience < ActiveRecord::Base
                   :males, :females, :kids, :young_teens, :mature_teens, :young_adults, :mature_adults,
                   :adults, :elderly, :sports, :fashion, :music, :movies, :politics, :technology,
                   :travel, :luxury, :moms, :teens, :college_students, :young_women, :young_men,
-                  :adult_women, :adult_men
+                  :adult_women, :adult_men, :males_count, :females_count, :moms_count, :teens_count,
+                  :college_students_count, :young_women_count,  :young_men_count,  :adult_women_count,
+                  :adult_men_count, :sports_count, :fashion_count, :music_count, :movies_count, :politics_count,
+                  :technology_count, :travel_count, :luxury_count
 
   validates :followers, presence: true, numericality: { greater_than_or_equal_to: 0 }
   validates :friends, presence: true, numericality: { greater_than_or_equal_to: 0 }

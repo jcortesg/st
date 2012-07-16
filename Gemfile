@@ -21,7 +21,7 @@ gem 'active_attr'                      # Tableless models
 gem 'state_machine'                    # State machine, used mainly for tweet states
 gem 'mechanize'                        # Robot to brose twitter users
 gem 'klout'                            # Klout index
-#gem 'wicked_pdf'                       # PDF Generation
+gem 'wicked_pdf'                       # PDF Generation
 
 
 group :assets do
