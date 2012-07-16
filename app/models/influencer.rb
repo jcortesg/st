@@ -91,23 +91,23 @@ class Influencer < ActiveRecord::Base
         campaign.tweet_price.each do |tp|
           case tp
             when '0-300'
-              conditions << "(COALESCE(manual_tweet_fee, automatic_tweet_fee) >= 0 and COALESCE(manual_tweet_fee, automatic_tweet_fee) <= 300)"
+              conditions << "(influencers.campaign_fee >= 0 and influencers.campaign_fee <= 300)"
             when '300-1000'
-              conditions << "(COALESCE(manual_tweet_fee, automatic_tweet_fee) >= 300 and COALESCE(manual_tweet_fee, automatic_tweet_fee) <= 1000)"
+              conditions << "(influencers.campaign_fee >= 300 and influencers.campaign_fee <= 1000)"
             when '1000-2000'
-              conditions << "(COALESCE(manual_tweet_fee, automatic_tweet_fee) >= 1000 and COALESCE(manual_tweet_fee, automatic_tweet_fee) <= 2000)"
+              conditions << "(influencers.campaign_fee >= 1000 and influencers.campaign_fee <= 2000)"
             when '2000-3000'
-              conditions << "(COALESCE(manual_tweet_fee, automatic_tweet_fee) >= 2000 and COALESCE(manual_tweet_fee, automatic_tweet_fee) <= 3000)"
+              conditions << "(influencers.campaign_fee >= 2000 and influencers.campaign_fee <= 3000)"
             when '3000-5000'
-              conditions << "(COALESCE(manual_tweet_fee, automatic_tweet_fee) >= 3000 and COALESCE(manual_tweet_fee, automatic_tweet_fee) <= 5000)"
+              conditions << "(influencers.campaign_fee >= 3000 and influencers.campaign_fee <= 5000)"
             when '5000-7000'
-              conditions << "(COALESCE(manual_tweet_fee, automatic_tweet_fee) >= 5000 and COALESCE(manual_tweet_fee, automatic_tweet_fee) <= 7000)"
+              conditions << "(influencers.campaign_fee >= 5000 and influencers.campaign_fee <= 7000)"
             when '7000-10000'
-              conditions << "(COALESCE(manual_tweet_fee, automatic_tweet_fee) >= 7000 and COALESCE(manual_tweet_fee, automatic_tweet_fee) <= 10000)"
+              conditions << "(influencers.campaign_fee >= 7000 and influencers.campaign_fee <= 10000)"
             when '10000-20000'
-              conditions << "(COALESCE(manual_tweet_fee, automatic_tweet_fee) >= 10000 and COALESCE(manual_tweet_fee, automatic_tweet_fee) <= 20000)"
+              conditions << "(influencers.campaign_fee >= 10000 and influencers.campaign_fee <= 20000)"
             when '20000-50000'
-              conditions << "(COALESCE(manual_tweet_fee, automatic_tweet_fee) >= 20000 and COALESCE(manual_tweet_fee, automatic_tweet_fee) <= 50000)"
+              conditions << "(influencers.campaign_fee >= 20000 and influencers.campaign_fee <= 50000)"
           end
         end
         influencers = influencers.where(conditions.join(" or "))
