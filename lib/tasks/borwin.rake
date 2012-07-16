@@ -320,6 +320,9 @@ namespace :borwin do
       adult_women = TwitterUser.joins(:twitter_followers).where("influencer_id = ?", audience.influencer_id).where("adult_women = 1").count
       adult_men = TwitterUser.joins(:twitter_followers).where("influencer_id = ?", audience.influencer_id).where("adult_men = 1").count
 
+      audience.males_count = male
+      audience.females_count = gender_total - male
+
       audience.sports_count = sports
       audience.fashion_count = fashion
       audience.music_count = music

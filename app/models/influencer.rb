@@ -120,34 +120,34 @@ class Influencer < ActiveRecord::Base
     def apply_default_sort(campaign, influencers)
       # Sort option for sex
       if campaign.males && !campaign.females
-        influencers = influencers.order("males desc")
+        influencers = influencers.order("males_count desc")
       elsif campaign.females && !campaign.males
-        influencers = influencers.order("females desc")
+        influencers = influencers.order("females_count desc")
       end
 
       # Sort options for age
       columns = []
-      columns << "audiences.moms" if campaign.moms
-      columns << "audiences.teens" if campaign.teens
-      columns << "audiences.college_students" if campaign.college_students
-      columns << "audiences.young_women" if campaign.young_women
-      columns << "audiences.young_men" if campaign.young_men
-      columns << "audiences.adult_women" if campaign.adult_women
-      columns << "audiences.adult_men" if campaign.adult_men
+      columns << "audiences.moms_count" if campaign.moms
+      columns << "audiences.teens_count" if campaign.teens
+      columns << "audiences.college_students_count" if campaign.college_students
+      columns << "audiences.young_women_count" if campaign.young_women
+      columns << "audiences.young_men_count" if campaign.young_men
+      columns << "audiences.adult_women_count" if campaign.adult_women
+      columns << "audiences.adult_men_count" if campaign.adult_men
       if columns.size > 0
         influencers = influencers.select("(#{columns.join(' + ')}) as sum_age").order('sum_age desc')
       end
 
       # Sort options for hobbies
       columns = []
-      columns << "audiences.sports" if campaign.sports
-      columns << "audiences.fashion" if campaign.fashion
-      columns << "audiences.music" if campaign.music
-      columns << "audiences.movies" if campaign.movies
-      columns << "audiences.politics" if campaign.politics
-      columns << "audiences.technology" if campaign.technology
-      columns << "audiences.travel" if campaign.travel
-      columns << "audiences.luxury" if campaign.luxury
+      columns << "audiences.sports_count" if campaign.sports
+      columns << "audiences.fashion_count" if campaign.fashion
+      columns << "audiences.music_count" if campaign.music
+      columns << "audiences.movies_count" if campaign.movies
+      columns << "audiences.politics_count" if campaign.politics
+      columns << "audiences.technology_count" if campaign.technology
+      columns << "audiences.travel_count" if campaign.travel
+      columns << "audiences.luxury_count" if campaign.luxury
       if columns.size > 0
         influencers = influencers.select("(#{columns.join(' + ')}) as sum_hobbies").order('sum_hobbies desc')
       end
