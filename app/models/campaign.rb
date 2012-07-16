@@ -283,6 +283,7 @@ class Campaign < ActiveRecord::Base
     self.update_campaigns_counters
 
     # Finally, send the campaign by email
+    Notifier.campaign_ends(self.advertiser, self).deliver
   end
 
 
