@@ -74,21 +74,27 @@
       %hr
       .tweet_proposal.clearfix
         .form_title Propuesta de nuevo Tweet
-        = simple_form_for @tweet, url: advertiser_campaign_tweets_path(@campaign), html: { class: 'vertical-form' } do |f|
-          = f.input :text, as: :text, input_html: { style: 'width: 650px;height: 40px' }
-          = f.input :tweet_at, minute_step: 15, start_year: Time.now.year, end_year: Time.now.year + 1, input_html: { class: 'tweet_time' }
-          - if @campaign.price_per_click
-            = f.input :fee_type, as: :radio, collection: [["Precio por Tweet - AR$ #{sprintf("%.02f", @influencer.tweet_fee)}", 'tweet_fee'], ["Precio por Click - AR$ #{sprintf("%.02f", @influencer.cpc_fee)}", 'cpc_fee']]
-          - else
-            - f.object.fee_type = 'tweet_fee'
-            = f.input :fee_type, as: :radio, collection: [["Precio por Tweet - AR$ #{sprintf("%.02f", @influencer.tweet_fee)}", 'tweet_fee'], ["Precio por Click - AR$ #{sprintf("%.02f", @influencer.cpc_fee)}", 'cpc_fee']], input_html: { disabled: 'disabled' }
+        = simple_form_for @tweet_group, url: advertiser_campaign_tweets_path(@campaign), html: { class: 'vertical-form' } do |f|
+          = f.simple_fields_for :tweets do |tf|
+            = tf.input :text, as: :text, label: 'Tweet', input_html: { style: 'width: 650px;height: 40px' }
+            = tf.input :tweet_at, minute_step: 15, start_year: Time.now.year, end_year: Time.now.year + 1, label: 'Fecha y hora de tweet', input_html: { class: 'tweet_time' }
 
+            - if @campaign.price_per_click
+              = tf.input :fee_type, as: :radio, collection: [["Precio por Tweet - AR$ #{sprintf("%.02f", @influencer.tweet_fee)}", 'tweet_fee'], ["Precio por Click - AR$ #{sprintf("%.02f", @influencer.cpc_fee)}", 'cpc_fee']], label: 'Tipo de pago'
+            - else
+              - tf.object.fee_type = 'tweet_fee'
+              = tf.input :fee_type, as: :radio, collection: [["Precio por Tweet - AR$ #{sprintf("%.02f", @influencer.tweet_fee)}", 'tweet_fee'], ["Precio por Click - AR$ #{sprintf("%.02f", @influencer.cpc_fee)}", 'cpc_fee']], label: 'Tipo de pago', input_html: { disabled: 'disabled' }
+
+            = tf.input :campaign_id, as: :hidden
+            = tf.input :influencer_id, as: :hidden
+
+            %hr
           = f.input :campaign_id, as: :hidden
           = f.input :influencer_id, as: :hidden
 
+
           .form-actions
             = f.submit 'Proponer y volver a la campaña', class: 'btn btn-primary btn-large', id: 'create_and_back'
-            = f.submit 'Proponer y agregar otro tweet', class: 'btn btn-primary btn-large', id: 'create_and_add_new'
 
           .center_text
             = link_to('Volver a la campaña', [:admin, @campaign], class: 'btn btn-large')

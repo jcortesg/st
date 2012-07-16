@@ -2,6 +2,7 @@
 class Tweet < ActiveRecord::Base
   belongs_to :campaign
   belongs_to :influencer
+  belongs_to :tweet_group
   has_many :clicks, dependent: :destroy
   has_many :retweets, dependent: :destroy
 

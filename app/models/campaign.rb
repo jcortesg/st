@@ -1,6 +1,7 @@
 # encoding: utf-8
 class Campaign < ActiveRecord::Base
   belongs_to :advertiser
+  has_many :tweet_groups, dependent: :destroy
   has_many :tweets, dependent: :destroy
   has_many :retweets, through: :tweets
   has_many :influencers, through: :tweets

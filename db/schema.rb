@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120716072752) do
+ActiveRecord::Schema.define(:version => 20120716151816) do
 
   create_table "advertisers", :force => true do |t|
     t.integer  "user_id"
@@ -114,6 +114,23 @@ ActiveRecord::Schema.define(:version => 20120716072752) do
     t.integer  "state_sgo_del_estero",   :default => 0, :null => false
     t.integer  "state_tierra_del_fuego", :default => 0, :null => false
     t.integer  "state_tucuman",          :default => 0, :null => false
+    t.integer  "males_count",            :default => 0, :null => false
+    t.integer  "females_count",          :default => 0, :null => false
+    t.integer  "moms_count",             :default => 0, :null => false
+    t.integer  "teens_count",            :default => 0, :null => false
+    t.integer  "college_students_count", :default => 0, :null => false
+    t.integer  "young_women_count",      :default => 0, :null => false
+    t.integer  "young_men_count",        :default => 0, :null => false
+    t.integer  "adult_women_count",      :default => 0, :null => false
+    t.integer  "adult_men_count",        :default => 0, :null => false
+    t.integer  "sports_count",           :default => 0, :null => false
+    t.integer  "fashion_count",          :default => 0, :null => false
+    t.integer  "music_count",            :default => 0, :null => false
+    t.integer  "movies_count",           :default => 0, :null => false
+    t.integer  "politics_count",         :default => 0, :null => false
+    t.integer  "technology_count",       :default => 0, :null => false
+    t.integer  "travel_count",           :default => 0, :null => false
+    t.integer  "luxury_count",           :default => 0, :null => false
   end
 
   add_index "audiences", ["influencer_id"], :name => "index_audiences_on_influencer_id"
@@ -279,9 +296,17 @@ ActiveRecord::Schema.define(:version => 20120716072752) do
 
   add_index "transactions", ["user_id"], :name => "index_transactions_on_user_id"
 
+  create_table "tweet_groups", :force => true do |t|
+    t.integer  "campaign_id"
+    t.integer  "influencer_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
   create_table "tweets", :force => true do |t|
     t.integer  "campaign_id"
     t.integer  "influencer_id"
+    t.integer  "tweet_group_id"
     t.string   "text"
     t.datetime "tweet_at"
     t.string   "link_code"
@@ -354,6 +379,13 @@ ActiveRecord::Schema.define(:version => 20120716072752) do
     t.boolean  "luxury",              :default => false, :null => false
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
+    t.boolean  "moms",                :default => false, :null => false
+    t.boolean  "teens",               :default => false, :null => false
+    t.boolean  "college_students",    :default => false, :null => false
+    t.boolean  "young_women",         :default => false, :null => false
+    t.boolean  "young_men",           :default => false, :null => false
+    t.boolean  "adult_women",         :default => false, :null => false
+    t.boolean  "adult_men",           :default => false, :null => false
   end
 
   add_index "twitter_users", ["twitter_uid"], :name => "index_twitter_users_on_twitter_uid", :unique => true

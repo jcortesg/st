@@ -27,31 +27,34 @@ class Advertiser::TweetsController < ApplicationController
     @tweets = Tweet.where(campaign_id: @campaign.id, influencer_id: @influencer.id)
 
     # New tweet with default values
-    @tweet = Tweet.new
-    @tweet.influencer_id = @influencer.id
-    @tweet.campaign_id = @campaign.id
+    @tweet_group = TweetGroup.new
+    @tweet_group.influencer_id = @influencer.id
+    @tweet_group.campaign_id = @campaign.id
+
+    @tweet_group.tweets.build(campaign_id: @campaign.id, influencer_id: @influencer.id)
+    @tweet_group.tweets.build(campaign_id: @campaign.id, influencer_id: @influencer.id)
+    @tweet_group.tweets.build(campaign_id: @campaign.id, influencer_id: @influencer.id)
   end
 
   # Creates a new tweet
   def create
-    @tweet = Tweet.new(params[:tweet])
-    @influencer = Influencer.find(@tweet.influencer_id)
-    @tweet.campaign = @campaign
-    @tweet.fee_type = 'tweet_fee' if @campaign.price_per_click == false
-    if @tweet.save
-      if params[:commit] == 'Proponer y volver a la campaña'
-        flash[:success] = "Se ha propuesto el tweet a #{@influencer.full_name}"
-        redirect_to advertiser_campaign_path(@campaign)
-      else
-        flash[:success] = "Se ha propuesto el tweet a #{@influencer.full_name}"
-        redirect_to new_advertiser_campaign_tweet_path(@campaign, influencer_id: @influencer.id)
-      end
+    @tweet_group = TweetGroup.new(params[:tweet_group])
+    @influencer = Influencer.find(@tweet_group.influencer_id)
+    @tweet_group.campaign = @campaign
+    @tweet_group.tweets.each do |tweet|
+      tweet.campaign = @campaign
+      tweet.fee_type = 'tweet_fee' if @campaign.price_per_click == false
+    end
+    if @tweet_group.save
+      flash[:success] = "Se ha propuesto el tweet a #{@influencer.full_name}"
+      redirect_to advertiser_campaign_path(@campaign)
     else
       @twitter_user = Twitter.user(@influencer.user.twitter_screen_name)
       @tweets = Tweet.where(campaign_id: @campaign.id, influencer_id: @influencer.id)
       flash[:error] = "Hubo errores al proponer el tweet"
       render action: :new
     end
+
   end
 
   # Shows the tweet
