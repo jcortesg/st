@@ -18,12 +18,14 @@
 .row
   .span12
     .round_box
-      .content
+      .content{style: 'font-size: 14px;line-height: 150%'}
         .right
           = link_to('PDF - Imprimir', statistics_advertiser_campaign_path(@campaign, format: :pdf), :class => 'btn btn-primary')
         %h1.title= "Campaña #{@campaign.name} - Estadísticas"
 
         %h3 Datos Generales
+
+        %br
 
         %div
           Objetivo:
@@ -44,24 +46,26 @@
         %div
           CPMS de la campaña:
           = @campaign.statistics_cpms
-        %div
-          Seguidores al inicio de la campaña:
-          = @campaign.followers_start_count
-        - if @campaign.status == 'archived'
-          Seguidores al final de la campaña:
-          = @campaign.followers_end_count
-          - if @campaign.followers_end_count > @campaign.followers_start_count
-            %div
-              Incremento de seguidores:
-              = @campaign.followers_end_count - @campaign.followers_start_count
-        - elsif @campaign.campaign_metrics.count > 1
-          Seguidores actuales:
-          - current_followers = @campaign.campaign_metrics.order('metric_on desc').first.followers
-          = current_followers
-          - if current_followers > @campaign.followers_start_count
-            %div
-              Incremento de seguidores:
-              = current_followers - @campaign.followers_start_count
+        - unless @campaign.twitter_screen_name.blank?
+          %br
+          %div
+            Seguidores al inicio de la campaña:
+            = @campaign.followers_start_count
+          - if @campaign.status == 'archived'
+            Seguidores al final de la campaña:
+            = @campaign.followers_end_count
+            - if @campaign.followers_end_count > @campaign.followers_start_count
+              %div
+                Incremento de seguidores:
+                = @campaign.followers_end_count - @campaign.followers_start_count
+          - else
+            Seguidores actuales:
+            - current_followers = @campaign.campaign_metrics.order('metric_on desc').first.followers
+            = current_followers
+            - if current_followers > @campaign.followers_start_count
+              %div
+                Incremento de seguidores:
+                = current_followers - @campaign.followers_start_count
 
 .row
   .span12
