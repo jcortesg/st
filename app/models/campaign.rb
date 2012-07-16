@@ -29,7 +29,7 @@ class Campaign < ActiveRecord::Base
 
   state_machine :status, initial: :created do
     after_transition on: [:activate_campaign], do: :mark_campaign_as_activated
-    after_transition on: [:archive_campaign], do: mark_campaign_as_archived
+    after_transition on: [:archive_campaign], do: :mark_campaign_as_archived
 
     event :activate_campaign do
       transition [:created] => [:active]
@@ -131,7 +131,8 @@ class Campaign < ActiveRecord::Base
     self.retweets_count = self.campaign_metrics.sum('retweets')
     self.mentions_count = self.campaign_metrics.sum('mentions')
     self.hashtag_count = self.campaign_metrics.sum('hashtags')
-    self.reach = self.share = self.tweets.activated.joins(:influencer => :audience).sum('audiences.followers')
+    self.reach = self.tweets.activated.joins(:influencer => :audience).sum('audiences.followers')
+    self.share = self.tweets.activated.joins(:influencer => :audience).sum('audiences.followers')
     self.save
   end
 
