@@ -62,25 +62,26 @@ try:
 		
 		# Iterate on every follower_id
 		followers_count = 0
-		for follower_id in tweepy.Cursor(api.followers_ids).items():
-			followers_count += 1
-			# Select the twitter user with the matched twitter_uid
-			cur.execute("SELECT id FROM twitter_users WHERE twitter_uid = '" + str(follower_id) + "'")
-			if int(cur.rowcount > 0):
-				# It exists, fetch the twitter user id
-				twitter_user_id = cur.fetchone()[0]
-			else:
-				# It does't exist, create the record and fetch the twitter user id
-				cur.execute("INSERT INTO twitter_users(twitter_uid) VALUE('" + str(follower_id) + "')")
-				twitter_user_id = cur.lastrowid
-			
-			# Create the relationship into the db
-			cur.execute("REPLACE INTO twitter_followers(influencer_id, twitter_user_id, created_at, updated_at) VALUES(" + str(row['influencer_id']) + ", " + str(twitter_user_id) + ", now(), now())")
-			
-			#print "Twitter ID " + str(twitter_user_id) + " insertado con la celebridad " + str(row['influencer_id'])
-		
-		elapsed_time = time.time() - start_time
-		print "Tardo %.02f segundos en updatear %d seguidores de %s %s" % (elapsed_time, followers_count, row['first_name'], row['last_name'])
+		try:
+			for follower_id in tweepy.Cursor(api.followers_ids).items():
+				followers_count += 1
+				# Select the twitter user with the matched twitter_uid
+				cur.execute("SELECT id FROM twitter_users WHERE twitter_uid = '" + str(follower_id) + "'")
+				if int(cur.rowcount > 0):
+					# It exists, fetch the twitter user id
+					twitter_user_id = cur.fetchone()[0]
+				else:
+					# It does't exist, create the record and fetch the twitter user id
+					cur.execute("INSERT INTO twitter_users(twitter_uid) VALUE('" + str(follower_id) + "')")
+					twitter_user_id = cur.lastrowid
+					
+				# Create the relationship into the db
+				cur.execute("REPLACE INTO twitter_followers(influencer_id, twitter_user_id, created_at, updated_at) VALUES(" + str(row['influencer_id']) + ", " + str(twitter_user_id) + ", now(), now())")
+				
+			elapsed_time = time.time() - start_time
+			print "Tardo %.02f segundos en updatear %d seguidores de %s %s" % (elapsed_time, followers_count, row['first_name'], row['last_name'])
+		except Exception, e:
+			pass
 
 except Exception, e:
 	print "Error %s" % (e)
