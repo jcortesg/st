@@ -59,7 +59,7 @@ namespace :borwin do
   desc 'Normalize tweets fee'
   task normalize_tweet_fee: :environment do
     Influencer.all.each do |influencer|
-      next unless influencer.campaign_fee == 0
+      next unless influencer.campaign_fee == 0.0
       influencer.campaign_fee = influencer.tweet_fee
       unless influencer.manual_tweet_fee.blank?
         influencer.manual_tweet_fee = influencer.manual_tweet_fee / 3
@@ -67,6 +67,7 @@ namespace :borwin do
       unless influencer.automatic_tweet_fee.blank?
         influencer.automatic_tweet_fee = influencer.automatic_tweet_fee / 3
       end
+      influencer.save
     end
   end
 

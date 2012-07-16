@@ -28,7 +28,7 @@
           %thead
             %tr
               %th= sort_link(@search, :first_name_and_last_name, 'Celebridad')
-              %th Precio
+              %th Precio Campaña
               %th Seguidores
               %th Amigos
               %th Klout
@@ -38,7 +38,7 @@
             - @influencers.each do |influencer|
               %tr{ :class => cycle('odd', 'even') }
                 %td= link_to(influencer.full_name, advertiser_campaign_influencer_profile_path(@campaign, influencer.influencer_id))
-                %td= sprintf("$ %.02f", influencer.tweet_fee)
+                %td= sprintf("$ %.02f", influencer.campaign_fee)
                 %td= influencer.followers
                 %td= influencer.friends
                 %td
