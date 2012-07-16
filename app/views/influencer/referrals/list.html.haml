@@ -45,7 +45,7 @@
                         = referral.advertiser.to_s
                   %td.td2
                     - if referral.role == 'influencer'
-                      = number_to_currency referral.influencer.influencer_tweet_fee.to_f
+                      = number_to_currency referral.influencer.influencer_campaign_fee.to_f
                     - elsif referral.role == 'advertiser'
                       = "-"
                   %td.td3= "$ 0.00"

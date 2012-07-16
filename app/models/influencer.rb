@@ -181,6 +181,11 @@ class Influencer < ActiveRecord::Base
     tweet_fee - (tweet_fee * borwin_fee)
   end
 
+  # Campaign Tweet price with commission applied
+  def influencer_campaign_fee
+    self.influencer_tweet_fee * 3
+  end
+
 
   # String presentation
   def to_s
