@@ -4,6 +4,7 @@ gem 'rails', '3.2.3'
 
 gem 'jquery-rails'                     # JQuery
 gem 'capistrano'                       # Deploy
+gem 'rvm-capistrano'                   # Deploy
 gem 'haml'                             # Vies
 gem 'mysql2'                           # Database
 gem 'devise'                           # Authentication
