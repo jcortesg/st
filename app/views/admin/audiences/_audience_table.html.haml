@@ -136,6 +136,7 @@
 
 #graph_sex
 #graph_hobbies
+#graph_age
 #graph_countries
 #graph_states
 
@@ -224,6 +225,49 @@
           ['Tecnología', #{audience.technology}],
           ['Viajes', #{audience.travel}],
           ['Lujos', #{audience.luxury}]
+        ]
+      }]
+    });
+
+    chart = new Highcharts.Chart({
+      chart: {
+        renderTo: 'graph_age',
+        plotBackgroundColor: null,
+        plotBorderWidth: null,
+        plotShadow: false
+      },
+      title: {
+        text: 'Edades'
+      },
+      tooltip: {
+        formatter: function() {
+          return '<b>'+ this.point.name +'</b>: '+ this.percentage +' %';
+        }
+      },
+      plotOptions: {
+        pie: {
+          allowPointSelect: true,
+          cursor: 'pointer',
+          dataLabels: {
+            enabled: true,
+            color: '#000000',
+            connectorColor: '#000000',
+            formatter: function() {
+              return '<b>'+ this.point.name +'</b>: '+ this.percentage +' %';
+            }
+          },
+          showInLegend: true
+        }
+      },
+      series: [{
+        type: 'pie',
+        name: 'Porcentage según intereses',
+        data: [
+          ['Adolescentes', #{audience.teens}],
+          ['Mujeres (18 a 35)	', #{audience.young_women}],
+          ['Hombres (18 a 35)	', #{audience.young_men}],
+          ['Mujeres (+ de 35)', #{audience.adult_women}],
+          ['Hombres (+ de 35)', #{audience.adult_men}]
         ]
       }]
     });
