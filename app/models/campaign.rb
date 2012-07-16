@@ -29,6 +29,7 @@ class Campaign < ActiveRecord::Base
 
   state_machine :status, initial: :created do
     after_transition on: [:activate_campaign], do: :mark_campaign_as_activated
+    after_transition on: [:archive_campaign], do: mark_campaign_as_archived
 
     event :activate_campaign do
       transition [:created] => [:active]
@@ -263,6 +264,25 @@ class Campaign < ActiveRecord::Base
     # Now that the campaign has been activated, create the first metric for the campaign and update counters
     self.update_metrics
     self.update_campaign_counters
+  end
+
+  # Marks the campaign as archived
+  def mark_campaign_as_archived
+    # End time for the campaign
+    self.ends_at = DateTime.now
+    # If there is a twitter user for the campaign, get the number of followers
+    unless self.twitter_screen_name.blank?
+      Campaign.twitter_connection
+      twitter_user = Twitter.user(self.twitter_screen_name)
+      self.followers_end_count = twitter_user.followers_count
+    end
+    self.save
+
+    # Now that the campaign has been deactivated, update the metrics for a last time
+    self.update_metrics
+    self.update_campaigns_counters
+
+    # Finally, send the campaign by email
   end
 
 
