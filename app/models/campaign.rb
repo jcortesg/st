@@ -110,7 +110,8 @@ class Campaign < ActiveRecord::Base
     # Retweets
     retweets_count = 0
     self.tweets.activated.each do |t|
-      retweets_count += t.fetch_retweets
+      temp = (t.fetch_retweets rescue 0)
+      retweets_count += temp
     end
     # Get the old retweet count (for the other days)
     campaign_metric.retweets = retweets_count

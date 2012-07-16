@@ -194,8 +194,6 @@ class Tweet < ActiveRecord::Base
     end
   end
 
-  private
-
   # Replaces the link on the text with a borwin link
   def create_borwin_link
     # Generate the link code
