@@ -88,7 +88,7 @@ class Advertiser::CampaignsController < ApplicationController
     respond_to do |format|
       format.html
       format.pdf {
-        content = render_to_string  :layout => false
+        content = render_to_string(layout: false)
         pdf_file_name = generate_pdf_report(content)
         send_data File.open(pdf_file_name).read, type: 'application/pdf', disposition: "attachment; filename=tenants_report.pdf"
       }
