@@ -2,6 +2,7 @@
 class Influencer < ActiveRecord::Base
   belongs_to :user
   has_one :audience, dependent: :destroy
+  has_many :tweet_groups, dependent: :destroy
   has_many :tweets
   has_many :twitter_followers
   has_many :twitter_users, through: :twitter_followers
@@ -223,7 +224,7 @@ class Influencer < ActiveRecord::Base
 
     # Calculates the payment cost depending on the followers
     self.update_attribute(:automatic_tweet_fee, (followers * 0.0175) / 3)
-    self.update_attribute(:automatic_cpc_fee, self.automatic_tweet_fee * 0.1)
     self.update_attribute(:campaign_fee, self.tweet_fee * 3)
+    self.update_attribute(:automatic_cpc_fee, self.campaign_fee * 0.01)
   end
 end
