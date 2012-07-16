@@ -84,8 +84,16 @@ class Advertiser::CampaignsController < ApplicationController
       flash[:notice] = "La Campaña no tiene Tweets públicados"
       redirect_to action: 'show'
     end
-  end
 
+    respond_to do |format|
+      format.html
+      format.pdf {
+        content = render_to_string  :layout => false
+        pdf_file_name = generate_pdf_report(content)
+        send_data File.open(pdf_file_name).read, type: 'application/pdf', disposition: "attachment; filename=tenants_report.pdf"
+      }
+    end
+  end
 
   # Sets the audience for the campaign
   def set_audience
@@ -125,4 +133,25 @@ class Advertiser::CampaignsController < ApplicationController
       redirect_to :back
     end
   end
+
+  private
+
+  def random_string(size = 20)
+    o =  [('a'..'z'),('A'..'Z')].map{|i| i.to_a}.flatten
+    (0..20).map{ o[rand(o.length)]  }.join
+  end
+
+  def generate_pdf_report(content)
+    html_file_name = "#{Rails.root}/tmp/pdf/#{random_string}.html"
+    File.open(html_file_name, 'w') do |f|
+      f << content
+    end
+    pdf_file_name = "#{Rails.root}/tmp/pdf/#{random_string}.pdf"
+
+    command = "/usr/local/bin/wkhtmltopdf --margin-right 0.75in --page-size Letter --margin-top 0.75in --margin-bottom 0.75in --encoding UTF-8 --margin-left 0.75in --quiet #{html_file_name} #{pdf_file_name}"
+    Rails.logger.info command
+    system(command)
+    pdf_file_name
+  end
+
 end
