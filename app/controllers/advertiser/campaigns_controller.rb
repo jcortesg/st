@@ -80,6 +80,10 @@ class Advertiser::CampaignsController < ApplicationController
   # Shows the statistics for the campaign
   def statistics
     @campaign = current_role.campaigns.find(params[:id])
+    if @campaign.status == 'created'
+      flash[:notice] = "La Campaña no tiene Tweets públicados"
+      redirect_to action: 'show'
+    end
   end
 
 
