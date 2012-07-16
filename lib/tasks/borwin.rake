@@ -417,6 +417,8 @@ namespace :borwin do
       audience.state_tucuman = ((state_tucuman * 100) / states_users).round rescue 0
 
       audience.save
+
+      puts "Audience for #{audience.influencer.full_name} updates"
     end
   end
 
