@@ -162,7 +162,7 @@ class Notifier < ActionMailer::Base
   # Sends an email to an advertiser when a campaign has ended
   def campaign_ends(advertiser, campaign)
     @advertiser = advertiser
-    @campaign = @campaign
+    @campaign = campaign
 
     attachments.inline['logo.jpg'] = File.read(Rails.root.join('app/assets/images/logo.jpg'))
     attachments.inline['sellochico.jpg'] = File.read(Rails.root.join('app/assets/images/sellochico.jpg'))

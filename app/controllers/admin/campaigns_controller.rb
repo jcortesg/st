@@ -67,7 +67,7 @@ class Admin::CampaignsController < ApplicationController
   def archive
     @campaign = Campaign.find(params[:id])
 
-    if @campaign.update_attribute(:archived, true)
+    if @campaign.archive_campaign
       flash[:notice] = "La campanaña #{@campaign.name} ha sido archivada"
       redirect_to [:admin, @campaign]
     else

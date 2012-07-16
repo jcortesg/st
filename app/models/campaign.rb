@@ -281,7 +281,7 @@ class Campaign < ActiveRecord::Base
 
     # Now that the campaign has been deactivated, update the metrics for a last time
     self.update_metrics
-    self.update_campaigns_counters
+    self.update_campaign_counters
 
     # Finally, send the campaign by email
     Notifier.campaign_ends(self.advertiser, self).deliver

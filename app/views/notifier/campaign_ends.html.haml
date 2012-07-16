@@ -19,7 +19,7 @@
       = "Tu campaña #{@campaign.name} ha finalizado."
     %p.style4
       Para ver los reportes de la campaña, imprimirlos y descargar en formato PDF,
-      = link_to("entrá a tu cuenta", statistics_advertiser_campaign(@campaign))
+      = link_to("entrá a tu cuenta", statistics_advertiser_campaign_url(@campaign))
     %p.style4
       = image_tag attachments['sellochico.jpg'].url
     %p.style4
