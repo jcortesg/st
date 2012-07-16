@@ -6,7 +6,7 @@ class Admin::TransactionsController < ApplicationController
   # Show the list of keywords
   def index
     search_params = params[:search] || {}
-    search_params.reverse_merge!({"meta_sort" => "transaction_on.asc"})
+    search_params.reverse_merge!({"meta_sort" => "transaction_on.desc"})
 
     @search = Transaction.search(search_params)
     @transactions = @search.page(params[:page])
