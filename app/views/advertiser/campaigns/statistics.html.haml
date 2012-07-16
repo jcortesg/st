@@ -54,6 +54,14 @@
             %div
               Incremento de seguidores:
               = @campaign.followers_end_count - @campaign.followers_start_count
+        - elsif @campaign.campaign_metrics.count > 1
+          Seguidores actuales:
+          - current_followers = @campaign.campaign_metrics.order('metric_on desc').first.followers
+          = current_followers
+          - if current_followers > @campaign.followers_start_count
+            %div
+              Incremento de seguidores:
+              = current_followers - @campaign.followers_start_count
 
 .row
   .span12
