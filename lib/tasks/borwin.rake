@@ -4,7 +4,7 @@ namespace :borwin do
   task update_influencer_twitter_data: :environment do
     Influencer.all.each do |influencer|
       next unless influencer.user.twitter_linked?
-      influencer.update_audience
+      influencer.update_audience rescue nil
     end
     puts "#{Influencer.count} influencer accounts updated"
   end
