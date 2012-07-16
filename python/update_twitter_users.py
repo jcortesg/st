@@ -80,6 +80,7 @@ try:
 				
 			elapsed_time = time.time() - start_time
 			print "Tardo %.02f segundos en updatear %d seguidores de %s %s" % (elapsed_time, followers_count, row['first_name'], row['last_name'])
+			sys.stdout.flush()			
 		except Exception, e:
 			pass
 
