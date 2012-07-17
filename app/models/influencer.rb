@@ -15,6 +15,7 @@ class Influencer < ActiveRecord::Base
 
   before_create :update_twitter_data
   after_create :update_audience, :assign_default_prices
+  before_update :update_campaign_price
 
   attr_accessible :first_name, :last_name, :location, :image_url, :bio, :influencer_type, :birthday, :photo, :sex,
                   :description, :referrer_description, :address, :city, :state, :country, :zip_code, :phone,
@@ -226,5 +227,10 @@ class Influencer < ActiveRecord::Base
     self.update_attribute(:automatic_tweet_fee, (followers * 0.0175) / 3)
     self.update_attribute(:campaign_fee, self.tweet_fee * 3)
     self.update_attribute(:automatic_cpc_fee, self.campaign_fee * 0.001)
+  end
+
+  # Update the campaign price of the campaign after the tweet price is updated
+  def update_campaign_price
+    self.campaign_fee = (self.manual_tweet_fee.nil? ? self.automatic_tweet_fee : self.manual_tweet_fee) * 3
   end
 end
