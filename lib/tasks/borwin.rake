@@ -28,7 +28,7 @@ namespace :borwin do
       tweet.save
       # Now activate the tweet
       tweet.activate
-      campaign.activate_campaign
+      tweet.campaign.activate_campaign
     end
   end
 
