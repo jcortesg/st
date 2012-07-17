@@ -264,13 +264,15 @@ class Tweet < ActiveRecord::Base
 
   # Sends a mail when the tweet has been published
   def activate_and_mail_tweet_activated
-    # Activate the campaign if needed
-    campaign.activate_campaign unless campaign.status == 'active'
-    # Update campaign reach and share
-    campaign.update_reach_and_share
     # Send emails
-    Notifier.tweet_activated_to_advertiser(self).deliver
-    Notifier.tweet_activated_to_influencer(self).deliver
+    Notifier.tweet_activated_to_advertiser(self).deliver rescue nil
+    Notifier.tweet_activated_to_influencer(self).deliver rescue nil
+    # Activate the campaign if needed
+    unless campaign.status == 'active'
+      campaign.activate_campaign rescue nil
+    end
+    # Update campaign reach and share
+    campaign.update_reach_and_share rescue nil
   end
 
   # Creates the hashtag for the campain

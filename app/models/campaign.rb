@@ -72,6 +72,7 @@ class Campaign < ActiveRecord::Base
         config.oauth_token = influencer.user.twitter_token
         config.oauth_token_secret = influencer.user.twitter_secret
       end
+      Twitter.user_timeline
     end
   end
 
@@ -257,16 +258,20 @@ class Campaign < ActiveRecord::Base
     # Start time for the campaign
     self.starts_at = DateTime.now
     # If there is a twitter user for the campaign, get the number of followers
-    unless self.twitter_screen_name.blank?
-      Campaign.twitter_connection
-      twitter_user = Twitter.user(self.twitter_screen_name)
-      self.followers_start_count = twitter_user.followers_count
+    begin
+      unless self.twitter_screen_name.blank?
+        Campaign.twitter_connection
+        twitter_user = Twitter.user(self.twitter_screen_name)
+        self.followers_start_count = twitter_user.followers_count
+      end
+    rescue Exception => e
+      Logger.rails.info("ERROR: #{e.message}")
     end
     self.save
 
     # Now that the campaign has been activated, create the first metric for the campaign and update counters
-    self.update_metrics
-    self.update_campaign_counters
+    self.update_metrics rescue nil
+    self.update_campaign_counters rescue nil
   end
 
   # Marks the campaign as archived
