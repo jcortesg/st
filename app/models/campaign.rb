@@ -130,9 +130,9 @@ class Campaign < ActiveRecord::Base
 
   # Update the campaign counters
   def update_campaign_counters
-    self.retweets_count = self.campaign_metrics.sum('retweets')
-    self.mentions_count = self.campaign_metrics.sum('mentions')
-    self.hashtag_count = self.campaign_metrics.sum('hashtags')
+    self.retweets_count = self.tweets.sum('retweet_count')
+    self.mentions_count = 0
+    self.hashtag_count = 0
     self.reach = self.tweets.activated.joins(:influencer => :audience).sum('audiences.followers')
     self.share = self.tweets.activated.joins(:influencer => :audience).sum('audiences.followers')
     self.save

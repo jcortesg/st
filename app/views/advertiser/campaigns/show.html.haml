@@ -18,7 +18,7 @@
         .right
           - if @campaign.status != 'created'
             = link_to('Estadísticas', [:statistics, :advertiser, @campaign], :class => 'btn btn-primary')
-          - if current_user.advertiser.can_create_campaigns?
+          - if current_user.advertiser.can_create_campaigns? && @campaign.status != 'archived'
             = link_to('Crear Nuevo Tweet', [:advertiser, @campaign, :tweets], :class => 'btn btn-primary')
         %h1.title= "Campaña #{@campaign.name}"
 
