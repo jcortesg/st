@@ -12,6 +12,7 @@ class Influencer < ActiveRecord::Base
   validates :first_name, :presence => true
   validates :last_name, :presence => true
   validates :influencer_type, :presence => true
+  validates :category, inclusion: { in: 1..5}
 
   before_create :update_twitter_data
   after_create :update_audience, :assign_default_prices
@@ -231,6 +232,10 @@ class Influencer < ActiveRecord::Base
 
   # Update the campaign price of the campaign after the tweet price is updated
   def update_campaign_price
+    if category_price_was != category_price
+      # Here update the default prices
+    end
+
     self.campaign_fee = (self.manual_tweet_fee.nil? ? self.automatic_tweet_fee : self.manual_tweet_fee) * 3
   end
 end

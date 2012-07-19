@@ -24,7 +24,8 @@
           - if @referrals.count == 0
             = "Hasta el momento no has referido a ninguna persona. Recomendá Borwin para comenzar a generar ingresos."
           - else
-            = "Referiste #{@referrals.count} persona#{@referrals.count > 1 ? 's' : ''} que te genero $0 ingresos."
+            = "Referiste #{@referrals.count} persona#{@referrals.count > 1 ? 's' : ''} que te genero "
+            = link_to("#{number_to_currency(current_user.total_referral_earnings)} ingresos.", [:list, :influencer, :referrals])
 
         - if @referrals.count > 0
           %p

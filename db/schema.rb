@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120719151054) do
+ActiveRecord::Schema.define(:version => 20120719165547) do
 
   create_table "advertisers", :force => true do |t|
     t.integer  "user_id"
@@ -293,6 +293,7 @@ ActiveRecord::Schema.define(:version => 20120719151054) do
     t.decimal  "balance",            :precision => 8, :scale => 2, :default => 0.0,   :null => false
     t.datetime "created_at",                                                          :null => false
     t.datetime "updated_at",                                                          :null => false
+    t.integer  "referrer_id"
   end
 
   add_index "transactions", ["user_id"], :name => "index_transactions_on_user_id"
@@ -346,10 +347,9 @@ ActiveRecord::Schema.define(:version => 20120719151054) do
     t.datetime "updated_at",      :null => false
   end
 
-  add_index "twitter_followers", ["influencer_id", "twitter_user_id"], :name => "idx_twitter_followers_3"
   add_index "twitter_followers", ["influencer_id", "twitter_user_id"], :name => "index_twitter_followers_on_influencer_id_and_twitter_user_id", :unique => true
-  add_index "twitter_followers", ["influencer_id"], :name => "idx_twitter_followers_1"
-  add_index "twitter_followers", ["twitter_user_id"], :name => "idx_twitter_followers_2"
+  add_index "twitter_followers", ["influencer_id"], :name => "index_twitter_followers_on_influencer_id"
+  add_index "twitter_followers", ["twitter_user_id"], :name => "index_twitter_followers_on_twitter_user_id"
 
   create_table "twitter_states", :force => true do |t|
     t.integer  "twitter_country_id"

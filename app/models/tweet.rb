@@ -3,6 +3,7 @@ class Tweet < ActiveRecord::Base
   belongs_to :campaign
   belongs_to :influencer
   belongs_to :tweet_group
+  belongs_to :referrer
   has_many :clicks, dependent: :destroy
   has_many :retweets, dependent: :destroy
 
@@ -134,12 +135,14 @@ class Tweet < ActiveRecord::Base
     # Create the fee for the advertiser referrer
     if advertiser_referrer
       Transaction.create(user: advertiser_referrer, transaction_on: Date.today,
-                         transaction_type: 'advertiser_referrer_fee', amount: advertiser_referrer_fee, attachable: self)
+                         transaction_type: 'advertiser_referrer_fee', amount: advertiser_referrer_fee, attachable: self,
+                         referrer_id: tweet.campaign.advertiser.user_id)
     end
     # Create the fee for the influencer referrer
     if influencer_referrer
       Transaction.create(user: influencer_referrer, transaction_on: Date.today,
-                         transaction_type: 'influencer_referrer_fee', amount: influencer_referrer_fee, attachable: self)
+                         transaction_type: 'influencer_referrer_fee', amount: influencer_referrer_fee, attachable: self,
+                         referrer_id: tweet.influencer_id)
     end
   end
 

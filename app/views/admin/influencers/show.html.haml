@@ -85,6 +85,8 @@
           %dd= dl_value @influencer.bank_name
         .subtitle Precios
         %dl.record_details
+          %dt Categoría
+          %dd= dl_value @influencer.price_category
           %dt Precio Tweet
           %dd= number_to_currency(@influencer.tweet_fee)
           %dt Precio Campaña
