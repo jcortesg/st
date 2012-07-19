@@ -22,6 +22,7 @@
               %th= sort_link(@search, :company, 'Empresa')
               %th= sort_link(@search, :user_email, 'Email')
               %th= sort_link(@search, :created_at, "Creado")
+              %th Referidos
               %th Acciones
 
           %tbody
@@ -32,6 +33,7 @@
                 %td= affiliate.company
                 %td= affiliate.user.email
                 %td= affiliate.created_at ? (localize(affiliate.created_at, :format => "%d/%m/%Y")) : ""
+                %td= affiliate.user.referrals.count
                 %td
                   = link_to('Editar', [:edit, :admin, affiliate], class: 'btn btn-primary')
                   = link_to('Eliminar', [:admin, affiliate], method: :delete, class: 'btn btn-danger', confirm: "Esta seguro que desea eliminar al anunciante y todo su historial?" )
