@@ -48,6 +48,7 @@
             = f.input :transaction_on_less_than_or_equal_to, as: :date, label: 'Hasta', required: false
             = f.input :amount_greater_than, label: 'Importe mayor a', required: false
             = f.input :amount_less_than, label: 'Importe menor a', required: false
+            = f.input :user_role_equals, as: :select, required: false, collection: [['Administrador', 'admin'], ['Anunciante', 'advertiser'], ['Agencia', 'affiliate'], ['Celebridad', 'influencer']], label: 'Categoría'
             .form-actions
               = f.submit 'Filtrar', :class => 'btn btn-primary'
               = link_to 'Resetear', '#', :class => 'btn reset'
