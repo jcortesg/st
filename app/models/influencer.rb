@@ -22,7 +22,7 @@ class Influencer < ActiveRecord::Base
                   :description, :referrer_description, :address, :city, :state, :country, :zip_code, :phone,
                   :cell_phone, :contact_time, :contact_method, :preferred_payment, :account_number, :account_type, :cbu,
                   :bank_name, :manual_tweet_fee, :manual_cpc_fee, :automatic_tweet_fee, :automatic_cpc_fee,
-                  :twitter_users, :borwin_fee, :campaign_fee
+                  :twitter_users, :borwin_fee, :campaign_fee, :price_category
 
   attr_accessor :clicks_count
 
@@ -222,20 +222,38 @@ class Influencer < ActiveRecord::Base
 
   # Creates the user profiles for payments
   def assign_default_prices
-    followers = self.audience.followers
-
     # Calculates the payment cost depending on the followers
-    self.update_attribute(:automatic_tweet_fee, (followers * 0.0175) / 3)
+    self.price_category ||= 2
+    self.update_attribute(:automatic_tweet_fee, get_tweet_price_for_category(self.price_category))
+    self.update_attribute(:automatic_cpc_fee, (self.automatic_tweet_fee * 3) * 0.001)
     self.update_attribute(:campaign_fee, self.tweet_fee * 3)
-    self.update_attribute(:automatic_cpc_fee, self.campaign_fee * 0.001)
   end
 
   # Update the campaign price of the campaign after the tweet price is updated
   def update_campaign_price
     if price_category_was != price_category
       # Here update the default prices
+      self.automatic_tweet_fee = get_tweet_price_for_category(self.price_category)
+      self.automatic_cpc_fee = (self.automatic_tweet_fee * 3) * 0.001
     end
 
     self.campaign_fee = (self.manual_tweet_fee.nil? ? self.automatic_tweet_fee : self.manual_tweet_fee) * 3
+  end
+
+  def get_tweet_price_for_category(price_category)
+    followers = self.audience.followers
+
+    case price_category
+      when 1
+        (followers * 0.025) / 3
+      when 2
+        (followers * 0.0175) / 3
+      when 3
+        (followers * 0.0150) / 3
+      when 4
+        (followers * 0.0125) / 3
+      when 5
+        (followers * 0.0095) / 3
+    end
   end
 end
