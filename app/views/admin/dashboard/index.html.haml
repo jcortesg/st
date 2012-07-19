@@ -9,7 +9,9 @@
 
         = "En total hay #{Influencer.count} celebridades."
         %br
-        = "La cantidad actual de seguidores es #{Audience.sum(:followers)}"
+        = "La cantidad actual de seguidores es #{number_with_delimiter(Audience.sum(:followers), delimiter: '.')}"
+        %br
+        = "Seguidores únicos: #{number_with_delimiter(TwitterUser.count, delimiter: '.')}"
         %br
         %br
         %br
