@@ -2,6 +2,11 @@
 class Notifier < ActionMailer::Base
   default from: "noreply@borwin.net"
 
+  # Stest mail
+  def test_mail
+    mail(to: "rorra@rorra.com.ar", subject: "Borwin test")
+  end
+
   # Site contact
   def contact(site_contact)
     @site_contact = site_contact
