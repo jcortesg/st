@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
   # Transactions
   has_many :transactions
 
-  devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable
+  devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable, :timeoutable
 
   before_create :set_invitation_code, :set_referrer_on_date
   after_create :send_referral_mail, :send_registration_email
