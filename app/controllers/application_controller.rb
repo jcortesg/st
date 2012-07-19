@@ -11,6 +11,16 @@ class ApplicationController < ActionController::Base
 
   # Redirection after sign in with devise
   def after_sign_in_path_for(resource_or_scope)
+    if resource_or_scope.role == 'influencer'
+      if resource_or_scope.influencer.tweets.where("tweets.status = 'advertiser_review' or tweets.status = 'created'").count > 0
+        flash[:notice] = "Tiene Tweets pendiente de aprobación. <a href='/influencer/tweets'>Revisar Tweets.</a>".html_safe
+      end
+    elsif resource_or_scope.role == 'advertiser'
+      if resource_or_scope.advertiser.tweets.where(influencer_id: resource_or_scope.id).where("tweets.status = 'influencer_review'").count > 0
+        flash[:notice] = "Tiene Tweets pendiente de aprobación. <a href='/influencer/tweets'>Revisar Tweets.</a>".html_safe
+      end
+    end
+
     home_path_for(resource_or_scope)
   end
 

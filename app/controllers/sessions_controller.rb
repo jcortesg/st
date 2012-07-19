@@ -33,6 +33,12 @@ class SessionsController < ApplicationController
         @user = User.where(twitter_token: credentials['token'], twitter_secret: credentials['secret']).first
         # Login user and redirect
         sign_in(:user, @user)
+
+        # Check if the user has pending tweets
+        if @user.influencer.tweets.where("tweets.status = 'advertiser_review' or tweets.status = 'created'").count > 0
+          flash[:notice] = "Tiene Tweets pendiente de aprobación. <a href='/influencer/tweets'>Revisar Tweets.</a>".html_safe
+        end
+
         redirect_to home_path_for(@user)
       else
         # The credentials doesn't exist, create the account

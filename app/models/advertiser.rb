@@ -2,6 +2,7 @@
 class Advertiser < ActiveRecord::Base
   belongs_to :user
   has_many :campaigns, dependent: :destroy
+  has_many :tweets, through: :campaigns
 
   validates :company, :presence => true
   validates :first_name, :presence => true
