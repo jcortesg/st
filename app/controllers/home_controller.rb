@@ -12,7 +12,19 @@ class HomeController < ApplicationController
 
   # Anunciantes - Contacto
   def advertisers_contact
-    contact
+    @site_advertiser_contact = SiteAdvertiserContact.new
+  end
+
+  # Anunciantes - Porcess Contact Form
+  def process_advertiser_contact
+    @site_advertiser_contact = SiteAdvertiserContact.new(params[:site_advertiser_contact])
+
+    if @site_advertiser_contact.save
+      flash[:success] = "Tu mensaje fue recibido. Nos pondremos en contacto a la brevedad."
+      redirect_to root_path
+    else
+      render :action => :contact
+    end
   end
 
   # Anunciantes - Presentacion

@@ -7,7 +7,14 @@ class Notifier < ActionMailer::Base
     @site_contact = site_contact
 
     mail(to: "info@borwin.net", subject: "Contacto @ Borwin - Its time to go social")
-  end  
+  end
+
+  # Site advertiser contact
+  def advertiser_contact(site_advertiser_contact)
+    @site_advertiser_contact = site_advertiser_contact
+
+    mail(to: "info@borwin.net", subject: "Contacto @ Borwin - Its time to go social")
+  end
 
   # A user was approved
   def approve(user)

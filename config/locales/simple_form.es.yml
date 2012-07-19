@@ -13,6 +13,16 @@ es:
         email: Email
         subject: Asunto
         message: Mensaje
+      site_advertiser_contact:
+        name: Nombre
+        company: Empresa
+        email: Email
+        campaign: Nombre de la Campaña
+        objectives: Objetivos de la Campaña
+        budget: Presupuesto
+        date: Fecha estimada para la campaña
+        demographic: Edades
+        hobbies: Hobbies
       user:
         email: Email
         password: Contraseña

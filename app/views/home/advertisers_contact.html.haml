@@ -1,16 +1,21 @@
 .row
   .span8
 
-
-    = simple_form_for @site_contact, :url => process_contact_path, :html => {:class => 'form-horizontal round_form'} do |f|
+    = simple_form_for @site_advertiser_contact, :url => process_advertiser_contact_path, :html => {:class => 'form-vertical round_form'} do |f|
       .main_blue_title ¡Contáctese con nuestro equipo para comenzar!
 
       = render '/shared/simple_form_errors', :f => f
 
       = f.input :name
+      = f.input :company
       = f.input :email
-      = f.input :subject
-      = f.input :message, :as => :text, :input_html => {:rows => 5, :cols => 60 }
+      = f.input :campaign
+      = f.input :objectives
+      = f.input :budget
+      = f.input :date
+      = f.input :demographic
+      = f.input :hobbies
+
       .form-actions
         = f.submit 'Enviar', :class => 'btn btn-primary btn-large'
 
