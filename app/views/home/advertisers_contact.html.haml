@@ -10,11 +10,9 @@
       = f.input :company
       = f.input :email
       = f.input :campaign
-      = f.input :objectives
-      = f.input :budget
+      = f.input :objectives, input_html: { style: 'height: 80px' }
+      = f.input :budget, as: :select, collection: ['< $10.000', '$10.000 - $25.000', '$25.000 - $50.000', '$50.000 - $100.000', '$100.000 - $500.000', '$500.000 - $1.000.000', '> $1.000.000'], include_blank: false
       = f.input :date
-      = f.input :demographic
-      = f.input :hobbies
 
       .form-actions
         = f.submit 'Enviar', :class => 'btn btn-primary btn-large'

@@ -8,6 +8,10 @@ class SiteAdvertiserContact < ActiveRecord::Base
   validates :objectives, presence: true
   validates :budget, presence: true
 
+  serialize :demographic, Array
+  serialize :hobbies, Array
+
+
   after_create :send_email_to_borwin
 
   private
