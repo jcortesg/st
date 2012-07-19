@@ -11,7 +11,7 @@
         %br
         = "La cantidad actual de seguidores es #{number_with_delimiter(Audience.sum(:followers), delimiter: '.')}"
         %br
-        =# "Seguidores únicos: #{number_with_delimiter(TwitterUser.count, delimiter: '.')}"
+        = "Seguidores únicos: #{number_with_delimiter(TwitterUser.count, delimiter: '.')}"
         %br
         %br
         %br
