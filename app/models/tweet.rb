@@ -142,7 +142,7 @@ class Tweet < ActiveRecord::Base
     if influencer_referrer
       Transaction.create(user: influencer_referrer, transaction_on: Date.today,
                          transaction_type: 'influencer_referrer_fee', amount: influencer_referrer_fee, attachable: self,
-                         referrer_id: tweet.influencer_id)
+                         referrer_id: self.influencer_id)
     end
   end
 
