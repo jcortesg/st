@@ -61,15 +61,18 @@ Borwin::Application.configure do
   
   # Devise mailer
   config.action_mailer.default_url_options = { :host => 'www.borwin.net' }
+
+  config.action_mailer.delivery_method = :sendmail
+  config.action_mailer.perform_deliveries = true
 end
 
-ActionMailer::Base.delivery_method = :smtp
-ActionMailer::Base.smtp_settings = {
-  address: "smtp.gmail.com",
-  port: 587,
-  domain: 'borwin.net',
-  user_name: 'noreply@borwin.net',
-  password: 'borwin474%',
-  authentication: 'plain',
-  enable_starttls_auto: true
-}
+#ActionMailer::Base.delivery_method = :smtp
+#ActionMailer::Base.smtp_settings = {
+#  address: "smtp.gmail.com",
+#  port: 587,
+#  domain: 'borwin.net',
+#  user_name: 'noreply@borwin.net',
+#  password: 'borwin474%',
+#  authentication: 'plain',
+#  enable_starttls_auto: true
+#}

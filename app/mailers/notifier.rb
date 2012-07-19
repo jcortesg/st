@@ -1,6 +1,6 @@
 # encoding: utf-8
 class Notifier < ActionMailer::Base
-  default from: "noreply@borwin.net"
+  default from: "Borwin <noreply@borwin.net>"
 
   # Stest mail
   def test_mail
