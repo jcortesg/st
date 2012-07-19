@@ -136,7 +136,7 @@ class Tweet < ActiveRecord::Base
     if advertiser_referrer
       Transaction.create(user: advertiser_referrer, transaction_on: Date.today,
                          transaction_type: 'advertiser_referrer_fee', amount: advertiser_referrer_fee, attachable: self,
-                         referrer_id: tweet.campaign.advertiser.user_id)
+                         referrer_id: self.campaign.advertiser.user_id)
     end
     # Create the fee for the influencer referrer
     if influencer_referrer
