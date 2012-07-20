@@ -42,6 +42,9 @@
           Retweets:
           = @campaign.retweets_count
         %div
+          Costo de la campaña:
+          = number_to_currency(@campaign.tweets.sum(:tweet_fee))
+        %div
           CPC de la campaña:
           = @campaign.statistics_cpc
         %div
