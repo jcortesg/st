@@ -177,7 +177,7 @@
               %th Reach
 
           %tbody
-            - @campaign.influent_celebrities.each do |influencer|
+            - @campaign.influent_celebrities.reverse.each do |influencer|
               %tr{ :class => cycle('odd', 'even') }
                 %td= img_link_to_twitter(influencer)
                 %td
