@@ -1,0 +1,45 @@
+%h1
+  Contacto de Anunciante
+
+%p
+  Nombre:
+  = @site_advertiser_contact.name
+
+%p
+  Empresa:
+  = @site_advertiser_contact.company
+
+%p
+  Email:
+  = @site_advertiser_contact.email
+
+%p
+  Nombre de campaña:
+  = @site_advertiser_contact.campaign
+
+%p
+  Objetivos de campaña:
+  = @site_advertiser_contact.objectives
+
+%p
+  Presupuesto:
+  = @site_advertiser_contact.budget
+
+%p
+  Fecha estimada de campaña:
+  = @site_advertiser_contact.date
+
+- if @site_advertiser_contact.demographic.size > 0
+  %p
+    Edades
+    %ul
+      - @site_advertiser_contact.demographic.each do |age|
+        %li= age
+
+- if @site_advertiser_contact.hobbies.size > 0
+  %p
+    Hobbies
+    %ul
+      - @site_advertiser_contact.hobbies.each do |hobby|
+        %li= hobby
+

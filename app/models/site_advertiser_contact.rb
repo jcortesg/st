@@ -4,8 +4,6 @@ class SiteAdvertiserContact < ActiveRecord::Base
   validates :name, presence: true
   validates :company, presence: true
   validates :email, presence: true
-  validates :campaign, presence: true
-  validates :objectives, presence: true
   validates :budget, presence: true
 
   serialize :demographic, Array
