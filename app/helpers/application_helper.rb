@@ -97,4 +97,9 @@ module ApplicationHelper
         'Comisión por Tweet para Borwin'
     end
   end
+
+  # Bank options for forms
+  def bank_options
+    ["Banco Ciudad", "Banco Credicoop", "Banco Comafi", "Banco Francés", "Banco Galicia", "Banco Hipotecario", "Banco Macro", "Banco Nación", "Banco Patagonia", "Banco Provincia", "Citi", "Santander Río", "Standard Bank"]
+  end
 end

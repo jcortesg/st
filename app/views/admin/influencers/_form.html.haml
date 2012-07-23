@@ -25,7 +25,7 @@
   = i.input :account_number
   = i.input :account_type, as: :select, collection: ['Caja de Ahorro', 'Cuenta Corriente'], include_blank: false
   = i.input :cbu
-  = i.input :bank_name, as: :select, collection: ["Citi", "Standard Bank", "Santander Río", "Banco Francés", "Banco Macro", "Banco Galicia", "Banco Nación", "Banco Provincia", "Banco Ciudad", "Banco Patagonia", "Banco Hipotecario", "Banco Credicoop"]
+  = i.input :bank_name, as: :select, collection: bank_options
   = i.input :price_category, as: :select, collection: 1..5, include_blank: false
   = i.input :manual_tweet_fee, hint: sprintf("$ %.02f", f.object.influencer.automatic_tweet_fee.to_f)
   = i.input :manual_cpc_fee, hint: sprintf("$ %.02f", f.object.influencer.automatic_cpc_fee.to_f)
