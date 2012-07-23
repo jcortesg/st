@@ -5,8 +5,8 @@
 
       = render '/shared/simple_form_errors', :f => f
 
-      = f.input :referrer, as: :select, collection: User.where("role = 'influencer' or role = 'affiliate'").all, label: 'Usuario'
-      = f.input :referral, as: :select, collection: User.where("role = 'influencer' or role = 'advertiser'").all, label: 'Referido'
+      = f.input :referrer, as: :select, collection: sorted_referrer_list, label: 'Usuario'
+      = f.input :referral, as: :select, collection: sorted_referral_list, label: 'Referido'
       = f.input :referral_on, label: 'Referido desde'
 
       .form-actions
