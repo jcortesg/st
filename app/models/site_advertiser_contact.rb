@@ -1,8 +1,9 @@
 class SiteAdvertiserContact < ActiveRecord::Base
-  attr_accessible :name, :company, :email, :campaign, :objectives, :budget, :date, :demographic, :hobbies
+  attr_accessible :name, :company, :email, :campaign, :objectives, :budget, :date, :demographic, :hobbies, :position
 
   validates :name, presence: true
   validates :company, presence: true
+  validates :position, presence: true
   validates :email, presence: true
   validates :budget, presence: true
 
