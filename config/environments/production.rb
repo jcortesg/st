@@ -44,7 +44,7 @@ Borwin::Application.configure do
 
   # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
   # config.assets.precompile += %w( search.js )
-  config.assets.precompile += %w(application.js home.js user_profile.js highcharts.js admin/admin.js advertiser/new_tweet.js advertiser/audience.js application.css ie.css print.css admin/admin.css ie.css)
+  config.assets.precompile += %w(application.js home.js user_profile.js highcharts.js admin/admin.js advertiser/new_tweet.js advertiser/audience.js application.css ie.css print.css admin/admin.css ie.css advertisers/statistics.js advertisers/statistics.css)
 
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false

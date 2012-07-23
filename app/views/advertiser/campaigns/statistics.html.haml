@@ -1,3 +1,7 @@
+- content_for :head do
+  = javascript_include_tag('advertiser/statistics')
+  = stylesheet_link_tag('advertiser/statistics')
+
 - if flash.any?
   .row
     .span12
@@ -143,26 +147,31 @@
 
 .row
   .span12
-    .round_box
-      .content
+    .round_box{style: 'min-height: 100px'}
+      .content.click_view
 
-        %h1.title Clicks
+        %h1.title
+          Clicks
+          = link_to("( Ver / Ocultar )", "#", class: 'link_show_hide')
 
-        %table.table.table-striped
-          %thead
-            %tr
-              %th Tweet
-              %th IP
-              %th Navegador
-              %th{style: 'width: 140px'} Fecha
 
-          %tbody
-            - @campaign.clicks.each do |click|
-              %tr{ :class => cycle('odd', 'even') }
-                %td= link_to(truncate(click.tweet.text, length: 100), [:advertiser, click.tweet.campaign, click.tweet])
-                %td= click.remote_ip
-                %td= click.remote_agent
-                %td= localize(click.created_at, :format => "%d/%m/%Y %H:%M:%S")
+        .show_hide.hidden
+
+          %table.table.table-striped
+            %thead
+              %tr
+                %th Tweet
+                %th IP
+                %th Navegador
+                %th{style: 'width: 140px'} Fecha
+
+            %tbody
+              - @campaign.clicks.each do |click|
+                %tr{ :class => cycle('odd', 'even') }
+                  %td= link_to(truncate(click.tweet.text, length: 100), [:advertiser, click.tweet.campaign, click.tweet])
+                  %td= click.remote_ip
+                  %td= click.remote_agent
+                  %td= localize(click.created_at, :format => "%d/%m/%Y %H:%M:%S")
 
 .row
   .span12
