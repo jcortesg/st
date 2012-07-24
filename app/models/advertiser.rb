@@ -4,7 +4,7 @@ class Advertiser < ActiveRecord::Base
   has_many :campaigns, dependent: :destroy
   has_many :tweets, through: :campaigns
 
-  has_attached_file :photo, :styles => { :profile => "140x200#", :small => "100x100>", :thumb => "48x48#"  }
+  has_attached_file :photo, :styles => { :profile => "140x140#", :small => "100x100>", :thumb => "48x48#"  }
 
   validates :company, :presence => true
   validates :first_name, :presence => true
@@ -12,7 +12,7 @@ class Advertiser < ActiveRecord::Base
   validates :phone, :presence => true
 
   attr_accessible :first_name, :last_name, :twitter_username, :company, :address, :city, :state, :country, :zip_code,
-                  :phone, :can_create_campaigns, :position, :web, :advertising_source
+                  :phone, :can_create_campaigns, :position, :web, :advertising_source, :brand, :photo
 
   def full_name
     "#{self.first_name} #{self.last_name}"

@@ -6,7 +6,6 @@ class Advertiser::ProfilesController < ApplicationController
   def show
     @advertiser = current_user.advertiser
     @user = current_user
-    render action: 'my_data'
   end
 
   # Shows the current user data
@@ -28,6 +27,21 @@ class Advertiser::ProfilesController < ApplicationController
     else
       flash.now[:error] = "Hubo un error al actualizar tus datos."
       render action: :edit
+    end
+  end
+
+  # Updates the photo profile
+  def update_photo
+    @advertiser = current_user.advertiser
+    if @advertiser.update_attributes(params[:advertiser])
+      if params[:advertiser] && params[:advertiser][:photo]
+        flash[:success] = "Tu foto de perfil fue actualizada"
+      else
+        flash[:notice] = "Debes de ingresar una foto para actualizar tu foto de perfil"
+      end
+      redirect_to advertiser_profile_path
+    else
+      render action: show
     end
   end
 

@@ -113,6 +113,7 @@ Borwin::Application.routes.draw do
       get :my_data
       get :edit
       put :update
+      put :update_photo
       get :change_password
       put :update_password
     end

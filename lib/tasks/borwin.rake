@@ -28,7 +28,9 @@ namespace :borwin do
       tweet.save
       # Now activate the tweet
       tweet.activate
+      tweet.update_attribute(:status, 'activated')
       tweet.campaign.activate_campaign
+      tweet.campaign.update_attribute(:status, 'active')
     end
   end
 

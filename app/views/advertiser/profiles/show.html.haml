@@ -12,44 +12,58 @@
     .profile_round_box
       .profile_resume_head
         %h1
-          = @advertiser.full_name
+          = @advertiser.company
 
       .profile_body
         .twitter_overview
           .overview_data.clearfix
             %h2
-              = link_to("@#{@advertiser.user.twitter_screen_name}", "https://twitter.com/#!/#{@advertiser.user.twitter_screen_name}")
+              - unless @advertiser.user.twitter_screen_name.blank?
+                = link_to("@#{@advertiser.user.twitter_screen_name}", "https://twitter.com/#!/#{@advertiser.user.twitter_screen_name}")
               %span.edit_profile
-                = link_to("Editar Perfil", influencer_profiles_edit_path, :class => 'btn btn-primary')
+                = link_to("Editar Perfil", [:advertiser, :profiles, :edit], :class => 'btn btn-primary')
+            - unless @advertiser.brand.blank?
+              %strong= "Marca:"
+              = @advertiser.brand
             %p
-              %strong= "Bio:"
-              = @advertiser.twitter_bio
+              %strong= "Nombre:"
+              = @advertiser.full_name
             %p
-              %strong= "Último Tweet:"
-              = @twitter_user.status.try(:text) rescue ''
+              %strong= "Cargo:"
+              = @advertiser.position
           .twitter_photo
             - if @advertiser.photo.exists?
               = link_to(image_tag(@advertiser.photo.url(:profile)), '#user_photo', 'data-toggle' => 'modal')
             - else
-              = link_to(image_tag('no_photo.jpg'), '#user_photo', 'data-toggle' => 'modal')
+              = link_to(image_tag('logo_empresas.jpg'), '#user_photo', 'data-toggle' => 'modal')
 
       .profile_data.clearfix
         .influencer_stats
           .box_container.clearfix
             .box
-              .stat Dato
-              .data Valor
-              .stat Dato
-              .data Valor
-              .stat Ingreso TweetGo:
-              .data= @advertiser.user.created_at.strftime("%d/%m/%y")
+              .stat Web
+              .data= link_to(@advertiser.web, @advertiser.web.include?('http') ? @advertiser.web : "http://#{@advertiser.web}", target: '_blank')
+              .stat Dirección
+              .data= @advertiser.address
+              .stat Ciudad
+              .data= @advertiser.city
+              .stat Provincia
+              .data= @advertiser.state
+              .stat País
+              .data= @advertiser.country
+              .stat Código Postal
+              .data= @advertiser.zip_code
 
             .box.last
-              .stat Dato
-              .data Valor
+              .stat Ingreso TweetGo:
+              .data= @advertiser.user.created_at.strftime("%d/%m/%y")
+              .stat Campañas Activas
+              .data= link_to(@advertiser.campaigns.created_and_active.count, [:advertiser, :campaigns])
+              .stat Históricas
+              .data= link_to(@advertiser.campaigns.archived.count, [:archived, :advertiser, :campaigns])
 
       #user_photo.modal.hide.fade
-        = simple_form_for @advertiser, :url => influencer_profiles_update_photo_path do |f|
+        = simple_form_for @advertiser, :url => advertiser_profiles_update_photo_path do |f|
           .modal-header
             %button.close{'data-dismiss' => 'modal'} x
             %h3 Foto
@@ -59,7 +73,7 @@
                 - if @advertiser.photo.exists?
                   = image_tag(@advertiser.photo.url(:profile))
                 - else
-                  = image_tag('no_photo.jpg')
+                  = image_tag('logo_empresas.jpg')
               .form
                 = f.input :photo
           .modal-footer
@@ -94,7 +108,7 @@
             live: false,
             behavior: 'all'
           }
-        }).render().setUser('#{@advertiser.user.twitter_screen_name}').start();
+        }).render().setUser('#{@advertiser.user.twitter_screen_name.blank? ? 'BorwinAR' : @advertiser.user.twitter_screen_name}').start();
 
 
 /
