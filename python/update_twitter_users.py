@@ -58,6 +58,7 @@ try:
 		cur_temp.execute("SELECT COUNT(*) FROM twitter_followers WHERE influencer_id = " + str(row['influencer_id']))
 		while cur_temp.fetchone()[0] != 0:
 			print "Eliminando 1000 seguidores de %s %s" % (row['first_name'], row['last_name'])
+			sys.stdout.flush()
 			cur.execute("DELETE FROM twitter_followers WHERE influencer_id = " + str(row['influencer_id']) + " LIMIT 1000")
 			conn.commit()
 			time.sleep(1)
@@ -93,10 +94,12 @@ try:
 			sys.stdout.flush()			
 		except Exception, e:
 			print "Exception %s" % e 
+			sys.stdout.flush()
 			pass
 
 except Exception, e:
 	print "Error %s" % (e)
+	sys.stdout.flush()
 	raise
 finally:
 	if conn:
@@ -104,3 +107,4 @@ finally:
 
 elapsed_time = time.time() - start_time
 print "Tardo %d segundos en updatear todos los seguidores" % (elapsed_time)
+sys.stdout.flush()
