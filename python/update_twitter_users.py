@@ -51,9 +51,17 @@ try:
 	cur_master.execute("SELECT influencers.id as influencer_id, users.twitter_uid as twitter_uid, users.twitter_token as twitter_token, users.twitter_secret as twitter_secret, influencers.first_name as first_name, influencers.last_name as last_name FROM influencers, audiences, users WHERE audiences.influencer_id = influencers.id AND influencers.user_id = users.id ORDER BY audiences.followers asc")
 	rows = cur_master.fetchall()
 	for row in rows:
+		start_update_timer = time.time()
 		# For each user, first we delete all the followers relationship
 		cur = conn.cursor()
-		cur.execute("DELETE FROM twitter_followers WHERE twitter_user_id = " + str(row['influencer_id']))
+		cur_temp = conn.cursor()
+		cur_temp.execute("SELECT COUNT(*) FROM twitter_followers WHERE influencer_id = " + str(row['influencer_id']))
+		while cur_temp.fetchone()[0] != 0:
+			print "Eliminando 1000 seguidores de %s %s" % (row['first_name'], row['last_name'])
+			cur.execute("DELETE FROM twitter_followers WHERE influencer_id = " + str(row['influencer_id']) + " LIMIT 1000")
+			conn.commit()
+			time.sleep(1)
+			cur_temp.execute("SELECT COUNT(*) FROM twitter_followers WHERE influencer_id = " + str(row['influencer_id']))
 		
 		# Auth by the user with twitter
 		auth = tweepy.OAuthHandler(TWITTER_CONSUMER_KEY, TWITTER_CONSUMER_SECRET)
@@ -72,16 +80,19 @@ try:
 					twitter_user_id = cur.fetchone()[0]
 				else:
 					# It does't exist, create the record and fetch the twitter user id
-					cur.execute("INSERT INTO twitter_users(twitter_uid) VALUE('" + str(follower_id) + "')")
+					cur.execute("INSERT INTO twitter_users(twitter_uid, created_at, updated_at) VALUE('" + str(follower_id) + "', now(), now())")
+					conn.commit()
 					twitter_user_id = cur.lastrowid
 					
 				# Create the relationship into the db
-				cur.execute("REPLACE INTO twitter_followers(influencer_id, twitter_user_id, created_at, updated_at) VALUES(" + str(row['influencer_id']) + ", " + str(twitter_user_id) + ", now(), now())")
-				
-			elapsed_time = time.time() - start_time
-			print "Tardo %.02f segundos en updatear %d seguidores de %s %s" % (elapsed_time, followers_count, row['first_name'], row['last_name'])
+				cur.execute("INSERT INTO twitter_followers(influencer_id, twitter_user_id, created_at, updated_at) VALUES(" + str(row['influencer_id']) + ", " + str(twitter_user_id) + ", now(), now())")
+				conn.commit()
+			
+			elapsed_time = time.time() - start_update_timer
+			print "Tardo %d segundos en updatear %d seguidores de %s %s" % (elapsed_time, followers_count, row['first_name'], row['last_name'])
 			sys.stdout.flush()			
 		except Exception, e:
+			print "Exception %s" % e 
 			pass
 
 except Exception, e:
@@ -90,3 +101,6 @@ except Exception, e:
 finally:
 	if conn:
 		conn.close()
+
+elapsed_time = time.time() - start_time
+print "Tardo %d segundos en updatear todos los seguidores" % (elapsed_time)
