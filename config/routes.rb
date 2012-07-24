@@ -107,8 +107,10 @@ Borwin::Application.routes.draw do
         put :accept, on: :member
       end
     end
+    match '/profile' => 'profiles#show', as: :profile
     namespace :profiles do
       get :show
+      get :my_data
       get :edit
       put :update
       get :change_password

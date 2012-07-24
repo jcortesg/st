@@ -1,0 +1,34 @@
+- if flash.any?
+  .row
+    .span12
+      = render '/shared/flash', flash: flash
+.row
+  .span6.offset3
+    .frontend_round_content
+      .main_blue_title Datos de contacto
+
+      %dl.record_details
+        %dt Email
+        %dd= dl_value @user.email
+        %dt Nombre
+        %dd= dl_value @user.advertiser.first_name
+        %dt Apellido
+        %dd= dl_value @user.advertiser.last_name
+        %dt Empresa
+        %dd= dl_value @user.advertiser.company
+        %dt Dirección
+        %dd= dl_value @user.advertiser.address
+        %dt Ciudad
+        %dd= dl_value @user.advertiser.city
+        %dt Provincia
+        %dd= dl_value @user.advertiser.state
+        %dt País
+        %dd= dl_value @user.advertiser.country
+        %dt Código Postal
+        %dd= dl_value @user.advertiser.zip_code
+        %dt Teléfono
+        %dd= dl_value @user.advertiser.phone
+
+
+      .form-actions
+        = link_to 'Editar', advertiser_profiles_edit_path, :class => 'btn btn-primary btn-large'

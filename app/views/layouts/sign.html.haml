@@ -11,6 +11,7 @@
     - if params[:controller].include?('admin')
       = javascript_include_tag 'admin/admin'
     = yield :head
+    %meta{name: 'viewport', content: 'width=device-width, initial-scale=1.0' }
     = csrf_meta_tag
   %body
     .navbar.navbar-fixed-top
@@ -40,7 +41,8 @@
                       = "Perfil"
                       %b.caret
                     %ul.dropdown-menu
-                      %li= link_to 'Mis Datos', advertiser_profiles_show_path
+                      %li= link_to 'Mi perfil', advertiser_profile_path
+                      %li= link_to 'Mis Datos', advertiser_profiles_my_data_path
                       %li= link_to 'Cambiar Contraseña', advertiser_profiles_change_password_path
                 - elsif current_user.influencer?
                   %li.dropdown

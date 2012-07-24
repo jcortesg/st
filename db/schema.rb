@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120720165557) do
+ActiveRecord::Schema.define(:version => 20120724133135) do
 
   create_table "advertisers", :force => true do |t|
     t.integer  "user_id"
@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(:version => 20120720165557) do
     t.string   "twitter_image_url"
     t.string   "twitter_bio"
     t.string   "company"
+    t.string   "brand"
     t.string   "web"
     t.string   "advertising_source"
     t.string   "address"
@@ -33,6 +34,10 @@ ActiveRecord::Schema.define(:version => 20120720165557) do
     t.boolean  "can_create_campaigns", :default => false, :null => false
     t.datetime "created_at",                              :null => false
     t.datetime "updated_at",                              :null => false
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
   end
 
   add_index "advertisers", ["user_id"], :name => "index_advertisers_on_user_id", :unique => true
@@ -41,7 +46,14 @@ ActiveRecord::Schema.define(:version => 20120720165557) do
     t.integer  "user_id"
     t.string   "first_name"
     t.string   "last_name"
+    t.string   "position"
+    t.string   "twitter_location"
+    t.string   "twitter_image_url"
+    t.string   "twitter_bio"
     t.string   "company"
+    t.string   "brand"
+    t.string   "web"
+    t.string   "advertising_source"
     t.string   "address"
     t.string   "city"
     t.string   "state"
@@ -53,8 +65,12 @@ ActiveRecord::Schema.define(:version => 20120720165557) do
     t.string   "account_type"
     t.string   "bank_name"
     t.string   "cbu"
-    t.datetime "created_at",        :null => false
-    t.datetime "updated_at",        :null => false
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
   end
 
   add_index "affiliates", ["user_id"], :name => "index_affiliates_on_user_id", :unique => true

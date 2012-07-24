@@ -7,6 +7,11 @@ class Advertiser::ProfilesController < ApplicationController
     @user = current_user
   end
 
+  # Shows the current user data
+  def my_data
+    @user = current_user
+  end
+
   # Shows the form to update the profile
   def edit
     @user = current_user
