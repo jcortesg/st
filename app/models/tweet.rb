@@ -113,11 +113,11 @@ class Tweet < ActiveRecord::Base
 
     # Calculate if there is any feee for the referrers
     if advertiser_referrer
-      advertiser_referrer_fee = (borwin_fee * (advertiser_referrer_commission / 100)).round(2)
+      advertiser_referrer_fee = (influencer_tweet_fee * (advertiser_referrer_commission.to_f / 100.0)).round(2)
       advertiser_referrer_fee = 0.01 if advertiser_referrer_fee < 0.01
     end
     if influencer_referrer
-      influencer_referrer_fee = (borwin_fee * (influencer_referrer_commission / 100)).round(2)
+      influencer_referrer_fee = (influencer_tweet_fee * (influencer_referrer_commission.to_f / 100.0)).round(2)
       influencer_referrer_fee = 0.01 if influencer_referrer_fee < 0.01
     end
 
