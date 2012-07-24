@@ -70,6 +70,8 @@ try:
 		api = tweepy.API(auth)
 		
 		# Iterate on every follower_id
+		print "Insertando los seguidores de %s %s" % (row['first_name'], row['last_name'])
+		sys.stdout.flush()
 		followers_count = 0
 		try:
 			for follower_id in tweepy.Cursor(api.followers_ids).items():
