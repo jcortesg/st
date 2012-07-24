@@ -232,7 +232,7 @@
 
         %h1.title Hashtags
 
-        = @campaign.hashtags.each.join(" &nbsp;-&nbsp; ").html_safe()
+        = @campaign.hashtags.all().join(" &nbsp;-&nbsp; ").html_safe()
 
 
 
