@@ -16,6 +16,7 @@ es:
       site_advertiser_contact:
         name: Nombre
         company: Empresa
+        position: Cargo
         email: Email
         campaign: Nombre de la Campaña
         objectives: Objetivos de la Campaña
