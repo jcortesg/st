@@ -4,6 +4,8 @@ class Advertiser < ActiveRecord::Base
   has_many :campaigns, dependent: :destroy
   has_many :tweets, through: :campaigns
 
+  has_attached_file :photo, :styles => { :profile => "140x200#", :small => "100x100>", :thumb => "48x48#"  }
+
   validates :company, :presence => true
   validates :first_name, :presence => true
   validates :last_name, :presence => true

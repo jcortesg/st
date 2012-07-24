@@ -4,7 +4,7 @@ class Advertiser::ProfilesController < ApplicationController
 
   # Shows the user profile
   def show
-    @user = current_user
+    @advertiser = current_user.advertiser
   end
 
   # Shows the current user data

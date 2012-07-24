@@ -1,6 +1,8 @@
 # encoding: utf-8
 class Affiliate < ActiveRecord::Base
   belongs_to :user
+
+  has_attached_file :photo, :styles => { :profile => "140x200#", :small => "100x100>", :thumb => "48x48#"  }
   
   validates :first_name, :presence => true
   validates :last_name, :presence => true

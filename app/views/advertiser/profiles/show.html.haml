@@ -12,24 +12,24 @@
     .profile_round_box
       .profile_resume_head
         %h1
-          = @user.full_name
+          = @advertiser.full_name
 
       .profile_body
         .twitter_overview
           .overview_data.clearfix
             %h2
-              = link_to("@#{@user.user.twitter_screen_name}", "https://twitter.com/#!/#{@user.user.twitter_screen_name}")
+              = link_to("@#{@advertiser.user.twitter_screen_name}", "https://twitter.com/#!/#{@advertiser.user.twitter_screen_name}")
               %span.edit_profile
                 = link_to("Editar Perfil", influencer_profiles_edit_path, :class => 'btn btn-primary')
             %p
               %strong= "Bio:"
-              = @user.twitter_bio
+              = @advertiser.twitter_bio
             %p
               %strong= "Último Tweet:"
               = @twitter_user.status.try(:text) rescue ''
           .twitter_photo
-            - if @user.photo.exists?
-              = link_to(image_tag(@user.photo.url(:profile)), '#user_photo', 'data-toggle' => 'modal')
+            - if @advertiser.photo.exists?
+              = link_to(image_tag(@advertiser.photo.url(:profile)), '#user_photo', 'data-toggle' => 'modal')
             - else
               = link_to(image_tag('no_photo.jpg'), '#user_photo', 'data-toggle' => 'modal')
 
@@ -37,46 +37,27 @@
         .influencer_stats
           .box_container.clearfix
             .box
-              .stat Seguidores:
-              .data= @user.audience.followers
-              .stat Amigos:
-              .data= @user.audience.friends
-              .stat Tweets:
-              .data= @user.audience.tweets
-              .stat Sexo:
-              .data= influencer_sex(@user.sex)
-              .stat Años:
-              .data= influencer_age(@user.birthday)
-              .stat Ingreso Twitter:
-              .data= @user.twitter_joined.strftime("%d/%m/%y")
+              .stat Dato
+              .data Valor
+              .stat Dato
+              .data Valor
               .stat Ingreso TweetGo:
-              .data= @user.user.created_at.strftime("%d/%m/%y")
+              .data= @advertiser.user.created_at.strftime("%d/%m/%y")
 
             .box.last
-              .stat Precio Campaña:
-              .data= number_to_currency(@user.influencer_campaign_fee)
-              .stat CPC:
-              .data= number_to_currency(@user.influencer_cpc_fee)
-              .stat CPC medio:
-              .data= "-"
-              .stat CPC totales:
-              .data= "-"
-              .stat Klout:
-              .data
-                .mini-flag.score.kscore
-                  .value= @user.audience.klout
-
+              .stat Dato
+              .data Valor
 
       #user_photo.modal.hide.fade
-        = simple_form_for @user, :url => influencer_profiles_update_photo_path do |f|
+        = simple_form_for @advertiser, :url => influencer_profiles_update_photo_path do |f|
           .modal-header
             %button.close{'data-dismiss' => 'modal'} x
             %h3 Foto
           .modal-body
             .clearfix
               .image
-                - if @user.photo.exists?
-                  = image_tag(@user.photo.url(:profile))
+                - if @advertiser.photo.exists?
+                  = image_tag(@advertiser.photo.url(:profile))
                 - else
                   = image_tag('no_photo.jpg')
               .form
@@ -113,7 +94,7 @@
             live: false,
             behavior: 'all'
           }
-        }).render().setUser('#{@user.user.twitter_screen_name}').start();
+        }).render().setUser('#{@advertiser.user.twitter_screen_name}').start();
 
 
 /

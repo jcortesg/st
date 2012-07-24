@@ -1,5 +1,6 @@
 - if flash.any?
   - flash.keys.each do |flash_key|
+    - next if flash_key.to_s == 'alert-timedout'
     .alert{:class => "alert-#{flash_key}"}
       %a.close{'data-dismiss' => 'alert', href: '#'} x
       = flash[flash_key]
