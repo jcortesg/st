@@ -225,6 +225,15 @@
 
         = link_to("Volver", [:advertiser, @campaign], class: 'btn btn-primary')
 
+.row
+  .span12
+    .round_box
+      .content
+
+        %h1.title Hashtags
+
+        = @campaign.hashtags.each.join(" &nbsp;-&nbsp; ").html_safe()
+
 
 
 :javascript
