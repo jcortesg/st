@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120724133135) do
+ActiveRecord::Schema.define(:version => 20120724172819) do
 
   create_table "advertisers", :force => true do |t|
     t.integer  "user_id"
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(:version => 20120724133135) do
     t.string   "twitter_location"
     t.string   "twitter_image_url"
     t.string   "twitter_bio"
+    t.string   "twitter_screen_name"
     t.string   "company"
     t.string   "brand"
     t.string   "web"
@@ -50,6 +51,7 @@ ActiveRecord::Schema.define(:version => 20120724133135) do
     t.string   "twitter_location"
     t.string   "twitter_image_url"
     t.string   "twitter_bio"
+    t.string   "twitter_screen_name"
     t.string   "company"
     t.string   "brand"
     t.string   "web"
@@ -65,8 +67,8 @@ ActiveRecord::Schema.define(:version => 20120724133135) do
     t.string   "account_type"
     t.string   "bank_name"
     t.string   "cbu"
-    t.datetime "created_at",         :null => false
-    t.datetime "updated_at",         :null => false
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
     t.string   "photo_file_name"
     t.string   "photo_content_type"
     t.integer  "photo_file_size"

@@ -143,7 +143,7 @@ class Campaign < ActiveRecord::Base
     prom = 0
     self.tweets.each do |tweet|
       if tweet.fee_type = 'tweet_fee'
-        prom += tweet.tweet_fee / tweet.clicks_count
+        prom += tweet.tweet_fee / (tweet.clicks_count == 0 ? 1 :  tweet.clicks_count)
       end
     end
     if prom > 0
