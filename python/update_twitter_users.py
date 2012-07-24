@@ -83,14 +83,15 @@ try:
 					twitter_user_id = cur.fetchone()[0]
 				else:
 					# It does't exist, create the record and fetch the twitter user id
-					cur.execute("INSERT INTO twitter_users(twitter_uid, created_at, updated_at) VALUE('" + str(follower_id) + "', now(), now())")
+					cur_temp.execute("INSERT INTO twitter_users(twitter_uid, created_at, updated_at) VALUE('" + str(follower_id) + "', now(), now())")
 					conn.commit()
 					twitter_user_id = cur.lastrowid
 					
 				# Create the relationship into the db
-				cur.execute("INSERT INTO twitter_followers(influencer_id, twitter_user_id, created_at, updated_at) VALUES(" + str(row['influencer_id']) + ", " + str(twitter_user_id) + ", now(), now())")
-				conn.commit()
+				cur_temp.execute("INSERT INTO twitter_followers(influencer_id, twitter_user_id, created_at, updated_at) VALUES(" + str(row['influencer_id']) + ", " + str(twitter_user_id) + ", now(), now())")
+				
 			
+			conn.commit()
 			elapsed_time = time.time() - start_update_timer
 			print "Tardo %d segundos en updatear %d seguidores de %s %s" % (elapsed_time, followers_count, row['first_name'], row['last_name'])
 			sys.stdout.flush()			

@@ -5,6 +5,8 @@ class Advertiser::ProfilesController < ApplicationController
   # Shows the user profile
   def show
     @advertiser = current_user.advertiser
+    @user = current_user
+    render action: 'my_data'
   end
 
   # Shows the current user data
