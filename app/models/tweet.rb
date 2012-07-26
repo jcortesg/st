@@ -14,6 +14,7 @@ class Tweet < ActiveRecord::Base
   validates :fee_type, presence: true
   validates :text, presence: true
   validate :tweet_text_validation
+  validate :tweet_at_validation
 
   after_create :mail_tweet_creation
   before_create :set_prices
@@ -97,6 +98,13 @@ class Tweet < ActiveRecord::Base
       if template_text.size > 157
         errors.add(:text, "tiene #{template_text.size} carácteres, el máximo es de 140")
       end
+    end
+  end
+
+  # Check the date of the tweet, it has to be in the future with a least 1 hour of creation from now
+  def tweet_at_validation
+    if self.tweet_at < (Time.now + 1.hour)
+      errors.add(:tweet_at, "debe ser a partir de la próxima hora en adelante")
     end
   end
 
