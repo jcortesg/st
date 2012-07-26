@@ -34,6 +34,14 @@ namespace :borwin do
     end
   end
 
+  desc 'Expire tweets'
+  task expire_tweets: :environment do
+    tweets = Tweet.where("status in('created', 'advertiser_reviewed', 'influencer_reviewed') and tweet_at > ? and tweet_at < ?", Time.now - 5.minutes, Time.now + 5.minutes).all
+    tweets.each do |tweet|
+      tweet.expire
+    end
+  end
+
   desc 'Generate default keywords'
   task generate_default_keywords: :environment do
     ['males', 'females', 'sports', 'fashion', 'music', 'movies', 'politics', 'technology', 'travel', 'luxury',

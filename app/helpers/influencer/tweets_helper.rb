@@ -16,6 +16,8 @@ module Influencer::TweetsHelper
         'Aceptado'
       when 'activated'
         'Públicado'
+      when 'expired'
+        'Vencido'
     end
   end
 

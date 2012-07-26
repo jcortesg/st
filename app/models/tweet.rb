@@ -25,6 +25,7 @@ class Tweet < ActiveRecord::Base
   # * influencer_rejected: Rejected by the Influencer
   # * advertiser_reviewed: Revised by the Advertiser
   # * advertiser_rejected: Rejected by the Advertiser
+  # * expired: Expired because noone accepted it
   # * accepted: Accepted either by Advertiser or Influencer
   # * active: The tweet was tweeted on twitter
 
@@ -66,12 +67,21 @@ class Tweet < ActiveRecord::Base
     event :activate do
       transition [:accepted] => [:activated]
     end
+
+    event :expire do
+      transition [:advertiser_reviewed, :influencer_reviewed, :created] => [:expired]
+    end
   end
 
   class << self
     # Gets all the published tweets
     def activated
       where(status: 'activated')
+    end
+
+    # Expired tweets
+    def expired
+      where(status: 'expired')
     end
   end
 

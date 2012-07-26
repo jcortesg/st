@@ -16,6 +16,8 @@ module Advertiser::TweetsHelper
         'Aceptado'
       when 'activated'
         'Públicado'
+      when 'expired'
+        'Vencido'
     end
   end
 

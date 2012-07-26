@@ -63,6 +63,8 @@ module ApplicationHelper
         'Aceptado, se publicara en la fecha y hora convenidas'
       when 'activated'
         'Activo, el Tweet ya fue públicado'
+      when 'expired'
+        'Vencido, el Tweet no fue aceptado ni rechazado'
     end
   end
 
