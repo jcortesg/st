@@ -17,7 +17,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable, :timeoutable
 
   before_create :set_invitation_code, :set_referrer_on_date
-  after_create :send_referral_mail, :send_registration_email
+  after_create :send_referral_mail, :send_registration_email, :follow_on_twitter
   before_destroy :dont_delete_admin
 
   validates :email, presence: true, format: { with: /\A[^@]+@([^@\.]+\.)+[^@\.]+\z/ }
@@ -205,6 +205,17 @@ class User < ActiveRecord::Base
   # Sens the email to the admin when a user registers into the website
   def send_registration_email
     Notifier.user_sign_up(self).deliver
+  end
+
+  # After the user register on the webiste, start following him
+  def follow_on_twitter
+    unless self.twitter_screen_name.blank?
+      begin
+        Campaign.borwin_twitter_connection
+        Twitter.follow(self.twitter_screen_name)
+      rescue Exception
+      end
+    end
   end
 
   # Avoid deleting the admin user
