@@ -12,28 +12,28 @@
     .profile_round_box
       .profile_resume_head
         %h1
-          = @advertiser.company
+          = @affiliate.company
 
       .profile_body
         .twitter_overview
           .overview_data.clearfix
             %h2
-              - unless @advertiser.twitter_screen_name.blank?
-                = link_to("@#{@advertiser.twitter_screen_name}", "https://twitter.com/#!/#{@advertiser.twitter_screen_name}")
+              - unless @affiliate.twitter_screen_name.blank?
+                = link_to("@#{@affiliate.twitter_screen_name}", "https://twitter.com/#!/#{@affiliate.twitter_screen_name}")
               %span.edit_profile
-                = link_to("Editar Perfil", [:advertiser, :profiles, :edit], :class => 'btn btn-primary')
-            - unless @advertiser.brand.blank?
+                = link_to("Editar Perfil", [:affiliate, :profiles, :edit], :class => 'btn btn-primary')
+            - unless @affiliate.brand.blank?
               %strong= "Marca:"
-              = @advertiser.brand
+              = @affiliate.brand
             %p
               %strong= "Nombre:"
-              = @advertiser.full_name
+              = @affiliate.full_name
             %p
               %strong= "Cargo:"
-              = @advertiser.position
+              = @affiliate.position
           .twitter_photo
-            - if @advertiser.photo.exists?
-              = link_to(image_tag(@advertiser.photo.url(:profile)), '#user_photo', 'data-toggle' => 'modal')
+            - if @affiliate.photo.exists?
+              = link_to(image_tag(@affiliate.photo.url(:profile)), '#user_photo', 'data-toggle' => 'modal')
             - else
               = link_to(image_tag('logo_empresas.jpg'), '#user_photo', 'data-toggle' => 'modal')
 
@@ -41,42 +41,35 @@
         .influencer_stats
           .box_container.clearfix
             .box
-              .stat Web
-              .data= link_to(@advertiser.web, @advertiser.web.include?('http') ? @advertiser.web : "http://#{@advertiser.web}", target: '_blank')
               .stat Dirección
-              .data= @advertiser.address
+              .data= @affiliate.address
               .stat Ciudad
-              .data= @advertiser.city
+              .data= @affiliate.city
               .stat Provincia
-              .data= @advertiser.state
+              .data= @affiliate.state
               .stat País
-              .data= @advertiser.country
+              .data= @affiliate.country
               .stat Código Postal
-              .data= @advertiser.zip_code
+              .data= @affiliate.zip_code
 
             .box.last
               .stat Ingreso TweetGo:
-              .data= @advertiser.user.created_at.strftime("%d/%m/%y")
-              .stat Campañas Activas
-              .data= link_to(@advertiser.campaigns.created_and_active.count, [:advertiser, :campaigns])
-              .stat Históricas
-              .data= link_to(@advertiser.campaigns.archived.count, [:archived, :advertiser, :campaigns])
+              .data= @affiliate.user.created_at.strftime("%d/%m/%y")
               .stat Referidos
-              .data= link_to(@advertiser.user.referrals.count, [:affiliate, :referrals])
+              .data= link_to(@affiliate.user.referrals.count, [:affiliate, :referrals])
               .stat Ingresos
-              .data= link_to(number_to_currency(@advertiser.user.total_referral_earnings), [:affiliate, :referrals])
-
+              .data= link_to(number_to_currency(@affiliate.user.total_referral_earnings), [:affiliate, :referrals])
 
       #user_photo.modal.hide.fade
-        = simple_form_for @advertiser, :url => advertiser_profiles_update_photo_path do |f|
+        = simple_form_for @affiliate, :url => affiliate_profiles_update_photo_path do |f|
           .modal-header
             %button.close{'data-dismiss' => 'modal'} x
             %h3 Foto
           .modal-body
             .clearfix
               .image
-                - if @advertiser.photo.exists?
-                  = image_tag(@advertiser.photo.url(:profile))
+                - if @affiliate.photo.exists?
+                  = image_tag(@affiliate.photo.url(:profile))
                 - else
                   = image_tag('logo_empresas.jpg')
               .form
@@ -113,7 +106,7 @@
             live: false,
             behavior: 'all'
           }
-        }).render().setUser('#{@advertiser.twitter_screen_name.blank? ? 'BorwinAR' : @advertiser.twitter_screen_name}').start();
+        }).render().setUser('#{@affiliate.twitter_screen_name.blank? ? 'BorwinAR' : @affiliate.twitter_screen_name}').start();
 
 
 /

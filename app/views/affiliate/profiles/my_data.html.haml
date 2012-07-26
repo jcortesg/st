@@ -1,0 +1,43 @@
+- if flash.any?
+  .row
+    .span12
+      = render '/shared/flash', flash: flash
+.row
+  .span6.offset3
+    .frontend_round_content
+      .main_blue_title Datos de contacto
+
+      %dl.record_details
+        %dt Email
+        %dd= dl_value @user.email
+        %dt Nombre
+        %dd= dl_value @user.affiliate.first_name
+        %dt Apellido
+        %dd= dl_value @user.affiliate.last_name
+        %dt Cargo
+        %dd= dl_value @user.affiliate.position
+        %dt Empresa
+        %dd= dl_value @user.affiliate.company
+        %dt Marca
+        %dd= dl_value @user.affiliate.brand
+        %dt Twitter
+        %dd= dl_value @user.affiliate.twitter_screen_name
+        %dt Web
+        %dd= dl_value @user.affiliate.web
+        %dt Dirección
+        %dd= dl_value @user.affiliate.address
+        %dt Ciudad
+        %dd= dl_value @user.affiliate.city
+        %dt Provincia
+        %dd= dl_value @user.affiliate.state
+        %dt País
+        %dd= dl_value @user.affiliate.country
+        %dt Código Postal
+        %dd= dl_value @user.affiliate.zip_code
+        %dt Teléfono
+        %dd= dl_value @user.affiliate.phone
+
+
+      .form-actions
+        = link_to 'Editar', [:affiliate, :profiles, :edit], :class => 'btn btn-primary btn-large'
+        = link_to 'Volver', [:affiliate, :profile], class: 'btn btn-large'

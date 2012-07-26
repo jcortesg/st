@@ -5,27 +5,28 @@ class Affiliate::ProfilesController < ApplicationController
   # Shows the affiliate profiles
   def show
     @affiliate = current_user.affiliate
+    @user = current_user
   end
 
   # Shows the contact data
-  def contact_data
-    @affiliate = current_user.affiliate
+  def my_data
+    @user = current_user
   end
 
   # Shows the form to edit the contact data
-  def edit_contact_data
-    @affiliate = current_user.affiliate
+  def edit
+    @user = current_user
   end
 
-  # Process the contact data
-  def process_contact_data
-    @affiliate = current_user.affiliate
-    if @affiliate.update_attributes(params[:affiliate])
-      flash[:success] = "Tus datos de contacto fueron actualizados."
-      redirect_to action: :contact_data
+  # Process the update of the affiliate data
+  def update
+    @user = current_user
+    if @user.update_attributes(params[:user])
+      flash[:success] = "Tus datos fueron actualizados."
+      redirect_to action: :show
     else
       flash.now[:error] = "No se pudo actualizar tus datos de contacto."
-      render action: :edit_contact_data
+      render action: :edit
     end
   end
 

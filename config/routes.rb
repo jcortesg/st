@@ -71,9 +71,11 @@ Borwin::Application.routes.draw do
   namespace :affiliate do
     match '/profile' => 'profiles#show', as: :profile
     namespace :profiles do
-      get :contact_data
-      get :edit_contact_data
-      put :process_contact_data
+      get :show
+      get :my_data
+      get :edit
+      put :update
+      put :update_photo
       get :payment_data
       get :edit_payment_data
       put :process_payment_data
@@ -136,7 +138,7 @@ Borwin::Application.routes.draw do
       get :edit
       put :update
       get :contact_data
-      get :edit_contact_data
+      get :edit
       put :process_contact_data
       get :payment_data
       get :edit_payment_data
