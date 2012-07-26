@@ -1,0 +1,18 @@
+%h1
+  Tweet que expira en 120 minuts
+
+%p
+  Campaña:
+  = @tweet.campaign.name
+
+%p
+  Celebridad:
+  = @tweet.influencer.full_name
+
+%p
+  Tweet:
+  = @tweet.text
+
+%p
+  Hora de expiración:
+  = @tweet.tweet_at.strftime("%d-%m-%y %H:%M:%S")

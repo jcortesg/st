@@ -247,6 +247,16 @@ class Tweet < ActiveRecord::Base
     end
   end
 
+  # Sends an expiration alert to the different users
+  def send_expiration_alert
+    Notifier.expiration_alert_to_admin(self).deliver
+    if self.status == 'advertiser_reviewed'
+      Notifier.expiration_alert_to_advertiser(self).deliver
+    else
+      Notifier.expiration_alert_to_influencer(self).deliver
+    end
+  end
+
   # Sends a mail when the tweet was created by the advertiser
   def mail_tweet_creation
     Notifier.tweet_creation(self).deliver

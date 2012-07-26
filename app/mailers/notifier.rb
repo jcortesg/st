@@ -181,4 +181,31 @@ class Notifier < ActionMailer::Base
 
     mail(to: advertiser.user.email, subject: "Notificaciones @ Borwin - Su campaña ha finalizado")
   end
+
+  # Sends an email to admin alerting about a tweet expiration
+  def expiration_alert_to_admin(tweet)
+    @tweet = tweet
+
+    mail(to: "info@borwin.net", subject: "Tweet expira en 120 minutos - Its time to go social")
+  end
+
+  # Sends an email to advertiser alerting about a tweet expiration
+  def expiration_alert_to_advertiser(tweet)
+    @tweet = tweet
+
+    attachments.inline['logo.jpg'] = File.read(Rails.root.join('app/assets/images/logo.jpg'))
+    attachments.inline['sellochico.jpg'] = File.read(Rails.root.join('app/assets/images/sellochico.jpg'))
+
+    mail(to: tweet.campaign.advertiser.user.email, subject: "Tweet expira en 120 minutos - Its time to go social")
+  end
+
+  # Sends an email to influencer alerting about a tweet expiration
+  def expiration_alert_to_influencer(tweet)
+    @tweet = tweet
+
+    attachments.inline['logo.jpg'] = File.read(Rails.root.join('app/assets/images/logo.jpg'))
+    attachments.inline['sellochico.jpg'] = File.read(Rails.root.join('app/assets/images/sellochico.jpg'))
+
+    mail(to: tweet.influencer.user.email, subject: "Tweet expira en 120 minutos - Its time to go social")
+  end
 end
