@@ -312,7 +312,7 @@ namespace :borwin do
         where("(male = 1 and female = 0) or (male = 0 and female = 1)").count
       male = TwitterUser.joins(:twitter_followers).where("influencer_id = ?", audience.influencer_id).
         where("male = 1 and female = 0").count
-      percent_males = ((male * 100) / gender_total).round rescue 0
+      percent_males = (((male * 100) / gender_total).round rescue 0)
       percent_females = 100 - percent_males
       audience.males = percent_males
       audience.females = percent_females
@@ -411,28 +411,28 @@ namespace :borwin do
       state_tierra_del_fuego = TwitterUser.joins(:twitter_followers, :twitter_state).where("influencer_id = ?", audience.influencer_id).where("twitter_state_id is not null").where("twitter_states.name = 'Tierra del Fuego'").count
       state_tucuman = TwitterUser.joins(:twitter_followers, :twitter_state).where("influencer_id = ?", audience.influencer_id).where("twitter_state_id is not null").where("twitter_states.name = 'Tucumán'").count
 
-      audience.state_buenos_aires = ((state_buenos_aires * 100) / states_users).round rescue 0
-      audience.state_catamarca = ((state_catamarca * 100) / states_users).round rescue 0
-      audience.state_chaco = ((state_chaco * 100) / states_users).round rescue 0
-      audience.state_cordoba = ((state_cordoba * 100) / states_users).round rescue 0
-      audience.state_corrientes = ((state_corrientes * 100) / states_users).round rescue 0
-      audience.state_entre_rios = ((state_entre_rios * 100) / states_users).round rescue 0
-      audience.state_formosa = ((state_formosa * 100) / states_users).round rescue 0
-      audience.state_jujuy = ((state_jujuy * 100) / states_users).round rescue 0
-      audience.state_la_pampa = ((state_la_pampa * 100) / states_users).round rescue 0
-      audience.state_la_rioja = ((state_la_rioja * 100) / states_users).round rescue 0
-      audience.state_mendoza = ((state_mendoza * 100) / states_users).round rescue 0
-      audience.state_misiones = ((state_misiones * 100) / states_users).round rescue 0
-      audience.state_neuquen = ((state_neuquen * 100) / states_users).round rescue 0
-      audience.state_rio_negro = ((state_rio_negro * 100) / states_users).round rescue 0
-      audience.state_salta = ((state_salta * 100) / states_users).round rescue 0
-      audience.state_san_juan = ((state_san_juan * 100) / states_users).round rescue 0
-      audience.state_san_luis = ((state_san_luis * 100) / states_users).round rescue 0
-      audience.state_santa_cruz = ((state_santa_cruz * 100) / states_users).round rescue 0
-      audience.state_santa_fe = ((state_santa_fe * 100) / states_users).round rescue 0
-      audience.state_sgo_del_estero = ((state_sgo_del_estero * 100) / states_users).round rescue 0
-      audience.state_tierra_del_fuego = ((state_tierra_del_fuego * 100) / states_users).round rescue 0
-      audience.state_tucuman = ((state_tucuman * 100) / states_users).round rescue 0
+      audience.state_buenos_aires = (((state_buenos_aires * 100) / states_users).round rescue 0)
+      audience.state_catamarca = (((state_catamarca * 100) / states_users).round rescue 0)
+      audience.state_chaco = (((state_chaco * 100) / states_users).round rescue 0)
+      audience.state_cordoba = (((state_cordoba * 100) / states_users).round rescue 0)
+      audience.state_corrientes = (((state_corrientes * 100) / states_users).round rescue 0)
+      audience.state_entre_rios = (((state_entre_rios * 100) / states_users).round rescue 0)
+      audience.state_formosa = (((state_formosa * 100) / states_users).round rescue 0)
+      audience.state_jujuy = (((state_jujuy * 100) / states_users).round rescue 0)
+      audience.state_la_pampa = (((state_la_pampa * 100) / states_users).round rescue 0)
+      audience.state_la_rioja = (((state_la_rioja * 100) / states_users).round rescue 0)
+      audience.state_mendoza = (((state_mendoza * 100) / states_users).round rescue 0)
+      audience.state_misiones = (((state_misiones * 100) / states_users).round rescue 0)
+      audience.state_neuquen = (((state_neuquen * 100) / states_users).round rescue 0)
+      audience.state_rio_negro = (((state_rio_negro * 100) / states_users).round rescue 0)
+      audience.state_salta = (((state_salta * 100) / states_users).round rescue 0)
+      audience.state_san_juan = (((state_san_juan * 100) / states_users).round rescue 0)
+      audience.state_san_luis = (((state_san_luis * 100) / states_users).round rescue 0)
+      audience.state_santa_cruz = (((state_santa_cruz * 100) / states_users).round rescue 0)
+      audience.state_santa_fe = (((state_santa_fe * 100) / states_users).round rescue 0)
+      audience.state_sgo_del_estero = (((state_sgo_del_estero * 100) / states_users).round rescue 0)
+      audience.state_tierra_del_fuego = (((state_tierra_del_fuego * 100) / states_users).round rescue 0)
+      audience.state_tucuman = (((state_tucuman * 100) / states_users).round rescue 0)
 
       audience.save
 
@@ -474,6 +474,37 @@ namespace :borwin do
     Campaign.where(status: 'active').all.each do |campaign|
       campaign.update_metrics
       campaign.update_campaign_counters
+    end
+  end
+
+  desc "Sync users to mailchimp"
+  task sync_mailchimp: :environment do
+    puts "Updateando anunciantes"
+    $stdout.flush
+    User.where(role: 'advertiser').all.each do |advertiser|
+      list_id = Gibbon.lists['data'].find {|l| l['name'] == "Anunciantes"}['id']
+
+      Gibbon.listSubscribe(apikey: MAILCHIMP_KEY, id: list_id, email_address: advertiser.user.email,
+                           merge_vars: {'FNAME' => advertiser.first_name, 'LNAME' => advertiser.last_name},
+                           double_optin: false, update_existing: true)
+    end
+    puts "Updateando celebridades"
+    $stdout.flush
+    User.where(role: 'influencer').all.each do |influencer|
+      list_id = Gibbon.lists['data'].find {|l| l['name'] == "Celebridades"}['id']
+
+      Gibbon.listSubscribe(apikey: MAILCHIMP_KEY, id: list_id, email_address: influencer.user.email,
+                           merge_vars: {'FNAME' => influencer.first_name, 'LNAME' => influencer.last_name},
+                           double_optin: false, update_existing: true)
+    end
+    puts "Updateando afiliados"
+    $stdout.flush
+    User.where(role: 'affiliate').all.each do |affiliate|
+      list_id = Gibbon.lists['data'].find {|l| l['name'] == "Agencias"}['id']
+
+      Gibbon.listSubscribe(apikey: MAILCHIMP_KEY, id: list_id, email_address: affiliate.user.email,
+                           merge_vars: {'FNAME' => affiliate.first_name, 'LNAME' => affiliate.last_name},
+                           double_optin: false, update_existing: true)
     end
   end
 end

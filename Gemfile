@@ -22,6 +22,7 @@ gem 'state_machine'                    # State machine, used mainly for tweet st
 gem 'mechanize'                        # Robot to brose twitter users
 gem 'klout'                            # Klout index
 gem 'wicked_pdf'                       # PDF Generation
+gem 'gibbon'                           # Mailchimp integration
 
 
 group :assets do

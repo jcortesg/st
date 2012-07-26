@@ -1,0 +1,1 @@
+MAILCHIMP_KEY = Rails.env == 'production' ? 'c2e79b5ff1c84f9920070e5cbc464f8c-us5' : '8b52415ce3f4e08a8df317ed4c73cbff-us5'

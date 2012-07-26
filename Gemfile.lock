@@ -99,6 +99,12 @@ GEM
     ffaker (1.14.0)
     ffi (1.0.11)
     fssm (0.2.9)
+    gibbon (0.3.5)
+      httparty (> 0.6.0)
+      httparty (> 0.6.0)
+      json (> 1.4.0)
+      json (> 1.4.0)
+      rdoc
     haml (3.1.6)
     haml-rails (0.3.4)
       actionpack (~> 3.0)
@@ -304,6 +310,7 @@ DEPENDENCIES
   execjs
   factory_girl_rails
   ffaker
+  gibbon
   haml
   haml-rails
   jquery-rails
