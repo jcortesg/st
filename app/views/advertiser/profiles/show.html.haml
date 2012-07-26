@@ -18,8 +18,8 @@
         .twitter_overview
           .overview_data.clearfix
             %h2
-              - unless @advertiser.user.twitter_screen_name.blank?
-                = link_to("@#{@advertiser.user.twitter_screen_name}", "https://twitter.com/#!/#{@advertiser.user.twitter_screen_name}")
+              - unless @advertiser.twitter_screen_name.blank?
+                = link_to("@#{@advertiser.twitter_screen_name}", "https://twitter.com/#!/#{@advertiser.twitter_screen_name}")
               %span.edit_profile
                 = link_to("Editar Perfil", [:advertiser, :profiles, :edit], :class => 'btn btn-primary')
             - unless @advertiser.brand.blank?
@@ -108,7 +108,7 @@
             live: false,
             behavior: 'all'
           }
-        }).render().setUser('#{@advertiser.user.twitter_screen_name.blank? ? 'BorwinAR' : @advertiser.user.twitter_screen_name}').start();
+        }).render().setUser('#{@advertiser.twitter_screen_name.blank? ? 'BorwinAR' : @advertiser.twitter_screen_name}').start();
 
 
 /

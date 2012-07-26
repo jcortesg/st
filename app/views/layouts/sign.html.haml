@@ -5,7 +5,6 @@
     = stylesheet_link_tag 'application'
     - if params[:controller].include?('admin')
       = stylesheet_link_tag 'admin/admin'
-    /[if IE] <link href="/stylesheets/ie.css" media="screen, projection" rel="stylesheet" type="text/css" />
     = stylesheet_link_tag 'print', :media => 'print'
     = javascript_include_tag 'application'
     - if params[:controller].include?('admin')
