@@ -25,6 +25,12 @@ class Advertiser::CampaignsController < ApplicationController
     @campaign = current_role.campaigns.find(params[:id])
     if @campaign.tweets.count == 0
       render action: 'no_tweets'
+    else
+      search_params = params[:search] || {}
+      search_params.reverse_merge!({"meta_sort" => "tweet_at.desc"})
+
+      @search = Tweet.where(campaign_id: @campaign.id).search(search_params)
+      @tweets = @search.page(params[:page])
     end
   end
 

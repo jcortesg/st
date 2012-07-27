@@ -34,7 +34,7 @@
               = f.input :updated_at_greater_than_or_equal_to, label: 'Desde', required: false, input_html: { class: 'medium', id: 'from_datepicker', value: @search.updated_at_greater_than_or_equal_to ? @search.updated_at_greater_than_or_equal_to.strftime("%d/%m/%Y") : ''}
               = f.input :updated_at_less_than_or_equal_to, label: 'Hasta', required: false, input_html: { class: 'medium', id: 'to_datepicker', value: @search.updated_at_greater_than_or_equal_to ? @search.updated_at_greater_than_or_equal_to.strftime("%d/%m/%Y") : ''}
               = f.input :text_contains, label: 'Tweet', required: false
-              = f.input :status_equals, label: 'Estado', required: false, as: 'select', collection: [['Pendinete', 'created'], ['Revisión del anunciate', 'influencer_reviewed'], ['Rechazado por anuncinate', 'influencer_rejected'], ['Pendiente de revisión', 'advertiser_reviewed'], ['Rechazado por celebridad', 'advertiser_rejected'], ['Aceptado', 'accepted'], ['Públicado', 'activated'], ['Vencido', 'expired']]
+              = f.input :status_equals, label: 'Estado', required: false, as: 'select', collection: [['Pendinete', 'created'], ['Revisión del anunciante', 'influencer_reviewed'], ['Rechazado por celebridad', 'influencer_rejected'], ['Pendiente de revisión', 'advertiser_reviewed'], ['Rechazado por anunciante', 'advertiser_rejected'], ['Aceptado', 'accepted'], ['Públicado', 'activated'], ['Vencido', 'expired']]
               .form-actions
                 = f.submit 'Filtrar', :class => 'btn btn-primary'
                 = link_to 'Resetear', '#', :class => 'btn reset'
