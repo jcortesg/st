@@ -19,6 +19,7 @@ class User < ActiveRecord::Base
   before_create :set_invitation_code, :set_referrer_on_date
   after_create :send_referral_mail, :send_registration_email, :follow_on_twitter
   before_destroy :dont_delete_admin
+  before_destroy :unsubscribe_from_mailing
 
   validates :email, presence: true, format: { with: /\A[^@]+@([^@\.]+\.)+[^@\.]+\z/ }
   validates :password, presence: true, length: { within: 6..20 }, if: :needs_password?
@@ -221,5 +222,19 @@ class User < ActiveRecord::Base
   # Avoid deleting the admin user
   def dont_delete_admin
     raise "Cannot delete admin account" if self.id == 1
+  end
+
+  # Unsubscribe the user from mailing
+  def unsubscribe_from_mailing
+    Gibbon.api_key = MAILCHIMP_KEY
+    list_id = case self.role
+      when 'influencer'
+        Gibbon.lists['data'].find {|l| l['name'] == "Celebridades"}['id']
+      when 'advertiser'
+        Gibbon.lists['data'].find {|l| l['name'] == "Anunciantes"}['id']
+      when 'affiliate'
+        Gibbon.lists['data'].find {|l| l['name'] == "Agencias"}['id']
+    end
+    Gibbon.listUnsubscribe(apikey: MAILCHIMP_KEY, id: list_id, email_address: self.email, delete_member: true, send_goodbay: false, send_notify: false)
   end
 end
