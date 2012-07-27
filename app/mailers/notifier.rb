@@ -208,4 +208,24 @@ class Notifier < ActionMailer::Base
 
     mail(to: tweet.influencer.user.email, subject: "Tweet expira en 120 minutos - Its time to go social")
   end
+
+  # Sends an email to admin alerting about low credit
+  def low_credit_warning_to_admin(user)
+    @user = user
+    @advertiser = user.advertiser
+
+    mail(to: "info@borwin.net", subject: "Anunciante con crédito debajo de $1000 - Its time to go social")
+  end
+
+  # Sends an email to advertiser alerting about low credit
+  def low_credit_warning_to_advertiser(user)
+    @user = user
+    @advertiser = user.advertiser
+
+    attachments.inline['logo.jpg'] = File.read(Rails.root.join('app/assets/images/logo.jpg'))
+    attachments.inline['sellochico.jpg'] = File.read(Rails.root.join('app/assets/images/sellochico.jpg'))
+
+    mail(to: user.email, subject: "Su crédito ha disminuido a $#{sprintf('%.02f', @user.balance)} - Its time to go social")
+  end
+
 end

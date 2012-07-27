@@ -18,6 +18,7 @@ class User < ActiveRecord::Base
 
   before_create :set_invitation_code, :set_referrer_on_date
   after_create :send_referral_mail, :send_registration_email, :follow_on_twitter
+  after_update :send_low_credit_warning
   before_destroy :dont_delete_admin
   before_destroy :unsubscribe_from_mailing
 
@@ -196,14 +197,14 @@ class User < ActiveRecord::Base
     encrypted_password.nil?
   end
 
-  # Send the email to the referral if they expect an email
+  # Sends an email to the referral if they expect an email
   def send_referral_mail
     if referrer && referrer.mail_on_referral_singup
       Notifier.referral_sign_up(self.referrer, self).deliver
     end
   end
 
-  # Sens the email to the admin when a user registers into the website
+  # Sends an email to the admin when a user registers into the website
   def send_registration_email
     Notifier.user_sign_up(self).deliver
   end
@@ -216,6 +217,14 @@ class User < ActiveRecord::Base
         Twitter.follow(self.twitter_screen_name)
       rescue Exception
       end
+    end
+  end
+
+  # Send an email to admin and advertiser on advertiser low credit
+  def send_low_credit_warning
+    if self.role == 'advertiser' && self.balance_was > 1000 and self.balance < 1000
+      Notifier.low_credit_warning_to_admin(user).deliver
+      Notifier.low_credit_warning_to_advertiser(user).deliver
     end
   end
 
