@@ -9,7 +9,7 @@
         %h1.title Transacción
         %dl.record_details
           %dt Fecha
-          %dd= dl_value @transaction.transaction_on.try(:strftime, "%d/%m/%Y")
+          %dd= dl_value @transaction.created_at.try(:strftime, "%d/%m/%Y")
           %dt Usuario
           %dd= dl_value @transaction.user ? admin_link_to_user(@transaction.user) : ''
           %dt Transacción de Borwin?

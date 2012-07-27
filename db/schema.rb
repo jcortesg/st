@@ -318,6 +318,7 @@ ActiveRecord::Schema.define(:version => 20120726142048) do
     t.integer  "attachable_id"
     t.string   "attachable_type"
     t.integer  "user_id"
+    t.datetime "transaction_at"
     t.string   "transaction_type",                                                    :null => false
     t.text     "details"
     t.boolean  "borwin_transaction",                               :default => false, :null => false
@@ -328,7 +329,7 @@ ActiveRecord::Schema.define(:version => 20120726142048) do
     t.integer  "referrer_id"
   end
 
-  add_index "transactions", ["created_at"], :name => "index_transactions_on_created_at"
+  add_index "transactions", ["transaction_at"], :name => "index_transactions_on_transaction_at"
   add_index "transactions", ["user_id"], :name => "index_transactions_on_user_id"
 
   create_table "tweet_groups", :force => true do |t|

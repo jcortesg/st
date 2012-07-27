@@ -1,11 +1,14 @@
 class TransactionDateAt < ActiveRecord::Migration
   def up
-    remove_column :transactions, :transaction_on
-    add_index :transactions, :created_at
+    change_column :transactions, :transaction_on, :datetime
+    rename_column :transactions, :transaction_on, :transaction_at
+    add_index :transactions, :transaction_at
   end
 
   def down
-    remove_index :transactions, :created_at
-    add_column :transactions, :transaction_on, :date, after: 'user_id'
+    remove_index :transactions, :transaction_at
+    rename_column :transactions, :transaction_at, :transaction_on
+    change_column :transactions, :transaction_on
+    , :date
   end
 end

@@ -38,3 +38,16 @@ $(document).ready ->
     e.preventDefault()
     $(':input','#filter_form').not(':button, :submit, :reset, :hidden').val('').removeAttr('checked').removeAttr('selected')
     $('#filter_form').submit()
+
+  # JQuery datepickers
+  $('.jquery_datepicker').datepicker()
+  $('#from_datepicker, #to_datepicker').datepicker(
+    beforeShow: (input, instance) ->
+      if input.id == "from_datepicker"
+        dateFormat: 'dd/mm/yy',
+        maxDate: $.datepicker.parseDate(instance.settings.dateFormat || $.datepicker._defaults.dateFormat, $('#to_datepicker').val(), instance.settings)
+      else
+        dateFormat: 'dd/mm/yy',
+        minDate: $.datepicker.parseDate(instance.settings.dateFormat || $.datepicker._defaults.dateFormat, $('#from_datepicker').val(), instance.settings)
+  )
+

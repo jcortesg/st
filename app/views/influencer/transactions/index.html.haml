@@ -12,7 +12,7 @@
         %table.table.table-striped
           %thead
             %tr
-              %th= sort_link(@search, :transaction_on, 'Fecha')
+              %th= sort_link(@search, :transaction_ot, 'Fecha')
               %th= sort_link(@search, :type, "Tipo")
               %th Link
               %th= sort_link(@search, :amount, "Importe")
@@ -22,7 +22,7 @@
           %tbody
             - @transactions.each do |transaction|
               %tr{ :class => cycle('odd', 'even') }
-                %td= localize(transaction.transaction_on, :format => "%d/%m/%Y")
+                %td= localize(transaction.transaction_at, :format => "%d/%m/%Y %H:%M:%S")
                 %td= transaction_type_description(transaction.transaction_type)
                 %td= influencer_attachable_link(transaction.attachable)
                 %td= sprintf("%.02f", transaction.amount)
@@ -35,8 +35,8 @@
         .filters
           .subtitle Filtros
           = simple_form_for @search, :url => [:influencer, :transactions], html: {method: :get, id: 'filter_form', class: 'form-horizontal'} do |f|
-            = f.input :transaction_on_greater_than_or_equal_to, as: :date, label: 'Desde', required: false
-            = f.input :transaction_on_less_than_or_equal_to, as: :date, label: 'Hasta', required: false
+            = f.input :transaction_at_greater_than_or_equal_to, label: 'Desde', required: false, input_html: { class: 'medium', id: 'from_datepicker', value: @search.transaction_at_greater_than_or_equal_to ? @search.transaction_at_greater_than_or_equal_to.strftime("%d/%m/%Y") : ''}
+            = f.input :transaction_at_less_than_or_equal_to, label: 'Hasta', required: false, input_html: { class: 'medium', id: 'to_datepicker', value: @search.transaction_at_less_than_or_equal_to ? @search.transaction_at_less_than_or_equal_to.strftime("%d/%m/%Y") : ''}
             = f.input :amount_greater_than, label: 'Importe mayor a', required: false
             = f.input :amount_less_than, label: 'Importe menor a', required: false
             .form-actions

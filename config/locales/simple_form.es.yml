@@ -166,6 +166,7 @@ es:
         attachable: Objeto
         user: Usuario
         transaction_on: Fecha
+        transaction_at: Fecha
         type: Tipo
         details: Detalle
         borwint_transaction: Borwin?
