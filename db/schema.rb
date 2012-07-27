@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120724172819) do
+ActiveRecord::Schema.define(:version => 20120726142048) do
 
   create_table "advertisers", :force => true do |t|
     t.integer  "user_id"
@@ -318,7 +318,6 @@ ActiveRecord::Schema.define(:version => 20120724172819) do
     t.integer  "attachable_id"
     t.string   "attachable_type"
     t.integer  "user_id"
-    t.date     "transaction_on",                                                      :null => false
     t.string   "transaction_type",                                                    :null => false
     t.text     "details"
     t.boolean  "borwin_transaction",                               :default => false, :null => false
@@ -329,6 +328,7 @@ ActiveRecord::Schema.define(:version => 20120724172819) do
     t.integer  "referrer_id"
   end
 
+  add_index "transactions", ["created_at"], :name => "index_transactions_on_created_at"
   add_index "transactions", ["user_id"], :name => "index_transactions_on_user_id"
 
   create_table "tweet_groups", :force => true do |t|

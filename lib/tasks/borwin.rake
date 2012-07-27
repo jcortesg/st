@@ -479,31 +479,32 @@ namespace :borwin do
 
   desc "Sync users to mailchimp"
   task sync_mailchimp: :environment do
+    Gibbon.api_key = MAILCHIMP_KEY
     puts "Updateando anunciantes"
     $stdout.flush
-    User.where(role: 'advertiser').all.each do |advertiser|
+    User.where(role: 'advertiser').all.each do |user|
       list_id = Gibbon.lists['data'].find {|l| l['name'] == "Anunciantes"}['id']
 
-      Gibbon.listSubscribe(apikey: MAILCHIMP_KEY, id: list_id, email_address: advertiser.user.email,
-                           merge_vars: {'FNAME' => advertiser.first_name, 'LNAME' => advertiser.last_name},
+      Gibbon.listSubscribe(apikey: MAILCHIMP_KEY, id: list_id, email_address: user.email,
+                           merge_vars: {'FNAME' => user.advertiser.first_name, 'LNAME' => user.advertiser.last_name},
                            double_optin: false, update_existing: true)
     end
     puts "Updateando celebridades"
     $stdout.flush
-    User.where(role: 'influencer').all.each do |influencer|
+    User.where(role: 'influencer').all.each do |user|
       list_id = Gibbon.lists['data'].find {|l| l['name'] == "Celebridades"}['id']
 
-      Gibbon.listSubscribe(apikey: MAILCHIMP_KEY, id: list_id, email_address: influencer.user.email,
-                           merge_vars: {'FNAME' => influencer.first_name, 'LNAME' => influencer.last_name},
+      Gibbon.listSubscribe(apikey: MAILCHIMP_KEY, id: list_id, email_address: user.email,
+                           merge_vars: {'FNAME' => user.influencer.first_name, 'LNAME' => user.influencer.last_name},
                            double_optin: false, update_existing: true)
     end
     puts "Updateando afiliados"
     $stdout.flush
-    User.where(role: 'affiliate').all.each do |affiliate|
+    User.where(role: 'affiliate').all.each do |user|
       list_id = Gibbon.lists['data'].find {|l| l['name'] == "Agencias"}['id']
 
-      Gibbon.listSubscribe(apikey: MAILCHIMP_KEY, id: list_id, email_address: affiliate.user.email,
-                           merge_vars: {'FNAME' => affiliate.first_name, 'LNAME' => affiliate.last_name},
+      Gibbon.listSubscribe(apikey: MAILCHIMP_KEY, id: list_id, email_address: user.email,
+                           merge_vars: {'FNAME' => user.affiliate.first_name, 'LNAME' => user.affiliate.last_name},
                            double_optin: false, update_existing: true)
     end
   end
