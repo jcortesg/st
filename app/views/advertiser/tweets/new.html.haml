@@ -1,6 +1,8 @@
 - content_for :head do
+  = stylesheet_link_tag 'tweet_form'
   = javascript_include_tag 'http://widgets.twimg.com/j/2/widget.js'
   = javascript_include_tag 'advertiser/new_tweet'
+  = javascript_include_tag 'tweet_form'
 
 .row
   .span12{style: 'width: 970px'}
@@ -76,7 +78,8 @@
         .form_title Propuesta de nuevo Tweet
         = simple_form_for @tweet_group, url: advertiser_campaign_tweets_path(@campaign), html: { class: 'vertical-form' } do |f|
           = f.simple_fields_for :tweets do |tf|
-            = tf.input :text, as: :text, label: 'Tweet', input_html: { style: 'width: 650px;height: 40px' }
+            .text_container
+              = tf.input :text, as: :text, label: 'Tweet', input_html: { style: 'width: 650px;height: 40px' }
             = tf.input :tweet_at, minute_step: 15, start_year: Time.now.year, end_year: Time.now.year + 1, label: 'Fecha y hora de tweet', input_html: { class: 'tweet_time' }
 
             - if @campaign.price_per_click

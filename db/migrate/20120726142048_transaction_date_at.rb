@@ -8,7 +8,6 @@ class TransactionDateAt < ActiveRecord::Migration
   def down
     remove_index :transactions, :transaction_at
     rename_column :transactions, :transaction_at, :transaction_on
-    change_column :transactions, :transaction_on
-    , :date
+    change_column :transactions, :transaction_on, :date
   end
 end

@@ -4,7 +4,10 @@ class Influencer::TweetsController < ApplicationController
 
   # Shows the tweets for the influencer
   def index
-    @search = Tweet.where(influencer_id: current_role.id).search(params[:search])
+    search_params = params[:search] || {}
+    search_params.reverse_merge!({"meta_sort" => "updated_at.desc"})
+
+    @search = Tweet.where(influencer_id: current_role.id).search(search_params)
     @tweets = @search.page(params[:page])
   end
 

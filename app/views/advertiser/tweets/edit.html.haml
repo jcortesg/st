@@ -1,3 +1,7 @@
+- content_for :head do
+  = stylesheet_link_tag 'tweet_form'
+  = javascript_include_tag 'tweet_form'
+
 - if flash.any?
   .row
     .span8.offset2
@@ -29,7 +33,8 @@
         %dd= tweet_status_explanation(@tweet.status)
 
       = simple_form_for @tweet, url: [:advertiser, @campaign, @tweet], html: { class: 'vertical-form tweet_proposal' } do |f|
-        = f.input :text, as: :text, input_html: { style: 'width: 523px;height: 40px' }
+        .text_container
+          = f.input :text, as: :text, input_html: { style: 'width: 523px;height: 40px' }
         = f.input :tweet_at, minute_step: 15, start_year: Time.now.year, end_year: Time.now.year + 1, input_html: { class: 'tweet_time' }
 
         .form-actions
