@@ -3,6 +3,8 @@ class Affiliate < ActiveRecord::Base
   belongs_to :user
 
   has_attached_file :photo, :styles => { :profile => "140x140#", :small => "100x100>", :thumb => "48x48#"  }
+
+  before_save :normalize_fields
   
   validates :first_name, :presence => true
   validates :last_name, :presence => true
@@ -23,6 +25,14 @@ class Affiliate < ActiveRecord::Base
       "#{self.first_name} #{self.last_name}"
     else
       self.company
+    end
+  end
+
+  private
+
+  def normalize_fields
+    unless self.twitter_screen_name.blank?
+      self.twitter_screen_name = self.twitter_screen_name.tr('@', '')
     end
   end
 end
