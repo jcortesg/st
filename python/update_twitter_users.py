@@ -83,7 +83,7 @@ try:
 					twitter_user_id = cur.fetchone()[0]
 				else:
 					# It does't exist, create the record and fetch the twitter user id
-					cur_temp.execute("INSERT INTO twitter_users(twitter_uid, created_at, updated_at) VALUE('" + str(follower_id) + "', now(), now())")
+					cur_temp.execute("REPLACE INTO twitter_users(twitter_uid, created_at, updated_at) VALUE('" + str(follower_id) + "', now(), now())")
 					conn.commit()
 					twitter_user_id = cur.lastrowid
 					
