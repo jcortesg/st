@@ -88,7 +88,7 @@ try:
 					twitter_user_id = cur.lastrowid
 					
 				# Create the relationship into the db
-				cur_temp.execute("INSERT INTO twitter_followers(influencer_id, twitter_user_id, created_at, updated_at) VALUES(" + str(row['influencer_id']) + ", " + str(twitter_user_id) + ", now(), now())")
+				cur_temp.execute("REPLACE INTO twitter_followers(influencer_id, twitter_user_id, created_at, updated_at) VALUES(" + str(row['influencer_id']) + ", " + str(twitter_user_id) + ", now(), now())")
 				
 			
 			conn.commit()
