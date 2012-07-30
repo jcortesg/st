@@ -128,13 +128,46 @@ namespace :borwin do
     keywords_males = Keyword.where(name: 'males').first.keywords.split(',')
     keywords_females = Keyword.where(name: 'females').first.keywords.split(',')
 
+    influencers = User.joins(:influencer => :audience).order("audiences.followers").all
+    i = -1
+    remaining_calls = 0
+
+    influencer = influencers[0]
+
     TwitterUser.where("twitter_screen_name is null").find_in_batches(batch_size: 100) do |twitter_users|
       begin
-        puts "Updating a batch of 100 twitter users without screen name"
+        puts "Cycle begins"
+
+        while(remaining_calls < 10)
+          i = i + 1
+          influencer = influencers[i]
+          puts "Verificando usuario con id: #{influencer.id}"
+          begin
+            Twitter.configure do |config|
+              config.consumer_key = TWITTER_CONSUMER_KEY
+              config.consumer_secret = TWITTER_CONSUMER_SECRET
+              config.oauth_token = influencer.twitter_token
+              config.oauth_token_secret = influencer.twitter_secret
+            end
+            remaining_calls = Twitter.rate_limit_status.remaining_hits.to_i
+            if remaining_calls > 10
+              puts "Usando las credenciales de #{influencer.full_name}, #{remaining_calls} disponibles"
+            else
+              puts "Credenciales de #{influencer.full_name} no pueden ser usadas: #{remaining_calls} disponibles"
+            end
+          rescue
+            puts "Credenciales de #{influencer.full_name} no pueden ser usadas, la API no autentifica"
+            remaining_calls = 0
+          end
+        end
+
+        puts "Updateando 100 usuarios, credenciales: #{influencer.full_name}, llamadas restantes: #{remaining_calls}"
 
         # Get the user ids
         twitter_user_ids = twitter_users.collect { |tu| tu.twitter_uid }
+        next if twitter_user_ids.blank?
         users = Twitter.users(user_id: twitter_user_ids.join(','))
+
         users.each do |user|
           twitter_user = twitter_users.detect { |tu| tu.twitter_uid.to_i == user.id.to_i }
           twitter_user.twitter_screen_name = user.screen_name
@@ -219,7 +252,13 @@ namespace :borwin do
           twitter_user.save
         end
       rescue Exception => e
-        puts "There was a problem fetching the twitter user ids: #{twitter_user_ids.join(',')}: #{e.message}"
+        if twitter_user_ids && twitter_user_ids.respond_to?(:join)
+          puts "There was a problem fetching the twitter user ids: #{twitter_user_ids.join(',')}: #{e.message}"
+        else
+          puts "There was a problem fetching the twitter user ids that cannot be join: #{twitter_user_ids}: #{e.message}"
+        end
+      ensure
+        remaining_calls = remaining_calls - 1
       end
     end
 
