@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120726142048) do
+ActiveRecord::Schema.define(:version => 20120730134747) do
 
   create_table "advertisers", :force => true do |t|
     t.integer  "user_id"
@@ -318,7 +318,7 @@ ActiveRecord::Schema.define(:version => 20120726142048) do
     t.integer  "attachable_id"
     t.string   "attachable_type"
     t.integer  "user_id"
-    t.datetime "transaction_at"
+    t.datetime "transaction_at",                                                      :null => false
     t.string   "transaction_type",                                                    :null => false
     t.text     "details"
     t.boolean  "borwin_transaction",                               :default => false, :null => false
@@ -424,8 +424,10 @@ ActiveRecord::Schema.define(:version => 20120726142048) do
     t.boolean  "young_men",           :default => false, :null => false
     t.boolean  "adult_women",         :default => false, :null => false
     t.boolean  "adult_men",           :default => false, :null => false
+    t.datetime "last_sync_at"
   end
 
+  add_index "twitter_users", ["last_sync_at"], :name => "index_twitter_users_on_last_sync_at"
   add_index "twitter_users", ["twitter_uid"], :name => "index_twitter_users_on_twitter_uid", :unique => true
 
   create_table "users", :force => true do |t|
