@@ -36,6 +36,10 @@
         = f.label :sports_influential, "Referente de Deportes:"
         = f.check_box :sports_influential
       %hr
+      .option
+        = f.label :fashion_influential, "Referente de Moda:"
+        = f.check_box :fashion_influential
+      %hr
 
       .form-actions
         = f.submit 'Guardar influencia', :class => 'btn btn-danger btn-large', confirm: "Esta seguro?"
