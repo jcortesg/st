@@ -1,0 +1,42 @@
+- if flash.any?
+  .row
+    .span8.offset2
+      = render '/shared/flash', flash: flash
+
+.row
+  .span8.offset2.round_box
+    = simple_form_for(@influencer, url: do_set_influence_admin_influencer_path(@influencer), method: :put, html:  { class: "form-horizontal round_form", method: :put }) do |f|
+      %h1.form_title= "Configurar como referente a #{@influencer.full_name} (@#{@influencer.user.twitter_screen_name})"
+      = render '/shared/simple_form_errors', :f => f
+      .option
+        = f.label :technology_influential, "Referente de Tecnología:"
+        = f.check_box :technology_influential
+      %hr
+      .option
+        = f.label :music_influential, "Referente de Música:"
+        = f.check_box :music_influential
+      %hr
+      .option
+        = f.label :movies_influential, "Referente de Peliculas:"
+        = f.check_box :movies_influential
+      %hr
+      .option
+        = f.label :luxury_influential, "Referente de Lujos:"
+        = f.check_box :luxury_influential
+      %hr
+      .option
+        = f.label :travel_influential, "Referente de Viajes:"
+        = f.check_box :travel_influential
+      %hr
+      .option
+        = f.label :politics_influential, "Referente de Política:"
+        = f.check_box :politics_influential
+      %hr
+      .option
+        = f.label :sports_influential, "Referente de Deportes:"
+        = f.check_box :sports_influential
+      %hr
+
+      .form-actions
+        = f.submit 'Guardar influencia', :class => 'btn btn-danger btn-large', confirm: "Esta seguro?"
+        = link_to 'Cancelar', [:admin, @influencer], class: 'btn btn-large'

@@ -21,6 +21,8 @@ Borwin::Application.routes.draw do
       member do
         get :recategorize
         put :do_recategorize
+        get :set_influence
+        put :do_set_influence
       end
       resource :audience, only: [:show, :edit, :update]
     end
@@ -31,6 +33,8 @@ Borwin::Application.routes.draw do
         put :disapprove
         get :recategorize
         put :do_recategorize
+        get :set_influence
+        put :do_set_influence
       end
     end
 

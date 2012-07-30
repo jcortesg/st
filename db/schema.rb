@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120726142048) do
+ActiveRecord::Schema.define(:version => 20120730141718) do
 
   create_table "advertisers", :force => true do |t|
     t.integer  "user_id"
@@ -234,7 +234,7 @@ ActiveRecord::Schema.define(:version => 20120726142048) do
     t.string   "twitter_image_url"
     t.string   "twitter_bio"
     t.datetime "twitter_joined"
-    t.decimal  "borwin_fee",           :precision => 8, :scale => 2, :default => 0.3, :null => false
+    t.decimal  "borwin_fee",             :precision => 8, :scale => 2, :default => 0.3,   :null => false
     t.string   "influencer_type"
     t.string   "sex"
     t.date     "birthday"
@@ -258,14 +258,22 @@ ActiveRecord::Schema.define(:version => 20120726142048) do
     t.string   "account_type"
     t.string   "cbu"
     t.string   "bank_name"
-    t.decimal  "automatic_tweet_fee",  :precision => 8, :scale => 2
-    t.decimal  "automatic_cpc_fee",    :precision => 5, :scale => 2
-    t.decimal  "manual_tweet_fee",     :precision => 8, :scale => 2
-    t.decimal  "manual_cpc_fee",       :precision => 8, :scale => 2
-    t.datetime "created_at",                                                          :null => false
-    t.datetime "updated_at",                                                          :null => false
-    t.decimal  "campaign_fee",         :precision => 8, :scale => 2, :default => 0.0, :null => false
-    t.integer  "price_category",                                     :default => 2,   :null => false
+    t.decimal  "automatic_tweet_fee",    :precision => 8, :scale => 2
+    t.decimal  "automatic_cpc_fee",      :precision => 5, :scale => 2
+    t.decimal  "manual_tweet_fee",       :precision => 8, :scale => 2
+    t.decimal  "manual_cpc_fee",         :precision => 8, :scale => 2
+    t.datetime "created_at",                                                              :null => false
+    t.datetime "updated_at",                                                              :null => false
+    t.decimal  "campaign_fee",           :precision => 8, :scale => 2, :default => 0.0,   :null => false
+    t.integer  "price_category",                                       :default => 2,     :null => false
+    t.boolean  "technology_influential",                               :default => false, :null => false
+    t.boolean  "travel_influential",                                   :default => false, :null => false
+    t.boolean  "sports_influential",                                   :default => false, :null => false
+    t.boolean  "music_influential",                                    :default => false, :null => false
+    t.boolean  "politics_influential",                                 :default => false, :null => false
+    t.boolean  "fashion_influential",                                  :default => false, :null => false
+    t.boolean  "movies_influential",                                   :default => false, :null => false
+    t.boolean  "luxury_influential",                                   :default => false, :null => false
   end
 
   add_index "influencers", ["user_id"], :name => "index_influencers_on_user_id", :unique => true
@@ -318,7 +326,7 @@ ActiveRecord::Schema.define(:version => 20120726142048) do
     t.integer  "attachable_id"
     t.string   "attachable_type"
     t.integer  "user_id"
-    t.datetime "transaction_at"
+    t.datetime "transaction_at",                                                      :null => false
     t.string   "transaction_type",                                                    :null => false
     t.text     "details"
     t.boolean  "borwin_transaction",                               :default => false, :null => false

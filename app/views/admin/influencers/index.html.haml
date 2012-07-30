@@ -48,8 +48,8 @@
                     &nbsp;
                 %td= influencer.user.referrals.count
                 %td
-                  = link_to('Editar', [:edit, :admin, influencer], class: 'btn btn-primary')
-                  = link_to('Eliminar', [:admin, influencer], method: :delete, class: 'btn btn-danger', confirm: "Esta seguro que desea eliminar a la celebridad y todo su historial?" )
+                  = link_to('Editar', [:edit, :admin, influencer], class: 'btn btn-primary btn-mini')
+                  = link_to('Eliminar', [:admin, influencer], method: :delete, class: 'btn btn-danger btn-mini', confirm: "Esta seguro que desea eliminar a la celebridad y todo su historial?" )
         .center_text
           = paginate @influencers
 

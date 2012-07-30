@@ -144,4 +144,21 @@ class Admin::InfluencersController < ApplicationController
       render action: :recategorize
     end
   end
+
+  # Shows the form to edit an influencer
+  def set_influence
+    @influencer = Influencer.find(params[:id])
+  end
+
+  def do_set_influence
+    @influencer = Influencer.find(params[:id])
+
+    if @influencer.update_attributes(params[:influencer])
+      flash[:notice] = "La celebridad #{@influencer.full_name} fue actualizada con éxito"
+      redirect_to [:admin, @influencer]
+    else
+      flash.now[:error] = "Hubo un error al intentar actualizar la celebridad"
+      render action: :edit
+    end
+  end
 end

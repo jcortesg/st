@@ -22,7 +22,9 @@ class Influencer < ActiveRecord::Base
                   :description, :referrer_description, :address, :city, :state, :country, :zip_code, :phone,
                   :cell_phone, :contact_time, :contact_method, :preferred_payment, :account_number, :account_type, :cbu,
                   :bank_name, :manual_tweet_fee, :manual_cpc_fee, :automatic_tweet_fee, :automatic_cpc_fee,
-                  :twitter_users, :borwin_fee, :campaign_fee, :price_category
+                  :twitter_users, :borwin_fee, :campaign_fee, :price_category, :luxury_influential, :travel_influential,
+                  :fashion_influential, :movies_influential, :sports_influential, :politics_influential,  :technology_influential,
+                  :music_influential
 
   attr_accessor :clicks_count
 
@@ -121,6 +123,21 @@ class Influencer < ActiveRecord::Base
 
     # Applies the default sort
     def apply_default_sort(campaign, influencers)
+      # Sort option by influencers' influential
+      if ((campaign.sports ? 1 : 0 )+ (campaign.travel ? 1 : 0 ) +
+          (campaign.luxury ? 1 : 0  )+ (campaign.technology ? 1 : 0) +
+          (campaign.politics ? 1 : 0  )+ (campaign.fashion ? 1 : 0 ) +
+          (campaign.music ? 1 : 0  )+ (campaign.movies ? 1 : 0 ) == 1)
+        influencers = influencers.order("sports_influential desc") if campaign.sports
+        influencers = influencers.order("travel_influential desc") if campaign.travel
+        influencers = influencers.order("technology_influential desc") if campaign.technology
+        influencers = influencers.order("politics_influential desc") if campaign.politics
+        influencers = influencers.order("fashion_influential desc") if campaign.fashion
+        influencers = influencers.order("luxury_influential desc") if campaign.luxury
+        influencers = influencers.order("music_influential desc") if campaign.music
+        influencers = influencers.order("movies_influential desc") if campaign.movies
+      end
+
       # Sort option for sex
       if campaign.males && !campaign.females
         influencers = influencers.order("males_count desc")
