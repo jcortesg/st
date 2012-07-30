@@ -432,8 +432,10 @@ ActiveRecord::Schema.define(:version => 20120730141718) do
     t.boolean  "young_men",           :default => false, :null => false
     t.boolean  "adult_women",         :default => false, :null => false
     t.boolean  "adult_men",           :default => false, :null => false
+    t.datetime "last_sync_at"
   end
 
+  add_index "twitter_users", ["last_sync_at"], :name => "index_twitter_users_on_last_sync_at"
   add_index "twitter_users", ["twitter_uid"], :name => "index_twitter_users_on_twitter_uid", :unique => true
 
   create_table "users", :force => true do |t|

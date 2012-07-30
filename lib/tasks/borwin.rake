@@ -292,11 +292,16 @@ namespace :borwin do
     }
 
     # Now we fetch all the data for each one of the twitter users
-    TwitterUser.where("twitter_screen_name is not null").find_each(batch_size: 10000) do |twitter_user|
+    TwitterUser.where("twitter_screen_name is not null and last_sync_at is null").find_each(batch_size: 10000) do |twitter_user|
+      puts "Updateando #{twitter_user.twitter_screen_name}"
+      $stdout.flush
+
       tries = 100
       begin
         page = agent.get("http://mobile.twitter.com/#{twitter_user.twitter_screen_name}")
       rescue Net::HTTPForbidden, Net::HTTPNotFound, Mechanize::ResponseCodeError
+        puts "No se encuentra la pagina"
+        $stdout.flush
         tries = 0
         sleep(1)
         next
@@ -306,7 +311,14 @@ namespace :borwin do
         retry if tries > 0
       end
 
-      next if page.parser.css('.protected').size > 0
+      if page.parser.css('.protected').size > 0
+        puts "Los tweets del usuario estan protegidos"
+        $stdout.flush
+        next
+      end
+
+      puts "Datos encontrados, parseando y guardando"
+      $stdout.flush
 
       # First we get the location
       #location = page.parser.css('.location').text
@@ -337,6 +349,8 @@ namespace :borwin do
       twitter_user.young_men = true if keywords_young_men.detect {|k| text_to_parse.include?("#{k}" )}
       twitter_user.adult_women = true if keywords_adult_women.detect {|k| text_to_parse.include?("#{k} ")}
       twitter_user.adult_men = true if keywords_adult_men.detect {|k| text_to_parse.include?("#{k}" )}
+
+      twitter_user.last_sync_at = Time.now
 
       # Update the user
       twitter_user.save
