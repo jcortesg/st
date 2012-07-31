@@ -27,6 +27,11 @@
         %dt Estado
         %dd= tweet_status_explanation(@tweet.status)
 
+      %h4.title="Celebridades en la campaña:"
+      %ul
+        - @influencers.each do |influencer|
+          %li= influencer.first_name + " " + influencer.last_name
+
       .form-actions.center_text
         - if ['created', 'advertiser_reviewed'].include?(@tweet.status)
           = link_to('Aprobar', [:accept, :influencer, @tweet], method: :put, class: 'btn btn-large btn-primary', confirm: '¿Esta seguro que desea aceptar el Tweet?')

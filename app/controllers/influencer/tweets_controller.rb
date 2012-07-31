@@ -14,6 +14,7 @@ class Influencer::TweetsController < ApplicationController
   # Shows the details of a tweet
   def show
     @tweet = current_role.tweets.find(params[:id])
+    @influencers = @tweet.campaign.influencers.uniq{|x| x.id}
   end
 
   # Shows the form to modify a tweet proposition
