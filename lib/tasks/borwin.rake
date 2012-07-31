@@ -140,6 +140,7 @@ namespace :borwin do
 
         while(remaining_calls < 10)
           i = i + 1
+          i = 0 if i > influencers.size
           influencer = influencers[i]
           puts "Verificando usuario con id: #{influencer.id}"
           begin
