@@ -24,7 +24,8 @@ class Influencer < ActiveRecord::Base
                   :bank_name, :manual_tweet_fee, :manual_cpc_fee, :automatic_tweet_fee, :automatic_cpc_fee,
                   :twitter_users, :borwin_fee, :campaign_fee, :price_category, :luxury_influential, :travel_influential,
                   :fashion_influential, :movies_influential, :sports_influential, :politics_influential,  :technology_influential,
-                  :music_influential
+                  :music_influential, :moms_influential, :teens_influential, :college_influential,
+                  :young_men_influential, :young_women_influential, :adult_men_influential, :adult_women_influential
 
   attr_accessor :clicks_count
 
@@ -127,7 +128,7 @@ class Influencer < ActiveRecord::Base
       if ((campaign.sports ? 1 : 0 )+ (campaign.travel ? 1 : 0 ) +
           (campaign.luxury ? 1 : 0  )+ (campaign.technology ? 1 : 0) +
           (campaign.politics ? 1 : 0  )+ (campaign.fashion ? 1 : 0 ) +
-          (campaign.music ? 1 : 0  )+ (campaign.movies ? 1 : 0 ) == 1)
+          (campaign.music ? 1 : 0  )+ (campaign.movies ? 1 : 0 )  == 1)
         influencers = influencers.order("sports_influential desc") if campaign.sports
         influencers = influencers.order("travel_influential desc") if campaign.travel
         influencers = influencers.order("technology_influential desc") if campaign.technology
@@ -136,6 +137,18 @@ class Influencer < ActiveRecord::Base
         influencers = influencers.order("luxury_influential desc") if campaign.luxury
         influencers = influencers.order("music_influential desc") if campaign.music
         influencers = influencers.order("movies_influential desc") if campaign.movies
+      end
+      if ((campaign.moms ? 1 : 0  )+ (campaign.teens ? 1 : 0 ) +
+          (campaign.college_students ? 1 : 0  )+ (campaign.young_men ? 1 : 0 ) +
+          (campaign.young_women ? 1 : 0  )+ (campaign.adult_men ? 1 : 0 ) +
+          (campaign.adult_women ? 1 : 0  ) == 1)
+        influencers = influencers.order("moms_influential desc") if campaign.moms
+        influencers = influencers.order("teens_influential desc") if campaign.teens
+        influencers = influencers.order("college_influential desc") if campaign.college_students
+        influencers = influencers.order("young_men_influential desc") if campaign.young_men
+        influencers = influencers.order("young_women_influential desc") if campaign.young_women
+        influencers = influencers.order("adult_men_influential desc") if campaign.adult_men
+        influencers = influencers.order("adult_women_influential desc") if campaign.adult_women
       end
 
       # Sort option for sex

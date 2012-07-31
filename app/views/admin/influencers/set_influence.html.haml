@@ -8,6 +8,7 @@
     = simple_form_for(@influencer, url: do_set_influence_admin_influencer_path(@influencer), method: :put, html:  { class: "form-horizontal round_form", method: :put }) do |f|
       %h1.form_title= "Configurar como referente a #{@influencer.full_name} (@#{@influencer.user.twitter_screen_name})"
       = render '/shared/simple_form_errors', :f => f
+      %h2.title="Hobbies"
       .option
         = f.label :technology_influential, "Referente de Tecnología:"
         = f.check_box :technology_influential
@@ -39,6 +40,35 @@
       .option
         = f.label :fashion_influential, "Referente de Moda:"
         = f.check_box :fashion_influential
+      %hr
+      %h2.title="Edades"
+      .option
+        = f.label :moms_influential, "Referente de Mamás:"
+        = f.check_box :moms_influential
+      %hr
+      .option
+        = f.label :teens_influential, "Referente de Adolecentes:"
+        = f.check_box :teens_influential
+      %hr
+      .option
+        = f.label :college_influential, "Referente de Universitarios:"
+        = f.check_box :college_influential
+      %hr
+      .option
+        = f.label :young_men_influential, "Referente de Hombres (18 a 35 años) :"
+        = f.check_box :young_men_influential
+      %hr
+      .option
+        = f.label :young_women_influential, "Referente de Mujeres (18 a 35 años):"
+        = f.check_box :young_women_influential
+      %hr
+      .option
+        = f.label :adult_men_influential, "Referente de Hombres (más de 35 años):"
+        = f.check_box :adult_men_influential
+      %hr
+      .option
+        = f.label :adult_women_influential, "Referente de Mujeres (más de 35 años):"
+        = f.check_box :adult_women_influential
       %hr
 
       .form-actions
