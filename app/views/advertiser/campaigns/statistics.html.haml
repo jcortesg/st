@@ -49,8 +49,12 @@
           Costo de la campaña:
           = number_to_currency(@campaign.tweets.sum(:tweet_fee))
         %div
-          CPC de la campaña:
+          Costo Por Click de la campaña:
           = @campaign.statistics_cpc
+        - unless @campaign.twitter_screen_name.blank?
+          %div
+            Costo Por Contacto de la campaña:
+            = number_to_currency((@campaign.followers_start_count  + @campaign.retweets_count / @campaign.tweets.sum(:tweet_fee) ) )
         %div
           CPMS de la campaña:
           = @campaign.statistics_cpms
