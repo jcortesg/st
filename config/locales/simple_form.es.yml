@@ -171,7 +171,7 @@ es:
         user: Usuario
         transaction_on: Fecha
         transaction_at: Fecha
-        type: Tipo
+        transaction_type: Tipo
         details: Detalle
         borwint_transaction: Borwin?
         amount: Importe

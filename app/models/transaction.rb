@@ -1,6 +1,7 @@
 class Transaction < ActiveRecord::Base
   belongs_to :attachable, polymorphic: true
   belongs_to :user
+  belongs_to :cash_out
 
   before_save :set_balance
   after_save :update_user_balance

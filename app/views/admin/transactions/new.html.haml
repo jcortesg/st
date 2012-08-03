@@ -4,7 +4,6 @@
       %h1.form_title Nuevo Fee de Campaña
       = render '/shared/simple_form_errors', :f => f
       = f.input :user_id, as: :select, collection: User.joins(:advertiser).order("advertisers.company").all.collect { |u| [u.advertiser.company, u.id] }, label: "Anunciante", include_blank: false
-      = f.input :transaction_at
       = f.input :transaction_type, as: :select, collection: [['Fee Inicial de Campaña', 'initial_fee']], include_blank: false
       = f.input :details, input_html: { style: 'height: 100px'}
       = f.input :amount

@@ -32,6 +32,7 @@ class Admin::TransactionsController < ApplicationController
     @transaction = Transaction.new(params[:transaction])
 
     @transaction.amount = @transaction.amount * -1 if @transaction.amount >= 0
+    @transaction.transaction_at = Time.now
 
     if @transaction.save
       flash[:notice] = "La transacción ha sido creada"
@@ -50,6 +51,7 @@ class Admin::TransactionsController < ApplicationController
   # Creates a transaction
   def create
     @transaction = Transaction.new(params[:transaction])
+    @transaction.transaction_at = Time.now
 
     if @transaction.save
       flash[:notice] = "La transacción ha sido creada"

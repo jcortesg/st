@@ -4,7 +4,6 @@
       %h1.form_title Nuevo Pago
       = render '/shared/simple_form_errors', :f => f
       = f.input :user_id, as: :select, collection: User.where("role in (?)", ['influencer', 'affiliate']).includes(:advertiser, :affiliate).all.collect { |u| [u.full_name, u.id] }, label: "Afiliado / Celebridad"
-      = f.input :transaction_at
       = f.input :transaction_type, as: :select, collection: [['Pago', 'payment']], include_blank: false
       = f.input :details, input_html: { style: 'height: 100px'}
       = f.input :amount
