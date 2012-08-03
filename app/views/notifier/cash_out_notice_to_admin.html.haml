@@ -1,5 +1,5 @@
 %h1
-  - if @cash_out.role == 'influencer'
+  - if @cash_out.user.role == 'influencer'
     = "#{@cash_out.user.full_name} ha solicitaod un Cash Out"
 
 %p

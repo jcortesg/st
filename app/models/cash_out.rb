@@ -6,8 +6,16 @@ class CashOut < ActiveRecord::Base
 
   validates :status, inclusion: { in: ['created', 'paid'] }
 
+  before_validation :set_created_status
+
   def status_to_s
     self.status == 'created' ? 'Solicitado' : 'Pagado'
+  end
+
+  private
+
+  def set_created_status
+    self.status ||= 'created'
   end
 
 end

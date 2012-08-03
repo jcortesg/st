@@ -27,8 +27,9 @@ class Influencer::CashOutsController < ApplicationController
 
   # Creates a cash out
   def create
-    @cash_out = CashOut.new(params[:cash_out])
+    @cash_out = CashOut.new
     @cash_out.user = current_user
+    @cash_out.amount = current_user.available_for_withdraw
 
     if @cash_out.save
       Transaction.where(user_id: current_user.id).where("transaction_type in ('tweet_revenue', 'advertiser_referrer_fee', 'influencer_referrer_fee')").order('id desc').update_all("cash_out_id = #{@cash_out.id}")
@@ -36,10 +37,10 @@ class Influencer::CashOutsController < ApplicationController
       Notifier.cash_out_notice_to_admin(@cash_out).deliver
 
       flash[:notice] = "Se ha solicitado el Cash Out, los Administradores del sitio revisaran su solicitud para proceder al pago"
-      redirect_to [:admin, @cash_out]
+      redirect_to [:influencer, @cash_out]
     else
       flash[:error] = "No se pudo solicitar el Cash Out"
-      redirect_to [:admin, :transactions]
+      redirect_to [:new, :influencer, :cash_out]
     end
   end
 end

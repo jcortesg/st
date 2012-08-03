@@ -165,7 +165,7 @@ Borwin::Application.routes.draw do
       put :update_options, on: :collection
     end
     resources :transactions, only: [:index, :show]
-    resources :cash_outs, only: [:index, :show, :new, :crete]
+    resources :cash_outs, only: [:index, :show, :new, :create]
   end
 
   # Home pages

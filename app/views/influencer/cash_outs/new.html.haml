@@ -1,3 +1,8 @@
+- if flash.any?
+  .row
+    .span8.offset2
+      = render '/shared/flash', flash: flash
+
 .row
   .span8.offset2.round_box
     = simple_form_for(@cash_out, url: [:influencer, @cash_out], html:  { class: "form-horizontal round_form keywords_form"}) do |f|
