@@ -6,6 +6,8 @@ class CreateCashOuts < ActiveRecord::Migration
 
       t.string :status
 
+      t.datetime :paid_at
+
       t.timestamps
     end
   end

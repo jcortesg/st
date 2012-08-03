@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120803162722) do
+ActiveRecord::Schema.define(:version => 20120803193258) do
 
   create_table "advertisers", :force => true do |t|
     t.integer  "user_id"
@@ -216,6 +216,7 @@ ActiveRecord::Schema.define(:version => 20120803162722) do
     t.integer  "user_id"
     t.decimal  "amount",     :precision => 8, :scale => 2, :default => 0.0, :null => false
     t.string   "status"
+    t.datetime "paid_at"
     t.datetime "created_at",                                                :null => false
     t.datetime "updated_at",                                                :null => false
   end
@@ -353,8 +354,10 @@ ActiveRecord::Schema.define(:version => 20120803162722) do
     t.datetime "created_at",                                                          :null => false
     t.datetime "updated_at",                                                          :null => false
     t.integer  "referrer_id"
+    t.integer  "cash_out_id"
   end
 
+  add_index "transactions", ["cash_out_id"], :name => "index_transactions_on_cash_out_id"
   add_index "transactions", ["transaction_at"], :name => "index_transactions_on_transaction_at"
   add_index "transactions", ["user_id"], :name => "index_transactions_on_user_id"
 
