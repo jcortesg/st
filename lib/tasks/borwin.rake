@@ -568,6 +568,7 @@ namespace :borwin do
     User.all.each do |user|
       puts "Fixing balance for #{user.full_name}"
       user.balance = 0
+      user.save
       Transaction.where(user_id: user.id).order('id asc').all.each do |transaction|
         transaction.balance = user.balance + transaction.amount
         user.balance = transaction.balance

@@ -38,11 +38,15 @@ class Admin::CashOutsController < ApplicationController
     @transaction = Transaction.new
     @transaction.user = @cash_out.user
     @transaction.transaction_type = 'payment'
-    @transaction.amount = @cash_out.amount
-    @transaction.cash_out_paid = @cash_out
+    @transaction.amount = @cash_out.amount * -1
+    @transaction.attachable = @cash_out
+    @transaction.transaction_at = Time.now
 
     if @transaction.save
-      @cash_out.update_attribute(:status, 'paid')
+      @cash_out.status = 'paid'
+      @cash_out.paid_at = @transaction.transaction_at
+      @cash_out.save
+
       flash[:notice] = "Se ha realizado el pago"
       redirect_to [:admin, @cash_out]
     else

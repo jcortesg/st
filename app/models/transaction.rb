@@ -3,8 +3,6 @@ class Transaction < ActiveRecord::Base
   belongs_to :user
   belongs_to :cash_out
 
-  belongs_to :cash_out_paid, class_name: 'CashOut', foreign_key: 'cash_out_paid_id'
-
   before_save :set_balance
   after_save :update_user_balance
 
