@@ -7,7 +7,7 @@ class Tweet < ActiveRecord::Base
   has_many :clicks, dependent: :destroy
   has_many :retweets, dependent: :destroy
 
-  attr_accessible :campaign_id, :influencer_id, :text, :link_url, :fee_type, :tweet_at
+  attr_accessible :campaign_id, :influencer_id, :text, :link_url, :fee_type, :tweet_at, :reject_cause
 
   validates :campaign_id, presence: true
   validates :influencer_id, presence: true
