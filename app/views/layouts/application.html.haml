@@ -61,7 +61,13 @@
                       %li= link_to "Información", influencer_referrals_path
                       %li= link_to "Mis Referidos", list_influencer_referrals_path
                   %li= link_to "Tweets", influencer_tweets_path
-                  %li= link_to "Ingresos", [:influencer, :transactions]
+                  %li.dropdown
+                    %a{:href => '#', :class => 'dropdown-toggle', 'data-toggle' => 'dropdown'}
+                      Ingresos
+                      %b.caret
+                    %ul.dropdown-menu
+                      %li= link_to 'Ingresos', [:influencer, :transactions]
+                      %li= link_to 'Cash Out', [:influencer, :cash_outs]
                 - elsif current_user.affiliate?
                   %li.dropdown
                     %a{:href => '#', :class => 'dropdown-toggle', 'data-toggle' => 'dropdown'}
@@ -79,7 +85,13 @@
                       %li= link_to 'Mis Datos', affiliate_profiles_my_data_path
                       %li= link_to 'Datos de Cobro', affiliate_profiles_payment_data_path
                       %li= link_to 'Cambiar Contraseña', affiliate_profiles_change_password_path
-                  %li= link_to "Ingresos", [:affiliate, :transactions]
+                  %li.dropdown
+                    %a{:href => '#', :class => 'dropdown-toggle', 'data-toggle' => 'dropdown'}
+                      Ingresos
+                      %b.caret
+                    %ul.dropdown-menu
+                      %li= link_to 'Ingresos', [:affiliate, :transactions]
+                      %li= link_to 'Cash Out', [:affiliate, :cash_outs]
                 - elsif current_user.admin?
                   %li.dropdown
                     %a{:href => '#', :class => 'dropdown-toggle', 'data-toggle' => 'dropdown'}

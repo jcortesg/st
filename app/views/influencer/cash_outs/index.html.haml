@@ -1,0 +1,30 @@
+- if flash.any?
+  .row
+    .span12
+      = render '/shared/flash', flash: flash
+
+.row
+  .span12
+    .round_box
+      .content
+        %h1.title Cash Out
+
+
+        %table.table.table-striped
+          %thead
+            %tr
+              %th Fecha
+              %th Estado
+              %th Importe
+              %th Acciones
+
+          %tbody
+            - @cash_outs.each do |cash_out|
+              %tr{ :class => cycle('odd', 'even') }
+                %td= localize(cash_out.created_at, :format => "%d/%m/%Y %H:%M:%S")
+                %td= cash_out.status_to_s
+                %td= number_to_currency(cash_out.amount)
+                %td
+                  = link_to('Ver', [:influencer, cash_out], class: 'btn btn-primary')
+        .center_text
+          = paginate @cash_outs

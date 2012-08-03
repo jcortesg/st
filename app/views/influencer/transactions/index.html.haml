@@ -9,7 +9,7 @@
       .content
         - if current_user.available_for_withdraw > 0
           .right
-            = link_to("Solicitar Cash Out (#{number_to_currency(current_user.available_for_withdraw)})", '#', :class => 'btn btn-primary')
+            = link_to("Solicitar Cash Out (#{number_to_currency(current_user.available_for_withdraw)})", [:new, :influencer, :cash_out], :class => 'btn btn-primary')
         %h1.title Transacciones
 
 
