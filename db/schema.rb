@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120803193258) do
+ActiveRecord::Schema.define(:version => 20120803162722) do
 
   create_table "advertisers", :force => true do |t|
     t.integer  "user_id"
@@ -388,6 +388,7 @@ ActiveRecord::Schema.define(:version => 20120803193258) do
     t.string   "twitter_id"
     t.datetime "twitter_created_at"
     t.integer  "retweet_count",                                      :default => 0,   :null => false
+    t.text     "reject_cause"
   end
 
   add_index "tweets", ["campaign_id"], :name => "index_tweets_on_campaign_id"

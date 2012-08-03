@@ -162,6 +162,7 @@ es:
         status: Estado
         created_at: Fecha de creación
         updated_at: Fecha de actualización
+        reject_cause: Causa del rechazo
       keyword:
         name: Nombre
         keywords: Keywords
