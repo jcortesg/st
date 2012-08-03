@@ -231,4 +231,17 @@ class Notifier < ActionMailer::Base
     mail(to: user.email, subject: "Su crédito ha disminuido a $#{sprintf('%.02f', @user.balance)} - Its time to go social")
   end
 
+  # Sends a cash out notice to the admin
+  def cash_out_notice_to_admin(cash_out)
+    @cash_out = cash_out
+
+    if cash_out.user.role == 'influencer'
+      subject = "La celebridad #{cash_out.user.full_name} ha solicitado un Cash Out por $#{cash_out.amount}"
+    else
+      subject = "La agencia #{cash_out.user.full_name} ha solicitado un Cash Out por $#{cash_out.amount}"
+    end
+
+    mail(to: "info@borwin.net", subject: subject)
+  end
+
 end

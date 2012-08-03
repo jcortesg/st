@@ -20,9 +20,9 @@
           Disponible para retiro
           = number_to_currency(current_user.available_for_withdraw)
         - if CashOut.where(status: 'created', user_id: current_user.id).exists?
-          %h3
-            Cash Out Pendiente de Pago
-            = number_to_currency(CashOut.where(status: 'created', user_id: current_user.id).sum(:amount))
+          - CashOut.where(status: 'created', user_id: current_user.id).each do |cash_out|
+            %h3
+              = "Cash Out Pendiente de Pago solicitado el día #{cash_out.created_at.strftime("%d/%m/%Y")} por un importe de #{number_to_currency(cash_out.amount)}"
         %br
 
         %table.table.table-striped

@@ -176,6 +176,14 @@ es:
         borwint_transaction: Borwin?
         amount: Importe
         balance: Balance
+      cash_out:
+        user_id: Usuario
+        user: Usuario
+        amount: Importe
+        status: Estado
+        paid_at: Fecha de pago
+        created_at: Fecha de creación
+        updated_at: Fecha de actualización
     hints:
       influencer:
         twitter_username: "Tu nombre de usuario en twitter, ej: rorra"

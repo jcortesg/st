@@ -1,0 +1,28 @@
+.row
+  .span8.offset2.round_box
+    = simple_form_for(@cash_out, url: [:influencer, @cash_out], html:  { class: "form-horizontal round_form keywords_form"}) do |f|
+      %h1.form_title Cash out
+      = render '/shared/simple_form_errors', f: f
+
+      = f.input :user, disabled: true
+      = f.input :amount, disabled: true
+
+      .form-actions
+        = f.submit 'Solicitar', :class => 'btn btn-primary btn-large'
+        = link_to 'Cancelar', [:admin, :transactions], class: 'btn btn-large'
+
+    %table.table.table-striped
+      %thead
+        %tr
+          %th Fecha
+          %th Tipo
+          %th Link
+          %th Importe
+
+      %tbody
+        - @transactions.each do |transaction|
+          %tr{ :class => cycle('odd', 'even') }
+            %td= localize(transaction.transaction_at, :format => "%d/%m/%Y %H:%M:%S")
+            %td= transaction_type_description(transaction.transaction_type)
+            %td= influencer_attachable_link(transaction.attachable)
+            %td= sprintf("%.02f", transaction.amount)

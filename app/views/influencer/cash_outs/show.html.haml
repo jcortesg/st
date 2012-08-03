@@ -1,0 +1,22 @@
+- if flash.any?
+  .row
+    .span8.offset2
+      = render '/shared/flash', flash: flash
+.row
+  .span8.offset2
+    .frontend_round_content
+      .main_blue_title Detalles de Cash Out
+
+      %dl.record_details
+        %dt Fecha
+        %dd= @cash_out.created_at.strftime("%d/%m/%Y %H:%M:%S")
+        %dt Importe
+        %dd= number_to_currency(@cash_out.amount)
+        %dt Estado
+        %dd= @cash_out.status_to_s
+        - if @cash_out.status == 'paid'
+        %dt Fecha de pago
+        %dd= @cash_out.paid_at.strftime("%d/%m/%Y %H:%M:%S")
+
+      .form-actions.center_text
+        = link_to('Listado', [:influencers, :cash_out], class: 'btn btn-large btn-primary')
