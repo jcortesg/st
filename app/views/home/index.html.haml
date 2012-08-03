@@ -80,3 +80,35 @@
   %a.carousel-control.right{:href => '#home_carousel', 'data-slide' => 'next'} &rsaquo;
 
 
+#carousel-nav
+  %a{:href => '#home_carousel', 'data-to' => 1, :class => 'active'} 1
+  %a{:href => '#home_carousel', 'data-to' => 2} 2
+  %a{:href => '#home_carousel', 'data-to' => 3} 3
+  %a{:href => '#home_carousel', 'data-to' => 4} 4
+
+
+:javascript
+  var currentPage = 0;
+  var pages = $("#carousel-nav a");
+  var pagesCount = pages.length;
+
+  $('#carousel-nav a').click(function(q){
+    q.preventDefault();
+    //targetSlide = $(this).attr('data-to')-1;
+    //$('#home_carousel').carousel(targetSlide);
+    //$(this).addClass('active').siblings().removeClass('active');
+    clickedPage = $(this).attr('data-to')-1;
+    currentPage = clickedPage-1;
+    $('#home_carousel').carousel(clickedPage);
+  });
+  $('#home_carousel').on('slide', function(e) {
+    $(pages).removeClass("active");
+    currentPage++;
+    currentPage=(currentPage%pagesCount);
+    $(pages[currentPage]).addClass("active");
+  });
+
+
+
+
+

@@ -15,7 +15,7 @@ class Advertiser < ActiveRecord::Base
 
   attr_accessible :first_name, :last_name, :twitter_username, :company, :address, :city, :state, :country, :zip_code,
                   :phone, :can_create_campaigns, :position, :web, :advertising_source, :brand, :photo,
-                  :twitter_screen_name
+                  :twitter_screen_name, :can_create_click_fee
 
   def full_name
     "#{self.first_name} #{self.last_name}"
