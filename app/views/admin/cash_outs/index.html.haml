@@ -1,0 +1,48 @@
+- if flash.any?
+  .row
+    .span12
+      = render '/shared/flash', flash: flash
+
+.row
+  .span12
+    .round_box
+      .content
+        %h1.title Cash Outs
+
+        %table.table.table-striped
+          %thead
+            %tr
+              %th= sort_link(@search, :user_first_name_and_user_last_name, "Usuario")
+              %th= sort_link(@search, :amount, 'Importe')
+              %th= sort_link(@search, :status, 'Estado')
+              %th= sort_link(@search, :paid_at, 'Pagado?')
+              %th= sort_link(@search, :created_at, 'Fecha solicitud')
+              %th Acciones
+
+          %tbody
+            - @cash_outs.each do |cash_out|
+              %tr{ :class => cycle('odd', 'even') }
+                %td= cash_out.user
+                %td= number_to_currency(cash_out.amount)
+                %td= cash_out.status == 'created' ? 'Solicitado' : 'Pagado'
+                %td
+                  - if cash_out.paid_at
+                    = localize(cash_out.paid_at, format: '%d/%m/%Y %H:%M:%S')
+                %td= localize(cash_out.created_at, format: '%d/%m/%Y %H:%M:%S')
+                %td
+                  = link_to('Ver', [:admin, cash_out], class: 'btn btn-primary')
+        .center_text
+          = paginate @cash_outs
+
+        .filters
+          .subtitle Filtros
+          = simple_form_for @search, :url => [:admin, :cash_outs], html: {method: :get, id: 'filter_form', class: 'form-horizontal'} do |f|
+            = f.input :user_id_equals, as: :select, required: false, collection: User.where("role = 'influencer' or role = 'affiliate'").all.collect {|u| [u.full_name, u.id]}, label: 'Usuario'
+            = f.input :status_equals, as: :select, required: false, collection: [["Solicitado", 'created'], ["Pagado", 'paid']], label: "Estado", include_blank: false
+            = f.input :created_at_greater_than_or_equal_to, label: 'Desde', required: false, input_html: { class: 'medium', id: 'from_datepicker', value: @search.created_at_greater_than_or_equal_to ? @search.created_at_greater_than_or_equal_to.strftime("%d/%m/%Y") : ''}
+            = f.input :created_at_less_than_or_equal_to, label: 'Hasta', required: false, input_html: { class: 'medium', id: 'to_datepicker', value: @search.created_at_less_than_or_equal_to ? @search.created_at_less_than_or_equal_to.strftime("%d/%m/%Y") : ''}
+            = f.input :amount_greater_than, label: 'Importe mayor a', required: false
+            = f.input :amount_less_than, label: 'Importe menor a', required: false
+            .form-actions
+              = f.submit 'Filtrar', :class => 'btn btn-primary'
+              = link_to 'Resetear', '#', :class => 'btn reset'

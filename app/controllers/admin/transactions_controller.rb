@@ -3,7 +3,7 @@ class Admin::TransactionsController < ApplicationController
   before_filter :authenticate_user!
   before_filter :require_admin
 
-  # Show the list of keywords
+  # Show the list of transactions
   def index
     search_params = params[:search] || {}
     search_params.reverse_merge!({"meta_sort" => "transaction_at.desc"})

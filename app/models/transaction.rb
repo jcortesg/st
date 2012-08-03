@@ -23,7 +23,7 @@ class Transaction < ActiveRecord::Base
     end
   end
 
-  # After a transaction is saved, udpate the user transactions
+  # After a transaction is saved, update the user transactions
   def update_user_balance
     if user
       user.update_attribute(:balance, self.balance)
