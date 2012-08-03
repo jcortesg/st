@@ -15,18 +15,20 @@
         %table.table.table-striped
           %thead
             %tr
-              %th= sort_link(@search, :transaction_at, 'Fecha')
+              %th ID
+              %th Fecha
               %th Usuario
-              %th= sort_link(@search, :borwin_transaction, "Borwin?")
-              %th= sort_link(@search, :type, "Tipo")
+              %th Borwin?
+              %th Tipo
               %th Link
-              %th= sort_link(@search, :amount, "Importe")
-              %th= sort_link(@search, :balance, "balance")
+              %th Importe
+              %th Balance
               %th Acciones
 
           %tbody
             - @transactions.each do |transaction|
               %tr{ :class => cycle('odd', 'even') }
+                %td= transaction.id
                 %td= localize(transaction.transaction_at, :format => "%d/%m/%Y %H:%M:%S")
                 %td= transaction.user ? admin_link_to_user(transaction.user) : ''
                 %td= transaction.borwin_transaction? ? 'Sí' : 'No'

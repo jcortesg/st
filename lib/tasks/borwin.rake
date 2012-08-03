@@ -562,4 +562,18 @@ namespace :borwin do
                            double_optin: false, update_existing: true)
     end
   end
+
+  desc "Fix balances"
+  task fix_balances: :environment do
+    User.all.each do |user|
+      puts "Fixing balance for #{user.full_name}"
+      user.balance = 0
+      Transaction.where(user_id: user.id).order('id asc').all.each do |transaction|
+        transaction.balance = user.balance + transaction.amount
+        user.balance = transaction.balance
+        transaction.save
+      end
+      user.save
+    end
+  end
 end

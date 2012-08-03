@@ -9,14 +9,21 @@
       .content
         %h1.title Transacciones
 
+        %div
+          Balance
+          = number_to_currency(current_user.balance)
+        %div
+          Disponible para retiro
+          = number_to_currency(current_user.available_for_withdraw)
+
         %table.table.table-striped
           %thead
             %tr
-              %th= sort_link(@search, :transaction_at, 'Fecha')
-              %th= sort_link(@search, :type, "Tipo")
+              %th Fecha
+              %th Tipo
               %th Link
-              %th= sort_link(@search, :amount, "Importe")
-              %th= sort_link(@search, :balance, "balance")
+              %th Importe
+              %th Balance
               %th Acciones
 
           %tbody

@@ -184,6 +184,14 @@ class User < ActiveRecord::Base
       where("transaction_type = 'influencer_referrer_fee' or transaction_type = 'advertiser_referrer_fee'").sum(:amount)
   end
 
+
+  # Get all the money available for withdraw
+  def available_for_withdraw
+    Transaction.where(user_id: self.id).
+      where("transaction_type = 'tweet_revenue' or transaction_type = 'advertiser_referrer_fee' or transaction_type = 'influencer_referrer_fee'").
+      where("cash_out_id is null").where("created_at < ?", Time.now - 30.days).sum(:amount)
+  end
+
   private
 
   # When creating a referrer relationship, make sure to add the referrer date
