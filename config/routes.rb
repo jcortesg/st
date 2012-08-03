@@ -67,7 +67,7 @@ Borwin::Application.routes.draw do
     end
 
     resources :cash_outs, except: [:created, :edit, :update] do
-      post :pay, on: :member
+      put :pay, on: :member
     end
 
     match 'change_password' => 'dashboard#change_password', as: :dashboard_change_password

@@ -1,0 +1,42 @@
+- if flash.any?
+  .row
+    .span8.offset2
+      = render '/shared/flash', flash: flash
+.row
+  .span8.offset2
+    .frontend_round_content
+      .main_blue_title Detalles de Cash Out
+
+      %dl.record_details
+        %dt Usuario
+        %dd= link_to(@cash_out.user.full_name, @cash_out.user.role == 'influencer' ? admin_influencer_path(@cash_out.user.influencer) : admin_affiliate_path(@cash_out.user.affiliate), target: '_blank')
+        %dt Fecha
+        %dd= @cash_out.created_at.strftime("%d/%m/%Y %H:%M:%S")
+        %dt Importe
+        %dd= number_to_currency(@cash_out.amount)
+        %dt Estado
+        %dd= @cash_out.status_to_s
+        - if @cash_out.status == 'paid'
+          %dt Fecha de pago
+          %dd= @cash_out.paid_at.strftime("%d/%m/%Y %H:%M:%S")
+
+      .form-actions.center_text
+        = link_to('Listado', [:admin, :cash_outs], class: 'btn btn-large btn-primary')
+        - if @cash_out.status == 'created'
+          = link_to('Pagar', [:pay, :admin, @cash_out], method: :put, class: 'btn btn-large btn-danger', confirm: '¿Esta seguro que desea generar el pago y notificar al usuario?')
+
+      %table.table.table-striped
+        %thead
+          %tr
+            %th Fecha
+            %th Tipo
+            %th Link
+            %th Importe
+
+        %tbody
+          - @cash_out.transactions.order('id asc').each do |transaction|
+            %tr{ :class => cycle('odd', 'even') }
+              %td= localize(transaction.transaction_at, :format => "%d/%m/%Y %H:%M:%S")
+              %td= transaction_type_description(transaction.transaction_type)
+              %td= influencer_attachable_link(transaction.attachable)
+              %td= sprintf("%.02f", transaction.amount)

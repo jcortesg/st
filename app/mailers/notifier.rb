@@ -244,4 +244,14 @@ class Notifier < ActionMailer::Base
     mail(to: "info@borwin.net", subject: subject)
   end
 
+  # Sends a cash out payment notice to the user
+  def cash_out_paid(cash_out)
+    @cash_out = cash_out
+
+    attachments.inline['logo.jpg'] = File.read(Rails.root.join('app/assets/images/logo.jpg'))
+    attachments.inline['sellochico.jpg'] = File.read(Rails.root.join('app/assets/images/sellochico.jpg'))
+
+    mail(to: cash_out.user.email, subject: "Notificaciones @ Borwin -  Se ha realizado el pago de un Cash Out")
+  end
+
 end

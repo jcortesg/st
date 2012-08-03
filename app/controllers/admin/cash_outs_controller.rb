@@ -30,4 +30,24 @@ class Admin::CashOutsController < ApplicationController
 
     redirect_to [:admin, :cash_outs]
   end
+
+  # Generate the payment to the user
+  def pay
+    @cash_out = CashOut.find(params[:id])
+
+    @transaction = Transaction.new
+    @transaction.user = @cash_out.user
+    @transaction.transaction_type = 'payment'
+    @transaction.amount = @cash_out.amount
+    @transaction.cash_out_paid = @cash_out
+
+    if @transaction.save
+      @cash_out.update_attribute(:status, 'paid')
+      flash[:notice] = "Se ha realizado el pago"
+      redirect_to [:admin, @cash_out]
+    else
+      flash[:error] = "No se pudo realizar el pago"
+      redirect_to [:admin, @cash_out]
+    end
+  end
 end
