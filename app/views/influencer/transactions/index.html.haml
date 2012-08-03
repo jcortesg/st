@@ -7,14 +7,23 @@
   .span12
     .round_box
       .content
+        - if current_user.available_for_withdraw > 0
+          .right
+            = link_to("Solicitar Cash Out (#{number_to_currency(current_user.available_for_withdraw)})", '#', :class => 'btn btn-primary')
         %h1.title Transacciones
 
-        %div
+
+        %h3
           Balance
           = number_to_currency(current_user.balance)
-        %div
+        %h3
           Disponible para retiro
           = number_to_currency(current_user.available_for_withdraw)
+        - if CashOut.where(status: 'created', user_id: current_user.id).exists?
+          %h3
+            Cash Out Pendiente de Pago
+            = number_to_currency(CashOut.where(status: 'created', user_id: current_user.id).sum(:amount))
+        %br
 
         %table.table.table-striped
           %thead

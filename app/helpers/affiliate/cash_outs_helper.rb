@@ -1,0 +1,2 @@
+module Affiliate::CashOutsHelper
+end

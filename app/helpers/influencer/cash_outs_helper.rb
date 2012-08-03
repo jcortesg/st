@@ -1,0 +1,2 @@
+module Influencer::CashOutsHelper
+end

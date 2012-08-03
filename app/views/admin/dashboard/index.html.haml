@@ -11,6 +11,11 @@
         %br
         = "La cantidad actual de seguidores es #{number_with_delimiter(Audience.sum(:followers), delimiter: '.')}"
         %br
+        = "La cantidad de usuarios unicos es #{number_with_delimiter(TwitterUser.count, delimiter: '.')}"
+        %br
+        = "La cantidad de usuarios con ubicación, screen name y género es #{number_with_delimiter(TwitterUser.where('twitter_screen_name is not null').count, delimiter: '.')}, faltan updatear #{number_with_delimiter(TwitterUser.where('twitter_screen_name is null').count, delimiter: '.')}"
+
+        %br
         %br
         %br
         %br

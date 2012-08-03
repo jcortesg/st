@@ -189,7 +189,7 @@ class User < ActiveRecord::Base
   def available_for_withdraw
     Transaction.where(user_id: self.id).
       where("transaction_type = 'tweet_revenue' or transaction_type = 'advertiser_referrer_fee' or transaction_type = 'influencer_referrer_fee'").
-      where("cash_out_id is null").where("created_at < ?", Time.now - 30.days).sum(:amount)
+      where("cash_out_id is null").where("created_at < ?", Time.now - 3.days).sum(:amount)
   end
 
   private
