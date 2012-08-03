@@ -83,10 +83,11 @@
             = tf.input :tweet_at, minute_step: 15, start_year: Time.now.year, end_year: Time.now.year + 1, label: 'Fecha y hora de tweet', input_html: { class: 'tweet_time' }
 
             - if @campaign.price_per_click
-              = tf.input :fee_type, as: :radio, collection: [["Precio por Tweet - AR$ #{sprintf("%.02f", @influencer.tweet_fee)}", 'tweet_fee'], ["Precio por Click - AR$ #{sprintf("%.02f", @influencer.cpc_fee)}", 'cpc_fee']], label: 'Tipo de pago'
+              - tf.object.fee_type = 'cpc_fee'
+              = tf.input :fee_type, as: :radio, collection: [["Precio por Click - AR$ #{sprintf("%.02f", @influencer.cpc_fee)}", 'cpc_fee']], label: 'Tipo de pago'
             - else
               - tf.object.fee_type = 'tweet_fee'
-              = tf.input :fee_type, as: :radio, collection: [["Precio por Tweet - AR$ #{sprintf("%.02f", @influencer.tweet_fee)}", 'tweet_fee'], ["Precio por Click - AR$ #{sprintf("%.02f", @influencer.cpc_fee)}", 'cpc_fee']], label: 'Tipo de pago', input_html: { disabled: 'disabled' }
+              = tf.input :fee_type, as: :radio, collection: [["Precio por Tweet - AR$ #{sprintf("%.02f", @influencer.tweet_fee)}", 'tweet_fee']], label: 'Tipo de pago'
 
             = tf.input :campaign_id, as: :hidden
             = tf.input :influencer_id, as: :hidden

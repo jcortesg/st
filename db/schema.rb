@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120803131448) do
+ActiveRecord::Schema.define(:version => 20120803162722) do
 
   create_table "advertisers", :force => true do |t|
     t.integer  "user_id"
@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(:version => 20120803131448) do
     t.integer  "zip_code"
     t.string   "phone"
     t.boolean  "can_create_campaigns", :default => false, :null => false
+    t.boolean  "can_create_click_fee", :default => false, :null => false
     t.datetime "created_at",                              :null => false
     t.datetime "updated_at",                              :null => false
     t.string   "photo_file_name"
@@ -211,6 +212,14 @@ ActiveRecord::Schema.define(:version => 20120803131448) do
 
   add_index "campaigns", ["advertiser_id"], :name => "index_campaigns_on_advertiser_id"
 
+  create_table "cash_outs", :force => true do |t|
+    t.integer  "user_id"
+    t.decimal  "amount",     :precision => 8, :scale => 2, :default => 0.0, :null => false
+    t.string   "status"
+    t.datetime "created_at",                                                :null => false
+    t.datetime "updated_at",                                                :null => false
+  end
+
   create_table "clicks", :force => true do |t|
     t.integer  "tweet_id"
     t.string   "remote_ip"
@@ -335,7 +344,7 @@ ActiveRecord::Schema.define(:version => 20120803131448) do
     t.integer  "attachable_id"
     t.string   "attachable_type"
     t.integer  "user_id"
-    t.datetime "transaction_at",                                                      :null => false
+    t.datetime "transaction_at"
     t.string   "transaction_type",                                                    :null => false
     t.text     "details"
     t.boolean  "borwin_transaction",                               :default => false, :null => false

@@ -2,6 +2,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   helper :all
+  helper_method :current_role
 
   # Can can recover
   rescue_from CanCan::AccessDenied do |exception|

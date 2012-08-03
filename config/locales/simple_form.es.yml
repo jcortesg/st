@@ -45,6 +45,7 @@ es:
         zip_code: Código Postal
         phone: Téléfono
         can_create_campaigns: Crear Campañas?
+        can_create_click_fee: Tweets por Clicks?
         web: Página Web
         advertising_source: Como conoció Borwin
         position: Cargo
