@@ -125,6 +125,8 @@ es:
         advertiser_id: Anunciante
         name: Nombre
         objective: Objetivo
+        hashtag: Hashtag
+        instructions: Instrucciones de creación de tweet
         twitter_screen_name: Twitter
         price_per_click: Precio por Click
         archived: Archivada?

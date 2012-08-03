@@ -2,6 +2,8 @@
 
 
 $(document).ready ->
+  $('.tweet-text').tooltip()
+
   if $('#tweet_group_tweets_attributes_0_text').size() > 0
     $('#tweet_group_tweets_attributes_0_text').charCount()
     $('#tweet_group_tweets_attributes_1_text').charCount()
