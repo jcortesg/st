@@ -293,7 +293,7 @@ namespace :borwin do
     }
 
     # Now we fetch all the data for each one of the twitter users
-    TwitterUser.where("twitter_screen_name is not null and last_sync_at is null").find_each(batch_size: 10000) do |twitter_user|
+    TwitterUser.where("twitter_screen_name is not null and last_sync_at is null and invalid_page is false and private_tweets is false").find_each(batch_size: 10000) do |twitter_user|
       puts "Updateando #{twitter_user.twitter_screen_name}"
       $stdout.flush
 
@@ -303,6 +303,8 @@ namespace :borwin do
       rescue Net::HTTPForbidden, Net::HTTPNotFound, Mechanize::ResponseCodeError
         puts "No se encuentra la pagina"
         $stdout.flush
+        twitter_user.invalid_page = true
+        twitter_user.save
         tries = 0
         sleep(1)
         next
@@ -315,6 +317,8 @@ namespace :borwin do
       if page.parser.css('.protected').size > 0
         puts "Los tweets del usuario estan protegidos"
         $stdout.flush
+        twitter_user.private_tweets = true
+        twitter_user.save
         next
       end
 
