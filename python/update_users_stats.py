@@ -306,7 +306,10 @@ try:
 #        if self.tsession:
 #          self.tsession.remove()
 #          self.tsession = None
-        Session.remove()
+        try:
+          Session.remove()
+        except Exception, e:
+          pass
         print "Thread terminado"
         sys.stdout.flush()
 
