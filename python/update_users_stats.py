@@ -231,10 +231,15 @@ try:
             if e.code == 404:
               print "%s con página inválida" % twitter_user.twitter_screen_name
               sys.stdout.flush()
-              twitter_user.invalid_page = 1
+              twitter_user.invalid_page = True
+            else:
+              print "Error con la pagina: %d" % e.code
+              sys.stdout.flush()
             pass
           except Exception, e:
-            print "ERROR: %s" % (e)
+            print "ERROR"
+            sys.stdout.flush()
+            print "MENSAJE: %s" % (e)            
             sys.stdout.flush()
             #twitter_user.invalid_page = True
             pass
@@ -249,7 +254,7 @@ try:
             if soup.find('div', 'protected'):
               print "%s con tweets privados" % twitter_user.twitter_screen_name
               sys.stdout.flush()
-              twitter_user.private_tweets = 1
+              twitter_user.private_tweets = True
             else:
               # Get the tweets on text
               divs = soup.findAll('div', 'tweet-text')
@@ -300,7 +305,7 @@ try:
               sys.stdout.flush()
 
           # Save the result
-          self.tsession.flush()
+          self.tsession.commit()
           self.queue.task_done()
           print "Object saved"
           sys.stdout.flush()
@@ -332,7 +337,7 @@ try:
 
     print "Creando hilos"
     sys.stdout.flush()
-    for i in range(100):
+    for i in range(50):
       t = FetchThread(queue)
       t.setDaemon(True)
       t.start()
