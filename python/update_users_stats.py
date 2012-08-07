@@ -228,7 +228,7 @@ try:
             page = mechanize.urlopen("http://mobile.twitter.com/" + twitter_user.twitter_screen_name)
           except mechanize.HTTPError, e:
             if e.code == 404:
-              print "%s con página invalidada" % twitter_user.twitter_screen_name
+              print "%s con página inválida" % twitter_user.twitter_screen_name
               #sys.stdout.flush()
               twitter_user.invalid_page = True
             pass
