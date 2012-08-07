@@ -48,8 +48,8 @@ database_config = load(database_yml_content, Loader=Loader)[RAILS_ENV]
 if not database_config['password']:
   database_config['password'] = ''
 db_connection_info = "mysql://" + database_config['username'] + ':' + database_config['password'] + '@' + database_config['host'] + '/' + database_config['database']
-engine = create_engine(db_connection_info, pool_size=50, max_overflow=200, autoflush = True, autocommit = True)
-Session = scoped_session(sessionmaker(bind=engine))
+engine = create_engine(db_connection_info, pool_size=50, max_overflow=200)
+Session = scoped_session(sessionmaker(bind=engine, autoflush = True, autocommit = True))
 
 Base = declarative_base()
 
