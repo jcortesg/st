@@ -299,7 +299,7 @@ try:
               sys.stdout.flush()
 
           # Save the result
-          self.tsession.commit()
+          #self.tsession.commit()
           self.queue.task_done()
           sys.stdout.flush()
       finally:
