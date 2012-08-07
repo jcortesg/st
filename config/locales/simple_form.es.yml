@@ -191,6 +191,8 @@ es:
         keywords: "Los keywords deben ser ingresados separados por coma"
       campaign:
         twitter_screen_name: "Twitter de la empresa, ejemplo: @JuanaRepetto"
+        hashtag: "Hashtag para la campaña. Por ejemplo: #internet."
+
   helpers:
     submit:
       user:

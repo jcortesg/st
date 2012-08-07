@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120803215947) do
+ActiveRecord::Schema.define(:version => 20120806042018) do
 
   create_table "advertisers", :force => true do |t|
     t.integer  "user_id"
@@ -216,7 +216,6 @@ ActiveRecord::Schema.define(:version => 20120803215947) do
     t.integer  "user_id"
     t.decimal  "amount",     :precision => 8, :scale => 2, :default => 0.0, :null => false
     t.string   "status"
-    t.datetime "paid_at"
     t.datetime "created_at",                                                :null => false
     t.datetime "updated_at",                                                :null => false
   end
@@ -345,7 +344,7 @@ ActiveRecord::Schema.define(:version => 20120803215947) do
     t.integer  "attachable_id"
     t.string   "attachable_type"
     t.integer  "user_id"
-    t.datetime "transaction_at"
+    t.datetime "transaction_at",                                                      :null => false
     t.string   "transaction_type",                                                    :null => false
     t.text     "details"
     t.boolean  "borwin_transaction",                               :default => false, :null => false
@@ -455,9 +454,13 @@ ActiveRecord::Schema.define(:version => 20120803215947) do
     t.boolean  "adult_women",         :default => false, :null => false
     t.boolean  "adult_men",           :default => false, :null => false
     t.datetime "last_sync_at"
+    t.boolean  "invalid_page",        :default => false, :null => false
+    t.boolean  "private_tweets",      :default => false, :null => false
   end
 
+  add_index "twitter_users", ["invalid_page"], :name => "index_twitter_users_on_invalid_page"
   add_index "twitter_users", ["last_sync_at"], :name => "index_twitter_users_on_last_sync_at"
+  add_index "twitter_users", ["private_tweets"], :name => "index_twitter_users_on_private_tweets"
   add_index "twitter_users", ["twitter_uid"], :name => "index_twitter_users_on_twitter_uid", :unique => true
 
   create_table "users", :force => true do |t|

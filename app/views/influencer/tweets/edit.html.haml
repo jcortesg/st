@@ -34,7 +34,7 @@
 
       = simple_form_for @tweet, url: [:influencer, @tweet], html: { class: 'vertical-form tweet_proposal' } do |f|
         .text_container
-          = f.input :text, as: :text, input_html: { style: 'width: 523px;height: 40px' }
+          = f.input :text, as: :text, input_html: { style: 'width: 523px;height: 40px' , :title => @tweet.campaign.instructions, :class => 'tweet-text' }
         = f.input :tweet_at, minute_step: 15, start_year: Time.now.year, end_year: Time.now.year + 1, input_html: { class: 'tweet_time' }
 
         .form-actions

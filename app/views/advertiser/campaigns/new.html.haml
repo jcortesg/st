@@ -16,8 +16,9 @@
 
       = f.input :name
       = f.input :twitter_screen_name
-      = f.input :objective
-      = f.input :instructions, label: 'Completá las intrucciones que le quieras dar a las celebridades a la hora de Twittear. Por ejemplo "incluí este link http://www.borwin.net" o usá la frase "Que lindo día"'
+      = f.input :objective, :input_html => {:rows=> '10'}
+      = f.input :hashtag
+      = f.input :instructions, label: 'Completá las intrucciones que le quieras dar a las celebridades a la hora de Twittear.', :input_html => {:rows=> '10'}
 
       - if current_role.can_create_click_fee?
         = f.input :price_per_click, as: :radio, collection: [["Precio por Tweet", false], ["Precio por Click", true]], label: 'Tipo de pago'

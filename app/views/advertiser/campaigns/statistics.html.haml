@@ -234,9 +234,12 @@
     .round_box
       .content
 
-        %h1.title Hashtags
+        %h1.title= "Hashtag: "
 
-        = @campaign.hashtags.all().join(" &nbsp;-&nbsp; ").html_safe()
+        %div
+          Menciones:
+          = @campaign.hashtag_count
+
 
 
 
