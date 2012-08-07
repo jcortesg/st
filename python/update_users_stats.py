@@ -226,18 +226,20 @@ try:
           # Load the twitter page
           page = None
           try:
-            tries = 5
+            tries = 3
             try:
               if tries > 0:
                 page = mechanize.urlopen("http://mobile.twitter.com/" + twitter_user.twitter_screen_name)
+              else:
+                print "Error 403 para %s" % twitter_user.twitter_screen_name
             except mechanize.HTTPError, e:
               if e.code != 404:
                 tries = tries - 1
                 continue
               else:
-                raise e
+                raise
             except Exception, e:
-              raise e
+              raise
           except mechanize.HTTPError, e:
             if e.code == 404:
               print "%s con página inválida" % twitter_user.twitter_screen_name
@@ -250,7 +252,7 @@ try:
           except Exception, e:
             print "ERROR"
             sys.stdout.flush()
-            print "MENSAJE: %s" % (e)            
+            print "MENSAJE: %s" % e
             sys.stdout.flush()
             #twitter_user.invalid_page = True
             pass
