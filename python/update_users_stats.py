@@ -226,14 +226,25 @@ try:
           # Load the twitter page
           page = None
           try:
-            page = mechanize.urlopen("http://mobile.twitter.com/" + twitter_user.twitter_screen_name)
+            tries = 5
+            try:
+              if tries > 0:
+                page = mechanize.urlopen("http://mobile.twitter.com/" + twitter_user.twitter_screen_name)
+            except mechanize.HTTPError, e:
+              if e.code != 404:
+                tries = tries - 1
+                continue
+              else:
+                raise e
+            except Exception, e:
+              raise e
           except mechanize.HTTPError, e:
             if e.code == 404:
               print "%s con página inválida" % twitter_user.twitter_screen_name
               sys.stdout.flush()
               twitter_user.invalid_page = True
             else:
-              print "Error con la pagina: %d" % e.code
+              print "Error con la pagina: %d del usuario %s" % (e.code, twitter_user.twitter_screen_name)
               sys.stdout.flush()
             pass
           except Exception, e:
@@ -337,7 +348,7 @@ try:
 
     print "Creando hilos"
     sys.stdout.flush()
-    for i in range(50):
+    for i in range(30):
       t = FetchThread(queue)
       t.setDaemon(True)
       t.start()
