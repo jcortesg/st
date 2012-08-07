@@ -99,9 +99,6 @@ class Keyword(Base):
   created_at = Column(DateTime)
   updated_at = Column(DateTime)
 
-
-queue = Queue()
-
 start_time = time.time()
 
 #conn = None
@@ -209,13 +206,13 @@ try:
       threading.Thread.__init__(self)
 
     def run(self):
-      tsession = Session()
+      self.tsession = Session()
       try:
         while True:
           print "Items en queue: %d" % self.queue.qsize()
 
-          twitter_user_id = queue.get()
-          twitter_user = tsession.query(TwitterUser).filter(TwitterUser.id == twitter_user_id).first()
+          twitter_user_id = self.queue.get()
+          twitter_user = self.tsession.query(TwitterUser).filter(TwitterUser.id == twitter_user_id).first()
 
           # Mechanize setup
           cookies = cookielib.CookieJar()
@@ -298,13 +295,14 @@ try:
               twitter_user.last_sync_at = datetime.now()
 
           # Save the result
-          tsession.commit()
+          self.tsession.commit()
           self.queue.task_done()
           print "%s actualizado" % twitter_user.twitter_screen_name
           sys.stdout.flush()
       finally:
-        if tsession:
-          tsession.close()
+        if self.tsession:
+          self.tsession.close()
+          self.tsession = None
         print "Thread terminado"
         sys.stdout.flush()
 
@@ -318,6 +316,7 @@ try:
     twitter_users = session.query(TwitterUser.id).filter(TwitterUser.last_sync_at == None, TwitterUser.private_tweets == False).limit(1000).all()
 
     print "Creando el queue de objetos"
+    queue = Queue()
     sys.stdout.flush()
     for twitter_user in twitter_users:
       queue.put(twitter_user.id)
