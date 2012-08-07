@@ -229,12 +229,12 @@ try:
           except mechanize.HTTPError, e:
             if e.code == 404:
               print "%s con página inválida" % twitter_user.twitter_screen_name
-              #sys.stdout.flush()
+              sys.stdout.flush()
               twitter_user.invalid_page = True
             pass
           except Exception, e:
             print "ERROR: %s" % (e.message)
-            #sys.stdout.flush()
+            sys.stdout.flush()
             #twitter_user.invalid_page = True
             pass
 
@@ -246,8 +246,8 @@ try:
 
             # Check that the tweets are not private
             if soup.find('div', 'protected'):
-              #print "%s con tweets privados" % twitter_user.twitter_screen_name
-              #sys.stdout.flush()
+              print "%s con tweets privados" % twitter_user.twitter_screen_name
+              sys.stdout.flush()
               twitter_user.private_tweets = True
             else:
               # Get the tweets on text
@@ -296,15 +296,17 @@ try:
               twitter_user.private_tweets = False
               twitter_user.invalid_page = False
               print "%s actualizado" % twitter_user.twitter_screen_name
+              sys.stdout.flush()
 
           # Save the result
           self.tsession.commit()
           self.queue.task_done()
           sys.stdout.flush()
       finally:
-        if self.tsession:
-          self.tsession.remove()
-          self.tsession = None
+#        if self.tsession:
+#          self.tsession.remove()
+#          self.tsession = None
+        Session.remove()
         print "Thread terminado"
         sys.stdout.flush()
 
@@ -336,8 +338,12 @@ try:
     queue.join()
 
     # Close all the sessions and start a new one
+    print "Cerrando y abriendo conexiones"
+    sys.stdout.flush()
     Session.close_all()
     session = Session()
+    print "Conexxiones cerradas y abiertas"
+    sys.stdout.flush()
 
 
     print "Tardo %d segundos en updatear 10000 usuarios" % (time.time() - start)
