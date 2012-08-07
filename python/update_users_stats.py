@@ -301,7 +301,7 @@ try:
           sys.stdout.flush()
       finally:
         if self.tsession:
-          self.tsession.close()
+          self.tsession.remove()
           self.tsession = None
         print "Thread terminado"
         sys.stdout.flush()
@@ -332,6 +332,11 @@ try:
     sys.stdout.flush()
 
     queue.join()
+
+    # Close all the sessions and start a new one
+    Session.close_all()
+    session = Session()
+
 
     print "Tardo %d segundos en updatear 1000 usuarios" % (time.time() - start)
     sys.stdout.flush()
