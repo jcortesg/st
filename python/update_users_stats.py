@@ -233,7 +233,7 @@ try:
               twitter_user.invalid_page = True
             pass
           except Exception, e:
-            print "ERROR: %s" % (e.message)
+            print "ERROR: %s" % str(e)
             sys.stdout.flush()
             #twitter_user.invalid_page = True
             pass
