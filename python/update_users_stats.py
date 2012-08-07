@@ -293,6 +293,8 @@ try:
               if regex_adult_men.search(tweets_text):
                 twitter_user.adult_men = True
               twitter_user.last_sync_at = datetime.now()
+              twitter_user.private_tweets = False
+              twitter_user.invalid_page = False
 
           # Save the result
           self.tsession.commit()
