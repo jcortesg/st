@@ -209,7 +209,7 @@ try:
       self.tsession = Session()
       try:
         while True:
-          print "Items en queue: %d" % self.queue.qsize()
+          #print "Items en queue: %d" % self.queue.qsize()
 
           twitter_user_id = self.queue.get()
           twitter_user = self.tsession.query(TwitterUser).filter(TwitterUser.id == twitter_user_id).first()
@@ -228,12 +228,12 @@ try:
             page = mechanize.urlopen("http://mobile.twitter.com/" + twitter_user.twitter_screen_name)
           except mechanize.HTTPError, e:
             if e.code == 404:
-              #print "%s con página invalidada" % twitter_user.twitter_screen_name
+              print "%s con página invalidada" % twitter_user.twitter_screen_name
               #sys.stdout.flush()
               twitter_user.invalid_page = True
             pass
           except Exception, e:
-            #print "%s con página invalidada" % twitter_user.twitter_screen_name
+            print "ERROR: %s" % (e.message)
             #sys.stdout.flush()
             #twitter_user.invalid_page = True
             pass
@@ -295,11 +295,11 @@ try:
               twitter_user.last_sync_at = datetime.now()
               twitter_user.private_tweets = False
               twitter_user.invalid_page = False
+              print "%s actualizado" % twitter_user.twitter_screen_name
 
           # Save the result
           self.tsession.commit()
           self.queue.task_done()
-          print "%s actualizado" % twitter_user.twitter_screen_name
           sys.stdout.flush()
       finally:
         if self.tsession:
