@@ -48,7 +48,7 @@ database_config = load(database_yml_content, Loader=Loader)[RAILS_ENV]
 if not database_config['password']:
   database_config['password'] = ''
 db_connection_info = "mysql://" + database_config['username'] + ':' + database_config['password'] + '@' + database_config['host'] + '/' + database_config['database']
-engine = create_engine(db_connection_info, pool_size=40, max_overflow=100)
+engine = create_engine(db_connection_info, pool_size=50, max_overflow=200)
 Session = scoped_session(sessionmaker(bind=engine))
 
 Base = declarative_base()
@@ -311,9 +311,9 @@ try:
   while session.query(func.count(TwitterUser)).filter(TwitterUser.last_sync_at == None, TwitterUser.private_tweets == False).all() > 0:
     start = time.time()
 
-    print "Fetch de 1000 usuarios de twitter"
+    print "Fetch de 10000 usuarios de twitter"
     sys.stdout.flush()
-    twitter_users = session.query(TwitterUser.id).filter(TwitterUser.last_sync_at == None, TwitterUser.private_tweets == False).limit(1000).all()
+    twitter_users = session.query(TwitterUser.id).filter(TwitterUser.last_sync_at == None, TwitterUser.private_tweets == False).limit(10000).all()
 
     print "Creando el queue de objetos"
     queue = Queue()
@@ -338,7 +338,7 @@ try:
     session = Session()
 
 
-    print "Tardo %d segundos en updatear 1000 usuarios" % (time.time() - start)
+    print "Tardo %d segundos en updatear 10000 usuarios" % (time.time() - start)
     sys.stdout.flush()
 
 except Exception, e:
