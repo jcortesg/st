@@ -216,7 +216,6 @@ ActiveRecord::Schema.define(:version => 20120806042018) do
     t.integer  "user_id"
     t.decimal  "amount",     :precision => 8, :scale => 2, :default => 0.0, :null => false
     t.string   "status"
-    t.datetime "paid_at"
     t.datetime "created_at",                                                :null => false
     t.datetime "updated_at",                                                :null => false
   end
@@ -339,9 +338,6 @@ ActiveRecord::Schema.define(:version => 20120806042018) do
     t.text     "message"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
-  end
-
-  create_table "tempT", :force => true do |t|
   end
 
   create_table "transactions", :force => true do |t|
