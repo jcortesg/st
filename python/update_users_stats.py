@@ -9,9 +9,10 @@ import re
 import logging
 import thread
 from sqlalchemy.orm import sessionmaker, scoped_session
-from sqlalchemy import *
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import mapper
+from sqlalchemy.dialects.mysql import *
+from sqlalchemy import Column, ForeignKey, create_engine, func
 import threading
 from Queue import Queue
 from datetime import datetime
@@ -49,55 +50,55 @@ if not database_config['password']:
   database_config['password'] = ''
 db_connection_info = "mysql://" + database_config['username'] + ':' + database_config['password'] + '@' + database_config['host'] + '/' + database_config['database']
 engine = create_engine(db_connection_info, pool_size=50, max_overflow=200)
-Session = scoped_session(sessionmaker(bind=engine, autoflush = True, autocommit = True))
+Session = scoped_session(sessionmaker(bind=engine, autoflush = True))
 
 Base = declarative_base()
 
 class TwitterUser(Base):
   __tablename__ = 'twitter_users'
 
-  id = Column(Integer, primary_key=True)
-  twitter_uid = Column(String)
-  twitter_screen_name = Column(String)
-  name = Column(String)
-  location = Column(String)
-  profile_image_url = Column(String)
-  followers = Column(Integer)
-  friends = Column(Integer)
-  tweets = Column(Integer)
-  twitter_country_id = Column(Integer)
-  twitter_state_id = Column(Integer)
-  male = Column(Boolean)
-  female = Column(Boolean)
-  sports = Column(Boolean)
-  fashion = Column(Boolean)
-  music = Column(Boolean)
-  movies = Column(Boolean)
-  politics = Column(Boolean)
-  technology = Column(Boolean)
-  travel = Column(Boolean)
-  luxury = Column(Boolean)
-  created_at = Column(DateTime)
-  updated_at = Column(DateTime)
-  moms = Column(Boolean)
-  teens = Column(Boolean)
-  college_students = Column(Boolean)
-  young_women = Column(Boolean)
-  young_men = Column(Boolean)
-  adult_women = Column(Boolean)
-  adult_men = Column(Boolean)
-  last_sync_at = Column(DateTime)
-  invalid_page = Column(Boolean)
-  private_tweets = Column(Boolean)
+  id = Column(INTEGER, primary_key=True)
+  twitter_uid = Column(VARCHAR(255))
+  twitter_screen_name = Column(VARCHAR(255))
+  name = Column(VARCHAR(255))
+  location = Column(VARCHAR(255))
+  profile_image_url = Column(VARCHAR(255))
+  followers = Column(INTEGER)
+  friends = Column(INTEGER)
+  tweets = Column(INTEGER)
+  twitter_country_id = Column(INTEGER)
+  twitter_state_id = Column(INTEGER)
+  male = Column(TINYINT)
+  female = Column(TINYINT)
+  sports = Column(TINYINT)
+  fashion = Column(TINYINT)
+  music = Column(TINYINT)
+  movies = Column(TINYINT)
+  politics = Column(TINYINT)
+  technology = Column(TINYINT)
+  travel = Column(TINYINT)
+  luxury = Column(TINYINT)
+  created_at = Column(DATETIME)
+  updated_at = Column(DATETIME)
+  moms = Column(TINYINT)
+  teens = Column(TINYINT)
+  college_students = Column(TINYINT)
+  young_women = Column(TINYINT)
+  young_men = Column(TINYINT)
+  adult_women = Column(TINYINT)
+  adult_men = Column(TINYINT)
+  last_sync_at = Column(DATETIME)
+  invalid_page = Column(TINYINT)
+  private_tweets = Column(TINYINT)
 
 class Keyword(Base):
   __tablename__ = 'keywords'
 
-  id = Column(Integer, primary_key=True)
-  name = Column(String)
-  keywords = Column(Text)
-  created_at = Column(DateTime)
-  updated_at = Column(DateTime)
+  id = Column(INTEGER, primary_key=True)
+  name = Column(VARCHAR(255))
+  keywords = Column(TEXT)
+  created_at = Column(DATETIME)
+  updated_at = Column(DATETIME)
 
 start_time = time.time()
 
@@ -230,15 +231,15 @@ try:
             if e.code == 404:
               print "%s con página inválida" % twitter_user.twitter_screen_name
               sys.stdout.flush()
-              twitter_user.invalid_page = True
+              twitter_user.invalid_page = 1
             pass
           except Exception, e:
-            print "ERROR: %s" % str(e)
+            print "ERROR: %s" % (e)
             sys.stdout.flush()
             #twitter_user.invalid_page = True
             pass
 
-          if page and twitter_user.invalid_page == False:
+          if page and twitter_user.invalid_page == 0:
             html = page.read()
 
             # Parse the page
@@ -248,7 +249,7 @@ try:
             if soup.find('div', 'protected'):
               print "%s con tweets privados" % twitter_user.twitter_screen_name
               sys.stdout.flush()
-              twitter_user.private_tweets = True
+              twitter_user.private_tweets = 1
             else:
               # Get the tweets on text
               divs = soup.findAll('div', 'tweet-text')
@@ -293,14 +294,15 @@ try:
               if regex_adult_men.search(tweets_text):
                 twitter_user.adult_men = True
               twitter_user.last_sync_at = datetime.now()
-              twitter_user.private_tweets = False
-              twitter_user.invalid_page = False
+              twitter_user.private_tweets = 0
+              twitter_user.invalid_page = 0
               print "%s actualizado" % twitter_user.twitter_screen_name
               sys.stdout.flush()
 
           # Save the result
-          #self.tsession.commit()
+          self.tsession.flush()
           self.queue.task_done()
+          print "Object saved"
           sys.stdout.flush()
       finally:
 #        if self.tsession:
@@ -315,12 +317,12 @@ try:
 
     print "Chequeando usuarios de twitter"
   sys.stdout.flush()
-  while session.query(func.count(TwitterUser)).filter(TwitterUser.last_sync_at == None, TwitterUser.private_tweets == False).all() > 0:
+  while session.query(func.count(TwitterUser)).filter(TwitterUser.last_sync_at == None, TwitterUser.private_tweets == 0, TwitterUser.invalid_page == 0).all() > 0:
     start = time.time()
 
     print "Fetch de 10000 usuarios de twitter"
     sys.stdout.flush()
-    twitter_users = session.query(TwitterUser.id).filter(TwitterUser.last_sync_at == None, TwitterUser.private_tweets == False).limit(10000).all()
+    twitter_users = session.query(TwitterUser.id).filter(TwitterUser.last_sync_at == None, TwitterUser.private_tweets == 0, TwitterUser.invalid_page == 0).limit(10000).all()
 
     print "Creando el queue de objetos"
     queue = Queue()
