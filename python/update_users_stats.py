@@ -234,10 +234,12 @@ try:
               #print "%s con página invalidada" % twitter_user.twitter_screen_name
               #sys.stdout.flush()
               twitter_user.invalid_page = True
+            pass
           except Exception, e:
             #print "%s con página invalidada" % twitter_user.twitter_screen_name
             #sys.stdout.flush()
-            twitter_user.invalid_page = True
+            #twitter_user.invalid_page = True
+            pass
 
           if page and twitter_user.invalid_page == False:
             html = page.read()
@@ -308,12 +310,12 @@ try:
 
     print "Chequeando usuarios de twitter"
   sys.stdout.flush()
-  while session.query(func.count(TwitterUser)).filter(TwitterUser.last_sync_at == None, TwitterUser.invalid_page == False, TwitterUser.private_tweets == False).all() > 0:
+  while session.query(func.count(TwitterUser)).filter(TwitterUser.last_sync_at == None, TwitterUser.private_tweets == False).all() > 0:
     start = time.time()
 
-    print "Fetch de 10000 usuarios de twitter"
+    print "Fetch de 1000 usuarios de twitter"
     sys.stdout.flush()
-    twitter_users = session.query(TwitterUser.id).filter(TwitterUser.last_sync_at == None, TwitterUser.invalid_page == False, TwitterUser.private_tweets == False).limit(10000).all()
+    twitter_users = session.query(TwitterUser.id).filter(TwitterUser.last_sync_at == None, TwitterUser.private_tweets == False).limit(1000).all()
 
     print "Creando el queue de objetos"
     sys.stdout.flush()
@@ -332,7 +334,7 @@ try:
 
     queue.join()
 
-    print "Tardo %d segundos en updatear 10000 usuarios" % (time.time() - start)
+    print "Tardo %d segundos en updatear 1000 usuarios" % (time.time() - start)
     sys.stdout.flush()
 
 except Exception, e:
