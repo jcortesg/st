@@ -251,9 +251,10 @@ try:
             pass
           except Exception, e:
             print "ERROR"
-            sys.stdout.flush()
-            print "MENSAJE: %s" % e
-            sys.stdout.flush()
+            try:
+              print "MENSAJE: %s" % e
+            finally:
+              sys.stdout.flush()
             #twitter_user.invalid_page = True
             pass
 
@@ -320,7 +321,7 @@ try:
           # Save the result
           self.tsession.commit()
           self.queue.task_done()
-          print "Object saved"
+          print "Remaining Tasks: %d" % self.queue.qsize()
           sys.stdout.flush()
       finally:
 #        if self.tsession:
