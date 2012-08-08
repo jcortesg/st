@@ -334,9 +334,9 @@ try:
   while session.query(func.count(TwitterUser)).filter(TwitterUser.twitter_screen_name != None, TwitterUser.last_sync_at == None, TwitterUser.private_tweets == 0, TwitterUser.invalid_page == 0).all() > 0:
     start = time.time()
 
-    print "Fetch de 10000 usuarios de twitter"
+    print "Fetch de 500000 usuarios de twitter"
     sys.stdout.flush()
-    twitter_users = session.query(TwitterUser.id).filter(TwitterUser.twitter_screen_name != None, TwitterUser.last_sync_at == None, TwitterUser.private_tweets == 0, TwitterUser.invalid_page == 0).limit(10000).all()
+    twitter_users = session.query(TwitterUser.id).filter(TwitterUser.twitter_screen_name != None, TwitterUser.last_sync_at == None, TwitterUser.private_tweets == 0, TwitterUser.invalid_page == 0).limit(500000).all()
 
     print "Creando el queue de objetos"
     queue = Queue()
@@ -346,7 +346,7 @@ try:
 
     print "Creando hilos"
     sys.stdout.flush()
-    for i in range(20):
+    for i in range(40):
       t = FetchThread(queue)
       t.setDaemon(True)
       t.start()
@@ -365,7 +365,7 @@ try:
     sys.stdout.flush()
 
 
-    print "Tardo %d segundos en updatear 10000 usuarios" % (time.time() - start)
+    print "Tardo %d segundos en updatear 500000 usuarios" % (time.time() - start)
     sys.stdout.flush()
 
 except Exception, e:
