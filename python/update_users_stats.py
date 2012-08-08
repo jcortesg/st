@@ -249,7 +249,7 @@ try:
           except Exception, e:
             sys.stdout.write("ERROR\n")
             try:
-              sys.stdout.write("MENSAJE: " + e + "\n")
+              sys.stdout.write("MENSAJE: " + str(e) + "\n")
             finally:
               sys.stdout.flush()
             #twitter_user.invalid_page = True
