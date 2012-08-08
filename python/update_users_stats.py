@@ -224,36 +224,43 @@ try:
           # Load the twitter page
           page = None
           try:
-            tries = 3
-            try:
-              if tries > 0:
+            tries = 5
+            while (tries > 0):
+              try:
                 page = mechanize.urlopen("https://mobile.twitter.com/" + twitter_user.twitter_screen_name)
-              else:
-                print "Error 403 para %s" % twitter_user.twitter_screen_name
-                sys.stdout.write("Error 403 para " + twitter_user.twitter_screen_name + "\n")
-            except mechanize.HTTPError, e:
-              if e.code != 404:
-                tries = tries - 1
-                continue
-              else:
+              except mechanize.HTTPError, e:
+                if e.code != 404:
+                  tries = tries - 1
+                  pass
+                else:
+                  raise
+              except Exception, e:
                 raise
-            except Exception, e:
-              raise
+            if tries == 0:
+              print "Error 403 para %s" % twitter_user.twitter_screen_name
+              sys.stdout.write("Error 403 para " + twitter_user.twitter_screen_name + "\n")
+              sys.stdout.flush()
+              self.queue.task_done()
+              continue
           except mechanize.HTTPError, e:
             if e.code == 404:
               sys.stdout.write(twitter_user.twitter_screen_name + " con página inválida\n")
+              sys.stdout.flush()
               twitter_user.invalid_page = True
+              pass
             else:
               sys.stdout.write("Error con la página del usuario " + twitter_user.twitter_screen_name + ", error " + str(e.code) + "\n")
-            pass
+              sys.stdout.flush()
+              self.queue.task_done()
+              continue
           except Exception, e:
             sys.stdout.write("ERROR\n")
             try:
               sys.stdout.write("MENSAJE: " + str(e) + "\n")
             finally:
               sys.stdout.flush()
-            #twitter_user.invalid_page = True
-            pass
+            self.queue.task_done()
+            continue
 
           if page and twitter_user.invalid_page == 0:
             html = page.read()
@@ -264,6 +271,7 @@ try:
             # Check that the tweets are not private
             if soup.find('div', 'protected'):
               sys.stdout.write(twitter_user.twitter_screen_name + " con tweets privados.\n")
+              sys.stdout.flush()
               twitter_user.private_tweets = True
             else:
               # Get the tweets on text
@@ -312,6 +320,7 @@ try:
               twitter_user.private_tweets = 0
               twitter_user.invalid_page = 0
               sys.stdout.write(twitter_user.twitter_screen_name + " actualizado\n")
+              sys.stdout.flush()
 
           # Save the result
           self.tsession.commit()
