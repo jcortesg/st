@@ -270,7 +270,8 @@ class Tweet < ActiveRecord::Base
 
   # Sends a mail when the tweet has been reviewed by the influencer
   def mail_reviewed_by_influencer
-    Notifier.tweet_reviewed_by_influencer(self).deliver
+    #TODO
+    #Notifier.tweet_reviewed_by_influencer(self).deliver
   end
 
   # Sends a mail when the tweet has been accepted by the advertiser
@@ -282,7 +283,8 @@ class Tweet < ActiveRecord::Base
   # Sends a mail when the tweet has been accepted by the influencer
   def create_hashtags_and_mail_accepted_by_influencer
     create_hashtags
-    Notifier.tweet_accepted_by_influencer(self).deliver
+    #TODO
+    #Notifier.tweet_accepted_by_influencer(self).deliver
   end
 
   # Sends a mail when the tweet has been rejected by the advertiser
