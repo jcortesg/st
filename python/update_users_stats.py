@@ -229,7 +229,7 @@ try:
             tries = 3
             try:
               if tries > 0:
-                page = mechanize.urlopen("http://mobile.twitter.com/" + twitter_user.twitter_screen_name)
+                page = mechanize.urlopen("https://mobile.twitter.com/" + twitter_user.twitter_screen_name)
               else:
                 print "Error 403 para %s" % twitter_user.twitter_screen_name
             except mechanize.HTTPError, e:
@@ -351,7 +351,7 @@ try:
 
     print "Creando hilos"
     sys.stdout.flush()
-    for i in range(30):
+    for i in range(20):
       t = FetchThread(queue)
       t.setDaemon(True)
       t.start()
