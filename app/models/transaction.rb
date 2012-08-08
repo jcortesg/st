@@ -6,7 +6,7 @@ class Transaction < ActiveRecord::Base
   before_save :set_balance
   after_save :update_user_balance
 
-  attr_accessible :attachable, :attachable_id, :attachable_type, :user, :user_id, :transaction_on, :transaction_type,
+  attr_accessible :attachable, :attachable_id, :attachable_type, :user, :user_id, :transaction_at, :transaction_type,
                   :details, :borwin_transaction, :amount, :balance, :referrer_id
 
   validates :transaction_type, inclusion: { in: ['initial_fee', 'payment', 'tweet_fee', 'tweet_revenue',
