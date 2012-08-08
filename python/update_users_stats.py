@@ -210,8 +210,6 @@ try:
       self.tsession = Session()
       try:
         while True:
-          #print "Items en queue: %d" % self.queue.qsize()
-
           twitter_user_id = self.queue.get()
           twitter_user = self.tsession.query(TwitterUser).filter(TwitterUser.id == twitter_user_id).first()
 
@@ -232,6 +230,7 @@ try:
                 page = mechanize.urlopen("https://mobile.twitter.com/" + twitter_user.twitter_screen_name)
               else:
                 print "Error 403 para %s" % twitter_user.twitter_screen_name
+                sys.stdout.write("Error 403 para " + twitter_user.twitter_screen_name + "\n")
             except mechanize.HTTPError, e:
               if e.code != 404:
                 tries = tries - 1
@@ -242,17 +241,15 @@ try:
               raise
           except mechanize.HTTPError, e:
             if e.code == 404:
-              print "%s con página inválida" % twitter_user.twitter_screen_name
-              sys.stdout.flush()
+              sys.stdout.write(twitter_user.twitter_screen_name + " con página inválida\n")
               twitter_user.invalid_page = True
             else:
-              print "Error con la pagina: %d del usuario %s" % (e.code, twitter_user.twitter_screen_name)
-              sys.stdout.flush()
+              sys.stdout.write("Error con la página del usuario " + twitter_user.twitter_screen_name + ", error " + str(e.code) + "\n")
             pass
           except Exception, e:
-            print "ERROR"
+            sys.stdout.write("ERROR\n")
             try:
-              print "MENSAJE: %s" % e
+              sys.stdout.write("MENSAJE: " + e + "\n")
             finally:
               sys.stdout.flush()
             #twitter_user.invalid_page = True
@@ -266,8 +263,7 @@ try:
 
             # Check that the tweets are not private
             if soup.find('div', 'protected'):
-              print "%s con tweets privados" % twitter_user.twitter_screen_name
-              sys.stdout.flush()
+              sys.stdout.write(twitter_user.twitter_screen_name + " con tweets privados.\n")
               twitter_user.private_tweets = True
             else:
               # Get the tweets on text
@@ -315,13 +311,12 @@ try:
               twitter_user.last_sync_at = datetime.now()
               twitter_user.private_tweets = 0
               twitter_user.invalid_page = 0
-              print "%s actualizado" % twitter_user.twitter_screen_name
-              sys.stdout.flush()
+              sys.stdout.write(twitter_user.twitter_screen_name + " actualizado\n")
 
           # Save the result
           self.tsession.commit()
           self.queue.task_done()
-          print "Remaining Tasks: %d" % self.queue.qsize()
+          sys.stdout.write("Remaining tasks: " + str(self.queue.qsize()) + "\n")
           sys.stdout.flush()
       finally:
 #        if self.tsession:
@@ -331,7 +326,7 @@ try:
           Session.remove()
         except Exception, e:
           pass
-        print "Thread terminado"
+        sys.stdout.write("Thread terminado")
         sys.stdout.flush()
 
     print "Chequeando usuarios de twitter"
