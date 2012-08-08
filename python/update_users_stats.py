@@ -336,12 +336,12 @@ try:
 
     print "Chequeando usuarios de twitter"
   sys.stdout.flush()
-  while session.query(func.count(TwitterUser)).filter(TwitterUser.last_sync_at == None, TwitterUser.private_tweets == 0, TwitterUser.invalid_page == 0).all() > 0:
+  while session.query(func.count(TwitterUser)).filter(TwitterUser.twitter_screen_name != None, TwitterUser.last_sync_at == None, TwitterUser.private_tweets == 0, TwitterUser.invalid_page == 0).all() > 0:
     start = time.time()
 
     print "Fetch de 10000 usuarios de twitter"
     sys.stdout.flush()
-    twitter_users = session.query(TwitterUser.id).filter(TwitterUser.last_sync_at == None, TwitterUser.private_tweets == 0, TwitterUser.invalid_page == 0).limit(10000).all()
+    twitter_users = session.query(TwitterUser.id).filter(TwitterUser.twitter_screen_name != None, TwitterUser.last_sync_at == None, TwitterUser.private_tweets == 0, TwitterUser.invalid_page == 0).limit(10000).all()
 
     print "Creando el queue de objetos"
     queue = Queue()
