@@ -362,7 +362,7 @@ namespace :borwin do
     end
   end
 
-  desc 'Updates audiences'
+  desc 'Updates geographical and male/female audiences, set UPDATE_HOBBIES environment to update the hobbies as well'
   task update_audiences: :environment do
     Audience.includes(:influencer).order('audiences.followers asc').all.each do |audience|
       # First we update the gender
@@ -377,57 +377,61 @@ namespace :borwin do
 
       # Now we update the different keyword categories
       followers_total = TwitterUser.joins(:twitter_followers).where("influencer_id = ?", audience.influencer_id).count
-      sports = TwitterUser.joins(:twitter_followers).where("influencer_id = ?", audience.influencer_id).where("sports = 1").count
-      fashion = TwitterUser.joins(:twitter_followers).where("influencer_id = ?", audience.influencer_id).where("fashion = 1").count
-      music = TwitterUser.joins(:twitter_followers).where("influencer_id = ?", audience.influencer_id).where("music = 1").count
-      movies = TwitterUser.joins(:twitter_followers).where("influencer_id = ?", audience.influencer_id).where("movies = 1").count
-      politics = TwitterUser.joins(:twitter_followers).where("influencer_id = ?", audience.influencer_id).where("politics = 1").count
-      technology = TwitterUser.joins(:twitter_followers).where("influencer_id = ?", audience.influencer_id).where("technology = 1").count
-      travel = TwitterUser.joins(:twitter_followers).where("influencer_id = ?", audience.influencer_id).where("travel = 1").count
-      luxury = TwitterUser.joins(:twitter_followers).where("influencer_id = ?", audience.influencer_id).where("luxury = 1").count
-      moms = TwitterUser.joins(:twitter_followers).where("influencer_id = ?", audience.influencer_id).where("moms = 1").count
-      teens = TwitterUser.joins(:twitter_followers).where("influencer_id = ?", audience.influencer_id).where("teens = 1").count
-      college_students = TwitterUser.joins(:twitter_followers).where("influencer_id = ?", audience.influencer_id).where("college_students = 1").count
-      young_women = TwitterUser.joins(:twitter_followers).where("influencer_id = ?", audience.influencer_id).where("young_women = 1").count
-      young_men = TwitterUser.joins(:twitter_followers).where("influencer_id = ?", audience.influencer_id).where("young_men = 1").count
-      adult_women = TwitterUser.joins(:twitter_followers).where("influencer_id = ?", audience.influencer_id).where("adult_women = 1").count
-      adult_men = TwitterUser.joins(:twitter_followers).where("influencer_id = ?", audience.influencer_id).where("adult_men = 1").count
+      if (ENV['UPDATE_HOBBIES'])
+        sports = TwitterUser.joins(:twitter_followers).where("influencer_id = ?", audience.influencer_id).where("sports = 1").count
+        fashion = TwitterUser.joins(:twitter_followers).where("influencer_id = ?", audience.influencer_id).where("fashion = 1").count
+        music = TwitterUser.joins(:twitter_followers).where("influencer_id = ?", audience.influencer_id).where("music = 1").count
+        movies = TwitterUser.joins(:twitter_followers).where("influencer_id = ?", audience.influencer_id).where("movies = 1").count
+        politics = TwitterUser.joins(:twitter_followers).where("influencer_id = ?", audience.influencer_id).where("politics = 1").count
+        technology = TwitterUser.joins(:twitter_followers).where("influencer_id = ?", audience.influencer_id).where("technology = 1").count
+        travel = TwitterUser.joins(:twitter_followers).where("influencer_id = ?", audience.influencer_id).where("travel = 1").count
+        luxury = TwitterUser.joins(:twitter_followers).where("influencer_id = ?", audience.influencer_id).where("luxury = 1").count
+        moms = TwitterUser.joins(:twitter_followers).where("influencer_id = ?", audience.influencer_id).where("moms = 1").count
+        teens = TwitterUser.joins(:twitter_followers).where("influencer_id = ?", audience.influencer_id).where("teens = 1").count
+        college_students = TwitterUser.joins(:twitter_followers).where("influencer_id = ?", audience.influencer_id).where("college_students = 1").count
+        young_women = TwitterUser.joins(:twitter_followers).where("influencer_id = ?", audience.influencer_id).where("young_women = 1").count
+        young_men = TwitterUser.joins(:twitter_followers).where("influencer_id = ?", audience.influencer_id).where("young_men = 1").count
+        adult_women = TwitterUser.joins(:twitter_followers).where("influencer_id = ?", audience.influencer_id).where("adult_women = 1").count
+        adult_men = TwitterUser.joins(:twitter_followers).where("influencer_id = ?", audience.influencer_id).where("adult_men = 1").count
+      end
 
       audience.males_count = male
       audience.females_count = gender_total - male
 
-      audience.sports_count = sports
-      audience.fashion_count = fashion
-      audience.music_count = music
-      audience.movies_count = movies
-      audience.politics_count = politics
-      audience.technology_count = technology
-      audience.travel_count = travel
-      audience.luxury_count = luxury
-      audience.moms_count = moms
-      audience.teens_count = teens
-      audience.college_students_count = college_students
-      audience.young_women_count = young_women
-      audience.young_men_count = young_men
-      audience.adult_women_count = adult_women
-      audience.adult_men_count = adult_men
+      if (ENV['UPDATE_HOBBIES'])
+        audience.sports_count = sports
+        audience.fashion_count = fashion
+        audience.music_count = music
+        audience.movies_count = movies
+        audience.politics_count = politics
+        audience.technology_count = technology
+        audience.travel_count = travel
+        audience.luxury_count = luxury
+        audience.moms_count = moms
+        audience.teens_count = teens
+        audience.college_students_count = college_students
+        audience.young_women_count = young_women
+        audience.young_men_count = young_men
+        audience.adult_women_count = adult_women
+        audience.adult_men_count = adult_men
 
 
-      audience.sports = ((sports * 100) / followers_total).round rescue 0
-      audience.fashion = ((fashion * 100) / followers_total).round rescue 0
-      audience.music = ((music * 100) / followers_total).round rescue 0
-      audience.movies = ((movies * 100) / followers_total).round rescue 0
-      audience.politics = ((politics * 100) / followers_total).round rescue 0
-      audience.technology = ((technology * 100) / followers_total).round rescue 0
-      audience.travel = ((travel * 100) / followers_total).round rescue 0
-      audience.luxury = ((luxury * 100) / followers_total).round rescue 0
-      audience.moms = ((moms * 100) / followers_total).round rescue 0
-      audience.teens = ((teens * 100) / followers_total).round rescue 0
-      audience.college_students = ((college_students * 100) / followers_total).round rescue 0
-      audience.young_women = ((young_women * 100) / followers_total).round rescue 0
-      audience.young_men = ((young_men * 100) / followers_total).round rescue 0
-      audience.adult_women = ((adult_women * 100) / followers_total).round rescue 0
-      audience.adult_men = ((adult_men * 100) / followers_total).round rescue 0
+        audience.sports = ((sports * 100) / followers_total).round rescue 0
+        audience.fashion = ((fashion * 100) / followers_total).round rescue 0
+        audience.music = ((music * 100) / followers_total).round rescue 0
+        audience.movies = ((movies * 100) / followers_total).round rescue 0
+        audience.politics = ((politics * 100) / followers_total).round rescue 0
+        audience.technology = ((technology * 100) / followers_total).round rescue 0
+        audience.travel = ((travel * 100) / followers_total).round rescue 0
+        audience.luxury = ((luxury * 100) / followers_total).round rescue 0
+        audience.moms = ((moms * 100) / followers_total).round rescue 0
+        audience.teens = ((teens * 100) / followers_total).round rescue 0
+        audience.college_students = ((college_students * 100) / followers_total).round rescue 0
+        audience.young_women = ((young_women * 100) / followers_total).round rescue 0
+        audience.young_men = ((young_men * 100) / followers_total).round rescue 0
+        audience.adult_women = ((adult_women * 100) / followers_total).round rescue 0
+        audience.adult_men = ((adult_men * 100) / followers_total).round rescue 0
+      end
 
       # Finally update the audiences for countries and states
       country_users = TwitterUser.joins(:twitter_followers).where("influencer_id = ?", audience.influencer_id).where("twitter_country_id is not null").count
