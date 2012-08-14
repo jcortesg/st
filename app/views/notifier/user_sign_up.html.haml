@@ -24,7 +24,7 @@
         %li= "Tipo: #{I18n.t("user.role." + @user.role)}"
         - if @user.referrer
           %li= "Referido de: #{@user.referrer.full_name} (#{@user.referrer.email})"
-        - elsif @user.role == 'influencer' && @user.influencer.referrer_description.size > 0
+        - elsif @user.role == 'influencer' && !@user.influencer.referrer_description.nil? && @user.influencer.referrer_description.size > 0
           %li= "Referido por: #{@user.influencer.referrer_description} (Asignar manualmente)"
     %p.style4
       = image_tag attachments['sellochico.jpg'].url

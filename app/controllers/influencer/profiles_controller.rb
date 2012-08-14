@@ -104,4 +104,8 @@ class Influencer::ProfilesController < ApplicationController
     end
   end
 
+  #shows best time
+  def best_time
+    @influencer = current_user.influencer
+  end
 end

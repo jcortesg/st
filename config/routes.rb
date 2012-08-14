@@ -155,6 +155,7 @@ Borwin::Application.routes.draw do
       put :update_photo
       get :change_password
       put :update_password
+      get :best_time
     end
     resources :tweets, except: [:new, :create, :destroy] do
       put :accept, on: :member

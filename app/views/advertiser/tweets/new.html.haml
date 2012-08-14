@@ -3,6 +3,7 @@
   = javascript_include_tag 'http://widgets.twimg.com/j/2/widget.js'
   = javascript_include_tag 'advertiser/new_tweet'
   = javascript_include_tag 'tweet_form'
+  = javascript_include_tag 'https://www.google.com/jsapi'
 
 .row
   .span12{style: 'width: 970px'}
@@ -72,6 +73,208 @@
                   %td= (localize(tweet.tweet_at, :format => "%d/%m/%Y %H:%M"))
                   %td= tweet.fee_type == 'tweet_fee' ? "Tweet: $#{sprintf("%.02f", tweet.tweet_fee)}" : "Click: $#{sprintf("%.02f", tweet.cpc_fee)}"
                   %td= advertiser_tweet_status(tweet.status)
+
+      - unless @influencer.week_map.nil?
+        %hr
+          .form_title Mejor hora para twittear
+          #chart_div{style:"width: 680px; height: 400px;"}
+          .label La hora de exposición promedio es: #{@influencer.best_time}
+
+
+          :javascript
+            $(document).ready(function() {
+              google.load("visualization", "1", {packages:["corechart"],'callback':drawChart})
+              google.setOnLoadCallback(drawChart);
+              function drawChart() {
+                var data = google.visualization.arrayToDataTable([
+                  ['ID', 'X', 'Y', 'Factor de Exposicion'],
+                  ['Lunes 00:00-00:59',   1, 1,        #{@influencer.week_map.mon_0}],
+                  ['Lunes 01:00-01:59',   2, 1,        #{@influencer.week_map.mon_1}],
+                  ['Lunes 02:00-02:59',   3, 1,       #{@influencer.week_map.mon_2}],
+                  ['Lunes 03:00-03:59',   4, 1,        #{@influencer.week_map.mon_3}],
+                  ['Lunes 04:00-04:59',   5, 1,        #{@influencer.week_map.mon_4}],
+                  ['Lunes 05:00-05:59',   6, 1,        #{@influencer.week_map.mon_5}],
+                  ['Lunes 06:00-06:59',   7, 1,       #{@influencer.week_map.mon_6}],
+                  ['Lunes 07:00-07:59',   8, 1,        #{@influencer.week_map.mon_7}],
+                  ['Lunes 08:00-08:59',   9, 1,        #{@influencer.week_map.mon_8}],
+                  ['Lunes 09:00-09:59',   10, 1,        #{@influencer.week_map.mon_9}],
+                  ['Lunes 10:00-10:59',   11, 1,       #{@influencer.week_map.mon_10}],
+                  ['Lunes 11:00-11:59',   12, 1,       #{@influencer.week_map.mon_11}],
+                  ['Lunes 12:00-12:59',   13, 1,       #{@influencer.week_map.mon_12}],
+                  ['Lunes 13:00-13:59',   14, 1,       #{@influencer.week_map.mon_13}],
+                  ['Lunes 14:00-14:59',   15, 1,       #{@influencer.week_map.mon_14}],
+                  ['Lunes 15:00-15:59',   16, 1,       #{@influencer.week_map.mon_15}],
+                  ['Lunes 16:00-16:59',   17, 1,       #{@influencer.week_map.mon_16}],
+                  ['Lunes 17:00-17:59',   18, 1,       #{@influencer.week_map.mon_17}],
+                  ['Lunes 18:00-18:59',   19, 1,      #{@influencer.week_map.mon_18}],
+                  ['Lunes 19:00-19:59',   20, 1,      #{@influencer.week_map.mon_19}],
+                  ['Lunes 20:00-20:59',   21, 1,      #{@influencer.week_map.mon_20}],
+                  ['Lunes 21:00-21:59',   22, 1,        #{@influencer.week_map.mon_21}],
+                  ['Lunes 22:00-22:59',   23, 1,        #{@influencer.week_map.mon_22}],
+                  ['Lunes 23:00-23:59',   24, 1,        #{@influencer.week_map.mon_23}],
+                  /*['Martes 00:00-00:59',   25, 1,        #{@influencer.week_map.tue_0}],*/
+                  ['Martes 00:00-00:59',   1, 2,        #{@influencer.week_map.tue_0}],
+                  ['Martes 01:00-01:59',   2, 2,        #{@influencer.week_map.tue_1}],
+                  ['Martes 02:00-02:59',   3, 2,       #{@influencer.week_map.tue_2}],
+                  ['Martes 03:00-03:59',   4, 2,        #{@influencer.week_map.tue_3}],
+                  ['Martes 04:00-04:59',   5, 2,        #{@influencer.week_map.tue_4}],
+                  ['Martes 05:00-05:59',   6, 2,        #{@influencer.week_map.tue_5}],
+                  ['Martes 06:00-06:59',   7, 2,       #{@influencer.week_map.tue_6}],
+                  ['Martes 07:00-07:59',   8, 2,        #{@influencer.week_map.tue_7}],
+                  ['Martes 08:00-08:59',   9, 2,        #{@influencer.week_map.tue_8}],
+                  ['Martes 09:00-09:59',   10, 2,        #{@influencer.week_map.tue_9}],
+                  ['Martes 10:00-10:59',   11, 2,       #{@influencer.week_map.tue_10}],
+                  ['Martes 11:00-11:59',   12, 2,       #{@influencer.week_map.tue_11}],
+                  ['Martes 12:00-12:59',   13, 2,       #{@influencer.week_map.tue_12}],
+                  ['Martes 13:00-13:59',   14, 2,       #{@influencer.week_map.tue_13}],
+                  ['Martes 14:00-14:59',   15, 2,       #{@influencer.week_map.tue_14}],
+                  ['Martes 15:00-15:59',   16, 2,       #{@influencer.week_map.tue_15}],
+                  ['Martes 16:00-16:59',   17, 2,       #{@influencer.week_map.tue_16}],
+                  ['Martes 17:00-17:59',   18, 2,       #{@influencer.week_map.tue_17}],
+                  ['Martes 18:00-18:59',   19, 2,      #{@influencer.week_map.tue_18}],
+                  ['Martes 19:00-19:59',   20, 2,      #{@influencer.week_map.tue_19}],
+                  ['Martes 20:00-20:59',   21, 2,      #{@influencer.week_map.tue_20}],
+                  ['Martes 21:00-21:59',   22, 2,        #{@influencer.week_map.tue_21}],
+                  ['Martes 22:00-22:59',   23, 2,        #{@influencer.week_map.tue_22}],
+                  ['Martes 23:00-23:59',   24, 2,        #{@influencer.week_map.tue_23}],
+                  /*['Miercoles 00:00-00:59',   25, 2,        #{@influencer.week_map.wed_0}],*/
+                  ['Miercoles 00:00-00:59',   1, 3,        #{@influencer.week_map.wed_0}],
+                  ['Miercoles 01:00-01:59',   2, 3,        #{@influencer.week_map.wed_1}],
+                  ['Miercoles 02:00-02:59',   3, 3,       #{@influencer.week_map.wed_2}],
+                  ['Miercoles 03:00-03:59',   4, 3,        #{@influencer.week_map.wed_3}],
+                  ['Miercoles 04:00-04:59',   5, 3,        #{@influencer.week_map.wed_4}],
+                  ['Miercoles 05:00-05:59',   6, 3,        #{@influencer.week_map.wed_5}],
+                  ['Miercoles 06:00-06:59',   7, 3,       #{@influencer.week_map.wed_6}],
+                  ['Miercoles 07:00-07:59',   8, 3,        #{@influencer.week_map.wed_7}],
+                  ['Miercoles 08:00-08:59',   9, 3,        #{@influencer.week_map.wed_8}],
+                  ['Miercoles 09:00-09:59',   10, 3,        #{@influencer.week_map.wed_9}],
+                  ['Miercoles 10:00-10:59',   11, 3,       #{@influencer.week_map.wed_10}],
+                  ['Miercoles 11:00-11:59',   12, 3,       #{@influencer.week_map.wed_11}],
+                  ['Miercoles 12:00-12:59',   13, 3,       #{@influencer.week_map.wed_12}],
+                  ['Miercoles 13:00-13:59',   14, 3,       #{@influencer.week_map.wed_13}],
+                  ['Miercoles 14:00-14:59',   15, 3,       #{@influencer.week_map.wed_14}],
+                  ['Miercoles 15:00-15:59',   16, 3,       #{@influencer.week_map.wed_15}],
+                  ['Miercoles 16:00-16:59',   17, 3,       #{@influencer.week_map.wed_16}],
+                  ['Miercoles 17:00-17:59',   18, 3,       #{@influencer.week_map.wed_17}],
+                  ['Miercoles 18:00-18:59',   19, 3,      #{@influencer.week_map.wed_18}],
+                  ['Miercoles 19:00-19:59',   20, 3,      #{@influencer.week_map.wed_19}],
+                  ['Miercoles 20:00-20:59',   21, 3,      #{@influencer.week_map.wed_20}],
+                  ['Miercoles 21:00-21:59',   22, 3,        #{@influencer.week_map.wed_21}],
+                  ['Miercoles 22:00-22:59',   23, 3,        #{@influencer.week_map.wed_22}],
+                  ['Miercoles 23:00-23:59',   24, 3,        #{@influencer.week_map.wed_23}],
+                  /*['Jueves 00:00-00:59',   25, 3,        #{@influencer.week_map.thu_0}],*/
+                  ['Jueves 00:00-00:59',   1, 4,        #{@influencer.week_map.thu_0}],
+                  ['Jueves 01:00-01:59',   2, 4,        #{@influencer.week_map.thu_1}],
+                  ['Jueves 02:00-02:59',   3, 4,       #{@influencer.week_map.thu_2}],
+                  ['Jueves 03:00-03:59',   4, 4,        #{@influencer.week_map.thu_3}],
+                  ['Jueves 04:00-04:59',   5, 4,        #{@influencer.week_map.thu_4}],
+                  ['Jueves 05:00-05:59',   6, 4,        #{@influencer.week_map.thu_5}],
+                  ['Jueves 06:00-06:59',   7, 4,       #{@influencer.week_map.thu_6}],
+                  ['Jueves 07:00-07:59',   8, 4,        #{@influencer.week_map.thu_7}],
+                  ['Jueves 08:00-08:59',   9, 4,        #{@influencer.week_map.thu_8}],
+                  ['Jueves 09:00-09:59',   10, 4,        #{@influencer.week_map.thu_9}],
+                  ['Jueves 10:00-10:59',   11, 4,       #{@influencer.week_map.thu_10}],
+                  ['Jueves 11:00-11:59',   12, 4,       #{@influencer.week_map.thu_11}],
+                  ['Jueves 12:00-12:59',   13, 4,       #{@influencer.week_map.thu_12}],
+                  ['Jueves 13:00-13:59',   14, 4,       #{@influencer.week_map.thu_13}],
+                  ['Jueves 14:00-14:59',   15, 4,       #{@influencer.week_map.thu_14}],
+                  ['Jueves 15:00-15:59',   16, 4,       #{@influencer.week_map.thu_15}],
+                  ['Jueves 16:00-16:59',   17, 4,       #{@influencer.week_map.thu_16}],
+                  ['Jueves 17:00-17:59',   18, 4,       #{@influencer.week_map.thu_17}],
+                  ['Jueves 18:00-18:59',   19, 4,      #{@influencer.week_map.thu_18}],
+                  ['Jueves 19:00-19:59',   20, 4,      #{@influencer.week_map.thu_19}],
+                  ['Jueves 20:00-20:59',   21, 4,      #{@influencer.week_map.thu_20}],
+                  ['Jueves 21:00-21:59',   22, 4,        #{@influencer.week_map.thu_21}],
+                  ['Jueves 22:00-22:59',   23, 4,        #{@influencer.week_map.thu_22}],
+                  ['Jueves 23:00-23:59',   24, 4,        #{@influencer.week_map.thu_23}],
+                  /*['Viernes 00:00-00:59',   25, 4,        #{@influencer.week_map.fri_0}],*/
+                  ['Viernes 00:00-00:59',   1, 5,        #{@influencer.week_map.fri_0}],
+                  ['Viernes 01:00-01:59',   2, 5,        #{@influencer.week_map.fri_1}],
+                  ['Viernes 02:00-02:59',   3, 5,       #{@influencer.week_map.fri_2}],
+                  ['Viernes 03:00-03:59',   4, 5,        #{@influencer.week_map.fri_3}],
+                  ['Viernes 04:00-04:59',   5, 5,        #{@influencer.week_map.fri_4}],
+                  ['Viernes 05:00-05:59',   6, 5,        #{@influencer.week_map.fri_5}],
+                  ['Viernes 06:00-06:59',   7, 5,       #{@influencer.week_map.fri_6}],
+                  ['Viernes 07:00-07:59',   8, 5,        #{@influencer.week_map.fri_7}],
+                  ['Viernes 08:00-08:59',   9, 5,        #{@influencer.week_map.fri_8}],
+                  ['Viernes 09:00-09:59',   10, 5,        #{@influencer.week_map.fri_9}],
+                  ['Viernes 10:00-10:59',   11, 5,       #{@influencer.week_map.fri_10}],
+                  ['Viernes 11:00-11:59',   12, 5,       #{@influencer.week_map.fri_11}],
+                  ['Viernes 12:00-12:59',   13, 5,       #{@influencer.week_map.fri_12}],
+                  ['Viernes 13:00-13:59',   14, 5,       #{@influencer.week_map.fri_13}],
+                  ['Viernes 14:00-14:59',   15, 5,       #{@influencer.week_map.fri_14}],
+                  ['Viernes 15:00-15:59',   16, 5,       #{@influencer.week_map.fri_15}],
+                  ['Viernes 16:00-16:59',   17, 5,       #{@influencer.week_map.fri_16}],
+                  ['Viernes 17:00-17:59',   18, 5,       #{@influencer.week_map.fri_17}],
+                  ['Viernes 18:00-18:59',   19, 5,      #{@influencer.week_map.fri_18}],
+                  ['Viernes 19:00-19:59',   20, 5,      #{@influencer.week_map.fri_19}],
+                  ['Viernes 20:00-20:59',   21, 5,      #{@influencer.week_map.fri_20}],
+                  ['Viernes 21:00-21:59',   22, 5,        #{@influencer.week_map.fri_21}],
+                  ['Viernes 22:00-22:59',   23, 5,        #{@influencer.week_map.fri_22}],
+                  ['Viernes 23:00-23:59',   24, 5,        #{@influencer.week_map.fri_23}],
+                  /*['Sabado 00:00',   25, 5,        #{@influencer.week_map.sat_0}],*/
+                  ['Sabado 00:00-00:59',   1, 6,        #{@influencer.week_map.sat_0}],
+                  ['Sabado 01:00-01:59',   2, 6,        #{@influencer.week_map.sat_1}],
+                  ['Sabado 02:00-02:59',   3, 6,       #{@influencer.week_map.sat_2}],
+                  ['Sabado 03:00-03:59',   4, 6,        #{@influencer.week_map.sat_3}],
+                  ['Sabado 04:00-04:59',   5, 6,        #{@influencer.week_map.sat_4}],
+                  ['Sabado 05:00-05:59',   6, 6,        #{@influencer.week_map.sat_5}],
+                  ['Sabado 06:00-06:59',   7, 6,       #{@influencer.week_map.sat_6}],
+                  ['Sabado 07:00-07:59',   8, 6,        #{@influencer.week_map.sat_7}],
+                  ['Sabado 08:00-08:59',   9, 6,        #{@influencer.week_map.sat_8}],
+                  ['Sabado 09:00-09:59',   10, 6,        #{@influencer.week_map.sat_9}],
+                  ['Sabado 10:00-10:59',   11, 6,       #{@influencer.week_map.sat_10}],
+                  ['Sabado 11:00-11:59',   12, 6,       #{@influencer.week_map.sat_11}],
+                  ['Sabado 12:00-12:59',   13, 6,       #{@influencer.week_map.sat_12}],
+                  ['Sabado 13:00-13:59',   14, 6,       #{@influencer.week_map.sat_13}],
+                  ['Sabado 14:00-14:59',   15, 6,       #{@influencer.week_map.sat_14}],
+                  ['Sabado 15:00-15:59',   16, 6,       #{@influencer.week_map.sat_15}],
+                  ['Sabado 16:00-16:59',   17, 6,       #{@influencer.week_map.sat_16}],
+                  ['Sabado 17:00-17:59',   18, 6,       #{@influencer.week_map.sat_17}],
+                  ['Sabado 18:00-18:59',   19, 6,      #{@influencer.week_map.sat_18}],
+                  ['Sabado 19:00-19:59',   20, 6,      #{@influencer.week_map.sat_19}],
+                  ['Sabado 20:00-20:59',   21, 6,      #{@influencer.week_map.sat_20}],
+                  ['Sabado 21:00-21:59',   22, 6,        #{@influencer.week_map.sat_21}],
+                  ['Sabado 22:00-22:59',   23, 6,        #{@influencer.week_map.sat_22}],
+                  ['Sabado 23:00-23:59',   24, 6,        #{@influencer.week_map.sat_23}],
+                  /*['Doming 00:00',   25, 6,        #{@influencer.week_map.sun_0}],*/
+                  ['Domingo 00:00-00:59',   1, 7,        #{@influencer.week_map.sun_0}],
+                  ['Domingo 01:00-01:59',   2, 7,        #{@influencer.week_map.sun_1}],
+                  ['Domingo 02:00-02:59',   3, 7,       #{@influencer.week_map.sun_2}],
+                  ['Domingo 03:00-03:59',   4, 7,        #{@influencer.week_map.sun_3}],
+                  ['Domingo 04:00-04:59',   5, 7,        #{@influencer.week_map.sun_4}],
+                  ['Domingo 05:00-05:59',   6, 7,        #{@influencer.week_map.sun_5}],
+                  ['Domingo 06:00-06:59',   7, 7,       #{@influencer.week_map.sun_6}],
+                  ['Domingo 07:00-07:59',   8, 7,        #{@influencer.week_map.sun_7}],
+                  ['Domingo 08:00-08:59',   9, 7,        #{@influencer.week_map.sun_8}],
+                  ['Domingo 09:00-09:59',   10,7,        #{@influencer.week_map.sun_9}],
+                  ['Domingo 10:00-10:59',   11, 7,       #{@influencer.week_map.sun_10}],
+                  ['Domingo 11:00-11:59',   12, 7,       #{@influencer.week_map.sun_11}],
+                  ['Domingo 12:00-12:59',   13, 7,       #{@influencer.week_map.sun_12}],
+                  ['Domingo 13:00-13:59',   14, 7,       #{@influencer.week_map.sun_13}],
+                  ['Domingo 14:00-14:59',   15, 7,       #{@influencer.week_map.sun_14}],
+                  ['Domingo 15:00-15:59',   16, 7,       #{@influencer.week_map.sun_15}],
+                  ['Domingo 16:00-16:59',   17, 7,       #{@influencer.week_map.sun_16}],
+                  ['Domingo 17:00-17:59',   18, 7,       #{@influencer.week_map.sun_17}],
+                  ['Domingo 18:00-18:59',   19, 7,      #{@influencer.week_map.sun_18}],
+                  ['Domingo 19:00-19:59',   20, 7,      #{@influencer.week_map.sun_19}],
+                  ['Domingo 20:00-20:59',   21, 7,      #{@influencer.week_map.sun_20}],
+                  ['Domingo 21:00-21:59',   22, 7,        #{@influencer.week_map.sun_21}],
+                  ['Domingo 22:00-22:59',   23, 7,        #{@influencer.week_map.sun_22}],
+                  ['Domingo 23:00-23:59',   24, 7,        #{@influencer.week_map.sun_23}]
+                  /*['Lunes 00:00',   25, 7,        #{@influencer.week_map.mon_0}]*/
+                ]);
+                var options = {
+                  colorAxis: {colors: ['white', 'red'], legend: {position: 'none'}},
+                  sizeAxis: {minSize: 12, minValue: 0, maxSize:12},
+                  hAxis: {baselineColor: '#fff', textPosition: 'none', viewWindowMode: 'explicit', viewWindow:{min:0, max:25}, gridlines:{color: '#ddd', count: 25}},
+                  vAxis: {baselineColor: '#fff', viewWindowMode: 'explicit', viewWindow:{min:0, max:8}, gridlines:{color: '#ddd', count: 8}},
+                  bubble: {textStyle: {fontSize: 1, color: 'white'}},
+                };
+                var chart = new google.visualization.BubbleChart(document.getElementById('chart_div'));
+                chart.draw(data, options);
+              }
+            });
 
       %hr
       .tweet_proposal.clearfix

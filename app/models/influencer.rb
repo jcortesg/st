@@ -2,6 +2,7 @@
 class Influencer < ActiveRecord::Base
   belongs_to :user
   has_one :audience, dependent: :destroy
+  has_one :week_map, dependent: :destroy
   has_many :tweet_groups, dependent: :destroy
   has_many :tweets
   has_many :twitter_followers
@@ -25,7 +26,8 @@ class Influencer < ActiveRecord::Base
                   :twitter_users, :borwin_fee, :campaign_fee, :price_category, :luxury_influential, :travel_influential,
                   :fashion_influential, :movies_influential, :sports_influential, :politics_influential,  :technology_influential,
                   :music_influential, :moms_influential, :teens_influential, :college_influential,
-                  :young_men_influential, :young_women_influential, :adult_men_influential, :adult_women_influential
+                  :young_men_influential, :young_women_influential, :adult_men_influential, :adult_women_influential,
+                  :week_map, :best_time
 
   attr_accessor :clicks_count
 

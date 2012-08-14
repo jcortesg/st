@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120806042018) do
+ActiveRecord::Schema.define(:version => 20120813095430) do
 
   create_table "advertisers", :force => true do |t|
     t.integer  "user_id"
@@ -292,6 +292,8 @@ ActiveRecord::Schema.define(:version => 20120806042018) do
     t.boolean  "young_men_influential",                                 :default => false, :null => false
     t.boolean  "adult_women_influential",                               :default => false, :null => false
     t.boolean  "adult_men_influential",                                 :default => false, :null => false
+    t.string   "best_time"
+    t.integer  "week_map_id"
   end
 
   add_index "influencers", ["user_id"], :name => "index_influencers_on_user_id", :unique => true
@@ -499,5 +501,179 @@ ActiveRecord::Schema.define(:version => 20120806042018) do
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
   add_index "users", ["role"], :name => "index_users_on_role"
   add_index "users", ["twitter_screen_name"], :name => "index_users_on_twitter_screen_name", :unique => true
+
+  create_table "week_maps", :force => true do |t|
+    t.integer  "influencer_id"
+    t.integer  "mon_0",         :default => 0, :null => false
+    t.integer  "mon_1",         :default => 0, :null => false
+    t.integer  "mon_2",         :default => 0, :null => false
+    t.integer  "mon_3",         :default => 0, :null => false
+    t.integer  "mon_4",         :default => 0, :null => false
+    t.integer  "mon_5",         :default => 0, :null => false
+    t.integer  "mon_6",         :default => 0, :null => false
+    t.integer  "mon_7",         :default => 0, :null => false
+    t.integer  "mon_8",         :default => 0, :null => false
+    t.integer  "mon_9",         :default => 0, :null => false
+    t.integer  "mon_10",        :default => 0, :null => false
+    t.integer  "mon_11",        :default => 0, :null => false
+    t.integer  "mon_12",        :default => 0, :null => false
+    t.integer  "mon_13",        :default => 0, :null => false
+    t.integer  "mon_14",        :default => 0, :null => false
+    t.integer  "mon_15",        :default => 0, :null => false
+    t.integer  "mon_16",        :default => 0, :null => false
+    t.integer  "mon_17",        :default => 0, :null => false
+    t.integer  "mon_18",        :default => 0, :null => false
+    t.integer  "mon_19",        :default => 0, :null => false
+    t.integer  "mon_20",        :default => 0, :null => false
+    t.integer  "mon_21",        :default => 0, :null => false
+    t.integer  "mon_22",        :default => 0, :null => false
+    t.integer  "mon_23",        :default => 0, :null => false
+    t.integer  "tue_0",         :default => 0, :null => false
+    t.integer  "tue_1",         :default => 0, :null => false
+    t.integer  "tue_2",         :default => 0, :null => false
+    t.integer  "tue_3",         :default => 0, :null => false
+    t.integer  "tue_4",         :default => 0, :null => false
+    t.integer  "tue_5",         :default => 0, :null => false
+    t.integer  "tue_6",         :default => 0, :null => false
+    t.integer  "tue_7",         :default => 0, :null => false
+    t.integer  "tue_8",         :default => 0, :null => false
+    t.integer  "tue_9",         :default => 0, :null => false
+    t.integer  "tue_10",        :default => 0, :null => false
+    t.integer  "tue_11",        :default => 0, :null => false
+    t.integer  "tue_12",        :default => 0, :null => false
+    t.integer  "tue_13",        :default => 0, :null => false
+    t.integer  "tue_14",        :default => 0, :null => false
+    t.integer  "tue_15",        :default => 0, :null => false
+    t.integer  "tue_16",        :default => 0, :null => false
+    t.integer  "tue_17",        :default => 0, :null => false
+    t.integer  "tue_18",        :default => 0, :null => false
+    t.integer  "tue_19",        :default => 0, :null => false
+    t.integer  "tue_20",        :default => 0, :null => false
+    t.integer  "tue_21",        :default => 0, :null => false
+    t.integer  "tue_22",        :default => 0, :null => false
+    t.integer  "tue_23",        :default => 0, :null => false
+    t.integer  "wed_0",         :default => 0, :null => false
+    t.integer  "wed_1",         :default => 0, :null => false
+    t.integer  "wed_2",         :default => 0, :null => false
+    t.integer  "wed_3",         :default => 0, :null => false
+    t.integer  "wed_4",         :default => 0, :null => false
+    t.integer  "wed_5",         :default => 0, :null => false
+    t.integer  "wed_6",         :default => 0, :null => false
+    t.integer  "wed_7",         :default => 0, :null => false
+    t.integer  "wed_8",         :default => 0, :null => false
+    t.integer  "wed_9",         :default => 0, :null => false
+    t.integer  "wed_10",        :default => 0, :null => false
+    t.integer  "wed_11",        :default => 0, :null => false
+    t.integer  "wed_12",        :default => 0, :null => false
+    t.integer  "wed_13",        :default => 0, :null => false
+    t.integer  "wed_14",        :default => 0, :null => false
+    t.integer  "wed_15",        :default => 0, :null => false
+    t.integer  "wed_16",        :default => 0, :null => false
+    t.integer  "wed_17",        :default => 0, :null => false
+    t.integer  "wed_18",        :default => 0, :null => false
+    t.integer  "wed_19",        :default => 0, :null => false
+    t.integer  "wed_20",        :default => 0, :null => false
+    t.integer  "wed_21",        :default => 0, :null => false
+    t.integer  "wed_22",        :default => 0, :null => false
+    t.integer  "wed_23",        :default => 0, :null => false
+    t.integer  "thu_0",         :default => 0, :null => false
+    t.integer  "thu_1",         :default => 0, :null => false
+    t.integer  "thu_2",         :default => 0, :null => false
+    t.integer  "thu_3",         :default => 0, :null => false
+    t.integer  "thu_4",         :default => 0, :null => false
+    t.integer  "thu_5",         :default => 0, :null => false
+    t.integer  "thu_6",         :default => 0, :null => false
+    t.integer  "thu_7",         :default => 0, :null => false
+    t.integer  "thu_8",         :default => 0, :null => false
+    t.integer  "thu_9",         :default => 0, :null => false
+    t.integer  "thu_10",        :default => 0, :null => false
+    t.integer  "thu_11",        :default => 0, :null => false
+    t.integer  "thu_12",        :default => 0, :null => false
+    t.integer  "thu_13",        :default => 0, :null => false
+    t.integer  "thu_14",        :default => 0, :null => false
+    t.integer  "thu_15",        :default => 0, :null => false
+    t.integer  "thu_16",        :default => 0, :null => false
+    t.integer  "thu_17",        :default => 0, :null => false
+    t.integer  "thu_18",        :default => 0, :null => false
+    t.integer  "thu_19",        :default => 0, :null => false
+    t.integer  "thu_20",        :default => 0, :null => false
+    t.integer  "thu_21",        :default => 0, :null => false
+    t.integer  "thu_22",        :default => 0, :null => false
+    t.integer  "thu_23",        :default => 0, :null => false
+    t.integer  "fri_0",         :default => 0, :null => false
+    t.integer  "fri_1",         :default => 0, :null => false
+    t.integer  "fri_2",         :default => 0, :null => false
+    t.integer  "fri_3",         :default => 0, :null => false
+    t.integer  "fri_4",         :default => 0, :null => false
+    t.integer  "fri_5",         :default => 0, :null => false
+    t.integer  "fri_6",         :default => 0, :null => false
+    t.integer  "fri_7",         :default => 0, :null => false
+    t.integer  "fri_8",         :default => 0, :null => false
+    t.integer  "fri_9",         :default => 0, :null => false
+    t.integer  "fri_10",        :default => 0, :null => false
+    t.integer  "fri_11",        :default => 0, :null => false
+    t.integer  "fri_12",        :default => 0, :null => false
+    t.integer  "fri_13",        :default => 0, :null => false
+    t.integer  "fri_14",        :default => 0, :null => false
+    t.integer  "fri_15",        :default => 0, :null => false
+    t.integer  "fri_16",        :default => 0, :null => false
+    t.integer  "fri_17",        :default => 0, :null => false
+    t.integer  "fri_18",        :default => 0, :null => false
+    t.integer  "fri_19",        :default => 0, :null => false
+    t.integer  "fri_20",        :default => 0, :null => false
+    t.integer  "fri_21",        :default => 0, :null => false
+    t.integer  "fri_22",        :default => 0, :null => false
+    t.integer  "fri_23",        :default => 0, :null => false
+    t.integer  "sat_0",         :default => 0, :null => false
+    t.integer  "sat_1",         :default => 0, :null => false
+    t.integer  "sat_2",         :default => 0, :null => false
+    t.integer  "sat_3",         :default => 0, :null => false
+    t.integer  "sat_4",         :default => 0, :null => false
+    t.integer  "sat_5",         :default => 0, :null => false
+    t.integer  "sat_6",         :default => 0, :null => false
+    t.integer  "sat_7",         :default => 0, :null => false
+    t.integer  "sat_8",         :default => 0, :null => false
+    t.integer  "sat_9",         :default => 0, :null => false
+    t.integer  "sat_10",        :default => 0, :null => false
+    t.integer  "sat_11",        :default => 0, :null => false
+    t.integer  "sat_12",        :default => 0, :null => false
+    t.integer  "sat_13",        :default => 0, :null => false
+    t.integer  "sat_14",        :default => 0, :null => false
+    t.integer  "sat_15",        :default => 0, :null => false
+    t.integer  "sat_16",        :default => 0, :null => false
+    t.integer  "sat_17",        :default => 0, :null => false
+    t.integer  "sat_18",        :default => 0, :null => false
+    t.integer  "sat_19",        :default => 0, :null => false
+    t.integer  "sat_20",        :default => 0, :null => false
+    t.integer  "sat_21",        :default => 0, :null => false
+    t.integer  "sat_22",        :default => 0, :null => false
+    t.integer  "sat_23",        :default => 0, :null => false
+    t.integer  "sun_0",         :default => 0, :null => false
+    t.integer  "sun_1",         :default => 0, :null => false
+    t.integer  "sun_2",         :default => 0, :null => false
+    t.integer  "sun_3",         :default => 0, :null => false
+    t.integer  "sun_4",         :default => 0, :null => false
+    t.integer  "sun_5",         :default => 0, :null => false
+    t.integer  "sun_6",         :default => 0, :null => false
+    t.integer  "sun_7",         :default => 0, :null => false
+    t.integer  "sun_8",         :default => 0, :null => false
+    t.integer  "sun_9",         :default => 0, :null => false
+    t.integer  "sun_10",        :default => 0, :null => false
+    t.integer  "sun_11",        :default => 0, :null => false
+    t.integer  "sun_12",        :default => 0, :null => false
+    t.integer  "sun_13",        :default => 0, :null => false
+    t.integer  "sun_14",        :default => 0, :null => false
+    t.integer  "sun_15",        :default => 0, :null => false
+    t.integer  "sun_16",        :default => 0, :null => false
+    t.integer  "sun_17",        :default => 0, :null => false
+    t.integer  "sun_18",        :default => 0, :null => false
+    t.integer  "sun_19",        :default => 0, :null => false
+    t.integer  "sun_20",        :default => 0, :null => false
+    t.integer  "sun_21",        :default => 0, :null => false
+    t.integer  "sun_22",        :default => 0, :null => false
+    t.integer  "sun_23",        :default => 0, :null => false
+    t.datetime "created_at",                   :null => false
+    t.datetime "updated_at",                   :null => false
+  end
 
 end
