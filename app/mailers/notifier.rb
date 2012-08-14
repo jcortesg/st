@@ -11,14 +11,14 @@ class Notifier < ActionMailer::Base
   def contact(site_contact)
     @site_contact = site_contact
 
-    mail(to: "info@borwin.net", subject: "Contacto @ Borwin - Its time to go social")
+    mail(to: "sebastian@borwin.net", subject: "Contacto @ Borwin - Its time to go social")
   end
 
   # Site advertiser contact
   def advertiser_contact(site_advertiser_contact)
     @site_advertiser_contact = site_advertiser_contact
 
-    mail(to: "info@borwin.net", subject: "Contacto @ Borwin - Its time to go social")
+    mail(to: "sebastian@borwin.net", subject: "Contacto @ Borwin - Its time to go social")
   end
 
   # A user was approved
@@ -189,7 +189,7 @@ class Notifier < ActionMailer::Base
   def expiration_alert_to_admin(tweet)
     @tweet = tweet
 
-    mail(to: "info@borwin.net", subject: "Tweet expira en 120 minutos - Its time to go social")
+    mail(to: "sebastian@borwin.net", subject: "Tweet expira en 120 minutos - Its time to go social")
   end
 
   # Sends an email to advertiser alerting about a tweet expiration
@@ -217,7 +217,7 @@ class Notifier < ActionMailer::Base
     @user = user
     @advertiser = user.advertiser
 
-    mail(to: "info@borwin.net", subject: "Anunciante con crédito debajo de $1000 - Its time to go social")
+    mail(to: "sebastian@borwin.net", subject: "Anunciante con crédito debajo de $1000 - Its time to go social")
   end
 
   # Sends an email to advertiser alerting about low credit
@@ -241,7 +241,7 @@ class Notifier < ActionMailer::Base
       subject = "La agencia #{cash_out.user.full_name} ha solicitado un Cash Out por $#{cash_out.amount}"
     end
 
-    mail(to: "info@borwin.net", subject: subject)
+    mail(to: "sebastian@borwin.net", subject: subject)
   end
 
   # Sends a cash out payment notice to the user
