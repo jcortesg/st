@@ -143,8 +143,8 @@ class Notifier < ActionMailer::Base
     @screen_name = tweet.influencer.user.twitter_screen_name
 
     mail(to: tweet.campaign.advertiser.user.email, subject: "Notificaciones @ Borwin - Tweet rechazado por @"+@screen_name+ ". "+@tweet.reject_cause)
-    #mail(to: "sebastian@borwin.net", subject: "Notificaciones @ Borwin - Un tweet realizado por "+tweet.campaign.advertiser.user.email+" fue rechazado por @"+@screen_name+ ". "+@tweet.reject_cause)
-    mail(to: "juan.amoros@redmintsolutions.com", subject: "Notificaciones @ Borwin - Un tweet realizado por "+tweet.campaign.advertiser.user.email+" fue rechazado por @"+@screen_name+ ". "+@tweet.reject_cause)
+    mail(to: "sebastian@borwin.net", subject: "Notificaciones @ Borwin - Un tweet realizado por "+tweet.campaign.advertiser.user.email+" fue rechazado por @"+@screen_name+ ". "+@tweet.reject_cause)
+
   end
 
   # Sends an email to the advertiser when a tweet is activated
