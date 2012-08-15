@@ -428,11 +428,13 @@ namespace :borwin do
           # Tweets are privated
           twitter_user.private_tweets = true
           twitter_user.save(validate: false)
+          puts "Private tweets"
           next
         rescue Exception
           # User doesn't exist
           twitter_user.invalid_page = true
           twitter_user.save(validate: false)
+          puts "Doesn't exist"
           next
         end
 
@@ -454,6 +456,8 @@ namespace :borwin do
         twitter_user.adult_men = true if keywords_adult_men.detect {|k| text_to_parse.include?("#{k}" )}
 
         twitter_user.last_sync_at = Time.now
+
+        puts "Updated"
 
         # Update the user
         twitter_user.save
