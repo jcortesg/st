@@ -390,9 +390,6 @@ namespace :borwin do
 
     TwitterUser.where("last_sync_at is null and twitter_screen_name is not null and private_tweets is false").find_each do |twitter_user|
       begin
-        puts "Cycle begins"
-        $stdout.flush
-
         while(remaining_calls < 10)
           i = i + 1
           i = 0 if i > influencers.size
