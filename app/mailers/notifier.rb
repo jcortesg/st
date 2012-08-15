@@ -57,7 +57,7 @@ class Notifier < ActionMailer::Base
     attachments.inline['logo.jpg'] = File.read(Rails.root.join('app/assets/images/logo.jpg'))
     attachments.inline['sellochico.jpg'] = File.read(Rails.root.join('app/assets/images/sellochico.jpg'))
 
-    mail(to: 'info@borwin.com.ar', subject: "Notificaciones @ Borwin - Nuevo usuario registrado")
+    mail(to: 'sebastian@borwin.net', subject: "Notificaciones @ Borwin - Nuevo usuario registrado")
   end
 
   # Sends an email to the influencer to let him know that he has a new tweet proposal
@@ -142,8 +142,8 @@ class Notifier < ActionMailer::Base
 
     @screen_name = tweet.influencer.user.twitter_screen_name
 
-    mail(to: tweet.campaign.advertiser.user.email, subject: "Notificaciones @ Borwin - Una propuesta de tweet que has realizado ha sido rechazada por "+@screen_name, :body => @tweet.reject_cause)
-    mail(to: 'sebastian@borwin.net', cc: ['sofia@borwin.net', 'poli@borwin.net'], subject: "Notificaciones @ Borwin - Una propuesta de tweet que ha realizado "+tweet.campaign.advertiser.user.email+" ha sido rechazada por @"+@screen_name, :body => @tweet.reject_cause)
+    #mail(to: tweet.campaign.advertiser.user.email, subject: "Notificaciones @ Borwin - Tweet rechazado por @"+@screen_name+ ". "+@tweet.reject_cause)
+    mail(to: "sebastian@borwin.net", subject: "Notificaciones @ Borwin - Un tweet realizado por "+tweet.campaign.advertiser.user.email+" fue rechazado por @"+@screen_name+ ". "+@tweet.reject_cause)
   end
 
   # Sends an email to the advertiser when a tweet is activated
