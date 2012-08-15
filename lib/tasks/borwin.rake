@@ -388,7 +388,7 @@ namespace :borwin do
 
     influencer = influencers[0]
 
-    TwitterUser.where("last_sync_at is false and twitter_screen_name is not null").find_each do |twitter_user|
+    TwitterUser.where("last_sync_at is null and twitter_screen_name is not null and private_tweets is false").find_each do |twitter_user|
       begin
         puts "Cycle begins"
         $stdout.flush
