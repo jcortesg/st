@@ -65,6 +65,11 @@ class Advertiser::CampaignsController < ApplicationController
     @campaign.travel=true;
     @campaign.luxury=true;
 
+    @campaign.locations = ["Argentina","Buenos Aires","Catamarca","Chaco","Córdoba","Corrientes","Entre Ríos",
+                           "Formosa","Jujuy","La Pampa","La Rioja","Mendoza","Misiones","Neuquén","Rio Negro","Salta",
+                           "San Juan","San Luis","Santa Cruz","Santa Fe","Sgo. del Estero","Tierra del Fuego","Tucumán",
+                           "Colombia","Chile","Ecuador","Paraguay","Uruguay"]
+
     @campaign.followers_qty = ["0-500", "500-2000", "2000-10000", "10000-100000", "100000-300000", "300000-600000",
                                "600000-900000", "900000-2000000", "2000000-50000000"]
     @campaign.tweet_price = ["0-300", "300-1000", "1000-2000", "2000-3000", "3000-5000", "5000-7000", "7000-10000",
