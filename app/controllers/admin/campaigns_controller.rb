@@ -42,7 +42,7 @@ class Admin::CampaignsController < ApplicationController
     @campaign = Campaign.find(params[:id])
     @campaign.destroy
     flash[:notice] = "La campaña #{@campaign.name} ha sido eliminada"
-    redirect_to action: :archived
+    redirect_to action: :index
   end
 
   # Shows the form to set the audience for the campaign
@@ -87,5 +87,43 @@ class Admin::CampaignsController < ApplicationController
       flash[:error] = "Hubo un error al reactivar la campaña"
       redirect_to :back
     end
+  end
+
+  # Shows the statistics for the campaign
+  def statistics
+    @campaign = Campaign.find(params[:id])
+    if @campaign.status == 'created'
+      flash[:notice] = "La Campaña no tiene Tweets públicados"
+      redirect_to action: :index
+    end
+
+    respond_to do |format|
+      format.html
+      format.pdf {
+        content = render_to_string(layout: false)
+        pdf_file_name = generate_pdf_report(content)
+        send_data File.open(pdf_file_name).read, type: 'application/pdf', disposition: "attachment; filename=campaign_report.pdf"
+      }
+    end
+  end
+
+  private
+
+  def random_string(size = 20)
+    o =  [('a'..'z'),('A'..'Z')].map{|i| i.to_a}.flatten
+    (0..20).map{ o[rand(o.length)]  }.join
+  end
+
+  def generate_pdf_report(content)
+    html_file_name = "#{Rails.root}/tmp/pdf/#{random_string}.html"
+    File.open(html_file_name, 'w') do |f|
+      f << content
+    end
+    pdf_file_name = "#{Rails.root}/tmp/pdf/#{random_string}.pdf"
+
+    command = "/usr/local/bin/wkhtmltopdf --margin-right 0.75in --page-size Letter --margin-top 0.75in --margin-bottom 0.75in --encoding UTF-8 --margin-left 0.75in --quiet #{html_file_name} #{pdf_file_name}"
+    Rails.logger.info command
+    system(command)
+    pdf_file_name
   end
 end

@@ -274,18 +274,28 @@ class Influencer < ActiveRecord::Base
 
   def get_tweet_price_for_category(price_category)
     followers = self.audience.followers
-
+    price_by_followers = 0
     case price_category
       when 1
-        (followers * 0.025) / 3
+        price_by_followers = (followers * 0.025) / 3
       when 2
-        (followers * 0.0175) / 3
+        price_by_followers = (followers * 0.0175) / 3
       when 3
-        (followers * 0.0150) / 3
+        price_by_followers = (followers * 0.0150) / 3
       when 4
-        (followers * 0.0125) / 3
+        price_by_followers = (followers * 0.0125) / 3
       when 5
-        (followers * 0.0095) / 3
+        price_by_followers = (followers * 0.0095) / 3
+    end
+
+    klout = Audience.where(influencer_id: id).first.klout rescue 0
+
+    price = (price_by_followers / 0.7) + (((klout - 60>0)?((klout-60)*20):0) / 0.3)
+
+    if price < 150
+      price = 150
+    else
+      price  = price
     end
   end
 end

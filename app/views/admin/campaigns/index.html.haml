@@ -40,7 +40,10 @@
                 %td
                   = link_to('Ver', [:admin, campaign], class: 'btn btn-primary')
                   = link_to('Audiencia', [:audience, :admin, campaign], class: 'btn btn-primary')
+                  - if campaign.status != 'created'
+                    = link_to('Estadísticas', [:statistics, :admin, campaign], :class => 'btn btn-primary')
                   = link_to('Archivar', [:archive, :admin, campaign], method: :put, class: 'btn btn-danger', confirm: '¿Esta seguro que quiere archivar la campaña?')
+                  = link_to('Eliminar', [:admin, campaign], method: :delete, class: 'btn btn-danger', confirm: "Esta seguro que desea eliminar a la celebridad y todo su historial?" )
         .center_text
           = paginate @campaigns
 
