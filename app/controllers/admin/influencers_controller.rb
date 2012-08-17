@@ -27,6 +27,9 @@ class Admin::InfluencersController < ApplicationController
     twitter_screen_name = params[:user][:twitter_screen_name]
     params[:user].delete(:twitter_screen_name)
     @user = User.new(params[:user])
+    if(twitter_screen_name.start_with? '@')
+      twitter_screen_name = twitter_screen_name.sub(/[\@]/, '')
+    end
     @user.twitter_screen_name = twitter_screen_name
     @user.role = 'influencer'
     # Account approved
