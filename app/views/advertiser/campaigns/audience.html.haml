@@ -30,11 +30,11 @@
         .geographic_zone.provinces
           - ["Buenos Aires",  "Catamarca",  "Chaco", "Córdoba", "Corrientes", "Entre Ríos", "Formosa", "Jujuy", "La Pampa", "La Rioja", "Mendoza", "Misiones", "Neuquén", "Rio Negro", "Salta", "San Juan", "San Luis", "Santa Cruz", "Santa Fe", "Sgo. del Estero", "Tierra del Fuego", "Tucumán"].each do |province|
             %div{style: 'display: inline-block'}
-              = check_box_tag "campaign[locations][]", province, f.object.locations.include?("province")
+              = check_box_tag "campaign[locations][]", province, f.object.locations.include?(province)
               = label_tag province, province, style: 'margin-right: 8px'
         - ["Colombia", "Chile", "Ecuador", "Paraguay", "Uruguay"].each do |country|
           .geographic_zone
-            = check_box_tag "campaign[locations][]", country, f.object.locations.include?("country")
+            = check_box_tag "campaign[locations][]", country, f.object.locations.include?(country)
             = label_tag country
 
       %h2 Edades

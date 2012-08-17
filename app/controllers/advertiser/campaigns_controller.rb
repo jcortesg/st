@@ -45,8 +45,28 @@ class Advertiser::CampaignsController < ApplicationController
     @campaign.advertiser_id = current_role.id
 
     # Set default values for the campaign
+    @campaign.moms=true;
+    @campaign.teens=true;
+    @campaign.college_students=true;
+    @campaign.young_women=true;
+    @campaign.young_men=true;
+    @campaign.adult_men=true;
+    @campaign.adult_women=true;
+
+    @campaign.males=true;
+    @campaign.females=true;
+
+    @campaign.sports=true;
+    @campaign.music=true;
+    @campaign.fashion=true;
+    @campaign.movies=true;
+    @campaign.politics=true;
+    @campaign.technology=true;
+    @campaign.travel=true;
+    @campaign.luxury=true;
+
     @campaign.followers_qty = ["0-500", "500-2000", "2000-10000", "10000-100000", "100000-300000", "300000-600000",
-                               "600000-900000", "900000-2000000"]
+                               "600000-900000", "900000-2000000", "2000000-50000000"]
     @campaign.tweet_price = ["0-300", "300-1000", "1000-2000", "2000-3000", "3000-5000", "5000-7000", "7000-10000",
                              "10000-20000", "20000-50000"]
 
