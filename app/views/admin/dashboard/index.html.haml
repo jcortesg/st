@@ -13,7 +13,9 @@
         %br
         = "La cantidad de usuarios unicos es #{number_with_delimiter(TwitterUser.count, delimiter: '.')}"
         %br
-        = "La cantidad de usuarios con ubicación, screen name y género es #{number_with_delimiter(TwitterUser.where('twitter_screen_name is not null').count, delimiter: '.')}, faltan updatear #{number_with_delimiter(TwitterUser.where('twitter_screen_name is null').count, delimiter: '.')}"
+        = "La cantidad de usuarios con ubicación, screen name y género es #{number_with_delimiter(TwitterUser.where('twitter_screen_name is not null').count, delimiter: '.')}"
+        %br
+        = "La cantidad de usuarios de los cuáles se sacaron los hobbies es #{number_with_delimiter(TwitterUser.where('last_sync_at is not null').count, delimiter: '.')}"
 
         %br
         %br

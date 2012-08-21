@@ -544,11 +544,16 @@ namespace :borwin do
         audience.luxury = ((luxury * 100) / followers_total).round rescue 0
         audience.moms = ((moms * 100) / followers_total).round rescue 0
         audience.teens = ((teens * 100) / followers_total).round rescue 0
-        audience.college_students = ((college_students * 100) / followers_total).round rescue 0
-        audience.young_women = ((young_women * 100) / followers_total).round rescue 0
-        audience.young_men = ((young_men * 100) / followers_total).round rescue 0
-        audience.adult_women = ((adult_women * 100) / followers_total).round rescue 0
-        audience.adult_men = ((adult_men * 100) / followers_total).round rescue 0
+
+
+        age_percent = audience.college_students_count + audience.young_women_count +
+          audience.young_men_count + audience.adult_women_count + audience.adult_men_count
+
+        audience.college_students = ((college_students * 100) / age_percent).round rescue 0
+        audience.young_women = ((young_women * 100) / age_percent).round rescue 0
+        audience.young_men = ((young_men * 100) / age_percent).round rescue 0
+        audience.adult_women = ((adult_women * 100) / age_percent).round rescue 0
+        audience.adult_men = ((adult_men * 100) / age_percent).round rescue 0
       end
 
       # Finally update the audiences for countries and states
