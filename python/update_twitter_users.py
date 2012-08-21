@@ -31,6 +31,14 @@ TWITTER_CONSUMER_SECRET = 'JopN0OyZ7QQVpkO1DUEkQ5g8q5RlF17kHfEsU9NKo'
 TWITTER_OAUTH_TOKEN = '144391600-S1sNJxqZI3NaO5zC1NtKGOGi2uWyr05vP9yjAt9k'
 TWITTER_OAUTH_SECRET = '4PYb6smt0R9Izj2oFly1w9kHOBbIkpqj9mvV1KkUAPw'
 
+# Total update?
+total_update = False
+try:
+	total_update = os.environ['TOTAL_UPDATE']  == '1'
+except Exception, e:
+	pass
+
+
 # Connect to the database
 import MySQLdb as mdb
 import sys
@@ -48,7 +56,18 @@ try:
 	cur_master = conn.cursor(mdb.cursors.DictCursor)
 	
 	# Fetch all the users
-	cur_master.execute("SELECT influencers.id as influencer_id, users.twitter_uid as twitter_uid, users.twitter_token as twitter_token, users.twitter_secret as twitter_secret, influencers.first_name as first_name, influencers.last_name as last_name FROM influencers, audiences, users WHERE audiences.influencer_id = influencers.id AND influencers.user_id = users.id ORDER BY audiences.followers asc")
+	if total_update:
+		cur_master.execute("SELECT influencers.id as influencer_id, users.twitter_uid as twitter_uid, users.twitter_token as twitter_token, users.twitter_secret as twitter_secret, influencers.first_name as first_name, influencers.last_name as last_name FROM influencers, audiences, users WHERE audiences.influencer_id = influencers.id AND influencers.user_id = users.id ORDER BY audiences.followers asc")
+	else:
+		cur_master.execute("select influencers.id as influencer_id from influencers left join twitter_followers on influencers.id = twitter_followers.influencer_id where twitter_followers.twitter_user_id is null")
+		influencers_rows = cur_master.fetchall()
+		list = []
+		for influencer_row in influencers_rows:
+			list.append(influencer_row['influencer_id'])
+		if len(list) > 0:
+			print "SELECT influencers.id as influencer_id, users.twitter_uid as twitter_uid, users.twitter_token as twitter_token, users.twitter_secret as twitter_secret, influencers.first_name as first_name, influencers.last_name as last_name FROM influencers, audiences, users WHERE audiences.influencer_id = influencers.id AND influencers.user_id = users.id AND influencers.id in (" + ",".join(list) + " ORDER BY audiences.followers asc"
+		else:
+			print "All influencers updated"
 	rows = cur_master.fetchall()
 	for row in rows:
 		start_update_timer = time.time()
@@ -56,13 +75,14 @@ try:
 		cur = conn.cursor()
 		cur_temp = conn.cursor()
 		cur_temp.execute("SELECT COUNT(*) FROM twitter_followers WHERE influencer_id = " + str(row['influencer_id']))
-		while cur_temp.fetchone()[0] != 0:
-			print "Eliminando 1000 seguidores de %s %s" % (row['first_name'], row['last_name'])
-			sys.stdout.flush()
-			cur.execute("DELETE FROM twitter_followers WHERE influencer_id = " + str(row['influencer_id']) + " LIMIT 1000")
-			conn.commit()
-			time.sleep(1)
-			cur_temp.execute("SELECT COUNT(*) FROM twitter_followers WHERE influencer_id = " + str(row['influencer_id']))
+		if total_update:
+			while cur_temp.fetchone()[0] != 0:
+				print "Eliminando 10000 seguidores de %s %s" % (row['first_name'], row['last_name'])
+				sys.stdout.flush()
+				cur.execute("DELETE FROM twitter_followers WHERE influencer_id = " + str(row['influencer_id']) + " LIMIT 10000")
+				conn.commit()
+				time.sleep(1)
+				cur_temp.execute("SELECT COUNT(*) FROM twitter_followers WHERE influencer_id = " + str(row['influencer_id']))
 		
 		# Auth by the user with twitter
 		auth = tweepy.OAuthHandler(TWITTER_CONSUMER_KEY, TWITTER_CONSUMER_SECRET)
@@ -99,6 +119,16 @@ try:
 			print "Exception %s" % e 
 			sys.stdout.flush()
 			pass
+			
+	if total_update:
+		cur_master.execute("create table temp_ids(id integer) select twitter_users.id from twitter_users left join twitter_followers on twitter_users.id = twitter_followers.twitter_user_id where twitter_followers.influencer_id is null;")
+		cur_master.execute("select id from temp_ids")
+		rows = cur_master.fetchall()
+		for row in rows:
+			cur_master.execute("DELETE FROM twitter_users WHERE id = " + str(row['id']))
+		conn.commit()
+		cur_master.execute("DROP TABLE temp_ids")
+		conn.commit()
 
 except Exception, e:
 	print "Error %s" % (e)
