@@ -494,7 +494,7 @@ namespace :borwin do
       audience.females = percent_females
 
       # Now we update the different keyword categories
-      followers_total = TwitterUser.joins(:twitter_followers).where("influencer_id = ?", audience.influencer_id).count
+      followers_total = TwitterUser.joins(:twitter_followers).where("influencer_id = ?", audience.influencer_id).where("last_sync_at is not null").count
       if (ENV['UPDATE_HOBBIES'])
         sports = TwitterUser.joins(:twitter_followers).where("influencer_id = ?", audience.influencer_id).where("sports = 1").count
         fashion = TwitterUser.joins(:twitter_followers).where("influencer_id = ?", audience.influencer_id).where("fashion = 1").count
@@ -616,7 +616,8 @@ namespace :borwin do
 
       audience.save
 
-      puts "Audience for #{audience.influencer.full_name} updates"
+      puts "Audience for #{audience.influencer.full_name} updated"
+      $stdout.flush
     end
   end
 
