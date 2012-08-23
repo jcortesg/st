@@ -13,9 +13,9 @@ set :repository, "git@bitbucket.org:rorra/borwin.git"
 #role :web, "199.168.97.138"
 #role :app, "199.168.97.138"
 #role :db, "199.168.97.138", :primary => true
-role :web, "142.54.169.210", "142.54.169.82"
-role :app, "142.54.169.210", "142.54.169.82"
-role :db, "142.54.169.82", :primary => true
+role :web, "142.54.169.210"
+role :app, "142.54.169.210"
+role :db, "142.54.169.210", :primary => true
 
 set :user, "deploy"
 set :scm, :git
