@@ -180,6 +180,7 @@ Borwin::Application.routes.draw do
   match "influencers-contact" => "home#influencers_contact", :as => :home_influencers_contact
   match "influencers-presentation" => "home#influencers_presentation", :as => :home_influencers_presentation
   match "tweet-go" => "home#tweet_go", :as => :about_tweet_go
+  match "sorte-argo" => "home#sorte_argo", :as => :about_sorte_argo
   match "about-us" => "home#about_us", :as => :about_us
   match "press" => "home#press", :as => :press
   match "work-with-us" => "home#work_with_us", :as => :work_with_us
