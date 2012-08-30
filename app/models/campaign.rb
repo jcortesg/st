@@ -223,6 +223,26 @@ class Campaign < ActiveRecord::Base
     result
   end
 
+  def highrise_shared_users_reach_bar_data
+    influencers_ids = (self.tweets.collect {|t| t.influencer}.collect {|i| i.id}).uniq
+    influencers = Influencer.where("id in (?)", influencer_ids).order('id').all
+    followers = []
+    influencers.each do |influencer|
+      if followers.length == 0
+        influencer.twitter_followers.each do |follower|
+          followers.append(follower.twitter_user_id)
+        end
+      else
+        follow_aux = []
+        influencer.twitter_followers.each do |follower|
+          follow_aux.append(follower.twitter_user_id)
+        end
+        followers = followers & follow_aux
+      end
+    end
+    followers.length
+  end
+
   def highrise_metrics_label
     result = ''
     self.campaign_metrics.order('metric_on asc').all.each do |cm|
