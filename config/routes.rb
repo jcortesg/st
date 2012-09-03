@@ -148,6 +148,7 @@ Borwin::Application.routes.draw do
       get :edit
       put :update
       get :contact_data
+      get :edit_contact_data
       get :edit
       put :process_contact_data
       get :payment_data
