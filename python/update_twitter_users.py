@@ -63,9 +63,9 @@ try:
 		influencers_rows = cur_master.fetchall()
 		list = []
 		for influencer_row in influencers_rows:
-			list.append(influencer_row['influencer_id'])
+			list.append(str(influencer_row['influencer_id']))
 		if len(list) > 0:
-			print "SELECT influencers.id as influencer_id, users.twitter_uid as twitter_uid, users.twitter_token as twitter_token, users.twitter_secret as twitter_secret, influencers.first_name as first_name, influencers.last_name as last_name FROM influencers, audiences, users WHERE audiences.influencer_id = influencers.id AND influencers.user_id = users.id AND influencers.id in (" + ",".join(list) + " ORDER BY audiences.followers asc"
+			cur_master.execute("SELECT influencers.id as influencer_id, users.twitter_uid as twitter_uid, users.twitter_token as twitter_token, users.twitter_secret as twitter_secret, influencers.first_name as first_name, influencers.last_name as last_name FROM influencers, audiences, users WHERE audiences.influencer_id = influencers.id AND influencers.user_id = users.id AND influencers.id in (" + ",".join(list) + ") ORDER BY audiences.followers asc")
 		else:
 			print "All influencers updated"
 	rows = cur_master.fetchall()
