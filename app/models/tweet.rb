@@ -89,9 +89,10 @@ class Tweet < ActiveRecord::Base
   # Check that the text contains a link
   def tweet_text_validation
     matches = text.scan(/\b(?:https?:\/\/|www\.)\S+\b/)
-    if matches.size == 0
-      errors.add(:text, "no tiene ningún link")
-    elsif matches.size > 1
+    #if matches.size == 0
+    #  errors.add(:text, "no tiene ningún link")
+    #elsif matches.size > 1
+    if matches.size > 1
       errors.add(:text, "tiene más de un link")
     else
       template_text = text.sub(/\b(?:https?:\/\/|www\.)\S+\b/, 'http://bwn.tw/L1234')
