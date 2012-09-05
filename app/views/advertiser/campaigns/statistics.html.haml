@@ -297,7 +297,7 @@
     	},
     	xAxis: {
     		categories: [
-    			#{@campaign.highrise_reach_bar_label}
+    			#{@campaign.highrise_reach_bar_label}     , 'compartidos'
     		],
     		labels: {
     			rotation: -45,
@@ -324,7 +324,7 @@
     	},
     	series: [{
     		name: 'Reach',
-    		data: [#{@campaign.highrise_reach_bar_data}],
+    		data: [#{@campaign.highrise_reach_bar_data}, #{@campaign.highrise_shared_users_reach_bar_data}],
     		dataLabels: {
     			enabled: true,
     			rotation: -90,
