@@ -14,7 +14,7 @@ module Advertiser::CampaignsHelper
         " - "
       end
     else
-      sprintf("$ %.02f", self.cpc_fee)
+      sprintf("$ %.02f", tweet.cpc_fee)
     end
   end
 
