@@ -37,14 +37,14 @@
           = @campaign.objective
 
         %div
-          Tweets:
-          = @campaign.tweets.activated.count
+          Twets:
+          = @campaign.tweets.count
         %div
           Clicks:
           = @campaign.clicks_count
         %div
           Retweets:
-          = @campaign.retweets.count
+          = @campaign.retweets_count
         %div
           Costo de la campaña:
           = number_to_currency(@campaign.tweets.sum(:tweet_fee))
@@ -297,7 +297,7 @@
     	},
     	xAxis: {
     		categories: [
-    			#{@campaign.highrise_reach_bar_label}     , 'compartidos'
+    			#{@campaign.highrise_reach_bar_label} , 'compartidos'
     		],
     		labels: {
     			rotation: -45,
