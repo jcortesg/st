@@ -148,7 +148,25 @@ class Notifier < ActionMailer::Base
     @screen_name = tweet.influencer.user.twitter_screen_name
 
     mail(to: tweet.campaign.advertiser.user.email, subject: "Notificaciones @ Borwin - Tweet rechazado por @"+@screen_name+ ". "+@tweet.reject_cause)
-    mail(to: "sebastian@borwin.net", subject: "Notificaciones @ Borwin - Un tweet realizado por "+tweet.campaign.advertiser.user.email+" fue rechazado por @"+@screen_name+ ". "+@tweet.reject_cause)
+    mail(to: 'sebastian@borwin.net', subject: "Notificaciones @ Borwin - Un tweet realizado por "+tweet.campaign.advertiser.user.email+" fue rechazado por @"+@screen_name+ ". "+@tweet.reject_cause)
+
+  end
+
+  # Sends an email to the advertiser to let him know the tweet was rejected
+  def tweet_rejected_by_influencer_in_dialog(tweet)
+    @tweet = tweet
+
+    attachments.inline['logo.jpg'] = File.read(Rails.root.join('app/assets/images/logo.jpg'))
+    attachments.inline['sellochico.jpg'] = File.read(Rails.root.join('app/assets/images/sellochico.jpg'))
+
+    @screen_name = tweet.influencer.user.twitter_screen_name
+
+    tweet.campaign.influencers.each do |influencer|
+      mail(to: influencer.user.email, subject: "Notificaciones @ Borwin - Una campaña en la que participas fue cancelada. Tweet rechazado por @"+@screen_name+ ". ")
+    end
+
+    mail(to: tweet.campaign.advertiser.user.email, subject: "Notificaciones @ Borwin - Tweet rechazado por @"+@screen_name+ ". "+@tweet.reject_cause)
+    mail(to: 'sebastian@borwin.net', subject: "Notificaciones @ Borwin - Un tweet realizado por "+tweet.campaign.advertiser.user.email+" fue rechazado por @"+@screen_name+ ". "+@tweet.reject_cause)
 
   end
 
@@ -195,7 +213,7 @@ class Notifier < ActionMailer::Base
   def expiration_alert_to_admin(tweet)
     @tweet = tweet
 
-    mail(to: "sebastian@borwin.net", subject: "Tweet expira en 120 minutos - Its time to go social")
+    mail(to: 'sebastian@borwin.net', subject: "Tweet expira en 120 minutos - Its time to go social")
   end
 
   # Sends an email to advertiser alerting about a tweet expiration
@@ -223,7 +241,7 @@ class Notifier < ActionMailer::Base
     @user = user
     @advertiser = user.advertiser
 
-    mail(to: "sebastian@borwin.net", subject: "Anunciante con crédito debajo de $1000 - Its time to go social")
+    mail(to: 'sebastian@borwin.net', subject: "Anunciante con crédito debajo de $1000 - Its time to go social")
   end
 
   # Sends an email to advertiser alerting about low credit
@@ -247,7 +265,7 @@ class Notifier < ActionMailer::Base
       subject = "La agencia #{cash_out.user.full_name} ha solicitado un Cash Out por $#{cash_out.amount}"
     end
 
-    mail(to: "sebastian@borwin.net", subject: subject)
+    mail(to: 'sebastian@borwin.net', subject: subject)
   end
 
   # Sends a cash out payment notice to the user

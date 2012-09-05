@@ -16,7 +16,7 @@ class Campaign < ActiveRecord::Base
   attr_accessible :name, :objective, :twitter_screen_name, :locations, :males, :females, :moms, :teens,
                   :college_students, :young_women, :young_men, :adult_women, :adult_men, :sports, :fashion, :music,
                   :movies, :politics, :technology, :travel, :luxury, :followers_qty, :tweet_price, :price_per_click,
-                  :instructions, :hashtag
+                  :instructions, :hashtag , :dialog_campaign
 
   validates :name, uniqueness: { scope: :advertiser_id }, presence: true
   validates :objective, presence: true

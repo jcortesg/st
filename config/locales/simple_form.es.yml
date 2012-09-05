@@ -129,6 +129,7 @@ es:
         hashtag: Hashtag
         instructions: Instrucciones de creación de tweet
         twitter_screen_name: Twitter
+        dialog_campaign: Requiere que todos acepten para publicar?
         price_per_click: Precio por Click
         archived: Archivada?
         locations: Zona Geográfica

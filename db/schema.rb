@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120813095430) do
+ActiveRecord::Schema.define(:version => 20120903223108) do
 
   create_table "advertisers", :force => true do |t|
     t.integer  "user_id"
@@ -204,6 +204,7 @@ ActiveRecord::Schema.define(:version => 20120813095430) do
     t.integer  "reach",                                               :default => 0,     :null => false
     t.integer  "share",                                               :default => 0,     :null => false
     t.decimal  "cost",                  :precision => 8, :scale => 2, :default => 0.0,   :null => false
+    t.boolean  "dialog_campaign",                                     :default => false, :null => false
     t.datetime "created_at",                                                             :null => false
     t.datetime "updated_at",                                                             :null => false
     t.text     "instructions"
@@ -343,7 +344,8 @@ ActiveRecord::Schema.define(:version => 20120813095430) do
     t.datetime "updated_at", :null => false
   end
 
-  create_table "tempT", :force => true do |t|
+  create_table "temp_ids", :id => false, :force => true do |t|
+    t.integer "id"
   end
 
   create_table "transactions", :force => true do |t|

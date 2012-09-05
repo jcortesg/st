@@ -292,7 +292,11 @@ class Tweet < ActiveRecord::Base
 
   # Sends a mail when the tweet has been rejected by the influencer
   def mail_rejected_by_influencer
-    Notifier.tweet_rejected_by_influencer(self).deliver
+    if self.campaign.dialog_campaign
+      Notifier.tweet_rejected_by_influencer_in_dialog(self).deliver
+    else
+      Notifier.tweet_rejected_by_influencer(self).deliver
+    end
   end
 
   # Sends a mail when the tweet has been published
