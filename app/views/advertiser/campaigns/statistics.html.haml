@@ -37,14 +37,14 @@
           = @campaign.objective
 
         %div
-          Twets:
-          = @campaign.tweets.count
+          Tweets:
+          = @campaign.tweets.activated.count
         %div
           Clicks:
           = @campaign.clicks_count
         %div
           Retweets:
-          = @campaign.retweets_count
+          = @campaign.retweets.count
         %div
           Costo de la campaña:
           = number_to_currency(@campaign.tweets.sum(:tweet_fee))
