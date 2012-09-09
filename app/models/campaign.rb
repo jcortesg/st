@@ -227,8 +227,9 @@ class Campaign < ActiveRecord::Base
     influencers_ids = (self.tweets.collect {|t| t.influencer}.collect {|i| i.id}).uniq
     influencers = Influencer.where("id in (?)", influencer_ids).order('id').all
     followers = []
+    loop = 0
     influencers.each do |influencer|
-      if followers.length == 0
+      if loop == 0
         influencer.twitter_followers.each do |follower|
           followers.append(follower.twitter_user_id)
         end
@@ -239,6 +240,7 @@ class Campaign < ActiveRecord::Base
         end
         followers = followers & follow_aux
       end
+      loop = loop + 1
     end
     followers.length
   end
