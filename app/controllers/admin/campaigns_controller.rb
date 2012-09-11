@@ -4,7 +4,11 @@ class Admin::CampaignsController < ApplicationController
 
   # Shows the campaigns
   def index
-    @search = Campaign.created_and_active.search(params[:search])
+    if params[:search].nil?
+      @search = Campaign.created_and_active.order('created_at desc').search(params[:search])
+    else
+      @search = Campaign.created_and_active.search(params[:search])
+    end
     @campaigns = @search.page(params[:page])
   end
 
