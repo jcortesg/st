@@ -3,7 +3,11 @@
   = javascript_include_tag 'http://widgets.twimg.com/j/2/widget.js'
   = javascript_include_tag 'advertiser/new_tweet'
   = javascript_include_tag 'tweet_form'
+  = javascript_include_tag 'jquery.iframe-post-form'
+  = javascript_include_tag 'image-form'
   = javascript_include_tag 'https://www.google.com/jsapi'
+  = javascript_include_tag 'spin.min'
+  = javascript_include_tag 'jquery.spin'
 
 .row
   .span12{style: 'width: 970px'}
@@ -280,6 +284,7 @@
       .tweet_proposal.clearfix
         .form_title Propuesta de nuevo Tweet
         = simple_form_for @tweet_group, url: advertiser_campaign_tweets_path(@campaign), html: { class: 'vertical-form' } do |f|
+          - count = 0
           = f.simple_fields_for :tweets do |tf|
             .text_container{}
               = tf.input :text, as: :text, label: 'Tweet', input_html: { style: 'width: 650px;height: 40px', :title => @campaign.instructions, :class => 'tweet-text' }
@@ -294,18 +299,24 @@
 
             = tf.input :campaign_id, as: :hidden
             = tf.input :influencer_id, as: :hidden
+            %a.btn.btn-mini{:href => "#myModal", "class" => "image-modal-trigger image modal-trigger", "data-toggle"=>"modal", "id"=>"picture-link-"+count.to_s, "onclick"=>"SetId("+count.to_s+")"} Imagen
+            %span{"id" => "picture-url-"+count.to_s} &nbsp;
+            - count = (count + 1)
 
             %hr
           = f.input :campaign_id, as: :hidden
           = f.input :influencer_id, as: :hidden
 
 
+
           .form-actions
+            //%a.btn.btn-info{:href => "#previewModal", "class" => "preview-modal-trigger image modal-trigger", "data-toggle"=>"modal"} Vista Previa
+            //%br
+            //%br
             = f.submit 'Proponer y volver a la campaña', class: 'btn btn-primary btn-large', id: 'create_and_back'
 
           .center_text
             = link_to('Volver a la campaña', [:admin, @campaign], class: 'btn btn-large')
-
 
 
   .span3
@@ -336,3 +347,35 @@
             behavior: 'all'
           }
         }).render().setUser('#{@influencer.user.twitter_screen_name}').start();
+
+
+
+#myModal{:class =>"modal"}
+  .modal-header
+    %button{"data-dismiss" => "modal", "class" => "close"} ×
+    %h3 Imagen para utilizar en el tweet
+  .modal-body
+    = simple_form_for @picture, url: "/advertiser/pictures.json", html: { class: 'vertical-form' } do |f|
+      %h4 Sub&iacute;
+      = f.file_field :image
+      %span{"class" =>"help-block"} Solo se aceptan imagenes menores a 200kb y en formato jpg, png o gif.
+
+    %input{"type"=>"hidden","id"=>"picture-url-id"}
+
+  .modal-footer
+    %a.btn{:href => "#", "data-dismiss"=>"modal", "id"=>"modal-close-button"} Cerrar
+    %a.btn.btn-primary{:href => "#", "id"=>"submit-picture"} Confirmar
+
+#previewModal{:class =>"modal"}
+  .modal-header
+    %button{"data-dismiss" => "modal", "class" => "close"} ×
+    %h3 Así serán los tweets
+  .modal-body
+    #preview-body-tweet-0{:style => "clear:both"}
+    %hr
+    #preview-body-tweet-1{:style => "clear:both"}
+    %hr
+    #preview-body-tweet-2{:style => "clear:both"}
+    %hr
+  .modal-footer
+    %a.btn{:href => "#", "data-dismiss"=>"modal", "id"=>"modal-close-button"} Cerrar

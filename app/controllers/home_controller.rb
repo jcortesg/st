@@ -111,5 +111,16 @@ class HomeController < ApplicationController
     end
   end
 
+  # Tweet link redirection
+  # http://localhost:3000/P1234
+  def tweet_image_redirection
+    if Picture.where(picture_code: params[:picture_code]).exists?
+      image = Picture.where(picture_code: params[:picture_code]).first
+      redirect_to '/pictures/'+image.id.to_s
+    else
+      flash[:error] = "El código de imagen no existe"
+      redirect_to root_url
+    end
+  end
 
 end

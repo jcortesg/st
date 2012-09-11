@@ -23,6 +23,8 @@ gem 'mechanize'                        # Robot to brose twitter users
 gem 'klout'                            # Klout index
 gem 'wicked_pdf'                       # PDF Generation
 gem 'gibbon'                           # Mailchimp integration
+gem 'rmagick'                          # Image treatment
+gem 'carrierwave'                      # Image treatment
 
 
 group :assets do
@@ -44,6 +46,8 @@ group :test do
   gem 'factory_girl_rails'                       # Fixtures
   gem 'ffaker'                                   # Generate test data
   gem 'launchy'                                  # To open pages when developing capybara tests
+  #gem 'linecache19', '0.5.13'
+  #gem 'ruby-debug-base19', '0.11.25'
   gem 'ruby-debug19', :require => 'ruby-debug'   # Debug on testing
 end
 

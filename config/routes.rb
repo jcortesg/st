@@ -119,6 +119,10 @@ Borwin::Application.routes.draw do
         put :accept, on: :member
       end
     end
+    resources :pictures do
+      post :create
+      get :show
+    end
     match '/profile' => 'profiles#show', as: :profile
     namespace :profiles do
       get :show
@@ -194,6 +198,9 @@ Borwin::Application.routes.draw do
   # Invitation route
   match "/I:invitation_code", to: "home#invitation", contrainsts: {invitation_code: /[A-Z0-9]{6}/}
   match "/L:link_code", to: "home#tweet_link_redirection", contrainsts: {invitation_code: /[A-Z0-9]{4}/}
+  match "/P:picture_code", to: "home#tweet_image_redirection", contrainsts: {picture_code: /[A-Z0-9]{5}/}
+
+  match 'pictures/:id' => 'pictures#show'
 
   root :to => 'home#index'
 end

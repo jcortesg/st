@@ -18,3 +18,5 @@ config/database.yml
 .idea
 .rvmrc
 public/system
+public/uploads
+public/bwn-image/

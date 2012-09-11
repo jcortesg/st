@@ -92,7 +92,7 @@ class Tweet < ActiveRecord::Base
     #if matches.size == 0
     #  errors.add(:text, "no tiene ningún link")
     #elsif matches.size > 1
-    if matches.size > 1
+    if matches.size > 2
       errors.add(:text, "tiene más de un link")
     else
       template_text = text.sub(/\b(?:https?:\/\/|www\.)\S+\b/, 'http://bwn.tw/L1234')
@@ -231,11 +231,18 @@ class Tweet < ActiveRecord::Base
 
     # Get the link from the tweet
     matches = text.scan(/\b(?:https?:\/\/|www\.)\S+\b/)
-    self.link_url = matches[0]
-    self.link_url = "http://#{self.link_url}" unless self.link_url =~ /http/
+    idx = 0
+    matches.each do |link|
+      if !matches[idx].match(/^http:\/\/bwn.tw\//)
+        self.link_url = matches[idx]
+        self.link_url = "http://#{self.link_url}" unless self.link_url =~ /http/
+      end
+      idx = idx + 1
+    end
 
     # Finally replace the text link on the text
-    self.text.sub!(/\b(?:https?:\/\/|www\.)\S+\b/, "http://bwn.tw/L#{self.link_code}")
+    # [^(bwn.tw\/P)] avoid THIS!!!
+    self.text.sub!(/\b((?:https?:\/\/|www\.)[^(bwn\.tw)])\S+\b/, "bwn.tw/L#{self.link_code}")
   end
 
   # Set the prices for the tweet when its created

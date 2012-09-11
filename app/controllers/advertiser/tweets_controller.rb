@@ -34,6 +34,8 @@ class Advertiser::TweetsController < ApplicationController
     @tweet_group.tweets.build(campaign_id: @campaign.id, influencer_id: @influencer.id)
     @tweet_group.tweets.build(campaign_id: @campaign.id, influencer_id: @influencer.id)
     @tweet_group.tweets.build(campaign_id: @campaign.id, influencer_id: @influencer.id)
+
+    @picture = Picture.new
   end
 
   # Creates a new tweet
