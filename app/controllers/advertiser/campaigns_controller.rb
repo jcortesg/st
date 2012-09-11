@@ -7,7 +7,11 @@ class Advertiser::CampaignsController < ApplicationController
   def index
     @campaign_count = Campaign.created_and_active.where(advertiser_id: current_role.id).count
     if @campaign_count > 0
-      @search = Campaign.created_and_active.where(advertiser_id: current_role.id).search(params[:search])
+      if params[:search].nil?
+        @search = Campaign.created_and_active.where(advertiser_id: current_role.id).order('created_at desc').search(params[:search])
+      else
+        @search = Campaign.created_and_active.where(advertiser_id: current_role.id).search(params[:search])
+      end
       @campaigns = @search.page(params[:page])
     else
       render action: 'no_active_campaigns'
