@@ -91,20 +91,66 @@
         var tweet
 
         for(var i = 0 ; i < 3 ; i++){
-            tweet = "<div style='clear:both'>";
-            tweet += "<div style='width:100; float:left'>";
-            tweet +=    $(".twitter_photo").html()
-            tweet += "</div>"
+            var exp = /(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig;
+            tweet = "<div style='clear:both;width:100%;'>"
             tweet += "<div style='float:left'>"
-            tweet +=    "<br/>" + $(".overview_data h2").html()
-            tweet +=    "<span style='display:inline'>" + $("textarea#tweet_group_tweets_attributes_"+i+"_text").val() + "</span>";
-            tweet +=    "<br/>" + $("#tweet_group_tweets_attributes_"+i+"_tweet_at_3i").val() +"/"+ $("#tweet_group_tweets_attributes_"+i+"_tweet_at_2i").val()+"/"+$("#tweet_group_tweets_attributes_"+i+"_tweet_at_1i").val()+" "+$("#tweet_group_tweets_attributes_"+i+"_tweet_at_4i").val() + ":"+ $("#tweet_group_tweets_attributes_"+i+"_tweet_at_5i").val() ;
+            tweet +=    "<img style='width: 48px;height: 48px;-webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;' src='"+$(".twitter-user-photo img").attr("src")+"' />"
             tweet += "</div>"
-            tweet += "</div>";
+            tweet += "<div style='float:left; margin-left: 6px; width:86%;'>"
+            tweet += "<strong style='font-weight: bold; '>"+$(".profile_resume_head h1").html()+"</strong>"
+            tweet +=    "<span class='preview-user-link' style='display: inline;'>" + $(".overview_data h2").html() + "</span>" + "<br/>"
+            tweet +=    "<span style='display:inline'>" + replaceURLWithHTMLLinks($("textarea#tweet_group_tweets_attributes_"+i+"_text").val()) + "</span>"
+            tweet +=    "<br/>" + "<span class='preview-user-date'>"+ " "+ tweetHour($("#tweet_group_tweets_attributes_"+i+"_tweet_at_4i").val()) + ":"+ $("#tweet_group_tweets_attributes_"+i+"_tweet_at_5i").val()+" "+ ampm($("#tweet_group_tweets_attributes_"+i+"_tweet_at_4i").val()) +" - " +$("#tweet_group_tweets_attributes_"+i+"_tweet_at_3i").val() +" "+ monthName($("#tweet_group_tweets_attributes_"+i+"_tweet_at_2i").val())+" "+$("#tweet_group_tweets_attributes_"+i+"_tweet_at_1i").val()+" "+"</span>"
+            tweet += "</div>"
+            tweet += "</div>"
 
-            $("#preview-body-tweet-"+i).html(tweet).load();
+            $("#preview-body-tweet-"+i).html(tweet).load()
         }
 
+    }
+
+    function tweetHour(hour){
+        number = parseInt(hour);
+
+        if(number > 12)
+            return number - 12
+        else
+            return number;
+    }
+
+    function ampm(hour){
+        number = parseInt(hour);
+
+        if(number > 12)
+            return "PM"
+        else
+            return "AM";
+    }
+    function monthName(number){
+        number = parseInt(number);
+        var month=new Array();
+        month[1]="Ene";
+        month[2]="Feb";
+        month[3]="Mar";
+        month[4]="Abr";
+        month[5]="May";
+        month[6]="Jun";
+        month[7]="Jul";
+        month[8]="Ago";
+        month[9]="Sep";
+        month[10]="Oct";
+        month[11]="Nov";
+        month[12]="Dic";
+        return month[number]
+    }
+
+    function replaceURLWithHTMLLinks(text) {
+        var exp = /(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig;
+        /*return text.replace(exp,"<a href='$1'>$1</a>");*/
+        var textHtml = text;
+        textHtml = textHtml.replace(/@([A-Za-z0-9_]+)/ig, "<a href='#'>@$1</a>")
+        textHtml = textHtml.replace(/#([A-Za-z0-9_]+)/ig, "<a href='#'>#$1</a>")
+        return textHtml.replace(exp,"<a href='#'>http://bwn.tw/L1NK5</a>");
     }
 
 	function ModalTriggerHandler(obj){

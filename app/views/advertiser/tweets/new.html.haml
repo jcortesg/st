@@ -310,9 +310,9 @@
 
 
           .form-actions
-            //%a.btn.btn-info{:href => "#previewModal", "class" => "preview-modal-trigger image modal-trigger", "data-toggle"=>"modal"} Vista Previa
-            //%br
-            //%br
+            %a.btn.btn-info{:href => "#previewModal", "class" => "preview-modal-trigger image modal-trigger", "data-toggle"=>"modal"} Vista Previa
+            %br
+            %br
             = f.submit 'Proponer y volver a la campaña', class: 'btn btn-primary btn-large', id: 'create_and_back'
 
           .center_text
@@ -371,11 +371,16 @@
     %button{"data-dismiss" => "modal", "class" => "close"} ×
     %h3 Así serán los tweets
   .modal-body
-    #preview-body-tweet-0{:style => "clear:both"}
-    %hr
-    #preview-body-tweet-1{:style => "clear:both"}
-    %hr
-    #preview-body-tweet-2{:style => "clear:both"}
-    %hr
+    #preview-body-tweet-0{:style => "clear:both; margin-bottom:6px; padding-bottom:2px;height: 80px;border-bottom: 1px solid #EEE;padding-top: 12px;"}
+
+    #preview-body-tweet-1{:style => "clear:both; margin-bottom:6px; padding-bottom:2px;height: 80px;border-bottom: 1px solid #EEE;padding-top: 12px;"}
+
+    #preview-body-tweet-2{:style => "clear:both; margin-bottom:6px; padding-bottom:2px;height: 80px;border-bottom: 1px solid #EEE;padding-top: 12px;"}
   .modal-footer
     %a.btn{:href => "#", "data-dismiss"=>"modal", "id"=>"modal-close-button"} Cerrar
+
+.twitter-user-photo{:style => 'visibility:hidden;display:none;'}
+  - if @influencer.photo.exists?
+    = image_tag(@influencer.photo.url(:small))
+  - else
+    = image_tag('no_photo.jpg')
