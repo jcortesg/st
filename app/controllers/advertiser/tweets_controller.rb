@@ -26,6 +26,13 @@ class Advertiser::TweetsController < ApplicationController
     # Check if there are other tweets on this campaign with this user
     @tweets = Tweet.where(campaign_id: @campaign.id, influencer_id: @influencer.id)
 
+    @campaigns_id = Set.new()
+    @tweets.each do |tweet|
+      @campaigns_id.add(tweet.campaign)
+    end
+
+    @campaigns = Campaign.where("id in (?)", @campaigns_id).limit(3).order("created_at desc")
+
     # New tweet with default values
     @tweet_group = TweetGroup.new
     @tweet_group.influencer_id = @influencer.id

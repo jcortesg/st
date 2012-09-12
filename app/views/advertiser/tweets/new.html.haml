@@ -61,22 +61,19 @@
               = image_tag('no_photo.jpg')
       - if @tweets.count > 0
         %hr
-          .form_title Tweets propuestos
+          .form_title Últimas campañas participadas
           %table.table.table-striped
             %thead
               %tr
-                %th Tweet
-                %th Fecha y hora
-                %th Tipo de cobro
-                %th Estado
+                %th Nombre de campaña
+                %th Anunciante
 
             %tbody
-              - @tweets.each do |tweet|
+              - @campaigns.each do |campaign|
                 %tr{ :class => cycle('odd', 'even') }
-                  %td= tweet.text
-                  %td= (localize(tweet.tweet_at, :format => "%d/%m/%Y %H:%M"))
-                  %td= tweet.fee_type == 'tweet_fee' ? "Tweet: $#{sprintf("%.02f", tweet.tweet_fee)}" : "Click: $#{sprintf("%.02f", tweet.cpc_fee)}"
-                  %td= advertiser_tweet_status(tweet.status)
+                  %td= campaign.name
+                  %td= campaign.advertiser.company
+
 
       - unless @influencer.week_map.nil?
         %hr
