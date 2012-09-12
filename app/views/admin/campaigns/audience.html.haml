@@ -19,7 +19,7 @@
       %h1.form_title Target
       - if @campaign.created_at > Time.now - 1.minute
         .center_text{style: 'margin: -20px 0 20px 0;'}
-          %h3 Paso 2 de 2
+          &nbsp;
       = render '/shared/form_errors', :object => f.object
 
       %h2 Zona Geográfica

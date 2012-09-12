@@ -11,7 +11,7 @@
     = simple_form_for(@campaign, url: [:advertiser, @campaign], html:  { id: "new_campaign_form", class: "form-horizontal round_form" }) do |f|
       %h1.form_title Nueva Campaña
       .center_text{style: 'margin: -20px 0 20px 0;'}
-        %h3 Paso 1 de 2
+        &nbsp;
       = render '/shared/simple_form_errors', :f => f
 
       = f.input :name
