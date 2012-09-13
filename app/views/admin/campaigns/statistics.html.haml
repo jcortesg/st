@@ -51,9 +51,10 @@
           Costo Por Click de la campaña:
           = @campaign.statistics_cpc
         - unless @campaign.twitter_screen_name.blank?
-          %div
-            Costo Por Contacto de la campaña:
-            = number_to_currency((@campaign.followers_start_count  + @campaign.retweets_count / @campaign.tweets.sum(:tweet_fee) ) )
+          - if @campaign.status == 'archived' && @campaign.followers_end_count!=0
+            %div
+              Costo Por Contacto de la campaña:
+              = number_to_currency( @campaign.tweets.sum(:tweet_fee) / @campaign.followers_end_count )
         %div
           CPMS de la campaña:
           = @campaign.statistics_cpms

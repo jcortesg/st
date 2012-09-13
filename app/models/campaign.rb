@@ -32,6 +32,7 @@ class Campaign < ActiveRecord::Base
   state_machine :status, initial: :created do
     after_transition on: [:activate_campaign], do: :mark_campaign_as_activated
     after_transition on: [:archive_campaign], do: :mark_campaign_as_archived
+    after_transition on: [:archive_unactivated_campaign], do: :mark_campaign_as_unactivated_archived
 
     event :activate_campaign do
       transition [:created] => [:active]
@@ -39,6 +40,10 @@ class Campaign < ActiveRecord::Base
 
     event :archive_campaign do
       transition [:active] => [:archived]
+    end
+
+    event :archive_unactivated_campaign do
+      transition [:created] => [:archived]
     end
   end
 
@@ -284,6 +289,29 @@ class Campaign < ActiveRecord::Base
         errors.add(:twitter_screen_name, 'El usuario de Twitter no existe')
       end
     end
+  end
+
+  #Marks the campaign as unactivated-archived
+  def mark_campaign_as_unactivated_archived
+    # Start time for the campaign
+    self.starts_at = DateTime.now
+    # End time for the campaign
+    self.ends_at = DateTime.now
+
+    # If there is a twitter user for the campaign, get the number of followers
+    unless self.twitter_screen_name.blank?
+      Campaign.twitter_connection
+      twitter_user = Twitter.user(self.twitter_screen_name)
+      self.followers_end_count = twitter_user.followers_count
+    end
+    self.save
+
+    # Now that the campaign has been deactivated, update the metrics for a last time
+    self.update_metrics
+    self.update_campaign_counters
+
+    # Finally, send the campaign by email
+    Notifier.campaign_ends(self.advertiser, self).deliver
   end
 
   # Marks the campaign as activated
