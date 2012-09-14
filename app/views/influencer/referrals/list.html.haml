@@ -48,7 +48,7 @@
                       = number_to_currency referral.influencer.influencer_tweet_fee.to_f
                     - elsif referral.role == 'advertiser'
                       = "-"
-                  %td.td3= number_to_currency(referral.referral_earnings)
+                  %td.td3= number_to_currency(current_user.referral_earnings(referral.id))
                   %td.td4= referral.referrer_on.try(:strftime, "%d/%m/%Y")
         - else
           %p
