@@ -11,3 +11,15 @@ $(document).ready ->
     else
       $('.provinces').hide()
   )
+
+  $('.age-filter').click( ->
+    $('.age-filter').attr('checked', false)
+    $(this).attr('checked', true);
+    return true;
+  )
+
+  $('.hobby-filter').click( ->
+    $('.hobby-filter').attr('checked', false)
+    $(this).attr('checked', true);
+    return true;
+  )

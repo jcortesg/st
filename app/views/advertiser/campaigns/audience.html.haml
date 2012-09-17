@@ -39,25 +39,25 @@
 
       %h2 Edades
       .option
-        = f.check_box :moms
+        = f.check_box( :moms, {:class =>'age-filter'})
         = f.label :moms, "Mamás"
       .option
-        = f.check_box :teens
+        = f.check_box( :teens, {:class =>'age-filter'})
         = f.label :teens, "Adolescentes"
       .option
-        = f.check_box :college_students
+        = f.check_box( :college_students, {:class =>'age-filter'})
         = f.label :college_students, "Universitarios"
       .option
-        = f.check_box :young_women
+        = f.check_box( :young_women, {:class =>'age-filter'})
         = f.label :young_women, "Mujeres (18 a 35 años)"
       .option
-        = f.check_box :young_men
+        = f.check_box( :young_men, {:class =>'age-filter'})
         = f.label :young_men, "Hombres (18 a 35 años)"
       .option
-        = f.check_box :adult_women
+        = f.check_box( :adult_women, {:class =>'age-filter'})
         = f.label :adult_women, "Mujeres (más de 35 años)"
       .option
-        = f.check_box :adult_men
+        = f.check_box( :adult_men, {:class =>'age-filter'})
         = f.label :adult_men, "Hombres (más de 35 años)"
 
       %h2 Sexo
@@ -72,28 +72,28 @@
 
       %h2  Hobbys
       .option
-        = f.check_box :sports
+        = f.check_box( :sports, {:class =>'hobby-filter'})
         = f.label :sports, "Deportes"
       .option
-        = f.check_box :fashion
+        = f.check_box( :fashion, {:class =>'hobby-filter'})
         = f.label :fashion, "Moda"
       .option
-        = f.check_box :music
+        = f.check_box( :music, {:class =>'hobby-filter'})
         = f.label :music, "Música"
       .option
-        = f.check_box :movies
+        = f.check_box( :movies, {:class =>'hobby-filter'})
         = f.label :movies, "Cine"
       .option
-        = f.check_box :politics
+        = f.check_box( :politics, {:class =>'hobby-filter'})
         = f.label :politics, "Política"
       .option
-        = f.check_box :technology
+        = f.check_box( :technology, {:class =>'hobby-filter'})
         = f.label :technology, "Tecnología"
       .option
-        = f.check_box :travel
+        = f.check_box( :travel, {:class =>'hobby-filter'})
         = f.label :travel, "Viajes"
       .option
-        = f.check_box :luxury
+        = f.check_box( :luxury, {:class =>'hobby-filter'})
         = f.label :luxury, "Lujos"
 
       %h2 Seguidores
