@@ -35,6 +35,11 @@ class Influencer::RegistrationController < ApplicationController
       session[:referrer_id] = session['twitter_screen_name'] = session['twitter_uid'] = session['twitter_token'] = session['twitter_secret'] = nil
       # Login user
       sign_in(:user, @user)
+
+      @influencer = current_user.influencer
+      @influencer.update_attribute( :approved , false)
+      @influencer.update_attribute(:need_approval , true)
+
       # Complete profiles
       redirect_to action: :step_2
     else
@@ -66,6 +71,16 @@ class Influencer::RegistrationController < ApplicationController
   # Process the third step for the registration
   def process_step_3
     @influencer = current_user.influencer
+
+    if @influencer.audience.followers < 1000
+      params[:influencer][:need_approval] = true
+      params[:influencer][:approved] = false
+      @influencer.mail_need_approval
+    else
+      params[:influencer][:need_approval] = false
+      params[:influencer][:approved] = true
+    end
+
     if @influencer.update_attributes(params[:influencer])
       redirect_to influencer_dashboard_path
     else

@@ -18,11 +18,16 @@ Borwin::Application.routes.draw do
     resources :advertisers
     resources :affiliates
     resources :influencers do
+      collection do
+        get :waiting_approval
+      end
       member do
         get :recategorize
         put :do_recategorize
         get :set_influence
         put :do_set_influence
+        put :approve
+        put :reject
       end
       resource :audience, only: [:show, :edit, :update]
     end
@@ -158,6 +163,7 @@ Borwin::Application.routes.draw do
       get :payment_data
       get :edit_payment_data
       put :process_payment_data
+      put :process_approval_message
       put :update_photo
       get :change_password
       put :update_password

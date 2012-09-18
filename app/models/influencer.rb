@@ -27,7 +27,7 @@ class Influencer < ActiveRecord::Base
                   :fashion_influential, :movies_influential, :sports_influential, :politics_influential,  :technology_influential,
                   :music_influential, :moms_influential, :teens_influential, :college_influential,
                   :young_men_influential, :young_women_influential, :adult_men_influential, :adult_women_influential,
-                  :week_map, :best_time
+                  :week_map, :best_time, :need_approval, :approved, :approval_message
 
   attr_accessor :clicks_count
 
@@ -297,5 +297,20 @@ class Influencer < ActiveRecord::Base
     else
       price  = price
     end
+  end
+
+  # Sends an email when the user needs approval
+  def mail_need_approval
+    Notifier.influencer_need_approval(self).deliver
+  end
+
+  # Sends an email when the user is approved
+  def mail_approved
+    Notifier.influencer_approved(self).deliver
+  end
+
+  # Sends an email when the user is rejected
+  def mail_rejected
+    Notifier.influencer_rejected(self).deliver
   end
 end

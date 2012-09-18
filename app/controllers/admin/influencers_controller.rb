@@ -164,4 +164,31 @@ class Admin::InfluencersController < ApplicationController
       render action: :edit
     end
   end
+
+  def waiting_approval
+    search_params = params[:search] || {}
+    search_params.reverse_merge!({"meta_sort" => "created_at.desc"})
+    @search = Influencer.where(:need_approval => true).search(search_params)
+    @influencers = @search.page(params[:page])
+  end
+
+  def approve
+    @influencer = Influencer.find(params[:id])
+    @influencer.update_attribute(:need_approval, false)
+    @influencer.update_attribute(:approved, true)
+
+    @influencer.mail_approved
+
+    redirect_to [:waiting_approval, :admin, :influencers]
+  end
+
+  def reject
+    @influencer = Influencer.find(params[:id])
+    @influencer.update_attribute(:need_approval, false)
+    @influencer.update_attribute(:approved, false)
+
+    @influencer.mail_rejected
+
+    redirect_to [:waiting_approval, :admin, :influencers]
+  end
 end

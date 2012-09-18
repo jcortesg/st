@@ -16,9 +16,10 @@
         .influencer_type
           %span= @influencer.influencer_type
 
-        .price
-          %span= "$#{(@influencer.influencer_campaign_fee).to_f.round}"
-          por campaña
+        -if @influencer.approved?
+          .price
+            %span= "$#{(@influencer.influencer_campaign_fee).to_f.round}"
+            por campaña
 
       .profile_body
         .twitter_overview
@@ -39,38 +40,55 @@
             - else
               = link_to(image_tag('no_photo.jpg'), '#user_photo', 'data-toggle' => 'modal')
 
-      .profile_data.clearfix
-        .influencer_stats
-          .box_container.clearfix
-            .box
-              .stat Seguidores:
-              .data= @influencer.audience.followers
-              .stat Amigos:
-              .data= @influencer.audience.friends
-              .stat Tweets:
-              .data= @influencer.audience.tweets
-              .stat Sexo:
-              .data= influencer_sex(@influencer.sex)
-              .stat Años:
-              .data= influencer_age(@influencer.birthday)
-              .stat Ingreso Twitter:
-              .data= @influencer.twitter_joined.strftime("%d/%m/%y")
-              .stat Ingreso TweetGo:
-              .data= @influencer.user.created_at.strftime("%d/%m/%y")
+      -if @influencer.need_approval? or ! @influencer.approved?
+        .message{:style => 'margin:20px; padding:6px; border-radius:6px; color: #E01B6A; border: 1px solid #E01B6A; background:#FFABCD'}
+          -if @influencer.need_approval? and !@influencer.approval_message.nil?
+            %h4 Borwin está analizando tu perfil por no cumplir con los requerimientos mínimos para pertenecer a la plataforma.
+          -elsif @influencer.need_approval? and @influencer.approval_message.nil?
+            .formulari
+              = simple_form_for(@influencer, :url => influencer_profiles_process_approval_message_path, :html => { class: "", method: :put }) do |f|
+                .form_title{:style=>"color: #E01B6A;"} Solicitud
+                = render '/shared/simple_form_errors', :f => f
+                .centered{:style => "text-align:center"}
+                  = f.input :approval_message, :input_html => {:rows=> '10', :cols => '30'}, :style => 'width:450px'
+                  = f.submit 'Enviar', :class => 'btn btn-danger btn-mini'
+            %h4 No cumples con los requerimientos mínimos para pertenecer a la plataforma.
+          -elsif ! @influencer.approved?
+            %h4 Tu usuario no ha sido aprobado para utilizar la plataforma.
 
-            .box.last
-              .stat Precio Campaña:
-              .data= number_to_currency(@influencer.influencer_campaign_fee)
-              .stat CPC:
-              .data= number_to_currency(@influencer.influencer_cpc_fee)
-              .stat CPC medio:
-              .data= "-"
-              .stat CPC totales:
-              .data= "-"
-              .stat Klout:
-              .data
-                .mini-flag.score.kscore
-                  .value= @influencer.audience.klout
+      -if @influencer.approved?
+        .profile_data.clearfix
+          .influencer_stats
+            .box_container.clearfix
+              .box
+                .stat Seguidores:
+                .data= @influencer.audience.followers
+                .stat Amigos:
+                .data= @influencer.audience.friends
+                .stat Tweets:
+                .data= @influencer.audience.tweets
+                .stat Sexo:
+                .data= influencer_sex(@influencer.sex)
+                .stat Años:
+                .data= influencer_age(@influencer.birthday)
+                .stat Ingreso Twitter:
+                .data= @influencer.twitter_joined.strftime("%d/%m/%y")
+                .stat Ingreso TweetGo:
+                .data= @influencer.user.created_at.strftime("%d/%m/%y")
+
+              .box.last
+                .stat Precio Campaña:
+                .data= number_to_currency(@influencer.influencer_campaign_fee)
+                .stat CPC:
+                .data= number_to_currency(@influencer.influencer_cpc_fee)
+                .stat CPC medio:
+                .data= "-"
+                .stat CPC totales:
+                .data= "-"
+                .stat Klout:
+                .data
+                  .mini-flag.score.kscore
+                    .value= @influencer.audience.klout
 
 
       #user_photo.modal.hide.fade

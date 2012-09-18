@@ -69,6 +69,19 @@ class Influencer::ProfilesController < ApplicationController
     end
   end
 
+  # Process the payment data
+  def process_approval_message
+    @influencer = current_user.influencer
+    if @influencer.update_attributes(params[:influencer])
+      flash[:success] = "Tus solicitud fue enviada."
+
+      redirect_to influencer_profile_path
+    else
+      flash.now[:error] = "No se pudo enviar la solicitud."
+      redirect_to influencer_profile_path
+    end
+  end
+
   # Updates the photo profile
   def update_photo
     @influencer = current_user.influencer

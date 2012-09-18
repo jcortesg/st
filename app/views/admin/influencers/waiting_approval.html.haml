@@ -1,0 +1,57 @@
+- if flash.any?
+  .row
+    .span12
+      = render '/shared/flash', flash: flash
+
+- params[:page] ||= 1
+- row_number = (params[:page].to_i - 1) * 25
+
+.row
+  .span14
+    .round_box
+      .content
+        %h1.title Usuarios que requieren aprobación
+
+        %table.table.table-striped
+          %thead
+            %tr
+              %th &nbsp;
+              %th &nbsp;
+              %th= sort_link(@search, :first_name_and_last_name, 'Nombre')
+              %th= sort_link(@search, :user_twitter_screen_name, 'Twitter')
+              %th= sort_link(@search, :created_at, "Creado")
+              %th= sort_link(@search, :audience_followers, "Seguidores")
+              %th= sort_link(@search, :price_category, "Categoría")
+              %th= sort_link(@search, :referrer_first_name_and_referrer_last_name, "Referido")
+              %th Referidos
+              %th Mensaje
+              %th Acciones
+
+          %tbody
+            - @influencers.each do |influencer|
+              %tr{ :class => cycle('odd', 'even') }
+                %td= row_number = row_number + 1
+                %td= img_link_to_twitter(influencer)
+                %td= link_to(influencer.full_name, [:admin, influencer])
+                %td= influencer.user.twitter_screen_name
+                %td= influencer.created_at ? (localize(influencer.created_at, :format => "%d/%m/%Y")) : ""
+                %td= influencer.audience.followers
+                %td= influencer.price_category
+                %td
+                  - if influencer.user.referrer
+                    - if influencer.user.referrer.role == 'affiliate'
+                      = link_to(influencer.user.referrer.try(:full_name), [:admin, influencer.user.referrer.affiliate])
+                    - else
+                      = link_to(influencer.user.referrer.try(:full_name), [:admin, influencer.user.referrer.influencer])
+                  - else
+                    &nbsp;
+                %td= influencer.user.referrals.count
+                %td= influencer.approval_message
+                %td
+                  = link_to('Desaprobar', [:reject, :admin, influencer], method: :put, class: 'btn btn-danger btn-mini', confirm: "Esta seguro que desea desaprobar al usuario?" )
+                  = link_to('Aprobar', [:approve, :admin, influencer], method: :put, class: 'btn btn-warning btn-mini', confirm: "Esta seguro que desea aprobar al usuario?" )
+        .center_text
+          = paginate @influencers
+
+
+

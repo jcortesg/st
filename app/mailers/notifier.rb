@@ -278,4 +278,30 @@ class Notifier < ActionMailer::Base
     mail(to: cash_out.user.email, subject: "Notificaciones @ Borwin -  Se ha realizado el pago de un Cash Out")
   end
 
+  def influencer_need_approval(influencer)
+    @influencer = influencer
+
+    attachments.inline['logo.jpg'] = File.read(Rails.root.join('app/assets/images/logo.jpg'))
+    attachments.inline['sellochico.jpg'] = File.read(Rails.root.join('app/assets/images/sellochico.jpg'))
+
+    mail(to: 'sebastian@borwin.net', subject: "Notificaciones @ Borwin -  Usuario requiere aprobación")
+  end
+
+  def influencer_rejected(influencer)
+    @influencer = influencer
+
+    attachments.inline['logo.jpg'] = File.read(Rails.root.join('app/assets/images/logo.jpg'))
+    attachments.inline['sellochico.jpg'] = File.read(Rails.root.join('app/assets/images/sellochico.jpg'))
+
+    mail(to: influencer.user.email, subject: "Notificaciones @ Borwin -  No has sido aprobado.")
+  end
+
+  def influencer_approved(influencer)
+    @influencer = influencer
+
+    attachments.inline['logo.jpg'] = File.read(Rails.root.join('app/assets/images/logo.jpg'))
+    attachments.inline['sellochico.jpg'] = File.read(Rails.root.join('app/assets/images/sellochico.jpg'))
+
+    mail(to: influencer.user.email, subject: "Notificaciones @ Borwin -  Has sido aprobado.")
+  end
 end

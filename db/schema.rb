@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120907133253) do
+ActiveRecord::Schema.define(:version => 20120917155703) do
 
   create_table "advertisers", :force => true do |t|
     t.integer  "user_id"
@@ -296,6 +296,9 @@ ActiveRecord::Schema.define(:version => 20120907133253) do
     t.boolean  "adult_men_influential",                                 :default => false, :null => false
     t.string   "best_time"
     t.integer  "week_map_id"
+    t.boolean  "need_approval",                                         :default => false, :null => false
+    t.boolean  "approved",                                              :default => true,  :null => false
+    t.text     "approval_message"
   end
 
   add_index "influencers", ["user_id"], :name => "index_influencers_on_user_id", :unique => true

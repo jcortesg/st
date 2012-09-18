@@ -44,31 +44,32 @@
                       %li= link_to 'Mis Datos', advertiser_profiles_my_data_path
                       %li= link_to 'Cambiar Contraseña', advertiser_profiles_change_password_path
                 - elsif current_user.influencer?
-                  %li.dropdown
-                    %a{:href => '#', :class => 'dropdown-toggle', 'data-toggle' => 'dropdown'}
-                      = "Perfil"
-                      %b.caret
-                    %ul.dropdown-menu
-                      %li= link_to 'Mi perfil', influencer_profile_path
-                      %li= link_to 'Datos de contacto', influencer_profiles_contact_data_path
-                      %li= link_to 'Datos de cobro', influencer_profiles_payment_data_path
-                      %li= link_to 'Cambiar Contraseña', influencer_profiles_change_password_path
-                      %li= link_to 'Mejor hora para twittear', influencer_profiles_best_time_path
-                  %li.dropdown
-                    %a{:href => '#', :class => 'dropdown-toggle', 'data-toggle' => 'dropdown'}
-                      = "Referidos"
-                      %b.caret
-                    %ul.dropdown-menu
-                      %li= link_to "Información", influencer_referrals_path
-                      %li= link_to "Mis Referidos", list_influencer_referrals_path
-                  %li= link_to "Tweets", influencer_tweets_path
-                  %li.dropdown
-                    %a{:href => '#', :class => 'dropdown-toggle', 'data-toggle' => 'dropdown'}
-                      Ingresos
-                      %b.caret
-                    %ul.dropdown-menu
-                      %li= link_to 'Ingresos', [:influencer, :transactions]
-                      %li= link_to 'Cash Out', [:influencer, :cash_outs]
+                  -if current_user.influencer.approved?
+                    %li.dropdown
+                      %a{:href => '#', :class => 'dropdown-toggle', 'data-toggle' => 'dropdown'}
+                        = "Perfil"
+                        %b.caret
+                      %ul.dropdown-menu
+                        %li= link_to 'Mi perfil', influencer_profile_path
+                        %li= link_to 'Datos de contacto', influencer_profiles_contact_data_path
+                        %li= link_to 'Datos de cobro', influencer_profiles_payment_data_path
+                        %li= link_to 'Cambiar Contraseña', influencer_profiles_change_password_path
+                        %li= link_to 'Mejor hora para twittear', influencer_profiles_best_time_path
+                    %li.dropdown
+                      %a{:href => '#', :class => 'dropdown-toggle', 'data-toggle' => 'dropdown'}
+                        = "Referidos"
+                        %b.caret
+                      %ul.dropdown-menu
+                        %li= link_to "Información", influencer_referrals_path
+                        %li= link_to "Mis Referidos", list_influencer_referrals_path
+                    %li= link_to "Tweets", influencer_tweets_path
+                    %li.dropdown
+                      %a{:href => '#', :class => 'dropdown-toggle', 'data-toggle' => 'dropdown'}
+                        Ingresos
+                        %b.caret
+                      %ul.dropdown-menu
+                        %li= link_to 'Ingresos', [:influencer, :transactions]
+                        %li= link_to 'Cash Out', [:influencer, :cash_outs]
                 - elsif current_user.affiliate?
                   %li.dropdown
                     %a{:href => '#', :class => 'dropdown-toggle', 'data-toggle' => 'dropdown'}
@@ -99,6 +100,7 @@
                       = "Usuarios"
                       %b.caret
                     %ul.dropdown-menu
+                      %li= link_to "Esperando aprobación", waiting_approval_admin_influencers_path
                       %li= link_to "Autorizaciones", admin_users_path
                       %li= link_to "Agencias", admin_affiliates_path
                       %li= link_to "Anunciantes", admin_advertisers_path

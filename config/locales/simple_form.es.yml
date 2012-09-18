@@ -99,6 +99,7 @@ es:
         price_category: Categoría
         manual_tweet_fee: Precio Tweet (Manual)
         manual_cpc_fee: Precio CPC (Manual)
+        approval_message: Por qué deberías ser parte de la plataforma?
       audience:
         followers: Seguidores
         friends: Amigos
