@@ -140,8 +140,9 @@ class Campaign < ActiveRecord::Base
     # hashtags, how do we find them?
 
     # Followers
-    twitter_user = Twitter.user(self.twitter_screen_name)
-    campaign_metric.followers = twitter_user.followers_count
+    # THIS HAS NO SENSE... WHAT IF CAMPAIGN DOESNT HAVE TWITTEr_SCREEN_NAME ??????
+    #twitter_user = Twitter.user(self.twitter_screen_name)
+    #campaign_metric.followers = twitter_user.followers_count
 
     campaign_metric.save
   end
