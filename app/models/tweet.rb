@@ -104,9 +104,9 @@ class Tweet < ActiveRecord::Base
 
   # Check the date of the tweet, it has to be in the future with a least 1 hour of creation from now
   def tweet_at_validation
-    if self.tweet_at < (Time.now + 1.hour)
-      errors.add(:tweet_at, "debe ser a partir de la próxima hora en adelante")
-    end
+    #if self.tweet_at < (Time.now + 1.hour)
+    #  errors.add(:tweet_at, "debe ser a partir de la próxima hora en adelante")
+    #end
   end
 
 
