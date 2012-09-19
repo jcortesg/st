@@ -80,7 +80,7 @@ class Campaign < ActiveRecord::Base
 
     # Gets a twitter connection
     def twitter_connection
-      ids = [74, 31, 2, 55, 75, 58, 100]
+      ids = [74, 31, 2, 75, 58]
       influencer = Influencer.find(ids[rand(ids.count)])
       Twitter.configure do |config|
         config.consumer_key = TWITTER_CONSUMER_KEY
@@ -88,6 +88,7 @@ class Campaign < ActiveRecord::Base
         config.oauth_token = influencer.user.twitter_token
         config.oauth_token_secret = influencer.user.twitter_secret
       end
+      puts "Connection chosen: "+ influencer.user.twitter_screen_name
       Twitter.user_timeline
     end
   end
