@@ -140,9 +140,13 @@ class Campaign < ActiveRecord::Base
     # hashtags, how do we find them?
 
     # Followers
-    # THIS HAS NO SENSE... WHAT IF CAMPAIGN DOESNT HAVE TWITTEr_SCREEN_NAME ??????
-    #twitter_user = Twitter.user(self.twitter_screen_name)
-    #campaign_metric.followers = twitter_user.followers_count
+    if ! self.twitter_screen_name.empty?
+      puts "Campaign with twitter_screen_name: " + self.twitter_screen_name
+      twitter_user = Twitter.user(self.twitter_screen_name)
+      campaign_metric.followers = twitter_user.followers_count
+    else
+      puts "Campaign without twitter_screen_name"
+    end
 
     campaign_metric.save
   end
