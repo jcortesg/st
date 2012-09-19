@@ -94,7 +94,7 @@ class Campaign < ActiveRecord::Base
   end
 
   def influent_celebrities
-    influencers_ids = (self.tweets.collect {|t| t.influencer}.collect {|i| i.id}).uniq
+    influencers_ids = (self.tweets.activated.collect {|t| t.influencer}.collect {|i| i.id}).uniq
     influencers = Influencer.where("id in (?)", influencers_ids).all
     influencers.each do |influencer|
       influencer.clicks_count = self.tweets.where(influencer_id: influencer.id).sum('clicks_count')
@@ -193,8 +193,8 @@ class Campaign < ActiveRecord::Base
   def highrise_reach
     result = ''
 
-    influencers_ids = (self.tweets.collect {|t| t.influencer}.collect {|i| i.id}).uniq
-    influencers = Influencer.where("id in (?)", influencer_ids).all
+    influencers_ids = (self.tweets.activated.collect {|t| t.influencer.id}).uniq
+    influencers = Influencer.where("id in (?)", influencers_ids)
     influencers.each do |influencer|
       if result.size == 0
         result += "['#{influencer.user.twitter_screen_name}', #{influencer.audience.followers}]"
@@ -207,8 +207,8 @@ class Campaign < ActiveRecord::Base
   end
 
   def highrise_reach_bar_label
-    influencers_ids = (self.tweets.collect {|t| t.influencer}.collect {|i| i.id}).uniq
-    influencers = Influencer.where("id in (?)", influencer_ids).order('id').all
+    influencers_ids = (self.tweets.activated.collect {|t| t.influencer.id}).uniq
+    influencers = Influencer.where("id in (?)", influencers_ids).order('id')
     result = ''
     influencers.each do |influencer|
       if result.size == 0
@@ -221,8 +221,10 @@ class Campaign < ActiveRecord::Base
   end
 
   def highrise_reach_bar_data
-    influencers_ids = (self.tweets.collect {|t| t.influencer}.collect {|i| i.id}).uniq
-    influencers = Influencer.where("id in (?)", influencer_ids).order('id').all
+    #puts "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA " + self.tweets.activated.collect{|t| t.influencer.id}.to_s
+    #influencers_ids = (self.tweets.activated.collect {|t| t.influencer}.collect {|i| i.id}).uniq
+    influencers_ids = (self.tweets.activated.collect {|t| t.influencer.id}).uniq
+    influencers = Influencer.where("id in (?)", influencers_ids).order('id')
     result = ''
     influencers.each do |influencer|
       if result.size == 0
@@ -235,8 +237,8 @@ class Campaign < ActiveRecord::Base
   end
 
   def highrise_shared_users_reach_bar_data
-    influencers_ids = (self.tweets.collect {|t| t.influencer}.collect {|i| i.id}).uniq
-    influencers = Influencer.where("id in (?)", influencer_ids).order('id').all
+    influencers_ids = (self.tweets.activated.collect {|t| t.influencer.id}).uniq
+    influencers = Influencer.where("id in (?)", influencers_ids).order('id').all
     followers = []
     loop = 0
     influencers.each do |influencer|
