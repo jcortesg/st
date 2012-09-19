@@ -242,7 +242,7 @@ class Tweet < ActiveRecord::Base
 
     # Finally replace the text link on the text
     # [^(bwn.tw\/P)] avoid THIS!!!
-    self.text.sub!(/\b((?:https?:\/\/|www\.)[^(bwn\.tw)])\S+\b/, "bwn.tw/L#{self.link_code}")
+    self.text.sub!(/\b((?:https?:\/\/(?!bwn)|www\.(?!bwn)))\S+\b/, "http://bwn.tw/L#{self.link_code}")
   end
 
   # Set the prices for the tweet when its created
