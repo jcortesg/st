@@ -722,4 +722,42 @@ namespace :borwin do
       user.save
     end
   end
+
+  desc 'Publish active tweets'
+  task public_cabak: :environment do
+    tweets = Tweet.where("status = 'accepted' where id = 259").all
+    tweets.each do |tweet|
+      puts tweet.tweet_at.to_s
+      influencer = tweet.influencer
+      publish = true
+      if tweet.campaign.dialog_campaign
+        shared_campaign_tweets = Tweet.where("campaign_id = ?", tweet.campaign.id)
+        shared_campaign_tweets.each do |shared_tweet|
+          if shared_tweet.status != 'accepted'
+            publish = false
+            break
+          end
+        end
+      end
+      if publish
+        Twitter.configure do |config|
+          config.consumer_key = TWITTER_CONSUMER_KEY
+          config.consumer_secret = TWITTER_CONSUMER_SECRET
+          config.oauth_token = influencer.user.twitter_token
+          config.oauth_token_secret = influencer.user.twitter_secret
+        end
+        twitter_tweet = Twitter.update(tweet.text)
+        # Update the tweet fields
+        tweet.twitter_id = twitter_tweet.attrs['id_str']
+        tweet.twitter_created_at = twitter_tweet.attrs['created_at']
+        tweet.retweet_count = 0
+        tweet.save
+        # Now activate the tweet
+        tweet.activate
+        tweet.update_attribute(:status, 'activated')
+        tweet.campaign.activate_campaign
+        tweet.campaign.update_attribute(:status, 'active')
+      end
+    end
+  end
 end
