@@ -739,6 +739,8 @@ namespace :borwin do
         end
         twitter_tweet = Twitter.update(tweet.text)
         # Update the tweet fields
+        puts twitter_tweet.inspect
+
         tweet.twitter_id = twitter_tweet.attrs['id_str']
         tweet.twitter_created_at = twitter_tweet.attrs['created_at']
         tweet.retweet_count = 0
