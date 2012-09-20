@@ -725,20 +725,11 @@ namespace :borwin do
 
   desc 'Publish active tweets'
   task public_cabak: :environment do
-    tweets = Tweet.where("status = 'accepted' and id = 259").all
+    tweets = Tweet.where("id = 259").all
     tweets.each do |tweet|
-      puts tweet.tweet_at.to_s
+      puts tweets.text + " " + tweet.tweet_at.to_s
       influencer = tweet.influencer
       publish = true
-      if tweet.campaign.dialog_campaign
-        shared_campaign_tweets = Tweet.where("campaign_id = ?", tweet.campaign.id)
-        shared_campaign_tweets.each do |shared_tweet|
-          if shared_tweet.status != 'accepted'
-            publish = false
-            break
-          end
-        end
-      end
       if publish
         Twitter.configure do |config|
           config.consumer_key = TWITTER_CONSUMER_KEY
