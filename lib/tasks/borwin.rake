@@ -11,7 +11,7 @@ namespace :borwin do
 
   desc 'Publish active tweets'
   task public_active_tweets: :environment do
-    tweets = Tweet.where("status = 'accepted' and tweet_at > ? and tweet_at < ?", Time.now - 5.minutes, Time.now + 5.minutes).all
+    tweets = Tweet.where("status = 'accepted' and tweet_at > ? and tweet_at < ?", Time.now - 10.minutes, Time.now + 6.minutes).all
     tweets.each do |tweet|
       puts tweet.tweet_at.to_s
       influencer = tweet.influencer
@@ -43,7 +43,10 @@ namespace :borwin do
         tweet.update_attribute(:status, 'activated')
         tweet.campaign.activate_campaign
         tweet.campaign.update_attribute(:status, 'active')
+      else
+        puts "No publicable. ";
       end
+      Twitter.rate_limit_status.remaining_hits.to_s + " Twitter API request(s) remaining this hour"
     end
   end
 
@@ -750,7 +753,10 @@ namespace :borwin do
         tweet.update_attribute(:status, 'activated')
         tweet.campaign.activate_campaign
         tweet.campaign.update_attribute(:status, 'active')
+        Twitter.rate_limit_status.remaining_hits.to_s + " Twitter API request(s) remaining this hour"
       end
     end
   end
+
+
 end
