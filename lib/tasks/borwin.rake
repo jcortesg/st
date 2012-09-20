@@ -727,7 +727,7 @@ namespace :borwin do
   task public_cabak: :environment do
     tweets = Tweet.where("id = 266").all
     tweets.each do |tweet|
-      puts tweets.text + " " + tweet.tweet_at.to_s
+      puts tweet.text + " " + tweet.tweet_at.to_s
       influencer = tweet.influencer
       publish = true
       if publish
