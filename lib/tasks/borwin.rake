@@ -39,10 +39,10 @@ namespace :borwin do
         tweet.retweet_count = 0
         tweet.save
         # Now activate the tweet
-        tweet.activate
         tweet.update_attribute(:status, 'activated')
-        tweet.campaign.activate_campaign
         tweet.campaign.update_attribute(:status, 'active')
+        tweet.activate
+        tweet.campaign.activate_campaign
       else
         puts "No publicable. ";
       end
