@@ -47,9 +47,10 @@
         %div
           Costo de la campaña:
           = number_to_currency(@campaign.tweets.sum(:tweet_fee))
-        %div
-          Costo Por Click de la campaña:
-          = @campaign.statistics_cpc
+        -if @campaign.clicks_count != 0
+          %div
+            Costo Por Click de la campaña:
+            = @campaign.statistics_cpc
         - unless @campaign.twitter_screen_name.blank?
           - if @campaign.status == 'archived' && @campaign.followers_end_count!=0
             %div
@@ -78,6 +79,9 @@
               %div
                 Incremento de seguidores:
                 = current_followers - @campaign.followers_start_count
+                CPNS:
+                = number_to_currency( @campaign.tweets.sum(:tweet_fee) / (current_followers - @campaign.followers_start_count) )
+
 
 .row
   .span12
