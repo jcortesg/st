@@ -221,7 +221,7 @@ class Campaign < ActiveRecord::Base
   end
 
   def highrise_reach_bar_data
-    #puts "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA " + self.tweets.activated.collect{|t| t.influencer.id}.to_s
+    #puts self.tweets.activated.collect{|t| t.influencer.id}.to_s
     #influencers_ids = (self.tweets.activated.collect {|t| t.influencer}.collect {|i| i.id}).uniq
     influencers_ids = (self.tweets.activated.collect {|t| t.influencer.id}).uniq
     influencers = Influencer.where("id in (?)", influencers_ids).order('id')
@@ -334,7 +334,8 @@ class Campaign < ActiveRecord::Base
         self.followers_start_count = twitter_user.followers_count
       end
     rescue Exception => e
-      Logger.rails.info("ERROR: #{e.message}")
+      #Logger.rails.info("ERROR: #{e.message}")
+      puts "ERROR: #{e.message}"
     end
     self.save
 

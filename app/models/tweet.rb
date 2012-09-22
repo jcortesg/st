@@ -309,6 +309,8 @@ class Tweet < ActiveRecord::Base
 
   # Sends a mail when the tweet has been published
   def activate_and_mail_tweet_activated
+    self.status = 'activated'
+
     # Send emails
     Notifier.tweet_activated_to_advertiser(self).deliver rescue nil
     Notifier.tweet_activated_to_influencer(self).deliver rescue nil
