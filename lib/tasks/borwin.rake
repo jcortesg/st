@@ -12,7 +12,7 @@ namespace :borwin do
   desc 'Publish active tweets'
   task public_active_tweets: :environment do
     puts Time.now.to_s
-    tweets = Tweet.where("status = 'accepted' and campaign_id = 184 and tweet_at > ? and tweet_at < ?", Time.now - 10.minutes, Time.now + 6.minutes).all
+    tweets = Tweet.where("status = 'accepted' and tweet_at > ? and tweet_at < ?", Time.now - 10.minutes, Time.now + 6.minutes).all
     tweets.each do |tweet|
       begin
         puts tweet.tweet_at.to_s
