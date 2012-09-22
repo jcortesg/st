@@ -7,7 +7,7 @@ class Notifier < ActionMailer::Base
     mail(to: "rorra@rorra.com.ar", subject: "Borwin test")
   end
 
-  # Stest mail
+  # test mail
   def tester
     mail(to: "juan.amoros@redmintsolutions.com", subject: "Borwin test")
   end
@@ -17,6 +17,13 @@ class Notifier < ActionMailer::Base
     @site_contact = site_contact
 
     mail(to: 'sebastian@borwin.net', subject: "Contacto @ Borwin - Its time to go social")
+  end
+
+  # Error during tweet publish process
+  def error_publishing(tweet)
+    @tweet = tweet
+
+    mail(to: 'sebastian@borwin.net', subject: "[ERROR] @ Borwin - Tweet NO publicado!!!")
   end
 
   # Site advertiser contact

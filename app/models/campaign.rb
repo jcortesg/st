@@ -153,12 +153,16 @@ class Campaign < ActiveRecord::Base
 
   # Update the campaign counters
   def update_campaign_counters
-    self.retweets_count = self.tweets.sum('retweet_count')
-    self.mentions_count = 0
-    self.hashtag_count = 0
-    self.reach = self.tweets.activated.joins(:influencer => :audience).sum('audiences.followers')
-    self.share = self.tweets.activated.joins(:influencer => :audience).sum('audiences.followers')
-    self.save
+    begin
+      self.retweets_count = self.tweets.sum('retweet_count')
+      self.mentions_count = 0
+      self.hashtag_count = 0
+      self.reach = self.tweets.activated.joins(:influencer => :audience).sum('audiences.followers')
+      self.share = self.tweets.activated.joins(:influencer => :audience).sum('audiences.followers')
+      self.save
+    rescue Exception => e
+      puts "ERROR: #{e.message}"
+    end
   end
 
   def statistics_cpc
@@ -327,6 +331,8 @@ class Campaign < ActiveRecord::Base
 
   # Marks the campaign as activated
   def mark_campaign_as_activated
+    puts "[INFO] Activando campaña..."
+    self.status = 'active'
     # Start time for the campaign
     self.starts_at = DateTime.now
     # If there is a twitter user for the campaign, get the number of followers
@@ -338,13 +344,22 @@ class Campaign < ActiveRecord::Base
       end
     rescue Exception => e
       #Logger.rails.info("ERROR: #{e.message}")
-      puts "ERROR: #{e.message}"
+      puts "[ERROR] #{e.message}"
     end
-    self.save
 
-    # Now that the campaign has been activated, create the first metric for the campaign and update counters
-    self.update_metrics rescue nil
-    self.update_campaign_counters rescue nil
+    if self.save
+      puts "[INFO] Campaña activada exitosamente!"
+
+      # Now that the campaign has been activated, create the first metric for the campaign and update counters
+      if (self.update_metrics rescue nil).nil?
+        puts "[ERROR] No se pudo actualizar las métricas"
+      end
+      if (self.update_campaign_counters rescue nil).nil?
+        puts "[ERROR] No se pudo actualizar los contadores para la campaña"
+      end
+    else
+      puts "[ERROR] No se pudo guardar la campaña"
+    end
   end
 
   # Marks the campaign as archived
