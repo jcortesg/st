@@ -192,6 +192,7 @@ Borwin::Application.routes.draw do
   match "influencers-presentation" => "home#influencers_presentation", :as => :home_influencers_presentation
   match "tweet-go" => "home#tweet_go", :as => :about_tweet_go
   match "sorte-argo" => "home#sorte_argo", :as => :about_sorte_argo
+  match "stats-go" => "home#stats_go", :as => :about_stats_go
   match "about-us" => "home#about_us", :as => :about_us
   match "press" => "home#press", :as => :press
   match "work-with-us" => "home#work_with_us", :as => :work_with_us

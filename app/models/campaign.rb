@@ -162,17 +162,20 @@ class Campaign < ActiveRecord::Base
   end
 
   def statistics_cpc
+    total_clicks = 0
     prom = 0
     self.tweets.each do |tweet|
       if tweet.fee_type = 'tweet_fee'
-        prom += tweet.tweet_fee / (tweet.clicks_count == 0 ? 1 :  tweet.clicks_count)
+        total_clicks += tweet.clicks_count
+        prom += tweet.tweet_fee
       end
     end
-    if prom > 0
-      sprintf("$ %.02f", prom / self.tweets.count)
+    if prom > 0 and total_clicks > 0
+      sprintf("$ %.02f", prom / total_clicks)
     else
       " - "
     end
+
   end
 
   def statistics_cpms

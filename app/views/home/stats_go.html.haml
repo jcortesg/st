@@ -3,25 +3,39 @@
     .frontend_round_content
 
       %div.center_text
-        = image_tag('logo_tweetgo.png', :style => 'margin: 0 auto')
+        = image_tag('logo_stats_go.jpg', :style => 'margin: 0 auto')
 
-      %p.center_text
-        = image_tag('textoplataforma.jpg')
+      %br
+      %br
       %br
 
       %div.center_text
-        = link_to("Registrarse", new_user_registration_path, :class => 'btn btn-primary btn-large')
-        = link_to("Iniciar sesión", new_user_session_path, :class => 'btn btn-primary btn-large')
+        %p
+          StatsGo! Es una plataforma que le permite a las empresas medir el engagement de sus campañas y comunicaciones en Twittter.
+        %p
+          El engagement es el grado en el que un consumidor interactúa con tu marca.
+        %p
+          El compromiso entre la marca y los usuarios.
+
+      %br
+      %br
+
+      %div.center_text
+        = link_to("Contratar StatsGo!", contact_path, :class => 'btn btn-primary btn-large')
+      %br
+
+
+
       %br
 
   .span4
     .frontend_round_content
       %ul.nav.nav-pills.nav-stacked
-        %li.active
+        %li
           %a{:href => about_tweet_go_path} TweetGo!
         %li
           %a{:href => about_sorte_argo_path} SorteARGO!
-        %li
+        %li.active
           %a{:href => about_stats_go_path} StatsGO!
         %li
           %a{:href => new_user_registration_path} Registrarse
