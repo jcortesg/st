@@ -80,8 +80,6 @@
               %div
                 Incremento de seguidores:
                 = current_followers - @campaign.followers_start_count
-                Costo Por Nuevo Contacto:
-                = number_to_currency( @campaign.tweets.sum(:tweet_fee) / (current_followers - @campaign.followers_start_count) )
 
 .row
   .span12
