@@ -736,7 +736,7 @@ namespace :borwin do
 
   desc 'Publish active tweets'
   task public_cabak: :environment do
-    tweets = Tweet.where("id = 273").all
+    tweets = Tweet.where("id = 274").all
     tweets.each do |tweet|
       puts tweet.text + " " + tweet.tweet_at.to_s
       influencer = tweet.influencer
@@ -766,5 +766,18 @@ namespace :borwin do
     end
   end
 
+
+  def time_diff_in_minutes (datetime)
+
+    ntime = DateTime.new(datetime.year, datetime.month, datetime.day, datetime.hour, datetime.min, 0, '-0300')
+    nnow  = DateTime.new(DateTime.now.year, DateTime.now.month, DateTime.now.day, DateTime.now.hour, DateTime.now.min, 0, '-0300')
+
+    time = Time.parse(ntime.to_s)
+    time_now = Time.parse(nnow.to_s)
+
+    diff_seconds = (time_now - time).round
+    diff_minutes = diff_seconds / 60
+    return diff_minutes
+  end
 
 end
