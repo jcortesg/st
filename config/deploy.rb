@@ -8,7 +8,7 @@ set :rvm_bin_path, "/usr/local/rvm/bin"
 set :rvm_type, :system
 
 set :application, "TweetGo"
-set :repository, "git@bitbucket.org:rorra/borwin.git"
+set :repository, "git@bitbucket.org:redmint/borwin.git"
 
 #role :web, "199.168.97.138"
 #role :app, "199.168.97.138"
