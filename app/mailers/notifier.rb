@@ -217,30 +217,33 @@ class Notifier < ActionMailer::Base
   end
 
   # Sends an email to admin alerting about a tweet expiration
-  def expiration_alert_to_admin(tweet)
+  def expiration_alert_to_admin(tweet, time)
     @tweet = tweet
+    @time = time.to_s
 
-    mail(to: 'sebastian@borwin.net', subject: "Tweet expira en 120 minutos - Its time to go social")
+    mail(to: 'sebastian@borwin.net', subject: "Tweet expira en "+time.to_s+" minutos - Its time to go social")
   end
 
   # Sends an email to advertiser alerting about a tweet expiration
-  def expiration_alert_to_advertiser(tweet)
+  def expiration_alert_to_advertiser(tweet, time)
     @tweet = tweet
+    @time = time.to_s
 
     attachments.inline['logo.jpg'] = File.read(Rails.root.join('app/assets/images/logo.jpg'))
     attachments.inline['sellochico.jpg'] = File.read(Rails.root.join('app/assets/images/sellochico.jpg'))
 
-    mail(to: tweet.campaign.advertiser.user.email, subject: "Tweet expira en 120 minutos - Its time to go social")
+    mail(to: tweet.campaign.advertiser.user.email, subject: "Tweet expira en "+time.to_s+" minutos - Its time to go social")
   end
 
   # Sends an email to influencer alerting about a tweet expiration
-  def expiration_alert_to_influencer(tweet)
+  def expiration_alert_to_influencer(tweet, time)
     @tweet = tweet
+    @time = time.to_s
 
     attachments.inline['logo.jpg'] = File.read(Rails.root.join('app/assets/images/logo.jpg'))
     attachments.inline['sellochico.jpg'] = File.read(Rails.root.join('app/assets/images/sellochico.jpg'))
 
-    mail(to: tweet.influencer.user.email, subject: "Tweet expira en 120 minutos - Its time to go social")
+    mail(to: tweet.influencer.user.email, subject: "Tweet expira en "+time.to_s+" minutos - Its time to go social")
   end
 
   # Sends an email to admin alerting about low credit

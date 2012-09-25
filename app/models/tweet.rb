@@ -256,12 +256,12 @@ class Tweet < ActiveRecord::Base
   end
 
   # Sends an expiration alert to the different users
-  def send_expiration_alert
-    Notifier.expiration_alert_to_admin(self).deliver
+  def send_expiration_alert(time)
+    Notifier.expiration_alert_to_admin(self,time).deliver
     if self.status == 'advertiser_reviewed'
-      Notifier.expiration_alert_to_advertiser(self).deliver
+      Notifier.expiration_alert_to_advertiser(self,time).deliver
     else
-      Notifier.expiration_alert_to_influencer(self).deliver
+      Notifier.expiration_alert_to_influencer(self,time).deliver
     end
   end
 

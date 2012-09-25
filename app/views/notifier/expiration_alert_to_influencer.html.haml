@@ -16,8 +16,8 @@
       %span.style3
 
     %p.style4
-      = "Uno de tus tweets vence en 120 minutos, "
-      = link_to("accede al sitio para aprovar su publicación", [:influencer, @tweet])
+      = "Uno de tus tweets vence en #{@time} minutos, "
+      = link_to("accede al sitio para aprobar su publicación", [:influencer, @tweet])
     %p.style4
       Campaña:
       = @tweet.campaign.name

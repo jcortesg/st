@@ -94,8 +94,12 @@ namespace :borwin do
 
   desc 'Alert Tweet Expiration in 120 minutes'
   task alert_tweet_expiration: :environment do
+    tweets = Tweet.where("status in('created', 'advertiser_reviewed', 'influencer_reviewed') and tweet_at > ? and tweet_at < ?", Time.now - 65.minutes, Time.now - 55.minutes).all
+    tweets.each {|t| t.send_expiration_alert(60) }
     tweets = Tweet.where("status in('created', 'advertiser_reviewed', 'influencer_reviewed') and tweet_at > ? and tweet_at < ?", Time.now - 125.minutes, Time.now - 115.minutes).all
-    tweets.each {|t| t.send_expiration_alert }
+    tweets.each {|t| t.send_expiration_alert(120) }
+    tweets = Tweet.where("status in('created', 'advertiser_reviewed', 'influencer_reviewed') and tweet_at > ? and tweet_at < ?", Time.now - 185.minutes, Time.now - 175.minutes).all
+    tweets.each {|t| t.send_expiration_alert(180) }
   end
 
   desc 'Expire tweets'
