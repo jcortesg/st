@@ -326,7 +326,7 @@
           = f.simple_fields_for :tweets do |tf|
             .text_container{}
               = tf.input :text, as: :text, label: 'Tweet', input_html: { style: 'width: 650px;height: 40px', :title => @campaign.instructions, :class => 'tweet-text' }
-            = tf.input :tweet_at, minute_step: 15, default: Time.now + 3.hours ,start_year: Time.now.year , end_year: Time.now.year + 1, label: 'Fecha y hora de tweet', input_html: { class: 'tweet_time' }
+            = tf.input :tweet_at, minute_step: 1, default: Time.now + 3.hours ,start_year: Time.now.year , end_year: Time.now.year + 1, label: 'Fecha y hora de tweet', input_html: { class: 'tweet_time' }
 
             - if @campaign.price_per_click
               - tf.object.fee_type = 'cpc_fee'

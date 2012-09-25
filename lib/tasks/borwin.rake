@@ -13,7 +13,7 @@ namespace :borwin do
   task public_active_tweets: :environment do
     puts "[INFO] Horario de ejecución: " + Time.now.to_s
 
-    tweets = Tweet.where("status = 'accepted' and tweet_at > ? and tweet_at < ?", Time.now - 8.minutes, Time.now + 8.minutes).order('tweet_at asc').all
+    tweets = Tweet.where("status = 'accepted' and tweet_at > ? and tweet_at < ?", Time.now - 4.minutes, Time.now + 4.minutes).order('tweet_at asc').all
 
     tweets.each do |tweet|
       begin
@@ -28,6 +28,7 @@ namespace :borwin do
           shared_campaign_tweets.each do |shared_tweet|
             if !(shared_tweet.status == 'accepted' or shared_tweet.status == 'activated')
               publish = false
+              #puts "Tweet de campaña compartida no listo para lanzarse "+ tweet.text.to_s
               break
             end
           end
