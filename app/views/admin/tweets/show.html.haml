@@ -29,4 +29,6 @@
 
       .form-actions.center_text
         = link_to('Listado', [:admin, @campaign], class: 'btn btn-large btn-primary')
-        = link_to('Editar', [:edit, :admin, @campaign], class: 'btn btn-large btn-warning')
+        - unless ['activated'].include?(@tweet.status)
+          = link_to('Editar', [:edit, :admin, @campaign, @tweet], class: 'btn btn-large btn-warning')
+          = link_to('Rechazar', [:reject, :admin, @campaign, @tweet], method: :get, class: 'btn btn-large btn-danger', confirm: '¿Esta seguro que desea rechazar el Tweet?')

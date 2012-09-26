@@ -37,5 +37,7 @@
                 %td= advertiser_tweet_status(tweet.status)
                 %td
                   = link_to("Detalle", [:admin, @campaign, tweet], class: 'btn btn-primary')
-                  = link_to("Editar", [:edit, :admin, @campaign, tweet], class: 'btn btn-warning')
+                  - unless ['activated'].include?(tweet.status)
+                    = link_to("Editar", [:edit, :admin, @campaign, tweet], class: 'btn btn-warning')
+                    = link_to('Rechazar', [:reject, :admin, @campaign, tweet], method: :get, class: 'btn btn-danger', confirm: '¿Esta seguro que desea rechazar el Tweet?')
 
