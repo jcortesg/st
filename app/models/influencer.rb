@@ -293,8 +293,12 @@ class Influencer < ActiveRecord::Base
     end
 
     klout = Audience.where(influencer_id: id).first.klout rescue 0
+    kred = Audience.where(influencer_id: id).first.kred rescue 0
+    peerindex = Audience.where(influencer_id: id).first.peerindex rescue 0
 
-    price = (price_by_followers / 0.7) + (((klout - 60>0)?((klout-60)*20):0) / 0.3)
+    kkp = (klout + kred/10 + peerindex) / 3
+
+    price = (price_by_followers / 0.7) + (((kkp - 60>0)?((kkp-60)*20):0) / 0.3)
 
     if price < 150
       price = 150
