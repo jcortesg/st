@@ -249,6 +249,10 @@ class Influencer < ActiveRecord::Base
     audience.tweets = twitter_user.statuses_count
     audience.males ||= 0.5
 
+    self.twitter_bio = twitter_user.description
+    self.twitter_image_url = twitter_user.profile_image_url
+    self.save
+
     audience.save
   end
 
