@@ -20,10 +20,8 @@
       %th.center_text Mamás
       %th.center_text Adolescentes
       %th.center_text Universitarios
-      %th.center_text Mujeres (18 a 35)
-      %th.center_text Hombres (18 a 35)
-      %th.center_text Mujeres (+ de 35)
-      %th.center_text Hombres (+ de 35)
+      %th.center_text Mujeres (+18)
+      %th.center_text Hombres (+18)
 
   %tbody
     %tr
@@ -32,10 +30,8 @@
       %td.center_text= "#{audience.moms}%"
       %td.center_text= "#{audience.teens}%"
       %td.center_text= "#{audience.college_students}%"
-      %td.center_text= "#{audience.young_women}%"
-      %td.center_text= "#{audience.young_men}%"
-      %td.center_text= "#{audience.adult_women}%"
-      %td.center_text= "#{audience.adult_men}%"
+      %td.center_text= "#{audience.young_women + audience.adult_women}%"
+      %td.center_text= "#{audience.young_men + audience.adult_men}%"
 
 %table.table.table-striped
   %thead
@@ -230,47 +226,80 @@
     });
 
     chart = new Highcharts.Chart({
-      chart: {
-        renderTo: 'graph_age',
-        plotBackgroundColor: null,
-        plotBorderWidth: null,
-        plotShadow: false
-      },
-      title: {
-        text: 'Edades'
-      },
-      tooltip: {
-        formatter: function() {
-          return '<b>'+ this.point.name +'</b>: '+ Highcharts.numberFormat(this.percentage, 2) +' %';
-        }
-      },
-      plotOptions: {
-        pie: {
-          allowPointSelect: true,
-          cursor: 'pointer',
-          dataLabels: {
-            enabled: true,
-            color: '#000000',
-            connectorColor: '#000000',
+          chart: {
+            renderTo: 'graph_age',
+            plotBackgroundColor: null,
+            plotBorderWidth: null,
+            plotShadow: false
+          },
+          title: {
+            text: 'Edades'
+          },
+          tooltip: {
             formatter: function() {
               return '<b>'+ this.point.name +'</b>: '+ Highcharts.numberFormat(this.percentage, 2) +' %';
             }
           },
-          showInLegend: true
-        }
-      },
-      series: [{
-        type: 'pie',
-        name: 'Porcentage según intereses',
-        data: [
-          ['Adolescentes', #{audience.teens}],
-          ['Mujeres (18 a 35)	', #{audience.young_women}],
-          ['Hombres (18 a 35)	', #{audience.young_men}],
-          ['Mujeres (+ de 35)', #{audience.adult_women}],
-          ['Hombres (+ de 35)', #{audience.adult_men}]
-        ]
-      }]
-    });
+          plotOptions: {
+            pie: {
+              size: 70,
+              allowPointSelect: true,
+              cursor: 'pointer',
+              dataLabels: {
+                enabled: true,
+                color: '#000000',
+                connectorColor: '#000000',
+                formatter: function() {
+                  return '<b>'+ this.point.name +'</b>: '+ Highcharts.numberFormat(this.percentage, 2) +' %';
+                }
+              },
+              showInLegend: true
+            }
+          },
+          series: [{
+            type: 'pie',
+            name: 'Porcentage según intereses',
+            center: [150, 50],
+            data: [
+              ['Mujeres (+18)	', #{(audience.young_women + audience.adult_women)}],
+              ['Resto	', #{100 - (audience.young_women + audience.adult_women)}]
+            ]
+          },{
+             type: 'pie',
+             name: 'Porcentage según intereses',
+             center: [150, 200],
+             data: [
+               ['Hombres (+18)	', #{(audience.young_men + audience.adult_men)}],
+               ['Resto	', #{100 - (audience.young_men + audience.adult_men)}]
+             ]
+           },{
+            type: 'pie',
+            name: 'Porcentage según intereses',
+            center: [400, 140],
+            data: [
+              ['Adolescentes', #{audience.teens}],
+              ['Resto	', #{100 - audience.teens}]
+            ]
+          },{
+             type: 'pie',
+             name: 'Porcentage según intereses',
+             center: [700, 50],
+             data: [
+               ['Universitarios	', #{audience.college_students }],
+               ['Resto	', #{100 - audience.college_students}]
+             ]
+           },{
+             type: 'pie',
+             name: 'Porcentage según intereses',
+             center: [700, 200],
+             data: [
+               ['Madres	', #{audience.moms }],
+               ['Resto	', #{100 - audience.moms}]
+             ]
+           }
+          ]
+        });
+
 
     chart = new Highcharts.Chart({
       chart: {

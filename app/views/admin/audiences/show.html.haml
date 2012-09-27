@@ -31,14 +31,10 @@
           %dd= @audience.teens
           %dt Universitarios
           %dd= @audience.college_students
-          %dt Mujeres (18 a 35)
-          %dd= @audience.young_women
-          %dt Hombres (18 a 35)
-          %dd= @audience.young_men
-          %dt Mujeres (+ de 35)
-          %dd= @audience.young_women
-          %dt Hombres (+ de 35)
-          %dd= @audience.young_men
+          %dt Mujeres (+18)
+          %dd= (@audience.young_women + @audience.adult_women)
+          %dt Hombres (+18)
+          %dd= (@audience.young_men + @audience.adult_men)
 
           %dt Deportes
           %dd= @audience.sports
