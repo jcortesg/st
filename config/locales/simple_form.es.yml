@@ -126,7 +126,7 @@ es:
       campaign:
         advertiser_id: Anunciante
         name: Nombre
-        objective: Objetivo
+        objective: Descripción de objetivo
         hashtag: Hashtag
         instructions: Instrucciones de creación de tweet
         twitter_screen_name: Twitter
@@ -152,6 +152,7 @@ es:
         cost: Costo
         created_at: Fecha de creación
         updated_at: Fecha de actualización
+        campaign_type: Tipo de objetivo
       tweet:
         text: Tweet
         tweet_at: Fecha y hora de tweet

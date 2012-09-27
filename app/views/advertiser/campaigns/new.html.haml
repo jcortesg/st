@@ -16,6 +16,7 @@
 
       = f.input :name
       = f.input :twitter_screen_name
+      = f.input :campaign_type, :input_html => {:style => 'width:410px;'} , as: :select, collection: ['Generar comunidad','Incrementar los Followers o seguidores', 'Lanzamiento de producto o marca', 'Re-lanzamiento de producto o marca','Presencia de marca','Mejorar Imagen positiva','Salir de una crisis en las Redes Sociales','Branding','Posicionamiento', 'Incremento de ventas'], include_blank: false
       = f.input :objective, :input_html => {:rows=> '10'}
       = f.input :hashtag
       = f.input :instructions, label: 'Completá las instrucciones que le quieras dar a las celebridades a la hora de Twittear.', :input_html => {:rows=> '10'}

@@ -32,8 +32,13 @@
 
         %br
 
+        - unless @campaign.campaign_type.nil?
+          %div
+            Objetivo:
+            = @campaign.campaign_type
+
         %div
-          Objetivo:
+          Descripción del objetivo:
           = @campaign.objective
 
         %div

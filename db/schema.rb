@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120917155703) do
+ActiveRecord::Schema.define(:version => 20120927171622) do
 
   create_table "advertisers", :force => true do |t|
     t.integer  "user_id"
@@ -209,6 +209,7 @@ ActiveRecord::Schema.define(:version => 20120917155703) do
     t.datetime "updated_at",                                                             :null => false
     t.text     "instructions"
     t.string   "hashtag"
+    t.string   "campaign_type"
   end
 
   add_index "campaigns", ["advertiser_id"], :name => "index_campaigns_on_advertiser_id"
