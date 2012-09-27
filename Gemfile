@@ -25,7 +25,7 @@ gem 'wicked_pdf'                       # PDF Generation
 gem 'gibbon'                           # Mailchimp integration
 gem 'rmagick'                          # Image treatment
 gem 'carrierwave'                      # Image treatment
-
+gem 'json'                             # JSON
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.4'       # SASS Support

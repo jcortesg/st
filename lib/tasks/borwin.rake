@@ -699,10 +699,51 @@ namespace :borwin do
         audience.klout = user.score.score.round
         audience.save
         puts "New Klout index: #{audience.klout}"
-        sleep(1)
       rescue
         puts "Unable to get a klout index for #{influencer.full_name}"
       end
+
+      puts "Updating Kred for #{influencer.full_name}"
+      begin
+        # We setup mechanize to start fetching each one of the user details
+        agent = Mechanize.new { |agent|
+          agent.user_agent_alias = 'Mac Safari'
+          agent.verify_mode = OpenSSL::SSL::VERIFY_NONE
+        }
+        app_id = "1a89271a"
+        app_key = "d511ab0449dcb36e2810a98c648de706"
+
+        response = agent.get("http://api.kred.com/kredscore?term=#{influencer.user.twitter_screen_name}&source=twitter&app_id=#{app_id}&app_key=#{app_key}")
+        parsed_json = ActiveSupport::JSON.decode(response.body)
+        audience.kred =  parsed_json['data'][0]['influence']
+        audience.save
+
+        puts "New Kred index: #{audience.kred}"
+      rescue Exception => e
+        puts "Algo salió mal obteniendo el KredScore... #{e.message.to_s}"
+      end
+
+      puts "Updating PeerIndex for #{influencer.full_name}"
+      begin
+        # We setup mechanize to start fetching each one of the user details
+        agent = Mechanize.new { |agent|
+          agent.user_agent_alias = 'Mac Safari'
+          agent.verify_mode = OpenSSL::SSL::VERIFY_NONE
+        }
+        api_key = "51b459460183a52be5f9eaac38f67b37"
+
+        response = agent.get("http://api.peerindex.net/v2/profile/profile.json?id=#{influencer.user.twitter_screen_name}&api_key=#{api_key}")
+        parsed_json = ActiveSupport::JSON.decode(response.body)
+        audience.peerindex =  parsed_json['peerindex']
+        audience.save
+
+        puts "New PeerIndex index: #{audience.peerindex}"
+      rescue Exception => e
+        puts "Algo salió mal obteniendo el PeerIndex... #{e.message.to_s}"
+      end
+
+
+      sleep(1)
     end
   end
 
@@ -773,8 +814,8 @@ namespace :borwin do
   end
 
   desc 'Publish active tweets'
-  task public_cabak: :environment do
-    tweets = Tweet.where("id = 274").all
+  task public_forced: :environment do
+    tweets = Tweet.where("id = 0").all
     tweets.each do |tweet|
       puts tweet.text + " " + tweet.tweet_at.to_s
       influencer = tweet.influencer

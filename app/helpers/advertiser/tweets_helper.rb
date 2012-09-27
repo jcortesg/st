@@ -27,4 +27,13 @@ module Advertiser::TweetsHelper
       link_to("Tweet", [:advertiser, attachable.campaign, attachable])
     end
   end
+
+  def influencer_kkp(influencer)
+    #class .mini-flag.score.kscore
+    klout = Audience.where(influencer_id: influencer.influencer_id).first.klout rescue 0
+    kred = Audience.where(influencer_id: influencer.influencer_id).first.kred rescue 0
+    peerindex = Audience.where(influencer_id: influencer.influencer_id).first.peerindex rescue 0
+    kkp = (klout + (kred/10) + peerindex)/3
+    sprintf("%.01f", kkp)
+  end
 end

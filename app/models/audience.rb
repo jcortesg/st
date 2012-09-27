@@ -2,7 +2,7 @@
 class Audience < ActiveRecord::Base
   belongs_to :influencer
 
-  attr_accessible :followers, :followers_followers, :friends, :tweets, :retweets, :peerindex, :klout,
+  attr_accessible :followers, :followers_followers, :friends, :tweets, :retweets, :peerindex, :klout, :kred,
                   :males, :females, :kids, :young_teens, :mature_teens, :young_adults, :mature_adults,
                   :adults, :elderly, :sports, :fashion, :music, :movies, :politics, :technology,
                   :travel, :luxury, :moms, :teens, :college_students, :young_women, :young_men,

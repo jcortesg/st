@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120927171622) do
+ActiveRecord::Schema.define(:version => 20120927182024) do
 
   create_table "advertisers", :force => true do |t|
     t.integer  "user_id"
@@ -150,6 +150,7 @@ ActiveRecord::Schema.define(:version => 20120927171622) do
     t.integer  "technology_count",       :default => 0, :null => false
     t.integer  "travel_count",           :default => 0, :null => false
     t.integer  "luxury_count",           :default => 0, :null => false
+    t.integer  "kred",                   :default => 0, :null => false
   end
 
   add_index "audiences", ["influencer_id"], :name => "index_audiences_on_influencer_id"
