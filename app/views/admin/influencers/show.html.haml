@@ -33,6 +33,10 @@
           %dd= dl_value @influencer.twitter_joined.try(:strftime, "%d/%m/%Y")
           %dt Klout - Score
           %dd= dl_value @influencer.audience.klout
+          %dt Kred - Score
+          %dd= dl_value @influencer.audience.kred
+          %dt PeerIndex - Score
+          %dd= dl_value @influencer.audience.peerindex
         .subtitle Datos de la celebridad
         %dl.record_details
           %dt Comisión Borwin

@@ -133,6 +133,7 @@
 #graph_sex
 #graph_hobbies
 #graph_age
+#graph_age_2
 #graph_countries
 #graph_states
 
@@ -242,7 +243,7 @@
           },
           plotOptions: {
             pie: {
-              size: 70,
+              size: 60,
               allowPointSelect: true,
               cursor: 'pointer',
               dataLabels: {
@@ -259,7 +260,7 @@
           series: [{
             type: 'pie',
             name: 'Porcentage según intereses',
-            center: [150, 50],
+            center: [250, 100],
             data: [
               ['Mujeres (+18)	', #{(audience.young_women + audience.adult_women)}],
               ['Resto	', #{100 - (audience.young_women + audience.adult_women)}]
@@ -267,39 +268,73 @@
           },{
              type: 'pie',
              name: 'Porcentage según intereses',
-             center: [150, 200],
+             center: [450, 100],
              data: [
                ['Hombres (+18)	', #{(audience.young_men + audience.adult_men)}],
                ['Resto	', #{100 - (audience.young_men + audience.adult_men)}]
-             ]
-           },{
-            type: 'pie',
-            name: 'Porcentage según intereses',
-            center: [400, 140],
-            data: [
-              ['Adolescentes', #{audience.teens}],
-              ['Resto	', #{100 - audience.teens}]
-            ]
-          },{
-             type: 'pie',
-             name: 'Porcentage según intereses',
-             center: [700, 50],
-             data: [
-               ['Universitarios	', #{audience.college_students }],
-               ['Resto	', #{100 - audience.college_students}]
-             ]
-           },{
-             type: 'pie',
-             name: 'Porcentage según intereses',
-             center: [700, 200],
-             data: [
-               ['Madres	', #{audience.moms }],
-               ['Resto	', #{100 - audience.moms}]
              ]
            }
           ]
         });
 
+    chart = new Highcharts.Chart({
+              chart: {
+                renderTo: 'graph_age_2',
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false
+              },
+              title: {
+                text: 'Edades'
+              },
+              tooltip: {
+                formatter: function() {
+                  return '<b>'+ this.point.name +'</b>: '+ Highcharts.numberFormat(this.percentage, 2) +' %';
+                }
+              },
+              plotOptions: {
+                pie: {
+                  size: 60,
+                  allowPointSelect: true,
+                  cursor: 'pointer',
+                  dataLabels: {
+                    enabled: true,
+                    color: '#000000',
+                    connectorColor: '#000000',
+                    formatter: function() {
+                      return '<b>'+ this.point.name +'</b>: '+ Highcharts.numberFormat(this.percentage, 2) +' %';
+                    }
+                  },
+                  showInLegend: true
+                }
+              },
+              series: [{
+                type: 'pie',
+                name: 'Porcentage según intereses',
+                center: [150, 100],
+                data: [
+                  ['Adolescentes', #{audience.teens}],
+                  ['Resto	', #{100 - audience.teens}]
+                ]
+              },{
+                 type: 'pie',
+                 name: 'Porcentage según intereses',
+                 center: [350, 100],
+                 data: [
+                   ['Universitarios	', #{audience.college_students }],
+                   ['Resto	', #{100 - audience.college_students}]
+                 ]
+               },{
+                 type: 'pie',
+                 name: 'Porcentage según intereses',
+                 center: [550, 100],
+                 data: [
+                   ['Madres	', #{audience.moms }],
+                   ['Resto	', #{100 - audience.moms}]
+                 ]
+               }
+              ]
+            });
 
     chart = new Highcharts.Chart({
       chart: {
