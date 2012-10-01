@@ -235,9 +235,11 @@ class Campaign < ActiveRecord::Base
     result = ''
     influencers.each do |influencer|
       if result.size == 0
-        result += "#{influencer.audience.followers}"
+        #result += "#{influencer.audience.followers}"
+        result += "#{influencer.twitter_followers.size}"
       else
-        result += ", #{influencer.audience.followers}"
+        #result += ", #{influencer.audience.followers}"
+        result += ", #{influencer.twitter_followers.size}"
       end
     end
     result
