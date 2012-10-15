@@ -815,32 +815,71 @@ namespace :borwin do
 
   desc 'Publish active tweets'
   task public_forced: :environment do
-    tweets = Tweet.where("id = 0").all
-    tweets.each do |tweet|
-      puts tweet.text + " " + tweet.tweet_at.to_s
-      influencer = tweet.influencer
-      publish = true
-      if publish
-        Twitter.configure do |config|
-          config.consumer_key = TWITTER_CONSUMER_KEY
-          config.consumer_secret = TWITTER_CONSUMER_SECRET
-          config.oauth_token = influencer.user.twitter_token
-          config.oauth_token_secret = influencer.user.twitter_secret
-        end
-        twitter_tweet = Twitter.update(tweet.text)
-        # Update the tweet fields
-        puts twitter_tweet.inspect
+    puts "[INFO] Horario de ejecución: " + Time.now.to_s
 
-        tweet.twitter_id = twitter_tweet.attrs['id_str']
-        tweet.twitter_created_at = twitter_tweet.attrs['created_at']
-        tweet.retweet_count = 0
-        tweet.save
-        # Now activate the tweet
+    tweets = Tweet.where("id = 369").all
+
+    tweets.each do |tweet|
+      begin
+        influencer = tweet.influencer
+        puts "[INFO] Tweet por publicar a @" + influencer.user.twitter_screen_name + " - " + tweet.tweet_at.to_s
+
+        publish = true
+
+        if publish
+          Twitter.configure do |config|
+            config.consumer_key = TWITTER_CONSUMER_KEY
+            config.consumer_secret = TWITTER_CONSUMER_SECRET
+            config.oauth_token = influencer.user.twitter_token
+            config.oauth_token_secret = influencer.user.twitter_secret
+          end
+          twitter_tweet = Twitter.update(tweet.text)
+          puts twitter_tweet.inspect
+
+          # Update the tweet fields
+          if ! twitter_tweet.attrs['id_str'].empty?
+            tweet.twitter_id = twitter_tweet.attrs['id_str']
+            tweet.twitter_created_at = twitter_tweet.attrs['created_at']
+            tweet.retweet_count = 0
+            tweet.status = 'activated'
+            puts "[SUCCESS] Publicado en Twitter. ID: " + twitter_tweet.attrs['id_str']
+            if tweet.save
+              puts "[SUCCESS] Guardado con éxito"
+            else
+              puts "[ERROR] El tweet no pudo ser guardado!"
+            end
+          else
+            puts "[ERROR] El tweet no pudo ser publicado!"
+          end
+        else
+          puts "No publicable. "
+        end
+      rescue Exception => e
+        #Logger.rails.info("ERROR: #{e.message}")
+        puts "[ERROR] #{e.message}"
+        Notifier.error_publishing(tweet)
+      end
+
+      puts "[INFO] "+Twitter.rate_limit_status.remaining_hits.to_s + " Twitter API request(s) remaining this hour"
+
+      begin
+        # Now activates the tweet. Internally activates the campaign if needed
         tweet.activate
-        tweet.update_attribute(:status, 'activated')
-        tweet.campaign.activate_campaign
-        tweet.campaign.update_attribute(:status, 'active')
-        puts Twitter.rate_limit_status.remaining_hits.to_s + " Twitter API request(s) remaining this hour"
+
+        # Activate the campaign if needed
+        unless tweet.campaign.status == 'active'
+          puts "[INFO] La campaña debe ser activada!"
+          if (tweet.campaign.activate_campaign rescue nil).nil?
+            puts "[ERROR] Error activando campaña"
+          end
+        end
+        # Update campaign reach and share
+        if (tweet.campaign.update_reach_and_share rescue nil).nil?
+          puts "[ERROR] No se pudo actualizar el Reach & Share de la campaña"
+        end
+
+      rescue Exception => e
+        puts "[ERROR] #{e.message}"
       end
     end
   end
