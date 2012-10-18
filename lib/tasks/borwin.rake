@@ -815,7 +815,7 @@ namespace :borwin do
 
   desc 'Publish active tweets'
   task public_forced: :environment do
-    tweets = Tweet.where("id = 0").all
+    tweets = Tweet.where("id = 393").all
     tweets.each do |tweet|
       puts tweet.text + " " + tweet.tweet_at.to_s
       influencer = tweet.influencer
