@@ -19,7 +19,7 @@ class Campaign < ActiveRecord::Base
                   :instructions, :hashtag , :dialog_campaign, :campaign_type
 
   validates :name, uniqueness: { scope: :advertiser_id }, presence: true
-  validates :objective, presence: true
+  #validates :objective, presence: true
   validate :twitter_screen_name_validation
 
   validates :followers_qty, presence: true, on: :update
