@@ -275,7 +275,7 @@ class Notifier < ActionMailer::Base
       subject = "La agencia #{cash_out.user.full_name} ha solicitado un Cash Out por $#{cash_out.amount}"
     end
 
-    mail(to: 'sebastian@borwin.net', subject: subject)
+    mail(to: 'sebastian@borwin.net, sofia@borwin.net', subject: subject)
   end
 
   # Sends a cash out payment notice to the user
