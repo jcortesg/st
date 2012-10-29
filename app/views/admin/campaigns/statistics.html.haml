@@ -46,7 +46,7 @@
           = @campaign.retweets.nil? ? 0 : @campaign.retweets.count
         %div
           Costo de la campaña:
-          = number_to_currency(@campaign.tweets.sum(:tweet_fee))
+          = number_to_currency(@campaign.tweets.activated.sum(:tweet_fee))
         -if @campaign.clicks_count != 0
           %div
             Costo Por Click de la campaña:
@@ -55,7 +55,7 @@
           - if @campaign.status == 'archived' && @campaign.followers_end_count!=0
             %div
               Costo Por Contacto de la campaña:
-              = number_to_currency( @campaign.tweets.sum(:tweet_fee) / @campaign.followers_end_count )
+              = number_to_currency( @campaign.tweets.activated.sum(:tweet_fee) / @campaign.followers_end_count )
         %div
           CPMS de la campaña:
           = @campaign.statistics_cpms
@@ -81,7 +81,7 @@
                 = current_followers - @campaign.followers_start_count
                 %br
                 CPNS:
-                = number_to_currency( @campaign.tweets.sum(:tweet_fee) / (current_followers - @campaign.followers_start_count) )
+                = number_to_currency( @campaign.tweets.activated.sum(:tweet_fee) / (current_followers - @campaign.followers_start_count) )
 
 
 .row

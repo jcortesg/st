@@ -154,7 +154,7 @@ class Campaign < ActiveRecord::Base
   # Update the campaign counters
   def update_campaign_counters
     begin
-      self.retweets_count = self.tweets.sum('retweet_count')
+      self.retweets_count = self.tweets.activated.sum('retweet_count')
       self.mentions_count = 0
       self.hashtag_count = 0
       self.reach = self.tweets.activated.joins(:influencer => :audience).sum('audiences.followers')
@@ -168,7 +168,7 @@ class Campaign < ActiveRecord::Base
   def statistics_cpc
     total_clicks = 0
     prom = 0
-    self.tweets.each do |tweet|
+    self.tweets.activated.each do |tweet|
       if tweet.fee_type = 'tweet_fee'
         total_clicks += tweet.clicks_count
         prom += tweet.tweet_fee
@@ -184,7 +184,7 @@ class Campaign < ActiveRecord::Base
 
   def statistics_cpms
     prom = 0
-    self.tweets.each do |tweet|
+    self.tweets.activated.each do |tweet|
       tweet_cost = tweet.fee_type == 'tweet_fee' ? tweet.tweet_fee : tweet.cpc_fee * tweet.clicks_count
       prom += (tweet_cost * (1000.0 / tweet.influencer.audience.followers) rescue 0)
     end
