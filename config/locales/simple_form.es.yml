@@ -130,6 +130,7 @@ es:
         name: Nombre
         objective: Descripción de objetivo
         hashtag: Hashtag
+        phrase: Palabra o frase
         instructions: Instrucciones de creación de tweet
         twitter_screen_name: Twitter
         dialog_campaign: Requiere que todos acepten para publicar?
@@ -197,6 +198,7 @@ es:
       campaign:
         twitter_screen_name: "Twitter de la empresa, ejemplo: @JuanaRepetto"
         hashtag: "Hashtag para la campaña. Por ejemplo: #internet."
+        phrase: "Palabra o frase destacada contenida en los tweets."
 
   helpers:
     submit:
