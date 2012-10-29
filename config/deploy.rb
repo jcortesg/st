@@ -29,9 +29,15 @@ set :branch, "master"
 set :asset_env, "RAILS_GROUPS=assets"
 
 namespace :setup do
+  desc "Copy images files"
+  task :image_files, :roles => :app do
+    run "cp -r #{shared_path}/public/bwn-img/ #{release_path}/public/bwn-img/"
+  end
+
   desc "Copy config files"
   task :copy_files, :roles => :app do
     run "cp #{shared_path}/database.yml #{release_path}/config/database.yml"
+    run "cp -r #{shared_path}/public/bwn-img/ #{release_path}/public/bwn-img/"
     run "ln -s #{shared_path}/.rvmrc #{release_path}/.rvmrc"
   end
 
@@ -59,5 +65,6 @@ end
 
 after "deploy:update_code", "setup:copy_files"
 after "deploy:update_code", "setup:trust_rvmrc"
+after "deploy:update_code", "setup:image_files"
 after "deploy:update_code", "setup:bundle_gems"
 after "deploy:update_code", "setup:precompile_assets"

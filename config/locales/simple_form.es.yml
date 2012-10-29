@@ -123,6 +123,8 @@ es:
         politics: Política
         created_at: Fecha de creación
         updated_at: Fecha de actualización
+      picture:
+        blank_layout: Fondo
       campaign:
         advertiser_id: Anunciante
         name: Nombre

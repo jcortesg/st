@@ -116,6 +116,7 @@ class HomeController < ApplicationController
   def tweet_image_redirection
     if Picture.where(picture_code: params[:picture_code]).exists?
       image = Picture.where(picture_code: params[:picture_code]).first
+      Click.create(tweet: image.tweet, remote_ip: request.env['REMOTE_ADDR'], remote_agent: request.env['HTTP_USER_AGENT'])
       redirect_to '/pictures/'+image.id.to_s
     else
       flash[:error] = "El código de imagen no existe"

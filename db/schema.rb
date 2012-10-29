@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120927182024) do
+ActiveRecord::Schema.define(:version => 20121029195428) do
 
   create_table "advertisers", :force => true do |t|
     t.integer  "user_id"
@@ -315,8 +315,10 @@ ActiveRecord::Schema.define(:version => 20120927182024) do
   create_table "pictures", :force => true do |t|
     t.string   "image"
     t.string   "picture_code"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
+    t.integer  "tweet_id"
+    t.boolean  "blank_layout", :default => true
   end
 
   create_table "retweets", :force => true do |t|

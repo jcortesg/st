@@ -396,8 +396,9 @@
     = simple_form_for @picture, url: "/advertiser/pictures.json", html: { class: 'vertical-form' } do |f|
       %h4 Sub&iacute;
       = f.file_field :image
+      = f.input :blank_layout, :label => 'Contorno',:inline_label => 'Deseo aparecer sin el logo de la plataforma', :checked => false
       %span{"class" =>"help-block"} Solo se aceptan imagenes menores a 200kb y en formato jpg, png o gif.
-
+      %span{"class" =>"help-block"} La imágen sólo podrá utilizarse en un único tweet!
     %input{"type"=>"hidden","id"=>"picture-url-id"}
 
   .modal-footer

@@ -17,6 +17,7 @@ class Tweet < ActiveRecord::Base
   validate :tweet_at_validation
 
   after_create :mail_tweet_creation
+  after_create :update_picture_references
   before_create :set_prices
   before_create :create_borwin_link
 
@@ -325,6 +326,16 @@ class Tweet < ActiveRecord::Base
     matches = text.scan(/\B#\w*[a-zA-Z]+\w*/)
     matches.each do |match|
       Hashtag.create(campaign_id: campaign_id, hashtag: match) unless Hashtag.where(campaign_id: campaign_id, hashtag: match).exists?
+    end
+  end
+
+  def update_picture_references
+    # updates picture links
+    text.scan(/\bhttp:\/\/bwn.tw\/P\S+\b/).each do |link|
+      code = link.sub(/\bhttp:\/\/bwn.tw\/P/, "")
+      picture = Picture.find_all_by_picture_code(code).first
+      picture.tweet = self
+      picture.save
     end
   end
 end
