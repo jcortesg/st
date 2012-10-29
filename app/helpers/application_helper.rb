@@ -102,6 +102,15 @@ module ApplicationHelper
 
   # Bank options for forms
   def bank_options
-    ["Banco Ciudad", "Banco Credicoop", "Banco Comafi", "Banco Francés", "Banco Galicia", "Banco Hipotecario", "Banco Macro", "Banco Nación", "Banco Patagonia", "Banco Provincia", "Citi", "Santander Río", "Standard Bank"]
+    ["Banco Ciudad", "Banco Credicoop", "Banco Comafi", "Banco Francés", "Banco Galicia", "Banco Hipotecario", "Banco Macro", "Banco Nación", "Banco Patagonia", "Banco Provincia", "City Bank", "Santander Río", "Standard Bank","ABN AMRO Bank",
+     "Banca Nazionale del Lavoro",
+     "Banco Bisel",
+     "Banco de Inversion y Comercio Exterior",
+     "Banco Itaú",
+     "Banque Nationale de Paris",
+     "Banco Bansud",
+     "Banco HSBC",
+     "Lloyds Bank",
+     "Otro"]
   end
 end
