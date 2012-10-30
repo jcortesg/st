@@ -245,12 +245,9 @@
       .content
 
         %h1.title= "Hashtag: "
-
-        %div
-          Menciones:
-          = @campaign.hashtag_count
-
-
+        %br
+        %br
+        #evolution_hashtag
 
 
 :javascript
@@ -481,6 +478,49 @@
       series: [{
         name: 'Seguidores',
         data: [#{@campaign.highrise_followers_evolution}]
+      }]
+    });
+
+    chart = new Highcharts.Chart({
+      chart: {
+        renderTo: 'evolution_hashtag',
+        type: 'line',
+        marginRight: 130,
+        marginBottom: 25
+      },
+      title: {
+        text: 'Menciones del hashtag #{@campaign.hashtag}',
+        x: -20 //center
+      },
+      xAxis: {
+              categories: [#{@histogram_label}]
+      },
+      yAxis: {
+        title: {
+          text: 'Menciones'
+        },
+        plotLines: [{
+          value: 0,
+          width: 1,
+          color: '#808080'
+        }]
+      },
+      tooltip: {
+        formatter: function() {
+          return '<b>'+ this.series.name +'</b><br/>'+ this.x +': '+ this.y;
+        }
+      },
+      legend: {
+        layout: 'vertical',
+        align: 'right',
+        verticalAlign: 'top',
+        x: -10,
+        y: 100,
+        borderWidth: 0
+      },
+      series: [{
+        name: 'Menciones',
+        data: [#{@histogram}]
       }]
     });
 
