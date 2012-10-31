@@ -14,6 +14,7 @@
         &nbsp;
       = render '/shared/simple_form_errors', :f => f
 
+      %h3.title Datos
       = f.input :name
       = f.input :campaign_type, :input_html => {:style => 'width:410px;'} , as: :select, collection: ['Generar comunidad','Incrementar los seguidores','Potenciar el lanzamiento de un producto o servicio','Salir de una crisis en las redes sociales', 'Mejorar la imagen positiva', 'Consolidar la marca','Reforzar el posicionamiento','Incrementar ventas','Dirigir usuarios a una URL'], include_blank: false
       = f.input :objective, :input_html => {:rows=> '10'}
@@ -26,6 +27,7 @@
       = f.input :phrase
 
       - if current_role.can_create_click_fee?
+        %h3.title Pago
         = f.input :price_per_click, as: :radio, collection: [["Precio por Tweet", false], ["Precio por Click", true]], label: 'Tipo de pago'
 
 

@@ -142,6 +142,28 @@ class Advertiser::CampaignsController < ApplicationController
       end
     end
 
+    unless @campaign.phrase.nil? or @campaign.phrase.empty?
+      begin
+        uri = URI.parse("http://otter.topsy.com/searchhistogram.json?q="+URI.encode(@campaign.phrase).to_s+"&count_method=citation")
+        response = Net::HTTP.get_response(uri)
+        parsed_json = ActiveSupport::JSON.decode(response.body)
+        @histogram_phrase =  parsed_json['response']['histogram'].reverse.collect {|cm| cm}.join(',')
+        @histogram_phrase_label = ''
+
+        for i in 30.downto(0)
+          date = (Time.now - i.day)
+          if @histogram_phrase_label.size == 0
+            @histogram_phrase_label = "'#{date.strftime('%d-%m')}'"
+          else
+            @histogram_phrase_label += ", '#{date.strftime('%d-%m')}'"
+          end
+        end
+
+      rescue Exception => e
+        puts "Algo salió mal obteniendo el Topsy Histogram... #{e.message.to_s}"
+      end
+    end
+
     respond_to do |format|
       format.html
       format.pdf {

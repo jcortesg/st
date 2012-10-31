@@ -200,6 +200,7 @@ Borwin::Application.routes.draw do
   match "work-with-us" => "home#work_with_us", :as => :work_with_us
   match "contact" => "home#contact", :as => :contact
   match "proces-contact" => "home#process_contact", :as => :process_contact
+  match "presentacion" => "home#presentacion", :as => :presentacion
 
   match "terms" => "home#terms", :as => :terms
   match "privacy" => "home#privacy", :as => :privacy

@@ -65,6 +65,10 @@ class HomeController < ApplicationController
     @site_contact = SiteContact.new
   end
 
+  # Nosotros - Presentacion
+  def presentacion
+  end
+
   # Process the contact form
   def process_contact
     @site_contact = SiteContact.new(params[:site_contact])

@@ -239,16 +239,27 @@
 
         = link_to("Volver", [:advertiser, @campaign], class: 'btn btn-primary')
 
-.row
-  .span12
-    .round_box
-      .content
+- unless @campaign.hashtag.nil? or @campaign.hashtag.empty?
+  .row
+    .span12
+      .round_box
+        .content
 
-        %h1.title= "Hashtag: "
-        %br
-        %br
-        #evolution_hashtag
+          %h1.title= "Hashtag: "
+          %br
+          %br
+          #evolution_hashtag
 
+- unless @campaign.phrase.nil? or @campaign.phrase.empty?
+  .row
+    .span12
+      .round_box
+        .content
+
+          %h1.title= "Palabra o frase: "
+          %br
+          %br
+          #evolution_phrase
 
 :javascript
   var chart;
@@ -521,6 +532,49 @@
       series: [{
         name: 'Menciones',
         data: [#{@histogram}]
+      }]
+    });
+
+    chart = new Highcharts.Chart({
+      chart: {
+        renderTo: 'evolution_phrase',
+        type: 'line',
+        marginRight: 130,
+        marginBottom: 25
+      },
+      title: {
+        text: 'Menciones de "#{@campaign.phrase}"',
+        x: -20 //center
+      },
+      xAxis: {
+              categories: [#{@histogram_phrase_label}]
+      },
+      yAxis: {
+        title: {
+          text: 'Menciones'
+        },
+        plotLines: [{
+          value: 0,
+          width: 1,
+          color: '#808080'
+        }]
+      },
+      tooltip: {
+        formatter: function() {
+          return '<b>'+ this.series.name +'</b><br/>'+ this.x +': '+ this.y;
+        }
+      },
+      legend: {
+        layout: 'vertical',
+        align: 'right',
+        verticalAlign: 'top',
+        x: -10,
+        y: 100,
+        borderWidth: 0
+      },
+      series: [{
+        name: 'Menciones',
+        data: [#{@histogram_phrase}]
       }]
     });
 
