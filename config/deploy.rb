@@ -65,6 +65,5 @@ end
 
 after "deploy:update_code", "setup:copy_files"
 after "deploy:update_code", "setup:trust_rvmrc"
-after "deploy:update_code", "setup:image_files"
 after "deploy:update_code", "setup:bundle_gems"
 after "deploy:update_code", "setup:precompile_assets"
