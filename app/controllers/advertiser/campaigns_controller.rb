@@ -1,4 +1,6 @@
 # encoding: utf-8
+require 'topsy'
+
 class Advertiser::CampaignsController < ApplicationController
   before_filter :authenticate_user!, :require_advertiser
   before_filter :verify_can_create_campaign, only: [:new, :create]
@@ -121,46 +123,44 @@ class Advertiser::CampaignsController < ApplicationController
     end
 
     unless @campaign.hashtag.nil? or @campaign.hashtag.empty?
-      begin
-        uri = URI.parse("http://otter.topsy.com/searchhistogram.json?q="+@campaign.hashtag.sub(/#/,'').to_s+"&count_method=citation")
-        response = Net::HTTP.get_response(uri)
-        parsed_json = ActiveSupport::JSON.decode(response.body)
-        @histogram =  parsed_json['response']['histogram'].reverse.collect {|cm| cm}.join(',')
-        @histogram_label = ''
-
-        for i in 30.downto(0)
-          date = (Time.now - i.day)
-          if @histogram_label.size == 0
-            @histogram_label = "'#{date.strftime('%d-%m')}'"
-          else
-            @histogram_label += ", '#{date.strftime('%d-%m')}'"
-          end
+      @histogram = Topsy.hashtag_histogram(@campaign.hashtag.sub(/#/,'').to_s)
+      @experts = Topsy.hashtag_experts(@campaign.hashtag.sub(/#/,'').to_s)
+      @histogram_label = ''
+      for i in 30.downto(0)
+        date = (Time.now - i.day)
+        if @histogram_label.size == 0
+          @histogram_label = "'#{date.strftime('%d-%m')}'"
+        else
+          @histogram_label += ", '#{date.strftime('%d-%m')}'"
         end
-
-      rescue Exception => e
-        puts "Algo salió mal obteniendo el Topsy Histogram... #{e.message.to_s}"
       end
     end
 
     unless @campaign.phrase.nil? or @campaign.phrase.empty?
-      begin
-        uri = URI.parse("http://otter.topsy.com/searchhistogram.json?q="+URI.encode(@campaign.phrase).to_s+"&count_method=citation")
-        response = Net::HTTP.get_response(uri)
-        parsed_json = ActiveSupport::JSON.decode(response.body)
-        @histogram_phrase =  parsed_json['response']['histogram'].reverse.collect {|cm| cm}.join(',')
-        @histogram_phrase_label = ''
-
-        for i in 30.downto(0)
-          date = (Time.now - i.day)
-          if @histogram_phrase_label.size == 0
-            @histogram_phrase_label = "'#{date.strftime('%d-%m')}'"
-          else
-            @histogram_phrase_label += ", '#{date.strftime('%d-%m')}'"
-          end
+      @histogram_phrase = Topsy.phrase_histogram(@campaign.phrase)
+      @phrase_experts = Topsy.phrase_experts(@campaign.phrase)
+      @histogram_phrase_label = ''
+      for i in 30.downto(0)
+        date = (Time.now - i.day)
+        if @histogram_phrase_label.size == 0
+          @histogram_phrase_label = "'#{date.strftime('%d-%m')}'"
+        else
+          @histogram_phrase_label += ", '#{date.strftime('%d-%m')}'"
         end
+      end
+    end
 
-      rescue Exception => e
-        puts "Algo salió mal obteniendo el Topsy Histogram... #{e.message.to_s}"
+    unless @campaign.twitter_screen_name.nil? or @campaign.twitter_screen_name.empty?
+      @histogram_twitter_user = Topsy.twitter_user_histogram(@campaign.twitter_screen_name)
+      @user_experts = Topsy.twitter_user_experts(@campaign.twitter_screen_name)
+      @histogram_twitter_user_label = ''
+      for i in 30.downto(0)
+        date = (Time.now - i.day)
+        if @histogram_twitter_user_label.size == 0
+          @histogram_twitter_user_label = "'#{date.strftime('%d-%m')}'"
+        else
+          @histogram_twitter_user_label += ", '#{date.strftime('%d-%m')}'"
+        end
       end
     end
 

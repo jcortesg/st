@@ -229,13 +229,13 @@
               %th{style: 'width: 140px'} Fecha
 
           %tbody
-            - @campaign.retweets.order('twitter_created_at asc').each do |retweet|
-              %tr{ :class => cycle('odd', 'even') }
-                %td= img_link_to_user(retweet.twitter_image_url, retweet.twitter_screen_name)
-                %td= link_to_twitter_screen_name(retweet.twitter_screen_name)
-                %td= link_to(truncate(retweet.tweet.text, length: 20), "http://twitter.com/#{retweet.twitter_screen_name}/status/#{retweet.twitter_id}", target: '_blank')
-                %td= retweet.twitter_followers_count
-                %td= localize(retweet.twitter_created_at, :format => "%d/%m/%Y %H:%M:%S")
+          - @campaign.retweets.order('twitter_created_at asc').each do |retweet|
+            %tr{ :class => cycle('odd', 'even') }
+              %td= img_link_to_user(retweet.twitter_image_url, retweet.twitter_screen_name)
+              %td= link_to_twitter_screen_name(retweet.twitter_screen_name)
+              %td= link_to(truncate(retweet.tweet.text, length: 20), "http://twitter.com/#{retweet.twitter_screen_name}/status/#{retweet.twitter_id}", target: '_blank')
+              %td= retweet.twitter_followers_count
+              %td= localize(retweet.twitter_created_at, :format => "%d/%m/%Y %H:%M:%S")
 
         = link_to("Volver", [:advertiser, @campaign], class: 'btn btn-primary')
 
@@ -250,6 +250,25 @@
           %br
           #evolution_hashtag
 
+        -unless @experts.nil?  or @experts.count == 0
+          %h1.title= "Quienes hablan más de esto? "
+          %table.table.table-striped
+            %thead
+              %tr
+                %th{style: 'width: 45px'} &nbsp;
+                %th Usuario
+                %th Nombre
+                %th Descripción
+
+            %tbody
+            - @experts.each do |expert|
+              %tr{ :class => cycle('odd', 'even') }
+                %td= img_link_to_user(expert['photo_url'],expert['nick'])
+                %td= link_to_twitter_screen_name(expert['nick'])
+                %td= expert['name']
+                %td= expert['description']
+
+
 - unless @campaign.phrase.nil? or @campaign.phrase.empty?
   .row
     .span12
@@ -260,6 +279,56 @@
           %br
           %br
           #evolution_phrase
+
+        -unless @phrase_experts.nil?  or @phrase_experts.count == 0
+          %h1.title= "Quienes hablan más de esto? "
+          %table.table.table-striped
+            %thead
+              %tr
+                %th{style: 'width: 45px'} &nbsp;
+                %th Usuario
+                %th Nombre
+                %th Descripción
+
+            %tbody
+            - @phrase_experts.each do |expert|
+              %tr{ :class => cycle('odd', 'even') }
+                %td= img_link_to_user(expert['photo_url'],expert['nick'])
+                %td= link_to_twitter_screen_name(expert['nick'])
+                %td= expert['name']
+                %td= expert['description']
+
+
+
+- unless @campaign.twitter_screen_name.nil? or @campaign.twitter_screen_name.empty?
+  .row
+    .span12
+      .round_box
+        .content
+
+          %h1.title= "Seguimiento de menciones de usuario: "
+          %br
+          %br
+          #evolution_twitter_user
+
+        -unless @user_experts.nil? or @user_experts.count == 0
+          %h1.title= "Quienes hablan más de esto? "
+          %table.table.table-striped
+            %thead
+              %tr
+                %th{style: 'width: 45px'} &nbsp;
+                %th Usuario
+                %th Nombre
+                %th Descripción
+
+            %tbody
+              - @user_experts.each do |expert|
+                %tr{ :class => cycle('odd', 'even') }
+                  %td= img_link_to_user(expert['photo_url'],expert['nick'])
+                  %td= link_to_twitter_screen_name(expert['nick'])
+                  %td= expert['name']
+                  %td= expert['description']
+
 
 :javascript
   var chart;
@@ -497,7 +566,7 @@
         renderTo: 'evolution_hashtag',
         type: 'line',
         marginRight: 130,
-        marginBottom: 25
+        marginBottom: 60
       },
       title: {
         text: 'Menciones del hashtag #{@campaign.hashtag}',
@@ -536,46 +605,89 @@
     });
 
     chart = new Highcharts.Chart({
-      chart: {
-        renderTo: 'evolution_phrase',
-        type: 'line',
-        marginRight: 130,
-        marginBottom: 25
-      },
-      title: {
-        text: 'Menciones de "#{@campaign.phrase}"',
-        x: -20 //center
-      },
-      xAxis: {
-              categories: [#{@histogram_phrase_label}]
-      },
-      yAxis: {
-        title: {
-          text: 'Menciones'
+        chart: {
+          renderTo: 'evolution_phrase',
+          type: 'line',
+          marginRight: 130,
+          marginBottom: 60
         },
-        plotLines: [{
-          value: 0,
-          width: 1,
-          color: '#808080'
+        title: {
+          text: 'Menciones de "#{@campaign.phrase}"',
+          x: -20 //center
+        },
+        xAxis: {
+                categories: [#{@histogram_phrase_label}]
+        },
+        yAxis: {
+          title: {
+            text: 'Menciones'
+          },
+          plotLines: [{
+            value: 0,
+            width: 1,
+            color: '#808080'
+          }]
+        },
+        tooltip: {
+          formatter: function() {
+            return '<b>'+ this.series.name +'</b><br/>'+ this.x +': '+ this.y;
+          }
+        },
+        legend: {
+          layout: 'vertical',
+          align: 'right',
+          verticalAlign: 'top',
+          x: -10,
+          y: 100,
+          borderWidth: 0
+        },
+        series: [{
+          name: 'Menciones',
+          data: [#{@histogram_phrase}]
         }]
-      },
-      tooltip: {
-        formatter: function() {
-          return '<b>'+ this.series.name +'</b><br/>'+ this.x +': '+ this.y;
-        }
-      },
-      legend: {
-        layout: 'vertical',
-        align: 'right',
-        verticalAlign: 'top',
-        x: -10,
-        y: 100,
-        borderWidth: 0
-      },
-      series: [{
-        name: 'Menciones',
-        data: [#{@histogram_phrase}]
-      }]
-    });
+      });
+
+      chart = new Highcharts.Chart({
+        chart: {
+          renderTo: 'evolution_twitter_user',
+          type: 'line',
+          marginRight: 130,
+          marginBottom: 60
+        },
+        title: {
+          text: 'Menciones de #{@campaign.twitter_screen_name}',
+          x: -20 //center
+        },
+        xAxis: {
+                categories: [#{@histogram_twitter_user_label}]
+        },
+        yAxis: {
+          title: {
+            text: 'Menciones'
+          },
+          plotLines: [{
+            value: 0,
+            width: 1,
+            color: '#808080'
+          }]
+        },
+        tooltip: {
+          formatter: function() {
+            return '<b>'+ this.series.name +'</b><br/>'+ this.x +': '+ this.y;
+          }
+        },
+        legend: {
+          layout: 'vertical',
+          align: 'right',
+          verticalAlign: 'top',
+          x: -10,
+          y: 100,
+          borderWidth: 0
+        },
+        series: [{
+          name: 'Menciones',
+          data: [#{@histogram_twitter_user}]
+        }]
+      });
 
   });
