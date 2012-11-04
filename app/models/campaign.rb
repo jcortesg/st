@@ -80,7 +80,7 @@ class Campaign < ActiveRecord::Base
 
     # Gets a twitter connection
     def twitter_connection
-      ids = [74, 31, 2, 75, 58]
+      ids = [74, 201, 4, 75]
       influencer = Influencer.find(ids[rand(ids.count)])
       Twitter.configure do |config|
         config.consumer_key = TWITTER_CONSUMER_KEY
