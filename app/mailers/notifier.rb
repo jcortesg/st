@@ -51,6 +51,15 @@ class Notifier < ActionMailer::Base
     mail(to: user.email, subject: "Cuenta Desactivada @ Borwin - Its time to go social")
   end
 
+  # An error has occurred
+  def twitter_connection_fail()
+
+    attachments.inline['logo.jpg'] = File.read(Rails.root.join('app/assets/images/logo.jpg'))
+    attachments.inline['sellochico.jpg'] = File.read(Rails.root.join('app/assets/images/sellochico.jpg'))
+
+    mail(to: 'sebastian@borwin.net', subject: "Notificaciones @ Borwin - Error obteniendo conexiones")
+  end
+
   # A referral has earn money
   def referral_earnings(referrer, referral)
     @referrer = referrer

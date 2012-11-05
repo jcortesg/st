@@ -80,16 +80,30 @@ class Campaign < ActiveRecord::Base
 
     # Gets a twitter connection
     def twitter_connection
-      ids = [74, 201, 4, 75]
-      influencer = Influencer.find(ids[rand(ids.count)])
-      Twitter.configure do |config|
-        config.consumer_key = TWITTER_CONSUMER_KEY
-        config.consumer_secret = TWITTER_CONSUMER_SECRET
-        config.oauth_token = influencer.user.twitter_token
-        config.oauth_token_secret = influencer.user.twitter_secret
+      error_flag = false
+      retries = 0
+      begin
+        begin
+          ids = [74, 201, 4, 75]
+          influencer = Influencer.find(ids[rand(ids.count)])
+          Twitter.configure do |config|
+            config.consumer_key = TWITTER_CONSUMER_KEY
+            config.consumer_secret = TWITTER_CONSUMER_SECRET
+            config.oauth_token = influencer.user.twitter_token
+            config.oauth_token_secret = influencer.user.twitter_secret
+          end
+          puts "Connection chosen: "+ influencer.user.twitter_screen_name
+          Twitter.user_timeline
+          error_flag = false
+        rescue Exception => e
+          retries = retries + 1
+          error_flag = true
+          puts "[ERROR] #{e.message}"
+        end
+      end while(error_flag && retries < 10)
+      if retries == 10
+        #Notifier.twitter_connection_fail
       end
-      puts "Connection chosen: "+ influencer.user.twitter_screen_name
-      Twitter.user_timeline
     end
   end
 
