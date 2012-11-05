@@ -5,7 +5,7 @@ class Advertiser::TweetsController < ApplicationController
 
   # Shows the list of celebrities (based on the campaigns) to create a new tweet
   def index
-    @search = Influencer.apply_filters(@campaign)
+    @search = Influencer.where(:approved => true).apply_filters(@campaign)
     @search = Influencer.apply_default_sort(@campaign, @search) if params[:search].blank? || params[:search][:meta_sort].blank?
     @search = @search.search(params[:search])
     @influencers = @search.page(params[:page]).per(20)
