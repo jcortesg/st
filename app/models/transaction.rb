@@ -4,7 +4,7 @@ class Transaction < ActiveRecord::Base
   belongs_to :cash_out
 
   before_save :set_balance
-  after_save :update_user_balance
+  after_save :update_user_balance, :notify_referrer
 
   attr_accessible :attachable, :attachable_id, :attachable_type, :user, :user_id, :transaction_at, :transaction_type,
                   :details, :borwin_transaction, :amount, :balance, :referrer_id
@@ -31,6 +31,22 @@ class Transaction < ActiveRecord::Base
       User.find(1).update_attribute(:balance, self.balance)
     else
       raise "Error, no user for balance"
+    end
+  end
+
+  def notify_referrer
+    if referrer_id && user && user.mail_on_referral_profit
+      if transaction_type == 'advertiser_referrer_fee'
+        notification_user = User.find(referrer_id)
+        if ! notification_user.nil?
+          Notifier.referral_earnings(user, notification_user)
+        end
+      elsif transaction_type == 'influencer_referrer_fee'
+        notification_user = Influencer.find(referrer_id)
+        if ! notification_user.nil?
+          Notifier.referral_earnings(user, notification_user)
+        end
+      end
     end
   end
 

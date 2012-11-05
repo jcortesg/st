@@ -51,6 +51,17 @@ class Notifier < ActionMailer::Base
     mail(to: user.email, subject: "Cuenta Desactivada @ Borwin - Its time to go social")
   end
 
+  # A referral has earn money
+  def referral_earnings(referrer, referral)
+    @referrer = referrer
+    @referral = referral
+
+    attachments.inline['logo.jpg'] = File.read(Rails.root.join('app/assets/images/logo.jpg'))
+    attachments.inline['sellochico.jpg'] = File.read(Rails.root.join('app/assets/images/sellochico.jpg'))
+
+    mail(to: referrer.email, subject: "Notificaciones @ Borwin - Un referido ha generado un ingreso")
+  end
+
   # A referral has sign up
   def referral_sign_up(referrer, referral)
     @referrer = referrer
@@ -69,7 +80,8 @@ class Notifier < ActionMailer::Base
     attachments.inline['logo.jpg'] = File.read(Rails.root.join('app/assets/images/logo.jpg'))
     attachments.inline['sellochico.jpg'] = File.read(Rails.root.join('app/assets/images/sellochico.jpg'))
 
-    mail(to: 'sebastian@borwin.net', subject: "Notificaciones @ Borwin - Nuevo usuario registrado")
+    #mail(to: 'sebastian@borwin.net', subject: "Notificaciones @ Borwin - Nuevo usuario registrado")
+    mail(to: 'juan.amoros@redmintlabs.com', subject: "Notificaciones @ Borwin - Nuevo usuario registrado")
   end
 
   # Sends an email to the influencer to let him know that he has a new tweet proposal
