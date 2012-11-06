@@ -84,7 +84,7 @@ class Campaign < ActiveRecord::Base
       retries = 0
       begin
         begin
-          ids = [74, 201, 4, 75]
+          ids = [280, 281, 282, 201, 283, 284, 4]
           influencer = Influencer.find(ids[rand(ids.count)])
           Twitter.configure do |config|
             config.consumer_key = TWITTER_CONSUMER_KEY
