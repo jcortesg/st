@@ -90,7 +90,7 @@ class Notifier < ActionMailer::Base
     attachments.inline['sellochico.jpg'] = File.read(Rails.root.join('app/assets/images/sellochico.jpg'))
 
     #mail(to: 'sebastian@borwin.net', subject: "Notificaciones @ Borwin - Nuevo usuario registrado")
-    mail(to: 'juan.amoros@redmintlabs.com', subject: "Notificaciones @ Borwin - Nuevo usuario registrado")
+    mail(to: 'sebastian@borwin.net', subject: "Notificaciones @ Borwin - Nuevo usuario registrado")
   end
 
   # Sends an email to the influencer to let him know that he has a new tweet proposal
