@@ -37,7 +37,7 @@ namespace :setup do
 
   desc "Copy pictures files"
   task :copy_pictures, :roles => :app do
-    run "cp -r #{previous_release}/public/bwn-img #{release_path}/public/"
+    run "cp -r #{previous_release}/public/bwn-image #{release_path}/public/"
   end
 
   desc 'Trust rvmrc file'
