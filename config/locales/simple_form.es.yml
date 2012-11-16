@@ -67,6 +67,10 @@ es:
         position: Cargo
         brand: Marca
         twitter_screen_name: Twitter
+        preferred_payment: Forma de pago preferida
+        account_number: Número de cuenta
+        account_type: Tipo de cuenta
+        bank_name: Banco
       influencer:
         first_name: Nombre
         last_name: Apellido

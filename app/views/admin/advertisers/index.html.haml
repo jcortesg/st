@@ -18,12 +18,12 @@
           %thead
             %tr
               %th &nbsp;
-              %th= sort_link(@search, :first_name_and_last_name, 'Nombre')
-              %th= sort_link(@search, :company, 'Agencia')
-              %th= sort_link(@search, :user_email, 'Email')
-              %th= sort_link(@search, :created_at, "Creado")
-              %th= sort_link(@search, :can_create_campaign, "Crear Campañas?")
-              %th Acciones
+              %th= sort_link(@search, :first_name_and_last_name, t('name'))
+              %th= sort_link(@search, :company, t('agency'))
+              %th= sort_link(@search, :user_email, t('email'))
+              %th= sort_link(@search, :created_at, t('created'))
+              %th= sort_link(@search, :can_create_campaign, t('can_create_campaigns'))
+              %th= t('actions')
 
           %tbody
             - @advertisers.each do |advertiser|

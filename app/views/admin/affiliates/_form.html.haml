@@ -13,8 +13,8 @@
   = i.input :country
   = i.input :zip_code
   = i.input :phone
-  = i.input :preferred_payment, :as => :select, collection: ['Cheque', 'Transferencia Bancaria']
+  = i.input :preferred_payment, :as => :select, collection: [t('check'), t('transfer')]
   = i.input :account_number
-  = i.input :account_type, as: :select, collection: ['Caja de Ahorro', 'Cuenta Corriente'], include_blank: false
+  = i.input :account_type, as: :select, collection: [t('saving_box'), t('runner_account')], include_blank: false
   = i.input :cbu
   = i.input :bank_name, as: :select, collection: bank_options

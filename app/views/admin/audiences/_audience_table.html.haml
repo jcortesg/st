@@ -1,10 +1,10 @@
 %table.table.table-striped
   %thead
     %tr
-      %th.center_text Seguidores
-      %th.center_text Amigos
-      %th.center_text Tweets
-      %th.center_text Retweets
+      %th.center_text= t('followers')
+      %th.center_text= t('friends')
+      %th.center_text= t('tweets')
+      %th.center_text= t('retweets')
   %tbody
     %tr
       %td.center_text= audience.followers
@@ -15,13 +15,13 @@
 %table.table.table-striped
   %thead
     %tr
-      %th.center_text Hombres
-      %th.center_text Mujeres
-      %th.center_text Mamás
-      %th.center_text Adolescentes
-      %th.center_text Universitarios
-      %th.center_text Mujeres (+18)
-      %th.center_text Hombres (+18)
+      %th.center_text= t('men')
+      %th.center_text= t('women')
+      %th.center_text= t('moms')
+      %th.center_text= t('teens')
+      %th.center_text= t('college')
+      %th.center_text= t('women18')
+      %th.center_text= t('men18')
 
   %tbody
     %tr
@@ -36,14 +36,14 @@
 %table.table.table-striped
   %thead
     %tr
-      %th.center_text Deportes
-      %th.center_text Moda
-      %th.center_text Música
-      %th.center_text Cine
-      %th.center_text Política
-      %th.center_text Tecnología
-      %th.center_text Viajes
-      %th.center_text Lujos
+      %th.center_text= t('sports')
+      %th.center_text= t('fashion')
+      %th.center_text= t('music')
+      %th.center_text= t('movies')
+      %th.center_text= t('politics')
+      %th.center_text= t('technology')
+      %th.center_text= t('travel')
+      %th.center_text= t('luxury')
   %tbody
     %tr
       %td.center_text= "#{audience.sports}%"

@@ -2,10 +2,10 @@
   .span12
     %ul.breadcrumb
       %li
-        = link_to("Campañas", [:admin, :campaigns])
+        = link_to(t('campaigns'), [:admin, :campaigns])
         %span.divider /
       %li.active
-        Historial de Campañas
+        = t('campaigns_history')
 
 - if flash.any?
   .row
@@ -19,18 +19,18 @@
   .span12
     .round_box
       .content
-        %h1.title Historial de Campañas
+        %h1.title= t('campaigns_history')
 
         %table.table.table-striped
           %thead
             %tr
               %th &nbsp;
-              %th= sort_link(@search, :advertiser_company, 'Empresa')
-              %th= sort_link(@search, :name, 'Nombre')
-              %th= sort_link(@search, :clicks_count, 'Clicks')
-              %th= sort_link(@search, :cost, 'Costo')
-              %th= sort_link(@search, :created_at, "Creado")
-              %th Acciones
+              %th= sort_link(@search, :advertiser_company, t('company'))
+              %th= sort_link(@search, :name, t('name'))
+              %th= sort_link(@search, :clicks_count, t('clicks'))
+              %th= sort_link(@search, :cost, t('cost'))
+              %th= sort_link(@search, :created_at, t('created'))
+              %th= t('actions')
 
           %tbody
             - @campaigns.each do |campaign|
@@ -42,8 +42,8 @@
                 %td= campaign.cost
                 %td= localize(campaign.created_at, :format => "%d/%m/%Y")
                 %td
-                  = link_to('Ver', [:admin, campaign], class: 'btn btn-primary')
-                  = link_to('Destruir', [:admin, campaign], method: :delete, class: 'btn btn-danger', confirm: "Esta acción eliminara la campaña, sus tweets y clicks del sistema. ¿Esta seguro?")
+                  = link_to(t('see'), [:admin, campaign], class: 'btn btn-primary')
+                  = link_to(t('destroy'), [:admin, campaign], method: :delete, class: 'btn btn-danger', confirm: t('are_you_sure'))
         .center_text
           = paginate @campaigns
 

@@ -3,7 +3,7 @@
     = simple_form_for(@audience, url: [:admin, @influencer, :audience], html:  { class: "form-horizontal round_form", method: :put }) do |f|
       = render '/shared/simple_form_errors', :f => f
 
-      %h1.form_title Porcentajes
+      %h1.form_title= t('percentiles')
       = f.input :males, input_html: { disabled: 'disabled' }
       = f.input :females, input_html: { disabled: 'disabled' }
       = f.input :moms
@@ -24,6 +24,6 @@
       = f.input :luxury
 
       .form-actions
-        = f.submit 'Guardar', :class => 'btn btn-primary btn-large'
-        = link_to 'Cancelar', [:admin, @influencer], class: 'btn btn-large'
+        = f.submit t('save'), :class => 'btn btn-primary btn-large'
+        = link_to t('cancel'), [:admin, @influencer], class: 'btn btn-large'
 

@@ -6,44 +6,44 @@
   .span12
     .round_box
       .content
-        %h1.title Agencia
+        %h1.title= t('affiliate')
         %dl.record_details
-          %dt Email
+          %dt= t('email')
           %dd= dl_value @affiliate.user.email
-          %dt Nombre
+          %dt= t('name')
           %dd= dl_value @affiliate.first_name
-          %dt Apellido
+          %dt= t('last_name')
           %dd= dl_value @affiliate.last_name
-          %dt Empresa
+          %dt= t('company')
           %dd= dl_value @affiliate.company
-          %dt Dirección
+          %dt= t('address')
           %dd= dl_value @affiliate.address
-          %dt Ciudad
+          %dt= t('city')
           %dd= dl_value @affiliate.city
-          %dt Provincia
+          %dt= t('state')
           %dd= dl_value @affiliate.state
-          %dt País
+          %dt= t('country')
           %dd= dl_value @affiliate.country
-          %dt Código Postal
+          %dt= t('postal_code')
           %dd= dl_value @affiliate.zip_code
-          %dt Teléfono
+          %dt= t('telephone')
           %dd= dl_value @affiliate.phone
-          %dt Forma de pago preferida
+          %dt= t('preferred_payment')
           %dd= dl_value @affiliate.preferred_payment
-          %dt Número de cuenta
+          %dt= t('account_number')
           %dd= dl_value @affiliate.account_number
-          %dt Tipo de cuenta
+          %dt= t('account_type')
           %dd= dl_value @affiliate.account_type
-          %dt Banco
+          %dt= t('bank_name')
           %dd= dl_value @affiliate.bank_name
-          %dt CBU
+          %dt= t('cbu')
           %dd= dl_value @affiliate.cbu
-          %dt Fecha creación
+          %dt= t('creation_date')
           %dd= dl_value @affiliate.created_at.try(:strftime, "%d/%m/%Y")
-          %dt Fecha actualización
+          %dt= t('update_date')
           %dd= dl_value @affiliate.updated_at.try(:strftime, "%d/%m/%Y")
       .clear.center_text.show_buttons
-        = link_to('Editar', [:edit, :admin, @affiliate], class: 'btn btn-primary')
-        = link_to('Eliminar', [:admin, @affiliate], method: :delete, class: 'btn btn-danger', confirm: "Esta seguro que desea eliminar al anunciante y todo su historial?" )
-        = link_to('Listado', [:admin, :affiliates], class: 'btn btn-primary')
+        = link_to(t('edit'), [:edit, :admin, @affiliate], class: 'btn btn-primary')
+        = link_to(t('destroy'), [:admin, @affiliate], method: :delete, class: 'btn btn-danger', confirm: t('are_you_sure') )
+        = link_to(t('list'), [:admin, :affiliates], class: 'btn btn-primary')
 

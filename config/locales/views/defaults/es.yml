@@ -1,4 +1,5 @@
 es:
+  see: ver
   edit: Editar
   delete: Borrar
   destroy: Eliminar
@@ -10,4 +11,36 @@ es:
   filters: Filtros
   reset: Resetear
   filter: Filtrar
+  actions: Acciones
+  followers: Seguidores
+  friends: Amigos
+  tweets: Tweets
+  retweets: Retweets
+  celebrity: Celebridad
+  men: Hombres
+  women: Mujeres
+  males: Hombres
+  females: Mujeres
+  sports: Deportes
+  fashion: Moda
+  music: Música
+  movies: Cine
+  politics: Política
+  technology: Tecnología
+  travel: Viajes
+  luxury: Lujos
+  moms: Mamás
+  teens: Adolescentes
+  college_students: Universitarios
+  young_women: Mujeres (18-34 años)
+  young_men: Hombres (18-34 años)
+  adult_women: Mujeres (Más de 35 años)
+  adult_men: Hombres (Más de 35 años)
+  women18: Mujeres (+18)
+  men18: Hombres (+18)
+  campaigns: Campañas
+  cost: Costo
+  clicks: Clicks
+
+
 
