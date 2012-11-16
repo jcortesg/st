@@ -1,0 +1,22 @@
+es:
+  advertisers: Anunciantes
+  advertiser: Anunciante
+  telephone: Teléfono
+  email: Email
+  name: Nombre
+  last_name: Apellido
+  position: Cargo
+  company: Empresa
+  web_site: Sitio web
+  address: Dirección
+  city: Ciudad
+  state: Estado
+  country: País
+  postal_code: Código postál
+  how_you_know_borwin: Cómo conoció Borwin
+  creation_date: Fecha de creación
+  update_date: Fecha de actualización
+  can_create_campaigns: Crear campañas?
+  can_create_tweets_by_click: Tweets por Clicks?
+  are_you_sure: Esta seguro que desea eliminar al anunciante y todo su historial?
+  create_advertiser: Crear Anunciante

@@ -11,8 +11,8 @@
     .round_box
       .content
         .right
-          = link_to('Crear Anunciante', [:new, :admin, :advertiser], :class => 'btn btn-primary')
-        %h1.title Anunciantes
+          = link_to( t('create_advertiser'), [:new, :admin, :advertiser], :class => 'btn btn-primary')
+        %h1.title= t('advertisers')
 
         %table.table.table-striped
           %thead
@@ -33,22 +33,22 @@
                 %td= advertiser.company
                 %td= advertiser.user.email
                 %td= advertiser.created_at ? (localize(advertiser.created_at, :format => "%d/%m/%Y")) : ""
-                %td= advertiser.can_create_campaigns? ? 'Sí' : 'No'
+                %td= advertiser.can_create_campaigns? ? t('yes') : t('no')
                 %td
-                  = link_to('Editar', [:edit, :admin, advertiser], class: 'btn btn-primary')
-                  = link_to('Eliminar', [:admin, advertiser], method: :delete, class: 'btn btn-danger', confirm: "Esta seguro que desea eliminar al anunciante y todo su historial?" )
+                  = link_to(t('edit'), [:edit, :admin, advertiser], class: 'btn btn-primary')
+                  = link_to(t('destroy'), [:admin, advertiser], method: :delete, class: 'btn btn-danger', confirm: t('are_you_sure') )
         .center_text
           = paginate @advertisers
 
         .filters
-          .subtitle Filtros
+          .subtitle= t('filters')
           = simple_form_for @search, :url => [:admin, :advertisers], html: {method: :get, id: 'filter_form', class: 'form-horizontal'} do |f|
-            = f.input :first_name_or_last_name_contains, label: "Nombre", required: false
-            = f.input :company_contains, label: "Empresa", required: false
-            = f.input :user_email_equals, label: "Email", required: false
-            = f.input :can_create_campaigns_equals, label: "Crear Campañas?", required: false, as: :select, collection: [['No', false], ['Sí', true]]
+            = f.input :first_name_or_last_name_contains, label: t('name'), required: false
+            = f.input :company_contains, label: t('company'), required: false
+            = f.input :user_email_equals, label: t('email'), required: false
+            = f.input :can_create_campaigns_equals, label: t('can_create_campaigns'), required: false, as: :select, collection: [[t('no'), false], [t('yes'), true]]
             .form-actions
-              = f.submit 'Filtrar', :class => 'btn btn-primary'
-              = link_to 'Resetear', '#', :class => 'btn reset'
+              = f.submit t('filter'), :class => 'btn btn-primary'
+              = link_to t('reset'), '#', :class => 'btn reset'
 
 
