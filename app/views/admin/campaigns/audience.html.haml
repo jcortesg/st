@@ -5,24 +5,24 @@
   .span8.offset2
     %ul.breadcrumb
       %li
-        = link_to("Campañas", [:admin, :campaigns])
+        = link_to( t('campaigns'), [:admin, :campaigns])
         %span.divider /
       %li.active
         - if @campaign.created_at > Time.now - 1.minute
-          Nueva Campaña
+          =t('new_campaign')
         - else
-          Audiencia
+          =t('audience')
 
 .row
   .span8.offset2.round_box
     = form_for(@campaign, url: [:set_audience, :admin, @campaign], html:  { id: "audience_campaign_form", class: "form-horizontal round_form", method: :put }) do |f|
-      %h1.form_title Target
+      %h1.form_title= t('target')
       - if @campaign.created_at > Time.now - 1.minute
         .center_text{style: 'margin: -20px 0 20px 0;'}
           &nbsp;
       = render '/shared/form_errors', :object => f.object
 
-      %h2 Zona Geográfica
+      %h2= t('geo_zone')
       .geographic_zones
         .geographic_zone.argentine
           = check_box_tag "campaign[locations][]", "Argentina", f.object.locations.include?("Argentina")
@@ -37,66 +37,66 @@
             = check_box_tag "campaign[locations][]", country, f.object.locations.include?("country")
             = label_tag country
 
-      %h2 Edades
+      %h2= t('ages')
       .option
         = f.check_box :moms
-        = f.label :moms, "Mamás"
+        = f.label :moms, t('moms')
       .option
         = f.check_box :teens
-        = f.label :teens, "Adolescentes"
+        = f.label :teens, t('teens')
       .option
         = f.check_box :college_students
-        = f.label :college_students, "Universitarios"
+        = f.label :college_students, t('college_students')
       .option
         = f.check_box :young_women
-        = f.label :young_women, "Mujeres (18 a 35 años)"
+        = f.label :young_women, t('young_women')
       .option
         = f.check_box :young_men
-        = f.label :young_men, "Hombres (18 a 35 años)"
+        = f.label :young_men, t('young_men')
       .option
         = f.check_box :adult_women
-        = f.label :adult_women, "Mujeres (más de 35 años)"
+        = f.label :adult_women, t('adult_women')
       .option
         = f.check_box :adult_men
-        = f.label :adult_men, "Hombres (más de 35 años)"
+        = f.label :adult_men, t('adult_men')
 
-      %h2 Sexo
+      %h2= t('genre')
 
       .option
         = f.check_box :males
-        = f.label :males, "Hombres"
+        = f.label :males, t('males')
 
       .option
         = f.check_box :females
-        = f.label :females, "Mujeres"
+        = f.label :females, t('women')
 
-      %h2  Hobbys
+      %h2= t('hobbys')
       .option
         = f.check_box :sports
-        = f.label :sports, "Deportes"
+        = f.label :sports, t('sports')
       .option
         = f.check_box :fashion
-        = f.label :fashion, "Moda"
+        = f.label :fashion, t('fashion')
       .option
         = f.check_box :music
-        = f.label :music, "Música"
+        = f.label :music, t('music')
       .option
         = f.check_box :movies
-        = f.label :movies, "Cine"
+        = f.label :movies, t('movies')
       .option
         = f.check_box :politics
-        = f.label :politics, "Política"
+        = f.label :politics, t('politics')
       .option
         = f.check_box :technology
-        = f.label :technology, "Tecnología"
+        = f.label :technology, t('technology')
       .option
         = f.check_box :travel
-        = f.label :travel, "Viajes"
+        = f.label :travel, t('travel')
       .option
         = f.check_box :luxury
-        = f.label :luxury, "Lujos"
+        = f.label :luxury, t('luxury')
 
-      %h2 Seguidores
+      %h2= t('followers')
       .option
         = check_box_tag "campaign[followers_qty][]", "0-500", f.object.followers_qty.include?("0-500")
         = label_tag "0 a 500"
@@ -125,7 +125,7 @@
         = check_box_tag "campaign[followers_qty][]", "2000000-50000000", f.object.followers_qty.include?("2000000-50000000")
         = label_tag "2.000.000 a 50.000.000"
 
-      %h2 Precio del Tweet
+      %h2= t('tweet_price')
       .option
         = check_box_tag "campaign[tweet_price][]", "0-300", f.object.tweet_price.include?("0-300")
         = label_tag "$0 a $300"
@@ -156,6 +156,6 @@
 
 
       .form-actions
-        = f.submit 'Aceptar', :class => 'btn btn-primary btn-large'
-        = link_to 'Cancelar', [:admin, :campaigns], class: 'btn btn-large'
+        = f.submit t('accept'), :class => 'btn btn-primary btn-large'
+        = link_to t('cancel'), [:admin, :campaigns], class: 'btn btn-large'
 

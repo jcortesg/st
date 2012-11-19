@@ -8,14 +8,14 @@
     %ul.breadcrumb
       - if @tweet
         %li
-          = link_to("Campañas", [:admin, :campaigns])
+          = link_to( t('campaigns'), [:admin, :campaigns])
           %span.divider /
         %li
           = link_to(@campaign.name, [:admin, @campaign])
           %span.divider /
       - else
         %li
-          = link_to("Campañas", [:admin, :campaigns])
+          = link_to( t('campaigns'), [:admin, :campaigns])
           %span.divider /
       %li.active Clicks
 
@@ -30,8 +30,8 @@
             %tr
               %th= Tweet
               %th= sort_link(@search, :remote_ip, 'IP')
-              %th= sort_link(@search, :remote_agent, 'Navegador')
-              %th= sort_link(@search, :created_at, 'Fecha')
+              %th= sort_link(@search, :remote_agent, t('browser'))
+              %th= sort_link(@search, :created_at, t('date'))
 
           %tbody
             - @clicks.each do |click|

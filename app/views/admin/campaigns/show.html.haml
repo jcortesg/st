@@ -7,7 +7,7 @@
   .span12
     %ul.breadcrumb
       %li
-        = link_to("Campañas", [:admin, :campaigns])
+        = link_to( t('campaigns'), [:admin, :campaigns])
         %span.divider /
       %li.active= @campaign.name
 
@@ -16,17 +16,17 @@
     .round_box
       .content
         .right
-          = link_to('Editar', [:edit, :admin, @campaign], :class => 'btn btn-primary')
+          = link_to(t('edit'), [:edit, :admin, @campaign], :class => 'btn btn-primary')
         %h1.title= "Campaña #{@campaign.name}"
 
         %table.table.table-striped
           %thead
             %tr
-              %th Celebridad
-              %th Clicks
-              %th Costo
-              %th Estado
-              %th Acciones
+              %th= t('celebrity')
+              %th= t('clicks')
+              %th= t('cost')
+              %th= t('status')
+              %th= t('actions')
 
           %tbody
             - @campaign.tweets.each do |tweet|
@@ -36,8 +36,8 @@
                 %td= tweet.fee_type == 'tweet_fee' ? "Tweet: $#{sprintf("%.02f", tweet.tweet_fee)}" : "Click: $#{sprintf("%.02f", tweet.cpc_fee)}"
                 %td= advertiser_tweet_status(tweet.status)
                 %td
-                  = link_to("Detalle", [:admin, @campaign, tweet], class: 'btn btn-primary')
+                  = link_to(t('detail'), [:admin, @campaign, tweet], class: 'btn btn-primary')
                   - unless ['activated'].include?(tweet.status)
-                    = link_to("Editar", [:edit, :admin, @campaign, tweet], class: 'btn btn-warning')
-                    = link_to('Rechazar', [:reject, :admin, @campaign, tweet], method: :get, class: 'btn btn-danger', confirm: '¿Esta seguro que desea rechazar el Tweet?')
+                    = link_to(t('edit'), [:edit, :admin, @campaign, tweet], class: 'btn btn-warning')
+                    = link_to(t('reject'), [:reject, :admin, @campaign, tweet], method: :get, class: 'btn btn-danger', confirm: t('are_you_sure_reject'))
 

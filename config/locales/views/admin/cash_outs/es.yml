@@ -1,0 +1,9 @@
+es:
+  amount: Importe
+  payed: Pagado?
+  request_date: Fecha solicitud
+  do_filter: Filtrar
+  payment_date: Fecha de pago
+  pay: Pagar
+  are_you_sure: ¿Esta seguro que desea generar el pago y notificar al usuario?
+  type: tipo
