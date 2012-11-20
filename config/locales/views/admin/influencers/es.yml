@@ -35,4 +35,31 @@ es:
   are_you_sure_short: Esta seguro?
   save_influence: Guardar influencia
   account_info: Datos de la cuenta
+  twitter_location: Twitter - Ubicación
+  twitter_picture:  Twitter - Foto
+  twitter_bio: Twitter - Bio
+  twitter_join_date:  Twitter - Fecha ingreso
+  klout_score:  Klout - Score
+  kred_score:  Kred - Score
+  peer_index_score:  PeerIndex - Score
+  celebrity_info:  Datos de la celebridad
+  borwin_fee: Comisión Borwin
+  birthday: Cumpleaños
+  description:  Descripción
+  profile_picture:  Foto de perfil
+  referent: Referente
+  price_click_celebrity: Precio Click Celebridad
+  price_campaign_celebrity:  Precio Campaña Celebridad
+  price_tweet_celebrity:  Precio Tweet Celebridad
+  click_price:  Precio Click
+  campaign_price:  Precio Campaña
+  prices: Precios
+  payment_info:  Datos para pagos
+  preferred_contact_method:  Método de contacto preferido
+  preferred_contact_schedule:  Horario de contacto preferido
+  cell_phone:  Celular
+  contact_info:  Datos de contacto
+  disapprove: Desaprobar
+  approve: Aprobar
+  need_approval:  Usuarios que requieren aprobación
 
