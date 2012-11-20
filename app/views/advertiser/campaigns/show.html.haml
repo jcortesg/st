@@ -49,7 +49,7 @@
             = f.input :status_equals, label: 'Estado', required: false, as: 'select', collection: [['Propuesto', 'created'], ['Revisado por celebridad', 'influencer_reviewed'], ['Rechazado por celebridad', 'influencer_rejected'], ['En revisión por celebridad', 'advertiser_reviewed'], ['Rechazado por anunciante', 'advertiser_rejected'], ['Aceptado', 'accepted'], ['Públicado', 'activated'], ['Vencido', 'expired']]
             .form-actions
               = f.submit 'Búscar', :class => 'btn btn-primary'
-              = link_to 'Cancelar', '#', :class => 'btn reset'
+              = link_to t('cancel'), '#', :class => 'btn reset'
 
 
     - if @campaign.hashtags.count > 0

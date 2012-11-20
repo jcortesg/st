@@ -1,0 +1,38 @@
+es:
+  actor: Actor
+  actress: Actriz
+  musician: Músico
+  sportsman: deportista
+  tv-host: Conductor
+  journalist: Periodista
+  model: Modelo
+  media: Mediático
+  artist: Artista
+  panelist: Panelista
+  cheff: Cheff
+  humorist: Humorista
+  fashion: Moda
+  twitter-guy: Twitteros
+  others: Otros
+  create_celebrity: Crear Celebridad
+  are_you_sure: Esta seguro que desea eliminar a la celebridad y todo su historial?
+  are_you_sure_cant_go_back: Esta seguro? Esta acción no puede deshacerse
+  technology_referent: Referente de Tecnología
+  movies_referent: Referente de Películas
+  music_referent: Referente de Música
+  luxury_referent: Referente de Lujos
+  travel_referent: Referente de Viajes
+  politics_referent: Referente de Política
+  sports_referent: Referente de Deportes
+  fashion_referent: Referente de Moda
+  moms_referent: Referente de Madres
+  teens_referent: Referente de Adolecentes
+  college_referent: Referente de Universitarios
+  young_men_referent: Referente de Hombres (18 a 35 años)
+  adult_men_referent: Referente de Hombres (más de 35 años)
+  young_women_referent: Referente de Mujeres (18 a 35 años)
+  adult_women_referent: Referente de Mujeres (más de 35 años)
+  are_you_sure_short: Esta seguro?
+  save_influence: Guardar influencia
+  account_info: Datos de la cuenta
+

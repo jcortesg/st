@@ -3,6 +3,7 @@ es:
   edit: Editar
   delete: Borrar
   destroy: Eliminar
+  complete: Completar
   list: Listar
   save: Guardar
   cancel: Cancelar
@@ -56,6 +57,10 @@ es:
   date: Fecha
   back: Volver
   cash_outs: Cash Outs
-
+  skip_step: Saltear este paso
+  celebrities: Celebridades
+  category: Categoría
+  referred: Referido
+  recategorize: Recategorizar
 
 

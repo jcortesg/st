@@ -56,7 +56,7 @@
             = f.input :first_name_or_last_name_contains, label: "Nombre", required: false
             .form-actions
               = f.submit 'Búscar', :class => 'btn btn-primary'
-              = link_to 'Cancelar', '#', :class => 'btn reset'
+              = link_to t('cancel'), '#', :class => 'btn reset'
 
 :javascript
   $(document).ready(function() {

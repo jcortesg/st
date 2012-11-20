@@ -39,5 +39,5 @@
 
         .form-actions
           = f.submit('Aceptar', class: 'btn btn-large btn-primary')
-          = link_to('Cancelar', [:influencer, @tweet], class: 'btn btn-large')
+          = link_to(t('cancel'), [:influencer, @tweet], class: 'btn btn-large')
 

@@ -14,7 +14,7 @@
 
       .form-actions
         = f.submit 'Solicitar', :class => 'btn btn-primary btn-large'
-        = link_to 'Cancelar', [:admin, :transactions], class: 'btn btn-large'
+        = link_to t('cancel'), [:admin, :transactions], class: 'btn btn-large'
 
     %table.table.table-striped
       %thead

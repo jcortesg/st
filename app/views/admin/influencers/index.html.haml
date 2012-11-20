@@ -11,22 +11,22 @@
     .round_box
       .content
         .right
-          = link_to('Crear Celebridad', [:new, :admin, :influencer], :class => 'btn btn-primary')
-        %h1.title Celebridades
+          = link_to(t('create_celebrity'), [:new, :admin, :influencer], :class => 'btn btn-primary')
+        %h1.title= t('celebrities')
 
         %table.table.table-striped
           %thead
             %tr
               %th &nbsp;
               %th &nbsp;
-              %th= sort_link(@search, :first_name_and_last_name, 'Nombre')
-              %th= sort_link(@search, :user_twitter_screen_name, 'Twitter')
-              %th= sort_link(@search, :created_at, "Creado")
-              %th= sort_link(@search, :audience_followers, "Seguidores")
-              %th= sort_link(@search, :price_category, "Categoría")
-              %th= sort_link(@search, :referrer_first_name_and_referrer_last_name, "Referido")
-              %th Referidos
-              %th Acciones
+              %th= sort_link(@search, :first_name_and_last_name, t('name'))
+              %th= sort_link(@search, :user_twitter_screen_name, t('twitter'))
+              %th= sort_link(@search, :created_at, t('created'))
+              %th= sort_link(@search, :audience_followers, t('followers'))
+              %th= sort_link(@search, :price_category, t('category'))
+              %th= sort_link(@search, :referrer_first_name_and_referrer_last_name, t('referred'))
+              %th= t('referrals')
+              %th= t('actions')
 
           %tbody
             - @influencers.each do |influencer|
@@ -48,18 +48,18 @@
                     &nbsp;
                 %td= influencer.user.referrals.count
                 %td
-                  = link_to('Editar', [:edit, :admin, influencer], class: 'btn btn-primary btn-mini')
-                  = link_to('Eliminar', [:admin, influencer], method: :delete, class: 'btn btn-danger btn-mini', confirm: "Esta seguro que desea eliminar a la celebridad y todo su historial?" )
+                  = link_to(t('edit'), [:edit, :admin, influencer], class: 'btn btn-primary btn-mini')
+                  = link_to(t('destroy'), [:admin, influencer], method: :delete, class: 'btn btn-danger btn-mini', confirm: t('are_you_sure') )
         .center_text
           = paginate @influencers
 
         .filters
-          .subtitle Filtros
+          .subtitle= t('filters')
           = simple_form_for @search, :url => [:admin, :influencers], html: {method: :get, id: 'filter_form', class: 'form-horizontal'} do |f|
-            = f.input :first_name_or_last_name_contains, label: "Nombre", required: false
-            = f.input :user_email_equals, label: "Email", required: false
-            = f.input :user_twitter_screen_name_equals, label: "Twitter", required: false
+            = f.input :first_name_or_last_name_contains, label: t('name'), required: false
+            = f.input :user_email_equals, label: t('email'), required: false
+            = f.input :user_twitter_screen_name_equals, label: t('twitter'), required: false
             .form-actions
-              = f.submit 'Filtrar', :class => 'btn btn-primary'
+              = f.submit t('do_filter'), :class => 'btn btn-primary'
 
 

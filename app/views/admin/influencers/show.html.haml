@@ -6,22 +6,22 @@
   .span12
     .round_box
       .content
-        %h1.title Celebridad
-        .subtitle Datos de la cuenta
+        %h1.title= t('celebrity')
+        .subtitle= t('account_info')
         %dl.record_details
-          %dt Email
+          %dt= t('email')
           %dd= dl_value @influencer.user.email
-          %dt Twitter
+          %dt= t('twitter')
           %dd= dl_value @influencer.user.twitter_screen_name
-          %dt Nombre
+          %dt= t('name')
           %dd= dl_value @influencer.first_name
-          %dt Apellido
+          %dt= t('last_name')
           %dd= dl_value @influencer.last_name
-          %dt Fecha creación
+          %dt= t('creation_date')
           %dd= dl_value @influencer.created_at.try(:strftime, "%d/%m/%Y")
-          %dt Fecha actualización
+          %dt= t('update_date')
           %dd= dl_value @influencer.updated_at.try(:strftime, "%d/%m/%Y")
-        .subtitle Datos de Twitter
+        .subtitle= t('twitter_info')
         %dl.record_details
           %dt Twitter - Ubicación
           %dd= dl_value @influencer.twitter_location

@@ -12,4 +12,4 @@
 
       .form-actions
         = f.submit 'Recategorizar', :class => 'btn btn-danger btn-large', confirm: "Esta seguro? Esta acción no puede deshacerse"
-        = link_to 'Cancelar', [:admin, :users], class: 'btn btn-large'
+        = link_to t('cancel'), [:admin, :users], class: 'btn btn-large'
