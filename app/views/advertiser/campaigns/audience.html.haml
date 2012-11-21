@@ -22,7 +22,10 @@
           &nbsp;
       = render '/shared/form_errors', :object => f.object
 
-      %h2 Zona Geográfica
+      %br
+      %h1 Datos de los usuarios
+      %br
+      %h2.title Zona Geográfica
       .geographic_zones
         .geographic_zone.argentine
           = check_box_tag "campaign[locations][]", "Argentina", f.object.locations.include?("Argentina")
@@ -37,7 +40,8 @@
             = check_box_tag "campaign[locations][]", country, f.object.locations.include?(country)
             = label_tag country
 
-      %h2 Edades
+      %br
+      %h2.title Edades
       .option
         = f.check_box( :moms, {:class =>'age-filter'})
         = f.label :moms, "Mamás"
@@ -60,7 +64,8 @@
         = f.check_box( :adult_men, {:class =>'age-filter'})
         = f.label :adult_men, "Hombres (más de 35 años)"
 
-      %h2 Sexo
+      %br
+      %h2.title Sexo
 
       .option
         = f.check_box :males
@@ -70,7 +75,8 @@
         = f.check_box :females
         = f.label :females, "Mujeres"
 
-      %h2  Hobbys
+      %br
+      %h2.title  Hobbys
       .option
         = f.check_box( :sports, {:class =>'hobby-filter'})
         = f.label :sports, "Deportes"
@@ -96,7 +102,10 @@
         = f.check_box( :luxury, {:class =>'hobby-filter'})
         = f.label :luxury, "Lujos"
 
-      %h2 Seguidores
+      %br
+      %h1 Datos del influenciador
+      %br
+      %h2.title Seguidores
       .option
         = check_box_tag "campaign[followers_qty][]", "0-500", f.object.followers_qty.include?("0-500")
         = label_tag "0 a 500"
@@ -125,7 +134,8 @@
         = check_box_tag "campaign[followers_qty][]", "2000000-50000000", f.object.followers_qty.include?("2000000-50000000")
         = label_tag "2.000.000 a 50.000.000"
 
-      %h2 Precio del Tweet
+      %br
+      %h2.title Precio del Tweet
       .option
         = check_box_tag "campaign[tweet_price][]", "0-300", f.object.tweet_price.include?("0-300")
         = label_tag "$0 a $300"
