@@ -27,6 +27,17 @@ class Topsy
       end
     end
 
+    def hashtag_tweets(hashtag)
+      begin
+        uri = URI.parse("http://otter.topsy.com/search.json?q="+hashtag+"&type=tweet&apikey="+API_KEY)
+        response = Net::HTTP.get_response(uri)
+        parsed_json = ActiveSupport::JSON.decode(response.body)
+        tweets =  parsed_json['response']['list'].collect {|cm| cm}
+      rescue Exception => e
+        puts "Algo salió mal obteniendo los expertos del hashtag... #{e.message.to_s}"
+      end
+    end
+
     def phrase_histogram(phrase)
       begin
         uri = URI.parse("http://otter.topsy.com/searchhistogram.json?q="+URI.encode(phrase).to_s+"&count_method=citation&apikey="+API_KEY)
@@ -46,6 +57,17 @@ class Topsy
         phrase_experts =  parsed_json['response']['list'].collect {|cm| cm}
       rescue Exception => e
         puts "Algo salió mal obteniendo los expertos de la frase... #{e.message.to_s}"
+      end
+    end
+
+    def phrase_tweets(phrase)
+      begin
+        uri = URI.parse("http://otter.topsy.com/search.json?q="+URI.encode(phrase).to_s+"&type=tweet&apikey="+API_KEY)
+        response = Net::HTTP.get_response(uri)
+        parsed_json = ActiveSupport::JSON.decode(response.body)
+        tweets =  parsed_json['response']['list'].collect {|cm| cm}
+      rescue Exception => e
+        puts "Algo salió mal obteniendo los expertos del hashtag... #{e.message.to_s}"
       end
     end
 
@@ -70,6 +92,18 @@ class Topsy
         puts "Algo salió mal obteniendo los expertos de un usuario... #{e.message.to_s}"
       end
     end
+
+    def twitter_user_tweets(twitter_screen_name)
+      begin
+        uri = URI.parse("http://otter.topsy.com/search.json?q="+twitter_screen_name+"&type=tweet&apikey="+API_KEY)
+        response = Net::HTTP.get_response(uri)
+        parsed_json = ActiveSupport::JSON.decode(response.body)
+        tweets =  parsed_json['response']['list'].collect {|cm| cm}
+      rescue Exception => e
+        puts "Algo salió mal obteniendo los expertos del hashtag... #{e.message.to_s}"
+      end
+    end
+
   end
 
 end
