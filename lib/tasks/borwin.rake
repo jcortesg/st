@@ -118,18 +118,62 @@ namespace :borwin do
 
   desc 'Generate the default countries'
   task generate_default_countries: :environment do
-    ['Argentina', 'Colombia', 'Chile', 'Ecuador', 'Paraguay', 'Uruguay'].each do |country_name|
+    ['Argentina', 'Colombia', 'Chile', 'Ecuador', 'Paraguay', 'Uruguay', 'Mexico'].each do |country_name|
       TwitterCountry.create(name: country_name) unless TwitterCountry.where(name: country_name).exists?
     end
   end
 
   desc 'Generate the default states'
-  task genreate_default_states: :environment do
+  task generate_default_states: :environment do
     argentina = TwitterCountry.where(name: 'Argentina').first
     ['Buenos Aires', 'Catamarca', 'Chaco', 'Córdoba', 'Corrientes', 'Entre Ríos', 'Formosa', 'Jujuy', 'La Pampa',
      'La Rioja', 'Mendoza', 'Misiones', 'Neuquén', 'Rio Negro', 'Salta', 'San Juan', 'San Luis', 'Santa Cruz',
      'Santa Fe', 'Sgo. del Estero', 'Tierra del Fuego', 'Tucumán'].each do |state_name|
       TwitterState.create(name: state_name, twitter_country: argentina) unless TwitterState.where(name: state_name).exists?
+    end
+
+    colombia = TwitterCountry.where(name: 'Colombia').first
+    ["Amazonas", "Antioquia", "Arauca", "Atlántico", "Bolívar", "Boyacá", "Caldas", "Caquetá", "Casanare", "Cauca",
+     "Cesar", "Chocó", "Córdoba", "Cundinamarca", "Guainía", "Guaviare", "Huila", "La Guajira", "Magdalena", "Meta",
+     "Nariño", "Norte de Santander", "Putumayo", "Quindío", "Risaralda", "San Andrés y Providencia", "Santander",
+     "Sucre", "Tolima", "Valle del Cauca", "Vaupés", "Vichada", "Colombia"].each do |state_name|
+      TwitterState.create(name: state_name, twitter_country: colombia) unless TwitterState.where(name: state_name).exists?
+    end
+
+    chile = TwitterCountry.where(name: 'Chile').first
+    ["Arica y Parinacota", "Tarapacá", "Antofagasta", "Atacama", "Coquimbo", "Valparaíso", "Santiago", "O'Higgins",
+     "Maule", "Biobío", "La Araucanía", "Los Ríos", "Los Lagos", "Aysén", "Magallanes"].each do |state_name|
+      TwitterState.create(name: state_name, twitter_country: chile) unless TwitterState.where(name: state_name).exists?
+    end
+
+    ecuador = TwitterCountry.where(name: 'Ecuador').first
+    ["Azuay", "Bolívar", "Cañar", "Carchi", "Chimborazo", "Cotopaxi", "El Oro", "Esmeraldas", "Galápagos", "Guayas",
+     "Imbabura", "Loja", "Los Ríos", "Manabí", "Morona Santiago", "Napo", "Orellana", "Pastaza", "Pichincha",
+     "Santa Elena", "Santo Domingo de los Tsáchilas", "Sucumbíos", "Tungurahua", "Zamora Chinchipe"].each do |state_name|
+      TwitterState.create(name: state_name, twitter_country: ecuador) unless TwitterState.where(name: state_name).exists?
+    end
+
+    mexico = TwitterCountry.where(name: 'Mexico').first
+    ["Aguascalientes","Baja California", "Baja California Sur", "Campeche", "Chiapas", "Chihuahua", "Coahuila de Zaragoza",
+     "Colima", "Distrito Federal", "Durango", "Guanajuato", "Guerrero", "Hidalgo", "Jalisco", "México",
+     "Michoacán de Ocampo", "Morelos", "Nayarit", "Nuevo León", "Oaxaca", "Puebla", "Querétaro", "Quintana Roo",
+     "San Luis Potosí", "Sinaloa", "Sonora", "Tabasco", "Tamaulipas", "Tlaxcala", "Veracruz de Ignacio de la Llave",
+     "Yucatán", "Zacatecas"].each do |state_name|
+      TwitterState.create(name: state_name, twitter_country: mexico) unless TwitterState.where(name: state_name).exists?
+    end
+
+    paraguay = TwitterCountry.where(name: 'Paraguay').first
+    ["Asunción", "Concepción", "San Pedro", "Cordillera", "Guairá", "Caaguazú", "Caazapá", "Itapúa", "Misiones",
+     "Paraguarí", "Alto Paraná", "Central", "Ñeembucú", "Amambay", "Canindeyú", "Presidente Hayes", "Alto Paraguay",
+     "Boquerón"].each do |state_name|
+      TwitterState.create(name: state_name, twitter_country: paraguay) unless TwitterState.where(name: state_name).exists?
+    end
+
+    uruguay = TwitterCountry.where(name: 'Uruguay').first
+    ["Artigas", "Canelones", "Cerro Largo", "Colonia", "Durazno", "Flores", "Florida", "Lavalleja", "Maldonado",
+     "Montevideo", "Paysandú", "Río Negro", "Rivera", "Rocha", "Salto", "San José", "Soriano", "Tacuarembó",
+     "Treinta y Tres"].each do |state_name|
+      TwitterState.create(name: state_name, twitter_country: uruguay) unless TwitterState.where(name: state_name).exists?
     end
   end
 
@@ -295,22 +339,312 @@ namespace :borwin do
             twitter_user.twitter_state = TwitterState.where(name: 'Tierra del Fuego').first
           elsif location.match(/tucumán/) || location.match(/tucuman/)
             twitter_user.twitter_state = TwitterState.where(name: 'Tucumán').first
+            # COLOMBIA
+          elsif location.match(/amazonas/)
+            twitter_user.twitter_state = TwitterState.where(name: 'Amazonas').first
+          elsif location.match(/antioquia/) || location.match(/antioquía/)
+            twitter_user.twitter_state = TwitterState.where(name: 'Antioquia').first
+          elsif location.match(/atlántico/) || location.match(/atlantico/)
+            twitter_user.twitter_state = TwitterState.where(name: 'Atlántico').first
+          elsif location.match(/bolívar/) || location.match(/bolivar/)
+            twitter_user.twitter_state = TwitterState.where(name: 'Bolívar').first
+          elsif location.match(/boyacá/) || location.match(/boyaca/)
+            twitter_user.twitter_state = TwitterState.where(name: 'Boyacá').first
+          elsif location.match(/caldas/)
+            twitter_user.twitter_state = TwitterState.where(name: 'Caldas').first
+          elsif location.match(/caquetá/) || location.match(/caqueta/)
+            twitter_user.twitter_state = TwitterState.where(name: 'Caquetá').first
+          elsif location.match(/casanare/)
+            twitter_user.twitter_state = TwitterState.where(name: 'Casanare').first
+          elsif location.match(/cauca/)
+            twitter_user.twitter_state = TwitterState.where(name: 'Cauca').first
+          elsif location.match(/cesar/)
+            twitter_user.twitter_state = TwitterState.where(name: 'Cesar').first
+          elsif location.match(/chocó/) || location.match(/choco/)
+            twitter_user.twitter_state = TwitterState.where(name: 'Chocó').first
+          elsif location.match(/córdoba/) || location.match(/cordoba/)
+            twitter_user.twitter_state = TwitterState.where(name: 'Córdoba').first
+          elsif location.match(/cundinamarca/)
+            twitter_user.twitter_state = TwitterState.where(name: 'Cundinamarca').first
+          elsif location.match(/guainía/) || location.match(/guainia/)
+            twitter_user.twitter_state = TwitterState.where(name: 'Guainía').first
+          elsif location.match(/guaviare/)
+            twitter_user.twitter_state = TwitterState.where(name: 'Guaviare').first
+          elsif location.match(/huila/)
+            twitter_user.twitter_state = TwitterState.where(name: 'Huila').first
+          elsif location.match(/guajira/)
+            twitter_user.twitter_state = TwitterState.where(name: 'La Guajira').first
+          elsif location.match(/magdalena/)
+            twitter_user.twitter_state = TwitterState.where(name: 'Magdalena').first
+          elsif location.match(/meta/)
+            twitter_user.twitter_state = TwitterState.where(name: 'Meta').first
+          elsif location.match(/nariño/) || location.match(/narino/)
+            twitter_user.twitter_state = TwitterState.where(name: 'Nariño').first
+          elsif location.match(/norte/) && location.match(/santander/)
+            twitter_user.twitter_state = TwitterState.where(name: 'Norte de Santander').first
+          elsif location.match(/putumayo/)
+            twitter_user.twitter_state = TwitterState.where(name: 'Putumayo').first
+          elsif location.match(/quindio/) || location.match(/quindío/)
+            twitter_user.twitter_state = TwitterState.where(name: 'Quindío').first
+          elsif location.match(/risaralda/)
+            twitter_user.twitter_state = TwitterState.where(name: 'Risaralda').first
+          elsif ( location.match(/andrés/) || location.match(/andres/)) && location.match(/providencia/)
+            twitter_user.twitter_state = TwitterState.where(name: 'San Andrés y Providencia').first
+          elsif location.match(/santander/)
+            twitter_user.twitter_state = TwitterState.where(name: 'Santander').first
+          elsif location.match(/sucre/)
+            twitter_user.twitter_state = TwitterState.where(name: 'Sucre').first
+          elsif location.match(/tolima/)
+            twitter_user.twitter_state = TwitterState.where(name: 'Tolima').first
+          elsif location.match(/valle/) && location.match(/cauca/)
+            twitter_user.twitter_state = TwitterState.where(name: 'Valle del Cauca').first
+          elsif location.match(/vaupes/) || location.match(/vaupés/)
+            twitter_user.twitter_state = TwitterState.where(name: 'Vaupés').first
+          elsif location.match(/vichada/)
+            twitter_user.twitter_state = TwitterState.where(name: 'Vichada').first
+          elsif location.match(/colombia/)
+            twitter_user.twitter_state = TwitterState.where(name: 'Colombia').first
+            # MEXICO
+          elsif location.match(/aguascalientes/)
+            twitter_user.twitter_state = TwitterState.where(name: 'Aguascalientes').first
+          elsif location.match(/baja/) && location.match(/california/) && !location.match(/sur/)
+            twitter_user.twitter_state = TwitterState.where(name: 'Baja California').first
+          elsif location.match(/baja/) && location.match(/california/) && location.match(/sur/)
+            twitter_user.twitter_state = TwitterState.where(name: 'Baja California Sur').first
+          elsif location.match(/campeche/)
+            twitter_user.twitter_state = TwitterState.where(name: 'Campeche').first
+          elsif location.match(/chiapas/)
+            twitter_user.twitter_state = TwitterState.where(name: 'Chiapas').first
+          elsif location.match(/chihuahua/)
+            twitter_user.twitter_state = TwitterState.where(name: 'Chihuahua').first
+          elsif location.match(/coahuila/) && location.match(/zaragoza/)
+            twitter_user.twitter_state = TwitterState.where(name: 'Coahuila de Zaragoza').first
+          elsif location.match(/colima/)
+            twitter_user.twitter_state = TwitterState.where(name: 'Colima').first
+          elsif (location.match(/distrito/) && location.match(/federal/)) || location.match(/df/)
+            twitter_user.twitter_state = TwitterState.where(name: 'Distrito Federal').first
+          elsif location.match(/durango/)
+            twitter_user.twitter_state = TwitterState.where(name: 'Durango').first
+          elsif location.match(/guanajuato/)
+            twitter_user.twitter_state = TwitterState.where(name: 'Guanajuato').first
+          elsif location.match(/guerrero/)
+            twitter_user.twitter_state = TwitterState.where(name: 'Guerrero').first
+          elsif location.match(/hidalgo/)
+            twitter_user.twitter_state = TwitterState.where(name: 'Hidalgo').first
+          elsif location.match(/jalisco/)
+            twitter_user.twitter_state = TwitterState.where(name: 'Jalisco').first
+          elsif location.match(/mexico/) || location.match(/méxico/)
+            twitter_user.twitter_state = TwitterState.where(name: 'México').first
+          elsif location.match(/michoacán/) || location.match(/michoacan/)
+            twitter_user.twitter_state = TwitterState.where(name: 'Michoacán de Ocampo').first
+          elsif location.match(/morelos/)
+            twitter_user.twitter_state = TwitterState.where(name: 'Morelos').first
+          elsif location.match(/nayarit/)
+            twitter_user.twitter_state = TwitterState.where(name: 'Nayarit').first
+          elsif location.match(/león/) && location.match(/leon/)
+            twitter_user.twitter_state = TwitterState.where(name: 'Nuevo León').first
+          elsif location.match(/oaxaca/)
+            twitter_user.twitter_state = TwitterState.where(name: 'Oaxaca').first
+          elsif location.match(/puebla/)
+            twitter_user.twitter_state = TwitterState.where(name: 'Puebla').first
+          elsif location.match(/querétaro/) || location.match(/queretaro/)
+            twitter_user.twitter_state = TwitterState.where(name: 'Querétaro').first
+          elsif location.match(/quitana/) && location.match(/roo/)
+            twitter_user.twitter_state = TwitterState.where(name: 'Quintana Roo').first
+          elsif location.match(/san/) && location.match(/luis/) && location.match(/potosí/)
+            twitter_user.twitter_state = TwitterState.where(name: 'San Luis Potosí').first
+          elsif location.match(/sinaloa/)
+            twitter_user.twitter_state = TwitterState.where(name: 'Sinaloa').first
+          elsif location.match(/sonora/)
+            twitter_user.twitter_state = TwitterState.where(name: 'Sonora').first
+          elsif location.match(/tabasco/)
+            twitter_user.twitter_state = TwitterState.where(name: 'Tabasco').first
+          elsif location.match(/tamaulipas/)
+            twitter_user.twitter_state = TwitterState.where(name: 'Tamaulipas').first
+          elsif location.match(/tlaxcala/)
+            twitter_user.twitter_state = TwitterState.where(name: 'Tlaxcala').first
+          elsif location.match(/veracruz/)
+            twitter_user.twitter_state = TwitterState.where(name: 'Veracruz de Ignacio de la Llave').first
+          elsif location.match(/yucatán/) || location.match(/yucatan/)
+            twitter_user.twitter_state = TwitterState.where(name: 'Yucatán').first
+          elsif location.match(/zacatecas/)
+            twitter_user.twitter_state = TwitterState.where(name: 'Zacatecas').first
+            #CHILE
+          elsif location.match(/arica/) || location.match(/parinacota/)
+            twitter_user.twitter_state = TwitterState.where(name: 'Arica y Parinacota').first
+          elsif location.match(/tarapacá/) || location.match(/tarapaca/)
+            twitter_user.twitter_state = TwitterState.where(name: 'Tarapacá').first
+          elsif location.match(/antofagasta/)
+            twitter_user.twitter_state = TwitterState.where(name: 'Antofagasta').first
+          elsif location.match(/atacama/)
+            twitter_user.twitter_state = TwitterState.where(name: 'Atacama').first
+          elsif location.match(/coquimbo/)
+            twitter_user.twitter_state = TwitterState.where(name: 'Coquimbo').first
+          elsif location.match(/valparaíso/) || location.match(/valparaiso/)
+            twitter_user.twitter_state = TwitterState.where(name: 'Valparaíso').first
+          elsif location.match(/santiago/)
+            twitter_user.twitter_state = TwitterState.where(name: 'Santiago').first
+          elsif location.match(/o'higgins/)
+            twitter_user.twitter_state = TwitterState.where(name: "O'Higgins").first
+          elsif location.match(/maule/)
+            twitter_user.twitter_state = TwitterState.where(name: "Maule").first
+          elsif location.match(/biobío/) || location.match(/biobio/)
+            twitter_user.twitter_state = TwitterState.where(name: 'Biobío').first
+          elsif location.match(/araucanía/) || location.match(/araucania/)
+            twitter_user.twitter_state = TwitterState.where(name: 'La Araucanía').first
+          elsif location.match(/ríos/) || location.match(/rios/)
+            twitter_user.twitter_state = TwitterState.where(name: 'Los Ríos').first
+          elsif location.match(/lagos/)
+            twitter_user.twitter_state = TwitterState.where(name: 'Los Lagos').first
+          elsif location.match(/aysén/) || location.match(/aysen/)
+            twitter_user.twitter_state = TwitterState.where(name: 'Aysén').first
+          elsif location.match(/magallanes/)
+            twitter_user.twitter_state = TwitterState.where(name: 'Magallanes').first
+            #ECUADOR
+          elsif location.match(/azuay/)
+            twitter_user.twitter_state = TwitterState.where(name: 'Azuay').first
+          elsif location.match(/bolívar/) || location.match(/bolivar/)
+            twitter_user.twitter_state = TwitterState.where(name: 'Bolívar').first
+          elsif location.match(/cañar/) || location.match(/canar/)
+            twitter_user.twitter_state = TwitterState.where(name: 'Cañar').first
+          elsif location.match(/carchi/)
+            twitter_user.twitter_state = TwitterState.where(name: 'Carchi').first
+          elsif location.match(/chimborazo/)
+            twitter_user.twitter_state = TwitterState.where(name: 'Chimborazo').first
+          elsif location.match(/cotopaxi/)
+            twitter_user.twitter_state = TwitterState.where(name: 'Cotopaxi').first
+          elsif location.match(/oro/)
+            twitter_user.twitter_state = TwitterState.where(name: 'El Oro').first
+          elsif location.match(/esmeraldas/)
+            twitter_user.twitter_state = TwitterState.where(name: 'Esmeraldas').first
+          elsif location.match(/galápagos/) || location.match(/galapagos/)
+            twitter_user.twitter_state = TwitterState.where(name: 'Galápagos').first
+          elsif location.match(/guayas/)
+            twitter_user.twitter_state = TwitterState.where(name: 'Guayas').first
+          elsif location.match(/imbabura/)
+            twitter_user.twitter_state = TwitterState.where(name: 'Imbabura').first
+          elsif location.match(/loja/)
+            twitter_user.twitter_state = TwitterState.where(name: 'Loja').first
+          elsif location.match(/los/) && (location.match(/rios/) || location.match(/ríos/))
+            twitter_user.twitter_state = TwitterState.where(name: 'Los Ríos').first
+          elsif location.match(/manabi/) || location.match(/manabí/)
+            twitter_user.twitter_state = TwitterState.where(name: 'Manabí').first
+          elsif location.match(/morona/) && location.match(/santiago/)
+            twitter_user.twitter_state = TwitterState.where(name: 'Morona Santiago').first
+          elsif location.match(/napo/)
+            twitter_user.twitter_state = TwitterState.where(name: 'Napo').first
+          elsif location.match(/orellana/)
+            twitter_user.twitter_state = TwitterState.where(name: 'Orellana').first
+          elsif location.match(/pastaza/)
+            twitter_user.twitter_state = TwitterState.where(name: 'Pastaza').first
+          elsif location.match(/pichincha/)
+            twitter_user.twitter_state = TwitterState.where(name: 'Pichincha').first
+          elsif location.match(/santa/) && location.match(/elena/)
+            twitter_user.twitter_state = TwitterState.where(name: 'Santa Elena').first
+          elsif (location.match(/santo/) && location.match(/domingo/)) || (location.match(/tsáchilas/) || location.match(/tsachilas/))
+            twitter_user.twitter_state = TwitterState.where(name: 'Santo Domingo de los Tsáchilas').first
+          elsif location.match(/sucumbios/) || location.match(/sucumbíos/)
+            twitter_user.twitter_state = TwitterState.where(name: 'Sucumbíos').first
+          elsif location.match(/tungurahua/)
+            twitter_user.twitter_state = TwitterState.where(name: 'Tungurahua').first
+          elsif location.match(/zamora/) && location.match(/chinchipe/)
+            twitter_user.twitter_state = TwitterState.where(name: 'Zamora Chinchipe').first
+            #PARAGUAY
+          elsif location.match(/asuncion/) || location.match(/asunción/)
+            twitter_user.twitter_state = TwitterState.where(name: 'Asunción').first
+          elsif location.match(/concepción/) || location.match(/concepcion/)
+            twitter_user.twitter_state = TwitterState.where(name: 'Concepción').first
+          elsif location.match(/san/) && location.match(/pedro/)
+            twitter_user.twitter_state = TwitterState.where(name: 'San Pedro').first
+          elsif location.match(/cordillera/)
+            twitter_user.twitter_state = TwitterState.where(name: 'Cordillera').first
+          elsif location.match(/guairá/) || location.match(/guaira/)
+            twitter_user.twitter_state = TwitterState.where(name: 'Guairá').first
+          elsif location.match(/caaguazú/) || location.match(/caaguazu/)
+            twitter_user.twitter_state = TwitterState.where(name: 'Caaguazú').first
+          elsif location.match(/itapua/) || location.match(/itapúa/)
+            twitter_user.twitter_state = TwitterState.where(name: 'Itapúa').first
+          elsif location.match(/misiones/)
+            twitter_user.twitter_state = TwitterState.where(name: 'Misiones').first
+          elsif location.match(/paraguari/) || location.match(/paraguarí/)
+            twitter_user.twitter_state = TwitterState.where(name: 'Paraguarí').first
+          elsif location.match(/alto/) && ( location.match(/paraná/) || location.match(/parana/))
+            twitter_user.twitter_state = TwitterState.where(name: 'Alto Paraná').first
+          elsif location.match(/central/)
+            twitter_user.twitter_state = TwitterState.where(name: 'Central').first
+          elsif location.match(/ñeembucú/) || location.match(/neembucu/)
+            twitter_user.twitter_state = TwitterState.where(name: 'Ñeembucú').first
+          elsif location.match(/amambay/)
+            twitter_user.twitter_state = TwitterState.where(name: 'Amambay').first
+          elsif location.match(/canindeyú/) || location.match(/canindeyu/)
+            twitter_user.twitter_state = TwitterState.where(name: 'Canindeyú').first
+          elsif location.match(/canindeyú/) || location.match(/canindeyu/)
+            twitter_user.twitter_state = TwitterState.where(name: 'Canindeyú').first
+          elsif location.match(/presidente/) && location.match(/hayes/)
+            twitter_user.twitter_state = TwitterState.where(name: 'Presidente Hayes').first
+          elsif location.match(/alto/) && location.match(/paraguay/)
+            twitter_user.twitter_state = TwitterState.where(name: 'Alto Paraguay').first
+          elsif location.match(/boquerón/) || location.match(/boqueron/)
+            twitter_user.twitter_state = TwitterState.where(name: 'Boquerón').first
+            #URUGUAY
+          elsif location.match(/artigas/)
+            twitter_user.twitter_state = TwitterState.where(name: 'Artigas').first
+          elsif location.match(/canelones/)
+            twitter_user.twitter_state = TwitterState.where(name: 'Canelones').first
+          elsif location.match(/cerro/) && location.match(/largo/)
+            twitter_user.twitter_state = TwitterState.where(name: 'Cerro Largo').first
+          elsif location.match(/colonia/)
+            twitter_user.twitter_state = TwitterState.where(name: 'Colonia').first
+          elsif location.match(/durazno/)
+            twitter_user.twitter_state = TwitterState.where(name: 'Durazno').first
+          elsif location.match(/flores/)
+            twitter_user.twitter_state = TwitterState.where(name: 'Flores').first
+          elsif location.match(/florida/)
+            twitter_user.twitter_state = TwitterState.where(name: 'Florida').first
+          elsif location.match(/lavalleja/)
+            twitter_user.twitter_state = TwitterState.where(name: 'Lavalleja').first
+          elsif location.match(/maldonado/)
+            twitter_user.twitter_state = TwitterState.where(name: 'Maldonado').first
+          elsif location.match(/montevideo/)
+            twitter_user.twitter_state = TwitterState.where(name: 'Montevideo').first
+          elsif location.match(/paysandú/) || location.match(/paysandu/)
+            twitter_user.twitter_state = TwitterState.where(name: 'Paysandú').first
+          elsif location.match(/río/) && location.match(/negro/)
+            twitter_user.twitter_state = TwitterState.where(name: 'Río Negro').first
+          elsif location.match(/rivera/)
+            twitter_user.twitter_state = TwitterState.where(name: 'Rivera').first
+          elsif location.match(/rocha/)
+            twitter_user.twitter_state = TwitterState.where(name: 'Rocha').first
+          elsif location.match(/salto/)
+            twitter_user.twitter_state = TwitterState.where(name: 'Salto').first
+          elsif location.match(/san/) && (location.match(/jose/) || location.match(/josé/))
+            twitter_user.twitter_state = TwitterState.where(name: 'San José').first
+          elsif location.match(/soriano/)
+            twitter_user.twitter_state = TwitterState.where(name: 'Soriano').first
+          elsif location.match(/tacuarembo/) || location.match(/tacuarembó/)
+            twitter_user.twitter_state = TwitterState.where(name: 'Tacuarembó').first
+          elsif (location.match(/treinta/) && location.match(/tres/))  || location.match(/33/)
+            twitter_user.twitter_state = TwitterState.where(name: 'Treinta y Tres').first
           end
 
           # Finally check the country
-          if twitter_user.twitter_state || location.match(/argentin/)
+          if (!twitter_user.twitter_state.nil? && ["Buenos Aires",  "Catamarca",  "Chaco", "Córdoba", "Corrientes", "Entre Ríos", "Formosa", "Jujuy", "La Pampa", "La Rioja", "Mendoza", "Misiones", "Neuquén", "Rio Negro", "Salta", "San Juan", "San Luis", "Santa Cruz", "Santa Fe", "Sgo. del Estero", "Tierra del Fuego", "Tucumán"].contains(twitter_user.twitter_state.name)) || location.match(/argentin/)
             twitter_user.twitter_country = TwitterCountry.where(name: 'Argentina').first
-          elsif location.match /colombia/
+          elsif (!twitter_user.twitter_state.nil? && ["Amazonas", "Antioquia", "Arauca", "Atlántico", "Bolívar", "Boyacá", "Caldas", "Caquetá", "Casanare", "Cauca", "Cesar", "Chocó", "Córdoba", "Cundinamarca", "Guainía", "Guaviare", "Huila", "La Guajira", "Magdalena", "Meta", "Nariño", "Norte de Santander", "Putumayo", "Quindío", "Risaralda", "San Andrés y Providencia", "Santander", "Sucre", "Tolima", "Valle del Cauca", "Vaupés", "Vichada", "Colombia"].contains(twitter_user.twitter_state.name)) || (location.match /colombia/)
             twitter_user.twitter_country = TwitterCountry.where(name: 'Colombia').first
-          elsif location.match /chile/
+          elsif (!twitter_user.twitter_state.nil? && ["Arica y Parinacota", "Tarapacá", "Antofagasta", "Atacama", "Coquimbo", "Valparaíso", "Santiago", "O'Higgins", "Maule", "Biobío", "La Araucanía", "Los Ríos", "Los Lagos", "Aysén", "Magallanes"].contains(twitter_user.twitter_state.name)) || (location.match /chile/)
             twitter_user.twitter_country = TwitterCountry.where(name: 'Chile').first
-          elsif location.match /ecuador/
+          elsif (!twitter_user.twitter_state.nil? && ["Azuay", "Bolívar", "Cañar", "Carchi", "Chimborazo", "Cotopaxi", "El Oro", "Esmeraldas", "Galápagos", "Guayas", "Imbabura", "Loja", "Los Ríos", "Manabí", "Morona Santiago", "Napo", "Orellana", "Pastaza", "Pichincha", "Santa Elena", "Santo Domingo de los Tsáchilas", "Sucumbíos", "Tungurahua", "Zamora Chinchipe"].contains(twitter_user.twitter_state.name)) || (location.match /ecuador/)
             twitter_user.twitter_country = TwitterCountry.where(name: 'Ecuador').first
-          elsif location.match /paraguay/
+          elsif (!twitter_user.twitter_state.nil? && ["Asunción", "Concepción", "San Pedro", "Cordillera", "Guairá", "Caaguazú", "Caazapá", "Itapúa", "Misiones", "Paraguarí", "Alto Paraná", "Central", "Ñeembucú", "Amambay", "Canindeyú", "Presidente Hayes", "Alto Paraguay", "Boquerón"].contains(twitter_user.twitter_state.name)) || (location.match /paraguay/)
             twitter_user.twitter_country = TwitterCountry.where(name: 'Paraguay').first
-          elsif location.match /uruguay/
+          elsif (!twitter_user.twitter_state.nil? && ["Artigas", "Canelones", "Cerro Largo", "Colonia", "Durazno", "Flores", "Florida", "Lavalleja", "Maldonado", "Montevideo", "Paysandú", "Río Negro", "Rivera", "Rocha", "Salto", "San José", "Soriano", "Tacuarembó", "Treinta y Tres"].contains(twitter_user.twitter_state.name)) || (location.match /uruguay/)
             twitter_user.twitter_country = TwitterCountry.where(name: 'Uruguay').first
+          elsif (!twitter_user.twitter_state.nil? && ["Aguascalientes","Baja California", "Baja California Sur", "Campeche", "Chiapas", "Chihuahua", "Coahuila de Zaragoza", "Colima", "Distrito Federal", "Durango", "Guanajuato", "Guerrero", "Hidalgo", "Jalisco", "México", "Michoacán de Ocampo", "Morelos", "Nayarit", "Nuevo León", "Oaxaca", "Puebla", "Querétaro", "Quintana Roo", "San Luis Potosí", "Sinaloa", "Sonora", "Tabasco", "Tamaulipas", "Tlaxcala", "Veracruz de Ignacio de la Llave", "Yucatán", "Zacatecas"].contains(twitter_user.twitter_state.name)) || (location.match /mexico/)
+            twitter_user.twitter_country = TwitterCountry.where(name: 'Mexico').first
           end
+
+          #puts twitter_user.location.to_s + " => " + ((!twitter_user.twitter_country.nil?)? twitter_user.twitter_country.name.to_s : " " )+ " "+  ((!twitter_user.twitter_state.nil?)? twitter_user.twitter_state.name.to_s : " ")
 
           twitter_user.save
         end
