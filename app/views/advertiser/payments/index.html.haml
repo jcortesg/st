@@ -1,0 +1,42 @@
+- if flash.any?
+  .row
+    .span12
+      = render '/shared/flash', flash: flash
+
+.row
+  .span12
+    .round_box
+      .content
+        %h1.title Pagos
+
+        %table.table.table-striped
+          %thead
+            %tr
+              %th Fecha de creación
+              %th Última actualización
+              %th Importe
+              %th Estado
+              %th Acciones
+
+          %tbody
+            - @payments.each do |payment|
+              %tr{ :class => cycle('odd', 'even') }
+                %td= localize(payment.created_at, :format => "%d/%m/%Y %H:%M:%S")
+                %td= localize(payment.updated_at, :format => "%d/%m/%Y %H:%M:%S")
+                %td= sprintf("%.02f", payment.amount)
+                %td= payment.status
+                %td
+                  = link_to('Ver', [:advertiser, payment], class: 'btn btn-primary')
+        .center_text
+          = paginate @payments
+
+        .filters
+          .subtitle Filtros
+          = simple_form_for @search, :url => [:advertiser, :transactions], html: {method: :get, id: 'filter_form', class: 'form-horizontal'} do |f|
+            = f.input :updated_at_greater_than_or_equal_to, label: 'Desde', required: false, input_html: { class: 'medium', id: 'from_datepicker', value: @search.updated_at_greater_than_or_equal_to ? @search.updated_at_greater_than_or_equal_to.strftime("%d/%m/%Y") : ''}
+            = f.input :updated_at_less_than_or_equal_to, label: 'Hasta', required: false, input_html: { class: 'medium', id: 'to_datepicker', value: @search.updated_at_less_than_or_equal_to ? @search.updated_at_less_than_or_equal_to.strftime("%d/%m/%Y") : ''}
+            = f.input :amount_greater_than, label: 'Importe mayor a', required: false
+            = f.input :amount_less_than, label: 'Importe menor a', required: false
+            .form-actions
+              = f.submit 'Filtrar', :class => 'btn btn-primary'
+              = link_to 'Resetear', '#', :class => 'btn reset'
