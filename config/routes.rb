@@ -141,7 +141,7 @@ Borwin::Application.routes.draw do
       put :update_password
     end
     resources :transactions, only: [:index, :show]
-    resources :payments, only: [:index, :show, :new, :create]
+    resources :payments, only: [:index, :show, :new, :create, :pay]
   end
 
   # Influencer routes

@@ -5,6 +5,8 @@ class CreatePayments < ActiveRecord::Migration
       t.text :description
       t.float :amount
       t.string :status
+      t.string :gateway
+      t.string :payment_url
 
       t.timestamps
     end

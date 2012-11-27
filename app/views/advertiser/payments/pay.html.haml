@@ -1,0 +1,20 @@
+- if flash.any?
+  .row
+    .span12
+      = render '/shared/flash', flash: flash
+.row
+  .span12
+    .round_box
+      .content
+        %h1.title Orden de Pago
+        %dl.record_details
+          %dt Importe
+          %dd= sprintf("%.02f", @payment.amount)
+          %dt Descripción
+          %dd= @payment.description
+      .clear.center_text.show_buttons
+        = link_to('Pagar', @payment.payment_url, name: 'MP-Checkout', class: 'blue-ar-m-sq-arall' )
+        %script{:type => "text/javascript",
+                :src  => "http://mp-tools.mlstatic.com/buttons/render.js"}
+        = link_to('Cancelar', [:advertiser, :payments], class: 'btn btn-reverse')
+

@@ -29,15 +29,20 @@ class Advertiser::PaymentsController < ApplicationController
 
   def create
     @payment = Payment.new(params[:payment])
+    @payment.user_id = current_user.id
+    @payment.status = "created"
+
+    mp = MercadoPago.new('8354375930808502', 'cBF2nCroJTRLIClUZAKXZiTVs4GX1Who')
+    accessToken = mp.get_access_token()
+    preferenceData = Hash["items" => Array(Array["title"=>@payment.description, "quantity"=>1, "unit_price"=>@payment.amount, "currency_id"=>"ARS"])]
+    preference = mp.create_preference(preferenceData)
+
+    @payment.gateway = "mercadopago"
+    @payment.payment_url = preference['response']['init_point']
+
     if @payment.save
       flash[:notice] = "La orden de pago fue creada con éxito"
-      $mp = MercadoPago.new('8354375930808502', 'cBF2nCroJTRLIClUZAKXZiTVs4GX1Who')
-      $accessToken = $mp.get_access_token()
-      puts (accessToken)
-      preferenceData = Hash["items" => Array(Array["title"=>"testCreate", "quantity"=>1, "unit_price"=>10.2, "currency_id"=>"ARS"])]
-      preference = $mp.create_preference(preferenceData)
-      puts preference
-      redirect_to pay
+      render action: :pay
     else
       flash.now[:error] = "Hubo un error al intentar crear la orden de pago"
       render action: :new
@@ -46,7 +51,6 @@ class Advertiser::PaymentsController < ApplicationController
 
   def pay
     @payment = Payment.find(params[:id])
-
   end
 
 
