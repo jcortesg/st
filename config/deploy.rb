@@ -35,6 +35,11 @@ namespace :setup do
     run "ln -s #{shared_path}/.rvmrc #{release_path}/.rvmrc"
   end
 
+  desc "Copy pictures files"
+  task :copy_pictures, :roles => :app do
+    run "cp -r #{previous_release}/public/bwn-image #{release_path}/public/"
+  end
+
   desc 'Trust rvmrc file'
   task :trust_rvmrc do
     run "rvm rvmrc trust #{current_release}"
@@ -59,5 +64,6 @@ end
 
 after "deploy:update_code", "setup:copy_files"
 after "deploy:update_code", "setup:trust_rvmrc"
+after "deploy:update_code", "setup:copy_pictures"
 after "deploy:update_code", "setup:bundle_gems"
 after "deploy:update_code", "setup:precompile_assets"

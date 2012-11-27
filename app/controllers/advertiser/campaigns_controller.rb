@@ -125,19 +125,22 @@ class Advertiser::CampaignsController < ApplicationController
     unless @campaign.hashtag.nil? or @campaign.hashtag.empty?
       @histogram = Topsy.hashtag_histogram(@campaign.hashtag.sub(/#/,'').to_s)
       @experts = Topsy.hashtag_experts(@campaign.hashtag.sub(/#/,'').to_s)
-      @histogram_label = histogram_month_labels()
+      @histogram_label = histogram_month_labels
+      @hashtag_tweets = Topsy.hashtag_tweets(@campaign.hashtag.sub(/#/,'').to_s)
     end
 
     unless @campaign.phrase.nil? or @campaign.phrase.empty?
       @histogram_phrase = Topsy.phrase_histogram(@campaign.phrase)
       @phrase_experts = Topsy.phrase_experts(@campaign.phrase)
-      @histogram_phrase_label = histogram_month_labels()
+      @histogram_phrase_label = histogram_month_labels
+      @phrase_tweets = Topsy.phrase_tweets(@campaign.phrase)
     end
 
     unless @campaign.twitter_screen_name.nil? or @campaign.twitter_screen_name.empty?
       @histogram_twitter_user = Topsy.twitter_user_histogram(@campaign.twitter_screen_name)
       @user_experts = Topsy.twitter_user_experts(@campaign.twitter_screen_name)
-      @histogram_twitter_user_label = histogram_month_labels()
+      @histogram_twitter_user_label = histogram_month_labels
+      @twitter_user_tweets = Topsy.twitter_user_tweets(@campaign.twitter_screen_name)
     end
 
     respond_to do |format|
@@ -201,6 +204,7 @@ class Advertiser::CampaignsController < ApplicationController
         histogram_label += ", '#{date.strftime('%d-%m')}'"
       end
     end
+    histogram_label
   end
 
   def random_string(size = 20)

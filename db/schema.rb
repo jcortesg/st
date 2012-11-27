@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121029220454) do
+ActiveRecord::Schema.define(:version => 20121126134154) do
 
   create_table "advertisers", :force => true do |t|
     t.integer  "user_id"
@@ -311,6 +311,15 @@ ActiveRecord::Schema.define(:version => 20121029220454) do
     t.text     "keywords"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "payments", :force => true do |t|
+    t.integer  "user_id"
+    t.text     "description"
+    t.float    "amount"
+    t.string   "status"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   create_table "pictures", :force => true do |t|

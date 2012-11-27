@@ -263,6 +263,24 @@
                   %td= expert['name']
                   %td= expert['description']
 
+        -unless @hashtag_tweets.nil?  or @hashtag_tweets.count == 0
+          %h1.title= "Top Tweets "
+          %table.table.table-striped
+            %thead
+              %tr
+                %th{style: 'width: 45px'} &nbsp;
+                %th Usuario
+                %th Nombre
+                %th Descripción
+
+            %tbody
+              - @hashtag_tweets.each do |tweet|
+                %tr{ :class => cycle('odd', 'even') }
+                  %td= img_link_to_user(tweet['topsy_author_img'],tweet['trackback_author_nick'])
+                  %td= link_to_twitter_screen_name(tweet['trackback_author_nick'])
+                  %td= tweet['trackback_author_name']
+                  %td= tweet['content']
+
 
 - unless @campaign.phrase.nil? or @campaign.phrase.empty?
   .row
@@ -292,6 +310,24 @@
                   %td= link_to_twitter_screen_name(expert['nick'])
                   %td= expert['name']
                   %td= expert['description']
+
+        -unless @phrase_tweets.nil?  or @phrase_tweets.count == 0
+          %h1.title= "Top Tweets "
+          %table.table.table-striped
+            %thead
+              %tr
+                %th{style: 'width: 45px'} &nbsp;
+                %th Usuario
+                %th Nombre
+                %th Descripción
+
+            %tbody
+              - @phrase_tweets.each do |tweet|
+                %tr{ :class => cycle('odd', 'even') }
+                  %td= img_link_to_user(tweet['topsy_author_img'],tweet['trackback_author_nick'])
+                  %td= link_to_twitter_screen_name(tweet['trackback_author_nick'])
+                  %td= tweet['trackback_author_name']
+                  %td= tweet['content']
 
 
 
@@ -323,6 +359,24 @@
                   %td= link_to_twitter_screen_name(expert['nick'])
                   %td= expert['name']
                   %td= expert['description']
+
+        -unless @twitter_user_tweets.nil? or @twitter_user_tweets.count == 0
+          %h1.title= "Top Tweets "
+          %table.table.table-striped
+            %thead
+              %tr
+                %th{style: 'width: 45px'} &nbsp;
+                %th Usuario
+                %th Nombre
+                %th Descripción
+
+            %tbody
+              - @twitter_user_tweets.each do |tweet|
+                %tr{ :class => cycle('odd', 'even') }
+                  %td= img_link_to_user(tweet['topsy_author_img'],tweet['trackback_author_nick'])
+                  %td= link_to_twitter_screen_name(tweet['trackback_author_nick'])
+                  %td= tweet['trackback_author_name']
+                  %td= tweet['content']
 
 
 

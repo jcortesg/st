@@ -1,0 +1,4 @@
+= render '/shared/simple_form_errors', :f => f
+= f.simple_fields_for :payment do |i|
+  = i.input :amount
+  = i.input :description

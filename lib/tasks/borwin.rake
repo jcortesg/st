@@ -1147,11 +1147,19 @@ namespace :borwin do
     end
   end
 
+  desc 'Test'
+  task :tester, [:arg1] => :environment do |t, args|
+    args.with_defaults(:arg1 => "0")
+    puts args.arg1.to_i.to_s
+  end
+
+  # rake borwin:public_forced["299"]
   desc 'Publish active tweets'
-  task public_forced: :environment do
+  task :public_forced, [:arg1] => :environment do |t, args|
+    args.with_defaults(:arg1 => "0")
     puts "[INFO] Horario de ejecución: " + Time.now.to_s
 
-    tweets = Tweet.where("id = 393").all
+    tweets = Tweet.where("id = #{args.arg1}").all
 
     tweets.each do |tweet|
       begin
