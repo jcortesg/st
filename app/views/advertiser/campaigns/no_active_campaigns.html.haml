@@ -6,7 +6,7 @@
 .row
   .span12
     %ul.breadcrumb
-      %li.active Campañas
+      %li.active= t('campaigns')
 
 .row
   .span12
@@ -15,7 +15,7 @@
         - if current_user.advertiser.can_create_campaigns?
           .right
             = link_to('Crear Nueva Campaña', [:new, :advertiser, :campaign], class: 'btn btn-primary')
-        %h1.title Campañas
+        %h1.title= t('campaigns')
 
 
         %h2
@@ -25,4 +25,4 @@
         %br
 
         - if current_user.advertiser.can_create_campaigns?
-          = link_to("Crear Nueva Campaña", [:new, :advertiser, :campaign], class: 'btn btn-primary')
+          = link_to(t('new_campaign'), [:new, :advertiser, :campaign], class: 'btn btn-primary')

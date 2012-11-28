@@ -28,4 +28,4 @@
         %br
 
         - if current_user.advertiser.can_create_campaigns?
-          = link_to('Crear Nuevo Tweet', [:advertiser, @campaign, :tweets], :class => 'btn btn-primary')
+          = link_to(t('new_tweet'), [:advertiser, @campaign, :tweets], :class => 'btn btn-primary')

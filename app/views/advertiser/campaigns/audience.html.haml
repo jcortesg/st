@@ -5,13 +5,13 @@
   .span8.offset2
     %ul.breadcrumb
       %li
-        = link_to("Campañas", [:advertiser, :campaigns])
+        = link_to(t('campaigns'), [:advertiser, :campaigns])
         %span.divider /
       %li.active
         - if @campaign.created_at > Time.now - 1.minute
-          Nueva Campaña
+          = t('new_campaign')
         - else
-          Audiencia
+          = t('audience')
 
 .row
   .span8.offset2.round_box
@@ -81,7 +81,7 @@
               = check_box_tag "campaign[locations][]", province, f.object.locations.include?(province)
               = label_tag province, province, style: 'margin-right: 8px'
 
-      %h2 Edades
+      %h2= t('ages')
       .option
         = f.check_box( :moms, {:class =>'age-filter'})
         = f.label :moms, "Mamás"
@@ -104,7 +104,7 @@
         = f.check_box( :adult_men, {:class =>'age-filter'})
         = f.label :adult_men, "Hombres (más de 35 años)"
 
-      %h2 Sexo
+      %h2= t('genre')
 
       .option
         = f.check_box :males

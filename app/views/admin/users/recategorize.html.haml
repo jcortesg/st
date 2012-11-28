@@ -8,8 +8,8 @@
     = simple_form_for(@user, url: do_recategorize_admin_user_path(@user), method: :put, html:  { class: "form-horizontal round_form", method: :put }) do |f|
       %h1.form_title= "Recategorización del usuario #{@user.full_name} (#{@user.email})"
       = render '/shared/simple_form_errors', :f => f
-      = f.input :role, as: :select, collection: [['Anunciante', 'advertiser'], ['Agencia', 'affiliate']], include_blank: false
+      = f.input :role, as: :select, collection: [[t('advertiser'), 'advertiser'], [t('affiliate'), 'affiliate']], include_blank: false
 
       .form-actions
-        = f.submit 'Recategorizar', :class => 'btn btn-danger btn-large', confirm: "Esta seguro? Esta acción no puede deshacerse"
+        = f.submit t('recategorize'), :class => 'btn btn-danger btn-large', confirm: "Esta seguro? Esta acción no puede deshacerse"
         = link_to t('cancel'), [:admin, :users], class: 'btn btn-large'

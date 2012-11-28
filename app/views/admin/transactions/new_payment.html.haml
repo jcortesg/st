@@ -1,7 +1,7 @@
 .row
   .span8.offset2.round_box
     = simple_form_for(@transaction, url: create_new_payment_admin_transactions_path(@transaction), method: :post, html:  { class: "form-horizontal round_form", method: :put }) do |f|
-      %h1.form_title Nuevo Pago
+      %h1.form_title= t('new_payment')
       = render '/shared/simple_form_errors', :f => f
       = f.input :user_id, as: :select, collection: User.where("role in (?)", ['influencer', 'affiliate']).includes(:advertiser, :affiliate).all.collect { |u| [u.full_name, u.id] }, label: "Afiliado / Celebridad"
       = f.input :transaction_type, as: :select, collection: [['Pago', 'payment']], include_blank: false

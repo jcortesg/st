@@ -17,18 +17,18 @@
         %li
           = link_to( t('campaigns'), [:admin, :campaigns])
           %span.divider /
-      %li.active Clicks
+      %li.active= t('Clicks')
 
 .row
   .span12
     .round_box
       .content
-        %h1.title Clicks
+        %h1.title= t('Clicks')
 
         %table.table.table-striped
           %thead
             %tr
-              %th= Tweet
+              %th= t('Tweet')
               %th= sort_link(@search, :remote_ip, 'IP')
               %th= sort_link(@search, :remote_agent, t('browser'))
               %th= sort_link(@search, :created_at, t('date'))

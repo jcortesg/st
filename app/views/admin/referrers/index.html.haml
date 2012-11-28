@@ -12,7 +12,7 @@
       .content
         .right
           = link_to('Crear Referido', [:new, :admin, :referrer], :class => 'btn btn-primary')
-        %h1.title Agencias
+        %h1.title= t('afilliates')
 
         %table.table.table-striped
           %thead
@@ -22,7 +22,7 @@
               %th= sort_link(@search, :user_first_name_and_last_name, 'Referido')
               %th= sort_link(@search, :referrer_commission, 'Comisión (%)')
               %th= sort_link(@search, :referrer_on, "Creado")
-              %th Acciones
+              %th= t('actions')
 
           %tbody
             - @referrals.each do |referral|
@@ -33,18 +33,18 @@
                 %td= referral.referrer_commission
                 %td= referral.referrer_on.blank? ? '' : localize(referral.referrer_on, :format => "%d/%m/%Y")
                 %td
-                  = link_to('Editar', edit_admin_referrer_path(referral), class: 'btn btn-primary')
-                  = link_to('Eliminar', admin_referrer_path(referral), method: :delete, class: 'btn btn-danger', confirm: "Esta seguro que desea eliminar la relación de referido?" )
+                  = link_to(t('edit'), edit_admin_referrer_path(referral), class: 'btn btn-primary')
+                  = link_to(t('delete'), admin_referrer_path(referral), method: :delete, class: 'btn btn-danger', confirm: "Esta seguro que desea eliminar la relación de referido?" )
         .center_text
           = paginate @referrals
 
         .filters
-          .subtitle Filtros
+          .subtitle= t('filters')
           = simple_form_for @search, :url => [:admin, :referrers], html: {method: :get, id: 'filter_form', class: 'form-horizontal'} do |f|
             = f.input :email_equals, label: "Email", required: false
             .form-actions
-              = f.submit 'Filtrar', :class => 'btn btn-primary'
-              = link_to 'Resetear', '#', :class => 'btn reset'
+              = f.submit t('do_filter'), :class => 'btn btn-primary'
+              = link_to t('reset'), '#', :class => 'btn reset'
 
 
 

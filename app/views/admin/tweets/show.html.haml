@@ -5,30 +5,30 @@
 .row
   .span8.offset2
     .frontend_round_content
-      .main_blue_title Detalles de Tweet
+      .main_blue_title= t('tweet_details')
 
       %dl.record_details
-        %dt Campaña
+        %dt= t('campaing')
         %dd= dl_value @tweet.campaign.name
-        %dt Empresa
+        %dt= t('company')
         %dd= dl_value @tweet.campaign.advertiser.company
-        %dt Celebridad
+        %dt= t('celebrity')
         %dd= dl_value @tweet.influencer.full_name
-        %dt Tweet
+        %dt= t('tweet')
         %dd= dl_value @tweet.text
-        %dt Fecha y hora del tweet
+        %dt= t('tweet_date')
         %dd= localize(@tweet.tweet_at, :format => "%d/%m/%Y %H:%M")
-        %dt Link
+        %dt= t('link')
         %dd= @tweet.link_url
-        %dt Tipo de pago
+        %dt= t('fee_type')
         %dd= @tweet.fee_type == 'tweet_fee' ? "Pago por publicación" : "Pago por click"
-        %dt Precio
+        %dt= t('price')
         %dd= @tweet.fee_type == 'tweet_fee' ? "$#{sprintf("%.02f", @tweet.tweet_fee)}" : "$#{sprintf("%.02f", @tweet.cpc_fee)}"
-        %dt Estado
+        %dt= t('status')
         %dd= tweet_status_explanation(@tweet.status)
 
       .form-actions.center_text
-        = link_to('Listado', [:admin, @campaign], class: 'btn btn-large btn-primary')
+        = link_to(t('list'), [:admin, @campaign], class: 'btn btn-large btn-primary')
         - unless ['activated'].include?(@tweet.status)
-          = link_to('Editar', [:edit, :admin, @campaign, @tweet], class: 'btn btn-large btn-warning')
-          = link_to('Rechazar', [:reject, :admin, @campaign, @tweet], method: :get, class: 'btn btn-large btn-danger', confirm: '¿Esta seguro que desea rechazar el Tweet?')
+          = link_to(t('edit'), [:edit, :admin, @campaign, @tweet], class: 'btn btn-large btn-warning')
+          = link_to(t('reject'), [:reject, :admin, @campaign, @tweet], method: :get, class: 'btn btn-large btn-danger', confirm: '¿Esta seguro que desea rechazar el Tweet?')

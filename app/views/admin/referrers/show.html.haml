@@ -6,18 +6,18 @@
   .span12
     .round_box
       .content
-        %h1.title Referido
+        %h1.title= t('referral')
         %dl.record_details
-          %dt Usuario
+          %dt= t('user')
           %dd= dl_value @referral.referrer.full_name
-          %dt Referido
+          %dt= t('referral')
           %dd= dl_value @referral.full_name
-          %dt Comisión
+          %dt= t('comission')
           %dd= dl_value "#{@referral.referrer_commission} %"
-          %dt Fecha creación
+          %dt= t('creation_date')
           %dd= dl_value @referral.referrer_on.try(:strftime, "%d/%m/%Y")
       .clear.center_text.show_buttons
-        = link_to('Editar', edit_admin_referrer_path(@referral), class: 'btn btn-primary')
-        = link_to('Eliminar', admin_referrer_path(@referral), method: :delete, class: 'btn btn-danger', confirm: "Esta seguro que desea eliminar al referido?" )
-        = link_to('Listado', [:admin, :referrers], class: 'btn btn-primary')
+        = link_to(t('edit'), edit_admin_referrer_path(@referral), class: 'btn btn-primary')
+        = link_to(t('delete'), admin_referrer_path(@referral), method: :delete, class: 'btn btn-danger', confirm: "Esta seguro que desea eliminar al referido?" )
+        = link_to(t('list'), [:admin, :referrers], class: 'btn btn-primary')
 

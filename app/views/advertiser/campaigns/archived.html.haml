@@ -5,7 +5,7 @@
         = link_to("Campañas", [:advertiser, :campaigns])
         %span.divider /
       %li.active
-        Historial de Campañas
+        = t('campaigns_history')
 
 - if flash.any?
   .row
@@ -16,16 +16,16 @@
   .span12
     .round_box
       .content
-        %h1.title Campañas Historicas
+        %h1.title= t('historical_campaigns')
 
         %table.table.table-striped
           %thead
             %tr
-              %th= sort_link(@search, :name, 'Nombre')
-              %th= sort_link(@search, :clicks_count, 'Clicks')
-              %th= sort_link(@search, :cost, 'Costo')
-              %th= sort_link(@search, :created_at, "Creado")
-              %th Acciones
+              %th= sort_link(@search, :name, t('name'))
+              %th= sort_link(@search, :clicks_count, t('clicks'))
+              %th= sort_link(@search, :cost, t('cost'))
+              %th= sort_link(@search, :created_at, t('created'))
+              %th= t('actions')
 
           %tbody
             - @campaigns.each do |campaign|
@@ -35,9 +35,9 @@
                 %td= campaign.cost
                 %td= localize(campaign.created_at, :format => "%d/%m/%Y")
                 %td
-                  = link_to('Ver', [:advertiser, campaign], class: 'btn btn-primary')
+                  = link_to(t('see'), [:advertiser, campaign], class: 'btn btn-primary')
                   - if campaign.status != 'created'
-                    = link_to('Estadísticas', [:statistics, :advertiser, campaign], :class => 'btn btn-primary')
+                    = link_to(t('statistics'), [:statistics, :advertiser, campaign], :class => 'btn btn-primary')
 
         .center_text
           = paginate @campaigns
