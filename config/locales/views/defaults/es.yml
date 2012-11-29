@@ -33,8 +33,8 @@ es:
   moms: Mamás
   teens: Adolescentes
   college_students: Universitarios
-  young_women: Mujeres (18-34 años)
-  young_men: Hombres (18-34 años)
+  young_women: Mujeres (18 a 35 años)
+  young_men: Hombres (18 a 35 años)
   adult_women: Mujeres (Más de 35 años)
   adult_men: Hombres (Más de 35 años)
   women18: Mujeres (+18)
@@ -70,4 +70,11 @@ es:
   comission: Comisión
   reach:  Reach
   phrase: Palabra o frase
+  print: Imprimir
+  cash_out: Cash out
+  request: Solicitar
+  cash_out_details: Detalles de Cash Out
+  brand: Marca
+  income: Ingresos
+  cost_per_tweet: Costo por tweet
 

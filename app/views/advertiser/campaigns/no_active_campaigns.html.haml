@@ -14,12 +14,12 @@
       .content
         - if current_user.advertiser.can_create_campaigns?
           .right
-            = link_to('Crear Nueva Campaña', [:new, :advertiser, :campaign], class: 'btn btn-primary')
+            = link_to(t('new_campaign'), [:new, :advertiser, :campaign], class: 'btn btn-primary')
         %h1.title= t('campaigns')
 
 
         %h2
-          Todavía no has creado ninguna campaña.
+          = t('no_campaigns_yet')
 
         %br
         %br

@@ -11,7 +11,7 @@
   .span12
     %ul.breadcrumb
       %li
-        = link_to("Campañas", [:advertiser, :campaigns])
+        = link_to(t('campaigns'), [:advertiser, :campaigns])
         %span.divider /
       %li
         = link_to(@campaign.name, [:advertiser, @campaign])
@@ -24,7 +24,7 @@
     .round_box
       .content{style: 'font-size: 14px;line-height: 150%'}
         .right
-          = link_to('Imprimir', '#', class: 'btn btn-primary', onclick: "window.print()")
+          = link_to(t('print'), '#', class: 'btn btn-primary', onclick: "window.print()")
           = link_to('PDF', statistics_advertiser_campaign_path(@campaign, format: :pdf), class: 'btn btn-primary')
         %h1.title= "Campaña #{@campaign.name} - Estadísticas"
 

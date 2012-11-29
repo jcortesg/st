@@ -7,7 +7,7 @@
   .span12
     %ul.breadcrumb
       %li
-        = link_to("Campañas", [:advertiser, :campaigns])
+        = link_to(t('campaigns'), [:advertiser, :campaigns])
         %span.divider /
       %li.active= @campaign.name
 
@@ -22,7 +22,7 @@
 
 
         %h2
-          Todavía no has creado ningún tweet.
+          = t('no_tweets_yet')
 
         %br
         %br

@@ -7,16 +7,16 @@
   .span12
     .round_box
       .content
-        %h1.title Cash Out
+        %h1.title= t('cash_out')
 
 
         %table.table.table-striped
           %thead
             %tr
-              %th Fecha
-              %th Estado
-              %th Importe
-              %th Acciones
+              %th= t('date')
+              %th= t('status')
+              %th= t('amount')
+              %th= t('actions')
 
           %tbody
             - @cash_outs.each do |cash_out|
@@ -25,6 +25,6 @@
                 %td= cash_out.status_to_s
                 %td= number_to_currency(cash_out.amount)
                 %td
-                  = link_to('Ver', [:affiliate, cash_out], class: 'btn btn-primary')
+                  = link_to(t('see'), [:affiliate, cash_out], class: 'btn btn-primary')
         .center_text
           = paginate @cash_outs
