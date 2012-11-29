@@ -8,6 +8,8 @@
     .round_box
       .content
         %h1.title Pagos
+        .right
+          = link_to('Generar orden de pago', [:new, :advertiser, :payment], :class => 'btn btn-primary')
 
         %table.table.table-striped
           %thead

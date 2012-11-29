@@ -32,19 +32,34 @@ class Advertiser::PaymentsController < ApplicationController
     @payment.user_id = current_user.id
     @payment.status = "created"
 
-    mp = MercadoPago.new('8354375930808502', 'cBF2nCroJTRLIClUZAKXZiTVs4GX1Who')
-    accessToken = mp.get_access_token()
-    preferenceData = Hash["items" => Array(Array["title"=>@payment.description, "quantity"=>1, "unit_price"=>@payment.amount, "currency_id"=>"ARS"])]
-    preference = mp.create_preference(preferenceData)
+    advertiser = Advertiser.find_by_user_id(current_user.id)
 
-    @payment.gateway = "mercadopago"
-    @payment.payment_url = preference['response']['init_point']
+    begin
+      mp = MercadoPago.new(APP_CONFIG['mercadopago_client_id'], APP_CONFIG['mercadopago_client_secret'])
+      accessToken = mp.get_access_token()
+      preferenceData = Hash["items" => Array(Array["external_reference" => advertiser.company+ " "+ Time.now.to_s(:short), "payer_name" => advertiser.first_name, "payer_surname" => advertiser.last_name, "payer_email" => current_user.email, "title"=>@payment.description, "quantity"=>1, "unit_price"=>@payment.amount, "currency_id"=> APP_CONFIG['mercadopago_currency_id']])]
 
-    if @payment.save
-      flash[:notice] = "La orden de pago fue creada con éxito"
-      render action: :pay
-    else
-      flash.now[:error] = "Hubo un error al intentar crear la orden de pago"
+      preference = mp.create_preference(preferenceData)
+
+      if preference['status'] == "201"
+        @payment.gateway = "mercadopago"
+        @payment.payment_url = preference['response']['init_point']
+
+        if @payment.save
+          flash[:notice] = "La orden de pago fue creada con éxito"
+          render action: :pay
+        else
+          flash.now[:error] = "Hubo un error al intentar crear la orden de pago"
+          render action: :new
+        end
+      else
+        flash.now[:error] = "Hubo un error en el Gateway de pago al intentar crear la orden"
+        render action: :new
+      end
+
+    rescue Exception => e
+      puts "[ERROR] #{e.message}"
+      flash.now[:error] = "Hubo un error en el Gateway de pago al intentar crear la orden"
       render action: :new
     end
   end

@@ -13,8 +13,10 @@
           %dt Descripción
           %dd= @payment.description
       .clear.center_text.show_buttons
-        = link_to('Pagar', @payment.payment_url, name: 'MP-Checkout', class: 'blue-ar-m-sq-arall' )
+        = link_to('Pagar', @payment.payment_url, name: 'MP-Checkout', class: 'blue-co-m-sq-coall' )
         %script{:type => "text/javascript",
                 :src  => "http://mp-tools.mlstatic.com/buttons/render.js"}
-        = link_to('Cancelar', [:advertiser, :payments], class: 'btn btn-reverse')
+        %br
+        %br
+        = link_to('Cancelar', [:advertiser, :payments], class: 'btn btn-mini btn-reverse')
 
