@@ -3,32 +3,32 @@
     .frontend_round_content
 
       .title
-        Monetizá tu presencia en Twitter
+        =t('influencers_about_title')
 
       %p
-        Te conectamos con empresas interesadas en tu audiencia que te pagan por tus tweets sponsoreados.
+        =t('influencers_about_text_1')
 
       %p
-        Es simple
+        =t('influencers_about_text_2')
       %ol
-        %li Te das de alta en nuestra plataforma de marketing online: TweetGo!
-        %li La plataforma define el precio de tus tweets a través de una combinación de métricas
-        %li Activamos tu cuenta
+        %li =t('influencers_about_text_3')
+        %li =t('influencers_about_text_4')
+        %li =t('influencers_about_text_5')
 
       %p
-        = link_to("Date de alta ahora en TweetGo!", influencer_devise_registration_path)
+        = link_to(t('register_now_to_tweetgo'), influencer_devise_registration_path)
 
       %p
-        = link_to("Más información", home_influencers_contact_path)
+        = link_to(t('more_info'), home_influencers_contact_path)
       %br
 
   .span4
     .frontend_round_content
       %ul.nav.nav-pills.nav-stacked
         %li.active
-          %a{:href => home_influencers_about_path} Visión General
+          %a{:href => home_influencers_about_path}= t('general_vision')
         %li
-          %a{:href => home_influencers_contact_path} Contáctenos
+          %a{:href => home_influencers_contact_path}= t('contact_us')
 
       .presentation_link
         = link_to(image_tag('presentacion_celebridades.png'), home_influencers_presentation_path)
