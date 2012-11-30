@@ -154,8 +154,8 @@
                     %li= link_to 'La Empresa', about_us_path
                     %li= link_to 'Prensa', press_path
                     %li= link_to 'Blog', 'http://blog.borwin.net', target: '_blank'
-                    %li= link_to 'Trabajá con Nosotros', work_with_us_path
-                    %li= link_to 'Contáctenos', contact_path
+                    %li= link_to t('work_with_us'), work_with_us_path
+                    %li= link_to t('contact_us'), contact_path
             - if user_signed_in?
               %ul.nav.pull-right
                 = form_tag(destroy_user_session_path, :method => :delete) do
@@ -200,8 +200,8 @@
           %ul
             %li= link_to 'La Empresa', about_us_path
             %li= link_to 'Prensa', press_path
-            %li= link_to 'Trabajá con Nosotros', work_with_us_path
-            %li= link_to 'Contáctenos', contact_path
+            %li= link_to t('work_with_us'), work_with_us_path
+            %li= link_to t('contact_us'), contact_path
         .col.col5
           %h5 Términos
           %ul

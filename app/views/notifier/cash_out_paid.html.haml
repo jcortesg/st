@@ -24,9 +24,9 @@
     %p.style4
       Para revisar el cash out
       - if @cash_out.user.role == 'influencer'
-        = link_to("entrá a tu cuenta", influencer_cash_out_url(@cash_out))
+        = link_to(t('sign_into_your_account'), influencer_cash_out_url(@cash_out))
       - else
-        = link_to("entrá a tu cuenta", affiliate_cash_out_url(@cash_out))
+        = link_to(t('sign_into_your_account'), affiliate_cash_out_url(@cash_out))
     %p.style4
       = image_tag attachments['sellochico.jpg'].url
     %p.style4
