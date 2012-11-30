@@ -99,7 +99,7 @@
         = simple_form_for @influencer, :url => influencer_profiles_update_photo_path do |f|
           .modal-header
             %button.close{'data-dismiss' => 'modal'} x
-            %h3 Foto
+            %h3= t('picture')
           .modal-body
             .clearfix
               .image

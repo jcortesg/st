@@ -8,23 +8,23 @@
       .main_blue_title Detalles de Tweet a rechazar
 
       %dl.record_details
-        %dt Campaña
+        %dt= t('campaign')
         %dd= dl_value @tweet.campaign.name
-        %dt Empresa
+        %dt= t('company')
         %dd= dl_value @tweet.campaign.advertiser.company
-        %dt Celebridad
+        %dt= t('celebrity')
         %dd= dl_value @tweet.influencer.full_name
-        %dt Tweet
+        %dt= t('tweet')
         %dd= dl_value @tweet.text
-        %dt Fecha y hora del tweet
+        %dt= t('tweet_date')
         %dd= localize(@tweet.tweet_at, :format => "%d/%m/%Y %H:%M")
-        %dt Link
+        %dt= t('link')
         %dd= @tweet.link_url
-        %dt Tipo de pago
+        %dt= t('payment_type')
         %dd= @tweet.fee_type == 'tweet_fee' ? "Pago por publicación" : "Pago por click"
-        %dt Precio
+        %dt= t('price')
         %dd= @tweet.fee_type == 'tweet_fee' ? "$#{sprintf("%.02f", @tweet.influencer_tweet_fee)}" : "$#{sprintf("%.02f", @tweet.influencer_cpc_fee)}"
-        %dt Estado
+        %dt= t('status')
         %dd= tweet_status_explanation(@tweet.status)
 
       %h4.title="Celebridades en la campaña:"

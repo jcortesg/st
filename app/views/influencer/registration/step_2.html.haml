@@ -1,7 +1,7 @@
 .row.registration_container
   .span6.offset3
     = simple_form_for(@influencer, :url => process_step_2_influencer_registration_path, :html => { class: "form-horizontal round_form", method: :put }) do |f|
-      %h1.form_title Datos de contacto
+      %h1.form_title= t('contact_info')
       = render '/shared/simple_form_errors', :f => f
       = f.input :address
       = f.input :country

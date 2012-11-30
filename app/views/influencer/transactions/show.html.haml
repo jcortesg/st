@@ -6,21 +6,21 @@
   .span12
     .round_box
       .content
-        %h1.title Transacción
+        %h1.title= t('transaction')
         %dl.record_details
-          %dt Fecha
+          %dt= t('date')
           %dd= dl_value @transaction.transaction_at.try(:strftime, "%d/%m/%Y %H:%M:%S")
-          %dt Usuario
+          %dt= t('user')
           %dd= dl_value @transaction.user ? @transaction.user.full_name : '&nbsp'.html_safe
-          %dt Tipo
+          %dt= t('type')
           %dd= dl_value transaction_type_description(@transaction.transaction_type)
-          %dt Detalle
+          %dt= t('detail')
           %dd= dl_value @transaction.details
-          %dt Importe
+          %dt= t('amount')
           %dd= dl_value sprintf("%.02f", @transaction.amount)
-          %dt Balance
+          %dt= t('balance')
           %dd= dl_value sprintf("%.02f", @transaction.balance)
 
       .clear.center_text.show_buttons
-        = link_to('Listado', [:influencer, :transactions], class: 'btn btn-primary')
+        = link_to(t('list'), [:influencer, :transactions], class: 'btn btn-primary')
 

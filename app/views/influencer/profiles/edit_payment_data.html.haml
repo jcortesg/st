@@ -1,7 +1,7 @@
 .row
   .span6.offset3
     = simple_form_for(@influencer, :url => influencer_profiles_process_payment_data_path, :html => { :class => "form-horizontal round_form" }) do |f|
-      %h1.form_title Datos para cobros
+      %h1.form_title= t('payment_info')
       = render '/shared/simple_form_errors', :f => f
       = f.input :preferred_payment, :as => :select, collection: [t('check'), t('transfer')]
       = f.input :account_number
