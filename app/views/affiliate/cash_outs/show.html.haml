@@ -8,7 +8,7 @@
       .main_blue_title= t('cash_out_details')
 
       %dl.record_details
-        %dt= t('date')
+        %dt= t('a_date')
         %dd= @cash_out.created_at.strftime("%d/%m/%Y %H:%M:%S")
         %dt= t('amount')
         %dd= number_to_currency(@cash_out.amount)
@@ -24,7 +24,7 @@
       %table.table.table-striped
         %thead
           %tr
-            %th= t('date')
+            %th= t('a_date')
             %th= t('type')
             %th= t('link')
             %th= t('amount')

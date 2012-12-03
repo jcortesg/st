@@ -32,55 +32,55 @@
         %br
 
         %div
-          =t('objective'):
+          =t('objective') + ":"
           = @campaign.objective
 
         %div
-          =t('tweets'):
+          =t('tweets') + ":"
           = @campaign.tweets.activated.nil? ? 0 : @campaign.tweets.activated.count
         %div
-          =t('clicks'):
+          =t('clicks') + ":"
           = @campaign.clicks_count
         %div
-          =t('retweets'):
+          =t('retweets') + ":"
           = @campaign.retweets.nil? ? 0 : @campaign.retweets.count
         %div
-          =t('campaign_cost'):
+          =t('campaign_cost') + ":"
           = number_to_currency(@campaign.tweets.activated.sum(:tweet_fee))
         -if @campaign.clicks_count != 0
           %div
-            =t('CPC_campaign'):
+            =t('CPC_campaign') + ":"
             = @campaign.statistics_cpc
         - unless @campaign.twitter_screen_name.blank?
           - if @campaign.status == 'archived' && @campaign.followers_end_count!=0
             %div
-              =t('CPContact_campaign'):
+              =t('CPContact_campaign') + ":"
               = number_to_currency( @campaign.tweets.activated.sum(:tweet_fee) / @campaign.followers_end_count )
         %div
-          =t('CPMS_campaign'):
+          =t('CPMS_campaign') + ":"
           = @campaign.statistics_cpms
         - unless @campaign.twitter_screen_name.blank?
           %br
           %div
-            =t('start_followers'):
+            =t('start_followers') + ":"
             = @campaign.followers_start_count
           - if @campaign.status == 'archived'
-            =t('end_followers'):
+            =t('end_followers') + ":"
             = @campaign.followers_end_count
             - if @campaign.followers_end_count > @campaign.followers_start_count
               %div
-                =t('followers_increment'):
+                =t('followers_increment') + ":"
                 = @campaign.followers_end_count - @campaign.followers_start_count
           - else
-            =t('actual_followers'):
+            =t('actual_followers') + ":"
             - current_followers = @campaign.campaign_metrics.order('metric_on desc').first.followers
             = current_followers
             - if current_followers > @campaign.followers_start_count
               %div
-                =t('followers_increment'):
+                =t('followers_increment') + ":"
                 = current_followers - @campaign.followers_start_count
                 %br
-                =t('CPNS'):
+                =t('CPNS')
                 = number_to_currency( @campaign.tweets.activated.sum(:tweet_fee) / (current_followers - @campaign.followers_start_count) )
 
 
@@ -151,7 +151,7 @@
                 %td= link_to(tweet.clicks_count, [:advertiser, tweet.campaign, tweet, :clicks])
                 %td= statistics_tweet_cpc(tweet)
                 %td= statistics_tweet_cpms(tweet)
-                %td= tweet.i Evoluciónnfluencer.audience.followers
+                %td= tweet.influencer.audience.followers
                 %td= link_to(t('detail'), [:advertiser, @campaign, tweet], class: 'btn')
 
 .row
@@ -221,7 +221,7 @@
               %th= t('user')
               %th= t('tweet')
               %th= t('followers')
-              %th{style: 'width: 140px'}= t('date')
+              %th{style: 'width: 140px'}= t('a_date')
 
           %tbody
             - @campaign.retweets.order('twitter_created_at asc').each do |retweet|
@@ -301,7 +301,7 @@
       .round_box
         .content
 
-          %h1.title= t('mentions_follow_up'):
+          %h1.title= t('mentions_follow_up')
           %br
           %br
           #evolution_twitter_user

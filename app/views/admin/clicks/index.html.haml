@@ -31,7 +31,7 @@
               %th= t('Tweet')
               %th= sort_link(@search, :remote_ip, 'IP')
               %th= sort_link(@search, :remote_agent, t('browser'))
-              %th= sort_link(@search, :created_at, t('date'))
+              %th= sort_link(@search, :created_at, t('a_date'))
 
           %tbody
             - @clicks.each do |click|

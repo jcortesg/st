@@ -33,7 +33,7 @@
                 %td= advertiser.company
                 %td= advertiser.user.email
                 %td= advertiser.created_at ? (localize(advertiser.created_at, :format => "%d/%m/%Y")) : ""
-                %td= advertiser.can_create_campaigns? ? t('yes') : t('no')
+                %td= advertiser.can_create_campaigns? ? "Si" : "No"
                 %td
                   = link_to(t('edit'), [:edit, :admin, advertiser], class: 'btn btn-primary')
                   = link_to(t('destroy'), [:admin, advertiser], method: :delete, class: 'btn btn-danger', confirm: t('are_you_sure') )

@@ -16,13 +16,13 @@
 .row
   .span8.offset2.round_box
     = form_for(@campaign, url: [:set_audience, :advertiser, @campaign], html:  { id: "audience_campaign_form", class: "form-horizontal round_form", method: :put }) do |f|
-      %h1.form_title Target
+      %h1.form_title= t('target')
       - if @campaign.created_at > Time.now - 1.minute
         .center_text{style: 'margin: -20px 0 20px 0;'}
           &nbsp;
       = render '/shared/form_errors', :object => f.object
 
-      %h2 Zona Geográfica
+      %h2= t('geo_zone')
       .geographic_zones
         .geographic_zone.argentine
           = check_box_tag "campaign[locations][]", "Argentina", f.object.locations.include?("Argentina")
@@ -114,7 +114,7 @@
         = f.check_box :females
         = f.label :females, t('women')
 
-      %h2  Hobbys
+      %h2= t('hobbys')
       .option
         = f.check_box( :sports, {:class =>'hobby-filter'})
         = f.label :sports, t('sports')
@@ -140,7 +140,7 @@
         = f.check_box( :luxury, {:class =>'hobby-filter'})
         = f.label :luxury, t('luxury')
 
-      %h2 Seguidores
+      %h2= t('followers')
       .option
         = check_box_tag "campaign[followers_qty][]", "0-500", f.object.followers_qty.include?("0-500")
         = label_tag "0 a 500"
@@ -169,7 +169,7 @@
         = check_box_tag "campaign[followers_qty][]", "2000000-50000000", f.object.followers_qty.include?("2000000-50000000")
         = label_tag "2.000.000 a 50.000.000"
 
-      %h2 Precio del Tweet
+      %h2= t('tweet_price')
       .option
         = check_box_tag "campaign[tweet_price][]", "0-300", f.object.tweet_price.include?("0-300")
         = label_tag "$0 a $300"

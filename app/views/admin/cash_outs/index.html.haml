@@ -30,7 +30,7 @@
                     = localize(cash_out.paid_at, format: '%d/%m/%Y %H:%M:%S')
                 %td= localize(cash_out.created_at, format: '%d/%m/%Y %H:%M:%S')
                 %td
-                  = link_to('Ver', [:admin, cash_out], class: 'btn btn-primary')
+                  = link_to(t('see'), [:admin, cash_out], class: 'btn btn-primary')
         .center_text
           = paginate @cash_outs
 

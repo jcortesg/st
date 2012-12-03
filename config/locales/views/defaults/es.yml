@@ -1,5 +1,5 @@
 es:
-  see: ver
+  see: Ver
   edit: Editar
   delete: Borrar
   destroy: Eliminar
@@ -54,7 +54,7 @@ es:
   detail: Detalle
   reject: Rechazar
   user: Usuario
-  date: Fecha
+  a_date: Fecha
   back: Volver
   cash_outs: Cash Outs
   skip_step: Saltear este paso

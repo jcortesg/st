@@ -8,7 +8,7 @@
       .content
         %h1.title= t('transaction')
         %dl.record_details
-          %dt= t('date')
+          %dt= t('a_date')
           %dd= dl_value @transaction.created_at.try(:strftime, "%d/%m/%Y")
           %dt= t('user')
           %dd= dl_value @transaction.user ? admin_link_to_user(@transaction.user) : ''

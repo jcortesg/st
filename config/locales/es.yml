@@ -1,4 +1,6 @@
 es:
+  yes: Sí
+  no: No
   date:
     abbr_day_names:
     - dom

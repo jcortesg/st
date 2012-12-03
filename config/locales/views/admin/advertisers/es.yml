@@ -12,7 +12,7 @@ es:
   city: Ciudad
   state: Estado
   country: País
-  postal_code: Código postál
+  postal_code: Código postal
   how_you_know_borwin: Cómo conoció Borwin
   creation_date: Fecha de creación
   update_date: Fecha de actualización

@@ -25,7 +25,7 @@
               %tr{ :class => cycle('odd', 'even') }
                 %td= row_number = row_number + 1
                 %td= user.email
-                %td= I18n.t("user.role.#{user.role}")
+                %td= t("#{user.role}")
                 %td= user.created_at ? (localize(user.created_at, :format => "%d/%m/%Y")) : ""
                 %td.center_text.last
                   = form_for user, :url => user.approved? ? disapprove_admin_user_path(user) : approve_admin_user_path(user), html: { style: 'display: inline' } do

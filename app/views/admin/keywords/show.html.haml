@@ -10,7 +10,7 @@
         %dl.record_details
           %dt= t('name')
           %dd= dl_value I18n.t("keywords.#{@keyword.name}")
-          %dt= t('keywords')
+          %dt= t('keyword')
           %dd= dl_value @keyword.keywords.gsub(',', ', ') rescue '&nbsp;'.html_safe
           %dt= t('creation_date')
           %dd= dl_value @keyword.created_at.try(:strftime, "%d/%m/%Y")

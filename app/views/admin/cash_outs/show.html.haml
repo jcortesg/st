@@ -10,7 +10,7 @@
       %dl.record_details
         %dt= t('user')
         %dd= link_to(@cash_out.user.full_name, @cash_out.user.role == 'influencer' ? admin_influencer_path(@cash_out.user.influencer) : admin_affiliate_path(@cash_out.user.affiliate), target: '_blank')
-        %dt= t('date')
+        %dt= t('a_date')
         %dd= @cash_out.created_at.strftime("%d/%m/%Y %H:%M:%S")
         %dt= t('amount')
         %dd= number_to_currency(@cash_out.amount)
@@ -21,14 +21,14 @@
           %dd= @cash_out.paid_at.strftime("%d/%m/%Y %H:%M:%S")
 
       .form-actions.center_text
-        = link_to(t('list')'Listado', [:admin, :cash_outs], class: 'btn btn-large btn-primary')
+        = link_to(t('list'), [:admin, :cash_outs], class: 'btn btn-large btn-primary')
         - if @cash_out.status == 'created'
-          = link_to(t('pay'), [:pay, :admin, @cash_out], method: :put, class: 'btn btn-large btn-danger', confirm: t('are_you_sure'))
+          = link_to(t('pay'), [:pay, :admin, @cash_out], method: :put, class: 'btn btn-large btn-danger', confirm: t('are_you_sure_pay'))
 
       %table.table.table-striped
         %thead
           %tr
-            %th= t('date')
+            %th= t('a_date')
             %th= t('type')
             %th= t('link')
             %th= t('amount')
