@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121029220454) do
+ActiveRecord::Schema.define(:version => 20121204175025) do
 
   create_table "advertisers", :force => true do |t|
     t.integer  "user_id"
@@ -80,77 +80,219 @@ ActiveRecord::Schema.define(:version => 20121029220454) do
 
   create_table "audiences", :force => true do |t|
     t.integer  "influencer_id"
-    t.integer  "followers",              :default => 0, :null => false
-    t.integer  "friends",                :default => 0, :null => false
-    t.integer  "tweets",                 :default => 0, :null => false
-    t.integer  "retweets",               :default => 0, :null => false
-    t.integer  "peerindex",              :default => 0, :null => false
-    t.integer  "klout",                  :default => 0, :null => false
-    t.integer  "males",                  :default => 0, :null => false
-    t.integer  "females",                :default => 0, :null => false
-    t.integer  "moms",                   :default => 0, :null => false
-    t.integer  "teens",                  :default => 0, :null => false
-    t.integer  "college_students",       :default => 0, :null => false
-    t.integer  "young_women",            :default => 0, :null => false
-    t.integer  "young_men",              :default => 0, :null => false
-    t.integer  "adult_women",            :default => 0, :null => false
-    t.integer  "adult_men",              :default => 0, :null => false
-    t.integer  "sports",                 :default => 0, :null => false
-    t.integer  "fashion",                :default => 0, :null => false
-    t.integer  "music",                  :default => 0, :null => false
-    t.integer  "movies",                 :default => 0, :null => false
-    t.integer  "politics",               :default => 0, :null => false
-    t.integer  "technology",             :default => 0, :null => false
-    t.integer  "travel",                 :default => 0, :null => false
-    t.integer  "luxury",                 :default => 0, :null => false
-    t.datetime "created_at",                            :null => false
-    t.datetime "updated_at",                            :null => false
-    t.integer  "country_argentina",      :default => 0, :null => false
-    t.integer  "country_colombia",       :default => 0, :null => false
-    t.integer  "country_chile",          :default => 0, :null => false
-    t.integer  "country_ecuador",        :default => 0, :null => false
-    t.integer  "country_paraguay",       :default => 0, :null => false
-    t.integer  "country_uruguay",        :default => 0, :null => false
-    t.integer  "state_buenos_aires",     :default => 0, :null => false
-    t.integer  "state_catamarca",        :default => 0, :null => false
-    t.integer  "state_chaco",            :default => 0, :null => false
-    t.integer  "state_cordoba",          :default => 0, :null => false
-    t.integer  "state_corrientes",       :default => 0, :null => false
-    t.integer  "state_entre_rios",       :default => 0, :null => false
-    t.integer  "state_formosa",          :default => 0, :null => false
-    t.integer  "state_jujuy",            :default => 0, :null => false
-    t.integer  "state_la_pampa",         :default => 0, :null => false
-    t.integer  "state_la_rioja",         :default => 0, :null => false
-    t.integer  "state_mendoza",          :default => 0, :null => false
-    t.integer  "state_misiones",         :default => 0, :null => false
-    t.integer  "state_neuquen",          :default => 0, :null => false
-    t.integer  "state_rio_negro",        :default => 0, :null => false
-    t.integer  "state_salta",            :default => 0, :null => false
-    t.integer  "state_san_juan",         :default => 0, :null => false
-    t.integer  "state_san_luis",         :default => 0, :null => false
-    t.integer  "state_santa_cruz",       :default => 0, :null => false
-    t.integer  "state_santa_fe",         :default => 0, :null => false
-    t.integer  "state_sgo_del_estero",   :default => 0, :null => false
-    t.integer  "state_tierra_del_fuego", :default => 0, :null => false
-    t.integer  "state_tucuman",          :default => 0, :null => false
-    t.integer  "males_count",            :default => 0, :null => false
-    t.integer  "females_count",          :default => 0, :null => false
-    t.integer  "moms_count",             :default => 0, :null => false
-    t.integer  "teens_count",            :default => 0, :null => false
-    t.integer  "college_students_count", :default => 0, :null => false
-    t.integer  "young_women_count",      :default => 0, :null => false
-    t.integer  "young_men_count",        :default => 0, :null => false
-    t.integer  "adult_women_count",      :default => 0, :null => false
-    t.integer  "adult_men_count",        :default => 0, :null => false
-    t.integer  "sports_count",           :default => 0, :null => false
-    t.integer  "fashion_count",          :default => 0, :null => false
-    t.integer  "music_count",            :default => 0, :null => false
-    t.integer  "movies_count",           :default => 0, :null => false
-    t.integer  "politics_count",         :default => 0, :null => false
-    t.integer  "technology_count",       :default => 0, :null => false
-    t.integer  "travel_count",           :default => 0, :null => false
-    t.integer  "luxury_count",           :default => 0, :null => false
-    t.integer  "kred",                   :default => 0, :null => false
+    t.integer  "followers",                     :default => 0, :null => false
+    t.integer  "friends",                       :default => 0, :null => false
+    t.integer  "tweets",                        :default => 0, :null => false
+    t.integer  "retweets",                      :default => 0, :null => false
+    t.integer  "peerindex",                     :default => 0, :null => false
+    t.integer  "klout",                         :default => 0, :null => false
+    t.integer  "males",                         :default => 0, :null => false
+    t.integer  "females",                       :default => 0, :null => false
+    t.integer  "moms",                          :default => 0, :null => false
+    t.integer  "teens",                         :default => 0, :null => false
+    t.integer  "college_students",              :default => 0, :null => false
+    t.integer  "young_women",                   :default => 0, :null => false
+    t.integer  "young_men",                     :default => 0, :null => false
+    t.integer  "adult_women",                   :default => 0, :null => false
+    t.integer  "adult_men",                     :default => 0, :null => false
+    t.integer  "sports",                        :default => 0, :null => false
+    t.integer  "fashion",                       :default => 0, :null => false
+    t.integer  "music",                         :default => 0, :null => false
+    t.integer  "movies",                        :default => 0, :null => false
+    t.integer  "politics",                      :default => 0, :null => false
+    t.integer  "technology",                    :default => 0, :null => false
+    t.integer  "travel",                        :default => 0, :null => false
+    t.integer  "luxury",                        :default => 0, :null => false
+    t.datetime "created_at",                                   :null => false
+    t.datetime "updated_at",                                   :null => false
+    t.integer  "country_argentina",             :default => 0, :null => false
+    t.integer  "country_colombia",              :default => 0, :null => false
+    t.integer  "country_chile",                 :default => 0, :null => false
+    t.integer  "country_ecuador",               :default => 0, :null => false
+    t.integer  "country_mexico",                :default => 0, :null => false
+    t.integer  "country_paraguay",              :default => 0, :null => false
+    t.integer  "country_uruguay",               :default => 0, :null => false
+    t.integer  "state_buenos_aires",            :default => 0, :null => false
+    t.integer  "state_catamarca",               :default => 0, :null => false
+    t.integer  "state_chaco",                   :default => 0, :null => false
+    t.integer  "state_cordoba",                 :default => 0, :null => false
+    t.integer  "state_corrientes",              :default => 0, :null => false
+    t.integer  "state_entre_rios",              :default => 0, :null => false
+    t.integer  "state_formosa",                 :default => 0, :null => false
+    t.integer  "state_jujuy",                   :default => 0, :null => false
+    t.integer  "state_la_pampa",                :default => 0, :null => false
+    t.integer  "state_la_rioja",                :default => 0, :null => false
+    t.integer  "state_mendoza",                 :default => 0, :null => false
+    t.integer  "state_misiones",                :default => 0, :null => false
+    t.integer  "state_neuquen",                 :default => 0, :null => false
+    t.integer  "state_rio_negro",               :default => 0, :null => false
+    t.integer  "state_salta",                   :default => 0, :null => false
+    t.integer  "state_san_juan",                :default => 0, :null => false
+    t.integer  "state_san_luis",                :default => 0, :null => false
+    t.integer  "state_santa_cruz",              :default => 0, :null => false
+    t.integer  "state_santa_fe",                :default => 0, :null => false
+    t.integer  "state_sgo_del_estero",          :default => 0, :null => false
+    t.integer  "state_tierra_del_fuego",        :default => 0, :null => false
+    t.integer  "state_tucuman",                 :default => 0, :null => false
+    t.integer  "males_count",                   :default => 0, :null => false
+    t.integer  "females_count",                 :default => 0, :null => false
+    t.integer  "moms_count",                    :default => 0, :null => false
+    t.integer  "teens_count",                   :default => 0, :null => false
+    t.integer  "college_students_count",        :default => 0, :null => false
+    t.integer  "young_women_count",             :default => 0, :null => false
+    t.integer  "young_men_count",               :default => 0, :null => false
+    t.integer  "adult_women_count",             :default => 0, :null => false
+    t.integer  "adult_men_count",               :default => 0, :null => false
+    t.integer  "sports_count",                  :default => 0, :null => false
+    t.integer  "fashion_count",                 :default => 0, :null => false
+    t.integer  "music_count",                   :default => 0, :null => false
+    t.integer  "movies_count",                  :default => 0, :null => false
+    t.integer  "politics_count",                :default => 0, :null => false
+    t.integer  "technology_count",              :default => 0, :null => false
+    t.integer  "travel_count",                  :default => 0, :null => false
+    t.integer  "luxury_count",                  :default => 0, :null => false
+    t.integer  "kred",                          :default => 0, :null => false
+    t.integer  "state_col_amazonas",            :default => 0, :null => false
+    t.integer  "state_col_antioquia",           :default => 0, :null => false
+    t.integer  "state_col_arauca",              :default => 0, :null => false
+    t.integer  "state_col_atlantico",           :default => 0, :null => false
+    t.integer  "state_col_bolivar",             :default => 0, :null => false
+    t.integer  "state_col_boyaca",              :default => 0, :null => false
+    t.integer  "state_col_caldas",              :default => 0, :null => false
+    t.integer  "state_col_caqueta",             :default => 0, :null => false
+    t.integer  "state_col_casanare",            :default => 0, :null => false
+    t.integer  "state_col_cauca",               :default => 0, :null => false
+    t.integer  "state_col_cesar",               :default => 0, :null => false
+    t.integer  "state_col_choco",               :default => 0, :null => false
+    t.integer  "state_col_cordoba",             :default => 0, :null => false
+    t.integer  "state_col_cundinamarca",        :default => 0, :null => false
+    t.integer  "state_col_guainia",             :default => 0, :null => false
+    t.integer  "state_col_guaviare",            :default => 0, :null => false
+    t.integer  "state_col_huila",               :default => 0, :null => false
+    t.integer  "state_col_la_guajira",          :default => 0, :null => false
+    t.integer  "state_col_magdalena",           :default => 0, :null => false
+    t.integer  "state_col_meta",                :default => 0, :null => false
+    t.integer  "state_col_narino",              :default => 0, :null => false
+    t.integer  "state_col_norte_de_santander",  :default => 0, :null => false
+    t.integer  "state_col_putumayo",            :default => 0, :null => false
+    t.integer  "state_col_quindio",             :default => 0, :null => false
+    t.integer  "state_col_risaralda",           :default => 0, :null => false
+    t.integer  "state_col_san_andres",          :default => 0, :null => false
+    t.integer  "state_col_santander",           :default => 0, :null => false
+    t.integer  "state_col_sucre",               :default => 0, :null => false
+    t.integer  "state_col_tolima",              :default => 0, :null => false
+    t.integer  "state_col_valle_del_cauca",     :default => 0, :null => false
+    t.integer  "state_col_vaupes",              :default => 0, :null => false
+    t.integer  "state_col_vichada",             :default => 0, :null => false
+    t.integer  "state_col_colombia",            :default => 0, :null => false
+    t.integer  "state_chi_arica",               :default => 0, :null => false
+    t.integer  "state_chi_tarapaca",            :default => 0, :null => false
+    t.integer  "state_chi_antofogasta",         :default => 0, :null => false
+    t.integer  "state_chi_atacama",             :default => 0, :null => false
+    t.integer  "state_chi_coquimbo",            :default => 0, :null => false
+    t.integer  "state_chi_valparaiso",          :default => 0, :null => false
+    t.integer  "state_chi_santiago",            :default => 0, :null => false
+    t.integer  "state_chi_ohiggins",            :default => 0, :null => false
+    t.integer  "state_chi_maule",               :default => 0, :null => false
+    t.integer  "state_chi_biobio",              :default => 0, :null => false
+    t.integer  "state_chi_la_araucania",        :default => 0, :null => false
+    t.integer  "state_chi_los_rios",            :default => 0, :null => false
+    t.integer  "state_chi_los_lagos",           :default => 0, :null => false
+    t.integer  "state_chi_aysen",               :default => 0, :null => false
+    t.integer  "state_chi_magallanes",          :default => 0, :null => false
+    t.integer  "state_ecu_azuay",               :default => 0, :null => false
+    t.integer  "state_ecu_bolivar",             :default => 0, :null => false
+    t.integer  "state_ecu_canar",               :default => 0, :null => false
+    t.integer  "state_ecu_carchi",              :default => 0, :null => false
+    t.integer  "state_ecu_chimborazo",          :default => 0, :null => false
+    t.integer  "state_ecu_cotopaxi",            :default => 0, :null => false
+    t.integer  "state_ecu_el_oro",              :default => 0, :null => false
+    t.integer  "state_ecu_esmeraldas",          :default => 0, :null => false
+    t.integer  "state_ecu_galapagos",           :default => 0, :null => false
+    t.integer  "state_ecu_guayas",              :default => 0, :null => false
+    t.integer  "state_ecu_imbabura",            :default => 0, :null => false
+    t.integer  "state_ecu_loja",                :default => 0, :null => false
+    t.integer  "state_ecu_los_rios",            :default => 0, :null => false
+    t.integer  "state_ecu_manabi",              :default => 0, :null => false
+    t.integer  "state_ecu_morona_santiago",     :default => 0, :null => false
+    t.integer  "state_ecu_napo",                :default => 0, :null => false
+    t.integer  "state_ecu_orellana",            :default => 0, :null => false
+    t.integer  "state_ecu_pastaza",             :default => 0, :null => false
+    t.integer  "state_ecu_pichincha",           :default => 0, :null => false
+    t.integer  "state_ecu_santa_elena",         :default => 0, :null => false
+    t.integer  "state_ecu_santo_domingo",       :default => 0, :null => false
+    t.integer  "state_ecu_sucumbios",           :default => 0, :null => false
+    t.integer  "state_ecu_tungurahua",          :default => 0, :null => false
+    t.integer  "state_ecu_zamora",              :default => 0, :null => false
+    t.integer  "state_mex_aguascalientes",      :default => 0, :null => false
+    t.integer  "state_mex_baja_california",     :default => 0, :null => false
+    t.integer  "state_mex_baja_california_sur", :default => 0, :null => false
+    t.integer  "state_mex_campeche",            :default => 0, :null => false
+    t.integer  "state_mex_chiapas",             :default => 0, :null => false
+    t.integer  "state_mex_chihuahua",           :default => 0, :null => false
+    t.integer  "state_mex_coahuila",            :default => 0, :null => false
+    t.integer  "state_mex_colima",              :default => 0, :null => false
+    t.integer  "state_mex_distrito_federal",    :default => 0, :null => false
+    t.integer  "state_mex_durango",             :default => 0, :null => false
+    t.integer  "state_mex_guanajuato",          :default => 0, :null => false
+    t.integer  "state_mex_guerrero",            :default => 0, :null => false
+    t.integer  "state_mex_hidalgo",             :default => 0, :null => false
+    t.integer  "state_mex_jalisco",             :default => 0, :null => false
+    t.integer  "state_mex_mexico",              :default => 0, :null => false
+    t.integer  "state_mex_michoacan",           :default => 0, :null => false
+    t.integer  "state_mex_morelos",             :default => 0, :null => false
+    t.integer  "state_mex_nayarit",             :default => 0, :null => false
+    t.integer  "state_mex_nuevo_leon",          :default => 0, :null => false
+    t.integer  "state_mex_oaxaca",              :default => 0, :null => false
+    t.integer  "state_mex_puebla",              :default => 0, :null => false
+    t.integer  "state_mex_queretaro",           :default => 0, :null => false
+    t.integer  "state_mex_quintana_roo",        :default => 0, :null => false
+    t.integer  "state_mex_san_luis",            :default => 0, :null => false
+    t.integer  "state_mex_sinaloa",             :default => 0, :null => false
+    t.integer  "state_mex_sonora",              :default => 0, :null => false
+    t.integer  "state_mex_tabasco",             :default => 0, :null => false
+    t.integer  "state_mex_tamaulipas",          :default => 0, :null => false
+    t.integer  "state_mex_tlaxcala",            :default => 0, :null => false
+    t.integer  "state_mex_veracruz",            :default => 0, :null => false
+    t.integer  "state_mex_yucatan",             :default => 0, :null => false
+    t.integer  "state_mex_zacatecas",           :default => 0, :null => false
+    t.integer  "state_par_asuncion",            :default => 0, :null => false
+    t.integer  "state_par_concepcion",          :default => 0, :null => false
+    t.integer  "state_par_san_pedro",           :default => 0, :null => false
+    t.integer  "state_par_cordillera",          :default => 0, :null => false
+    t.integer  "state_par_guaira",              :default => 0, :null => false
+    t.integer  "state_par_caaguazu",            :default => 0, :null => false
+    t.integer  "state_par_caazapa",             :default => 0, :null => false
+    t.integer  "state_par_itapua",              :default => 0, :null => false
+    t.integer  "state_par_misiones",            :default => 0, :null => false
+    t.integer  "state_par_paraguari",           :default => 0, :null => false
+    t.integer  "state_par_alto_parana",         :default => 0, :null => false
+    t.integer  "state_par_central",             :default => 0, :null => false
+    t.integer  "state_par_neenbucu",            :default => 0, :null => false
+    t.integer  "state_par_amambay",             :default => 0, :null => false
+    t.integer  "state_par_canindeyu",           :default => 0, :null => false
+    t.integer  "state_par_presidente_hayes",    :default => 0, :null => false
+    t.integer  "state_par_alto_paraguay",       :default => 0, :null => false
+    t.integer  "state_par_boqueron",            :default => 0, :null => false
+    t.integer  "state_uru_artigas",             :default => 0, :null => false
+    t.integer  "state_uru_canelones",           :default => 0, :null => false
+    t.integer  "state_uru_cerro_largo",         :default => 0, :null => false
+    t.integer  "state_uru_colonia",             :default => 0, :null => false
+    t.integer  "state_uru_durazno",             :default => 0, :null => false
+    t.integer  "state_uru_flores",              :default => 0, :null => false
+    t.integer  "state_uru_florida",             :default => 0, :null => false
+    t.integer  "state_uru_lavalleja",           :default => 0, :null => false
+    t.integer  "state_uru_maldonado",           :default => 0, :null => false
+    t.integer  "state_uru_montevideo",          :default => 0, :null => false
+    t.integer  "state_uru_paysandu",            :default => 0, :null => false
+    t.integer  "state_uru_rio_negro",           :default => 0, :null => false
+    t.integer  "state_uru_rivera",              :default => 0, :null => false
+    t.integer  "state_uru_rocha",               :default => 0, :null => false
+    t.integer  "state_uru_salto",               :default => 0, :null => false
+    t.integer  "state_uru_san_jose",            :default => 0, :null => false
+    t.integer  "state_uru_soriano",             :default => 0, :null => false
+    t.integer  "state_uru_tacuarembo",          :default => 0, :null => false
+    t.integer  "state_uru_treinta_y_tres",      :default => 0, :null => false
   end
 
   add_index "audiences", ["influencer_id"], :name => "index_audiences_on_influencer_id"
@@ -311,6 +453,18 @@ ActiveRecord::Schema.define(:version => 20121029220454) do
     t.text     "keywords"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "payments", :force => true do |t|
+    t.integer  "user_id"
+    t.text     "description"
+    t.float    "amount"
+    t.string   "status"
+    t.string   "gateway"
+    t.string   "payment_url"
+    t.string   "external_reference"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
   end
 
   create_table "pictures", :force => true do |t|
