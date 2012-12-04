@@ -962,6 +962,7 @@ namespace :borwin do
       country_paraguay = TwitterUser.joins(:twitter_followers, :twitter_country).where("influencer_id = ?", audience.influencer_id).where("twitter_country_id is not null").where("twitter_countries.name = 'Paraguay'").count
       country_uruguay = TwitterUser.joins(:twitter_followers, :twitter_country).where("influencer_id = ?", audience.influencer_id).where("twitter_country_id is not null").where("twitter_countries.name = 'Uruguay'").count
 
+      puts "Countries"
       audience.country_argentina = ((country_argentina * 100) / country_users).round rescue 0
       audience.country_colombia = ((country_colombia * 100) / country_users).round rescue 0
       audience.country_chile = ((country_chile * 100) / country_users).round rescue 0
@@ -971,7 +972,8 @@ namespace :borwin do
       audience.country_uruguay = ((country_uruguay * 100) / country_users).round rescue 0
 
       #states Argentina
-      states_users = TwitterUser.joins(:twitter_followers).where("influencer_id = ?", audience.influencer_id).where("twitter_state_id is not null").where("twitter_countries.name = 'Argentina'").count
+      puts "Argentina..."
+      states_users = TwitterUser.joins(:twitter_followers, :twitter_country).where("influencer_id = ?", audience.influencer_id).where("twitter_state_id is not null").where("twitter_countries.name = 'Argentina'").count
       state_buenos_aires = TwitterUser.joins(:twitter_followers, :twitter_state).where("influencer_id = ?", audience.influencer_id).where("twitter_state_id is not null").where("twitter_states.name = 'Buenos Aires'").count
       state_catamarca = TwitterUser.joins(:twitter_followers, :twitter_state).where("influencer_id = ?", audience.influencer_id).where("twitter_state_id is not null").where("twitter_states.name = 'Catamarca'").count
       state_chaco = TwitterUser.joins(:twitter_followers, :twitter_state).where("influencer_id = ?", audience.influencer_id).where("twitter_state_id is not null").where("twitter_states.name = 'Chaco'").count
@@ -1019,7 +1021,8 @@ namespace :borwin do
       audience.state_tucuman = (((state_tucuman * 100) / states_users).round rescue 0)
 
       #states Colombia
-      states_users = TwitterUser.joins(:twitter_followers).where("influencer_id = ?", audience.influencer_id).where("twitter_state_id is not null").where("twitter_countries.name = 'Colombia'").count
+      puts "Colombia..."
+      states_users = TwitterUser.joins(:twitter_followers, :twitter_country).where("influencer_id = ?", audience.influencer_id).where("twitter_state_id is not null").where("twitter_countries.name = 'Colombia'").count
       state_col_amazonas = TwitterUser.joins(:twitter_followers, :twitter_state).where("influencer_id = ?", audience.influencer_id).where("twitter_state_id is not null").where("twitter_states.name = 'Amazonas'").count
       state_col_antioquia = TwitterUser.joins(:twitter_followers, :twitter_state).where("influencer_id = ?", audience.influencer_id).where("twitter_state_id is not null").where("twitter_states.name = 'Antioquia'").count
       state_col_arauca = TwitterUser.joins(:twitter_followers, :twitter_state).where("influencer_id = ?", audience.influencer_id).where("twitter_state_id is not null").where("twitter_states.name = 'Arauca'").count
@@ -1089,7 +1092,8 @@ namespace :borwin do
       audience.state_col_colombia = (((state_col_colombia * 100) / states_users).round rescue 0)
 
       #states Chile
-      states_users = TwitterUser.joins(:twitter_followers).where("influencer_id = ?", audience.influencer_id).where("twitter_state_id is not null").where("twitter_countries.name = 'Chile'").count
+      puts "Chile..."
+      states_users = TwitterUser.joins(:twitter_followers, :twitter_country).where("influencer_id = ?", audience.influencer_id).where("twitter_state_id is not null").where("twitter_countries.name = 'Chile'").count
       state_chi_arica = TwitterUser.joins(:twitter_followers, :twitter_state).where("influencer_id = ?", audience.influencer_id).where("twitter_state_id is not null").where("twitter_states.name = 'Arica y Parinacota'").count
       state_chi_tarapaca = TwitterUser.joins(:twitter_followers, :twitter_state).where("influencer_id = ?", audience.influencer_id).where("twitter_state_id is not null").where("twitter_states.name = 'Tarapacá'").count
       state_chi_antofogasta = TwitterUser.joins(:twitter_followers, :twitter_state).where("influencer_id = ?", audience.influencer_id).where("twitter_state_id is not null").where("twitter_states.name = 'Antofagasta'").count
@@ -1097,7 +1101,7 @@ namespace :borwin do
       state_chi_coquimbo = TwitterUser.joins(:twitter_followers, :twitter_state).where("influencer_id = ?", audience.influencer_id).where("twitter_state_id is not null").where("twitter_states.name = 'Coquimbo'").count
       state_chi_valparaiso = TwitterUser.joins(:twitter_followers, :twitter_state).where("influencer_id = ?", audience.influencer_id).where("twitter_state_id is not null").where("twitter_states.name = 'Valparaíso'").count
       state_chi_santiago = TwitterUser.joins(:twitter_followers, :twitter_state).where("influencer_id = ?", audience.influencer_id).where("twitter_state_id is not null").where("twitter_states.name = 'Santiago'").count
-      state_chi_ohiggins = TwitterUser.joins(:twitter_followers, :twitter_state).where("influencer_id = ?", audience.influencer_id).where("twitter_state_id is not null").where("twitter_states.name = 'O\'Higgins'").count
+      state_chi_ohiggins = TwitterUser.joins(:twitter_followers, :twitter_state).where("influencer_id = ?", audience.influencer_id).where("twitter_state_id is not null").where("twitter_states.name = 'O Higgins'").count
       state_chi_maule = TwitterUser.joins(:twitter_followers, :twitter_state).where("influencer_id = ?", audience.influencer_id).where("twitter_state_id is not null").where("twitter_states.name = 'Maule'").count
       state_chi_biobio = TwitterUser.joins(:twitter_followers, :twitter_state).where("influencer_id = ?", audience.influencer_id).where("twitter_state_id is not null").where("twitter_states.name = 'Biobío'").count
       state_chi_la_araucania = TwitterUser.joins(:twitter_followers, :twitter_state).where("influencer_id = ?", audience.influencer_id).where("twitter_state_id is not null").where("twitter_states.name = 'La Araucanía'").count
@@ -1123,7 +1127,8 @@ namespace :borwin do
       audience.state_chi_magallanes = (((state_chi_magallanes * 100) / states_users).round rescue 0)
 
       #states Ecuador
-      states_users = TwitterUser.joins(:twitter_followers).where("influencer_id = ?", audience.influencer_id).where("twitter_state_id is not null").where("twitter_countries.name = 'Ecuador'").count
+      puts "Ecuador..."
+      states_users = TwitterUser.joins(:twitter_followers, :twitter_country).where("influencer_id = ?", audience.influencer_id).where("twitter_state_id is not null").where("twitter_countries.name = 'Ecuador'").count
       state_ecu_azuay = TwitterUser.joins(:twitter_followers, :twitter_state).where("influencer_id = ?", audience.influencer_id).where("twitter_state_id is not null").where("twitter_states.name = 'Azuay'").count
       state_ecu_bolivar = TwitterUser.joins(:twitter_followers, :twitter_state).where("influencer_id = ?", audience.influencer_id).where("twitter_state_id is not null").where("twitter_states.name = 'Bolívar'").count
       state_ecu_canar = TwitterUser.joins(:twitter_followers, :twitter_state).where("influencer_id = ?", audience.influencer_id).where("twitter_state_id is not null").where("twitter_states.name = 'Cañar'").count
@@ -1175,7 +1180,8 @@ namespace :borwin do
       audience.state_ecu_zamora = (((state_ecu_zamora * 100) / states_users).round rescue 0)
 
       #states Mexico
-      states_users = TwitterUser.joins(:twitter_followers).where("influencer_id = ?", audience.influencer_id).where("twitter_state_id is not null").where("twitter_countries.name = 'Mexico'").count
+      puts "Mexico.."
+      states_users = TwitterUser.joins(:twitter_followers, :twitter_country).where("influencer_id = ?", audience.influencer_id).where("twitter_state_id is not null").where("twitter_countries.name = 'Mexico'").count
       state_mex_aguascalientes = TwitterUser.joins(:twitter_followers, :twitter_state).where("influencer_id = ?", audience.influencer_id).where("twitter_state_id is not null").where("twitter_states.name = 'Aguascalientes'").count
       state_mex_baja_california = TwitterUser.joins(:twitter_followers, :twitter_state).where("influencer_id = ?", audience.influencer_id).where("twitter_state_id is not null").where("twitter_states.name = 'Baja California'").count
       state_mex_baja_california_sur = TwitterUser.joins(:twitter_followers, :twitter_state).where("influencer_id = ?", audience.influencer_id).where("twitter_state_id is not null").where("twitter_states.name = 'Baja California Sur'").count
@@ -1243,7 +1249,8 @@ namespace :borwin do
       audience.state_mex_zacatecas  = (((state_mex_zacatecas * 100) / states_users).round rescue 0)
 
       #states Paraguay
-      states_users = TwitterUser.joins(:twitter_followers).where("influencer_id = ?", audience.influencer_id).where("twitter_state_id is not null").where("twitter_countries.name = 'Paraguay'").count
+      puts "Paraguay..."
+      states_users = TwitterUser.joins(:twitter_followers, :twitter_country).where("influencer_id = ?", audience.influencer_id).where("twitter_state_id is not null").where("twitter_countries.name = 'Paraguay'").count
       state_par_asuncion = TwitterUser.joins(:twitter_followers, :twitter_state).where("influencer_id = ?", audience.influencer_id).where("twitter_state_id is not null").where("twitter_states.name = 'Asunción'").count
       state_par_concepcion = TwitterUser.joins(:twitter_followers, :twitter_state).where("influencer_id = ?", audience.influencer_id).where("twitter_state_id is not null").where("twitter_states.name = 'Concepción'").count
       state_par_san_pedro = TwitterUser.joins(:twitter_followers, :twitter_state).where("influencer_id = ?", audience.influencer_id).where("twitter_state_id is not null").where("twitter_states.name = 'San Pedro'").count
@@ -1266,7 +1273,7 @@ namespace :borwin do
       audience.state_par_asuncion = (((state_par_asuncion * 100) / states_users).round rescue 0)
       audience.state_par_concepcion = (((state_par_concepcion * 100) / states_users).round rescue 0)
       audience.state_par_san_pedro = (((state_par_san_pedro * 100) / states_users).round rescue 0)
-      audience.audience.state_par_cordillera = (((state_par_cordillera * 100) / states_users).round rescue 0)
+      audience.state_par_cordillera = (((state_par_cordillera * 100) / states_users).round rescue 0)
       audience.state_par_guaira = (((state_par_guaira * 100) / states_users).round rescue 0)
       audience.state_par_caaguazu = (((state_par_caaguazu * 100) / states_users).round rescue 0)
       audience.state_par_caazapa  = (((state_par_caazapa * 100) / states_users).round rescue 0)
@@ -1283,7 +1290,8 @@ namespace :borwin do
       audience.state_par_boqueron  = (((state_par_boqueron * 100) / states_users).round rescue 0)
 
       #states Uruguay
-      states_users = TwitterUser.joins(:twitter_followers).where("influencer_id = ?", audience.influencer_id).where("twitter_state_id is not null").where("twitter_countries.name = 'Uruguay'").count
+      puts "Uruguay..."
+      states_users = TwitterUser.joins(:twitter_followers, :twitter_country).where("influencer_id = ?", audience.influencer_id).where("twitter_state_id is not null").where("twitter_countries.name = 'Uruguay'").count
       state_uru_artigas = TwitterUser.joins(:twitter_followers, :twitter_state).where("influencer_id = ?", audience.influencer_id).where("twitter_state_id is not null").where("twitter_states.name = 'Artigas'").count
       state_uru_canelones = TwitterUser.joins(:twitter_followers, :twitter_state).where("influencer_id = ?", audience.influencer_id).where("twitter_state_id is not null").where("twitter_states.name = 'Canelones'").count
       state_uru_cerro_largo = TwitterUser.joins(:twitter_followers, :twitter_state).where("influencer_id = ?", audience.influencer_id).where("twitter_state_id is not null").where("twitter_states.name = 'Cerro Largo'").count
