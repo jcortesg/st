@@ -13,7 +13,7 @@
           %dt Descripción
           %dd= @payment.description
       .clear.center_text.show_buttons
-        = link_to('Pagar', @payment.payment_url, name: 'MP-Checkout', class: 'blue-co-m-sq-coall' )
+        = link_to('Pagar', @payment.payment_url, name: 'MP-Checkout', class: "#{APP_CONFIG['mercadopago_paybutton_class']}" )
         %script{:type => "text/javascript",
                 :src  => "http://mp-tools.mlstatic.com/buttons/render.js"}
         %br

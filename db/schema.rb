@@ -320,8 +320,9 @@ ActiveRecord::Schema.define(:version => 20121126134154) do
     t.string   "status"
     t.string   "gateway"
     t.string   "payment_url"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.string   "external_reference"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
   end
 
   create_table "pictures", :force => true do |t|

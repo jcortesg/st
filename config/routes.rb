@@ -74,6 +74,8 @@ Borwin::Application.routes.draw do
       end
     end
 
+    resources :payments
+
     resources :cash_outs, except: [:created, :edit, :update] do
       put :pay, on: :member
     end

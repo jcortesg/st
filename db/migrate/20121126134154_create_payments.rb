@@ -7,6 +7,7 @@ class CreatePayments < ActiveRecord::Migration
       t.string :status
       t.string :gateway
       t.string :payment_url
+      t.string :external_reference
 
       t.timestamps
     end

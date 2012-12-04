@@ -128,4 +128,17 @@ class HomeController < ApplicationController
     end
   end
 
+  # Endpoint to receive notifications from mercadopago
+  def ipn_endpoint
+    topic = params[:payment]
+    payment_id = params[:id]
+
+    notification = mp_client.notification(payment_id)
+    puts notification
+
+    parsed_json = ActiveSupport::JSON.decode(notification)
+    payment = Payment.where('external_reference == ?', parsed_json['collection']['external_reference']).first
+    payment.update_attribute('status', parsed_json['collection']['status'])
+  end
+
 end

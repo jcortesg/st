@@ -1,0 +1,21 @@
+- if flash.any?
+  .row
+    .span12
+      = render '/shared/flash', flash: flash
+.row
+  .span12
+    .round_box
+      .content
+        %h1.title Pago
+        %dl.record_details
+          %dt Fecha de creación
+          %dd= localize(@payment.created_at, :format => "%d/%m/%Y %H:%M:%S")
+          %dt Última actualización
+          %dd= localize(@payment.updated_at, :format => "%d/%m/%Y %H:%M:%S")
+          %dt Importe
+          %dd= sprintf("%.02f", @payment.amount)
+          %dt Estado
+          %dd= @payment.status
+      .clear.center_text.show_buttons
+        = link_to('Listado', [:advertiser, :payments], class: 'btn btn-primary')
+
