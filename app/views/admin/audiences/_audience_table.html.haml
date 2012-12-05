@@ -518,6 +518,12 @@
 #graph_age_2
 #graph_countries
 #graph_states
+#graph_states_col
+#graph_states_chi
+#graph_states_ecu
+#graph_states_mex
+#graph_states_par
+#graph_states_uru
 
 :javascript
   var chart;
@@ -771,7 +777,7 @@
         plotShadow: false
       },
       title: {
-        text: 'Pais'
+        text: 'Argentina'
       },
       tooltip: {
         formatter: function() {
@@ -824,6 +830,376 @@
       }]
     });
 
+    chart = new Highcharts.Chart({
+        chart: {
+          renderTo: 'graph_states_chi',
+          plotBackgroundColor: null,
+          plotBorderWidth: null,
+          plotShadow: false
+        },
+        title: {
+          text: 'Chile'
+        },
+        tooltip: {
+          formatter: function() {
+            return '<b>'+ this.point.name +'</b>: '+ Highcharts.numberFormat(this.percentage, 2) +' %';
+          }
+        },
+        plotOptions: {
+          pie: {
+            allowPointSelect: true,
+            cursor: 'pointer',
+            dataLabels: {
+              enabled: true,
+              color: '#000000',
+              connectorColor: '#000000',
+              formatter: function() {
+                return '<b>'+ this.point.name +'</b>: '+ Highcharts.numberFormat(this.percentage, 2) +' %';
+              }
+            },
+            showInLegend: true
+          }
+        },
+        series: [{
+          type: 'pie',
+          name: 'Porcentage según provincia',
+          data: [
+            ['Arica', #{audience.state_chi_arica}],
+            ['Tarapaca', #{audience.state_chi_tarapaca}],
+            ['Antofogasta', #{audience.state_chi_antofogasta}],
+            ['Atacama', #{audience.state_chi_atacama}],
+            ['Coquimbo', #{audience.state_chi_coquimbo}],
+            ['Valparaiso', #{audience.state_chi_valparaiso}],
+            ['Santiago', #{audience.state_chi_santiago}],
+            ['O Higgins', #{audience.state_chi_ohiggins}],
+            ['Maule', #{audience.state_chi_maule}],
+            ['Bío Bío', #{audience.state_chi_biobio}],
+            ['La araucanía', #{audience.state_chi_la_araucania}],
+            ['Los ríos', #{audience.state_chi_los_rios}],
+            ['Los lagos', #{audience.state_chi_los_lagos}],
+            ['Aysén', #{audience.state_chi_aysen}],
+            ['Magallanes', #{audience.state_chi_magallanes}],
+            ['NS/NC', #{audience.state_others_chi}]
+          ]
+        }]
+      });
 
+      chart = new Highcharts.Chart({
+        chart: {
+          renderTo: 'graph_states_col',
+          plotBackgroundColor: null,
+          plotBorderWidth: null,
+          plotShadow: false
+        },
+        title: {
+          text: 'Colombia'
+        },
+        tooltip: {
+          formatter: function() {
+            return '<b>'+ this.point.name +'</b>: '+ Highcharts.numberFormat(this.percentage, 2) +' %';
+          }
+        },
+        plotOptions: {
+          pie: {
+            allowPointSelect: true,
+            cursor: 'pointer',
+            dataLabels: {
+              enabled: true,
+              color: '#000000',
+              connectorColor: '#000000',
+              formatter: function() {
+                return '<b>'+ this.point.name +'</b>: '+ Highcharts.numberFormat(this.percentage, 2) +' %';
+              }
+            },
+            showInLegend: true
+          }
+        },
+        series: [{
+          type: 'pie',
+          name: 'Porcentage según provincia',
+          data: [
+            ['Amazonas', #{audience.state_col_amazonas}],
+            ['Antioquía', #{audience.state_col_antioquia}],
+            ['Arauca', #{audience.state_col_arauca}],
+            ['Atlántico', #{audience.state_col_atlantico}],
+            ['Bolivar', #{audience.state_col_bolivar}],
+            ['Boyacá', #{audience.state_col_boyaca}],
+            ['Caldas', #{audience.state_col_caldas}],
+            ['Caqueta', #{audience.state_col_caqueta}],
+            ['Casanare', #{audience.state_col_casanare}],
+            ['Cauca', #{audience.state_col_cauca}],
+            ['Cesar', #{audience.state_col_cesar}],
+            ['Choco', #{audience.state_col_choco}],
+            ['Cordoba', #{audience.state_col_cordoba}],
+            ['Cundinamarca', #{audience.state_col_cundinamarca}],
+            ['Guainía', #{audience.state_col_guainia}],
+            ['Guaviare', #{audience.state_col_guaviare}],
+            ['Huila', #{audience.state_col_huila}],
+            ['La Guajira', #{audience.state_col_la_guajira}],
+            ['Magdalena', #{audience.state_col_magdalena}],
+            ['Meta', #{audience.state_col_meta}],
+            ['Narino', #{audience.state_col_narino}],
+            ['Norte de Santander', #{audience.state_col_norte_de_santander}],
+            ['Putumayo', #{audience.state_col_putumayo}],
+            ['Quindío', #{audience.state_col_quindio}],
+            ['Risaralda', #{audience.state_col_risaralda}],
+            ['San Andrés', #{audience.state_col_san_andres}],
+            ['Santander', #{audience.state_col_santander}],
+            ['Sucre', #{audience.state_col_sucre}],
+            ['Tolima', #{audience.state_col_tolima}],
+            ['Valle del Cauca', #{audience.state_col_valle_del_cauca}],
+            ['Vaupes', #{audience.state_col_vaupes}],
+            ['Vichada', #{audience.state_col_vichada}],
+            ['Colombia', #{audience.state_col_colombia}],
+            ['NS/NC', #{audience.state_others_col}]
+          ]
+        }]
+      });
 
+      chart = new Highcharts.Chart({
+        chart: {
+          renderTo: 'graph_states_ecu',
+          plotBackgroundColor: null,
+          plotBorderWidth: null,
+          plotShadow: false
+        },
+        title: {
+          text: 'Ecuador'
+        },
+        tooltip: {
+          formatter: function() {
+            return '<b>'+ this.point.name +'</b>: '+ Highcharts.numberFormat(this.percentage, 2) +' %';
+          }
+        },
+        plotOptions: {
+          pie: {
+            allowPointSelect: true,
+            cursor: 'pointer',
+            dataLabels: {
+              enabled: true,
+              color: '#000000',
+              connectorColor: '#000000',
+              formatter: function() {
+                return '<b>'+ this.point.name +'</b>: '+ Highcharts.numberFormat(this.percentage, 2) +' %';
+              }
+            },
+            showInLegend: true
+          }
+        },
+        series: [{
+          type: 'pie',
+          name: 'Porcentage según provincia',
+          data: [
+            ['Azuay', #{audience.state_ecu_azuay}],
+            ['Bolivar', #{audience.state_ecu_bolivar}],
+            ['Canar', #{audience.state_ecu_canar}],
+            ['Carchi', #{audience.state_ecu_carchi}],
+            ['Chimborazo', #{audience.state_ecu_chimborazo}],
+            ['Cotopaxi', #{audience.state_ecu_cotopaxi}],
+            ['El oro', #{audience.state_ecu_el_oro}],
+            ['Esmeraldas', #{audience.state_ecu_esmeraldas}],
+            ['Galápagos', #{audience.state_ecu_galapagos}],
+            ['Guayas', #{audience.state_ecu_guayas}],
+            ['Imbabura', #{audience.state_ecu_imbabura}],
+            ['Loja', #{audience.state_ecu_loja}],
+            ['Los ríos', #{audience.state_ecu_los_rios}],
+            ['Manabi', #{audience.state_ecu_manabi}],
+            ['Santiago', #{audience.state_ecu_morona_santiago}],
+            ['Napo', #{audience.state_ecu_napo}],
+            ['Orellana', #{audience.state_ecu_orellana}],
+            ['Pastaza', #{audience.state_ecu_pastaza}],
+            ['Pichincha', #{audience.state_ecu_pichincha}],
+            ['Santa Elena', #{audience.state_ecu_santa_elena}],
+            ['Santo Domingo', #{audience.state_ecu_santo_domingo}],
+            ['Sucumbios', #{audience.state_ecu_sucumbios}],
+            ['Tungurahua', #{audience.state_ecu_tungurahua}],
+            ['Zamora', #{audience.state_ecu_zamora}],
+                                                                ['NS/NC', #{audience.state_others_ecu}]
+          ]
+        }]
+      });
+
+      chart = new Highcharts.Chart({
+        chart: {
+          renderTo: 'graph_states_mex',
+          plotBackgroundColor: null,
+          plotBorderWidth: null,
+          plotShadow: false
+        },
+        title: {
+          text: 'México'
+        },
+        tooltip: {
+          formatter: function() {
+            return '<b>'+ this.point.name +'</b>: '+ Highcharts.numberFormat(this.percentage, 2) +' %';
+          }
+        },
+        plotOptions: {
+          pie: {
+            allowPointSelect: true,
+            cursor: 'pointer',
+            dataLabels: {
+              enabled: true,
+              color: '#000000',
+              connectorColor: '#000000',
+              formatter: function() {
+                return '<b>'+ this.point.name +'</b>: '+ Highcharts.numberFormat(this.percentage, 2) +' %';
+              }
+            },
+            showInLegend: true
+          }
+        },
+        series: [{
+          type: 'pie',
+          name: 'Porcentage según provincia',
+          data: [
+            ['Aguascalientes', #{audience.state_mex_aguascalientes}],
+            ['Baja California', #{audience.state_mex_baja_california}],
+            ['Baja California Sur', #{audience.state_mex_baja_california_sur}],
+            ['Campeche', #{audience.state_mex_campeche}],
+            ['Chiapas', #{audience.state_mex_chiapas}],
+            ['Chihuahua', #{audience.state_mex_chihuahua}],
+            ['Coahuila', #{audience.state_mex_coahuila}],
+            ['Colima', #{audience.state_mex_colima}],
+            ['Distrito Federal', #{audience.state_mex_distrito_federal}],
+            ['Durango', #{audience.state_mex_durango}],
+            ['Guanajuato', #{audience.state_mex_guanajuato}],
+            ['Guerrero', #{audience.state_mex_guerrero}],
+            ['Hidalgo', #{audience.state_mex_hidalgo}],
+            ['Jalisco', #{audience.state_mex_jalisco}],
+            ['Mexico', #{audience.state_mex_mexico}],
+            ['Michoacan', #{audience.state_mex_michoacan}],
+            ['Morelos', #{audience.state_mex_morelos}],
+            ['Nayarit', #{audience.state_mex_nayarit}],
+            ['Nuevo León', #{audience.state_mex_nuevo_leon}],
+            ['Oaxaca', #{audience.state_mex_oaxaca}],
+            ['Puebla', #{audience.state_mex_puebla}],
+            ['Queretaro', #{audience.state_mex_queretaro}],
+            ['Quintana Roo', #{audience.state_mex_quintana_roo}],
+            ['San Luis', #{audience.state_mex_san_luis}],
+            ['Sinaloa', #{audience.state_mex_sinaloa}],
+            ['Sonora', #{audience.state_mex_sonora}],
+            ['Tabasco', #{audience.state_mex_tabasco}],
+            ['Tamaulipas', #{audience.state_mex_tamaulipas}],
+            ['Tlaxcala', #{audience.state_mex_tlaxcala}],
+            ['Veracruz', #{audience.state_mex_veracruz}],
+            ['Yucatán', #{audience.state_mex_yucatan}],
+            ['Zacatecas', #{audience.state_mex_zacatecas}],
+            ['NS/NC', #{audience.state_others_mex}]
+          ]
+        }]
+      });
+      chart = new Highcharts.Chart({
+        chart: {
+          renderTo: 'graph_states_par',
+          plotBackgroundColor: null,
+          plotBorderWidth: null,
+          plotShadow: false
+        },
+        title: {
+          text: 'Paraguay'
+        },
+        tooltip: {
+          formatter: function() {
+            return '<b>'+ this.point.name +'</b>: '+ Highcharts.numberFormat(this.percentage, 2) +' %';
+          }
+        },
+        plotOptions: {
+          pie: {
+            allowPointSelect: true,
+            cursor: 'pointer',
+            dataLabels: {
+              enabled: true,
+              color: '#000000',
+              connectorColor: '#000000',
+              formatter: function() {
+                return '<b>'+ this.point.name +'</b>: '+ Highcharts.numberFormat(this.percentage, 2) +' %';
+              }
+            },
+            showInLegend: true
+          }
+        },
+        series: [{
+          type: 'pie',
+          name: 'Porcentage según provincia',
+          data: [
+            ['Asunción', #{audience.state_par_asuncion}],
+            ['Concepción', #{audience.state_par_concepcion}],
+            ['San Pedro', #{audience.state_par_san_pedro}],
+            ['Cordillera', #{audience.state_par_cordillera}],
+            ['Guaira', #{audience.state_par_guaira}],
+            ['Caaguazú', #{audience.state_par_caaguazu}],
+            ['Caazapá', #{audience.state_par_caazapa}],
+            ['Itapúa', #{audience.state_par_itapua}],
+            ['Misiones', #{audience.state_par_misiones}],
+            ['Paraguarí', #{audience.state_par_paraguari}],
+            ['Alto Paraná', #{audience.state_par_alto_parana}],
+            ['Central', #{audience.state_par_central}],
+            ['Ñeenbucú', #{audience.state_par_neenbucu}],
+            ['Amambay', #{audience.state_par_amambay}],
+            ['Canindeyú', #{audience.state_par_canindeyu}],
+            ['Presidente Hayes', #{audience.state_par_presidente_hayes}],
+            ['Alto Paraguay', #{audience.state_par_alto_paraguay}],
+            ['Boquerón', #{audience.state_par_boqueron}],
+            ['NS/NC', #{audience.state_others_par}]
+          ]
+        }]
+      });
+      chart = new Highcharts.Chart({
+        chart: {
+          renderTo: 'graph_states_uru',
+          plotBackgroundColor: null,
+          plotBorderWidth: null,
+          plotShadow: false
+        },
+        title: {
+          text: 'Uruguay'
+        },
+        tooltip: {
+          formatter: function() {
+            return '<b>'+ this.point.name +'</b>: '+ Highcharts.numberFormat(this.percentage, 2) +' %';
+          }
+        },
+        plotOptions: {
+          pie: {
+            allowPointSelect: true,
+            cursor: 'pointer',
+            dataLabels: {
+              enabled: true,
+              color: '#000000',
+              connectorColor: '#000000',
+              formatter: function() {
+                return '<b>'+ this.point.name +'</b>: '+ Highcharts.numberFormat(this.percentage, 2) +' %';
+              }
+            },
+            showInLegend: true
+          }
+        },
+        series: [{
+          type: 'pie',
+          name: 'Porcentage según provincia',
+          data: [
+            ['Artigas', #{audience.state_uru_artigas}],
+            ['Canelones', #{audience.state_uru_canelones}],
+            ['Cerro Largo', #{audience.state_uru_cerro_largo}],
+            ['Colonia', #{audience.state_uru_colonia}],
+            ['Durazono', #{audience.state_uru_durazno}],
+            ['Flores', #{audience.state_uru_flores}],
+            ['Florida', #{audience.state_uru_florida}],
+            ['Lavalleja', #{audience.state_uru_lavalleja}],
+            ['Maldonado', #{audience.state_uru_maldonado}],
+            ['Montevideo', #{audience.state_uru_montevideo}],
+            ['Paysandú', #{audience.state_uru_paysandu}],
+            ['Río Negro', #{audience.state_uru_rio_negro}],
+            ['Rivera', #{audience.state_uru_rivera}],
+            ['Rocha', #{audience.state_uru_rocha}],
+            ['Salto', #{audience.state_uru_salto}],
+            ['San José', #{audience.state_uru_san_jose}],
+            ['Soriano', #{audience.state_uru_soriano}],
+            ['Tacurembó', #{audience.state_uru_tacuarembo}],
+            ['Treinta y tres', #{audience.state_uru_treinta_y_tres}],
+            ['NS/NC', #{audience.state_others_uru}]
+          ]
+        }]
+      });
   });
