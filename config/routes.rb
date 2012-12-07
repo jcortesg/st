@@ -205,6 +205,8 @@ Borwin::Application.routes.draw do
   match "terms" => "home#terms", :as => :terms
   match "privacy" => "home#privacy", :as => :privacy
 
+  match "country" => "home#country_redirector", :as => :country_redirector
+
   # Invitation route
   match "/I:invitation_code", to: "home#invitation", contrainsts: {invitation_code: /[A-Z0-9]{6}/}
   match "/L:link_code", to: "home#tweet_link_redirection", contrainsts: {invitation_code: /[A-Z0-9]{4}/}

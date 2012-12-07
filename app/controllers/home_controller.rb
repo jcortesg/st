@@ -89,6 +89,25 @@ class HomeController < ApplicationController
   def privacy
   end
 
+  def country_redirector
+    country = params[:code]
+    cookies[:country] = {
+        :value => country,
+        :expires => 1.month.from_now,
+        :domain => :all
+    }
+    case country
+      when 'AR'
+        @redirector = 'http://borwin.net'
+      when 'MX'
+        @redirector = 'http://mexico.borwin.net'
+      when 'CO'
+        @redirector = 'http://colombia.borwin.net'
+      else
+        @redirector = 'http://borwin.net'
+      end
+  end
+
   # Invitation registration
   # http://localhost:3000/I123456
   def invitation

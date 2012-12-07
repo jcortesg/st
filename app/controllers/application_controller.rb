@@ -3,11 +3,29 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   helper :all
   helper_method :current_role
+  #before_filter :check_country
 
   # Can can recover
   rescue_from CanCan::AccessDenied do |exception|
     flash[:error] = exception.message
     redirect_to root_url
+  end
+
+  def check_country
+    if !cookies[:country].nil?
+      case cookies[:country]
+        when 'AR'
+          redirect_to 'http://borwin.net'
+        when 'MX'
+          redirect_to 'http://mexico.borwin.net'
+        when 'CO'
+          redirect_to 'http://colombia.borwin.net'
+        else
+          redirect_to 'http://borwin.net'
+        end
+    else
+      puts "GEOCODE"
+    end
   end
 
   # Redirection after sign in with devise
