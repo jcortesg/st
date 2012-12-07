@@ -12,20 +12,7 @@ class ApplicationController < ActionController::Base
   end
 
   def check_country
-    if !cookies[:country].nil?
-      case cookies[:country]
-        when 'AR'
-          redirect_to 'http://borwin.net'
-        when 'MX'
-          redirect_to 'http://mexico.borwin.net'
-        when 'CO'
-          redirect_to 'http://colombia.borwin.net'
-        else
-          redirect_to 'http://borwin.net'
-        end
-    else
-      puts "GEOCODE"
-    end
+
   end
 
   # Redirection after sign in with devise

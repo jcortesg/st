@@ -1,0 +1,85 @@
+es_AR:
+  see: Ver
+  edit: Editar
+  delete: Borrar
+  destroy: Eliminar
+  complete: Completar
+  list: Listar
+  save: Guardar
+  cancel: Cancelar
+  yes: Si
+  no: No
+  filters: Filtros
+  reset: Resetear
+  filter: Filtrar
+  actions: Acciones
+  followers: Seguidores
+  friends: Amigos
+  tweets: Tweets
+  retweets: Retweets
+  celebrity: Celebridad
+  men: Hombres
+  women: Mujeres
+  males: Hombres
+  females: Mujeres
+  sports: Deportes
+  fashion: Moda
+  music: Música
+  movies: Cine
+  politics: Política
+  technology: Tecnología
+  travel: Viajes
+  luxury: Lujos
+  moms: Mamás
+  teens: Adolescentes
+  college_students: Universitarios
+  young_women: Mujeres (18 a 35 años)
+  young_men: Hombres (18 a 35 años)
+  adult_women: Mujeres (Más de 35 años)
+  adult_men: Hombres (Más de 35 años)
+  women18: Mujeres (+18)
+  men18: Hombres (+18)
+  campaigns: Campañas
+  cost: Costo
+  clicks: Clicks
+  company: Empresa
+  audience: Audiencia
+  tweet_price: Precio del Tweet
+  accept: Aceptar
+  statistics: Estadísticas
+  archive: Archivar
+  status: Estado
+  genre: Sexo
+  hobbys: Hobbys
+  detail: Detalle
+  reject: Rechazar
+  user: Usuario
+  a_date: Fecha
+  back: Volver
+  cash_outs: Cash Outs
+  skip_step: Saltear este paso
+  celebrities: Celebridades
+  category: Categoría
+  referred: Referido
+  recategorize: Recategorizar
+  message: Mensaje
+  user_type: Tipo de Usuario
+  administrator: Administrador
+  affiliate: Agencia
+  referral: Referido
+  comission: Comisión
+  reach:  Reach
+  phrase: Palabra o frase
+  print: Imprimir
+  cash_out: Cash out
+  request: Solicitar
+  cash_out_details: Detalles de Cash Out
+  brand: Marca
+  income: Ingresos
+  cost_per_tweet: Costo por tweet
+  dancer: Bailarín/Bailarina
+  choreographer: Coreógrafo
+  modify: Modificar
+  huso: Fecha y hora de tweet. Horario Buenos Aires (GMT-3)
+  percent_by_state: Porcentage según provincia
+
