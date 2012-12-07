@@ -74,6 +74,8 @@ Borwin::Application.routes.draw do
       end
     end
 
+    resources :payments
+
     resources :cash_outs, except: [:created, :edit, :update] do
       put :pay, on: :member
     end
@@ -141,6 +143,7 @@ Borwin::Application.routes.draw do
       put :update_password
     end
     resources :transactions, only: [:index, :show]
+    resources :payments, only: [:index, :show, :new, :create, :pay]
   end
 
   # Influencer routes

@@ -15,6 +15,8 @@ class HomeController < ApplicationController
         else
           redirect_to 'http://borwin.net'
       end
+    elsif !cookies[:redirected].nil?
+        # ?
     else
       ip = request.remote_ip
       country = Geocoder.search(ip)[0].data['country_name'].to_s
@@ -123,16 +125,16 @@ class HomeController < ApplicationController
     }
     case country
       when 'AR'
-        params[:redirected] = true
+        cookies[:redirected] = true
         @redirector = 'http://borwin.net'
       when 'MX'
-        params[:redirected] = true
+        cookies[:redirected] = true
         @redirector = 'http://mexico.borwin.net'
       when 'CO'
-        params[:redirected] = true
+        cookies[:redirected] = true
         @redirector = 'http://colombia.borwin.net'
       else
-        params[:redirected] = true
+        cookies[:redirected] = true
         @redirector = 'http://borwin.net'
       end
   end
@@ -174,6 +176,19 @@ class HomeController < ApplicationController
       flash[:error] = "El código de imagen no existe"
       redirect_to root_url
     end
+  end
+
+  # Endpoint to receive notifications from mercadopago
+  def ipn_endpoint
+    topic = params[:payment]
+    payment_id = params[:id]
+
+    notification = mp_client.notification(payment_id)
+    puts notification
+
+    parsed_json = ActiveSupport::JSON.decode(notification)
+    payment = Payment.where('external_reference == ?', parsed_json['collection']['external_reference']).first
+    payment.update_attribute('status', parsed_json['collection']['status'])
   end
 
 end
