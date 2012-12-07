@@ -17,8 +17,17 @@ class  Advertiser::PicturesController < ApplicationController
   def create
     # Generate the picture code
     o =  [('A'..'Z'),('a'..'z'),(0..9)].map{|i| i.to_a}.flatten
+    first_char = ''
+    case APP_CONFIG['app_country']
+      when 'AR'
+        first_char = 'A'
+      when 'CO'
+        first_char = 'C'
+      when 'MX'
+        first_char = 'M'
+    end
     begin
-      code = (0..3).map{ o[rand(o.length)] }.join
+      code = first_char + (0..3).map{ o[rand(o.length)] }.join
     end while Tweet.where(link_code: code).exists?
     params[:picture][:picture_code] = code.to_s
     @picture = Picture.new(params[:picture])

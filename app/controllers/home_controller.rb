@@ -155,8 +155,30 @@ class HomeController < ApplicationController
   # Tweet link redirection
   # http://localhost:3000/L1234
   def tweet_link_redirection
-    if Tweet.where(link_code: params[:link_code]).exists?
-      tweet = Tweet.where(link_code: params[:link_code]).first
+    length = params[:link_code].length
+    if length > 4
+      case params[:link_code][0]
+        when 'A'
+          if APP_CONFIG['app_country'] != 'AR'
+            redirect_to 'http://borwin.net/P'+params[:link_code].to_s
+            return
+          end
+        when 'C'
+          if APP_CONFIG['app_country'] != 'CO'
+            redirect_to 'http://colombia.borwin.net/P'+params[:link_code].to_s
+            return
+          end
+        when 'M'
+          if APP_CONFIG['app_country'] != 'MX'
+            redirect_to 'http://mexico.borwin.net/P'+params[:link_code].to_s
+            return
+          end
+      end
+    end
+    link_code = params[:link_code][0..length]
+
+    if Tweet.where(link_code: link_code).exists?
+      tweet = Tweet.where(link_code: link_code).first
       Click.create(tweet: tweet, remote_ip: request.env['REMOTE_ADDR'], remote_agent: request.env['HTTP_USER_AGENT'])
       redirect_to tweet.link_url
     else
@@ -168,8 +190,30 @@ class HomeController < ApplicationController
   # Tweet link redirection
   # http://localhost:3000/P1234
   def tweet_image_redirection
-    if Picture.where(picture_code: params[:picture_code]).exists?
-      image = Picture.where(picture_code: params[:picture_code]).first
+    length = params[:picture_code].length
+    if length > 4
+      case params[:picture_code][0]
+        when 'A'
+          if APP_CONFIG['app_country'] != 'AR'
+            redirect_to 'http://borwin.net/P'+params[:picture_code].to_s
+            return
+          end
+        when 'C'
+          if APP_CONFIG['app_country'] != 'CO'
+            redirect_to 'http://colombia.borwin.net/P'+params[:picture_code].to_s
+            return
+          end
+        when 'M'
+          if APP_CONFIG['app_country'] != 'MX'
+            redirect_to 'http://mexico.borwin.net/P'+params[:picture_code].to_s
+            return
+          end
+      end
+    end
+    picture_code = params[:picture_code][0..length]
+
+    if Picture.where(picture_code: picture_code).exists?
+      image = Picture.where(picture_code: picture_code).first
       Click.create(tweet: image.tweet, remote_ip: request.env['REMOTE_ADDR'], remote_agent: request.env['HTTP_USER_AGENT'])
       redirect_to '/pictures/'+image.id.to_s
     else
