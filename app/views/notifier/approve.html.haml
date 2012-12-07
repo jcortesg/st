@@ -19,10 +19,10 @@
       Borwin® te da la bienvenida,
       = @user.email
       !
-    %p.style4 Tu cuenta ha sido activada con éxito.
+    %p.style4= t('approve_text_1')
     - if @user.influencer?
-      %p.style4 Ya puedes comenzar a potenciar tus ingresos. El equipo de Borwin® está buscando una campaña para vos!
-    %p.style4 Gracias por elegirnos,
+      %p.style4= t('approve_text_2')
+    %p.style4= t('thanks_for_choosing_us')
     %p.style4
       = image_tag attachments['sellochico.jpg'].url
     %p.style4

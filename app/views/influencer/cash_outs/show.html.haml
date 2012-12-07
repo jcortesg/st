@@ -5,29 +5,29 @@
 .row
   .span8.offset2
     .frontend_round_content
-      .main_blue_title Detalles de Cash Out
+      .main_blue_title= t('cash_out_details')
 
       %dl.record_details
-        %dt Fecha
+        %dt= t('a_date')
         %dd= @cash_out.created_at.strftime("%d/%m/%Y %H:%M:%S")
-        %dt Importe
+        %dt= t('amount')
         %dd= number_to_currency(@cash_out.amount)
-        %dt Estado
+        %dt= t('status')
         %dd= @cash_out.status_to_s
         - if @cash_out.status == 'paid'
-          %dt Fecha de pago
+          %dt= t('payment_date')
           %dd= @cash_out.paid_at.strftime("%d/%m/%Y %H:%M:%S")
 
       .form-actions.center_text
-        = link_to('Listado', [:influencer, :cash_outs], class: 'btn btn-large btn-primary')
+        = link_to(t('list'), [:influencer, :cash_outs], class: 'btn btn-large btn-primary')
 
       %table.table.table-striped
         %thead
           %tr
-            %th Fecha
-            %th Tipo
-            %th Link
-            %th Importe
+            %th= t('a_date')
+            %th= t('type')
+            %th= t('link')
+            %th= t('amount')
 
         %tbody
           - @cash_out.transactions.order('id asc').each do |transaction|

@@ -2,6 +2,11 @@ es:
   simple_form:
     "yes": 'Sí'
     "no": 'No'
+    yes: 'Sí'
+    no: 'No'
+    day: Día
+    month: Mes
+    year: Año
     required:
       text: 'requerido'
       mark: '*'
@@ -67,6 +72,10 @@ es:
         position: Cargo
         brand: Marca
         twitter_screen_name: Twitter
+        preferred_payment: Forma de pago preferida
+        account_number: Número de cuenta
+        account_type: Tipo de cuenta
+        bank_name: Banco
       influencer:
         first_name: Nombre
         last_name: Apellido
@@ -199,7 +208,59 @@ es:
         twitter_screen_name: "Twitter de la empresa, ejemplo: @JuanaRepetto"
         hashtag: "Hashtag para la campaña. Por ejemplo: #internet."
         phrase: "Palabra o frase destacada contenida en los tweets."
-
+  date:
+    abbr_day_names:
+    - dom
+    - lun
+    - mar
+    - mié
+    - jue
+    - vie
+    - sáb
+    abbr_month_names:
+    -
+    - ene
+    - feb
+    - mar
+    - abr
+    - may
+    - jun
+    - jul
+    - ago
+    - sep
+    - oct
+    - nov
+    - dic
+    day_names:
+    - domingo
+    - lunes
+    - martes
+    - miércoles
+    - jueves
+    - viernes
+    - sábado
+    formats:
+      default: ! '%d/%m/%Y'
+      long: ! '%A, %d de %B de %Y'
+      short: ! '%d de %b'
+    month_names:
+    -
+    - enero
+    - febrero
+    - marzo
+    - abril
+    - mayo
+    - junio
+    - julio
+    - agosto
+    - septiembre
+    - octubre
+    - noviembre
+    - diciembre
+    order:
+    - :day
+    - :month
+    - :year
   helpers:
     submit:
       user:

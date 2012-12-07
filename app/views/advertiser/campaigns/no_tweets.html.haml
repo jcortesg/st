@@ -7,7 +7,7 @@
   .span12
     %ul.breadcrumb
       %li
-        = link_to("Campañas", [:advertiser, :campaigns])
+        = link_to(t('campaigns'), [:advertiser, :campaigns])
         %span.divider /
       %li.active= @campaign.name
 
@@ -22,10 +22,10 @@
 
 
         %h2
-          Todavía no has creado ningún tweet.
+          = t('no_tweets_yet')
 
         %br
         %br
 
         - if current_user.advertiser.can_create_campaigns?
-          = link_to('Crear Nuevo Tweet', [:advertiser, @campaign, :tweets], :class => 'btn btn-primary')
+          = link_to(t('new_tweet'), [:advertiser, @campaign, :tweets], :class => 'btn btn-primary')

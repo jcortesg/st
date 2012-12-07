@@ -1,4 +1,4 @@
-es:
+es_AR:
   errors:
     messages:
       expired: "ha expirado, por favor solicita una nueva"

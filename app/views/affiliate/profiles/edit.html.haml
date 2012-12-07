@@ -1,7 +1,7 @@
 .row.registration_container
   .span6.offset3.round_box
     = simple_form_for(@user, :url => affiliate_profiles_update_path, :html => { class: "form-horizontal round_form", method: :put }) do |f|
-      %h1.form_title Perfil
+      %h1.form_title= t('profile')
       = render '/shared/simple_form_errors', :f => f
       = f.input :email
       = f.simple_fields_for :affiliate do |a|
@@ -20,5 +20,5 @@
         = a.input :phone
 
       .form-actions
-        = f.submit 'Guardar', :class => 'btn btn-primary btn-large'
-        = link_to 'Cancelar', affiliate_profiles_show_path, class: 'btn btn-large'
+        = f.submit t('save'), :class => 'btn btn-primary btn-large'
+        = link_to t('cancel'), affiliate_profiles_show_path, class: 'btn btn-large'

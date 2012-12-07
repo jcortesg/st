@@ -41,29 +41,29 @@
         .influencer_stats
           .box_container.clearfix
             .box
-              .stat Web
+              .stat= t('web_site')
               .data= link_to(@advertiser.web, @advertiser.web.include?('http') ? @advertiser.web : "http://#{@advertiser.web}", target: '_blank')
-              .stat Dirección
+              .stat= t('address')
               .data= @advertiser.address
-              .stat Ciudad
+              .stat= t('city')
               .data= @advertiser.city
-              .stat Provincia
+              .stat= t('state')
               .data= @advertiser.state
-              .stat País
+              .stat= t('country')
               .data= @advertiser.country
-              .stat Código Postal
+              .stat= t('postal_code')
               .data= @advertiser.zip_code
 
             .box.last
-              .stat Ingreso TweetGo:
+              .stat= t('tweetgo_income')
               .data= @advertiser.user.created_at.strftime("%d/%m/%y")
-              .stat Campañas Activas
+              .stat= t('active_campaigns')
               .data= link_to(@advertiser.campaigns.created_and_active.count, [:advertiser, :campaigns])
-              .stat Históricas
+              .stat= t('historical')
               .data= link_to(@advertiser.campaigns.archived.count, [:archived, :advertiser, :campaigns])
-              .stat Referidos
+              .stat= t('referrals')
               .data= link_to(@advertiser.user.referrals.count, [:affiliate, :referrals])
-              .stat Ingresos
+              .stat= t('income')
               .data= link_to(number_to_currency(@advertiser.user.total_referral_earnings), [:affiliate, :referrals])
 
 
@@ -71,7 +71,7 @@
         = simple_form_for @advertiser, :url => advertiser_profiles_update_photo_path do |f|
           .modal-header
             %button.close{'data-dismiss' => 'modal'} x
-            %h3 Foto
+            %h3= t('picture')
           .modal-body
             .clearfix
               .image
@@ -82,8 +82,8 @@
               .form
                 = f.input :photo
           .modal-footer
-            %a.btn.close_user_photo{:href => '#'} Cerrar
-            = f.submit 'Guardar', :class => 'btn btn-primary'
+            %a.btn.close_user_photo{:href => '#'}= t('close')
+            = f.submit t('save'), :class => 'btn btn-primary'
 
 
   .span3

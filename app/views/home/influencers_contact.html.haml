@@ -2,7 +2,7 @@
   .span8
 
     = simple_form_for @site_contact, :url => process_contact_path, :html => {:class => 'form-horizontal round_form'} do |f|
-      .main_blue_title ¡Contáctate con Borwin!
+      .main_blue_title= t('contact_with_borwin')
 
       = render '/shared/simple_form_errors', :f => f
 
@@ -11,7 +11,7 @@
       = f.input :subject
       = f.input :message, :as => :text, :input_html => {:rows => 5, :cols => 60 }
       .form-actions
-        = f.submit 'Enviar', :class => 'btn btn-primary btn-large'
+        = f.submit t('send'), :class => 'btn btn-primary btn-large'
 
       %p.address
         ARGENTINA, Buenos Aires, Marcelo T. de Alvear 474, CP 1001, Capital Federal. Tel: 5199-5750
@@ -20,9 +20,9 @@
     .frontend_round_content
       %ul.nav.nav-pills.nav-stacked
         %li
-          %a{:href => home_influencers_about_path} Visión General
+          %a{:href => home_influencers_about_path}= t('general_vision')
         %li.active
-          %a{:href => home_influencers_contact_path} Contáctenos
+          %a{:href => home_influencers_contact_path}= t('contact_us')
       %br
       .google_map
         .iphone_map

@@ -4,6 +4,31 @@ class HomeController < ApplicationController
 
   # Website main page
   def index
+    if !cookies[:country].nil? && cookies[:redirected].nil?
+      case cookies[:country]
+        when 'AR'
+          redirect_to 'http://borwin.net'
+        when 'MX'
+          redirect_to 'http://mexico.borwin.net'
+        when 'CO'
+          redirect_to 'http://colombia.borwin.net'
+        else
+          redirect_to 'http://borwin.net'
+      end
+    else
+      ip = request.remote_ip
+      country = Geocoder.search(ip)[0].data['country_name'].to_s
+      case country
+        when 'Argentina'
+          redirect_to country_redirector_path({:code => 'AR'})
+        when 'Mexico'
+          redirect_to country_redirector_path({:code => 'MX'})
+        when 'Colombia'
+          redirect_to country_redirector_path({:code => 'CO'})
+        else
+          redirect_to country_redirector_path({:code => 'NO'})
+      end
+    end
   end
 
   # Anunciantes - Vision General
@@ -87,6 +112,29 @@ class HomeController < ApplicationController
 
   # Privacy
   def privacy
+  end
+
+  def country_redirector
+    country = params[:code]
+    cookies[:country] = {
+        :value => country,
+        :expires => 1.month.from_now,
+        :domain => :all
+    }
+    case country
+      when 'AR'
+        params[:redirected] = true
+        @redirector = 'http://borwin.net'
+      when 'MX'
+        params[:redirected] = true
+        @redirector = 'http://mexico.borwin.net'
+      when 'CO'
+        params[:redirected] = true
+        @redirector = 'http://colombia.borwin.net'
+      else
+        params[:redirected] = true
+        @redirector = 'http://borwin.net'
+      end
   end
 
   # Invitation registration

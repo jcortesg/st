@@ -6,17 +6,17 @@
   .span12
     .round_box
       .content
-        %h1.title Keyword
+        %h1.title= t('keyword')
         %dl.record_details
-          %dt Nombre
+          %dt= t('name')
           %dd= dl_value I18n.t("keywords.#{@keyword.name}")
-          %dt Keywords
+          %dt= t('keyword')
           %dd= dl_value @keyword.keywords.gsub(',', ', ') rescue '&nbsp;'.html_safe
-          %dt Fecha creación
+          %dt= t('creation_date')
           %dd= dl_value @keyword.created_at.try(:strftime, "%d/%m/%Y")
-          %dt Fecha actualización
+          %dt= t('update_date')
           %dd= dl_value @keyword.updated_at.try(:strftime, "%d/%m/%Y")
       .clear.center_text.show_buttons
-        = link_to('Editar', [:edit, :admin, @keyword], class: 'btn btn-primary')
-        = link_to('Listado', [:admin, :keywords], class: 'btn btn-primary')
+        = link_to(t('edit'), [:edit, :admin, @keyword], class: 'btn btn-primary')
+        = link_to(t('list'), [:admin, :keywords], class: 'btn btn-primary')
 

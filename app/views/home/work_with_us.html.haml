@@ -2,7 +2,7 @@
   .span8
     .frontend_round_content
 
-      .title Trabajá con nosotros
+      .title= t('work_with_us')
 
       %h4 Desarrollador ruby
       %p
@@ -21,7 +21,7 @@
       %br
       %br
       %p
-        Si querés postularte para alguno de los puestos de trabajo que ofrecemos en Borwin, envianos un email a
+        = t('send_us_your_resume')
         = link_to("rrhh@borwin.net", "mailto: rrhh@borwin.net")
         indicando en el título el puesto requerido.
 
@@ -29,13 +29,13 @@
     .frontend_round_content
       %ul.nav.nav-pills.nav-stacked
         %li
-          %a{:href => about_us_path} La Empresa
+          %a{:href => about_us_path}= t('the_company')
         %li
-          %a{:href => press_path} Prensa
+          %a{:href => press_path}= t('press')
         %li.active
-          %a{:href => work_with_us_path} Trabajá con Nosotros
+          %a{:href => work_with_us_path}= t('work_with_us')
         %li
-          %a{:href => contact_path} Contáctenos
+          %a{:href => contact_path}= t('contact_us')
 
       .borwin_twitter
         .center_text

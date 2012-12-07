@@ -17,7 +17,7 @@
         = link_to(@campaign.name, [:advertiser, @campaign])
         %span.divider /
       %li.active
-        Estadísticas
+        =t('statistics')
 
 .row
   .span12
@@ -27,60 +27,60 @@
           = link_to('Imprimir', '#', class: 'btn btn-primary', onclick: "window.print()")
         %h1.title= "Campaña #{@campaign.name} - Estadísticas"
 
-        %h3 Datos Generales
+        %h3= t('geneal_info')
 
         %br
 
         %div
-          Objetivo:
+          =t('objective') + ":"
           = @campaign.objective
 
         %div
-          Tweets:
+          =t('tweets') + ":"
           = @campaign.tweets.activated.nil? ? 0 : @campaign.tweets.activated.count
         %div
-          Clicks:
+          =t('clicks') + ":"
           = @campaign.clicks_count
         %div
-          Retweets:
+          =t('retweets') + ":"
           = @campaign.retweets.nil? ? 0 : @campaign.retweets.count
         %div
-          Costo de la campaña:
+          =t('campaign_cost') + ":"
           = number_to_currency(@campaign.tweets.activated.sum(:tweet_fee))
         -if @campaign.clicks_count != 0
           %div
-            Costo Por Click de la campaña:
+            =t('CPC_campaign') + ":"
             = @campaign.statistics_cpc
         - unless @campaign.twitter_screen_name.blank?
           - if @campaign.status == 'archived' && @campaign.followers_end_count!=0
             %div
-              Costo Por Contacto de la campaña:
+              =t('CPContact_campaign') + ":"
               = number_to_currency( @campaign.tweets.activated.sum(:tweet_fee) / @campaign.followers_end_count )
         %div
-          CPMS de la campaña:
+          =t('CPMS_campaign') + ":"
           = @campaign.statistics_cpms
         - unless @campaign.twitter_screen_name.blank?
           %br
           %div
-            Seguidores al inicio de la campaña:
+            =t('start_followers') + ":"
             = @campaign.followers_start_count
           - if @campaign.status == 'archived'
-            Seguidores al final de la campaña:
+            =t('end_followers') + ":"
             = @campaign.followers_end_count
             - if @campaign.followers_end_count > @campaign.followers_start_count
               %div
-                Incremento de seguidores:
+                =t('followers_increment') + ":"
                 = @campaign.followers_end_count - @campaign.followers_start_count
           - else
-            Seguidores actuales:
+            =t('actual_followers') + ":"
             - current_followers = @campaign.campaign_metrics.order('metric_on desc').first.followers
             = current_followers
             - if current_followers > @campaign.followers_start_count
               %div
-                Incremento de seguidores:
+                =t('followers_increment') + ":"
                 = current_followers - @campaign.followers_start_count
                 %br
-                CPNS:
+                =t('CPNS')
                 = number_to_currency( @campaign.tweets.activated.sum(:tweet_fee) / (current_followers - @campaign.followers_start_count) )
 
 
@@ -89,7 +89,7 @@
     .round_box
       .content
 
-        %h1.title Reach
+        %h1.title= t('reach')
 
         #graph_reach_bar
 
@@ -104,7 +104,7 @@
     .round_box
       .content
 
-        %h1.title Evolución
+        %h1.title= t('evolution')
 
         #evolution_clicks
         %br
@@ -128,18 +128,18 @@
     .round_box
       .content
 
-        %h1.title Tweets
+        %h1.title= t('tweets')
 
         %table.table.table-striped
           %thead
             %tr
               %th{style: 'width: 45px'} &nbsp;
-              %th Celebridad
-              %th Clicks
-              %th CPC
-              %th CPMS
-              %th Reach
-              %th Acciones
+              %th= t('celebrity')
+              %th= t('clicks')
+              %th= t('CPC_campaign')
+              %th= t('CPMS_campaign')
+              %th= t('reach')
+              %th= t('actions')
 
           %tbody
             - @campaign.tweets.activated.each do |tweet|
@@ -152,7 +152,7 @@
                 %td= statistics_tweet_cpc(tweet)
                 %td= statistics_tweet_cpms(tweet)
                 %td= tweet.influencer.audience.followers
-                %td= link_to("Detalle", [:advertiser, @campaign, tweet], class: 'btn')
+                %td= link_to(t('detail'), [:advertiser, @campaign, tweet], class: 'btn')
 
 .row
   .span12
@@ -161,7 +161,7 @@
 
         %h1.title
           Clicks
-          = link_to("( Ver / Ocultar )", "#", class: 'link_show_hide')
+          = link_to(t('seehide'), "#", class: 'link_show_hide')
 
 
         .show_hide.hidden
@@ -169,9 +169,9 @@
           %table.table.table-striped
             %thead
               %tr
-                %th Tweet
-                %th IP
-                %th Navegador
+                %th= t('tweet')
+                %th= t('IP')
+                %th= t('browser')
                 %th{style: 'width: 140px'} Fecha
 
             %tbody
@@ -187,15 +187,15 @@
     .round_box
       .content
 
-        %h1.title Celebridades más influyentes
+        %h1.title= t('more_influent_celebrities')
 
         %table.table.table-striped
           %thead
             %tr
               %th{style: 'width: 45px'} &nbsp;
-              %th Celebridad
-              %th Clicks
-              %th Reach
+              %th= t('celebrity')
+              %th= t('clicks')
+              %th= t('reach')
 
           %tbody
             - @campaign.influent_celebrities.reverse.each do |influencer|
@@ -212,16 +212,16 @@
     .round_box
       .content
 
-        %h1.title Retweets
+        %h1.title= t('retweets')
 
         %table.table.table-striped
           %thead
             %tr
               %th{style: 'width: 45px'} &nbsp;
-              %th Usuario
-              %th Tweet
-              %th Seguidores
-              %th{style: 'width: 140px'} Fecha
+              %th= t('user')
+              %th= t('tweet')
+              %th= t('followers')
+              %th{style: 'width: 140px'}= t('a_date')
 
           %tbody
             - @campaign.retweets.order('twitter_created_at asc').each do |retweet|
@@ -232,7 +232,7 @@
                 %td= retweet.twitter_followers_count
                 %td= localize(retweet.twitter_created_at, :format => "%d/%m/%Y %H:%M:%S")
 
-        = link_to("Volver", [:advertiser, @campaign], class: 'btn btn-primary')
+        = link_to(t('back'), [:advertiser, @campaign], class: 'btn btn-primary')
 
 - unless @campaign.hashtag.nil? or @campaign.hashtag.empty?
   .row
@@ -246,14 +246,14 @@
           #evolution_hashtag
 
         -unless @experts.nil?  or @experts.count == 0
-          %h1.title= "Quienes hablan más de esto? "
+          %h1.title= t('who_talks')
           %table.table.table-striped
             %thead
               %tr
                 %th{style: 'width: 45px'} &nbsp;
-                %th Usuario
-                %th Nombre
-                %th Descripción
+                %th= t('user')
+                %th= t('name')
+                %th= t('description')
 
             %tbody
               - @experts.each do |expert|
@@ -294,14 +294,14 @@
           #evolution_phrase
 
         -unless @phrase_experts.nil?  or @phrase_experts.count == 0
-          %h1.title= "Quienes hablan más de esto? "
+          %h1.title= t('who_talks')
           %table.table.table-striped
             %thead
               %tr
                 %th{style: 'width: 45px'} &nbsp;
-                %th Usuario
-                %th Nombre
-                %th Descripción
+                %th= t('user')
+                %th= t('name')
+                %th= t('description')
 
             %tbody
               - @phrase_experts.each do |expert|
@@ -337,20 +337,20 @@
       .round_box
         .content
 
-          %h1.title= "Seguimiento de menciones de usuario: "
+          %h1.title= t('mentions_follow_up')
           %br
           %br
           #evolution_twitter_user
 
         -unless @user_experts.nil? or @user_experts.count == 0
-          %h1.title= "Quienes hablan más de esto? "
+          %h1.title= t('who_talks')
           %table.table.table-striped
             %thead
               %tr
                 %th{style: 'width: 45px'} &nbsp;
-                %th Usuario
-                %th Nombre
-                %th Descripción
+                %th= t('user')
+                %th= t('name')
+                %th= t('description')
 
             %tbody
               - @user_experts.each do |expert|

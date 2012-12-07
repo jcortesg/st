@@ -99,7 +99,7 @@
         = simple_form_for @influencer, :url => influencer_profiles_update_photo_path do |f|
           .modal-header
             %button.close{'data-dismiss' => 'modal'} x
-            %h3 Foto
+            %h3= t('picture')
           .modal-body
             .clearfix
               .image
@@ -111,7 +111,7 @@
                 = f.input :photo
           .modal-footer
             %a.btn.close_user_photo{:href => '#'} Cerrar
-            = f.submit 'Guardar', :class => 'btn btn-primary'
+            = f.submit t('save'), :class => 'btn btn-primary'
 
 
   .span3

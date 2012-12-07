@@ -1,10 +1,10 @@
 .row
   .span6.offset3.round_box
     = simple_form_for(@user, url: admin_affiliates_path, method: :post, html:  { class: "form-horizontal round_form", method: :put }) do |f|
-      %h1.form_title Agencia
+      %h1.form_title= t('affiliate')
       = render partial: 'form', locals: {f: f}
 
       .form-actions
-        = f.submit 'Guardar', :class => 'btn btn-primary btn-large'
-        = link_to 'Cancelar', [:admin, :affiliates], class: 'btn btn-large'
+        = f.submit t('save'), :class => 'btn btn-primary btn-large'
+        = link_to t('cancel'), [:admin, :affiliates], class: 'btn btn-large'
 

@@ -2,14 +2,14 @@
   .span8.offset2
     %ul.breadcrumb
       %li
-        = link_to("Campañas", [:admin, :campaigns])
+        = link_to(t('campaigns'), [:admin, :campaigns])
         %span.divider /
-      %li.active Editar Campaña
+      %li.active= t('edit_campaign')
 
 .row
   .span8.offset2.round_box
     = simple_form_for(@campaign, url: [:admin, @campaign], html:  { id: "new_campaign_form", class: "form-horizontal round_form" }) do |f|
-      %h1.form_title Editar Campaña
+      %h1.form_title= t('edit_campaign')
       = render '/shared/simple_form_errors', :f => f
 
       = f.input :name
@@ -17,6 +17,6 @@
       = f.input :price_per_click
 
       .form-actions
-        = f.submit 'Guardar', :class => 'btn btn-primary btn-large'
-        = link_to 'Cancelar', [:admin, @campaign], class: 'btn btn-large'
+        = f.submit t('save'), :class => 'btn btn-primary btn-large'
+        = link_to t('cancel'), [:admin, @campaign], class: 'btn btn-large'
 

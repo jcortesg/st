@@ -8,52 +8,52 @@
       .content
         %h1.title= @influencer.full_name
 
-        .subtitle Datos Twitter
+        .subtitle= t('twitter_info')
         %dl.record_details
-          %dt Seguidores
+          %dt= t('followers')
           %dd= dl_value @audience.followers
-          %dt Amigos
+          %dt= t('friends')
           %dd= dl_value @audience.friends
-          %dt Tweets
+          %dt= t('tweets')
           %dd= @audience.tweets
-          %dt Retweets
+          %dt= t('retweets')
           %dd= @audience.retweets
 
-        .subtitle Porcentajes
+        .subtitle= t('percentiles')
         %dl.record_details
-          %dt Hombres
+          %dt= t('men')
           %dd= @audience.males
-          %dt Mujeres
+          %dt= t('women')
           %dd= @audience.females
-          %dt Mamás
+          %dt= t('moms')
           %dd= @audience.moms
-          %dt Adolescentes
+          %dt= t('teens')
           %dd= @audience.teens
-          %dt Universitarios
+          %dt= t('college')
           %dd= @audience.college_students
-          %dt Mujeres (+18)
+          %dt= t('women18')
           %dd= (@audience.young_women + @audience.adult_women)
-          %dt Hombres (+18)
+          %dt= t('men18')
           %dd= (@audience.young_men + @audience.adult_men)
 
-          %dt Deportes
+          %dt= t('sports')
           %dd= @audience.sports
-          %dt Moda
+          %dt= t('fashion')
           %dd= @audience.fashion
-          %dt Música
+          %dt= t('music')
           %dd= @audience.music
-          %dt Cine
+          %dt= t('movies')
           %dd= @audience.movies
-          %dt Política
+          %dt= t('politics')
           %dd= @audience.politics
-          %dt Tecnología
+          %dt= t('technology')
           %dd= @audience.technology
-          %dt Viajes
+          %dt= t('travel')
           %dd= @audience.travel
-          %dt Lujos
+          %dt= t('luxury')
           %dd= @audience.luxury
 
       .clear.center_text.show_buttons
-        = link_to('Editar Audiencia', [:edit, :admin, @influencer, :audience], class: 'btn btn-primary')
-        = link_to('Celebridad', [:admin, @influencer], class: 'btn btn-primary')
+        = link_to(t('edit_audience'), [:edit, :admin, @influencer, :audience], class: 'btn btn-primary')
+        = link_to(t('celebrity'), [:admin, @influencer], class: 'btn btn-primary')
 

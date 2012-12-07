@@ -10,67 +10,67 @@
       = render '/shared/simple_form_errors', :f => f
       %h2.title="Hobbies"
       .option
-        = f.label :technology_influential, "Referente de Tecnología:"
+        = f.label :technology_influential, t('technology_referent')
         = f.check_box :technology_influential
       %hr
       .option
-        = f.label :music_influential, "Referente de Música:"
+        = f.label :music_influential, t('music_referent')
         = f.check_box :music_influential
       %hr
       .option
-        = f.label :movies_influential, "Referente de Peliculas:"
+        = f.label :movies_influential, t('movies_referent')
         = f.check_box :movies_influential
       %hr
       .option
-        = f.label :luxury_influential, "Referente de Lujos:"
+        = f.label :luxury_influential, t('luxury_referent')
         = f.check_box :luxury_influential
       %hr
       .option
-        = f.label :travel_influential, "Referente de Viajes:"
+        = f.label :travel_influential, t('travel_referent')
         = f.check_box :travel_influential
       %hr
       .option
-        = f.label :politics_influential, "Referente de Política:"
+        = f.label :politics_influential, t('politics_referent')
         = f.check_box :politics_influential
       %hr
       .option
-        = f.label :sports_influential, "Referente de Deportes:"
+        = f.label :sports_influential, t('sports_referent')
         = f.check_box :sports_influential
       %hr
       .option
-        = f.label :fashion_influential, "Referente de Moda:"
+        = f.label :fashion_influential, t('fashion_referent')
         = f.check_box :fashion_influential
       %hr
       %h2.title="Edades"
       .option
-        = f.label :moms_influential, "Referente de Mamás:"
+        = f.label :moms_influential, t('moms_referent')
         = f.check_box :moms_influential
       %hr
       .option
-        = f.label :teens_influential, "Referente de Adolecentes:"
+        = f.label :teens_influential, t('teens_referent')
         = f.check_box :teens_influential
       %hr
       .option
-        = f.label :college_influential, "Referente de Universitarios:"
+        = f.label :college_influential, t('college_referent')
         = f.check_box :college_influential
       %hr
       .option
-        = f.label :young_men_influential, "Referente de Hombres (18 a 35 años) :"
+        = f.label :young_men_influential, t('young_men_referent')
         = f.check_box :young_men_influential
       %hr
       .option
-        = f.label :young_women_influential, "Referente de Mujeres (18 a 35 años):"
+        = f.label :young_women_influential, t('young_women_referent')
         = f.check_box :young_women_influential
       %hr
       .option
-        = f.label :adult_men_influential, "Referente de Hombres (más de 35 años):"
+        = f.label :adult_men_influential, t('adult_men_referent')
         = f.check_box :adult_men_influential
       %hr
       .option
-        = f.label :adult_women_influential, "Referente de Mujeres (más de 35 años):"
+        = f.label :adult_women_influential, t('adult_women_referent')
         = f.check_box :adult_women_influential
       %hr
 
       .form-actions
-        = f.submit 'Guardar influencia', :class => 'btn btn-danger btn-large', confirm: "Esta seguro?"
-        = link_to 'Cancelar', [:admin, @influencer], class: 'btn btn-large'
+        = f.submit t('save_influence'), :class => 'btn btn-danger btn-large', confirm: t('are_you_sure_short')
+        = link_to t('cancel'), [:admin, @influencer], class: 'btn btn-large'

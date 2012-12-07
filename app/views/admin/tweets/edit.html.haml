@@ -5,20 +5,20 @@
 .row
   .span8.offset2
     .frontend_round_content
-      .main_blue_title Modificación de Tweet
+      .main_blue_title= t('tweet_modification')
 
-      %h3 Datos No modificables
+      %h3= t('non_modifiable_data')
       %dl.record_details
-        %dt Campaña
+        %dt= t('campaign')
         %dd= dl_value @tweet.campaign.name
-        %dt Empresa
+        %dt= t('company')
         %dd= dl_value @tweet.campaign.advertiser.company
-        %dt Celebridad
+        %dt= t('celebrity')
         %dd= dl_value @tweet.influencer.full_name
-        %dt Estado
+        %dt= t('status')
         %dd= tweet_status_explanation(@tweet.status)
 
-      %h3 Datos modificables
+      %h3= t('modifiable_data')
 
       = simple_form_for @tweet, url: [:admin, @campaign, @tweet], html: { class: 'vertical-form tweet_proposal' } do |f|
         = f.input :text, as: :text, input_html: { style: 'width: 523px;height: 40px' }
@@ -30,6 +30,6 @@
         =# f.input :fee_type, as: :radio, collection: [["Precio por Tweet - AR$ #{sprintf("%.02f", @tweet.influencer.tweet_fee)}", 'tweet_fee'], ["Precio por Click - AR$ #{sprintf("%.02f", @tweet.influencer.cpc_fee)}", 'cpc_fee']]
 
         .form-actions
-          = f.submit('Aceptar', class: 'btn btn-large btn-primary')
-          = link_to('Cancelar', [:influencer, @tweet], class: 'btn btn-large')
+          = f.submit(t('accept'), class: 'btn btn-large btn-primary')
+          = link_to(t('cancel'), [:influencer, @tweet], class: 'btn btn-large')
 

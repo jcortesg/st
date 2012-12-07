@@ -1,24 +1,24 @@
 .row.registration_container.twitter_registration
   .span6.offset3
     .round_form
-      %h1.center_text Registración en Borwin
+      %h1.center_text= t('invitation_title')
 
       = render partial: '/shared/referrer_invitation', locals: { referrer: @referrer }
 
       %div.center_text
         %br
         %br
-        = link_to("Registrarse como Celebridad", influencer_devise_registration_path, class: 'btn btn-large btn-primary')
+        = link_to(t('register_as_celebrity'), influencer_devise_registration_path, class: 'btn btn-large btn-primary')
         %br
         %br
         %br
-        = link_to("Registrarse como Anunciante", advertiser_devise_registration_path, class: 'btn btn-large btn-primary')
+        = link_to(t('reigster_as_advertiser'), advertiser_devise_registration_path, class: 'btn btn-large btn-primary')
         %br
         %br
         %br
         %br
 
       .sign-links.center_text
-        = link_to "Iniciar sesión", new_session_path("user")
+        = link_to t('new_session'), new_session_path("user")
         |
-        = link_to "¿Olvidaste tu contraseña?", new_password_path("user")
+        = link_to t('forgot_password'), new_password_path("user")

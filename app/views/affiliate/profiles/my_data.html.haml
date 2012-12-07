@@ -5,39 +5,39 @@
 .row
   .span6.offset3
     .frontend_round_content
-      .main_blue_title Datos de contacto
+      .main_blue_title= t('contact_info')
 
       %dl.record_details
-        %dt Email
+        %dt= t('email')
         %dd= dl_value @user.email
-        %dt Nombre
+        %dt= t('name')
         %dd= dl_value @user.affiliate.first_name
-        %dt Apellido
+        %dt= t('last_name')
         %dd= dl_value @user.affiliate.last_name
-        %dt Cargo
+        %dt= t('position')
         %dd= dl_value @user.affiliate.position
-        %dt Empresa
+        %dt= t('company')
         %dd= dl_value @user.affiliate.company
-        %dt Marca
+        %dt= t('brand')
         %dd= dl_value @user.affiliate.brand
-        %dt Twitter
+        %dt= t('twitter')
         %dd= dl_value @user.affiliate.twitter_screen_name
-        %dt Web
+        %dt= t('web')
         %dd= dl_value @user.affiliate.web
-        %dt Dirección
+        %dt= t('address')
         %dd= dl_value @user.affiliate.address
-        %dt Ciudad
+        %dt= t('city')
         %dd= dl_value @user.affiliate.city
-        %dt Provincia
+        %dt= t('state')
         %dd= dl_value @user.affiliate.state
-        %dt País
+        %dt= t('country')
         %dd= dl_value @user.affiliate.country
-        %dt Código Postal
+        %dt= t('postal_code')
         %dd= dl_value @user.affiliate.zip_code
-        %dt Teléfono
+        %dt= t('telephone')
         %dd= dl_value @user.affiliate.phone
 
 
       .form-actions
-        = link_to 'Editar', [:affiliate, :profiles, :edit], :class => 'btn btn-primary btn-large'
-        = link_to 'Volver', [:affiliate, :profile], class: 'btn btn-large'
+        = link_to t('edit'), [:affiliate, :profiles, :edit], :class => 'btn btn-primary btn-large'
+        = link_to t('back'), [:affiliate, :profile], class: 'btn btn-large'

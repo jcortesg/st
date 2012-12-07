@@ -1,10 +1,11 @@
+%h3.title Datos de Twitter
 %table.table.table-striped
   %thead
     %tr
-      %th.center_text Seguidores
-      %th.center_text Amigos
-      %th.center_text Tweets
-      %th.center_text Retweets
+      %th.center_text= t('followers')
+      %th.center_text= t('friends')
+      %th.center_text= t('tweets')
+      %th.center_text= t('retweets')
   %tbody
     %tr
       %td.center_text= audience.followers
@@ -12,16 +13,17 @@
       %td.center_text= audience.tweets
       %td.center_text= audience.retweets
 
+%h3.title Edades
 %table.table.table-striped
   %thead
     %tr
-      %th.center_text Hombres
-      %th.center_text Mujeres
-      %th.center_text Mamás
-      %th.center_text Adolescentes
-      %th.center_text Universitarios
-      %th.center_text Mujeres (+18)
-      %th.center_text Hombres (+18)
+      %th.center_text= t('men')
+      %th.center_text= t('women')
+      %th.center_text= t('moms')
+      %th.center_text= t('teens')
+      %th.center_text= t('college')
+      %th.center_text= t('women18')
+      %th.center_text= t('men18')
 
   %tbody
     %tr
@@ -33,17 +35,18 @@
       %td.center_text= "#{audience.young_women + audience.adult_women}%"
       %td.center_text= "#{audience.young_men + audience.adult_men}%"
 
+%h3.title Intereses
 %table.table.table-striped
   %thead
     %tr
-      %th.center_text Deportes
-      %th.center_text Moda
-      %th.center_text Música
-      %th.center_text Cine
-      %th.center_text Política
-      %th.center_text Tecnología
-      %th.center_text Viajes
-      %th.center_text Lujos
+      %th.center_text= t('sports')
+      %th.center_text= t('fashion')
+      %th.center_text= t('music')
+      %th.center_text= t('movies')
+      %th.center_text= t('politics')
+      %th.center_text= t('technology')
+      %th.center_text= t('travel')
+      %th.center_text= t('luxury')
   %tbody
     %tr
       %td.center_text= "#{audience.sports}%"
@@ -55,6 +58,7 @@
       %td.center_text= "#{audience.travel}%"
       %td.center_text= "#{audience.luxury}%"
 
+%h3.title Ubicación geográfica
 %table.table.table-striped
   %thead
     %tr
@@ -74,6 +78,7 @@
       %td.center_text= "#{audience.country_uruguay}%"
 
 
+%h3.title Argentina
 %table.table.table-striped
   %thead
     %tr
@@ -130,12 +135,395 @@
       %td.center_text= "#{audience.state_tierra_del_fuego}%"
       %td.center_text= "#{audience.state_tucuman}%"
 
+%h3.title Colombia
+%table.table.table-striped
+  %thead
+    %tr
+      %th.center_text Amazonas
+      %th.center_text Antioquía
+      %th.center_text Arauca
+      %th.center_text Atlántico
+      %th.center_text Bolivar
+      %th.center_text Boyaca
+      %th.center_text Caldas
+      %th.center_text Caqueta
+      %th.center_text Casanare
+      %th.center_text Cauca
+  %tbody
+    %tr
+      %td.center_text= "#{audience.state_col_amazonas}%"
+      %td.center_text= "#{audience.state_col_antioquia}%"
+      %td.center_text= "#{audience.state_col_arauca}%"
+      %td.center_text= "#{audience.state_col_atlantico}%"
+      %td.center_text= "#{audience.state_col_bolivar}%"
+      %td.center_text= "#{audience.state_col_boyaca}%"
+      %td.center_text= "#{audience.state_col_caldas}%"
+      %td.center_text= "#{audience.state_col_caqueta}%"
+      %td.center_text= "#{audience.state_col_casanare}%"
+      %td.center_text= "#{audience.state_col_cauca}%"
+
+%table.table.table-striped
+  %thead
+    %tr
+      %th.center_text César
+      %th.center_text Choco
+      %th.center_text Cundinamarca
+      %th.center_text Guainía
+      %th.center_text Guaviare
+      %th.center_text Huila
+      %th.center_text La Guajira
+      %th.center_text Magdalena
+      %th.center_text Meta
+      %th.center_text Narino
+      %th.center_text Norte de Santander
+      %th.center_text Putumayo
+  %tbody
+    %tr
+      %td.center_text= "#{audience.state_col_cesar}%"
+      %td.center_text= "#{audience.state_col_choco}%"
+      %td.center_text= "#{audience.state_col_cundinamarca}%"
+      %td.center_text= "#{audience.state_col_guainia}%"
+      %td.center_text= "#{audience.state_col_guaviare}%"
+      %td.center_text= "#{audience.state_col_huila}%"
+      %td.center_text= "#{audience.state_col_la_guajira}%"
+      %td.center_text= "#{audience.state_col_magdalena}%"
+      %td.center_text= "#{audience.state_col_meta}%"
+      %td.center_text= "#{audience.state_col_narino}%"
+      %td.center_text= "#{audience.state_col_norte_de_santander}%"
+      %td.center_text= "#{audience.state_col_putumayo}%"
+
+%table.table.table-striped
+  %thead
+    %tr
+      %th.center_text Quindío
+      %th.center_text Risaralda
+      %th.center_text San Andrés
+      %th.center_text Santander
+      %th.center_text Sucre
+      %th.center_text Tolima
+      %th.center_text Valle del Cauca
+      %th.center_text Vaupes
+      %th.center_text Vinchada
+      %th.center_text Colombia
+  %tbody
+    %tr
+      %td.center_text= "#{audience.state_col_quindio}%"
+      %td.center_text= "#{audience.state_col_risaralda}%"
+      %td.center_text= "#{audience.state_col_san_andres}%"
+      %td.center_text= "#{audience.state_col_santander}%"
+      %td.center_text= "#{audience.state_col_sucre}%"
+      %td.center_text= "#{audience.state_col_tolima}%"
+      %td.center_text= "#{audience.state_col_valle_del_cauca}%"
+      %td.center_text= "#{audience.state_col_vaupes}%"
+      %td.center_text= "#{audience.state_col_vichada}%"
+      %td.center_text= "#{audience.state_col_colombia}%"
+
+%h3.title Chile
+%table.table.table-striped
+  %thead
+    %tr
+      %th.center_text Arica
+      %th.center_text Tarapaca
+      %th.center_text Antofogasta
+      %th.center_text Atacama
+      %th.center_text Coquimbo
+      %th.center_text Valparaíso
+      %th.center_text Santiago
+      %th.center_text O Higgins
+      %th.center_text Maule
+      %th.center_text Bío Bío
+  %tbody
+    %tr
+      %td.center_text= "#{audience.state_chi_arica}%"
+      %td.center_text= "#{audience.state_chi_tarapaca}%"
+      %td.center_text= "#{audience.state_chi_antofogasta}%"
+      %td.center_text= "#{audience.state_chi_atacama}%"
+      %td.center_text= "#{audience.state_chi_coquimbo}%"
+      %td.center_text= "#{audience.state_chi_valparaiso}%"
+      %td.center_text= "#{audience.state_chi_santiago}%"
+      %td.center_text= "#{audience.state_chi_ohiggins}%"
+      %td.center_text= "#{audience.state_chi_maule}%"
+      %td.center_text= "#{audience.state_chi_biobio}%"
+%table.table.table-striped
+  %thead
+    %tr
+      %th.center_text La Araucanía
+      %th.center_text Los Ríos
+      %th.center_text Los Lagos
+      %th.center_text Aysén
+      %th.center_text Magallanes
+  %tbody
+    %tr
+      %td.center_text= "#{audience.state_chi_la_araucania}%"
+      %td.center_text= "#{audience.state_chi_los_rios}%"
+      %td.center_text= "#{audience.state_chi_los_lagos}%"
+      %td.center_text= "#{audience.state_chi_aysen}%"
+      %td.center_text= "#{audience.state_chi_magallanes}%"
+
+%h3.title Ecuador
+%table.table.table-striped
+  %thead
+    %tr
+      %th.center_text Azuay
+      %th.center_text Bolivar
+      %th.center_text Canar
+      %th.center_text Carchi
+      %th.center_text Chimborazo
+      %th.center_text Cotopaxi
+      %th.center_text El oro
+      %th.center_text Esmeraldas
+      %th.center_text Galápagos
+      %th.center_text Guayas
+  %tbody
+    %tr
+      %td.center_text= "#{audience.state_ecu_azuay}%"
+      %td.center_text= "#{audience.state_ecu_bolivar}%"
+      %td.center_text= "#{audience.state_ecu_canar}%"
+      %td.center_text= "#{audience.state_ecu_carchi}%"
+      %td.center_text= "#{audience.state_ecu_chimborazo}%"
+      %td.center_text= "#{audience.state_ecu_cotopaxi}%"
+      %td.center_text= "#{audience.state_ecu_el_oro}%"
+      %td.center_text= "#{audience.state_ecu_esmeraldas}%"
+      %td.center_text= "#{audience.state_ecu_galapagos}%"
+      %td.center_text= "#{audience.state_ecu_guayas}%"
+%table.table.table-striped
+  %thead
+    %tr
+      %th.center_text Imbabura
+      %th.center_text Loja
+      %th.center_text Los Ríos
+      %th.center_text Manabí
+      %th.center_text Morona Santiago
+      %th.center_text Napo
+      %th.center_text Orellana
+      %th.center_text Pastaza
+      %th.center_text Pichincha
+      %th.center_text Santa Elena
+  %tbody
+    %tr
+      %td.center_text= "#{audience.state_ecu_imbabura}%"
+      %td.center_text= "#{audience.state_ecu_loja}%"
+      %td.center_text= "#{audience.state_ecu_los_rios}%"
+      %td.center_text= "#{audience.state_ecu_manabi}%"
+      %td.center_text= "#{audience.state_ecu_morona_santiago}%"
+      %td.center_text= "#{audience.state_ecu_napo}%"
+      %td.center_text= "#{audience.state_ecu_orellana}%"
+      %td.center_text= "#{audience.state_ecu_pastaza}%"
+      %td.center_text= "#{audience.state_ecu_pichincha}%"
+      %td.center_text= "#{audience.state_ecu_santa_elena}%"
+%table.table.table-striped
+  %thead
+    %tr
+      %th.center_text Santo Domingo
+      %th.center_text Sucumbios
+      %th.center_text Tungurahua
+      %th.center_text Zamora
+  %tbody
+    %tr
+      %td.center_text= "#{audience.state_ecu_santo_domingo}%"
+      %td.center_text= "#{audience.state_ecu_sucumbios}%"
+      %td.center_text= "#{audience.state_ecu_tungurahua}%"
+      %td.center_text= "#{audience.state_ecu_zamora}%"
+
+%h3.title México
+%table.table.table-striped
+  %thead
+    %tr
+      %th.center_text Aguascalientes
+      %th.center_text Baja California
+      %th.center_text Baja California Sur
+      %th.center_text Campeche
+      %th.center_text Chiapas
+      %th.center_text Chihuahua
+      %th.center_text Coahuila
+      %th.center_text Colima
+  %tbody
+    %tr
+      %td.center_text= "#{audience.state_mex_aguascalientes}%"
+      %td.center_text= "#{audience.state_mex_baja_california}%"
+      %td.center_text= "#{audience.state_mex_baja_california_sur}%"
+      %td.center_text= "#{audience.state_mex_campeche}%"
+      %td.center_text= "#{audience.state_mex_chiapas}%"
+      %td.center_text= "#{audience.state_mex_chihuahua}%"
+      %td.center_text= "#{audience.state_mex_coahuila}%"
+      %td.center_text= "#{audience.state_mex_colima}%"
+%table.table.table-striped
+  %thead
+    %tr
+      %th.center_text Distrito Federal
+      %th.center_text Durango
+      %th.center_text Guanajuato
+      %th.center_text Guerrero
+      %th.center_text Hidalgo
+      %th.center_text Jalisco
+      %th.center_text México
+      %th.center_text Michoacán
+      %th.center_text Nayarit
+      %th.center_text Nuevo León
+  %tbody
+    %tr
+      %td.center_text= "#{audience.state_mex_distrito_federal}%"
+      %td.center_text= "#{audience.state_mex_durango}%"
+      %td.center_text= "#{audience.state_mex_guanajuato}%"
+      %td.center_text= "#{audience.state_mex_guerrero}%"
+      %td.center_text= "#{audience.state_mex_hidalgo}%"
+      %td.center_text= "#{audience.state_mex_jalisco}%"
+      %td.center_text= "#{audience.state_mex_mexico}%"
+      %td.center_text= "#{audience.state_mex_michoacan}%"
+      %td.center_text= "#{audience.state_mex_nayarit}%"
+      %td.center_text= "#{audience.state_mex_nuevo_leon}%"
+%table.table.table-striped
+  %thead
+    %tr
+      %th.center_text Oaxaca
+      %th.center_text Puebla
+      %th.center_text Queretaro
+      %th.center_text Quintana Roo
+      %th.center_text San Luis
+      %th.center_text Sinaloa
+      %th.center_text Sonora
+      %th.center_text Tabasco
+      %th.center_text Tamaulipas
+      %th.center_text Tlaxcala
+  %tbody
+    %tr
+      %td.center_text= "#{audience.state_mex_oaxaca}%"
+      %td.center_text= "#{audience.state_mex_puebla}%"
+      %td.center_text= "#{audience.state_mex_queretaro}%"
+      %td.center_text= "#{audience.state_mex_quintana_roo}%"
+      %td.center_text= "#{audience.state_mex_san_luis}%"
+      %td.center_text= "#{audience.state_mex_sinaloa}%"
+      %td.center_text= "#{audience.state_mex_sonora}%"
+      %td.center_text= "#{audience.state_mex_tabasco}%"
+      %td.center_text= "#{audience.state_mex_tamaulipas}%"
+      %td.center_text= "#{audience.state_mex_tlaxcala}%"
+%table.table.table-striped
+  %thead
+    %tr
+      %th.center_text Veracrúz
+      %th.center_text Yucatán
+      %th.center_text Zacatecas
+  %tbody
+    %tr
+      %td.center_text= "#{audience.state_mex_veracruz}%"
+      %td.center_text= "#{audience.state_mex_yucatan}%"
+      %td.center_text= "#{audience.state_mex_zacatecas}%"
+
+%h3.title Paraguay
+%table.table.table-striped
+  %thead
+    %tr
+      %th.center_text Asunción
+      %th.center_text Concepción
+      %th.center_text San Pedro
+      %th.center_text Cordillera
+      %th.center_text Guairá
+      %th.center_text Caaguazú
+      %th.center_text Caazapá
+      %th.center_text Itapúa
+      %th.center_text Misiones
+      %th.center_text Paraguarí
+  %tbody
+    %tr
+      %td.center_text= "#{audience.state_par_asuncion}%"
+      %td.center_text= "#{audience.state_par_concepcion}%"
+      %td.center_text= "#{audience.state_par_san_pedro}%"
+      %td.center_text= "#{audience.state_par_cordillera}%"
+      %td.center_text= "#{audience.state_par_guaira}%"
+      %td.center_text= "#{audience.state_par_caaguazu}%"
+      %td.center_text= "#{audience.state_par_caazapa}%"
+      %td.center_text= "#{audience.state_par_itapua}%"
+      %td.center_text= "#{audience.state_par_misiones}%"
+      %td.center_text= "#{audience.state_par_paraguari}%"
+%table.table.table-striped
+  %thead
+    %tr
+      %th.center_text Alto Paraná
+      %th.center_text Central
+      %th.center_text Ñeenbucú
+      %th.center_text Amambay
+      %th.center_text Canindeyú
+      %th.center_text Presidente Hayes
+      %th.center_text Alto Paraguay
+      %th.center_text Boquerón
+  %tbody
+    %tr
+      %td.center_text= "#{audience.state_par_alto_parana}%"
+      %td.center_text= "#{audience.state_par_central}%"
+      %td.center_text= "#{audience.state_par_neenbucu}%"
+      %td.center_text= "#{audience.state_par_amambay}%"
+      %td.center_text= "#{audience.state_par_canindeyu}%"
+      %td.center_text= "#{audience.state_par_presidente_hayes}%"
+      %td.center_text= "#{audience.state_par_alto_paraguay}%"
+      %td.center_text= "#{audience.state_par_boqueron}%"
+
+
+
+%h3.title Uruguay
+%table.table.table-striped
+  %thead
+    %tr
+      %th.center_text Artigas
+      %th.center_text Canelones
+      %th.center_text Cerro Largo
+      %th.center_text Colonia
+      %th.center_text Durazno
+      %th.center_text Flores
+      %th.center_text Florida
+      %th.center_text Lavalleja
+      %th.center_text Maldonado
+      %th.center_text Montevideo
+  %tbody
+    %tr
+      %td.center_text= "#{audience.state_uru_artigas}%"
+      %td.center_text= "#{audience.state_uru_canelones}%"
+      %td.center_text= "#{audience.state_uru_cerro_largo}%"
+      %td.center_text= "#{audience.state_uru_colonia}%"
+      %td.center_text= "#{audience.state_uru_durazno}%"
+      %td.center_text= "#{audience.state_uru_flores}%"
+      %td.center_text= "#{audience.state_uru_florida}%"
+      %td.center_text= "#{audience.state_uru_lavalleja}%"
+      %td.center_text= "#{audience.state_uru_maldonado}%"
+      %td.center_text= "#{audience.state_uru_montevideo}%"
+%table.table.table-striped
+  %thead
+    %tr
+      %th.center_text Paysandú
+      %th.center_text Río Negro
+      %th.center_text Rivera
+      %th.center_text Rocha
+      %th.center_text Salto
+      %th.center_text San José
+      %th.center_text Soriano
+      %th.center_text Tacuarembó
+      %th.center_text Treita y Tres
+  %tbody
+    %tr
+      %td.center_text= "#{audience.state_uru_paysandu}%"
+      %td.center_text= "#{audience.state_uru_rio_negro}%"
+      %td.center_text= "#{audience.state_uru_rivera}%"
+      %td.center_text= "#{audience.state_uru_rocha}%"
+      %td.center_text= "#{audience.state_uru_salto}%"
+      %td.center_text= "#{audience.state_uru_san_jose}%"
+      %td.center_text= "#{audience.state_uru_soriano}%"
+      %td.center_text= "#{audience.state_uru_tacuarembo}%"
+      %td.center_text= "#{audience.state_uru_treinta_y_tres}%"
+
+
+
+
 #graph_sex
 #graph_hobbies
 #graph_age
 #graph_age_2
 #graph_countries
 #graph_states
+#graph_states_col
+#graph_states_chi
+#graph_states_ecu
+#graph_states_mex
+#graph_states_par
+#graph_states_uru
 
 :javascript
   var chart;
@@ -389,7 +777,7 @@
         plotShadow: false
       },
       title: {
-        text: 'Pais'
+        text: 'Argentina'
       },
       tooltip: {
         formatter: function() {
@@ -442,6 +830,376 @@
       }]
     });
 
+    chart = new Highcharts.Chart({
+        chart: {
+          renderTo: 'graph_states_chi',
+          plotBackgroundColor: null,
+          plotBorderWidth: null,
+          plotShadow: false
+        },
+        title: {
+          text: 'Chile'
+        },
+        tooltip: {
+          formatter: function() {
+            return '<b>'+ this.point.name +'</b>: '+ Highcharts.numberFormat(this.percentage, 2) +' %';
+          }
+        },
+        plotOptions: {
+          pie: {
+            allowPointSelect: true,
+            cursor: 'pointer',
+            dataLabels: {
+              enabled: true,
+              color: '#000000',
+              connectorColor: '#000000',
+              formatter: function() {
+                return '<b>'+ this.point.name +'</b>: '+ Highcharts.numberFormat(this.percentage, 2) +' %';
+              }
+            },
+            showInLegend: true
+          }
+        },
+        series: [{
+          type: 'pie',
+          name: 'Porcentage según provincia',
+          data: [
+            ['Arica', #{audience.state_chi_arica}],
+            ['Tarapaca', #{audience.state_chi_tarapaca}],
+            ['Antofogasta', #{audience.state_chi_antofogasta}],
+            ['Atacama', #{audience.state_chi_atacama}],
+            ['Coquimbo', #{audience.state_chi_coquimbo}],
+            ['Valparaiso', #{audience.state_chi_valparaiso}],
+            ['Santiago', #{audience.state_chi_santiago}],
+            ['O Higgins', #{audience.state_chi_ohiggins}],
+            ['Maule', #{audience.state_chi_maule}],
+            ['Bío Bío', #{audience.state_chi_biobio}],
+            ['La araucanía', #{audience.state_chi_la_araucania}],
+            ['Los ríos', #{audience.state_chi_los_rios}],
+            ['Los lagos', #{audience.state_chi_los_lagos}],
+            ['Aysén', #{audience.state_chi_aysen}],
+            ['Magallanes', #{audience.state_chi_magallanes}],
+            ['NS/NC', #{audience.state_others_chi}]
+          ]
+        }]
+      });
 
+      chart = new Highcharts.Chart({
+        chart: {
+          renderTo: 'graph_states_col',
+          plotBackgroundColor: null,
+          plotBorderWidth: null,
+          plotShadow: false
+        },
+        title: {
+          text: 'Colombia'
+        },
+        tooltip: {
+          formatter: function() {
+            return '<b>'+ this.point.name +'</b>: '+ Highcharts.numberFormat(this.percentage, 2) +' %';
+          }
+        },
+        plotOptions: {
+          pie: {
+            allowPointSelect: true,
+            cursor: 'pointer',
+            dataLabels: {
+              enabled: true,
+              color: '#000000',
+              connectorColor: '#000000',
+              formatter: function() {
+                return '<b>'+ this.point.name +'</b>: '+ Highcharts.numberFormat(this.percentage, 2) +' %';
+              }
+            },
+            showInLegend: true
+          }
+        },
+        series: [{
+          type: 'pie',
+          name: 'Porcentage según departamento',
+          data: [
+            ['Amazonas', #{audience.state_col_amazonas}],
+            ['Antioquía', #{audience.state_col_antioquia}],
+            ['Arauca', #{audience.state_col_arauca}],
+            ['Atlántico', #{audience.state_col_atlantico}],
+            ['Bolivar', #{audience.state_col_bolivar}],
+            ['Boyacá', #{audience.state_col_boyaca}],
+            ['Caldas', #{audience.state_col_caldas}],
+            ['Caqueta', #{audience.state_col_caqueta}],
+            ['Casanare', #{audience.state_col_casanare}],
+            ['Cauca', #{audience.state_col_cauca}],
+            ['Cesar', #{audience.state_col_cesar}],
+            ['Choco', #{audience.state_col_choco}],
+            ['Cordoba', #{audience.state_col_cordoba}],
+            ['Cundinamarca', #{audience.state_col_cundinamarca}],
+            ['Guainía', #{audience.state_col_guainia}],
+            ['Guaviare', #{audience.state_col_guaviare}],
+            ['Huila', #{audience.state_col_huila}],
+            ['La Guajira', #{audience.state_col_la_guajira}],
+            ['Magdalena', #{audience.state_col_magdalena}],
+            ['Meta', #{audience.state_col_meta}],
+            ['Narino', #{audience.state_col_narino}],
+            ['Norte de Santander', #{audience.state_col_norte_de_santander}],
+            ['Putumayo', #{audience.state_col_putumayo}],
+            ['Quindío', #{audience.state_col_quindio}],
+            ['Risaralda', #{audience.state_col_risaralda}],
+            ['San Andrés', #{audience.state_col_san_andres}],
+            ['Santander', #{audience.state_col_santander}],
+            ['Sucre', #{audience.state_col_sucre}],
+            ['Tolima', #{audience.state_col_tolima}],
+            ['Valle del Cauca', #{audience.state_col_valle_del_cauca}],
+            ['Vaupes', #{audience.state_col_vaupes}],
+            ['Vichada', #{audience.state_col_vichada}],
+            ['Colombia', #{audience.state_col_colombia}],
+            ['NS/NC', #{audience.state_others_col}]
+          ]
+        }]
+      });
 
+      chart = new Highcharts.Chart({
+        chart: {
+          renderTo: 'graph_states_ecu',
+          plotBackgroundColor: null,
+          plotBorderWidth: null,
+          plotShadow: false
+        },
+        title: {
+          text: 'Ecuador'
+        },
+        tooltip: {
+          formatter: function() {
+            return '<b>'+ this.point.name +'</b>: '+ Highcharts.numberFormat(this.percentage, 2) +' %';
+          }
+        },
+        plotOptions: {
+          pie: {
+            allowPointSelect: true,
+            cursor: 'pointer',
+            dataLabels: {
+              enabled: true,
+              color: '#000000',
+              connectorColor: '#000000',
+              formatter: function() {
+                return '<b>'+ this.point.name +'</b>: '+ Highcharts.numberFormat(this.percentage, 2) +' %';
+              }
+            },
+            showInLegend: true
+          }
+        },
+        series: [{
+          type: 'pie',
+          name: 'Porcentage según provincia',
+          data: [
+            ['Azuay', #{audience.state_ecu_azuay}],
+            ['Bolivar', #{audience.state_ecu_bolivar}],
+            ['Canar', #{audience.state_ecu_canar}],
+            ['Carchi', #{audience.state_ecu_carchi}],
+            ['Chimborazo', #{audience.state_ecu_chimborazo}],
+            ['Cotopaxi', #{audience.state_ecu_cotopaxi}],
+            ['El oro', #{audience.state_ecu_el_oro}],
+            ['Esmeraldas', #{audience.state_ecu_esmeraldas}],
+            ['Galápagos', #{audience.state_ecu_galapagos}],
+            ['Guayas', #{audience.state_ecu_guayas}],
+            ['Imbabura', #{audience.state_ecu_imbabura}],
+            ['Loja', #{audience.state_ecu_loja}],
+            ['Los ríos', #{audience.state_ecu_los_rios}],
+            ['Manabi', #{audience.state_ecu_manabi}],
+            ['Santiago', #{audience.state_ecu_morona_santiago}],
+            ['Napo', #{audience.state_ecu_napo}],
+            ['Orellana', #{audience.state_ecu_orellana}],
+            ['Pastaza', #{audience.state_ecu_pastaza}],
+            ['Pichincha', #{audience.state_ecu_pichincha}],
+            ['Santa Elena', #{audience.state_ecu_santa_elena}],
+            ['Santo Domingo', #{audience.state_ecu_santo_domingo}],
+            ['Sucumbios', #{audience.state_ecu_sucumbios}],
+            ['Tungurahua', #{audience.state_ecu_tungurahua}],
+            ['Zamora', #{audience.state_ecu_zamora}],
+                                                                ['NS/NC', #{audience.state_others_ecu}]
+          ]
+        }]
+      });
+
+      chart = new Highcharts.Chart({
+        chart: {
+          renderTo: 'graph_states_mex',
+          plotBackgroundColor: null,
+          plotBorderWidth: null,
+          plotShadow: false
+        },
+        title: {
+          text: 'México'
+        },
+        tooltip: {
+          formatter: function() {
+            return '<b>'+ this.point.name +'</b>: '+ Highcharts.numberFormat(this.percentage, 2) +' %';
+          }
+        },
+        plotOptions: {
+          pie: {
+            allowPointSelect: true,
+            cursor: 'pointer',
+            dataLabels: {
+              enabled: true,
+              color: '#000000',
+              connectorColor: '#000000',
+              formatter: function() {
+                return '<b>'+ this.point.name +'</b>: '+ Highcharts.numberFormat(this.percentage, 2) +' %';
+              }
+            },
+            showInLegend: true
+          }
+        },
+        series: [{
+          type: 'pie',
+          name: 'Porcentage según estado',
+          data: [
+            ['Aguascalientes', #{audience.state_mex_aguascalientes}],
+            ['Baja California', #{audience.state_mex_baja_california}],
+            ['Baja California Sur', #{audience.state_mex_baja_california_sur}],
+            ['Campeche', #{audience.state_mex_campeche}],
+            ['Chiapas', #{audience.state_mex_chiapas}],
+            ['Chihuahua', #{audience.state_mex_chihuahua}],
+            ['Coahuila', #{audience.state_mex_coahuila}],
+            ['Colima', #{audience.state_mex_colima}],
+            ['Distrito Federal', #{audience.state_mex_distrito_federal}],
+            ['Durango', #{audience.state_mex_durango}],
+            ['Guanajuato', #{audience.state_mex_guanajuato}],
+            ['Guerrero', #{audience.state_mex_guerrero}],
+            ['Hidalgo', #{audience.state_mex_hidalgo}],
+            ['Jalisco', #{audience.state_mex_jalisco}],
+            ['Mexico', #{audience.state_mex_mexico}],
+            ['Michoacan', #{audience.state_mex_michoacan}],
+            ['Morelos', #{audience.state_mex_morelos}],
+            ['Nayarit', #{audience.state_mex_nayarit}],
+            ['Nuevo León', #{audience.state_mex_nuevo_leon}],
+            ['Oaxaca', #{audience.state_mex_oaxaca}],
+            ['Puebla', #{audience.state_mex_puebla}],
+            ['Queretaro', #{audience.state_mex_queretaro}],
+            ['Quintana Roo', #{audience.state_mex_quintana_roo}],
+            ['San Luis', #{audience.state_mex_san_luis}],
+            ['Sinaloa', #{audience.state_mex_sinaloa}],
+            ['Sonora', #{audience.state_mex_sonora}],
+            ['Tabasco', #{audience.state_mex_tabasco}],
+            ['Tamaulipas', #{audience.state_mex_tamaulipas}],
+            ['Tlaxcala', #{audience.state_mex_tlaxcala}],
+            ['Veracruz', #{audience.state_mex_veracruz}],
+            ['Yucatán', #{audience.state_mex_yucatan}],
+            ['Zacatecas', #{audience.state_mex_zacatecas}],
+            ['NS/NC', #{audience.state_others_mex}]
+          ]
+        }]
+      });
+      chart = new Highcharts.Chart({
+        chart: {
+          renderTo: 'graph_states_par',
+          plotBackgroundColor: null,
+          plotBorderWidth: null,
+          plotShadow: false
+        },
+        title: {
+          text: 'Paraguay'
+        },
+        tooltip: {
+          formatter: function() {
+            return '<b>'+ this.point.name +'</b>: '+ Highcharts.numberFormat(this.percentage, 2) +' %';
+          }
+        },
+        plotOptions: {
+          pie: {
+            allowPointSelect: true,
+            cursor: 'pointer',
+            dataLabels: {
+              enabled: true,
+              color: '#000000',
+              connectorColor: '#000000',
+              formatter: function() {
+                return '<b>'+ this.point.name +'</b>: '+ Highcharts.numberFormat(this.percentage, 2) +' %';
+              }
+            },
+            showInLegend: true
+          }
+        },
+        series: [{
+          type: 'pie',
+          name: 'Porcentage según provincia',
+          data: [
+            ['Asunción', #{audience.state_par_asuncion}],
+            ['Concepción', #{audience.state_par_concepcion}],
+            ['San Pedro', #{audience.state_par_san_pedro}],
+            ['Cordillera', #{audience.state_par_cordillera}],
+            ['Guaira', #{audience.state_par_guaira}],
+            ['Caaguazú', #{audience.state_par_caaguazu}],
+            ['Caazapá', #{audience.state_par_caazapa}],
+            ['Itapúa', #{audience.state_par_itapua}],
+            ['Misiones', #{audience.state_par_misiones}],
+            ['Paraguarí', #{audience.state_par_paraguari}],
+            ['Alto Paraná', #{audience.state_par_alto_parana}],
+            ['Central', #{audience.state_par_central}],
+            ['Ñeenbucú', #{audience.state_par_neenbucu}],
+            ['Amambay', #{audience.state_par_amambay}],
+            ['Canindeyú', #{audience.state_par_canindeyu}],
+            ['Presidente Hayes', #{audience.state_par_presidente_hayes}],
+            ['Alto Paraguay', #{audience.state_par_alto_paraguay}],
+            ['Boquerón', #{audience.state_par_boqueron}],
+            ['NS/NC', #{audience.state_others_par}]
+          ]
+        }]
+      });
+      chart = new Highcharts.Chart({
+        chart: {
+          renderTo: 'graph_states_uru',
+          plotBackgroundColor: null,
+          plotBorderWidth: null,
+          plotShadow: false
+        },
+        title: {
+          text: 'Uruguay'
+        },
+        tooltip: {
+          formatter: function() {
+            return '<b>'+ this.point.name +'</b>: '+ Highcharts.numberFormat(this.percentage, 2) +' %';
+          }
+        },
+        plotOptions: {
+          pie: {
+            allowPointSelect: true,
+            cursor: 'pointer',
+            dataLabels: {
+              enabled: true,
+              color: '#000000',
+              connectorColor: '#000000',
+              formatter: function() {
+                return '<b>'+ this.point.name +'</b>: '+ Highcharts.numberFormat(this.percentage, 2) +' %';
+              }
+            },
+            showInLegend: true
+          }
+        },
+        series: [{
+          type: 'pie',
+          name: 'Porcentage según provincia',
+          data: [
+            ['Artigas', #{audience.state_uru_artigas}],
+            ['Canelones', #{audience.state_uru_canelones}],
+            ['Cerro Largo', #{audience.state_uru_cerro_largo}],
+            ['Colonia', #{audience.state_uru_colonia}],
+            ['Durazono', #{audience.state_uru_durazno}],
+            ['Flores', #{audience.state_uru_flores}],
+            ['Florida', #{audience.state_uru_florida}],
+            ['Lavalleja', #{audience.state_uru_lavalleja}],
+            ['Maldonado', #{audience.state_uru_maldonado}],
+            ['Montevideo', #{audience.state_uru_montevideo}],
+            ['Paysandú', #{audience.state_uru_paysandu}],
+            ['Río Negro', #{audience.state_uru_rio_negro}],
+            ['Rivera', #{audience.state_uru_rivera}],
+            ['Rocha', #{audience.state_uru_rocha}],
+            ['Salto', #{audience.state_uru_salto}],
+            ['San José', #{audience.state_uru_san_jose}],
+            ['Soriano', #{audience.state_uru_soriano}],
+            ['Tacurembó', #{audience.state_uru_tacuarembo}],
+            ['Treinta y tres', #{audience.state_uru_treinta_y_tres}],
+            ['NS/NC', #{audience.state_others_uru}]
+          ]
+        }]
+      });
   });

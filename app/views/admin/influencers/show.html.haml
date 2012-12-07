@@ -6,113 +6,113 @@
   .span12
     .round_box
       .content
-        %h1.title Celebridad
-        .subtitle Datos de la cuenta
+        %h1.title= t('celebrity')
+        .subtitle= t('account_info')
         %dl.record_details
-          %dt Email
+          %dt= t('email')
           %dd= dl_value @influencer.user.email
-          %dt Twitter
+          %dt= t('twitter')
           %dd= dl_value @influencer.user.twitter_screen_name
-          %dt Nombre
+          %dt= t('name')
           %dd= dl_value @influencer.first_name
-          %dt Apellido
+          %dt= t('last_name')
           %dd= dl_value @influencer.last_name
-          %dt Fecha creación
+          %dt= t('creation_date')
           %dd= dl_value @influencer.created_at.try(:strftime, "%d/%m/%Y")
-          %dt Fecha actualización
+          %dt= t('update_date')
           %dd= dl_value @influencer.updated_at.try(:strftime, "%d/%m/%Y")
-        .subtitle Datos de Twitter
+        .subtitle= t('twitter_info')
         %dl.record_details
-          %dt Twitter - Ubicación
+          %dt= t('twitter_location')
           %dd= dl_value @influencer.twitter_location
-          %dt Twitter - Foto
+          %dt= t('twitter_picture')
           %dd= dl_value image_tag(@influencer.twitter_image_url)
-          %dt Twitter - Bio
+          %dt= t('twitter_bio')
           %dd= dl_value @influencer.twitter_bio
-          %dt Twitter - Fecha ingreso
+          %dt= t('twitter_join_date')
           %dd= dl_value @influencer.twitter_joined.try(:strftime, "%d/%m/%Y")
-          %dt Klout - Score
+          %dt= t('klout_score')
           %dd= dl_value @influencer.audience.klout
-          %dt Kred - Score
+          %dt= t('kred_score')
           %dd= dl_value @influencer.audience.kred
-          %dt PeerIndex - Score
+          %dt= t('peer_index_score')
           %dd= dl_value @influencer.audience.peerindex
-        .subtitle Datos de la celebridad
+        .subtitle= t('celebrity_info')
         %dl.record_details
-          %dt Comisión Borwin
+          %dt= t('borwin_fee')
           %dd= @influencer.borwin_fee
-          %dt Tipo
+          %dt= t('type')
           %dd= dl_value @influencer.influencer_type
-          %dt Sexo
+          %dt= t('genre')
           %dd= dl_value @influencer.sex
-          %dt Cumpleaños
+          %dt= t('birthday')
           %dd= dl_value @influencer.birthday.try(:strftime, "%d/%m/%Y")
-          %dt Descripción
+          %dt= t('description')
           %dd= dl_value @influencer.description
-          %dt Foto de perfil
+          %dt= t('profile_picture')
           %dd
             - if @influencer.photo.exists?
               = link_to(image_tag(@influencer.photo.url(:thumb)), @influencer.photo.url)
             - else
               = image_tag('no_photo.jpg', style: 'height: 48px;width: 48px;')
-        .subtitle Datos de contacto
+        .subtitle= t('contact_info')
         %dl.record_details
-          %dt Dirección
+          %dt= t('address')
           %dd= dl_value @influencer.address
-          %dt Ciudad
+          %dt= t('city')
           %dd= dl_value @influencer.city
-          %dt Provincia
+          %dt= t('state')
           %dd= dl_value @influencer.state
-          %dt País
+          %dt= t('country')
           %dd= dl_value @influencer.country
-          %dt Código Postal
+          %dt= t('postal_code')
           %dd= dl_value @influencer.zip_code
-          %dt Télefono
+          %dt= t('telephone')
           %dd= dl_value @influencer.phone
-          %dt Celular
+          %dt= t('cell_phone')
           %dd= dl_value @influencer.cell_phone
-          %dt Horario de contacto preferido
+          %dt= t('preferred_contact_schedule')
           %dd= dl_value @influencer.contact_time
-          %dt Método de contacto preferido
+          %dt= t('preferred_contact_method')
           %dd= dl_value @influencer.contact_method
-        .subtitle Datos para pagos
+        .subtitle= t('payment_info')
         %dl.record_details
-          %dt Pago preferido
+          %dt= t('preferred_payment')
           %dd= dl_value @influencer.preferred_payment
-          %dt Número de cuenta
+          %dt= t('account_number')
           %dd= dl_value @influencer.account_number
-          %dt Tipo de cuenta
+          %dt= t('account_type')
           %dd= dl_value @influencer.account_type
-          %dt CBU
+          %dt= t('CBU')
           %dd= dl_value @influencer.cbu
-          %dt Banco
+          %dt= t('bank_name')
           %dd= dl_value @influencer.bank_name
-        .subtitle Precios
+        .subtitle= t('prices')
         %dl.record_details
-          %dt Categoría
+          %dt= t('category')
           %dd= dl_value @influencer.price_category
-          %dt Precio Tweet
+          %dt= t('tweet_price')
           %dd= number_to_currency(@influencer.tweet_fee)
-          %dt Precio Campaña
+          %dt= t('campaign_price')
           %dd= number_to_currency(@influencer.campaign_fee)
-          %dt Precio Click
+          %dt= t('click_price')
           %dd= number_to_currency(@influencer.cpc_fee)
-          %dt Comisión Borwin
+          %dt= t('borwin_fee')
           %dd= "% #{@influencer.borwin_fee}"
-          %dt Precio Tweet Celebridad
+          %dt= t('price_tweet_celebrity')
           %dd= number_to_currency(@influencer.influencer_tweet_fee)
-          %dt Precio Campaña Celebridad
+          %dt= t('price_campaign_celebrity')
           %dd= number_to_currency(@influencer.influencer_campaign_fee)
-          %dt Precio Click Celebridad
+          %dt= t('price_click_celebrity')
           %dd= number_to_currency(@influencer.influencer_cpc_fee)
-        .subtitle Audiencia
+        .subtitle= t('audience')
         = render '/admin/audiences/audience_table', audience: @influencer.audience
       .clear.center_text.show_buttons
-        = link_to('Editar', [:edit, :admin, @influencer], class: 'btn btn-primary')
-        = link_to('Audiencia', [:admin, @influencer, :audience], class: 'btn btn-primary')
-        = link_to('Eliminar', [:admin, @influencer], method: :delete, class: 'btn btn-danger', confirm: "Esta seguro que desea eliminar a la celebridad y todo su historial?" )
-        = link_to('Listado', [:admin, :influencers], class: 'btn btn-primary')
-        = link_to('Recategorizar', [:recategorize, :admin, @influencer], class: 'btn btn-warning', confirm: "Esta seguro que quiere acceder a la pantalla para recategorizar a la celebridad?")
-        = link_to('Referente', [:set_influence, :admin, @influencer], class: 'btn btn-warning', confirm: "Esta seguro que quiere acceder a la pantalla para configurar como referente a la celebridad?")
+        = link_to(t('edit'), [:edit, :admin, @influencer], class: 'btn btn-primary')
+        = link_to(t('audience'), [:admin, @influencer, :audience], class: 'btn btn-primary')
+        = link_to(t('destroy'), [:admin, @influencer], method: :delete, class: 'btn btn-danger', confirm: "Esta seguro que desea eliminar a la celebridad y todo su historial?" )
+        = link_to(t('list'), [:admin, :influencers], class: 'btn btn-primary')
+        = link_to(t('recategorize'), [:recategorize, :admin, @influencer], class: 'btn btn-warning', confirm: "Esta seguro que quiere acceder a la pantalla para recategorizar a la celebridad?")
+        = link_to(t('referent'), [:set_influence, :admin, @influencer], class: 'btn btn-warning', confirm: "Esta seguro que quiere acceder a la pantalla para configurar como referente a la celebridad?")
 
 

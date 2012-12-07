@@ -6,5 +6,5 @@
       = f.input :keywords
 
       .form-actions
-        = f.submit 'Guardar', :class => 'btn btn-primary btn-large'
-        = link_to 'Cancelar', [:admin, :keywords], class: 'btn btn-large'
+        = f.submit t('save'), :class => 'btn btn-primary btn-large'
+        = link_to t('cancel'), [:admin, :keywords], class: 'btn btn-large'

@@ -5,18 +5,18 @@
   .span8.offset2
     %ul.breadcrumb
       %li
-        = link_to("Campañas", [:advertiser, :campaigns])
+        = link_to(t('campaigns'), [:advertiser, :campaigns])
         %span.divider /
       %li.active
         - if @campaign.created_at > Time.now - 1.minute
-          Nueva Campaña
+          = t('new_campaign')
         - else
-          Audiencia
+          = t('audience')
 
 .row
   .span8.offset2.round_box
     = form_for(@campaign, url: [:set_audience, :advertiser, @campaign], html:  { id: "audience_campaign_form", class: "form-horizontal round_form", method: :put }) do |f|
-      %h1.form_title Target
+      %h1.form_title= t('target')
       - if @campaign.created_at > Time.now - 1.minute
         .center_text{style: 'margin: -20px 0 20px 0;'}
           &nbsp;
@@ -25,87 +25,135 @@
       %br
       %h1 Datos de los usuarios
       %br
-      %h2.title Zona Geográfica
+      %h2= t('geo_zone')
+
       .geographic_zones
         .geographic_zone.argentine
           = check_box_tag "campaign[locations][]", "Argentina", f.object.locations.include?("Argentina")
           = label_tag "Argentina"
-        .geographic_zone.provinces
+        .geographic_zone.argentine-provinces
           - ["Buenos Aires",  "Catamarca",  "Chaco", "Córdoba", "Corrientes", "Entre Ríos", "Formosa", "Jujuy", "La Pampa", "La Rioja", "Mendoza", "Misiones", "Neuquén", "Rio Negro", "Salta", "San Juan", "San Luis", "Santa Cruz", "Santa Fe", "Sgo. del Estero", "Tierra del Fuego", "Tucumán"].each do |province|
             %div{style: 'display: inline-block'}
               = check_box_tag "campaign[locations][]", province, f.object.locations.include?(province)
               = label_tag province, province, style: 'margin-right: 8px'
-        - ["Colombia", "Chile", "Ecuador", "Paraguay", "Uruguay"].each do |country|
-          .geographic_zone
-            = check_box_tag "campaign[locations][]", country, f.object.locations.include?(country)
-            = label_tag country
+        .geographic_zone.colombian
+          = check_box_tag "campaign[locations][]", "Colombia", f.object.locations.include?("Colombia")
+          = label_tag "Colombia"
+        .geographic_zone.colombian-provinces
+          - ["Amazonas", "Antioquia", "Arauca", "Atlántico", "Bolívar", "Boyacá", "Caldas", "Caquetá", "Casanare", "Cauca", "Cesar", "Chocó", "Córdoba", "Cundinamarca", "Guainía", "Guaviare", "Huila", "La Guajira", "Magdalena", "Meta", "Nariño", "Norte de Santander", "Putumayo", "Quindío", "Risaralda", "San Andrés y Providencia", "Santander", "Sucre", "Tolima", "Valle del Cauca", "Vaupés", "Vichada", "Colombia"].each do |province|
+            %div{style: 'display: inline-block'}
+              = check_box_tag "campaign[locations][]", province, f.object.locations.include?(province)
+              = label_tag province, province, style: 'margin-right: 8px'
+        .geographic_zone.chilean
+          = check_box_tag "campaign[locations][]", "Chile", f.object.locations.include?("Chile")
+          = label_tag "Chile"
+        .geographic_zone.chilean-provinces
+          - ["Arica y Parinacota", "Tarapacá", "Antofagasta", "Atacama", "Coquimbo", "Valparaíso", "Santiago", "O'Higgins", "Maule", "Biobío", "La Araucanía", "Los Ríos", "Los Lagos", "Aysén", "Magallanes"].each do |province|
+            %div{style: 'display: inline-block'}
+              = check_box_tag "campaign[locations][]", province, f.object.locations.include?(province)
+              = label_tag province, province, style: 'margin-right: 8px'
+        .geographic_zone.ecuador
+          = check_box_tag "campaign[locations][]", "Ecuador", f.object.locations.include?("Ecuador")
+          = label_tag "Ecuador"
+        .geographic_zone.ecuador-provinces
+          - ["Azuay", "Bolívar", "Cañar", "Carchi", "Chimborazo", "Cotopaxi", "El Oro", "Esmeraldas", "Galápagos", "Guayas", "Imbabura", "Loja", "Los Ríos", "Manabí", "Morona Santiago", "Napo", "Orellana", "Pastaza", "Pichincha", "Santa Elena", "Santo Domingo de los Tsáchilas", "Sucumbíos", "Tungurahua", "Zamora Chinchipe"].each do |province|
+            %div{style: 'display: inline-block'}
+              = check_box_tag "campaign[locations][]", province, f.object.locations.include?(province)
+              = label_tag province, province, style: 'margin-right: 8px'
+        .geographic_zone.mexican
+          = check_box_tag "campaign[locations][]", "Mexico", f.object.locations.include?("Mexico")
+          = label_tag "Mexico"
+        .geographic_zone.mexican-provinces
+          - ["Aguascalientes","Baja California", "Baja California Sur", "Campeche", "Chiapas", "Chihuahua", "Coahuila de Zaragoza", "Colima", "Distrito Federal", "Durango", "Guanajuato", "Guerrero", "Hidalgo", "Jalisco", "México", "Michoacán de Ocampo", "Morelos", "Nayarit", "Nuevo León", "Oaxaca", "Puebla", "Querétaro", "Quintana Roo", "San Luis Potosí", "Sinaloa", "Sonora", "Tabasco", "Tamaulipas", "Tlaxcala", "Veracruz de Ignacio de la Llave", "Yucatán", "Zacatecas"].each do |province|
+            %div{style: 'display: inline-block'}
+              = check_box_tag "campaign[locations][]", province, f.object.locations.include?(province)
+              = label_tag province, province, style: 'margin-right: 8px'
+        .geographic_zone.paraguay
+          = check_box_tag "campaign[locations][]", "Paraguay", f.object.locations.include?("Paraguay")
+          = label_tag "Paraguay"
+        .geographic_zone.paraguay-provinces
+          - ["Asunción", "Concepción", "San Pedro", "Cordillera", "Guairá", "Caaguazú", "Caazapá", "Itapúa", "Misiones", "Paraguarí", "Alto Paraná", "Central", "Ñeembucú", "Amambay", "Canindeyú", "Presidente Hayes", "Alto Paraguay", "Boquerón"].each do |province|
+            %div{style: 'display: inline-block'}
+              = check_box_tag "campaign[locations][]", province, f.object.locations.include?(province)
+              = label_tag province, province, style: 'margin-right: 8px'
+        .geographic_zone.uruguay
+          = check_box_tag "campaign[locations][]", "Uruguay", f.object.locations.include?("Uruguay")
+          = label_tag "Uruguay"
+        .geographic_zone.uruguay-provinces
+          - ["Artigas", "Canelones", "Cerro Largo", "Colonia", "Durazno", "Flores", "Florida", "Lavalleja", "Maldonado", "Montevideo", "Paysandú", "Río Negro", "Rivera", "Rocha", "Salto", "San José", "Soriano", "Tacuarembó", "Treinta y Tres"].each do |province|
+            %div{style: 'display: inline-block'}
+              = check_box_tag "campaign[locations][]", province, f.object.locations.include?(province)
+              = label_tag province, province, style: 'margin-right: 8px'
 
       %br
-      %h2.title Edades
+      %h2= t('ages')
+
       .option
         = f.check_box( :moms, {:class =>'age-filter'})
-        = f.label :moms, "Mamás"
+        = f.label :moms, t('moms')
       .option
         = f.check_box( :teens, {:class =>'age-filter'})
-        = f.label :teens, "Adolescentes"
+        = f.label :teens, t('teens')
       .option
         = f.check_box( :college_students, {:class =>'age-filter'})
-        = f.label :college_students, "Universitarios"
+        = f.label :college_students, t('college_students')
       .option
         = f.check_box( :young_women, {:class =>'age-filter'})
-        = f.label :young_women, "Mujeres (18 a 35 años)"
+        = f.label :young_women, t('young_women')
       .option
         = f.check_box( :young_men, {:class =>'age-filter'})
-        = f.label :young_men, "Hombres (18 a 35 años)"
+        = f.label :young_men, t('young_men')
       .option
         = f.check_box( :adult_women, {:class =>'age-filter'})
-        = f.label :adult_women, "Mujeres (más de 35 años)"
+        = f.label :adult_women, t('adult_women')
       .option
         = f.check_box( :adult_men, {:class =>'age-filter'})
-        = f.label :adult_men, "Hombres (más de 35 años)"
+        = f.label :adult_men, t('adult_men')
 
       %br
-      %h2.title Sexo
+      %h2= t('genre')
 
       .option
         = f.check_box :males
-        = f.label :males, "Hombres"
+        = f.label :males, t('men')
 
       .option
         = f.check_box :females
-        = f.label :females, "Mujeres"
+        = f.label :females, t('women')
 
       %br
-      %h2.title  Hobbys
+      %h2= t('hobbys')
+
       .option
         = f.check_box( :sports, {:class =>'hobby-filter'})
-        = f.label :sports, "Deportes"
+        = f.label :sports, t('sports')
       .option
         = f.check_box( :fashion, {:class =>'hobby-filter'})
-        = f.label :fashion, "Moda"
+        = f.label :fashion, t('fashion')
       .option
         = f.check_box( :music, {:class =>'hobby-filter'})
-        = f.label :music, "Música"
+        = f.label :music, t('music')
       .option
         = f.check_box( :movies, {:class =>'hobby-filter'})
-        = f.label :movies, "Cine"
+        = f.label :movies, t('movies')
       .option
         = f.check_box( :politics, {:class =>'hobby-filter'})
-        = f.label :politics, "Política"
+        = f.label :politics, t('politics')
       .option
         = f.check_box( :technology, {:class =>'hobby-filter'})
-        = f.label :technology, "Tecnología"
+        = f.label :technology, t('technology')
       .option
         = f.check_box( :travel, {:class =>'hobby-filter'})
-        = f.label :travel, "Viajes"
+        = f.label :travel, t('travel')
       .option
         = f.check_box( :luxury, {:class =>'hobby-filter'})
-        = f.label :luxury, "Lujos"
+        = f.label :luxury, t('luxury')
 
       %br
       %h1 Datos del influenciador
       %br
-      %h2.title Seguidores
+      %h2= t('followers')
+
       .option
         = check_box_tag "campaign[followers_qty][]", "0-500", f.object.followers_qty.include?("0-500")
         = label_tag "0 a 500"
@@ -135,7 +183,8 @@
         = label_tag "2.000.000 a 50.000.000"
 
       %br
-      %h2.title Precio del Tweet
+      %h2= t('tweet_price')
+
       .option
         = check_box_tag "campaign[tweet_price][]", "0-300", f.object.tweet_price.include?("0-300")
         = label_tag "$0 a $300"
@@ -167,8 +216,8 @@
 
 
       .form-actions
-        = f.submit 'Aceptar', :class => 'btn btn-primary btn-large'
-        = link_to 'Cancelar', [:advertiser, :campaigns], class: 'btn btn-large'
+        = f.submit t('accept'), :class => 'btn btn-primary btn-large'
+        = link_to t('cancel'), [:advertiser, :campaigns], class: 'btn btn-large'
 
 - html = "<!-- begin olark code --><script data-cfasync=\"false\" type='text/javascript'>/*{literal}<![CDATA[*/window.olark||(function(c){var f=window,d=document,l=f.location.protocol==\"https:\"?\"https:\":\"http:\",z=c.name,r=\"load\";var nt=function(){f[z]=function(){(a.s=a.s||[]).push(arguments)};var a=f[z]._={},q=c.methods.length;while(q--){(function(n){f[z][n]=function(){f[z](\"call\",n,arguments)}})(c.methods[q])}a.l=c.loader;a.i=nt;a.p={0:+new Date};a.P=function(u){a.p[u]=new Date-a.p[0]};function s(){a.P(r);f[z](r)}f.addEventListener?f.addEventListener(r,s,false):f.attachEvent(\"on\"+r,s);var ld=function(){function p(hd){hd=\"head\";return[\"<\",hd,\"></\",hd,\"><\",i,' onl' + 'oad=\"var d=',g,\";d.getElementsByTagName('head')[0].\",j,\"(d.\",h,\"('script')).\",k,\"='\",l,\"//\",a.l,\"'\",'\"',\"></\",i,\">\"].join(\"\")}var i=\"body\",m=d[i];if(!m){return setTimeout(ld,100)}a.P(1);var j=\"appendChild\",h=\"createElement\",k=\"src\",n=d[h](\"div\"),v=n[j](d[h](z)),b=d[h](\"iframe\"),g=\"document\",e=\"domain\",o;n.style.display=\"none\";m.insertBefore(n,m.firstChild).id=z;b.frameBorder=\"0\";b.id=z+\"-loader\";if(/MSIE[ ]+6/.test(navigator.userAgent)){b.src=\"javascript:false\"}b.allowTransparency=\"true\";v[j](b);try{b.contentWindow[g].open()}catch(w){c[e]=d[e];o=\"javascript:var d=\"+g+\".open();d.domain='\"+d.domain+\"';\";b[k]=o+\"void(0);\"}try{var t=b.contentWindow[g];t.write(p());t.close()}catch(x){b[k]=o+'d.write(\"'+p().replace(/\"/g,String.fromCharCode(92)+'\"')+'\");d.close();'}a.P(2)};ld()};nt()})({loader: \"static.olark.com/jsclient/loader0.js\",name:\"olark\",methods:[\"configure\",\"extend\",\"declare\",\"identify\"]});/* custom configuration goes here (www.olark.com/documentation) */olark.identify('9176-655-10-5717');/*]]>{/literal}*/</script><noscript><a href=\"https://www.olark.com/site/9176-655-10-5717/contact\" title=\"Contact us\" target=\"_blank\">Questions? Feedback?</a> powered by <a href=\"http://www.olark.com?welcome\" title=\"Olark live chat software\">Olark live chat software</a></noscript><!-- end olark code -->"
 = raw html

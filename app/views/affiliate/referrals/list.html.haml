@@ -7,7 +7,7 @@
     }
     var addthis_share = {
       url: 'http://borwin.net/I#{current_user.invitation_code}',
-      title: 'Registrate en Borwin y ganá dinero por twittear'
+      title: '#{t('register_and_win_money')}'
     }
 
 - if flash.any?
@@ -19,15 +19,15 @@
   .span8
     .round_box
       .content
-        .title Referidos
+        .title= t('referrals')
         - if @referrals.count > 0
           %table.table.table-striped.table-bordered.referrals_table
             %thead
               %tr
-                %th.th1 Referido
-                %th.th2 Costo por tweet
-                %th.th3 Ingreso por referido
-                %th.th4 Referido desde
+                %th.th1= t('referral')
+                %th.th2= t('cost_per_tweet')
+                %th.th3= t('referral_income')
+                %th.th4= t('referral_since')
             %tbody
               - @referrals.each do |referral|
                 %tr
@@ -52,14 +52,12 @@
                   %td.td4= referral.referrer_on.try(:strftime, "%d/%m/%Y")
         - else
           %p
-            Hasta el momento no has referido a ninguna persona. Recomendá Borwin para comenzar a generar ingresos.
+            = t('referrals_list_text_1')
 
           .title.title-margin Tu link
 
           %p
-            Utilizá tu link para sumar gente a la plataforma de Borwin y comenzá a generar ingresos.
-            Cuando una persona se registre utilizando tu link recibirás el 5% de los ingresos que la
-            persona referida genere en Borwin a través de sus campañas.
+            = t('referrals_list_text_2')
 
           .share_link
             .twitter_link
@@ -70,8 +68,7 @@
                 addthis.button('.sharing-button', {}, {url: "http://borwin.net/I#{current_user.invitation_code}", title: "Registrate en Borwin y ganá dinero por twittear"});
 
           %p
-            Este es el link que le tenés que envíar a las personas que referís y a través del cuál ellos se tienen
-            que dar de alta en Borwin.
+            = t('referrals_list_text_3')
 
   .span4
     .round_box
@@ -86,13 +83,13 @@
 
         = form_for @user, url: [:update_options, :affiliate, :referrals], html: { class: "form-referrals-options", method: :put } do |f|
           = f.check_box :mail_on_referral_singup
-          %span.desc Enviarme un email cuando un usuario se registre con mi código de referido
+          %span.desc= t('mail_on_referral_signup')
           %br
           = f.check_box :mail_on_referral_profit, label: false
-          %span.desc Enviarme un email cuando mis referidos me generen ingresos
+          %span.desc= t('mail_on_referral_profit')
 
           .center_text
-            = f.submit 'Guardar', :class => 'btn btn-primary btn-large'
+            = f.submit t('save'), :class => 'btn btn-primary btn-large'
 
         %hr
 

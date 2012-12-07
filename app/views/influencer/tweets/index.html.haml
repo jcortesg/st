@@ -2,7 +2,7 @@
   .span12
     .round_box
       .content.clearfix
-        .title Tweets
+        .title= t('tweets')
 
         - if @search.count > 0
           %table.table.table-striped
@@ -13,8 +13,8 @@
                 %th= sort_link(@search, :text, 'Tweet')
                 %th= sort_link(@search, :status, 'Estado')
                 %th= sort_link(@search, :updated_at, 'Fecha')
-                %th Ingresos
-                %th Acciones
+                %th= t('income')
+                %th= t('actions')
             %tbody
               - @tweets.each do |tweet|
                 %tr{ class: cycle('odd', 'even') }
@@ -24,20 +24,20 @@
                   %td= influencer_tweet_status(tweet.status)
                   %td= tweet.updated_at.strftime("%d/%m/%y %H:%M:%S")
                   %td= tweet.fee_type == 'tweet_fee' ? "Tweet: $#{sprintf("%.02f", tweet.influencer_tweet_fee)}" : "Click: $#{sprintf("%.02f", tweet.influencer_cpc_fee)}"
-                  %td= link_to("Detalle", [:influencer, tweet], class: 'btn btn-primary')
+                  %td= link_to(t('detail'), [:influencer, tweet], class: 'btn btn-primary')
           .center_text
             = paginate @tweets
 
           .filters
-            .subtitle Filtros
+            .subtitle= t('filters')
             = simple_form_for @search, :url => [:influencer, :tweets], html: {method: :get, id: 'filter_form', class: 'form-horizontal'} do |f|
               = f.input :updated_at_greater_than_or_equal_to, label: 'Desde', required: false, input_html: { class: 'medium', id: 'from_datepicker', value: @search.updated_at_greater_than_or_equal_to ? @search.updated_at_greater_than_or_equal_to.strftime("%d/%m/%Y") : ''}
               = f.input :updated_at_less_than_or_equal_to, label: 'Hasta', required: false, input_html: { class: 'medium', id: 'to_datepicker', value: @search.updated_at_greater_than_or_equal_to ? @search.updated_at_greater_than_or_equal_to.strftime("%d/%m/%Y") : ''}
               = f.input :text_contains, label: 'Tweet', required: false
               = f.input :status_equals, label: 'Estado', required: false, as: 'select', collection: [['Pendinete', 'created'], ['Revisión del anunciante', 'influencer_reviewed'], ['Rechazado por celebridad', 'influencer_rejected'], ['Pendiente de revisión', 'advertiser_reviewed'], ['Rechazado por anunciante', 'advertiser_rejected'], ['Aceptado', 'accepted'], ['Públicado', 'activated'], ['Vencido', 'expired']]
               .form-actions
-                = f.submit 'Filtrar', :class => 'btn btn-primary'
-                = link_to 'Resetear', '#', :class => 'btn reset'
+                = f.submit t('do_filter'), :class => 'btn btn-primary'
+                = link_to t('reset'), '#', :class => 'btn reset'
         - else
           %h3 No posee tweets en el sistema.
 %br

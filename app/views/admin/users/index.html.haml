@@ -9,42 +9,42 @@
   .span12
     .round_box
       .content
-        %h1.title Autorizaciones
+        %h1.title= t('authorizations')
 
         %table.table.table-striped
           %thead
             %tr
               %th &nbsp;
               %th= sort_link(@search, :email)
-              %th= sort_link(@search, :role, "Tipo de Usuario")
-              %th= sort_link(@search, :created_at, "Creado")
-              %th Acciones
+              %th= sort_link(@search, :role, t('user_type'))
+              %th= sort_link(@search, :created_at, t('created'))
+              %th= t('actions')
 
           %tbody
             - @users.each do |user|
               %tr{ :class => cycle('odd', 'even') }
                 %td= row_number = row_number + 1
                 %td= user.email
-                %td= I18n.t("user.role.#{user.role}")
+                %td= t("#{user.role}")
                 %td= user.created_at ? (localize(user.created_at, :format => "%d/%m/%Y")) : ""
                 %td.center_text.last
                   = form_for user, :url => user.approved? ? disapprove_admin_user_path(user) : approve_admin_user_path(user), html: { style: 'display: inline' } do
                     - if user.approved?
-                      %button.btn.btn-primary Desaprobar
+                      %button.btn.btn-primary= t('disapprove')
                     - else
-                      %button.btn.btn-primary Aprobar
-                  = link_to('Eliminar', [:admin, user], method: :delete, class: 'btn btn-danger', confirm: "Esta seguro que desea eliminar al usuario?" )
-                  = link_to('Recategorizar', [:recategorize, :admin, user], class: 'btn btn-danger', confirm: "Esta seguro que desea recategorizar al usuario?")
+                      %button.btn.btn-primary= t('approve')
+                  = link_to(t('delete'), [:admin, user], method: :delete, class: 'btn btn-danger', confirm: "Esta seguro que desea eliminar al usuario?" )
+                  = link_to(t('recategorize'), [:recategorize, :admin, user], class: 'btn btn-danger', confirm: "Esta seguro que desea recategorizar al usuario?")
         .center_text
           = paginate @users
 
         .filters
-          .subtitle Filtros
+          .subtitle= t('filters')
           = simple_form_for @search, :url => [:admin, :users], html: {method: :get, id: 'filter_form', class: 'form-horizontal'} do |f|
-            = f.input :role_equals, as: :select, collection: [['Administrador', 'admin'], ['Agencia', 'affiliate'], ['Anunciante', 'advertiser'], ['Celebridad', 'influencer']], label: 'Rol', required: false
+            = f.input :role_equals, as: :select, collection: [[t('administrator'), 'admin'], [t('affiliate'), 'affiliate'], [t('advertiser'), 'advertiser'], [t('celebrity'), 'influencer']], label: 'Rol', required: false
             = f.input :approved_equals, as: :select, collection: [['Sí', true], ['No', false]], label: 'Aprobado?', required: false
             .form-actions
-              = f.submit 'Filtrar', :class => 'btn btn-primary'
+              = f.submit t('do_filter'), :class => 'btn btn-primary'
 
 
 

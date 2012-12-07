@@ -6,23 +6,23 @@
 .row
   .span8.offset2.round_box
     = simple_form_for(@cash_out, url: [:influencer, @cash_out], html:  { class: "form-horizontal round_form keywords_form"}) do |f|
-      %h1.form_title Cash out
+      %h1.form_title= t('cash_out')
       = render '/shared/simple_form_errors', f: f
 
       = f.input :user, disabled: true
       = f.input :amount, disabled: true
 
       .form-actions
-        = f.submit 'Solicitar', :class => 'btn btn-primary btn-large'
-        = link_to 'Cancelar', [:admin, :transactions], class: 'btn btn-large'
+        = f.submit t('request'), :class => 'btn btn-primary btn-large'
+        = link_to t('cancel'), [:admin, :transactions], class: 'btn btn-large'
 
     %table.table.table-striped
       %thead
         %tr
-          %th Fecha
-          %th Tipo
-          %th Link
-          %th Importe
+          %th= t('a_date')
+          %th= t('type')
+          %th= t('link')
+          %th= t('amount')
 
       %tbody
         - @transactions.each do |transaction|

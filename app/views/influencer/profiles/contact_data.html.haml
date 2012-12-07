@@ -1,7 +1,7 @@
 .row
   .span6.offset3
     .frontend_round_content
-      .main_blue_title Datos de contacto
+      .main_blue_title= t('contact_info')
 
       %p= "Dirección: #{@influencer.address}"
       %p= "País: #{@influencer.country}"
@@ -14,5 +14,5 @@
       %p= "Método de contacto: #{@influencer.contact_method}"
 
       .form-actions
-        = link_to 'Editar', influencer_profiles_edit_contact_data_path, :class => 'btn btn-primary btn-large'
-        = link_to 'Volver', influencer_profile_path, class: 'btn btn-large'
+        = link_to t('edit'), influencer_profiles_edit_contact_data_path, :class => 'btn btn-primary btn-large'
+        = link_to t('back'), influencer_profile_path, class: 'btn btn-large'

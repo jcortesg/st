@@ -3,11 +3,16 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   helper :all
   helper_method :current_role
+  #before_filter :check_country
 
   # Can can recover
   rescue_from CanCan::AccessDenied do |exception|
     flash[:error] = exception.message
     redirect_to root_url
+  end
+
+  def check_country
+
   end
 
   # Redirection after sign in with devise

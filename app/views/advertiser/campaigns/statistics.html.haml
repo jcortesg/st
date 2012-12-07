@@ -11,82 +11,82 @@
   .span12
     %ul.breadcrumb
       %li
-        = link_to("Campañas", [:advertiser, :campaigns])
+        = link_to(t('campaigns'), [:advertiser, :campaigns])
         %span.divider /
       %li
         = link_to(@campaign.name, [:advertiser, @campaign])
         %span.divider /
       %li.active
-        Estadísticas
+        = t('statistics')
 
 .row
   .span12
     .round_box
       .content{style: 'font-size: 14px;line-height: 150%'}
         .right
-          = link_to('Imprimir', '#', class: 'btn btn-primary', onclick: "window.print()")
+          = link_to(t('print'), '#', class: 'btn btn-primary', onclick: "window.print()")
           = link_to('PDF', statistics_advertiser_campaign_path(@campaign, format: :pdf), class: 'btn btn-primary')
         %h1.title= "Campaña #{@campaign.name} - Estadísticas"
 
-        %h3 Datos Generales
+        %h3= t('general_info')
 
         %br
 
         - unless @campaign.campaign_type.nil?
           %div
-            Objetivo:
+            = t('objective') + ": "
             = @campaign.campaign_type
 
         %div
-          Descripción del objetivo:
+          = t('objective_description') + ": "
           = @campaign.objective
 
         %div
-          Tweets:
+          = t('tweets') + ": "
           = @campaign.tweets.activated.nil? ? 0 : @campaign.tweets.activated.count
         %div
-          Clicks:
+          = t('clicks') + ": "
           = @campaign.clicks_count
         %div
-          Retweets:
+          = t('retweets') + ": "
           = @campaign.retweets.nil? ? 0 : @campaign.retweets.count
         %div
-          Costo de la campaña:
+          = t('campaign_cost') + ": "
           = number_to_currency(@campaign.tweets.activated.sum(:tweet_fee))
         -if @campaign.clicks_count != 0
           %div
-            Costo Por Click de la campaña:
+            = t('campaign_cpc') + ": "
             = @campaign.statistics_cpc
         - unless @campaign.twitter_screen_name.blank?
           - if @campaign.status == 'archived' && @campaign.followers_end_count!=0
             %div
-              Costo Por Contacto de la campaña:
+              = t('campaign_cpcontact') + ": "
               = number_to_currency( @campaign.tweets.activated.sum(:tweet_fee) / @campaign.followers_end_count )
         %div
-          CPMS de la campaña:
+          = t('campaign_cpms') + ": "
           = @campaign.statistics_cpms
         - unless @campaign.twitter_screen_name.blank?
           %br
           %div
-            Seguidores al inicio de la campaña:
+            = t('start_followers') + ": "
             = @campaign.followers_start_count
           - if @campaign.status == 'archived'
-            Seguidores al final de la campaña:
+            = t('end_followers') + ": "
             = @campaign.followers_end_count
             - if @campaign.followers_end_count > @campaign.followers_start_count
               %div
-                Incremento de seguidores:
+                = t('followers_increment') + ": "
                 = @campaign.followers_end_count - @campaign.followers_start_count
           - else
-            Seguidores actuales:
+            = t('current_followers') + ": "
             - current_followers = @campaign.campaign_metrics.order('metric_on desc').first.followers
             = current_followers
             - if current_followers > @campaign.followers_start_count
               %div
-                Incremento de seguidores:
+                = t('followers_increment') + ": "
                 = current_followers - @campaign.followers_start_count
                 %br
-                CPNS:
+                = t('cpns') + ": "
                 = number_to_currency( @campaign.tweets.activated.sum(:tweet_fee) / (current_followers - @campaign.followers_start_count) )
 
 .row
@@ -94,7 +94,7 @@
     .round_box
       .content
 
-        %h1.title Reach
+        %h1.title= t('reach')
 
         #graph_reach_bar
 
@@ -109,7 +109,7 @@
     .round_box
       .content
 
-        %h1.title Evolución
+        %h1.title= t('evolution')
 
         #evolution_clicks
         %br
@@ -133,18 +133,18 @@
     .round_box
       .content
 
-        %h1.title Tweets
+        %h1.title= t('tweets')
 
         %table.table.table-striped
           %thead
             %tr
               %th{style: 'width: 45px'} &nbsp;
-              %th Celebridad
-              %th Clicks
-              %th CPC
-              %th CPMS
-              %th Reach
-              %th Acciones
+              %th= t('celebrity')
+              %th= t('clicks')
+              %th= t('cpc')
+              %th= t('cpms')
+              %th= t('reach')
+              %th= t('actions')
 
           %tbody
             - @campaign.tweets.activated.each do |tweet|
@@ -157,7 +157,7 @@
                 %td= statistics_tweet_cpc(tweet)
                 %td= statistics_tweet_cpms(tweet)
                 %td= tweet.influencer.audience.followers
-                %td= link_to("Detalle", [:advertiser, @campaign, tweet], class: 'btn')
+                %td= link_to(t('detail'), [:advertiser, @campaign, tweet], class: 'btn')
 
 .row
   .span12
@@ -165,8 +165,8 @@
       .content.click_view
 
         %h1.title
-          Clicks
-          = link_to("( Ver / Ocultar )", "#", class: 'link_show_hide')
+          = t('clicks')
+          = link_to(t('seehide'), "#", class: 'link_show_hide')
 
 
         .show_hide.hidden
@@ -174,10 +174,10 @@
           %table.table.table-striped
             %thead
               %tr
-                %th Tweet
+                %th= t('tweet')
                 %th IP
-                %th Navegador
-                %th{style: 'width: 140px'} Fecha
+                %th= t('browser')
+                %th{style: 'width: 140px'}= t('a_date')
 
             %tbody
               - @campaign.clicks.each do |click|
@@ -192,15 +192,15 @@
     .round_box
       .content
 
-        %h1.title Celebridades más influyentes
+        %h1.title= t('influential_celebrities')
 
         %table.table.table-striped
           %thead
             %tr
               %th{style: 'width: 45px'} &nbsp;
-              %th Celebridad
-              %th Clicks
-              %th Reach
+              %th= t('celebrity')
+              %th= t('clicks')
+              %th= t('reach')
 
           %tbody
             - @campaign.influent_celebrities.reverse.each do |influencer|
@@ -217,16 +217,16 @@
     .round_box
       .content
 
-        %h1.title Retweets
+        %h1.title= t('retweets')
 
         %table.table.table-striped
           %thead
             %tr
               %th{style: 'width: 45px'} &nbsp;
-              %th Usuario
-              %th Tweet
-              %th Seguidores
-              %th{style: 'width: 140px'} Fecha
+              %th= t('user')
+              %th= t('tweet')
+              %th= t('followers')
+              %th{style: 'width: 140px'}= t('a_date')
 
           %tbody
           - @campaign.retweets.order('twitter_created_at asc').each do |retweet|
@@ -237,7 +237,7 @@
               %td= retweet.twitter_followers_count
               %td= localize(retweet.twitter_created_at, :format => "%d/%m/%Y %H:%M:%S")
 
-        = link_to("Volver", [:advertiser, @campaign], class: 'btn btn-primary')
+        = link_to(t('back'), [:advertiser, @campaign], class: 'btn btn-primary')
 
 - unless @campaign.hashtag.nil? or @campaign.hashtag.empty?
   .row
@@ -245,7 +245,7 @@
       .round_box
         .content
 
-          %h1.title= "Hashtag: "
+          %h1.title= t('hashtag')
           %br
           %br
           #evolution_hashtag
@@ -256,9 +256,9 @@
             %thead
               %tr
                 %th{style: 'width: 45px'} &nbsp;
-                %th Usuario
-                %th Nombre
-                %th Descripción
+                %th= t('user')
+                %th= t('name')
+                %th= t('description')
 
             %tbody
             - @experts.each do |expert|
@@ -293,7 +293,7 @@
       .round_box
         .content
 
-          %h1.title= "Palabra o frase: "
+          %h1.title= t('phrase')
           %br
           %br
           #evolution_phrase

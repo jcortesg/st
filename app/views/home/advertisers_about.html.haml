@@ -3,27 +3,27 @@
     .frontend_round_content
 
       .title
-        Conectamos tu marca con tu target a través del twitter de las celebridades
+        =t('advertisers_about_text_1')
 
       %p
-        Borwin te ayuda a seleccionar las celebridades más influyentes para tus campañas de marketing y publicidad de forma simple, eficaz y medible.
+        = t('advertisers_about_text_2')
 
-      .title Como funciona
+      .title= t('how_it_works')
 
       .text_center= image_tag('como_funciona.jpg', style: 'margin: 0 auto')
       %br
 
       %p
-        TweetGo! Es una plataforma que le permite a las empresas contactarse con su target a través del Twitter de las celebridades mas influyentes.
+        = t('advertisers_about_text_3')
 
       %p
-        Nuestra plataforma online encuentra donde está el público al que tu marca quiere llegar. Permite segmentarlo por edad, sexo, lugar de residencia, sus hobbys y muchas cosas más.
+        = t('advertisers_about_text_4')
       %p
-        ¿Querés llegar a 1 millon de jóvenes fanáticos del deporte? ¿Querés conectar tu marca con 2 millones de adolescentes que vivan en Buenos Aires?
+        = t('advertisers_about_text_5')
       %p
-        ¡En BORWIN te decimos como!
+        = t('advertisers_about_text_6')
       %p
-        = link_to("Más información", home_advertisers_contact_path)
+        = link_to(t('more_info'), home_advertisers_contact_path)
 
   .span4
     .frontend_round_content

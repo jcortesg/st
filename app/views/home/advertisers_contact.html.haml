@@ -2,7 +2,7 @@
   .span8
 
     = simple_form_for @site_advertiser_contact, :url => process_advertiser_contact_path, :html => {:class => 'form-vertical round_form'} do |f|
-      .main_blue_title ¡Contáctese con nuestro equipo para comenzar!
+      .main_blue_title= t('advertisers_contact_title')
 
       = render '/shared/simple_form_errors', :f => f
 
@@ -15,14 +15,14 @@
       = f.input :budget, as: :select, collection: ['< $10.000', '$10.000 - $25.000', '$25.000 - $50.000', '$50.000 - $100.000', '$100.000 - $500.000', '$500.000 - $1.000.000', '> $1.000.000'], include_blank: false
       = f.input :date
 
-      %h2 Edades
+      %h2= t('ages')
       .age_section
         - ['Mamás', 'Adolescentes', 'Universitarios', 'Mujeres (18 a 35 años)', 'Hombres (18 a 35 años)', 'Mujeres (más de 35 años)', 'Hombres (más de 35 años)'].each do |age_option|
           %div
             = check_box_tag "site_advertiser_contact[demographic][]", age_option, f.object.demographic.include?(age_option)
             = label_tag age_option
 
-      %h2 Hobbys
+      %h2= t('hobbys')
       .hobbys_section
         - ['Deportes', 'Moda', 'Música', 'Cine', 'Política', 'Tecnología', 'Viajes', 'Lujos'].each do |hobby|
           %div
@@ -30,7 +30,7 @@
             = label_tag hobby
 
       .form-actions
-        = f.submit 'Enviar', :class => 'btn btn-primary btn-large'
+        = f.submit t('send'), :class => 'btn btn-primary btn-large'
 
       %p.address
         ARGENTINA, Buenos Aires, Marcelo T. de Alvear 474, CP 1001, Capital Federal. Tel: 5199-5750
@@ -40,9 +40,9 @@
     .frontend_round_content
       %ul.nav.nav-pills.nav-stacked
         %li
-          %a{:href => home_advertisers_about_path} Visión General
+          %a{:href => home_advertisers_about_path}= t('general_vision')
         %li.active
-          %a{:href => home_advertisers_contact_path} Contáctenos
+          %a{:href => home_advertisers_contact_path}= t('contact_us')
       %br
       .google_map
         .iphone_map

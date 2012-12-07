@@ -1,7 +1,7 @@
 .row.registration_container
   .span6.offset3.round_box
     = simple_form_for(@user, :url => influencer_registration_path(@user), :html => { :class => "form-horizontal" }) do |f|
-      %h1.form_title Registración de Celebridad
+      %h1.form_title= t('celebrity_registration')
       = render '/shared/simple_form_errors', :f => f
       = f.input :email
       = f.input :password, required: true
@@ -11,7 +11,7 @@
         = i.input :last_name
         = i.input :birthday, as: :string
         = i.input :sex, :as => :select, :collection => [['Hombre', 'M'], ['Mujer', 'F']], :include_blank => true
-        = i.input :influencer_type, :as => :select, :collection => ["Actor", "Actriz", "Artista", "Bailarín/Bailarina", "Conductor", "Cheff", "Coreógrafo", "Deportista", "Humorista", "Mediático", "Moda", "Modelo", "Músico", "Periodista", "Panelista", "Twitteros", "Otros"], :include_blank => true
+        = i.input :influencer_type, :as => :select, :collection => [t('actor'), t('actress'), t('artist'), t('dancer'), t('tv-host'), t('cheff'), t('choreographer'), t('sportsman'), t('humorist'), t('media'), t('fashion'), t('model'), t('music'), t('journalist'), t('panelist'), t('twitter-guy'), t('others')], :include_blank => true
         = i.input :description, :as => :text, :input_html => {:rows => 2, :cols => 60 }
         - if @referrer && @referrer.role == 'influencer'
           = i.input :referrer_description, input_html: { value: @referrer.influencer.full_name, disabled: 'disabled' }
@@ -32,9 +32,9 @@
       del servicio
 
     .sign-links.center_text
-      = link_to "Iniciar sesión", new_session_path('user')
+      = link_to t('new_session'), new_session_path('user')
       |
-      = link_to "¿Olvidaste tu contraseña?", new_password_path('user')
+      = link_to t('forgot_password'), new_password_path('user')
 
 :javascript
   $(document).ready(function() {

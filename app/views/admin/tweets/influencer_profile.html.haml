@@ -5,13 +5,13 @@
   .span12{style: 'width: 970px'}
     %ul.breadcrumb
       %li
-        = link_to("Campañas", [:admin, :campaigns])
+        = link_to(t('campaigns'), [:admin, :campaigns])
         %span.divider /
       %li
         = link_to(@campaign.name, [:admin, @campaign])
         %span.divider /
       %li
-        = link_to("Tweets", [:admin, @campaign, :tweets])
+        = link_to(t('tweets'), [:admin, @campaign, :tweets])
         %span.divider /
       %li.active= @influencer.full_name
 
@@ -57,29 +57,29 @@
         .influencer_stats
           .box_container.clearfix
             .box
-              .stat Seguidores:
+              .stat= t('followers')
               .data= @influencer.audience.followers
-              .stat Amigos:
+              .stat= t('friends')
               .data= @influencer.audience.friends
-              .stat Tweets:
+              .stat= t('tweets')
               .data= @influencer.audience.tweets
-              .stat Sexo:
+              .stat= t('genre')
               .data= influencer_sex(@influencer.sex)
-              .stat Años:
+              .stat= t('age')
               .data= influencer_age(@influencer.birthday)
-              .stat Ingreso Twitter:
+              .stat= t('join_twitter_date')
               .data= @influencer.twitter_joined.strftime("%d/%m/%y")
-              .stat Ingreso TweetGo:
+              .stat= t('join_tweetgo')
               .data= @influencer.user.created_at.strftime("%d/%m/%y")
 
             .box.last
-              .stat Precio Campaña:
+              .stat= t('campaign_price')
               .data= number_to_currency(@influencer.campaign_fee)
-              .stat CPC:
+              .stat= t('cpc')
               .data= number_to_currency(@influencer.cpc_fee)
-              .stat CPC medio:
+              .stat= t('cpc_average')
               .data= "-"
-              .stat CPC totales:
+              .stat= t('cpc_totals')
               .data= "-"
 
 
@@ -87,7 +87,7 @@
         = simple_form_for @influencer, :url => influencer_profiles_update_photo_path do |f|
           .modal-header
             %button.close{'data-dismiss' => 'modal'} x
-            %h3 Foto
+            %h3= t('picture')
           .modal-body
             .clearfix
               .image
@@ -99,7 +99,7 @@
                 = f.input :photo
           .modal-footer
             %a.btn.close_user_photo{:href => '#'} Cerrar
-            = f.submit 'Guardar', :class => 'btn btn-primary'
+            = f.submit t('save'), :class => 'btn btn-primary'
 
 
   .span3
@@ -134,7 +134,7 @@
 .row
   .span9
     .round_box
-      %h1.form_title Audiencia
+      %h1.form_title= t('audience')
 
       = render '/admin/audiences/audience_table', audience: @influencer.audience
 
@@ -142,8 +142,8 @@
   .span9
     .round_box_2{style: 'margin-bottom: 20px'}
       .center_text{style: 'padding: 10px 0 10px 0'}
-        = link_to('Proponer Tweet', new_admin_campaign_tweet_path(@campaign, influencer_id: @influencer.id), class: 'btn btn-primary btn-large', style: 'margin-right: 20px')
-        = link_to("Volver a Twets", [:admin, @campaign, :tweets], class: 'btn btn-large')
+        = link_to(t('tweet_propose'), new_admin_campaign_tweet_path(@campaign, influencer_id: @influencer.id), class: 'btn btn-primary btn-large', style: 'margin-right: 20px')
+        = link_to(t('back_to_tweets'), [:admin, @campaign, :tweets], class: 'btn btn-large')
 
 
 

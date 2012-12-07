@@ -7,7 +7,7 @@
   .span12
     %ul.breadcrumb
       %li
-        = link_to("Campañas", [:advertiser, :campaigns])
+        = link_to(t('campaigns'), [:advertiser, :campaigns])
         %span.divider /
       %li.active= @campaign.name
 
@@ -17,20 +17,20 @@
       .content
         .right
           - if @campaign.status != 'created'
-            = link_to('Estadísticas', [:statistics, :advertiser, @campaign], :class => 'btn btn-primary')
+            = link_to(t('statistics'), [:statistics, :advertiser, @campaign], :class => 'btn btn-primary')
           - if current_user.advertiser.can_create_campaigns? && @campaign.status != 'archived'
-            = link_to('Crear Nuevo Tweet', [:advertiser, @campaign, :tweets], :class => 'btn btn-primary')
+            = link_to(t('new_tweet'), [:advertiser, @campaign, :tweets], :class => 'btn btn-primary')
         %h1.title= "Campaña #{@campaign.name}"
 
         %table.table.table-striped
           %thead
             %tr
               %th= sort_link(@search, :influencer_first_name_and_influencer_last_name, 'Celebridad')
-              %th Clicks
-              %th Costo
-              %th= sort_link(@search, :status, 'Estado')
-              %th= sort_link(@search, :tweet_at, 'Fecha')
-              %th Acciones
+              %th= t('clicks')
+              %th= t('cost')
+              %th= sort_link(@search, :status, t('status'))
+              %th= sort_link(@search, :tweet_at, t('a_date'))
+              %th= t('actions')
 
           %tbody
             - @tweets.each do |tweet|
@@ -43,19 +43,19 @@
                 %td= link_to("Detalle", [:advertiser, @campaign, tweet], class: 'btn')
 
         .filters
-          .subtitle Búsqueda
+          .subtitle= t('search')
           = simple_form_for @search, :url => [:advertiser, @campaign], html: {method: :get, id: 'filter_form', class: 'form-horizontal'} do |f|
             = f.input :influencer_first_name_or_influencer_last_name_contains, label: "Celebridad", required: false
             = f.input :status_equals, label: 'Estado', required: false, as: 'select', collection: [['Propuesto', 'created'], ['Revisado por celebridad', 'influencer_reviewed'], ['Rechazado por celebridad', 'influencer_rejected'], ['En revisión por celebridad', 'advertiser_reviewed'], ['Rechazado por anunciante', 'advertiser_rejected'], ['Aceptado', 'accepted'], ['Públicado', 'activated'], ['Vencido', 'expired']]
             .form-actions
               = f.submit 'Búscar', :class => 'btn btn-primary'
-              = link_to 'Cancelar', '#', :class => 'btn reset'
+              = link_to t('cancel'), '#', :class => 'btn reset'
 
 
     - if @campaign.hashtags.count > 0
       .round_box{style: 'min-height: 10px'}
         .content
-          %h1.title Hashtags
+          %h1.title= t('hashtags')
 
           - @campaign.hashtags.all.each do |hashtag|
             = link_to(hashtag.hashtag, "https://twitter.com/#!/search/#{hashtag.hashtag}", target: '_blank')

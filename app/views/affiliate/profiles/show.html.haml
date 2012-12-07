@@ -41,30 +41,30 @@
         .influencer_stats
           .box_container.clearfix
             .box
-              .stat Dirección
+              .stat= t('address')
               .data= @affiliate.address
-              .stat Ciudad
+              .stat= t('city')
               .data= @affiliate.city
-              .stat Provincia
+              .stat= t('state')
               .data= @affiliate.state
-              .stat País
+              .stat= t('country')
               .data= @affiliate.country
-              .stat Código Postal
+              .stat= t('postal_code')
               .data= @affiliate.zip_code
 
             .box.last
-              .stat Ingreso TweetGo:
+              .stat= t('starting_date_tweetgo')
               .data= @affiliate.user.created_at.strftime("%d/%m/%y")
-              .stat Referidos
+              .stat= t('referrals')
               .data= link_to(@affiliate.user.referrals.count, [:affiliate, :referrals])
-              .stat Ingresos
+              .stat= t('income')
               .data= link_to(number_to_currency(@affiliate.user.total_referral_earnings), [:affiliate, :referrals])
 
       #user_photo.modal.hide.fade
         = simple_form_for @affiliate, :url => affiliate_profiles_update_photo_path do |f|
           .modal-header
             %button.close{'data-dismiss' => 'modal'} x
-            %h3 Foto
+            %h3= t('picture')
           .modal-body
             .clearfix
               .image
@@ -76,7 +76,7 @@
                 = f.input :photo
           .modal-footer
             %a.btn.close_user_photo{:href => '#'} Cerrar
-            = f.submit 'Guardar', :class => 'btn btn-primary'
+            = f.submit t('save'), :class => 'btn btn-primary'
 
 
   .span3

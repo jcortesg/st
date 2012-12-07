@@ -6,7 +6,7 @@
 .row
   .span12
     %ul.breadcrumb
-      %li.active Campañas
+      %li.active= t('campaigns')
 
 .row
   .span12
@@ -14,17 +14,17 @@
       .content
         - if current_user.advertiser.can_create_campaigns?
           .right
-            = link_to('Crear Nueva Campaña', [:new, :advertiser, :campaign], :class => 'btn btn-primary')
-        %h1.title Campañas
+            = link_to(t('new_campaign'), [:new, :advertiser, :campaign], :class => 'btn btn-primary')
+        %h1.title= t('campaigns')
 
         %table.table.table-striped
           %thead
             %tr
-              %th= sort_link(@search, :name, 'Nombre')
-              %th= sort_link(@search, :clicks_count, 'Clicks')
-              %th= sort_link(@search, :cost, 'Costo')
-              %th= sort_link(@search, :created_at, "Creado")
-              %th Acciones
+              %th= sort_link(@search, :name, t('name'))
+              %th= sort_link(@search, :clicks_count, t('clicks'))
+              %th= sort_link(@search, :cost, t('cost'))
+              %th= sort_link(@search, :created_at, t('created'))
+              %th= t('actions')
 
           %tbody
             - @campaigns.each do |campaign|
@@ -34,10 +34,10 @@
                 %td= number_to_currency(campaign.cost, unit: '')
                 %td= localize(campaign.created_at, :format => "%d/%m/%Y")
                 %td
-                  = link_to('Ver', [:advertiser, campaign], class: 'btn btn-primary')
-                  = link_to('Audiencia', [:audience, :advertiser, campaign], class: 'btn btn-primary')
+                  = link_to(t('see'), [:advertiser, campaign], class: 'btn btn-primary')
+                  = link_to(t('audience'), [:audience, :advertiser, campaign], class: 'btn btn-primary')
                   - if campaign.status != 'created'
-                    = link_to('Estadísticas', [:statistics, :advertiser, campaign], :class => 'btn btn-primary')
+                    = link_to(t('statistics'), [:statistics, :advertiser, campaign], :class => 'btn btn-primary')
         .center_text
           = paginate @campaigns
 

@@ -1,7 +1,7 @@
 .row
   .span6.offset3
     .frontend_round_content
-      .main_blue_title Datos de cobro
+      .main_blue_title= t('payment_info')
 
       %p= "Preferencia de cobro: #{@influencer.preferred_payment}"
       %p= "Número de cuenta: #{@influencer.account_number}"
@@ -10,5 +10,5 @@
       %p= "Banco: #{@influencer.bank_name}"
 
       .form-actions
-        = link_to 'Editar', influencer_profiles_edit_payment_data_path, :class => 'btn btn-primary btn-large'
-        = link_to 'Volver', influencer_profile_path, class: 'btn btn-large'
+        = link_to t('edit'), influencer_profiles_edit_payment_data_path, :class => 'btn btn-primary btn-large'
+        = link_to t('back'), influencer_profile_path, class: 'btn btn-large'
