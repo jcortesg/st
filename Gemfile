@@ -27,6 +27,7 @@ gem 'rmagick'                          # Image treatment
 gem 'carrierwave'                      # Image treatment
 gem 'json'                             # JSON
 gem 'geocoder'                         # Gets Location from IP
+gem 'capistrano-multiconfig'           # Multideployments with Capistrano
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.4'       # SASS Support

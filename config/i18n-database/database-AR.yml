@@ -1,0 +1,30 @@
+development:
+  adapter: mysql2
+  encoding: utf8
+  reconnect: false
+  database: borwin_dev
+  pool: 5
+  username: root
+  password: fdsa12312
+  host: localhost
+  
+# Warning: The database defined as "test" will be erased and
+# re-generated from your development database when you run "rake".
+# Do not set this db to the same as development or production.
+test:
+  adapter: mysql2
+  encoding: utf8
+  reconnect: false
+  database: borwin_test
+  username: root
+  password: fdsa12312
+  host: localhost
+
+production:
+  adapter: mysql2
+  encoding: utf8
+  reconnect: false
+  database: borwin
+  username: root
+  password: fdsa12312
+  host: localhost
