@@ -38,7 +38,7 @@ group :assets do
   gem 'bootstrap-sass'                 # Kickstart styles for the app
 
   gem 'execjs'                         # For compiling assets
-  #gem 'therubyracer'                   # For compiling assets
+  gem 'therubyracer'                   # For compiling assets
 end
 
 group :test do
@@ -50,7 +50,7 @@ group :test do
   gem 'launchy'                                  # To open pages when developing capybara tests
   #gem 'linecache19', '0.5.13'
   #gem 'ruby-debug-base19', '0.11.25'
-  #gem 'ruby-debug19', :require => 'ruby-debug'   # Debug on testing
+  gem 'ruby-debug19', :require => 'ruby-debug'   # Debug on testing
 end
 
 group :development, :test do
