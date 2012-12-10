@@ -53,7 +53,7 @@ namespace :setup do
 
   desc 'Bundle gems'
   task :bundle_gems do
-    run "cd #{current_release} && #{try_sudo} bundle install --gemfile #{current_release}/Gemfile --path /var/www/borwin/shared/bundle --without development test cucumber"
+    run "cd #{current_release} && #{try_sudo} bundle install --gemfile #{current_release}/Gemfile --path /var/www/borwin-colombia/shared/bundle --without development test cucumber"
   end
 
   desc 'Precompile assets'
