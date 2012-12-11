@@ -1,0 +1,272 @@
+es_AR:
+  simple_form:
+    "yes": 'Sí'
+    "no": 'No'
+    yes: 'Sí'
+    no: 'No'
+    day: Día
+    month: Mes
+    year: Año
+    required:
+      text: 'requerido'
+      mark: '*'
+    error_notification:
+      default_message: "Se encontraron errores:"
+    labels:
+      site_contact:
+        name: Nombre
+        email: Email
+        subject: Asunto
+        message: Mensaje
+      site_advertiser_contact:
+        name: Nombre
+        company: Empresa
+        position: Cargo
+        email: Email
+        campaign: Nombre de la Campaña
+        objectives: Objetivos de la Campaña
+        budget: Presupuesto
+        date: Fecha estimada para la campaña
+        demographic: Edades
+        hobbies: Hobbies
+      user:
+        email: Email
+        password: Contraseña
+        password_confirmation: Repetir contraseña
+        role: Tipo
+        approved: Approbado?
+        twitter_screen_name: "#Twitter"
+      advertiser:
+        first_name: Nombre
+        last_name: Apellido
+        location: Lugar
+        image_url: Foto
+        bio: Bio
+        company: Empresa
+        address: Dirección
+        city: Ciudad
+        state: Provincia
+        country: País
+        zip_code: Código Postal
+        phone: Téléfono
+        can_create_campaigns: Crear Campañas?
+        can_create_click_fee: Tweets por Clicks?
+        web: Página Web
+        advertising_source: Como conoció Borwin
+        position: Cargo
+        brand: Marca
+        twitter_screen_name: Twitter
+      affiliate:
+        first_name: Nombre
+        last_name: Apellido
+        company: Empresa
+        address: Dirección
+        city: Ciudad
+        state: Provincia
+        country: País
+        zip_code: Código Postal
+        phone: Téléfono
+        can_create_campaigns: Crear Campañas?
+        web: Página Web
+        advertising_source: Como conoció Borwin
+        position: Cargo
+        brand: Marca
+        twitter_screen_name: Twitter
+        preferred_payment: Forma de pago preferida
+        account_number: Número de cuenta
+        account_type: Tipo de cuenta
+        bank_name: Banco
+      influencer:
+        first_name: Nombre
+        last_name: Apellido
+        location: Lugar
+        image_url: Foto
+        bio: Bio
+        borwin_fee: Comisión
+        influencer_type: Profesión
+        birthday: Cumpleaños
+        sex: Sexo
+        description: Descripción
+        referrer_description: Referido por
+        address: Dirección
+        city: Ciudad
+        state: Provincia
+        country: País
+        zip_code: Código Postal
+        phone: Teléfono
+        cell_phone: Celular
+        contact_time: Hora de contacto
+        contact_method: Forma de contacto preferido
+        preferred_payment: Forma de pago preferida
+        account_number: Número de cuenta bancaria
+        account_type: Tipo de cuenta
+        cbu: CBU
+        bank_name: Banco
+        photo: Foto
+        automatic_tweet_fee: Precio Tweet (Automático)
+        automatic_cpc_fee: Precio CPC (Automático)
+        price_category: Categoría
+        manual_tweet_fee: Precio Tweet (Manual)
+        manual_cpc_fee: Precio CPC (Manual)
+        approval_message: Por qué deberías ser parte de la plataforma?
+      audience:
+        followers: Seguidores
+        friends: Amigos
+        tweets: Tweets
+        retweets: Retweets
+        peerindex: PeerIndex
+        klout: Klout
+        males: Hombres
+        females: Mujeres
+        moms: Mamás
+        teens: Adolescentes
+        college_students: Universitarios
+        young_women: Mujeres (18-34 años)
+        young_men: Hombres (18-34 años)
+        adult_women: Mujeres (Más de 35 años)
+        adult_men: Hombres (Más de 35 años)
+        sports: Deportes
+        fashion: Moda
+        music: Música
+        movies: Cine
+        politics: Política
+        created_at: Fecha de creación
+        updated_at: Fecha de actualización
+      picture:
+        blank_layout: Fondo
+      campaign:
+        advertiser_id: Anunciante
+        name: Nombre
+        objective: Descripción de objetivo
+        hashtag: Hashtag
+        phrase: Palabra o frase
+        instructions: Instrucciones de creación de tweet
+        twitter_screen_name: Twitter
+        dialog_campaign: Requiere que todos acepten para publicar?
+        price_per_click: Precio por Click
+        archived: Archivada?
+        locations: Zona Geográfica
+        males: Hombres
+        females: Mujeres
+        moms: Mamás
+        teens: Adolescentes
+        college_students: Universitarios
+        young_women: Mujeres (18-34 años)
+        young_men: Hombres (18-34 años)
+        adult_women: Mujeres (Más de 35 años)
+        adult_men: Hombres (Más de 35 años)
+        sports: Deportes
+        fashion: Moda
+        music: Música
+        movies: Películas
+        politics: Política
+        clicks: Clicks
+        cost: Costo
+        created_at: Fecha de creación
+        updated_at: Fecha de actualización
+        campaign_type: Tipo de objetivo
+      tweet:
+        text: Tweet
+        tweet_at: Fecha y hora de tweet
+        link_code: Código de link
+        link_url: URL
+        fee_type: Tipo de pago
+        cpc: CPC
+        tweet_fee: Costo del tweet
+        clicks_count: Clicks
+        status: Estado
+        created_at: Fecha de creación
+        updated_at: Fecha de actualización
+        reject_cause: Causa del rechazo
+      keyword:
+        name: Nombre
+        keywords: Keywords
+      transaction:
+        attachable: Objeto
+        user: Usuario
+        transaction_on: Fecha
+        transaction_at: Fecha
+        transaction_type: Tipo
+        details: Detalle
+        borwint_transaction: Borwin?
+        amount: Importe
+        balance: Balance
+      cash_out:
+        user_id: Usuario
+        user: Usuario
+        amount: Importe
+        status: Estado
+        paid_at: Fecha de pago
+        created_at: Fecha de creación
+        updated_at: Fecha de actualización
+    hints:
+      influencer:
+        twitter_username: "Tu nombre de usuario en twitter, ej: rorra"
+      keyword:
+        keywords: "Los keywords deben ser ingresados separados por coma"
+      campaign:
+        twitter_screen_name: "Twitter de la empresa, ejemplo: @JuanaRepetto"
+        hashtag: "Hashtag para la campaña. Por ejemplo: #internet."
+        phrase: "Palabra o frase destacada contenida en los tweets."
+  date:
+    abbr_day_names:
+    - dom
+    - lun
+    - mar
+    - mié
+    - jue
+    - vie
+    - sáb
+    abbr_month_names:
+    -
+    - ene
+    - feb
+    - mar
+    - abr
+    - may
+    - jun
+    - jul
+    - ago
+    - sep
+    - oct
+    - nov
+    - dic
+    day_names:
+    - domingo
+    - lunes
+    - martes
+    - miércoles
+    - jueves
+    - viernes
+    - sábado
+    formats:
+      default: ! '%d/%m/%Y'
+      long: ! '%A, %d de %B de %Y'
+      short: ! '%d de %b'
+    month_names:
+    -
+    - enero
+    - febrero
+    - marzo
+    - abril
+    - mayo
+    - junio
+    - julio
+    - agosto
+    - septiembre
+    - octubre
+    - noviembre
+    - diciembre
+    order:
+    - :day
+    - :month
+    - :year
+  helpers:
+    submit:
+      user:
+        create: Ingresar
+      site_contact:
+        create: Envíar
+      influencer:
+        create: Registrarse
+        edit: Editar

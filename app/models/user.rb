@@ -133,8 +133,17 @@ class User < ActiveRecord::Base
   # Sets the unique invitation code for the suer
   def set_invitation_code
     o =  [('A'..'Z'),(0..9)].map{|i| i.to_a}.flatten
+    first_char = ''
+    case APP_CONFIG['app_country']
+      when 'AR'
+        first_char = 'A'
+      when 'CO'
+        first_char = 'C'
+      when 'MX'
+        first_char = 'M'
+    end
     begin
-      code = (0..5).map{ o[rand(o.length)] }.join
+      code = first_char + (0..5).map{ o[rand(o.length)] }.join
     end while User.where(:invitation_code => code).exists?
     self.invitation_code = code
   end

@@ -4,31 +4,33 @@ class HomeController < ApplicationController
 
   # Website main page
   def index
-    if !cookies[:country].nil? && cookies[:redirected].nil?
-      case cookies[:country]
-        when 'AR'
-          redirect_to 'http://borwin.net'
-        when 'MX'
-          redirect_to 'http://mexico.borwin.net'
-        when 'CO'
-          redirect_to 'http://colombia.borwin.net'
-        else
-          redirect_to 'http://borwin.net'
-      end
-    elsif !cookies[:redirected].nil?
-        # ?
-    else
-      ip = request.remote_ip
-      country = Geocoder.search(ip)[0].data['country_name'].to_s
-      case country
-        when 'Argentina'
-          redirect_to country_redirector_path({:code => 'AR'})
-        when 'Mexico'
-          redirect_to country_redirector_path({:code => 'MX'})
-        when 'Colombia'
-          redirect_to country_redirector_path({:code => 'CO'})
-        else
-          redirect_to country_redirector_path({:code => 'NO'})
+    if false
+      if !cookies[:country].nil? && cookies[:redirected].nil?
+        case cookies[:country]
+          when 'AR'
+            redirect_to 'http://borwin.net'
+          when 'MX'
+            redirect_to 'http://mexico.borwin.net'
+          when 'CO'
+            redirect_to 'http://colombia.borwin.net'
+          else
+            redirect_to 'http://borwin.net'
+        end
+      elsif !cookies[:redirected].nil?
+          # ?
+      else
+        ip = request.remote_ip
+        country = Geocoder.search(ip)[0].data['country_name'].to_s
+        case country
+          when 'Argentina'
+            redirect_to country_redirector_path({:code => 'AR'})
+          when 'Mexico'
+            redirect_to country_redirector_path({:code => 'MX'})
+          when 'Colombia'
+            redirect_to country_redirector_path({:code => 'CO'})
+          else
+            redirect_to country_redirector_path({:code => 'NO'})
+        end
       end
     end
   end
@@ -142,8 +144,30 @@ class HomeController < ApplicationController
   # Invitation registration
   # http://localhost:3000/I123456
   def invitation
-    if User.where(invitation_code: params[:invitation_code]).exists?
-      @referrer = User.where(invitation_code: params[:invitation_code]).first
+    length = params[:invitation_code].length
+    if length > 6
+      case params[:invitation_code][0]
+        when 'A'
+          if APP_CONFIG['app_country'] != 'AR'
+            redirect_to 'http://borwin.net/I'+params[:invitation_code].to_s
+            return
+          end
+        when 'C'
+          if APP_CONFIG['app_country'] != 'CO'
+            redirect_to 'http://colombia.borwin.net/I'+params[:invitation_code].to_s
+            return
+          end
+        when 'M'
+          if APP_CONFIG['app_country'] != 'MX'
+            redirect_to 'http://mexico.borwin.net/I'+params[:invitation_code].to_s
+            return
+          end
+      end
+    end
+    invitation_code = params[:invitation_code][0..length]
+
+    if User.where(invitation_code: invitation_code).exists?
+      @referrer = User.where(invitation_code: invitation_code).first
       session[:referrer_id] = @referrer.id
       #redirect_to influencer_devise_registration_path
     else

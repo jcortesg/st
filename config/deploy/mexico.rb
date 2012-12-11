@@ -7,7 +7,7 @@ set :rvm_ruby_string, '1.9.3'
 set :rvm_bin_path, "/usr/local/rvm/bin"
 set :rvm_type, :system
 
-set :application, "TweetGo"
+set :application, "TweetGo Mexico"
 set :repository, "git@bitbucket.org:redmint/borwin.git"
 
 #role :web, "199.168.97.138"
@@ -23,7 +23,7 @@ set :sudo, 'rvmsudo'
 set :use_sudo, false
 
 set :deploy_via, :remote_cache
-set :deploy_to, "/var/www/borwin"
+set :deploy_to, "/var/www/borwin-mexico"
 set :branch, "master"
 
 set :asset_env, "RAILS_GROUPS=assets"
@@ -47,7 +47,7 @@ namespace :setup do
 
   desc 'Bundle gems'
   task :bundle_gems do
-    run "cd #{current_release} && #{try_sudo} bundle install --gemfile #{current_release}/Gemfile --path /var/www/borwin/shared/bundle --without development test cucumber"
+    run "cd #{current_release} && #{try_sudo} bundle install --gemfile #{current_release}/Gemfile --path /var/www/borwin-mexico/shared/bundle --without development test cucumber"
   end
 
   desc 'Precompile assets'

@@ -82,4 +82,5 @@ es_LA:
   modify: Modificar
   huso: Fecha y hora de tweet. Horario Bogota (GMT-5)
   percent_by_state: Porcentage según departamento
+  do_filter: Filtrar
 
