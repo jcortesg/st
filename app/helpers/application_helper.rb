@@ -102,15 +102,46 @@ module ApplicationHelper
 
   # Bank options for forms
   def bank_options
-    ["Banco Ciudad", "Banco Credicoop", "Banco Comafi", "Banco Francés", "Banco Galicia", "Banco Hipotecario", "Banco Macro", "Banco Nación", "Banco Patagonia", "Banco Provincia", "City Bank", "Santander Río", "Standard Bank","ABN AMRO Bank",
-     "Banca Nazionale del Lavoro",
-     "Banco Bisel",
-     "Banco de Inversion y Comercio Exterior",
-     "Banco Itaú",
-     "Banque Nationale de Paris",
-     "Banco Bansud",
-     "Banco HSBC",
-     "Lloyds Bank",
-     "Otro"]
+    case APP_CONFIG['app_country']
+      when 'AR'
+        ["Banco Ciudad", "Banco Credicoop", "Banco Comafi", "Banco Francés", "Banco Galicia", "Banco Hipotecario", "Banco Macro", "Banco Nación", "Banco Patagonia", "Banco Provincia", "City Bank", "Santander Río", "Standard Bank","ABN AMRO Bank",
+         "Banca Nazionale del Lavoro",
+         "Banco Bisel",
+         "Banco de Inversion y Comercio Exterior",
+         "Banco Itaú",
+         "Banque Nationale de Paris",
+         "Banco Bansud",
+         "Banco HSBC",
+         "Lloyds Bank",
+         "Otro"]
+      when 'CO'
+        ["Bancafé",
+        "Banco AV Villas",
+        "Banco Bilbao Vizcaya Argentaria Colombia S.A. (BBVA )",
+        "Banco Caja Social BCSC",
+        "Banco de Bogotá",
+        "Banco de Credito",
+        "Banco de la República de Colombia",
+        "Banco de Occidente",
+        "Banco GNB Sudameris",
+        "Banco Granahorrar",
+        "Banco Popular",
+        "Banco Popular Colombia",
+        "Banco Santander Colombia",
+        "Bancoldex",
+        "Bancolombia",
+        "BBVA Banco Ganadero",
+        "Citi Bank",
+        "Colmena BCSC",
+        "Colpatria",
+        "Conavi",
+        "Credit Suisse Representaciõn para Colombia",
+        "Davivienda",
+        "Deutsche Bank",
+        "Helm Financial Services",
+        "Megabanco",
+        "UBS AG in Bogotá"
+        ]
+    end
   end
 end
