@@ -144,4 +144,13 @@ module ApplicationHelper
         ]
     end
   end
+
+  def borwin_twitter_link
+    case APP_CONFIG['app_country']
+      when 'AR'
+        '<a href="https://twitter.com/BorwinAR" class="twitter-follow-button" data-show-count="false" data-lang="es" data-size="large">Seguir en @BorwinAR</a>'
+      when 'CO'
+        '<a href="https://twitter.com/BorwinCO" class="twitter-follow-button" data-show-count="false" data-lang="es" data-size="large">Seguir en @BorwinCO</a>'
+    end
+  end
 end
