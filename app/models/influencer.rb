@@ -325,6 +325,15 @@ class Influencer < ActiveRecord::Base
     else
       price  = price
     end
+
+    case APP_CONFIG['app_country']
+      when 'AR'
+        price = price
+      when 'CO'
+        price = price * 417
+    end
+
+    return price
   end
 
   # Sends an email when the user needs approval
