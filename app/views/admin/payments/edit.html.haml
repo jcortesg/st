@@ -1,0 +1,11 @@
+.row
+  .span6.offset3.round_box
+    = simple_form_for(@payment, url: advertiser_payments_path, method: :post, html:  { class: "form-horizontal round_form", method: :put }) do |f|
+      %h1.form_title Pago
+      = render '/shared/simple_form_errors', :f => f
+
+      = f.input :status, as: :select, collection: ['Acreditado','Cancelado','En disputa', 'Pendiente de Acreditación', 'Pago Pendiente', 'Pago Reintegrado', 'Pago Rechazado', 'Proceso Abandonado']
+
+      .form-actions
+        = f.submit 'Guardar', :class => 'btn btn-primary btn-large'
+        = link_to 'Cancelar', [:advertiser, :payments], class: 'btn btn-large'

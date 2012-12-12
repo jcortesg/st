@@ -25,4 +25,22 @@ class Admin::PaymentsController < ApplicationController
   def show
     @payment = Payment.find(params[:id])
   end
+
+  # Shows the form to update a transaction
+  def edit
+    @payment = Payment.find(params[:id])
+  end
+
+  # Updates a transaction
+  def update
+    @payment = Payment.find(params[:id])
+
+    if @payment.update_attributes(params[:payment])
+      flash[:notice] = "El estado del pago ha sido modificada"
+      redirect_to [:admin, @transaction]
+    else
+      flash.now[:error] = "Hubo un error al intentar actualizar el pago"
+      render action: :edit
+    end
+  end
 end

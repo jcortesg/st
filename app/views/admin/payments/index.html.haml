@@ -28,7 +28,9 @@
                 %td= sprintf("%.02f", payment.amount)
                 %td= payment.status
                 %td
-                  = link_to('Ver', [:advertiser, payment], class: 'btn btn-primary')
+                  = link_to(t('see'), admin_payment_path(payment), class: 'btn btn-primary')
+                  = link_to(t('edit'), edit_admin_payment_path(payment), class: 'btn btn-primary')
+
         .center_text
           = paginate @payments
 
