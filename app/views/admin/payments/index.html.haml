@@ -34,7 +34,7 @@
 
         .filters
           .subtitle Filtros
-          = simple_form_for @search, :url => [:advertiser, :transactions], html: {method: :get, id: 'filter_form', class: 'form-horizontal'} do |f|
+          = simple_form_for @search, :url => [:advertiser, :payments], html: {method: :get, id: 'filter_form', class: 'form-horizontal'} do |f|
             = f.input :updated_at_greater_than_or_equal_to, label: 'Desde', required: false, input_html: { class: 'medium', id: 'from_datepicker', value: @search.updated_at_greater_than_or_equal_to ? @search.updated_at_greater_than_or_equal_to.strftime("%d/%m/%Y") : ''}
             = f.input :updated_at_less_than_or_equal_to, label: 'Hasta', required: false, input_html: { class: 'medium', id: 'to_datepicker', value: @search.updated_at_less_than_or_equal_to ? @search.updated_at_less_than_or_equal_to.strftime("%d/%m/%Y") : ''}
             = f.input :amount_greater_than, label: 'Importe mayor a', required: false
