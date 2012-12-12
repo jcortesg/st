@@ -46,7 +46,7 @@ class Advertiser::PaymentsController < ApplicationController
       last_id = Payment.where("user_id = #{current_user.id}").maximum('id')
       last_id = last_id.nil?? 1 : (last_id + 1)
 
-      preferenceData = Hash["items" => Array(Array["external_reference" => current_user.id.to_s+ "_"+ last_id.to_s, "payer_name" => advertiser.first_name, "payer_surname" => advertiser.last_name, "payer_email" => current_user.email, "title"=>@payment.description, "quantity"=>1, "unit_price"=>@payment.amount, "currency_id"=> APP_CONFIG['mercadopago_currency_id']])]
+      preferenceData = Hash["items" => Array(Array["order_id" => current_user.id.to_s+"0001000"+ last_id.to_s, "external_reference" => current_user.id.to_s+"0001000"+ last_id.to_s, "payer_name" => advertiser.first_name, "payer_surname" => advertiser.last_name, "payer_email" => current_user.email, "title"=>@payment.description, "quantity"=>1, "unit_price"=>@payment.amount, "currency_id"=> APP_CONFIG['mercadopago_currency_id']])]
 
       preference = mp.create_preference(preferenceData)
 
