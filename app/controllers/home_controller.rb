@@ -256,9 +256,9 @@ class HomeController < ApplicationController
     mp_client = MercadoPago.new(APP_CONFIG['mercadopago_client_id'], APP_CONFIG['mercadopago_client_secret'])
 
     notification = mp_client.get_payment_info(payment_id)
-    puts "MP response: " + notification.to_s
+    puts "MP response: " + notification['response'].to_s
 
-    parsed_json = ActiveSupport::JSON.decode(notification)
+    parsed_json = ActiveSupport::JSON.decode(notification['response'])
     payment = Payment.where('external_reference == ?', parsed_json['collection']['external_reference']).first
     payment.update_attribute('status', parsed_json['collection']['status'])
   end
