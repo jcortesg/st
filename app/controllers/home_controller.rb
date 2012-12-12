@@ -253,6 +253,8 @@ class HomeController < ApplicationController
     topic = params[:payment]
     payment_id = params[:id]
 
+    mp_client = MercadoPago.new(APP_CONFIG['mercadopago_client_id'], APP_CONFIG['mercadopago_client_secret'])
+
     notification = mp_client.notification(payment_id)
     puts "MP response: " + notification.to_s
 
