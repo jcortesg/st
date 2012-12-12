@@ -3,4 +3,7 @@ app_country: AR
 mercadopago_client_id: 8354375930808502
 mercadopago_client_secret: cBF2nCroJTRLIClUZAKXZiTVs4GX1Who
 mercadopago_currency_id: ARS
-mercadopago_paybutton_class:
+mercadopago_paybutton_class: blue-ar-m-sq-arall
+mercadopago_acc_id: 534896343
+mercadopago_enc: bxcH14rdC9Puu1%2BZULSDEB3x4JA%3D
+mercadopago_sonda: 0%2BQzLxNiuh7SAAN06uG3HkzhGiY%3D
