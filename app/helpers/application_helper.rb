@@ -150,7 +150,7 @@ module ApplicationHelper
       when 'AR'
         '<a href="https://twitter.com/BorwinAR" class="twitter-follow-button" data-show-count="false" data-lang="es" data-size="large">Seguir en @BorwinAR</a>'
       when 'CO'
-        '<a href="https://twitter.com/BorwinCO" class="twitter-follow-button" data-show-count="false" data-lang="es" data-size="large">Seguir en @BorwinCO</a>'
+        '<a href="https://twitter.com/borwincolombia" class="twitter-follow-button" data-show-count="false" data-lang="es" data-size="large">Seguir en @borwincolombia</a>'
     end
   end
 end
