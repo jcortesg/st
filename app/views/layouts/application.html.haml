@@ -32,97 +32,97 @@
                       %b.caret
                     %ul.dropdown-menu
                       - if current_user.advertiser.can_create_campaigns?
-                        %li= link_to 'Nueva Campaña', new_advertiser_campaign_path
-                      %li= link_to 'Campañas Actuales', advertiser_campaigns_path
-                      %li= link_to 'Historial de Campañas', archived_advertiser_campaigns_path
+                        %li= link_to t('new_campaign'), new_advertiser_campaign_path
+                      %li= link_to t('current_campaigns'), advertiser_campaigns_path
+                      %li= link_to t('historical_campaigns'), archived_advertiser_campaigns_path
                   - if APP_CONFIG['app_country'] == 'AR'
-                    %li= link_to "Pagos", [:advertiser, :payments]
-                  %li= link_to "Transacciones", [:advertiser, :transactions]
+                    %li= link_to t('payments'), [:advertiser, :payments]
+                  %li= link_to t('transactions'), [:advertiser, :transactions]
                   %li.dropdown
                     %a{:href => '#', :class => 'dropdown-toggle', 'data-toggle' => 'dropdown'}
-                      = "Perfil"
+                      = t('profile')
                       %b.caret
                     %ul.dropdown-menu
-                      %li= link_to 'Mi Perfil', advertiser_profile_path
-                      %li= link_to 'Mis Datos', advertiser_profiles_my_data_path
-                      %li= link_to 'Cambiar Contraseña', advertiser_profiles_change_password_path
+                      %li= link_to t('my_profile'), advertiser_profile_path
+                      %li= link_to t('my_data'), advertiser_profiles_my_data_path
+                      %li= link_to t('change_password'), advertiser_profiles_change_password_path
                 - elsif current_user.influencer?
                   -if current_user.influencer.approved?
                     %li.dropdown
                       %a{:href => '#', :class => 'dropdown-toggle', 'data-toggle' => 'dropdown'}
-                        = "Perfil"
+                        = t('profile')
                         %b.caret
                       %ul.dropdown-menu
-                        %li= link_to 'Mi perfil', influencer_profile_path
-                        %li= link_to 'Datos de contacto', influencer_profiles_contact_data_path
-                        %li= link_to 'Datos de cobro', influencer_profiles_payment_data_path
-                        %li= link_to 'Cambiar Contraseña', influencer_profiles_change_password_path
-                        %li= link_to 'Mejor hora para twittear', influencer_profiles_best_time_path
+                        %li= link_to t('my_profile'), influencer_profile_path
+                        %li= link_to t('contact_info'), influencer_profiles_contact_data_path
+                        %li= link_to t('payment_info'), influencer_profiles_payment_data_path
+                        %li= link_to t('change_password'), influencer_profiles_change_password_path
+                        %li= link_to t('best_time_for_tweet'), influencer_profiles_best_time_path
                     %li.dropdown
                       %a{:href => '#', :class => 'dropdown-toggle', 'data-toggle' => 'dropdown'}
                         = "Referidos"
                         %b.caret
                       %ul.dropdown-menu
-                        %li= link_to "Información", influencer_referrals_path
+                        %li= link_to t('information'), influencer_referrals_path
                         %li= link_to "Mis Referidos", list_influencer_referrals_path
-                    %li= link_to "Tweets", influencer_tweets_path
+                    %li= link_to t('tweets'), influencer_tweets_path
                     %li.dropdown
                       %a{:href => '#', :class => 'dropdown-toggle', 'data-toggle' => 'dropdown'}
                         Ingresos
                         %b.caret
                       %ul.dropdown-menu
-                        %li= link_to 'Ingresos', [:influencer, :transactions]
-                        %li= link_to 'Cash Out', [:influencer, :cash_outs]
+                        %li= link_to t('income'), [:influencer, :transactions]
+                        %li= link_to t('cash_out'), [:influencer, :cash_outs]
                 - elsif current_user.affiliate?
                   %li.dropdown
                     %a{:href => '#', :class => 'dropdown-toggle', 'data-toggle' => 'dropdown'}
-                      = "Referidos"
+                      = t('referrals')
                       %b.caret
                     %ul.dropdown-menu
-                      %li= link_to "Información", affiliate_referrals_path
-                      %li= link_to "Mis Referidos", list_affiliate_referrals_path
+                      %li= link_to t('information'), affiliate_referrals_path
+                      %li= link_to t('my_referrals'), list_affiliate_referrals_path
                   %li.dropdown
                     %a{:href => '#', :class => 'dropdown-toggle', 'data-toggle' => 'dropdown'}
                       = "Perfil"
                       %b.caret
                     %ul.dropdown-menu
-                      %li= link_to 'Mi Perfil', affiliate_profile_path
-                      %li= link_to 'Mis Datos', affiliate_profiles_my_data_path
-                      %li= link_to 'Datos de Cobro', affiliate_profiles_payment_data_path
-                      %li= link_to 'Cambiar Contraseña', affiliate_profiles_change_password_path
+                      %li= link_to t('my_profile'), affiliate_profile_path
+                      %li= link_to t('my_data'), affiliate_profiles_my_data_path
+                      %li= link_to t('payment_info'), affiliate_profiles_payment_data_path
+                      %li= link_to t('change_password'), affiliate_profiles_change_password_path
                   %li.dropdown
                     %a{:href => '#', :class => 'dropdown-toggle', 'data-toggle' => 'dropdown'}
                       Ingresos
                       %b.caret
                     %ul.dropdown-menu
-                      %li= link_to 'Ingresos', [:affiliate, :transactions]
-                      %li= link_to 'Cash Out', [:affiliate, :cash_outs]
+                      %li= link_to t('income'), [:affiliate, :transactions]
+                      %li= link_to t('cash_out'), [:affiliate, :cash_outs]
                 - elsif current_user.admin?
                   %li.dropdown
                     %a{:href => '#', :class => 'dropdown-toggle', 'data-toggle' => 'dropdown'}
                       = "Usuarios"
                       %b.caret
                     %ul.dropdown-menu
-                      %li= link_to "Esperando aprobación", waiting_approval_admin_influencers_path
-                      %li= link_to "Autorizaciones", admin_users_path
-                      %li= link_to "Agencias", admin_affiliates_path
-                      %li= link_to "Anunciantes", admin_advertisers_path
-                      %li= link_to "Celebridades", admin_influencers_path
-                  %li= link_to "Referidos", admin_referrers_path
+                      %li= link_to t('waiting_approval'), waiting_approval_admin_influencers_path
+                      %li= link_to t('authorizations'), admin_users_path
+                      %li= link_to t('affiliates'), admin_affiliates_path
+                      %li= link_to t('advertisers'), admin_advertisers_path
+                      %li= link_to t('celebrities'), admin_influencers_path
+                  %li= link_to t('referrals'), admin_referrers_path
                   %li.dropdown
                     %a{:href => '#', :class => 'dropdown-toggle', 'data-toggle' => 'dropdown'}
-                      = "Campañas"
+                      = t('campaigns')
                       %b.caret
                     %ul.dropdown-menu
-                      %li= link_to 'Campañas Actuales', admin_campaigns_path
-                      %li= link_to 'Historial de Campañas', archived_admin_campaigns_path
+                      %li= link_to t('current_campaigns'), admin_campaigns_path
+                      %li= link_to t('historical_campaigns'), archived_admin_campaigns_path
                   %li.dropdown
                     %a{:href => '#', :class => 'dropdown-toggle', 'data-toggle' => 'dropdown'}
                       Transacciones
                       %b.caret
                     %ul.dropdown-menu
-                      %li= link_to 'Transacciones', [:admin, :transactions]
-                      %li= link_to 'Cash Out', [:admin, :cash_outs]
+                      %li= link_to t('transactions'), [:admin, :transactions]
+                      %li= link_to t('cash_out'), [:admin, :cash_outs]
                   %li.dropdown
                     %a{:href => '#', :class => 'dropdown-toggle', 'data-toggle' => 'dropdown'}
                       = "Twitter"
@@ -132,18 +132,18 @@
               - else
                 %li.dropdown
                   %a{:href => '#', :class => 'dropdown-toggle', 'data-toggle' => 'dropdown'}
-                    = "Anunciantes"
+                    = t('affiliate')
                     %b.caret
                   %ul.dropdown-menu
-                    %li= link_to 'Visión General', home_advertisers_about_path
-                    %li= link_to 'Contáctenos', home_advertisers_contact_path
+                    %li= link_to t('general_vision'), home_advertisers_about_path
+                    %li= link_to t('contact_us'), home_advertisers_contact_path
                 %li.dropdown
                   %a{:href => '#', :class => 'dropdown-toggle', 'data-toggle' => 'dropdown'}
-                    = "Celebridades"
+                    = t('celebrities')
                     %b.caret
                   %ul.dropdown-menu
-                    %li= link_to 'Visión General', home_influencers_about_path
-                    %li= link_to 'Contáctenos', home_influencers_contact_path
+                    %li= link_to t('general_vision'), home_influencers_about_path
+                    %li= link_to t('contact_us'), home_influencers_contact_path
                 %li.dropdown
                   %a{:href => '#', :class => 'dropdown-toggle', 'data-toggle' => 'dropdown'}
                     = "Plataforma"
@@ -157,30 +157,30 @@
                     = "Nosotros"
                     %b.caret
                   %ul.dropdown-menu
-                    %li= link_to 'La Empresa', about_us_path
-                    %li= link_to 'Presentación', presentacion_path
-                    %li= link_to 'Prensa', press_path
+                    %li= link_to t('the_company'), about_us_path
+                    %li= link_to t('presentation'), presentacion_path
+                    %li= link_to t('press'), press_path
                     %li= link_to 'Blog', 'http://blog.borwin.net', target: '_blank'
                     %li= link_to t('work_with_us'), work_with_us_path
-                    %li= link_to 'Contáctenos', contact_path
+                    %li= link_to t('contact_us'), contact_path
             - if user_signed_in?
               %ul.nav.pull-right
                 = form_tag(destroy_user_session_path, :method => :delete) do
-                  %button.btn.btn-primary{:type => "submit"} Salir
+                  %button.btn.btn-primary{:type => "submit"}= t('exit')
             - else
               %ul.nav.pull-right
                 %li.dropdown
                   %a{:href => '#', :class => 'dropdown-toggle', 'data-toggle' => 'dropdown'}
-                    Registrarse
+                    =t('register')
                     %b.caret
 
                   %ul.dropdown-menu
-                    %li= link_to 'Celebridad', influencer_devise_registration_path
-                    %li= link_to 'Empresa Anunciante', advertiser_devise_registration_path
-                    %li= link_to 'Agencia', affiliate_devise_registration_path
+                    %li= link_to t('celebrity'), influencer_devise_registration_path
+                    %li= link_to t('advertiser_company'), advertiser_devise_registration_path
+                    %li= link_to t('affiliate'), affiliate_devise_registration_path
                 %li
                   = form_tag(new_user_session_path, :method => :get) do
-                    %button.btn.btn-primary{:type => "submit"} Iniciar sesión
+                    %button.btn.btn-primary{:type => "submit"}= t('start_session')
 
 
     .main_container.container
@@ -189,35 +189,35 @@
     #footer.footer
       .container
         .col.col1
-          %h5 Anunciantes
+          %h5= t('affiliates')
           %ul
-            %li= link_to 'Visión General', home_advertisers_about_path
-            %li= link_to 'Contactenos', home_advertisers_contact_path
+            %li= link_to t('general_vision'), home_advertisers_about_path
+            %li= link_to t('contact_us'), home_advertisers_contact_path
         .col.col2
-          %h5 Celebridades
+          %h5= t('celebrities')
           %ul
-            %li= link_to 'Visión General', home_influencers_about_path
-            %li= link_to 'Contactenos', home_influencers_contact_path
+            %li= link_to t('general_vision'), home_influencers_about_path
+            %li= link_to t('contact_us'), home_influencers_contact_path
         .col.col3
-          %h5 Plataforma
+          %h5= t('platform')
           %ul
             %li= link_to 'TweetGo!', about_tweet_go_path
             %li= link_to 'SorteARGo!', about_sorte_argo_path
             %li= link_to 'StatsGo!', about_stats_go_path
         .col.col4
-          %h5 Nosotros
+          %h5= t('us')
           %ul
-            %li= link_to 'La Empresa', about_us_path
-            %li= link_to 'Presentación', presentacion_path
-            %li= link_to 'Prensa', press_path
-            %li= link_to 'Trabajá con Nosotros', work_with_us_path
-            %li= link_to 'Contáctenos', contact_path
+            %li= link_to t('the_company'), about_us_path
+            %li= link_to t('presentation'), presentacion_path
+            %li= link_to t('press'), press_path
+            %li= link_to t('work_with_us'), work_with_us_path
+            %li= link_to t('contact_us'), contact_path
         .col.col5
-          %h5 Términos
+          %h5= t('terms')
           %ul
             %li
-              %li= link_to 'Términos y condiciones', terms_path
-              %li= link_to 'Política de privacidad', privacy_path
+              %li= link_to t('terms_and_conditions'), terms_path
+              %li= link_to t('privacy'), privacy_path
         .col.col6
           %h5 Borwin
           %ul

@@ -82,4 +82,24 @@ es_AR:
   modify: Modificar
   huso: Fecha y hora de tweet. Horario Buenos Aires (GMT-3)
   percent_by_state: Porcentage según provincia
+  do_filter: Filtrar
+  current_campaigns: Campañas Actuales
+  payments: Pagos
+  transactions: Transacciones
+  my_profile: Mi Perfil
+  my_data: Mis Datos
+  information: Información
+  my_referrals: Mis Referidos
+  waiting_approval: Esperando aprobación
+  affiliates: Agencias
+  presentation: Presentación
+  exit: Salir
+  register: Registrarse
+  advertiser_company: Empresa Anunciante
+  start_session:  Iniciar sesión
+  platform: Plataforma
+  us: Nosotros
+  terms: Términos
+  terms_and_conditions: Términos y condiciones
+  privacy: Política de privacidad
 

@@ -80,7 +80,26 @@ es_LA:
   dancer: Bailarín/Bailarina
   choreographer: Coreógrafo
   modify: Modificar
-  huso: Fecha y hora de tweet. Horario Bogota (GMT-5)
+  huso: Fecha y hora de tweet. Horario Bogotá (GMT-5)
   percent_by_state: Porcentage según departamento
   do_filter: Filtrar
+  current_campaigns: Campañas Actuales
+  payments: Pagos
+  transactions: Transacciones
+  my_profile: Mi Perfil
+  my_data: Mis Datos
+  information: Información
+  my_referrals: Mis Referidos
+  waiting_approval: Esperando aprobación
+  affiliates: Agencias
+  presentation: Presentación
+  exit: Salir
+  register: Registrarse
+  advertiser_company: Empresa Anunciante
+  start_session:  Iniciar sesión
+  platform: Plataforma
+  us: Nosotros
+  terms: Términos
+  terms_and_conditions: Términos y condiciones
+  privacy: Política de privacidad
 

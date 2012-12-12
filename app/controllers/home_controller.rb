@@ -14,7 +14,7 @@ class HomeController < ApplicationController
           when 'CO'
             redirect_to 'http://colombia.borwin.net'
           else
-            redirect_to 'http://borwin.net'
+            #redirect_to 'http://borwin.net'
         end
       elsif !cookies[:redirected].nil?
           # ?
