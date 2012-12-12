@@ -258,7 +258,7 @@ class HomeController < ApplicationController
     notification = mp_client.get_payment_info(payment_id)
     puts "MP response: " + notification['response'].to_s
 
-    parsed_json = ActiveSupport::JSON.decode(notification['response'])
+    parsed_json = ActiveSupport::JSON.decode(notification['response'].to_s)
     payment = Payment.where('external_reference == ?', parsed_json['collection']['external_reference']).first
     payment.update_attribute('status', parsed_json['collection']['status'])
   end
