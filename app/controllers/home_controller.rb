@@ -1,4 +1,6 @@
 # encoding: utf-8
+require 'mercadopago.rb'
+
 class HomeController < ApplicationController
   include ApplicationHelper
 
@@ -252,7 +254,7 @@ class HomeController < ApplicationController
     payment_id = params[:id]
 
     notification = mp_client.notification(payment_id)
-    puts notification
+    puts "MP response: " + notification.to_s
 
     parsed_json = ActiveSupport::JSON.decode(notification)
     payment = Payment.where('external_reference == ?', parsed_json['collection']['external_reference']).first
