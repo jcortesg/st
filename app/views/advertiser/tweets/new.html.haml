@@ -330,10 +330,10 @@
 
             - if @campaign.price_per_click
               - tf.object.fee_type = 'cpc_fee'
-              = tf.input :fee_type, as: :radio, collection: [["Precio por Click - AR$ #{sprintf("%.02f", @influencer.cpc_fee)}", 'cpc_fee']], label: 'Tipo de pago'
+              = tf.input :fee_type, as: :radio, collection: [["Precio por Click - #{APP_CONFIG['currency']} #{sprintf("%.02f", @influencer.cpc_fee)}", 'cpc_fee']], label: 'Tipo de pago'
             - else
               - tf.object.fee_type = 'tweet_fee'
-              = tf.input :fee_type, as: :radio, collection: [["Precio por Tweet - AR$ #{sprintf("%.02f", @influencer.tweet_fee)}", 'tweet_fee']], label: 'Tipo de pago'
+              = tf.input :fee_type, as: :radio, collection: [["Precio por Tweet - #{APP_CONFIG['currency']} #{sprintf("%.02f", @influencer.tweet_fee)}", 'tweet_fee']], label: 'Tipo de pago'
 
             = tf.input :campaign_id, as: :hidden
             = tf.input :influencer_id, as: :hidden
