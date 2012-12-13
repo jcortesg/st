@@ -65,86 +65,92 @@ class Influencer < ActiveRecord::Base
       #influencers = influencers.where("audiences.luxury > 0") if campaign.luxury
 
       # Apply location filter
-      locations_conditions = []
-      any_location_flag = false
-      campaign.locations.each do |location|
-        case location
-          when 'Argentina'
-            locations_conditions << "(audiences.country_argentina > 0)"
-          when 'Colombia'
-            locations_conditions << "(audiences.country_colombia > 0)"
-          when 'Chile'
-            locations_conditions << "(audiences.country_chile > 0)"
-          when 'Ecuador'
-            locations_conditions << "(audiences.country_ecuador > 0)"
-          when 'Mexico'
-            locations_conditions << "(audiences.country_mexico > 0)"
-          when 'Paraguay'
-            locations_conditions << "(audiences.country_paraguay > 0)"
-          when 'Uruguay'
-            locations_conditions << "(audiences.country_uruguay > 0)"
-          when 'Cualquiera'
-            any_location_flag = true
+      if false
+        locations_conditions = []
+        any_location_flag = false
+        campaign.locations.each do |location|
+          case location
+            when 'Argentina'
+              locations_conditions << "(audiences.country_argentina > 0)"
+            when 'Colombia'
+              locations_conditions << "(audiences.country_colombia > 0)"
+            when 'Chile'
+              locations_conditions << "(audiences.country_chile > 0)"
+            when 'Ecuador'
+              locations_conditions << "(audiences.country_ecuador > 0)"
+            when 'Mexico'
+              locations_conditions << "(audiences.country_mexico > 0)"
+            when 'Paraguay'
+              locations_conditions << "(audiences.country_paraguay > 0)"
+            when 'Uruguay'
+              locations_conditions << "(audiences.country_uruguay > 0)"
+            when 'Cualquiera'
+              any_location_flag = true
+          end
         end
-      end
-      if !any_location_flag
-        influencers = influencers.where(locations_conditions.join(" and "))
+        if !any_location_flag
+          influencers = influencers.where(locations_conditions.join(" and "))
+        end
       end
 
       # Apply followers filters
-      if campaign.followers_qty.try(:size) > 0
-        conditions = ["(1 = 0)"]
-        campaign.followers_qty.each do |fq|
-          case fq
-            when '0-500'
-              conditions << "(audiences.followers >= 0 and audiences.followers <= 500)"
-            when '500-2000'
-              conditions << "(audiences.followers >= 500 and audiences.followers <= 2000)"
-            when '2000-10000'
-              conditions << "(audiences.followers >= 2000 and audiences.followers <= 10000)"
-            when '10000-100000'
-              conditions << "(audiences.followers >= 10000 and audiences.followers <= 100000)"
-            when '100000-300000'
-              conditions << "(audiences.followers >= 100000 and audiences.followers <= 300000)"
-            when '300000-600000'
-              conditions << "(audiences.followers >= 300000 and audiences.followers <= 600000)"
-            when '600000-900000'
-              conditions << "(audiences.followers >= 600000 and audiences.followers <= 900000)"
-            when '900000-2000000'
-              conditions << "(audiences.followers >= 900000 and audiences.followers <= 2000000)"
-            when '2000000-50000000'
-              conditions << "(audiences.followers >= 2000000 and audiences.followers <= 50000000)"
+      if false
+        if campaign.followers_qty.try(:size) > 0
+          conditions = ["(1 = 0)"]
+          campaign.followers_qty.each do |fq|
+            case fq
+              when '0-500'
+                conditions << "(audiences.followers >= 0 and audiences.followers <= 500)"
+              when '500-2000'
+                conditions << "(audiences.followers >= 500 and audiences.followers <= 2000)"
+              when '2000-10000'
+                conditions << "(audiences.followers >= 2000 and audiences.followers <= 10000)"
+              when '10000-100000'
+                conditions << "(audiences.followers >= 10000 and audiences.followers <= 100000)"
+              when '100000-300000'
+                conditions << "(audiences.followers >= 100000 and audiences.followers <= 300000)"
+              when '300000-600000'
+                conditions << "(audiences.followers >= 300000 and audiences.followers <= 600000)"
+              when '600000-900000'
+                conditions << "(audiences.followers >= 600000 and audiences.followers <= 900000)"
+              when '900000-2000000'
+                conditions << "(audiences.followers >= 900000 and audiences.followers <= 2000000)"
+              when '2000000-50000000'
+                conditions << "(audiences.followers >= 2000000 and audiences.followers <= 50000000)"
+            end
           end
+          influencers = influencers.where(conditions.join(" or "))
         end
-        influencers = influencers.where(conditions.join(" or "))
       end
 
       # Apply price filters
-      if campaign.tweet_price.try(:size) > 0
-        conditions = ["(1 = 0)"]
-        campaign.tweet_price.each do |tp|
-          case tp
-            when '0-300'
-              conditions << "(influencers.campaign_fee >= 0 and influencers.campaign_fee <= 300)"
-            when '300-1000'
-              conditions << "(influencers.campaign_fee >= 300 and influencers.campaign_fee <= 1000)"
-            when '1000-2000'
-              conditions << "(influencers.campaign_fee >= 1000 and influencers.campaign_fee <= 2000)"
-            when '2000-3000'
-              conditions << "(influencers.campaign_fee >= 2000 and influencers.campaign_fee <= 3000)"
-            when '3000-5000'
-              conditions << "(influencers.campaign_fee >= 3000 and influencers.campaign_fee <= 5000)"
-            when '5000-7000'
-              conditions << "(influencers.campaign_fee >= 5000 and influencers.campaign_fee <= 7000)"
-            when '7000-10000'
-              conditions << "(influencers.campaign_fee >= 7000 and influencers.campaign_fee <= 10000)"
-            when '10000-20000'
-              conditions << "(influencers.campaign_fee >= 10000 and influencers.campaign_fee <= 20000)"
-            when '20000-50000'
-              conditions << "(influencers.campaign_fee >= 20000 and influencers.campaign_fee <= 50000)"
+      if false
+        if campaign.tweet_price.try(:size) > 0
+          conditions = ["(1 = 0)"]
+          campaign.tweet_price.each do |tp|
+            case tp
+              when '0-300'
+                conditions << "(influencers.campaign_fee >= 0 and influencers.campaign_fee <= 300)"
+              when '300-1000'
+                conditions << "(influencers.campaign_fee >= 300 and influencers.campaign_fee <= 1000)"
+              when '1000-2000'
+                conditions << "(influencers.campaign_fee >= 1000 and influencers.campaign_fee <= 2000)"
+              when '2000-3000'
+                conditions << "(influencers.campaign_fee >= 2000 and influencers.campaign_fee <= 3000)"
+              when '3000-5000'
+                conditions << "(influencers.campaign_fee >= 3000 and influencers.campaign_fee <= 5000)"
+              when '5000-7000'
+                conditions << "(influencers.campaign_fee >= 5000 and influencers.campaign_fee <= 7000)"
+              when '7000-10000'
+                conditions << "(influencers.campaign_fee >= 7000 and influencers.campaign_fee <= 10000)"
+              when '10000-20000'
+                conditions << "(influencers.campaign_fee >= 10000 and influencers.campaign_fee <= 20000)"
+              when '20000-50000'
+                conditions << "(influencers.campaign_fee >= 20000 and influencers.campaign_fee <= 50000)"
+            end
           end
+          influencers = influencers.where(conditions.join(" or "))
         end
-        influencers = influencers.where(conditions.join(" or "))
       end
 
       # Before the sort options, we have all the columns
