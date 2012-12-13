@@ -37,7 +37,7 @@ class Admin::PaymentsController < ApplicationController
 
     if @payment.update_attributes(params[:payment])
       flash[:notice] = "El estado del pago ha sido modificada"
-      redirect_to [:admin, @transaction]
+      redirect_to [:admin, @payment]
     else
       flash.now[:error] = "Hubo un error al intentar actualizar el pago"
       render action: :edit

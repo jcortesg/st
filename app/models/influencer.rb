@@ -66,6 +66,7 @@ class Influencer < ActiveRecord::Base
 
       # Apply location filter
       locations_conditions = []
+      any_location_flag = false
       campaign.locations.each do |location|
         case location
           when 'Argentina'
@@ -76,14 +77,19 @@ class Influencer < ActiveRecord::Base
             locations_conditions << "(audiences.country_chile > 0)"
           when 'Ecuador'
             locations_conditions << "(audiences.country_ecuador > 0)"
+          when 'Mexico'
+            locations_conditions << "(audiences.country_mexico > 0)"
           when 'Paraguay'
             locations_conditions << "(audiences.country_paraguay > 0)"
           when 'Uruguay'
             locations_conditions << "(audiences.country_uruguay > 0)"
+          when 'Cualquiera'
+            any_location_flag = true
         end
       end
-      influencers = influencers.where(locations_conditions.join(" and "))
-
+      if !any_location_flag
+        influencers = influencers.where(locations_conditions.join(" and "))
+      end
 
       # Apply followers filters
       if campaign.followers_qty.try(:size) > 0

@@ -84,6 +84,9 @@
             %div{style: 'display: inline-block'}
               = check_box_tag "campaign[locations][]", province, f.object.locations.include?(province)
               = label_tag province, province, style: 'margin-right: 8px'
+        .geographic_zone.any
+          = check_box_tag "campaign[locations][]", "Cualquiera", f.object.locations.include?("Cualquiera")
+          = label_tag t('any')
 
       %br
       %h2= t('ages')

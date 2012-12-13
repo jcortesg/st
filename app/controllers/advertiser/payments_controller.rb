@@ -51,6 +51,7 @@ class Advertiser::PaymentsController < ApplicationController
       preference = mp.create_preference(preferenceData)
 
       if preference['status'] == "201"
+        @payment.status = ""
         @payment.gateway = "mercadopago"
         @payment.payment_url = preference['response']['init_point']
         @payment.external_reference = current_user.id.to_s+ "_"+ last_id.to_s

@@ -1,3 +1,4 @@
 class Payment < ActiveRecord::Base
-  attr_accessible :amount, :description, :status, :user_id ,:gateway, :payment_url, :external_reference
+  belongs_to :user
+  attr_accessible :amount, :description, :status, :user_id ,:gateway, :payment_url, :external_reference, :user
 end

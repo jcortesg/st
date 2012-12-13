@@ -6,16 +6,16 @@
   .span12
     .round_box
       .content
-        %h1.title Pago
+        %h1.title= t('payment')
         %dl.record_details
-          %dt Fecha de creación
+          %dt= t('creation_date')
           %dd= localize(@payment.created_at, :format => "%d/%m/%Y %H:%M:%S")
-          %dt Última actualización
+          %dt= t('update_date')
           %dd= localize(@payment.updated_at, :format => "%d/%m/%Y %H:%M:%S")
-          %dt Importe
+          %dt= t('amount')
           %dd= sprintf("%.02f", @payment.amount)
-          %dt Estado
+          %dt= t('status')
           %dd= @payment.status
       .clear.center_text.show_buttons
-        = link_to('Listado', [:advertiser, :payments], class: 'btn btn-primary')
+        = link_to(t('list'), [:admin, :payments], class: 'btn btn-primary')
 
