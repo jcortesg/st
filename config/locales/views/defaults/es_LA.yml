@@ -105,3 +105,5 @@ es_LA:
   payment: Pago
   amount: Importe
   any: Cualquiera
+  payment_small_letter: Al importe ingresado se agregará automáticamente una comisión del 6% por el servicio de pago electrónico.
+  generate: Generar

@@ -36,6 +36,7 @@ class Advertiser::PaymentsController < ApplicationController
     @payment = Payment.new(params[:payment])
     @payment.user_id = current_user.id
     @payment.status = "created"
+    @payment.amount = (@payment.amount * 1.06).round(2)
 
     advertiser = Advertiser.find_by_user_id(current_user.id)
 

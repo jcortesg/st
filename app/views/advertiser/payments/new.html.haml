@@ -1,13 +1,17 @@
 .row
   .span6.offset3.round_box
     = simple_form_for(@payment, url: advertiser_payments_path, method: :post, html:  { class: "form-horizontal round_form", method: :put }) do |f|
-      %h1.form_title Pago
+      %h1.form_title= t('payment')
       = render '/shared/simple_form_errors', :f => f
 
       = f.input :amount
       = f.input :description
 
       .form-actions
-        = f.submit 'Guardar', :class => 'btn btn-primary btn-large'
-        = link_to 'Cancelar', [:advertiser, :payments], class: 'btn btn-large'
+        = f.submit t('generate'), :class => 'btn btn-primary btn-large'
+        = link_to t('cancel'), [:advertiser, :payments], class: 'btn btn-large'
+
+      .p= t('payment_small_letter')
+
+
 
