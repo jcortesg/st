@@ -31,13 +31,15 @@ set :asset_env, "RAILS_GROUPS=assets"
 namespace :setup do
   desc "Copy config files"
   task :copy_files, :roles => :app do
-    run "cp #{shared_path}/database.yml #{release_path}/config/database.yml"
+    run "cp #{release_path}/config/i18n-database/database-AR.yml #{release_path}/config/database.yml"
     run "ln -s #{shared_path}/.rvmrc #{release_path}/.rvmrc"
   end
 
-  desc "Copy pictures files"
-  task :copy_pictures, :roles => :app do
-    run "cp -r #{previous_release}/public/bwn-image #{release_path}/public/"
+  desc "Copy config files for colombia"
+  task :copy_config_files, :roles => :app do
+    run "cp -r #{release_path}/config/i18n-env-production/production-AR.rb #{release_path}/config/environments/production.rb"
+    run "cp -r #{release_path}/config/i18n-config/config-AR.yml #{release_path}/config/config.yml"
+    run "cp -r #{release_path}/config/i18n-files/application-AR.rb #{release_path}/config/application.rb"
   end
 
   desc 'Trust rvmrc file'
@@ -63,6 +65,7 @@ namespace :deploy do
 end
 
 after "deploy:update_code", "setup:copy_files"
+after "deploy:update_code", "setup:copy_config_files"
 after "deploy:update_code", "setup:trust_rvmrc"
 after "deploy:update_code", "setup:copy_pictures"
 after "deploy:update_code", "setup:bundle_gems"

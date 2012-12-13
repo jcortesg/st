@@ -17,6 +17,7 @@
 config/database.yml
 config/config.yml
 config/application.rb
+config/environments/production.rb
 .idea
 .rvmrc
 public/system

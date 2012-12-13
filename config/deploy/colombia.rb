@@ -37,7 +37,8 @@ namespace :setup do
 
   desc "Copy config files for colombia"
   task :copy_config_files, :roles => :app do
-    run "cp -r #{release_path}/config/i18n-config/colombia-config.yml #{release_path}/config/config.yml"
+    run "cp -r #{release_path}/config/i18n-env-production/production-CO.rb #{release_path}/config/environments/production.rb"
+    run "cp -r #{release_path}/config/i18n-config/config-CO.yml #{release_path}/config/config.yml"
     run "cp -r #{release_path}/config/i18n-files/application-CO.rb #{release_path}/config/application.rb"
   end
 
