@@ -94,7 +94,7 @@ class Influencer < ActiveRecord::Base
       end
 
       # Apply followers filters
-      if false
+      if true
         if campaign.followers_qty.try(:size) > 0
           conditions = ["(1 = 0)"]
           campaign.followers_qty.each do |fq|
@@ -124,7 +124,7 @@ class Influencer < ActiveRecord::Base
       end
 
       # Apply price filters
-      if false
+      if true
         if campaign.tweet_price.try(:size) > 0
           conditions = ["(1 = 0)"]
           campaign.tweet_price.each do |tp|
