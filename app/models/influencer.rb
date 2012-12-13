@@ -124,7 +124,7 @@ class Influencer < ActiveRecord::Base
       end
 
       # Apply price filters
-      if true
+      if false
         if campaign.tweet_price.try(:size) > 0
           conditions = ["(1 = 0)"]
           campaign.tweet_price.each do |tp|
