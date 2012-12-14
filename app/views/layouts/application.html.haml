@@ -35,7 +35,7 @@
                         %li= link_to t('new_campaign'), new_advertiser_campaign_path
                       %li= link_to t('current_campaigns'), advertiser_campaigns_path
                       %li= link_to t('historical_campaigns'), archived_advertiser_campaigns_path
-                  - if APP_CONFIG['app_country'] == 'CO'
+                  - if APP_CONFIG['app_country'] == 'AR'
                     %li= link_to t('payments'), [:advertiser, :payments]
                   %li= link_to t('transactions'), [:advertiser, :transactions]
                   %li.dropdown
@@ -116,7 +116,7 @@
                     %ul.dropdown-menu
                       %li= link_to t('current_campaigns'), admin_campaigns_path
                       %li= link_to t('historical_campaigns'), archived_admin_campaigns_path
-                  - if APP_CONFIG['app_country'] == 'CO'
+                  - if APP_CONFIG['app_country'] == 'AR'
                     %li= link_to t('payments'), [:admin, :payments]
                   %li.dropdown
                     %a{:href => '#', :class => 'dropdown-toggle', 'data-toggle' => 'dropdown'}

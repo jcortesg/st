@@ -73,7 +73,7 @@ class Influencer::TweetsController < ApplicationController
       redirect_to action: index and return
     end
     if @tweet.update_attribute(:reject_cause, params[:tweet][:reject_cause])
-      @tweet.influencer_reject()
+      @tweet.influencer_reject
       flash[:success] = "El Tweet fue rechazado y remitido al anunciante"
       redirect_to [:influencer, @tweet]
     else
