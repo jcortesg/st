@@ -36,8 +36,9 @@
                 %td= tweet.fee_type == 'tweet_fee' ? "Tweet: $#{sprintf("%.02f", tweet.tweet_fee)}" : "Click: $#{sprintf("%.02f", tweet.cpc_fee)}"
                 %td= advertiser_tweet_status(tweet.status)
                 %td
-                  = link_to(t('detail'), [:admin, @campaign, tweet], class: 'btn btn-primary')
+                  = link_to(t('detail'), [:admin, @campaign, tweet], class: 'btn btn-mini btn-primary')
                   - unless ['activated'].include?(tweet.status)
-                    = link_to(t('edit'), [:edit, :admin, @campaign, tweet], class: 'btn btn-warning')
-                    = link_to(t('reject'), [:reject, :admin, @campaign, tweet], method: :get, class: 'btn btn-danger', confirm: t('are_you_sure_reject'))
+                    = link_to(t('edit_text'), [:edit, :admin, @campaign, tweet], class: 'btn btn-mini btn-inverse')
+                    = link_to(t('edit_date'), [:edit_date, :admin, @campaign, tweet], class: 'btn btn-mini btn-inverse')
+                    = link_to(t('reject'), [:reject, :admin, @campaign, tweet], method: :get, class: 'btn btn-mini btn-inverse', confirm: t('are_you_sure_reject'))
 
