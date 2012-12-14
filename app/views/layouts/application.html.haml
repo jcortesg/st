@@ -14,7 +14,7 @@
     %meta{name: 'viewport', content: 'width=device-width, initial-scale=1.0' }
     = csrf_meta_tag
   %body
-    .navbar.navbar-fixed-top
+    .navbar.navbar-fixed-top{:style=>"z-index: 200 !important;"}
       .navbar-inner
         .container
           %a{:class => 'btn btn-navbar', 'data-target' => '.nav-collapse', 'data-toggle' => 'collapse'}
