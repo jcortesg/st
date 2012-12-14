@@ -147,6 +147,8 @@ class Influencer < ActiveRecord::Base
                 conditions << "(influencers.campaign_fee >= 10000 and influencers.campaign_fee <= 20000)"
               when '20000-50000'
                 conditions << "(influencers.campaign_fee >= 20000 and influencers.campaign_fee <= 50000)"
+              when '+50000'
+                conditions << "(influencers.campaign_fee >= 50000"
             end
           end
           influencers = influencers.where(conditions.join(" or "))
