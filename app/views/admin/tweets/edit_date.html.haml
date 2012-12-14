@@ -21,13 +21,7 @@
       %h3= t('modifiable_data')
 
       = simple_form_for @tweet, url: [:admin, @campaign, @tweet], html: { class: 'vertical-form tweet_proposal' } do |f|
-        = f.input :text, as: :text, input_html: { style: 'width: 523px;height: 40px' }
-        =# f.input :tweet_at, minute_step: 15, start_year: Time.now.year, end_year: Time.now.year + 1, input_html: { class: 'tweet_time' }
-        =# f.input :link_url
-        = @tweet.link_url
-        %br
-        = "http://bwn.tw/L"+@tweet.link_code.to_s
-        =# f.input :fee_type, as: :radio, collection: [["Precio por Tweet - AR$ #{sprintf("%.02f", @tweet.influencer.tweet_fee)}", 'tweet_fee'], ["Precio por Click - AR$ #{sprintf("%.02f", @tweet.influencer.cpc_fee)}", 'cpc_fee']]
+        = f.input :tweet_at, minute_step: 1, start_year: Time.now.year, end_year: Time.now.year + 1, input_html: { class: 'tweet_time' }
 
         .form-actions
           = f.submit(t('accept'), class: 'btn btn-large btn-primary')

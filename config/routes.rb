@@ -61,6 +61,9 @@ Borwin::Application.routes.draw do
       resources :tweets do
         get :reject, on: :member
         post :reject_cause, on: :member
+        get :edit_date, on: :member
+        get :accept, on: :member
+        get :forced_publication, on: :member
         resources :clicks, only: [:index]
       end
     end

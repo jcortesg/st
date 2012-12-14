@@ -28,7 +28,14 @@
         %dd= tweet_status_explanation(@tweet.status)
 
       .form-actions.center_text
-        = link_to(t('list'), [:admin, @campaign], class: 'btn btn-large btn-primary')
         - unless ['activated'].include?(@tweet.status)
-          = link_to(t('edit'), [:edit, :admin, @campaign, @tweet], class: 'btn btn-large btn-warning')
-          = link_to(t('reject'), [:reject, :admin, @campaign, @tweet], method: :get, class: 'btn btn-large btn-danger', confirm: '¿Esta seguro que desea rechazar el Tweet?')
+          = link_to(t('edit_text'), [:edit, :admin, @campaign, @tweet], class: 'btn btn-large btn-warning')
+          = link_to(t('edit_date'), [:edit_date, :admin, @campaign, @tweet], class: 'btn btn-large btn-warning')
+          %br
+          %hr
+          %br
+          = link_to(t('approve'), [:accept, :admin, @campaign, @tweet], method: :get, class: 'btn btn-large btn-inverse', confirm: '¿Esta seguro que desea aprobar el Tweet por la celebridad?')
+          = link_to(t('reject'), [:reject, :admin, @campaign, @tweet], method: :get, class: 'btn btn-large btn-inverse', confirm: '¿Esta seguro que desea rechazar el Tweet?')
+          = link_to(t('force'), [:forced_publication, :admin, @campaign, @tweet], method: :get, class: 'btn btn-large btn-inverse', confirm: '¿Esta seguro que desea forzar la publicación del Tweet? El tweet se publicará inmediatamente y no podrá revertirse la acción.')
+        %hr
+        = link_to(t('back'), [:admin, @campaign], class: 'btn btn-large btn-primary')

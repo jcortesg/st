@@ -41,4 +41,4 @@
         .form-actions
           - unless ['activated'].include?(@tweet.status)
             = f.submit(t('confirm_reject'), class: 'btn btn-large btn-danger')
-          = link_to(t('cancel'), [:influencer, @tweet], class: 'btn btn-large')
+          = link_to(t('cancel'), [:admin, @tweet.campaign, @tweet], class: 'btn btn-large')
