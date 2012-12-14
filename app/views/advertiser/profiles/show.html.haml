@@ -21,15 +21,15 @@
               - unless @advertiser.twitter_screen_name.blank?
                 = link_to("@#{@advertiser.twitter_screen_name}", "https://twitter.com/#!/#{@advertiser.twitter_screen_name}")
               %span.edit_profile
-                = link_to("Editar Perfil", [:advertiser, :profiles, :edit], :class => 'btn btn-primary')
+                = link_to(t('edit_profile'), [:advertiser, :profiles, :edit], :class => 'btn btn-primary')
             - unless @advertiser.brand.blank?
-              %strong= "Marca:"
+              %strong= t('brand')
               = @advertiser.brand
             %p
-              %strong= "Nombre:"
+              %strong= t('name')
               = @advertiser.full_name
             %p
-              %strong= "Cargo:"
+              %strong= t('position')
               = @advertiser.position
           .twitter_photo
             - if @advertiser.photo.exists?

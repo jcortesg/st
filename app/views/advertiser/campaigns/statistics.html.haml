@@ -274,9 +274,9 @@
             %thead
               %tr
                 %th{style: 'width: 45px'} &nbsp;
-                %th Usuario
-                %th Nombre
-                %th Descripción
+                %th= t('user')
+                %th= t('name')
+                %th= t('description')
 
             %tbody
               - @hashtag_tweets.each do |tweet|
@@ -299,14 +299,14 @@
           #evolution_phrase
 
         -unless @phrase_experts.nil?  or @phrase_experts.count == 0
-          %h1.title= "Quienes hablan más de esto? "
+          %h1.title= t('who_talks')
           %table.table.table-striped
             %thead
               %tr
                 %th{style: 'width: 45px'} &nbsp;
-                %th Usuario
-                %th Nombre
-                %th Descripción
+                %th= t('user')
+                %th= t('name')
+                %th= t('description')
 
             %tbody
             - @phrase_experts.each do |expert|
@@ -322,9 +322,9 @@
             %thead
               %tr
                 %th{style: 'width: 45px'} &nbsp;
-                %th Usuario
-                %th Nombre
-                %th Descripción
+                %th= t('user')
+                %th= t('name')
+                %th= t('description')
 
             %tbody
               - @phrase_tweets.each do |tweet|
@@ -342,20 +342,20 @@
       .round_box
         .content
 
-          %h1.title= "Seguimiento de menciones de usuario: "
+          %h1.title= t('user_mentions')
           %br
           %br
           #evolution_twitter_user
 
         -unless @user_experts.nil? or @user_experts.count == 0
-          %h1.title= "Quienes hablan más de esto? "
+          %h1.title= t('who_talks')
           %table.table.table-striped
             %thead
               %tr
                 %th{style: 'width: 45px'} &nbsp;
-                %th Usuario
-                %th Nombre
-                %th Descripción
+                %th= t('user')
+                %th= t('name')
+                %th= t('description')
 
             %tbody
               - @user_experts.each do |expert|
@@ -371,9 +371,9 @@
             %thead
               %tr
                 %th{style: 'width: 45px'} &nbsp;
-                %th Usuario
-                %th Nombre
-                %th Descripción
+                %th= t('user')
+                %th= t('name')
+                %th= t('description')
 
             %tbody
               - @twitter_user_tweets.each do |tweet|

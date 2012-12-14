@@ -7,18 +7,18 @@
   .span12
     .round_box
       .content
-        %h1.title Pagos
+        %h1.title= t('payments')
         .right
           = link_to('Generar orden de pago', [:new, :advertiser, :payment], :class => 'btn btn-primary')
 
         %table.table.table-striped
           %thead
             %tr
-              %th Fecha de creación
-              %th Última actualización
-              %th Importe
-              %th Estado
-              %th Acciones
+              %th= t('creation_date')
+              %th= t('last_actualization')
+              %th= t('amount')
+              %th= t('status')
+              %th= t('actions')
 
           %tbody
             - @payments.each do |payment|
@@ -28,17 +28,17 @@
                 %td= sprintf("%.02f", payment.amount)
                 %td= payment.status
                 %td
-                  = link_to('Ver', [:advertiser, payment], class: 'btn btn-primary')
+                  = link_to(t('see'), [:advertiser, payment], class: 'btn btn-primary')
         .center_text
           = paginate @payments
 
         .filters
-          .subtitle Filtros
+          .subtitle= t('filters')
           = simple_form_for @search, :url => [:advertiser, :payments], html: {method: :get, id: 'filter_form', class: 'form-horizontal'} do |f|
             = f.input :updated_at_greater_than_or_equal_to, label: 'Desde', required: false, input_html: { class: 'medium', id: 'from_datepicker', value: @search.updated_at_greater_than_or_equal_to ? @search.updated_at_greater_than_or_equal_to.strftime("%d/%m/%Y") : ''}
             = f.input :updated_at_less_than_or_equal_to, label: 'Hasta', required: false, input_html: { class: 'medium', id: 'to_datepicker', value: @search.updated_at_less_than_or_equal_to ? @search.updated_at_less_than_or_equal_to.strftime("%d/%m/%Y") : ''}
             = f.input :amount_greater_than, label: 'Importe mayor a', required: false
             = f.input :amount_less_than, label: 'Importe menor a', required: false
             .form-actions
-              = f.submit 'Filtrar', :class => 'btn btn-primary'
-              = link_to 'Resetear', '#', :class => 'btn reset'
+              = f.submit t('do_filter') , :class => 'btn btn-primary'
+              = link_to t('reset'), '#', :class => 'btn reset'

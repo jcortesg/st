@@ -13,7 +13,7 @@
   .span12{style: 'width: 970px'}
     %ul.breadcrumb
       %li
-        = link_to("Campañas", [:advertiser, :campaigns])
+        = link_to(t('campaigns'), [:advertiser, :campaigns])
         %span.divider /
       %li
         = link_to(@campaign.name, [:advertiser, @campaign])
@@ -320,7 +320,7 @@
 
       %hr
       .tweet_proposal.clearfix
-        .form_title Propuesta de nuevo Tweet
+        .form_title= t('tweet_proposal')
         = simple_form_for @tweet_group, url: advertiser_campaign_tweets_path(@campaign), html: { class: 'vertical-form' } do |f|
           - count = 0
           = f.simple_fields_for :tweets do |tf|
@@ -351,10 +351,10 @@
             %a.btn.btn-info{:href => "#previewModal", "class" => "preview-modal-trigger image modal-trigger", "data-toggle"=>"modal"} Vista Previa
             %br
             %br
-            = f.submit 'Proponer y volver a la campaña', class: 'btn btn-primary btn-large', id: 'create_and_back'
+            = f.submit t('propose_and_back'), class: 'btn btn-primary btn-large', id: 'create_and_back'
 
           .center_text
-            = link_to('Volver a la campaña', [:admin, @campaign], class: 'btn btn-large')
+            = link_to(t('back_to_campaign'), [:admin, @campaign], class: 'btn btn-large')
 
 
   .span3

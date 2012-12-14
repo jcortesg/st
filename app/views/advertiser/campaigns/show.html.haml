@@ -40,15 +40,15 @@
                 %td= tweet.fee_type == 'tweet_fee' ? "Tweet: $#{sprintf("%.02f", tweet.tweet_fee)}" : "Click: $#{sprintf("%.02f", tweet.cpc_fee)}"
                 %td= advertiser_tweet_status(tweet.status)
                 %td= tweet.tweet_at.strftime("%d/%m/%y %H:%M")
-                %td= link_to("Detalle", [:advertiser, @campaign, tweet], class: 'btn')
+                %td= link_to(t('detail'), [:advertiser, @campaign, tweet], class: 'btn')
 
         .filters
           .subtitle= t('search')
           = simple_form_for @search, :url => [:advertiser, @campaign], html: {method: :get, id: 'filter_form', class: 'form-horizontal'} do |f|
-            = f.input :influencer_first_name_or_influencer_last_name_contains, label: "Celebridad", required: false
-            = f.input :status_equals, label: 'Estado', required: false, as: 'select', collection: [['Propuesto', 'created'], ['Revisado por celebridad', 'influencer_reviewed'], ['Rechazado por celebridad', 'influencer_rejected'], ['En revisión por celebridad', 'advertiser_reviewed'], ['Rechazado por anunciante', 'advertiser_rejected'], ['Aceptado', 'accepted'], ['Públicado', 'activated'], ['Vencido', 'expired']]
+            = f.input :influencer_first_name_or_influencer_last_name_contains, label: t('celebrity'), required: false
+            = f.input :status_equals, label: t('status'), required: false, as: 'select', collection: [['Propuesto', 'created'], ['Revisado por celebridad', 'influencer_reviewed'], ['Rechazado por celebridad', 'influencer_rejected'], ['En revisión por celebridad', 'advertiser_reviewed'], ['Rechazado por anunciante', 'advertiser_rejected'], ['Aceptado', 'accepted'], ['Públicado', 'activated'], ['Vencido', 'expired']]
             .form-actions
-              = f.submit 'Búscar', :class => 'btn btn-primary'
+              = f.submit t('search'), :class => 'btn btn-primary'
               = link_to t('cancel'), '#', :class => 'btn reset'
 
 

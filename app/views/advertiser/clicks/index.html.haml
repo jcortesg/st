@@ -29,9 +29,9 @@
           %thead
             %tr
               %th Tweet
-              %th= sort_link(@search, :remote_ip, 'IP')
-              %th= sort_link(@search, :remote_agent, 'Navegador')
-              %th= sort_link(@search, :created_at, 'Fecha')
+              %th= sort_link(@search, :remote_ip, t('ip'))
+              %th= sort_link(@search, :remote_agent, t('browser'))
+              %th= sort_link(@search, :created_at, t('the_date'))
 
           %tbody
             - @clicks.each do |click|
