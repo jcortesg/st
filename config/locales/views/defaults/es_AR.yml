@@ -115,7 +115,9 @@ es_AR:
   tweet_go_join_date: Ingreso a TweetGo!
   back_to_campaign: Volver a la campaña
   propose_and_back: Proponer y volver a la campaña
-  tweet_proposal:  Propuesta de nuevo Tweet
+  tweet_proposal: Propuesta de nuevo Tweet
+  edit_date: Modifica fecha
+  edit_text: Modifica texto
   force: Forzar publicación ahora!
 
 
