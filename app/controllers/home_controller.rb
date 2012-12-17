@@ -125,6 +125,25 @@ class HomeController < ApplicationController
   def privacy
   end
 
+  def country_chooser
+    country = params[:code]
+    cookies[:country] = {
+        :value => country,
+        :expires => 1.month.from_now,
+        :domain => :all
+    }
+    case country
+      when 'AR'
+        redirect_to redirecting_path( :url => 'http://borwin.net')
+      when 'MX'
+        redirect_to redirecting_path( :url => 'http://mexico.borwin.net')
+      when 'CO'
+        redirect_to redirecting_path( :url => 'http://colombia.borwin.net')
+      else
+        redirect_to redirecting_path( :url => 'http://borwin.net')
+    end
+  end
+
   def country_redirector
     country = params[:code]
     cookies[:country] = {

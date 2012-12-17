@@ -224,9 +224,15 @@
           %h5 Borwin
           %ul
             %li
-              %li= link_to 'Argentina', "#"
+              -if APP_CONFIG['app_country'] == 'CO'
+                %li= link_to 'Argentina', country_chooser_path(:code => 'AR')
+              -else
+                %li= link_to 'Argentina', "#"
               %li= link_to 'Brasil', "mailto: brasil@borwin.net"
-              %li= link_to 'Colombia', country_redirector_path(:country => 'CO')
+              -if APP_CONFIG['app_country'] == 'AR'
+                %li= link_to 'Colombia', country_chooser_path(:code => 'CO')
+              -else
+                %li= link_to 'Colombia', "#"
               %li= link_to 'Chile', "mailto: chile@borwin.net"
               %li= link_to 'Ecuador', "mailto: ecuador@borwin.net"
               %li= link_to 'España', "mailto: españa@borwin.net"
