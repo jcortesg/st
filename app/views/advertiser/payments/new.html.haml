@@ -4,8 +4,8 @@
       %h1.form_title= t('payment')
       = render '/shared/simple_form_errors', :f => f
 
-      = f.input :amount
-      = f.input :description
+      = f.input :amount, label: t('amount')
+      = f.input :description, label: t('description')
 
       .form-actions
         = f.submit t('generate'), :class => 'btn btn-primary btn-large'
