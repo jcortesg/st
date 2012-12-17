@@ -42,6 +42,11 @@ namespace :setup do
     run "cp -r #{release_path}/config/i18n-files/application-AR.rb #{release_path}/config/application.rb"
   end
 
+  desc "Copy pictures files"
+  task :copy_pictures, :roles => :app do
+    run "cp -r #{previous_release}/public/bwn-image #{release_path}/public/"
+  end
+
   desc 'Trust rvmrc file'
   task :trust_rvmrc do
     run "rvm rvmrc trust #{current_release}"
