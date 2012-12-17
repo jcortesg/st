@@ -6,7 +6,7 @@ class HomeController < ApplicationController
 
   # Website main page
   def index
-    if true
+    if false
       if !cookies[:country].nil? && cookies[:redirected].nil?
         case cookies[:country]
           when 'AR'
