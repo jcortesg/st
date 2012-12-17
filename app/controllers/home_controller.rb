@@ -186,17 +186,17 @@ class HomeController < ApplicationController
       case params[:link_code][0]
         when 'A'
           if APP_CONFIG['app_country'] != 'AR'
-            redirect_to 'http://borwin.net/P'+params[:link_code].to_s
+            redirect_to 'http://borwin.net/L'+params[:link_code].to_s
             return
           end
         when 'C'
           if APP_CONFIG['app_country'] != 'CO'
-            redirect_to 'http://colombia.borwin.net/P'+params[:link_code].to_s
+            redirect_to 'http://colombia.borwin.net/L'+params[:link_code].to_s
             return
           end
         when 'M'
           if APP_CONFIG['app_country'] != 'MX'
-            redirect_to 'http://mexico.borwin.net/P'+params[:link_code].to_s
+            redirect_to 'http://mexico.borwin.net/L'+params[:link_code].to_s
             return
           end
       end
