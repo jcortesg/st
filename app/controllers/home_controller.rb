@@ -25,16 +25,21 @@ class HomeController < ApplicationController
         country = Geocoder.search(ip)[0].data['country_name'].to_s
         case country
           when 'Argentina'
-            redirect_to country_redirector_path({:code => 'AR'})
+            redirect_to redirecting_path( :url => country_redirector_path({:code => 'AR'}))
           when 'Mexico'
-            redirect_to country_redirector_path({:code => 'MX'})
+            redirect_to redirecting_path( :url => country_redirector_path({:code => 'MX'}))
           when 'Colombia'
-            redirect_to country_redirector_path({:code => 'CO'})
+            redirect_to redirecting_path( :url => country_redirector_path({:code => 'CO'}))
           else
-            redirect_to country_redirector_path({:code => 'NO'})
+            redirect_to redirecting_path( :url => country_redirector_path({:code => 'NO'}))
         end
       end
     end
+  end
+
+  def redirecting
+    cookies[:redirected] = true
+    redirect_to params[:url]
   end
 
   # Anunciantes - Vision General
@@ -129,16 +134,12 @@ class HomeController < ApplicationController
     }
     case country
       when 'AR'
-        cookies[:redirected] = true
         @redirector = 'http://borwin.net'
       when 'MX'
-        cookies[:redirected] = true
         @redirector = 'http://mexico.borwin.net'
       when 'CO'
-        cookies[:redirected] = true
         @redirector = 'http://colombia.borwin.net'
       else
-        cookies[:redirected] = true
         @redirector = 'http://borwin.net'
       end
   end

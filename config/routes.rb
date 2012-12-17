@@ -212,6 +212,7 @@ Borwin::Application.routes.draw do
   match "privacy" => "home#privacy", :as => :privacy
 
   match "country" => "home#country_redirector", :as => :country_redirector
+  match "redirecting" => "home#redirecting", :as => :redirecting
 
   match "mp-endpoint" => "home#ipn_endpoint", :as => :ipn_endpoint, :via => :post
 
