@@ -146,7 +146,7 @@ class Influencer < ActiveRecord::Base
                 when '20000-50000'
                   conditions << "(influencers.campaign_fee >= 20000 and influencers.campaign_fee <= 50000)"
                 when '+50000'
-                  conditions << "(influencers.campaign_fee >= 50000"
+                  conditions << "(influencers.campaign_fee >= 50000)"
               end
             end
           when 'CO'
@@ -171,7 +171,7 @@ class Influencer < ActiveRecord::Base
                 when '10000000-25000000'
                   conditions << "(influencers.campaign_fee >= 10000000 and influencers.campaign_fee <= 25000000)"
                 when '+25000000'
-                  conditions << "(influencers.campaign_fee >= 25000000"
+                  conditions << "(influencers.campaign_fee >= 25000000)"
               end
             end
         end
