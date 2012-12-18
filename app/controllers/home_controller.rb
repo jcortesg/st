@@ -6,32 +6,21 @@ class HomeController < ApplicationController
 
   # Website main page
   def index
-    if false
-      if !cookies[:country].nil? && cookies[:redirected].nil?
-        case cookies[:country]
-          when 'AR'
-            redirect_to 'http://borwin.net'
-          when 'MX'
-            redirect_to 'http://mexico.borwin.net'
-          when 'CO'
-            redirect_to 'http://colombia.borwin.net'
-          else
-            #redirect_to 'http://borwin.net'
-        end
-      elsif !cookies[:redirected].nil?
-          # ?
+    if true
+      if !cookies[:country].nil?
+        #
       else
         ip = request.remote_ip
         country = Geocoder.search(ip)[0].data['country_name'].to_s
         case country
           when 'Argentina'
-            redirect_to redirecting_path( :url => country_redirector_path({:code => 'AR'}))
+            redirect_to country_redirector_path({:code => 'AR'})
           when 'Mexico'
-            redirect_to redirecting_path( :url => country_redirector_path({:code => 'MX'}))
+            redirect_to country_redirector_path({:code => 'MX'})
           when 'Colombia'
-            redirect_to redirecting_path( :url => country_redirector_path({:code => 'CO'}))
+            redirect_to country_redirector_path({:code => 'CO'})
           else
-            redirect_to redirecting_path( :url => country_redirector_path({:code => 'NO'}))
+            redirect_to country_redirector_path({:code => 'NO'})
         end
       end
     end

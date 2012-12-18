@@ -225,12 +225,12 @@
           %ul
             %li
               -if APP_CONFIG['app_country'] == 'CO'
-                %li= link_to 'Argentina', country_chooser_path(:code => 'AR')
+                %li= link_to 'Argentina', country_redirector_path(:code => 'AR')
               -else
                 %li= link_to 'Argentina', "#"
               %li= link_to 'Brasil', "mailto: brasil@borwin.net"
               -if APP_CONFIG['app_country'] == 'AR'
-                %li= link_to 'Colombia', country_chooser_path(:code => 'CO')
+                %li= link_to 'Colombia', country_redirector_path(:code => 'CO')
               -else
                 %li= link_to 'Colombia', "#"
               %li= link_to 'Chile', "mailto: chile@borwin.net"
