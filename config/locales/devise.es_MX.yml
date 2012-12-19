@@ -1,0 +1,56 @@
+es_MX:
+  errors:
+    messages:
+      expired: "ha expirado, por favor solicita una nueva"
+      not_found: "no se encontró"
+      already_confirmed: "ya fue confirmado, por favor intenta iniciar sesión"
+      not_locked: "no estaba bloqueado"
+      not_saved:
+        one: "Un error ocurrió al tratar de guardar %{resource}:"
+        other: "%{count} errores ocurrieron al tratar de guardar %{resource}:"
+  devise:
+    failure:
+      already_authenticated: 'Ya has iniciado una sesión.'
+      unauthenticated: 'Tienes que iniciar sesión o registrarte para poder continuar.'
+      unconfirmed: 'Tienes que confirmar tu cuenta para poder continuar.'
+      locked: 'Tu cuenta está bloqueada.'
+      invalid: 'Contraseña o correo inválidos.'
+      invalid_token: 'Código de autenticación inválido.'
+      timeout: 'Tu sesión expiró, por favor inicia sesión nuevamente para continuar.'
+      inactive: 'Tu cuenta aún no ha sido activada.'
+      user:
+        not_approved: 'Tu cuenta aún no ha sido activada.'
+    sessions:
+      signed_in: 'Sesión iniciada.'
+      signed_out: 'Sesión finalizada.'
+    passwords:
+      send_instructions: 'Hemos enviado las instrucciones de restablecimiento de contraseña a tu dirección de correo electrónico.'
+      updated: 'Tu contraseña fue cambiada. Ya iniciaste sesión.'
+      updated_not_active: 'Tu contraseña fue cambiada.'
+      send_paranoid_instructions: "Si tu correo existe en nuestra base de datos, vas a recibir un correo con instrucciones sobre cómo resetear tu contraseña en tu bandeja de entrada."
+    confirmations:
+      send_instructions: 'Hemos enviado las instrucciones de confirmación de tu cuenta a tu dirección de correo electrónico.'
+      send_paranoid_instructions: 'Si tu correo existe en nuestra base de datos, vas a recibir un correo con instrucciones sobre cómo confirmar tu cuenta en unos pocos minutos.'
+      confirmed: 'Tu cuenta fue confirmada. Ya iniciaste sesión.'
+    registrations:
+      signed_up: 'Bienvenido. Tu cuenta fue creada.'
+      signed_up_but_unconfirmed: 'Un correo con un link de confirmación fue envíado a tu casilla. Por favor, abre el link para activar tu cuenta.'
+      signed_up_but_inactive: 'Te has logueado, sin embargo, tu cuenta todavía no ha sido activada.'
+      signed_up_but_locked: Te has logueado con éxito pero tu cuenta esta bloqueada.'
+      updated: 'Tu cuenta fue actualizada.'
+      update_needs_confirmation: "Has actualizado tu cuenta, pero necesitamos verificar tu nueva casilla. Por favor, revisa tu casilla y haz click en el link que te enviamos para confirmar tu nueva casilla."
+      destroyed: 'Fue grato tenerte con nosotros. Tu cuenta fue cancelada.'
+    unlocks:
+      send_instructions: 'Vas a recibir instrucciones para desbloquear tu cuenta en unos pocos minutos.'
+      unlocked: 'Tu cuenta fue desbloqueada. Ya iniciaste sesión.'
+      send_paranoid_instructions: 'Si tu cuenta existe, vas a recibir instrucciones para desbloquear tu cuenta en unos pocos minutos.'
+    omniauth_callbacks:
+      success: 'Has sido autorizado satisfactoriamente de la cuenta %{kind}.'
+      failure: 'No has sido autorizado en la cuenta %{kind} porque "%{reason}".'
+    mailer:
+      confirmation_instructions:
+        subject: 'Instrucciones de confirmación'
+      reset_password_instructions:
+        subject: 'Instrucciones de recuperación de contraseña'
+      unlock_instructions:
+        subject: 'Instrucciones para desbloquear'

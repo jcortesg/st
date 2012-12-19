@@ -1,0 +1,28 @@
+es_CO:
+  campaigns_history: Historial de Campañas
+  are_you_sure: Esta acción eliminara la campaña, sus tweets y clicks del sistema. ¿Esta seguro?
+  cost: Costo
+  new_campaign: Nueva Campaña
+  geo_zone:  Zona Geográfica
+  ages: Edades
+  edit_campaign: Editar Campaña
+  are_you_sure_archive: ¿Esta seguro que quiere archivar la campaña?
+  are_you_sure_reject: ¿Esta seguro que desea rechazar el Tweet?
+  general_info: Datos Generales
+  objective: objetivo
+  campaign_cost: Costo de la campaña
+  CPC_campaign: Costo Por Click de la campaña
+  CPContact_campaign: Costo Por Contacto de la campaña
+  CPMS_campaign: CPMS de la campaña
+  start_followers: Seguidores al inicio de la campaña
+  end_followers: Seguidores al final de la campaña
+  followers_increment: Incremento de seguidores
+  actual_followers: Seguidores actuales
+  CPNS: CPNS
+  reach: Reach
+  evolution: Evolución
+  seehide: ( Ver / Ocultar )
+  browser: Navegador
+  more_influent_celebrities: Celebridades más influyentes
+  who_talks: Quienes hablan más de esto?
+  mentions_follow_up: Seguimiento de menciones de usuario

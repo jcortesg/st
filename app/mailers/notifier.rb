@@ -20,6 +20,8 @@ class Notifier < ActionMailer::Base
         mail(to: 'sebastian@borwin.net', subject: "Contacto @ Borwin - Its time to go social")
       when 'CO'
         mail(to: 'admincolombia@borwin.net', subject: "Contacto @ Borwin - Its time to go social")
+      when 'MX'
+        mail(to: 'adminmexico@borwin.net', subject: "Contacto @ Borwin - Its time to go social")
     end
   end
 
@@ -31,6 +33,8 @@ class Notifier < ActionMailer::Base
         mail(to: 'sebastian@borwin.net', subject: "[ERROR] @ Borwin - Tweet NO publicado!!!")
       when 'CO'
         mail(to: 'admincolombia@borwin.net', subject: "[ERROR] @ Borwin - Tweet NO publicado!!!")
+      when 'MX'
+        mail(to: 'adminmexico@borwin.net', subject: "[ERROR] @ Borwin - Tweet NO publicado!!!")
     end
   end
 
@@ -42,6 +46,8 @@ class Notifier < ActionMailer::Base
         mail(to: 'sebastian@borwin.net', subject: "Contacto @ Borwin - Its time to go social")
       when 'CO'
         mail(to: 'admincolombia@borwin.net', subject: "Contacto @ Borwin - Its time to go social")
+      when 'MX'
+        mail(to: 'adminmexico@borwin.net', subject: "Contacto @ Borwin - Its time to go social")
     end
   end
 
@@ -74,6 +80,8 @@ class Notifier < ActionMailer::Base
         mail(to: 'sebastian@borwin.net', subject: "Notificaciones @ Borwin - Error obteniendo conexiones")
       when 'CO'
         mail(to: 'admincolombia@borwin.net', subject: "Notificaciones @ Borwin - Error obteniendo conexiones")
+      when 'MX'
+        mail(to: 'adminmexico@borwin.net', subject: "Notificaciones @ Borwin - Error obteniendo conexiones")
     end
 
 
@@ -115,6 +123,8 @@ class Notifier < ActionMailer::Base
         mail(to: 'sebastian@borwin.net', subject: "Notificaciones @ Borwin - Nuevo usuario registrado")
       when 'CO'
         mail(to: 'admincolombia@borwin.net', subject: "Notificaciones @ Borwin - Nuevo usuario registrado")
+      when 'MX'
+        mail(to: 'adminmexico@borwin.net', subject: "Notificaciones @ Borwin - Nuevo usuario registrado")
     end
 
   end
@@ -143,6 +153,8 @@ class Notifier < ActionMailer::Base
         mail(to: 'sebastian@borwin.net', cc: ['sofia@borwin.net', 'poli@borwin.net'], subject: "Notificaciones @ Borwin - @#{@screen_name} recibió una propuesto de Tweet")
       when 'CO'
         mail(to: 'admincolombia@borwin.net', subject: "Notificaciones @ Borwin - @#{@screen_name} recibió una propuesto de Tweet")
+      when 'MX'
+        mail(to: 'adminmexico@borwin.net', subject: "Notificaciones @ Borwin - @#{@screen_name} recibió una propuesto de Tweet")
     end
 
   end
@@ -213,6 +225,8 @@ class Notifier < ActionMailer::Base
         mail(to: 'sebastian@borwin.net', subject: "Notificaciones @ Borwin - Un tweet realizado por "+tweet.campaign.advertiser.user.email+" fue rechazado por @"+@screen_name+ ". "+@tweet.reject_cause)
       when 'CO'
         mail(to: 'admincolombia@borwin.net', subject: "Notificaciones @ Borwin - Un tweet realizado por "+tweet.campaign.advertiser.user.email+" fue rechazado por @"+@screen_name+ ". "+@tweet.reject_cause)
+      when 'MX'
+        mail(to: 'adminmexico@borwin.net', subject: "Notificaciones @ Borwin - Un tweet realizado por "+tweet.campaign.advertiser.user.email+" fue rechazado por @"+@screen_name+ ". "+@tweet.reject_cause)
     end
 
   end
@@ -237,6 +251,8 @@ class Notifier < ActionMailer::Base
         mail(to: 'sebastian@borwin.net', subject: "Notificaciones @ Borwin - Un tweet realizado por "+tweet.campaign.advertiser.user.email+" fue rechazado por @"+@screen_name+ ". "+@tweet.reject_cause)
       when 'CO'
         mail(to: 'admincolombia@borwin.net', subject: "Notificaciones @ Borwin - Un tweet realizado por "+tweet.campaign.advertiser.user.email+" fue rechazado por @"+@screen_name+ ". "+@tweet.reject_cause)
+      when 'MX'
+        mail(to: 'adminmexico@borwin.net', subject: "Notificaciones @ Borwin - Un tweet realizado por "+tweet.campaign.advertiser.user.email+" fue rechazado por @"+@screen_name+ ". "+@tweet.reject_cause)
     end
 
   end
@@ -290,6 +306,8 @@ class Notifier < ActionMailer::Base
         mail(to: 'sebastian@borwin.net', subject: "Tweet expira en "+time.to_s+" minutos - Its time to go social")
       when 'CO'
         mail(to: 'admincolombia@borwin.net', subject: "Tweet expira en "+time.to_s+" minutos - Its time to go social")
+      when 'MX'
+        mail(to: 'adminmexico@borwin.net', subject: "Tweet expira en "+time.to_s+" minutos - Its time to go social")
     end
 
   end
@@ -326,6 +344,8 @@ class Notifier < ActionMailer::Base
         mail(to: 'sebastian@borwin.net', subject: "Anunciante con crédito debajo de $1000 - Its time to go social")
       when 'CO'
         mail(to: 'admincolombia@borwin.net', subject: "Anunciante con crédito debajo de $1000 - Its time to go social")
+      when 'MX'
+        mail(to: 'adminmexico@borwin.net', subject: "Anunciante con crédito debajo de $1000 - Its time to go social")
     end
 
   end
@@ -356,6 +376,8 @@ class Notifier < ActionMailer::Base
         mail(to: 'sebastian@borwin.net, sofia@borwin.net', subject: subject)
       when 'CO'
         mail(to: 'admincolombia@borwin.net', subject: subject)
+      when 'MX'
+        mail(to: 'adminmexico@borwin.net', subject: subject)
     end
   end
 
@@ -380,6 +402,8 @@ class Notifier < ActionMailer::Base
         mail(to: 'sebastian@borwin.net', subject: "Notificaciones @ Borwin -  Usuario requiere aprobación")
       when 'CO'
         mail(to: 'admincolombia@borwin.net', subject: "Notificaciones @ Borwin -  Usuario requiere aprobación")
+      when 'MX'
+        mail(to: 'adminmexico@borwin.net', subject: "Notificaciones @ Borwin -  Usuario requiere aprobación")
     end
   end
 

@@ -1,0 +1,121 @@
+es_MX:
+  see: Ver
+  edit: Editar
+  delete: Borrar
+  destroy: Eliminar
+  complete: Completar
+  list: Listar
+  save: Guardar
+  cancel: Cancelar
+  yes: Si
+  no: No
+  filters: Filtros
+  reset: Resetear
+  filter: Filtrar
+  actions: Acciones
+  followers: Seguidores
+  friends: Amigos
+  tweets: Tweets
+  retweets: Retweets
+  celebrity: Celebridad
+  men: Hombres
+  women: Mujeres
+  males: Hombres
+  females: Mujeres
+  sports: Deportes
+  fashion: Moda
+  music: Música
+  movies: Cine
+  politics: Política
+  technology: Tecnología
+  travel: Viajes
+  luxury: Lujos
+  moms: Mamás
+  teens: Adolescentes
+  college_students: Universitarios
+  young_women: Mujeres (18 a 35 años)
+  young_men: Hombres (18 a 35 años)
+  adult_women: Mujeres (Más de 35 años)
+  adult_men: Hombres (Más de 35 años)
+  women18: Mujeres (+18)
+  men18: Hombres (+18)
+  campaigns: Campañas
+  cost: Costo
+  clicks: Clicks
+  company: Empresa
+  audience: Audiencia
+  tweet_price: Precio del Tweet
+  accept: Aceptar
+  statistics: Estadísticas
+  archive: Archivar
+  status: Estado
+  genre: Sexo
+  hobbys: Hobbys
+  detail: Detalle
+  reject: Rechazar
+  user: Usuario
+  a_date: Fecha
+  back: Volver
+  cash_outs: Cash Outs
+  skip_step: Saltear este paso
+  celebrities: Celebridades
+  category: Categoría
+  referred: Referido
+  recategorize: Recategorizar
+  message: Mensaje
+  user_type: Tipo de Usuario
+  administrator: Administrador
+  affiliate: Agencia
+  referral: Referido
+  comission: Comisión
+  reach:  Reach
+  phrase: Palabra o frase
+  print: Imprimir
+  cash_out: Cash out
+  request: Solicitar
+  cash_out_details: Detalles de Cash Out
+  brand: Marca
+  income: Ingresos
+  cost_per_tweet: Costo por tweet
+  dancer: Bailarín/Bailarina
+  choreographer: Coreógrafo
+  modify: Modificar
+  huso: Fecha y hora de tweet. Horario México DF (GMT-6)
+  percent_by_state: Porcentage según departamento
+  do_filter: Filtrar
+  current_campaigns: Campañas Actuales
+  payments: Pagos
+  transactions: Transacciones
+  my_profile: Mi Perfil
+  my_data: Mis Datos
+  information: Información
+  my_referrals: Mis Referidos
+  waiting_approval: Esperando aprobación
+  affiliates: Agencias
+  presentation: Presentación
+  exit: Salir
+  register: Registrarse
+  advertiser_company: Empresa Anunciante
+  start_session:  Iniciar sesión
+  platform: Plataforma
+  us: Nosotros
+  terms: Términos
+  terms_and_conditions: Términos y condiciones
+  privacy: Política de privacidad
+  payment: Pago
+  amount: Importe
+  any: Cualquiera
+  payment_small_letter: Al importe ingresado se agregará automáticamente una comisión del 6% por el servicio de pago electrónico.
+  generate: Generar
+  the_date: Fecha
+  last_actualization: Última actualización
+  payment_order:  Orden de Pago
+  edit_profile: Editar Perfil
+  years: Años
+  tweet_go_join_date: Ingreso a TweetGo!
+  back_to_campaign: Volver a la campaña
+  propose_and_back: Proponer y volver a la campaña
+  tweet_proposal: Propuesta de nuevo Tweet
+  edit_date: Modifica fecha
+  edit_text: Modifica texto
+  force: Forzar publicación ahora!

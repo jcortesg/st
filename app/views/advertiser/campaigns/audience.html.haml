@@ -251,7 +251,37 @@
           .option
             = check_box_tag "campaign[tweet_price][]", "+50000", f.object.tweet_price.include?("+25000000")
             = label_tag "Mayor a $25.000.000"
-
+        -when 'MX'
+          .option
+            = check_box_tag "campaign[tweet_price][]", "0-750", f.object.tweet_price.include?("0-750")
+            = label_tag "$0 a $750"
+          .option
+            = check_box_tag "campaign[tweet_price][]", "750-2500", f.object.tweet_price.include?("750-2500")
+            = label_tag "$750 a $2.500"
+          .option
+            = check_box_tag "campaign[tweet_price][]", "2500-5000", f.object.tweet_price.include?("2500-5000")
+            = label_tag "$2.500 a $5.000"
+          .option
+            = check_box_tag "campaign[tweet_price][]", "5000-7500", f.object.tweet_price.include?("5000-7500")
+            = label_tag "$5.000 a $7.500"
+          .option
+            = check_box_tag "campaign[tweet_price][]", "7500-12500", f.object.tweet_price.include?("7500-12500")
+            = label_tag "$7.500 a $12.500"
+          .option
+            = check_box_tag "campaign[tweet_price][]", "12500-17500", f.object.tweet_price.include?("12500-17500")
+            = label_tag "$12.500 a $17.500"
+          .option
+            = check_box_tag "campaign[tweet_price][]", "17500-25000", f.object.tweet_price.include?("17500-25000")
+            = label_tag "$17.500 a $25.000"
+          .option
+            = check_box_tag "campaign[tweet_price][]", "25000-50000", f.object.tweet_price.include?("25000-50000")
+            = label_tag "$25.000 a $50.000"
+          .option
+            = check_box_tag "campaign[tweet_price][]", "50000-125000", f.object.tweet_price.include?("50000-125000")
+            = label_tag "$50.000 a $125.000"
+          .option
+            = check_box_tag "campaign[tweet_price][]", "+125000", f.object.tweet_price.include?("+125000")
+            = label_tag "Mayor a $125.000"
 
 
       .form-actions

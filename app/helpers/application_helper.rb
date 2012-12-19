@@ -142,6 +142,8 @@ module ApplicationHelper
         "Megabanco",
         "UBS AG in Bogotá"
         ]
+      when 'MX'
+        ["Banco de México"]
     end
   end
 
@@ -151,6 +153,8 @@ module ApplicationHelper
         '<a href="https://twitter.com/BorwinAR" class="twitter-follow-button" data-show-count="false" data-lang="es" data-size="large">Seguir en @BorwinAR</a>'
       when 'CO'
         '<a href="https://twitter.com/borwincolombia" class="twitter-follow-button" data-show-count="false" data-lang="es" data-size="large">Seguir en @borwincolombia</a>'
+      when 'MX'
+        '<a href="https://twitter.com/borwincolombia" class="twitter-follow-button" data-show-count="false" data-lang="es" data-size="large">Seguir en @borwinmexico</a>'
     end
   end
 end

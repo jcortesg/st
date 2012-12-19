@@ -174,6 +174,31 @@ class Influencer < ActiveRecord::Base
                   conditions << "(influencers.campaign_fee >= 25000000)"
               end
             end
+          when 'MX'
+            campaign.tweet_price.each do |tp|
+              case tp
+                when '0-750'
+                  conditions << "(influencers.campaign_fee >= 0 and influencers.campaign_fee <= 750)"
+                when '750-2500'
+                  conditions << "(influencers.campaign_fee >= 300 and influencers.campaign_fee <= 2500)"
+                when '2500-5000'
+                  conditions << "(influencers.campaign_fee >= 2500 and influencers.campaign_fee <= 5000)"
+                when '5000-7500'
+                  conditions << "(influencers.campaign_fee >= 5000 and influencers.campaign_fee <= 7500)"
+                when '7500-12500'
+                  conditions << "(influencers.campaign_fee >= 7500 and influencers.campaign_fee <= 12500)"
+                when '12500-17500'
+                  conditions << "(influencers.campaign_fee >= 12500 and influencers.campaign_fee <= 17500)"
+                when '17500-25000'
+                  conditions << "(influencers.campaign_fee >= 17500 and influencers.campaign_fee <= 25000)"
+                when '25000-50000'
+                  conditions << "(influencers.campaign_fee >= 25000 and influencers.campaign_fee <= 50000)"
+                when '50000-125000'
+                  conditions << "(influencers.campaign_fee >= 50000 and influencers.campaign_fee <= 125000)"
+                when '+125000'
+                  conditions << "(influencers.campaign_fee >= 125000)"
+              end
+            end
         end
 
         influencers = influencers.where(conditions.join(" or "))
@@ -369,6 +394,8 @@ class Influencer < ActiveRecord::Base
         price = price
       when 'CO'
         price = price * 417
+      when 'MX'
+        price = price * 2.5
     end
 
     return price
