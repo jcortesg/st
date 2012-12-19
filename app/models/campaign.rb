@@ -85,10 +85,13 @@ class Campaign < ActiveRecord::Base
       begin
         begin
           ids = []
-          if APP_CONFIG['app_country'] == 'AR'
-            ids = [280, 281, 282, 201, 283, 284, 4]
-          else
-            ids = [2, 3, 4, 5, 6]
+          case APP_CONFIG['app_country']
+            when 'AR'
+              ids = [280, 281, 282, 201, 283, 284, 4]
+            when 'CO'
+              ids = [2, 3, 4, 5, 6]
+            when 'MX'
+              ids = [1, 2, 3, 4, 5]
           end
           influencer = Influencer.find(ids[rand(ids.count)])
           Twitter.configure do |config|

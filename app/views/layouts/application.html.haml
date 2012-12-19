@@ -224,18 +224,30 @@
           %h5 Borwin
           %ul
             %li
-              -if APP_CONFIG['app_country'] == 'CO'
-                %li= link_to 'Argentina', country_redirector_path(:code => 'AR')
-              -else
-                %li= link_to 'Argentina', "#"
+              -case APP_CONFIG['app_country']
+                - when 'CO'
+                  %li= link_to 'Argentina', country_redirector_path(:code => 'AR')
+                - when 'MX'
+                  %li= link_to 'Argentina', country_redirector_path(:code => 'AR')
+                - when 'AR'
+                  %li= link_to 'Argentina', "#"
               %li= link_to 'Brasil', "mailto: brasil@borwin.net"
-              -if APP_CONFIG['app_country'] == 'AR'
-                %li= link_to 'Colombia', country_redirector_path(:code => 'CO')
-              -else
-                %li= link_to 'Colombia', "#"
+              -case APP_CONFIG['app_country']
+                -when 'AR'
+                  %li= link_to 'Colombia', country_redirector_path(:code => 'CO')
+                -when 'MX'
+                  %li= link_to 'Colombia', country_redirector_path(:code => 'CO')
+                -when 'CO'
+                  %li= link_to 'Colombia', "#"
               %li= link_to 'Chile', "mailto: chile@borwin.net"
               %li= link_to 'Ecuador', "mailto: ecuador@borwin.net"
               %li= link_to 'España', "mailto: españa@borwin.net"
-              %li= link_to 'México', "mailto: mexico@borwin.net"
+              -case APP_CONFIG['app_country']
+                -when 'AR'
+                  %li= link_to 'México', country_redirector_path(:code => 'MX')
+                -when 'CO'
+                  %li= link_to 'México', country_redirector_path(:code => 'MX')
+                -when 'MX'
+                  %li= link_to 'México', "#"
               %li= link_to 'Paraguay', "mailto: paraguay@borwin.net"
               %li= link_to 'Uruguay', "mailto: uruguay@borwin.net"
