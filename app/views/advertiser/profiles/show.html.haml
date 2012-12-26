@@ -113,7 +113,7 @@
             live: false,
             behavior: 'all'
           }
-        }).render().setUser('#{@advertiser.twitter_screen_name.blank? ? (APP_CONFIG['app_country']=='AR'? 'BorwinAR' : 'borwincolombia') : @advertiser.twitter_screen_name}').start();
+        }).render().setUser('#{@advertiser.twitter_screen_name.blank? ? (APP_CONFIG['app_country']=='AR'? 'BorwinAR' : (APP_CONFIG['app_country']=='CO'? 'borwincolombia' : 'borwinmexico' )) : @advertiser.twitter_screen_name}').start();
 
 
 /
