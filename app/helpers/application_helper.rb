@@ -143,7 +143,24 @@ module ApplicationHelper
         "UBS AG in Bogotá"
         ]
       when 'MX'
-        ["Banco de México"]
+        ["HSBC - México",
+        "Banamex",
+        "BBVA Bancomer",
+        "Santander Serfin",
+        "Scotiabank Inverlat",
+        "Banco Azteca",
+        "Bank of America - México",
+        "Grupo Financiero Banorte",
+        "Banco del Bajío",
+        "Banco de México",
+        "Bansí",
+        "BanRegio",
+        "Nacional Financiera - Banca de Desarrollo",
+        "Banco de Comercio Exterior",
+        "Banco Nacional de Crédito Rural S.N.C.",
+        "Asociación de banqueros de México",
+        "Banco Nacional de Obras y Servicios Públicos"
+        ]
     end
   end
 
