@@ -11,16 +11,20 @@ class HomeController < ApplicationController
         #
       else
         ip = request.remote_ip
-        country = Geocoder.search(ip)[0].data['country_name'].to_s
-        case country
-          when 'Argentina'
-            redirect_to country_redirector_path({:code => 'AR'})
-          when 'Mexico'
-            redirect_to country_redirector_path({:code => 'MX'})
-          when 'Colombia'
-            redirect_to country_redirector_path({:code => 'CO'})
-          else
-            redirect_to country_redirector_path({:code => 'NO'})
+        begin
+          country = Geocoder.search(ip)[0].data['country_name'].to_s
+          case country
+            when 'Argentina'
+              redirect_to country_redirector_path({:code => 'AR'})
+            when 'Mexico'
+              redirect_to country_redirector_path({:code => 'MX'})
+            when 'Colombia'
+              redirect_to country_redirector_path({:code => 'CO'})
+            else
+              redirect_to country_redirector_path({:code => 'NO'})
+          end
+        rescue Exception => e
+          redirect_to country_redirector_path({:code => 'AR'})
         end
       end
     end
