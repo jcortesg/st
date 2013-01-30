@@ -235,7 +235,10 @@ body {
 
 }
 
-
 .inner-page {
   margin-top: 100px;
+}
+
+.featurette {
+  padding-top: 0;
 }

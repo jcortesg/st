@@ -1,0 +1,40 @@
+<%- content_for :head do %>
+  <%= javascript_include_tag('home.js') %>
+<%- end %>
+
+<%= render '/shared/flash', flash: flash %>
+
+
+<!-- Three columns of text below the carousel -->
+<div class="row"><!-- /.span4 --><!-- /.span4 --><!-- /.span4 -->
+</div><!-- /.row -->
+
+<div class="featurette">
+  <h2 class="featurette-heading">Trabajá con nosotros. <span class="muted">Te estamos esperando.</span></h2>
+
+  <p class="lead">Si tienes ganas de crecer profesionalmente, divertirte, innovar y hacer un trabajo del cual te sientas
+    orgulloso, te estamos esperando.</p>
+
+  <p class="lead"><img src="/assets/imagenes/empresa.jpg" alt="Empresa"><br>
+    <br>
+    Estamos buscando: </p>
+
+  <p class="lead">+Desarrollador Ruby</p>
+
+  <p class="lead">+Asistente de Marketing</p>
+
+  <p class="lead">+Administrador</p>
+
+  <p class="lead">Requisito para todos los puestos: Que te guste festejar tu cumpleaños.</p>
+
+  <p class="lead">Si quieres postularte para alguno de los trabajos que ofrecemos envíanos un email a
+    <a href="mailto:quierotrabajar@social-target.net">quierotrabajar@social-target.net</a> especificando en el asunto el
+    puesto de trabajo de tu interés.</p>
+</div>
+<div class="featurette">
+  <a href="<%= contact_path %>">Más información</a>
+</div>
+
+<hr class="featurette-divider">
+
+<!-- /END THE FEATURETTES -->

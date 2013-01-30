@@ -1,0 +1,29 @@
+<%- content_for :head do %>
+  <%= javascript_include_tag('home.js') %>
+<%- end %>
+
+<%= render '/shared/flash', flash: flash %>
+
+
+
+<!-- Three columns of text below the carousel -->
+<div class="row"><!-- /.span4 --><!-- /.span4 --><!-- /.span4 -->
+</div><!-- /.row -->
+
+<div class="featurette">
+  <h2 class="featurette-heading">La empresa. <span class="muted">The Social Media Marketing Factory.</span></h2>
+
+  <p class="lead">Creamos plataformas que le permiten a las marcas conectarse con su Target en Twitter a través de los
+    influenciadores más relevantes.</p>
+
+  <p class="lead"><img src="/assets/imagenes/empresa.jpg" alt="Empresa"><br>
+    <br>
+    La constante innovación es nuestra mayor fortaleza. </p>
+</div>
+<div class="featurette">
+  <a href="<%= contact_path %>">Más información</a>
+</div>
+
+<hr class="featurette-divider">
+
+<!-- /END THE FEATURETTES -->
