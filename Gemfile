@@ -38,7 +38,7 @@ group :assets do
   gem 'bootstrap-sass'                 # Kickstart styles for the app
 
   gem 'execjs'                         # For compiling assets
-  gem 'therubyracer'                   # For compiling assets
+  #gem 'therubyracer'                   # For compiling assets
 end
 
 group :test do
