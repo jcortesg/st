@@ -1,0 +1,67 @@
+<%- content_for :head do %>
+  <%= javascript_include_tag('home.js') %>
+<%- end %>
+
+<%= render '/shared/flash', flash: flash %>
+
+<div class="row">
+  <div class="span4">
+    <p><img class="img-circle" data-src="/holder.js/140x140"><img src="/assets/imagenes/prueba3.png" alt="prueba"></p>
+
+    <h2>Agencias</h2>
+
+    <p>Las Agencias son nuestro principal partner y es por eso que la plataforma está desarrollada pensando en
+      simplificarles los objetivos de sus clientes en Twitter. También les ofrecemos un beneficio económico cada vez
+      que realicen campañas con Social Target.</p>
+
+    <p><a class="btn" href="<%= advertiser_devise_registration_path %>">Más información&raquo;</a></p>
+  </div>
+  <!-- /.span4 -->
+  <div class="span4">
+    <img class="img-circle" data-src="/holder.js/140x140"><img src="/assets/imagenes/prueba2.png" alt="prueba"> <br>
+
+    <h2>Marcas</h2>
+
+    <p>Si eres representante de una marca puedes crear tú mismo una campaña de marketing o publicidad a través del
+      Twitter de los famosos más relevantes. Desde Social Target estamos a tu disposición para asesorarte durante todo
+      el proceso.</p>
+
+    <p><a class="btn" href="<%= affiliate_devise_registration_path %>">Más información&raquo;</a></p>
+  </div>
+  <!-- /.span4 -->
+  <div class="span4">
+    <img class="img-circle" data-src="/holder.js/140x140"><img src="/assets/imagenes/prueba.png" alt="ok"> <br>
+
+    <h2>Influenciadores</h2>
+
+    <p>Contamos con celebridades del mundo del espectáculo, deportistas, músicos, artistas, presentadores y los
+      twitteros más relevantes. Todos están aquí para apoyar tu marca y recomendarla a sus seguidores en Twitter!</p>
+
+    <p><a class="btn" href="<%= influencer_devise_registration_path %>">Más información&raquo;</a></p>
+  </div>
+  <!-- /.span4 -->
+</div>
+
+<!-- START THE FEATURETTES -->
+
+<hr class="featurette-divider">
+
+<div class="featurette">
+  <img class="featurette-image pull-right" src="/assets/browser-icon-chrome.png">
+  <h2 class="featurette-heading">Primer paso. <span class="muted">Seleccionar el Target.</span></h2>
+  <p class="lead">Nuestra plataforma te ayuda a escojer los famosos más adecuados para llegar a la audiencia deseada. En el proseso de selección de Target encontrarás filtros como: ubicación geográfica, sexo, edades y hobbys.</p>
+</div>
+<div class="featurette">
+  <img class="featurette-image pull-left" src="/assets/browser-icon-firefox.png">
+  <h2 class="featurette-heading">Segundo paso. <span class="muted">Crear el mensaje.</span></h2>
+  <p class="lead">Una vez seleccionados los famosos que apoyarán tu marca debes proponerles los tweets a través de nuestra plataforma y esperar la aprobación. Este es un proceso de mutuo acuerdo entre el famoso y la marca.</p>
+</div>
+<div class="featurette">
+  <img class="featurette-image pull-right" src="/assets/browser-icon-safari.png">
+  <h2 class="featurette-heading">Tercer paso. <span class="muted">Analizar la efectividad de la campaña.</span></h2>
+  <p class="lead">Te ofrecemos la posibilidad de analizar los resultados de la campaña en tiempo real. Podrá loguearte y ver en tiempo real los siguientes datos: CPN, CPC, CTC, incremento de seguidores, cantidad de clicks, reach, retweets, menciones de su marca, mensiones de su usuario y muchos datos más!</p>
+</div>
+
+<hr class="featurette-divider">
+
+<!-- /END THE FEATURETTES -->

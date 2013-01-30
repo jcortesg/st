@@ -1,3 +1,3 @@
 $(document).ready ->
-  $('#home_carousel').carousel
-    interval: 6000
+  $('#myCarousel').carousel
+    interval: 4000

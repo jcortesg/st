@@ -6,26 +6,24 @@ class HomeController < ApplicationController
 
   # Website main page
   def index
-    if true
-      if !cookies[:country].nil?
-        #
-      else
-        ip = request.remote_ip
-        begin
-          country = Geocoder.search(ip)[0].data['country_name'].to_s
-          case country
-            when 'Argentina'
-              redirect_to country_redirector_path({:code => 'AR'})
-            when 'Mexico'
-              redirect_to country_redirector_path({:code => 'MX'})
-            when 'Colombia'
-              redirect_to country_redirector_path({:code => 'CO'})
-            else
-              redirect_to country_redirector_path({:code => 'NO'})
-          end
-        rescue Exception => e
-          redirect_to country_redirector_path({:code => 'CO'})
+    if cookies[:country].blank? || %w(development test).include?(Rails.env)
+      render layout: 'home'
+    else
+      ip = request.remote_ip
+      begin
+        country = Geocoder.search(ip)[0].data['country_name'].to_s
+        case country
+          when 'Argentina'
+            redirect_to country_redirector_path({:code => 'AR'})
+          when 'Mexico'
+            redirect_to country_redirector_path({:code => 'MX'})
+          when 'Colombia'
+            redirect_to country_redirector_path({:code => 'CO'})
+          else
+            redirect_to country_redirector_path({:code => 'NO'})
         end
+      rescue Exception => e
+        redirect_to country_redirector_path({:code => 'CO'})
       end
     end
   end
@@ -35,13 +33,15 @@ class HomeController < ApplicationController
     redirect_to params[:url]
   end
 
-  # Anunciantes - Vision General
-  def advertisers_about
+  # Anunciantes
+  def advertisers
+    render layout: 'home'
   end
 
   # Anunciantes - Contacto
   def advertisers_contact
     @site_advertiser_contact = SiteAdvertiserContact.new
+    render layout: 'home'
   end
 
   # Anunciantes - Porcess Contact Form
@@ -52,16 +52,18 @@ class HomeController < ApplicationController
       flash[:success] = "Tu mensaje fue recibido. Nos pondremos en contacto a la brevedad."
       redirect_to root_path
     else
-      render :action => :contact
+      render layout: 'home', action: :advertisers_contact
     end
   end
 
-  # Anunciantes - Presentacion
-  def advertisers_presentation
+  # Marcas
+  def affiliates
+    render layout: 'home'
   end
 
-  # Celebridades - Vision General
-  def influencers_about
+  # Influenciadores
+  def incluencers
+    render layout: 'home'
   end
 
   # Celebridades - Contacto
@@ -69,33 +71,25 @@ class HomeController < ApplicationController
     contact
   end
 
-  # Celebridades - Presentacion
-  def influencers_presentation
-  end
-
-  # Plataforma - Tweet Go
-  def tweet_go
-  end
-
   # Nosotros - La Empresa
   def about_us
+    render layout: 'home'
   end
 
   # Nosotros - Prensa
   def press
+    render layout: 'home'
   end
 
   # Nosotros - Trabaja con Nosotros
   def work_with_us
+    render layout: 'home'
   end
 
   # Nosotros - Contactenos
   def contact
     @site_contact = SiteContact.new
-  end
-
-  # Nosotros - Presentacion
-  def presentacion
+    render layout: 'home'
   end
 
   # Process the contact form
@@ -106,7 +100,7 @@ class HomeController < ApplicationController
       flash[:success] = "Tu mensaje fue recibido. Nos pondremos en contacto a la brevedad."
       redirect_to root_path
     else
-      render :action => :contact
+      render layout: 'home', action: :contact
     end
   end
 

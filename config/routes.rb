@@ -191,22 +191,21 @@ SocialTarget::Application.routes.draw do
   end
 
   # Home pages
-  match "advertisers-general-vision" => "home#advertisers_about", :as => :home_advertisers_about
+  match "advertisers", to: "home#advertisers", as: :home_advertisers
+  match "affiliates", to: "home#affiliates", as: :home_affiliates
+  match "influencers", to: "home#influencers", as: :home_influencers
+
   match "advertisers-contact" => "home#advertisers_contact", :as => :home_advertisers_contact
   match "process-advertiser-contact" => "home#process_advertiser_contact", :as => :process_advertiser_contact
-  match "advertisers-presentation" => "home#advertisers_presentation", :as => :home_advertisers_presentation
-  match "influencers-about" => "home#influencers_about", :as => :home_influencers_about
+
   match "influencers-contact" => "home#influencers_contact", :as => :home_influencers_contact
-  match "influencers-presentation" => "home#influencers_presentation", :as => :home_influencers_presentation
-  match "tweet-go" => "home#tweet_go", :as => :about_tweet_go
-  match "sorte-argo" => "home#sorte_argo", :as => :about_sorte_argo
-  match "stats-go" => "home#stats_go", :as => :about_stats_go
+
   match "about-us" => "home#about_us", :as => :about_us
   match "press" => "home#press", :as => :press
   match "work-with-us" => "home#work_with_us", :as => :work_with_us
   match "contact" => "home#contact", :as => :contact
-  match "proces-contact" => "home#process_contact", :as => :process_contact
-  match "presentacion" => "home#presentacion", :as => :presentacion
+
+  match "process-contact" => "home#process_contact", :as => :process_contact
 
   match "terms" => "home#terms", :as => :terms
   match "privacy" => "home#privacy", :as => :privacy
