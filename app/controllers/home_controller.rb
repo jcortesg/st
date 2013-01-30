@@ -6,7 +6,7 @@ class HomeController < ApplicationController
 
   # Website main page
   def index
-    if cookies[:country].blank? || %w(development test).include?(Rails.env)
+    if !cookies[:country].blank? || %w(development test).include?(Rails.env)
       render layout: 'home'
     else
       ip = request.remote_ip
