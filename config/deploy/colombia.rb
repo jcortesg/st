@@ -7,15 +7,12 @@ set :rvm_ruby_string, '1.9.3'
 set :rvm_bin_path, "/usr/local/rvm/bin"
 set :rvm_type, :system
 
-set :application, "TweetGo Colombia"
+set :application, "SocialTarget"
 set :repository, "git@bitbucket.org:sjasminoy/social-target.git"
 
-#role :web, "199.168.97.138"
-#role :app, "199.168.97.138"
-#role :db, "199.168.97.138", :primary => true
-role :web, "142.54.169.210"
-role :app, "142.54.169.210"
-role :db, "142.54.169.210", :primary => true
+role :web, "www.social-target.net"
+role :app, "www.social-target.net"
+role :db, "www.social-target.net", :primary => true
 
 set :user, "deploy"
 set :scm, :git
@@ -23,10 +20,10 @@ set :sudo, 'rvmsudo'
 set :use_sudo, false
 
 set :deploy_via, :remote_cache
-set :deploy_to, "/var/www/social-target-co"
+set :deploy_to, "/u/apps/social-target-co"
 set :branch, "master"
 
-set :asset_env, "RAILS_GROUPS=assets"
+#set :asset_env, "RAILS_GROUPS=assets"
 
 namespace :setup do
   desc "Copy config files"
@@ -42,25 +39,30 @@ namespace :setup do
     run "cp -r #{release_path}/config/i18n-files/application-CO.rb #{release_path}/config/application.rb"
   end
 
-  desc "Copy pictures files"
-  task :copy_pictures, :roles => :app do
-    run "cp -r #{previous_release}/public/bwn-image #{release_path}/public/"
-  end
-
   desc 'Trust rvmrc file'
   task :trust_rvmrc do
     run "rvm rvmrc trust #{current_release}"
   end
 
-  desc 'Bundle gems'
-  task :bundle_gems do
-    run "cd #{current_release} && #{try_sudo} bundle install --gemfile #{current_release}/Gemfile --path /var/www/social-target-co/shared/bundle --without development test cucumber"
+  desc 'Link bwn images'
+  task :link_bwn_images do
+    run "ln -s #{shared_path}/bwn-image #{release_path}/public/bwn-image"
   end
 
-  desc 'Precompile assets'
-  task :precompile_assets, :roles => :app do
-    run "cd #{release_path} && bundle exec #{rake} RAILS_ENV=#{rails_env} #{asset_env} assets:precompile"
-  end
+  #desc "Copy pictures files"
+  #task :copy_pictures, :roles => :app do
+  #  run "cp -r #{previous_release}/public/bwn-image #{release_path}/public/"
+  #end
+
+  #desc 'Bundle gems'
+  #task :bundle_gems do
+  #  run "cd #{current_release} && #{try_sudo} bundle install --gemfile #{current_release}/Gemfile --path /var/www/social-target-co/shared/bundle --without development test cucumber"
+  #end
+
+  #desc 'Precompile assets'
+  #task :precompile_assets, :roles => :app do
+  #  run "cd #{release_path} && bundle exec #{rake} RAILS_ENV=#{rails_env} #{asset_env} assets:precompile"
+  #end
 end
 
 namespace :deploy do
@@ -72,6 +74,7 @@ end
 after "deploy:update_code", "setup:copy_files"
 after "deploy:update_code", "setup:copy_config_files"
 after "deploy:update_code", "setup:trust_rvmrc"
-after "deploy:update_code", "setup:copy_pictures"
-after "deploy:update_code", "setup:bundle_gems"
-after "deploy:update_code", "setup:precompile_assets"
+after "deploy:update_code", "setup:link_bwn_images"
+#after "deploy:update_code", "setup:copy_pictures"
+#after "deploy:update_code", "setup:bundle_gems"
+#after "deploy:update_code", "setup:precompile_assets"

@@ -7,15 +7,12 @@ set :rvm_ruby_string, '1.9.3'
 set :rvm_bin_path, "/usr/local/rvm/bin"
 set :rvm_type, :system
 
-set :application, "TweetGo Mexico"
+set :application, "SocialTarget"
 set :repository, "git@bitbucket.org:sjasminoy/social-target.git"
 
-#role :web, "199.168.97.138"
-#role :app, "199.168.97.138"
-#role :db, "199.168.97.138", :primary => true
-role :web, "142.54.169.210"
-role :app, "142.54.169.210"
-role :db, "142.54.169.210", :primary => true
+role :web, "www.social-target.net"
+role :app, "www.social-target.net"
+role :db, "www.social-target.net", :primary => true
 
 set :user, "deploy"
 set :scm, :git
@@ -23,7 +20,7 @@ set :sudo, 'rvmsudo'
 set :use_sudo, false
 
 set :deploy_via, :remote_cache
-set :deploy_to, "/var/www/social-target-me"
+set :deploy_to, "/u/apps/social-target-me"
 set :branch, "master"
 
 set :asset_env, "RAILS_GROUPS=assets"
