@@ -24,7 +24,7 @@ class HomeController < ApplicationController
               redirect_to country_redirector_path({:code => 'NO'})
           end
         rescue Exception => e
-          redirect_to country_redirector_path({:code => 'AR'})
+          redirect_to country_redirector_path({:code => 'CO'})
         end
       end
     end

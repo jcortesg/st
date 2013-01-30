@@ -6,7 +6,7 @@
   }
   var addthis_share = {
     url: 'http://www.social-target.net/I#{current_user.invitation_code}',
-    title: 'Registrate en Borwin y ganá dinero por twittear'
+    title: 'Registrate en Social Target y ganá dinero por twittear'
   }
 
 - if flash.any?
@@ -22,7 +22,7 @@
 
         %p
           - if @referrals.count == 0
-            = "Hasta el momento no has referido a ninguna persona. Recomendá Borwin para comenzar a generar ingresos."
+            = "Hasta el momento no has referido a ninguna persona. Recomendá Social Target para comenzar a generar ingresos."
           - else
             = "Referiste #{@referrals.count} persona#{@referrals.count > 1 ? 's' : ''} que te genero "
             = link_to("#{number_to_currency(current_user.total_referral_earnings)} ingresos.", [:list, :influencer, :referrals])
@@ -54,7 +54,7 @@
             .center_text
               %a.sharing-button
             :javascript
-              addthis.button('.sharing-button', {}, {url: "http://www.social-target.net/I#{current_user.invitation_code}", title: "Registrate en Borwin y ganá dinero por twittear"});
+              addthis.button('.sharing-button', {}, {url: "http://www.social-target.net/I#{current_user.invitation_code}", title: "Registrate en Social Target y ganá dinero por twittear"});
 
         %p
           =t('influencers_referrals_text_4')

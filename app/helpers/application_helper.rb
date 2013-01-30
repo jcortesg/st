@@ -167,11 +167,11 @@ module ApplicationHelper
   def borwin_twitter_link
     case APP_CONFIG['app_country']
       when 'AR'
-        '<a href="https://twitter.com/SocialTarget1" class="twitter-follow-button" data-show-count="false" data-lang="es" data-size="large">Seguir en @BorwinAR</a>'
+        '<a href="https://twitter.com/SocialTarget1" class="twitter-follow-button" data-show-count="false" data-lang="es" data-size="large">Seguir en @SocialTarget1</a>'
       when 'CO'
-        '<a href="https://twitter.com/SocialTarget1" class="twitter-follow-button" data-show-count="false" data-lang="es" data-size="large">Seguir en @borwincolombia</a>'
+        '<a href="https://twitter.com/SocialTarget1" class="twitter-follow-button" data-show-count="false" data-lang="es" data-size="large">Seguir en @SocialTarget1</a>'
       when 'MX'
-        '<a href="https://twitter.com/SocialTarget1" class="twitter-follow-button" data-show-count="false" data-lang="es" data-size="large">Seguir en @borwinmexico</a>'
+        '<a href="https://twitter.com/SocialTarget1" class="twitter-follow-button" data-show-count="false" data-lang="es" data-size="large">Seguir en @SocialTarget1</a>'
     end
   end
 end
