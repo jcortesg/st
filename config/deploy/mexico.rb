@@ -11,7 +11,7 @@ set :sudo, 'rvmsudo'
 set :use_sudo, false
 
 set :deploy_via, :remote_cache
-set :deploy_to, "/u/apps/social-target-me"
+set :deploy_to, "/u/apps/social-target-mx"
 set :branch, "master"
 
 namespace :setup do
