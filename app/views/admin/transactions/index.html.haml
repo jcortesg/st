@@ -44,7 +44,7 @@
         .filters
           .subtitle= t('filters')
           = simple_form_for @search, :url => [:admin, :transactions], html: {method: :get, id: 'filter_form', class: 'form-horizontal'} do |f|
-            = f.input :borwin_transaction_equals, as: :select, required: false, collection: [["Sí", true], ["No", false]], label: "Transacción Borwin?"
+            = f.input :borwin_transaction_equals, as: :select, required: false, collection: [["Sí", true], ["No", false]], label: "Transacción Social Target?"
             = f.input :user_role_equals, as: :select, required: false, collection: [[t('administrator'), 'admin'], [t('advertiser'), 'advertiser'], [t('agency'), 'affiliate'], [t('celebrity'), 'influencer']], label: t('category')
             = f.input :user_id_equals, as: :select, required: false, collection: User.where('role in (?)', ['advertiser', 'influencer', 'affiliate']).all.sort{|x, y| x.full_name <=> y.full_name}.collect {|u| [u.full_name, u.id]}, label: t('user')
             = f.input :transaction_at_greater_than_or_equal_to, label: 'Desde', required: false, input_html: { class: 'medium', id: 'from_datepicker', value: @search.transaction_at_greater_than_or_equal_to ? @search.transaction_at_greater_than_or_equal_to.strftime("%d/%m/%Y") : ''}

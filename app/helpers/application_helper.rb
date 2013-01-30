@@ -86,7 +86,7 @@ module ApplicationHelper
       when 'initial_fee'
         'Fee de Campaña'
       when 'payment'
-        'Pago de Borwin'
+        'Pago de Social Target'
       when 'tweet_fee'
         'Públicación Tweet'
       when 'tweet_revenue'
@@ -96,7 +96,7 @@ module ApplicationHelper
       when 'advertiser_referrer_fee'
         'Comisión referido de Anunciante'
       when 'tweet_borwin_fee'
-        'Comisión por Tweet para Borwin'
+        'Comisión por Tweet para Social Target'
     end
   end
 
@@ -167,11 +167,11 @@ module ApplicationHelper
   def borwin_twitter_link
     case APP_CONFIG['app_country']
       when 'AR'
-        '<a href="https://twitter.com/BorwinAR" class="twitter-follow-button" data-show-count="false" data-lang="es" data-size="large">Seguir en @BorwinAR</a>'
+        '<a href="https://twitter.com/SocialTarget1" class="twitter-follow-button" data-show-count="false" data-lang="es" data-size="large">Seguir en @BorwinAR</a>'
       when 'CO'
-        '<a href="https://twitter.com/borwincolombia" class="twitter-follow-button" data-show-count="false" data-lang="es" data-size="large">Seguir en @borwincolombia</a>'
+        '<a href="https://twitter.com/SocialTarget1" class="twitter-follow-button" data-show-count="false" data-lang="es" data-size="large">Seguir en @borwincolombia</a>'
       when 'MX'
-        '<a href="https://twitter.com/borwinmexico" class="twitter-follow-button" data-show-count="false" data-lang="es" data-size="large">Seguir en @borwinmexico</a>'
+        '<a href="https://twitter.com/SocialTarget1" class="twitter-follow-button" data-show-count="false" data-lang="es" data-size="large">Seguir en @borwinmexico</a>'
     end
   end
 end

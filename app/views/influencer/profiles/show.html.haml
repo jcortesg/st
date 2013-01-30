@@ -43,7 +43,7 @@
       -if @influencer.need_approval? or ! @influencer.approved?
         .message{:style => 'margin:20px; padding:6px; border-radius:6px; color: #E01B6A; border: 1px solid #E01B6A; background:#FFABCD'}
           -if @influencer.need_approval? and !@influencer.approval_message.nil?
-            %h4 Borwin está analizando tu perfil por no cumplir con los requerimientos mínimos para pertenecer a la plataforma.
+            %h4 Social Target está analizando tu perfil por no cumplir con los requerimientos mínimos para pertenecer a la plataforma.
           -elsif @influencer.need_approval? and @influencer.approval_message.nil?
             .formulari
               = simple_form_for(@influencer, :url => influencer_profiles_process_approval_message_path, :html => { class: "", method: :put }) do |f|

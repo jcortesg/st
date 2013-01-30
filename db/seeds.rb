@@ -1,13 +1,13 @@
-unless User.where(:email => 'admin@borwin.net').exists?
-  @user = User.new(email: 'admin@borwin.net', password: '221181', password_confirmation: '221181')
+unless User.where(:email => 'admin@social-target.net').exists?
+  @user = User.new(email: 'admin@social-target.net', password: 'social123', password_confirmation: 'social123')
   @user.role = 'admin'
   @user.approved = true
   @user.save!
 end
 
 if Rails.env == 'development'
-  unless User.where(email: 'anunciante@borwin.net').exists?
-    @user = User.new(email: 'anunciante@borwin.net', password: '221181', password_confirmation: '221181')
+  unless User.where(email: 'anunciante@social-target.net').exists?
+    @user = User.new(email: 'anunciante@social-target.net', password: 'social123', password_confirmation: 'social123')
     @user.role = 'advertiser'
     @user.approved = true
     @user.save!
@@ -17,8 +17,8 @@ if Rails.env == 'development'
     @advertiser.save!
   end
 
-  unless User.where(email: 'afiliado@borwin.net').exists?
-    @user = User.new(email: 'afiliado@borwin.net', password: '221181', password_confirmation: '221181')
+  unless User.where(email: 'afiliado@social-target.net').exists?
+    @user = User.new(email: 'afiliado@social-target.net', password: 'social123', password_confirmation: 'social123')
     @user.role = 'affiliate'
     @user.approved = true
     @user.save!

@@ -1,4 +1,4 @@
-Borwin::Application.configure do
+SocialTarget::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb
 
   # Code is not reloaded between requests
@@ -60,7 +60,7 @@ Borwin::Application.configure do
   config.active_support.deprecation = :notify
   
   # Devise mailer
-  config.action_mailer.default_url_options = { :host => 'www.borwin.net' }
+  config.action_mailer.default_url_options = { :host => 'argentina.social-target.net' }
 
   config.action_mailer.delivery_method = :sendmail
   config.action_mailer.perform_deliveries = true
@@ -70,9 +70,9 @@ end
 #ActionMailer::Base.smtp_settings = {
 #  address: "smtp.gmail.com",
 #  port: 587,
-#  domain: 'borwin.net',
-#  user_name: 'noreply@borwin.net',
-#  password: 'borwin474%',
+#  domain: 'social-target.net',
+#  user_name: 'noreply@social-target.net',
+#  password: '',
 #  authentication: 'plain',
 #  enable_starttls_auto: true
 #}

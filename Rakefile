@@ -4,4 +4,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-Borwin::Application.load_tasks
+SocialTarget::Application.load_tasks

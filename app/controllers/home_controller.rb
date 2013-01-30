@@ -127,13 +127,13 @@ class HomeController < ApplicationController
     }
     case country
       when 'AR'
-        redirect_to redirecting_path( :url => 'http://borwin.net')
+        redirect_to redirecting_path( :url => 'http://argentina.social-target.net')
       when 'MX'
-        redirect_to redirecting_path( :url => 'http://mexico.borwin.net')
+        redirect_to redirecting_path( :url => 'http://mexico.social-target.net')
       when 'CO'
-        redirect_to redirecting_path( :url => 'http://colombia.borwin.net')
+        redirect_to redirecting_path( :url => 'http://www.social-target.net')
       else
-        redirect_to redirecting_path( :url => 'http://borwin.net')
+        redirect_to redirecting_path( :url => 'http://www.social-target.net')
     end
   end
 
@@ -146,13 +146,13 @@ class HomeController < ApplicationController
     }
     case country
       when 'AR'
-        @redirector = 'http://borwin.net'
+        @redirector = 'http://argentina.social-target.net'
       when 'MX'
-        @redirector = 'http://mexico.borwin.net'
+        @redirector = 'http://mexico.social-target.net'
       when 'CO'
-        @redirector = 'http://colombia.borwin.net'
+        @redirector = 'http://www.social-target.net'
       else
-        @redirector = 'http://borwin.net'
+        @redirector = 'http://www.social-target.net'
       end
   end
 
@@ -164,17 +164,17 @@ class HomeController < ApplicationController
       case params[:invitation_code][0]
         when 'A'
           if APP_CONFIG['app_country'] != 'AR'
-            redirect_to 'http://borwin.net/I'+params[:invitation_code].to_s
+            redirect_to 'http://argentina.social-target.net/I'+params[:invitation_code].to_s
             return
           end
         when 'C'
           if APP_CONFIG['app_country'] != 'CO'
-            redirect_to 'http://colombia.borwin.net/I'+params[:invitation_code].to_s
+            redirect_to 'http://www.social-target.net/I'+params[:invitation_code].to_s
             return
           end
         when 'M'
           if APP_CONFIG['app_country'] != 'MX'
-            redirect_to 'http://mexico.borwin.net/I'+params[:invitation_code].to_s
+            redirect_to 'http://mexico.social-target.net/I'+params[:invitation_code].to_s
             return
           end
       end
@@ -199,17 +199,17 @@ class HomeController < ApplicationController
       case params[:link_code][0]
         when 'A'
           if APP_CONFIG['app_country'] != 'AR'
-            redirect_to 'http://borwin.net/L'+params[:link_code].to_s
+            redirect_to 'http://argentina.social-target.net/L'+params[:link_code].to_s
             return
           end
         when 'C'
           if APP_CONFIG['app_country'] != 'CO'
-            redirect_to 'http://colombia.borwin.net/L'+params[:link_code].to_s
+            redirect_to 'http://www.social-target.net/L'+params[:link_code].to_s
             return
           end
         when 'M'
           if APP_CONFIG['app_country'] != 'MX'
-            redirect_to 'http://mexico.borwin.net/L'+params[:link_code].to_s
+            redirect_to 'http://mexico.social-target.net/L'+params[:link_code].to_s
             return
           end
       end
@@ -234,17 +234,17 @@ class HomeController < ApplicationController
       case params[:picture_code][0]
         when 'A'
           if APP_CONFIG['app_country'] != 'AR'
-            redirect_to 'http://borwin.net/P'+params[:picture_code].to_s
+            redirect_to 'http://argentina.social-target.net/P'+params[:picture_code].to_s
             return
           end
         when 'C'
           if APP_CONFIG['app_country'] != 'CO'
-            redirect_to 'http://colombia.borwin.net/P'+params[:picture_code].to_s
+            redirect_to 'http://www.social-target.net/P'+params[:picture_code].to_s
             return
           end
         when 'M'
           if APP_CONFIG['app_country'] != 'MX'
-            redirect_to 'http://mexico.borwin.net/P'+params[:picture_code].to_s
+            redirect_to 'http://mexico.social-target.net/P'+params[:picture_code].to_s
             return
           end
       end

@@ -1,4 +1,4 @@
-Borwin::Application.routes.draw do
+SocialTarget::Application.routes.draw do
   devise_for :users, :controllers => {:registrations => "registrations"}
   devise_scope :user do
     get '/users/new_influencer', :to => 'registrations#new_influencer', :as => :influencer_devise_registration

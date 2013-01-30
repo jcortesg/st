@@ -1,7 +1,7 @@
 !!!
 %html
   %head
-    %title Borwin - It's time to go social!
+    %title Social Target!
     = stylesheet_link_tag 'application'
     - if params[:controller].include?('admin')
       = stylesheet_link_tag 'admin/admin'
@@ -153,7 +153,7 @@
                   %ul.dropdown-menu
                     %li= link_to 'La Empresa', about_us_path
                     %li= link_to 'Prensa', press_path
-                    %li= link_to 'Blog', 'http://blog.borwin.net', target: '_blank'
+                    %li= link_to 'Blog', 'http://blog.social-target.net', target: '_blank'
                     %li= link_to t('work_with_us'), work_with_us_path
                     %li= link_to t('contact_us'), contact_path
             - if user_signed_in?
@@ -213,11 +213,11 @@
           %ul
             %li
               %li= link_to 'Argentina', "#"
-              %li= link_to 'Brasil', "mailto: brasil@borwin.net"
-              %li= link_to 'Colombia', "mailto: colombia@borwin.net"
-              %li= link_to 'Chile', "mailto: chile@borwin.net"
-              %li= link_to 'Ecuador', "mailto: ecuador@borwin.net"
-              %li= link_to 'España', "mailto: españa@borwin.net"
-              %li= link_to 'México', "mailto: mexico@borwin.net"
-              %li= link_to 'Paraguay', "mailto: paraguay@borwin.net"
-              %li= link_to 'Uruguay', "mailto: uruguay@borwin.net"
+              %li= link_to 'Brasil', "mailto: sebastian@social-taget.net"
+              %li= link_to 'Colombia', "mailto: sebastian@social-taget.net"
+              %li= link_to 'Chile', "mailto: sebastian@social-taget.net"
+              %li= link_to 'Ecuador', "mailto: sebastian@social-taget.net"
+              %li= link_to 'España', "mailto: sebastian@social-taget.net"
+              %li= link_to 'México', "mailto: sebastian@social-taget.net"
+              %li= link_to 'Paraguay', "mailto: sebastian@social-taget.net"
+              %li= link_to 'Uruguay', "mailto: sebastian@social-taget.net"

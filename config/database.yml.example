@@ -2,11 +2,10 @@ development:
   adapter: mysql2
   encoding: utf8
   reconnect: false
-  database: borwin
+  database: social_target_dev
   pool: 5
-  username: borwin
-  password: j!R54gYj*U9
-  socket: /tmp/mysql.sock
+  username: root
+  password: 
   
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -15,18 +14,16 @@ test:
   adapter: mysql2
   encoding: utf8
   reconnect: false
-  database: Borwin_test
+  database: social_target_test
   pool: 5
-  username: borwin
-  password: j!R54gYj*U9
-  socket: /tmp/mysql.sock
+  username: root
+  password: 
 
 production:
   adapter: mysql2
   encoding: utf8
   reconnect: false
-  database: Borwin_production
+  database: social_target
   pool: 5
-  username: borwin
-  password: j!R54gYj*U9
-  socket: /tmp/mysql.sock
+  username: root
+  password: 

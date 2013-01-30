@@ -513,10 +513,6 @@ ActiveRecord::Schema.define(:version => 20121204175025) do
     t.datetime "updated_at", :null => false
   end
 
-  create_table "temp_ids", :id => false, :force => true do |t|
-    t.integer "id"
-  end
-
   create_table "transactions", :force => true do |t|
     t.integer  "attachable_id"
     t.string   "attachable_type"

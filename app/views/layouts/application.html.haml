@@ -1,8 +1,8 @@
 !!!
 %html
   %head
-    %title Borwin - It's time to go social!
-    = favicon_link_tag '/borwin.ico'
+    %title Social Target!
+    =# favicon_link_tag '/borwin.ico'
     = stylesheet_link_tag 'application'
     - if params[:controller].include?('admin')
       = stylesheet_link_tag 'admin/admin'
@@ -162,7 +162,7 @@
                     %li= link_to t('the_company'), about_us_path
                     %li= link_to t('presentation'), presentacion_path
                     %li= link_to t('press'), press_path
-                    %li= link_to 'Blog', 'http://blog.borwin.net', target: '_blank'
+                    %li= link_to 'Blog', 'http://blog.social-target.net', target: '_blank'
                     %li= link_to t('work_with_us'), work_with_us_path
                     %li= link_to t('contact_us'), contact_path
             - if user_signed_in?
@@ -231,7 +231,7 @@
                   %li= link_to 'Argentina', country_redirector_path(:code => 'AR')
                 - when 'AR'
                   %li= link_to 'Argentina', "#"
-              %li= link_to 'Brasil', "mailto: brasil@borwin.net"
+              %li= link_to 'Brasil', "mailto: sebastian@social-target.net"
               -case APP_CONFIG['app_country']
                 -when 'AR'
                   %li= link_to 'Colombia', country_redirector_path(:code => 'CO')
@@ -239,9 +239,9 @@
                   %li= link_to 'Colombia', country_redirector_path(:code => 'CO')
                 -when 'CO'
                   %li= link_to 'Colombia', "#"
-              %li= link_to 'Chile', "mailto: chile@borwin.net"
-              %li= link_to 'Ecuador', "mailto: ecuador@borwin.net"
-              %li= link_to 'España', "mailto: españa@borwin.net"
+              %li= link_to 'Chile', "mailto: sebastian@social-target.net"
+              %li= link_to 'Ecuador', "mailto: sebastian@social-target.net"
+              %li= link_to 'España', "mailto: sebastian@social-target.net"
               -case APP_CONFIG['app_country']
                 -when 'AR'
                   %li= link_to 'México', country_redirector_path(:code => 'MX')
@@ -249,5 +249,5 @@
                   %li= link_to 'México', country_redirector_path(:code => 'MX')
                 -when 'MX'
                   %li= link_to 'México', "#"
-              %li= link_to 'Paraguay', "mailto: paraguay@borwin.net"
-              %li= link_to 'Uruguay', "mailto: uruguay@borwin.net"
+              %li= link_to 'Paraguay', "mailto: sebastian@social-target.net"
+              %li= link_to 'Uruguay', "mailto: sebastian@social-target.net"

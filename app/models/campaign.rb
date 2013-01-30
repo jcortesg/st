@@ -68,7 +68,7 @@ class Campaign < ActiveRecord::Base
       where(status: 'active')
     end
 
-    # Gets a twitter connection with Borwin credentials
+    # Gets a twitter connection with Social Target credentials
     def borwin_twitter_connection
       Twitter.configure do |config|
         config.consumer_key = TWITTER_CONSUMER_KEY

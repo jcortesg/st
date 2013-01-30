@@ -52,7 +52,7 @@ es_CO:
         can_create_campaigns: Crear Campañas?
         can_create_click_fee: Tweets por Clicks?
         web: Página Web
-        advertising_source: Como conoció Borwin
+        advertising_source: Como conoció Social Target
         position: Cargo
         brand: Marca
         twitter_screen_name: Twitter
@@ -68,7 +68,7 @@ es_CO:
         phone: Téléfono
         can_create_campaigns: Crear Campañas?
         web: Página Web
-        advertising_source: Como conoció Borwin
+        advertising_source: Como conoció Social Target
         position: Cargo
         brand: Marca
         twitter_screen_name: Twitter
@@ -188,7 +188,7 @@ es_CO:
         transaction_at: Fecha
         transaction_type: Tipo
         details: Detalle
-        borwint_transaction: Borwin?
+        borwint_transaction: Social Target?
         amount: Importe
         balance: Balance
       cash_out:

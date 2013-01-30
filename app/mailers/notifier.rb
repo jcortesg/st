@@ -1,15 +1,15 @@
 # encoding: utf-8
 class Notifier < ActionMailer::Base
-  default from: "Borwin <noreply@borwin.net>"
+  default from: "Social Target <noreply@social-target.net>"
 
   # Stest mail
   def test_mail
-    mail(to: "rorra@rorra.com.ar", subject: "Borwin test")
+    mail(to: "rorra@rorra.com.ar", subject: "Social Target test")
   end
 
   # test mail
   def tester
-    mail(to: "juan.amoros@redmintsolutions.com", subject: "Borwin test")
+    mail(to: "juan.amoros@redmintsolutions.com", subject: "Social Target test")
   end
 
   # Site contact
@@ -17,11 +17,11 @@ class Notifier < ActionMailer::Base
     @site_contact = site_contact
     case APP_CONFIG['app_country']
       when 'AR'
-        mail(to: 'sebastian@borwin.net', subject: "Contacto @ Borwin - Its time to go social")
+        mail(to: 'sebastian@social-target.net', subject: "Contacto @ Social Target - Its time to go social")
       when 'CO'
-        mail(to: 'admincolombia@borwin.net', subject: "Contacto @ Borwin - Its time to go social")
+        mail(to: 'sebastian@social-target.net', subject: "Contacto @ Social Target - Its time to go social")
       when 'MX'
-        mail(to: 'adminmexico@borwin.net', subject: "Contacto @ Borwin - Its time to go social")
+        mail(to: 'sebastian@social-target.net', subject: "Contacto @ Social Target - Its time to go social")
     end
   end
 
@@ -30,11 +30,11 @@ class Notifier < ActionMailer::Base
     @tweet = tweet
     case APP_CONFIG['app_country']
       when 'AR'
-        mail(to: 'sebastian@borwin.net', subject: "[ERROR] @ Borwin - Tweet NO publicado!!!")
+        mail(to: 'sebastian@social-target.net', subject: "[ERROR] @ Social Target - Tweet NO publicado!!!")
       when 'CO'
-        mail(to: 'admincolombia@borwin.net', subject: "[ERROR] @ Borwin - Tweet NO publicado!!!")
+        mail(to: 'sebastian@social-target.net', subject: "[ERROR] @ Social Target - Tweet NO publicado!!!")
       when 'MX'
-        mail(to: 'adminmexico@borwin.net', subject: "[ERROR] @ Borwin - Tweet NO publicado!!!")
+        mail(to: 'sebastian@social-target.net', subject: "[ERROR] @ Social Target - Tweet NO publicado!!!")
     end
   end
 
@@ -43,11 +43,11 @@ class Notifier < ActionMailer::Base
     @site_advertiser_contact = site_advertiser_contact
     case APP_CONFIG['app_country']
       when 'AR'
-        mail(to: 'sebastian@borwin.net', subject: "Contacto @ Borwin - Its time to go social")
+        mail(to: 'sebastian@social-target.net', subject: "Contacto @ Social Target - Its time to go social")
       when 'CO'
-        mail(to: 'admincolombia@borwin.net', subject: "Contacto @ Borwin - Its time to go social")
+        mail(to: 'sebastian@social-target.net', subject: "Contacto @ Social Target - Its time to go social")
       when 'MX'
-        mail(to: 'adminmexico@borwin.net', subject: "Contacto @ Borwin - Its time to go social")
+        mail(to: 'sebastian@social-target.net', subject: "Contacto @ Social Target - Its time to go social")
     end
   end
 
@@ -57,7 +57,7 @@ class Notifier < ActionMailer::Base
     attachments.inline['logo.jpg'] = File.read(Rails.root.join('app/assets/images/logo.jpg'))
     attachments.inline['sellochico.jpg'] = File.read(Rails.root.join('app/assets/images/sellochico.jpg'))
 
-    mail(to: @user.email, subject: "Cuenta Activada @ Borwin - Its time to go social")
+    mail(to: @user.email, subject: "Cuenta Activada @ Social Target - Its time to go social")
   end
 
   # A user was dissapproved
@@ -66,7 +66,7 @@ class Notifier < ActionMailer::Base
     attachments.inline['logo.jpg'] = File.read(Rails.root.join('app/assets/images/logo.jpg'))
     attachments.inline['sellochico.jpg'] = File.read(Rails.root.join('app/assets/images/sellochico.jpg'))
     
-    mail(to: user.email, subject: "Cuenta Desactivada @ Borwin - Its time to go social")
+    mail(to: user.email, subject: "Cuenta Desactivada @ Social Target - Its time to go social")
   end
 
   # An error has occurred
@@ -77,11 +77,11 @@ class Notifier < ActionMailer::Base
 
     case APP_CONFIG['app_country']
       when 'AR'
-        mail(to: 'sebastian@borwin.net', subject: "Notificaciones @ Borwin - Error obteniendo conexiones")
+        mail(to: 'sebastian@social-target.net', subject: "Notificaciones @ Social Target - Error obteniendo conexiones")
       when 'CO'
-        mail(to: 'admincolombia@borwin.net', subject: "Notificaciones @ Borwin - Error obteniendo conexiones")
+        mail(to: 'sebastian@social-target.net', subject: "Notificaciones @ Social Target - Error obteniendo conexiones")
       when 'MX'
-        mail(to: 'adminmexico@borwin.net', subject: "Notificaciones @ Borwin - Error obteniendo conexiones")
+        mail(to: 'sebastian@social-target.net', subject: "Notificaciones @ Social Target - Error obteniendo conexiones")
     end
 
 
@@ -95,7 +95,7 @@ class Notifier < ActionMailer::Base
     attachments.inline['logo.jpg'] = File.read(Rails.root.join('app/assets/images/logo.jpg'))
     attachments.inline['sellochico.jpg'] = File.read(Rails.root.join('app/assets/images/sellochico.jpg'))
 
-    mail(to: referrer.email, subject: "Notificaciones @ Borwin - Un referido ha generado un ingreso")
+    mail(to: referrer.email, subject: "Notificaciones @ Social Target - Un referido ha generado un ingreso")
   end
 
   # A referral has sign up
@@ -106,7 +106,7 @@ class Notifier < ActionMailer::Base
     attachments.inline['logo.jpg'] = File.read(Rails.root.join('app/assets/images/logo.jpg'))
     attachments.inline['sellochico.jpg'] = File.read(Rails.root.join('app/assets/images/sellochico.jpg'))
     
-    mail(to: referrer.email, subject: "Notificaciones @ Borwin - Tienes un nuevo referido")
+    mail(to: referrer.email, subject: "Notificaciones @ Social Target - Tienes un nuevo referido")
   end
 
   # A user has sign up
@@ -116,15 +116,13 @@ class Notifier < ActionMailer::Base
     attachments.inline['logo.jpg'] = File.read(Rails.root.join('app/assets/images/logo.jpg'))
     attachments.inline['sellochico.jpg'] = File.read(Rails.root.join('app/assets/images/sellochico.jpg'))
 
-    #mail(to: 'sebastian@borwin.net', subject: "Notificaciones @ Borwin - Nuevo usuario registrado")
-
     case APP_CONFIG['app_country']
       when 'AR'
-        mail(to: 'sebastian@borwin.net', subject: "Notificaciones @ Borwin - Nuevo usuario registrado")
+        mail(to: 'sebastian@social-target.net', subject: "Notificaciones @ Social Target - Nuevo usuario registrado")
       when 'CO'
-        mail(to: 'admincolombia@borwin.net', subject: "Notificaciones @ Borwin - Nuevo usuario registrado")
+        mail(to: 'sebastian@social-target.net', subject: "Notificaciones @ Social Target - Nuevo usuario registrado")
       when 'MX'
-        mail(to: 'adminmexico@borwin.net', subject: "Notificaciones @ Borwin - Nuevo usuario registrado")
+        mail(to: 'sebastian@social-target.net', subject: "Notificaciones @ Social Target - Nuevo usuario registrado")
     end
 
   end
@@ -136,7 +134,7 @@ class Notifier < ActionMailer::Base
     attachments.inline['logo.jpg'] = File.read(Rails.root.join('app/assets/images/logo.jpg'))
     attachments.inline['sellochico.jpg'] = File.read(Rails.root.join('app/assets/images/sellochico.jpg'))
 
-    mail(to: tweet.influencer.user.email, subject: "Notificaciones @ Borwin - Recibiste una propuesta para un nuevo tweet")
+    mail(to: tweet.influencer.user.email, subject: "Notificaciones @ Social Target - Recibiste una propuesta para un nuevo tweet")
   end
 
   # Sends an email to the admin that a proposal has been created
@@ -150,11 +148,11 @@ class Notifier < ActionMailer::Base
 
     case APP_CONFIG['app_country']
       when 'AR'
-        mail(to: 'sebastian@borwin.net', cc: ['sofia@borwin.net', 'poli@borwin.net'], subject: "Notificaciones @ Borwin - @#{@screen_name} recibió una propuesto de Tweet")
+        mail(to: 'sebastian@social-target.net', subject: "Notificaciones @ Social Target - @#{@screen_name} recibió una propuesto de Tweet")
       when 'CO'
-        mail(to: 'admincolombia@borwin.net', subject: "Notificaciones @ Borwin - @#{@screen_name} recibió una propuesto de Tweet")
+        mail(to: 'sebastian@social-target.net', subject: "Notificaciones @ Social Target - @#{@screen_name} recibió una propuesto de Tweet")
       when 'MX'
-        mail(to: 'adminmexico@borwin.net', subject: "Notificaciones @ Borwin - @#{@screen_name} recibió una propuesto de Tweet")
+        mail(to: 'sebastian@social-target.net', subject: "Notificaciones @ Social Target - @#{@screen_name} recibió una propuesto de Tweet")
     end
 
   end
@@ -167,7 +165,7 @@ class Notifier < ActionMailer::Base
     attachments.inline['logo.jpg'] = File.read(Rails.root.join('app/assets/images/logo.jpg'))
     attachments.inline['sellochico.jpg'] = File.read(Rails.root.join('app/assets/images/sellochico.jpg'))
 
-    mail(to: tweet.influencer.user.email, subject: "Notificaciones @ Borwin - Uno de tus tweets fue revisado/modificado por una celebridad")
+    mail(to: tweet.influencer.user.email, subject: "Notificaciones @ Social Target - Uno de tus tweets fue revisado/modificado por una celebridad")
   end
 
   # Sends an email to the advertiser to let him know that the tweet was reviewed
@@ -177,7 +175,7 @@ class Notifier < ActionMailer::Base
     attachments.inline['logo.jpg'] = File.read(Rails.root.join('app/assets/images/logo.jpg'))
     attachments.inline['sellochico.jpg'] = File.read(Rails.root.join('app/assets/images/sellochico.jpg'))
 
-    mail(to: tweet.campaign.advertiser.user.email, subject: "Notificaciones @ Borwin - Uno de tus tweets fue revisado/modificado por una empresa")
+    mail(to: tweet.campaign.advertiser.user.email, subject: "Notificaciones @ Social Target - Uno de tus tweets fue revisado/modificado por una empresa")
   end
 
   # Sends an email to the influencer to let him know that the tweet was accepted
@@ -187,7 +185,7 @@ class Notifier < ActionMailer::Base
     attachments.inline['logo.jpg'] = File.read(Rails.root.join('app/assets/images/logo.jpg'))
     attachments.inline['sellochico.jpg'] = File.read(Rails.root.join('app/assets/images/sellochico.jpg'))
 
-    mail(to: tweet.influencer.user.email, subject: "Notificaciones @ Borwin - Uno de tus tweets revisados, fue aceptado por una empresa y esta listo para ser públicado")
+    mail(to: tweet.influencer.user.email, subject: "Notificaciones @ Social Target - Uno de tus tweets revisados, fue aceptado por una empresa y esta listo para ser públicado")
   end
 
   # Sends an email to the advertiser to let him know the tweet was accepted
@@ -197,7 +195,7 @@ class Notifier < ActionMailer::Base
     attachments.inline['logo.jpg'] = File.read(Rails.root.join('app/assets/images/logo.jpg'))
     attachments.inline['sellochico.jpg'] = File.read(Rails.root.join('app/assets/images/sellochico.jpg'))
 
-    mail(to: tweet.campaign.advertiser.user.email, subject: "Notificaciones @ Borwin - Uno de tus tweets fue confirmado y esta listo para ser públicado")
+    mail(to: tweet.campaign.advertiser.user.email, subject: "Notificaciones @ Social Target - Uno de tus tweets fue confirmado y esta listo para ser públicado")
   end
 
   # Sends an email to the influencer to let him know that the tweet was rejected
@@ -207,7 +205,7 @@ class Notifier < ActionMailer::Base
     attachments.inline['logo.jpg'] = File.read(Rails.root.join('app/assets/images/logo.jpg'))
     attachments.inline['sellochico.jpg'] = File.read(Rails.root.join('app/assets/images/sellochico.jpg'))
 
-    mail(to: tweet.influencer.user.email, subject: "Notificaciones @ Borwin - Una propuesta de tweet que has modificado, ha sido rechazada por el anunciante")
+    mail(to: tweet.influencer.user.email, subject: "Notificaciones @ Social Target - Una propuesta de tweet que has modificado, ha sido rechazada por el anunciante")
   end
 
   # Sends an email to the advertiser to let him know the tweet was rejected
@@ -219,14 +217,14 @@ class Notifier < ActionMailer::Base
 
     @screen_name = tweet.influencer.user.twitter_screen_name
 
-    mail(to: tweet.campaign.advertiser.user.email, subject: "Notificaciones @ Borwin - Tweet rechazado por @"+@screen_name+ ". "+@tweet.reject_cause)
+    mail(to: tweet.campaign.advertiser.user.email, subject: "Notificaciones @ Social Target - Tweet rechazado por @"+@screen_name+ ". "+@tweet.reject_cause)
     case APP_CONFIG['app_country']
       when 'AR'
-        mail(to: 'sebastian@borwin.net', subject: "Notificaciones @ Borwin - Un tweet realizado por "+tweet.campaign.advertiser.user.email+" fue rechazado por @"+@screen_name+ ". "+@tweet.reject_cause)
+        mail(to: 'sebastian@social-target.net', subject: "Notificaciones @ Social Target - Un tweet realizado por "+tweet.campaign.advertiser.user.email+" fue rechazado por @"+@screen_name+ ". "+@tweet.reject_cause)
       when 'CO'
-        mail(to: 'admincolombia@borwin.net', subject: "Notificaciones @ Borwin - Un tweet realizado por "+tweet.campaign.advertiser.user.email+" fue rechazado por @"+@screen_name+ ". "+@tweet.reject_cause)
+        mail(to: 'sebastian@social-target.net', subject: "Notificaciones @ Social Target - Un tweet realizado por "+tweet.campaign.advertiser.user.email+" fue rechazado por @"+@screen_name+ ". "+@tweet.reject_cause)
       when 'MX'
-        mail(to: 'adminmexico@borwin.net', subject: "Notificaciones @ Borwin - Un tweet realizado por "+tweet.campaign.advertiser.user.email+" fue rechazado por @"+@screen_name+ ". "+@tweet.reject_cause)
+        mail(to: 'sebastian@social-target.net', subject: "Notificaciones @ Social Target - Un tweet realizado por "+tweet.campaign.advertiser.user.email+" fue rechazado por @"+@screen_name+ ". "+@tweet.reject_cause)
     end
 
   end
@@ -241,18 +239,18 @@ class Notifier < ActionMailer::Base
     @screen_name = tweet.influencer.user.twitter_screen_name
 
     tweet.campaign.influencers.each do |influencer|
-      mail(to: influencer.user.email, subject: "Notificaciones @ Borwin - Una campaña en la que participas fue cancelada. Tweet rechazado por @"+@screen_name+ ". ")
+      mail(to: influencer.user.email, subject: "Notificaciones @ Social Target - Una campaña en la que participas fue cancelada. Tweet rechazado por @"+@screen_name+ ". ")
     end
 
-    mail(to: tweet.campaign.advertiser.user.email, subject: "Notificaciones @ Borwin - Tweet rechazado por @"+@screen_name+ ". "+@tweet.reject_cause)
+    mail(to: tweet.campaign.advertiser.user.email, subject: "Notificaciones @ Social Target - Tweet rechazado por @"+@screen_name+ ". "+@tweet.reject_cause)
 
     case APP_CONFIG['app_country']
       when 'AR'
-        mail(to: 'sebastian@borwin.net', subject: "Notificaciones @ Borwin - Un tweet realizado por "+tweet.campaign.advertiser.user.email+" fue rechazado por @"+@screen_name+ ". "+@tweet.reject_cause)
+        mail(to: 'sebastian@social-target.net', subject: "Notificaciones @ Social Target - Un tweet realizado por "+tweet.campaign.advertiser.user.email+" fue rechazado por @"+@screen_name+ ". "+@tweet.reject_cause)
       when 'CO'
-        mail(to: 'admincolombia@borwin.net', subject: "Notificaciones @ Borwin - Un tweet realizado por "+tweet.campaign.advertiser.user.email+" fue rechazado por @"+@screen_name+ ". "+@tweet.reject_cause)
+        mail(to: 'sebastian@social-target.net', subject: "Notificaciones @ Social Target - Un tweet realizado por "+tweet.campaign.advertiser.user.email+" fue rechazado por @"+@screen_name+ ". "+@tweet.reject_cause)
       when 'MX'
-        mail(to: 'adminmexico@borwin.net', subject: "Notificaciones @ Borwin - Un tweet realizado por "+tweet.campaign.advertiser.user.email+" fue rechazado por @"+@screen_name+ ". "+@tweet.reject_cause)
+        mail(to: 'sebastian@social-target.net', subject: "Notificaciones @ Social Target - Un tweet realizado por "+tweet.campaign.advertiser.user.email+" fue rechazado por @"+@screen_name+ ". "+@tweet.reject_cause)
     end
 
   end
@@ -264,7 +262,7 @@ class Notifier < ActionMailer::Base
     attachments.inline['logo.jpg'] = File.read(Rails.root.join('app/assets/images/logo.jpg'))
     attachments.inline['sellochico.jpg'] = File.read(Rails.root.join('app/assets/images/sellochico.jpg'))
 
-    mail(to: tweet.campaign.advertiser.user.email, subject: "Notificaciones @ Borwin - Uno de tus tweets fue públicado")
+    mail(to: tweet.campaign.advertiser.user.email, subject: "Notificaciones @ Social Target - Uno de tus tweets fue públicado")
   end
 
   # Sends an email to the influencer when a tweet is activated
@@ -274,7 +272,7 @@ class Notifier < ActionMailer::Base
     attachments.inline['logo.jpg'] = File.read(Rails.root.join('app/assets/images/logo.jpg'))
     attachments.inline['sellochico.jpg'] = File.read(Rails.root.join('app/assets/images/sellochico.jpg'))
 
-    mail(to: tweet.influencer.user.email, subject: "Notificaciones @ Borwin - Uno de tus tweets fue publicado")
+    mail(to: tweet.influencer.user.email, subject: "Notificaciones @ Social Target - Uno de tus tweets fue publicado")
   end
 
   # Sends an email to a user that was converted from an advertiser to an affiliate
@@ -282,7 +280,7 @@ class Notifier < ActionMailer::Base
     attachments.inline['logo.jpg'] = File.read(Rails.root.join('app/assets/images/logo.jpg'))
     attachments.inline['sellochico.jpg'] = File.read(Rails.root.join('app/assets/images/sellochico.jpg'))
 
-    mail(to: user.email, subject: "Notificaciones @ Borwin - Has sido recategorizado en Borwin")
+    mail(to: user.email, subject: "Notificaciones @ Social Target - Has sido recategorizado en Social Target")
   end
 
   # Sends an email to an advertiser when a campaign has ended
@@ -293,7 +291,7 @@ class Notifier < ActionMailer::Base
     attachments.inline['logo.jpg'] = File.read(Rails.root.join('app/assets/images/logo.jpg'))
     attachments.inline['sellochico.jpg'] = File.read(Rails.root.join('app/assets/images/sellochico.jpg'))
 
-    mail(to: advertiser.user.email, subject: "Notificaciones @ Borwin - Su campaña ha finalizado")
+    mail(to: advertiser.user.email, subject: "Notificaciones @ Social Target - Su campaña ha finalizado")
   end
 
   # Sends an email to admin alerting about a tweet expiration
@@ -303,11 +301,11 @@ class Notifier < ActionMailer::Base
 
     case APP_CONFIG['app_country']
       when 'AR'
-        mail(to: 'sebastian@borwin.net', subject: "Tweet expira en "+time.to_s+" minutos - Its time to go social")
+        mail(to: 'sebastian@social-target.net', subject: "Tweet expira en "+time.to_s+" minutos - Its time to go social")
       when 'CO'
-        mail(to: 'admincolombia@borwin.net', subject: "Tweet expira en "+time.to_s+" minutos - Its time to go social")
+        mail(to: 'sebastian@social-target.net', subject: "Tweet expira en "+time.to_s+" minutos - Its time to go social")
       when 'MX'
-        mail(to: 'adminmexico@borwin.net', subject: "Tweet expira en "+time.to_s+" minutos - Its time to go social")
+        mail(to: 'sebastian@social-target.net', subject: "Tweet expira en "+time.to_s+" minutos - Its time to go social")
     end
 
   end
@@ -341,11 +339,11 @@ class Notifier < ActionMailer::Base
 
     case APP_CONFIG['app_country']
       when 'AR'
-        mail(to: 'sebastian@borwin.net', subject: "Anunciante con crédito debajo de $1000 - Its time to go social")
+        mail(to: 'sebastian@social-target.net', subject: "Anunciante con crédito debajo de $1000 - Its time to go social")
       when 'CO'
-        mail(to: 'admincolombia@borwin.net', subject: "Anunciante con crédito debajo de $1000 - Its time to go social")
+        mail(to: 'sebastian@social-target.net', subject: "Anunciante con crédito debajo de $1000 - Its time to go social")
       when 'MX'
-        mail(to: 'adminmexico@borwin.net', subject: "Anunciante con crédito debajo de $1000 - Its time to go social")
+        mail(to: 'sebastian@social-target.net', subject: "Anunciante con crédito debajo de $1000 - Its time to go social")
     end
 
   end
@@ -373,11 +371,11 @@ class Notifier < ActionMailer::Base
 
     case APP_CONFIG['app_country']
       when 'AR'
-        mail(to: 'sebastian@borwin.net, sofia@borwin.net', subject: subject)
+        mail(to: 'sebastian@social-target.net', subject: subject)
       when 'CO'
-        mail(to: 'admincolombia@borwin.net', subject: subject)
+        mail(to: 'sebastian@social-target.net', subject: subject)
       when 'MX'
-        mail(to: 'adminmexico@borwin.net', subject: subject)
+        mail(to: 'sebastian@social-target.net', subject: subject)
     end
   end
 
@@ -388,7 +386,7 @@ class Notifier < ActionMailer::Base
     attachments.inline['logo.jpg'] = File.read(Rails.root.join('app/assets/images/logo.jpg'))
     attachments.inline['sellochico.jpg'] = File.read(Rails.root.join('app/assets/images/sellochico.jpg'))
 
-    mail(to: cash_out.user.email, subject: "Notificaciones @ Borwin -  Se ha realizado el pago de un Cash Out")
+    mail(to: cash_out.user.email, subject: "Notificaciones @ Social Target -  Se ha realizado el pago de un Cash Out")
   end
 
   def influencer_need_approval(influencer)
@@ -399,11 +397,11 @@ class Notifier < ActionMailer::Base
 
     case APP_CONFIG['app_country']
       when 'AR'
-        mail(to: 'sebastian@borwin.net', subject: "Notificaciones @ Borwin -  Usuario requiere aprobación")
+        mail(to: 'sebastian@social-target.net', subject: "Notificaciones @ Social Target -  Usuario requiere aprobación")
       when 'CO'
-        mail(to: 'admincolombia@borwin.net', subject: "Notificaciones @ Borwin -  Usuario requiere aprobación")
+        mail(to: 'sebastian@social-target.net', subject: "Notificaciones @ Social Target -  Usuario requiere aprobación")
       when 'MX'
-        mail(to: 'adminmexico@borwin.net', subject: "Notificaciones @ Borwin -  Usuario requiere aprobación")
+        mail(to: 'sebastian@social-target.net', subject: "Notificaciones @ Social Target -  Usuario requiere aprobación")
     end
   end
 
@@ -413,7 +411,7 @@ class Notifier < ActionMailer::Base
     attachments.inline['logo.jpg'] = File.read(Rails.root.join('app/assets/images/logo.jpg'))
     attachments.inline['sellochico.jpg'] = File.read(Rails.root.join('app/assets/images/sellochico.jpg'))
 
-    mail(to: influencer.user.email, subject: "Notificaciones @ Borwin -  No has sido aprobado.")
+    mail(to: influencer.user.email, subject: "Notificaciones @ Social Target -  No has sido aprobado.")
   end
 
   def influencer_approved(influencer)
@@ -422,6 +420,6 @@ class Notifier < ActionMailer::Base
     attachments.inline['logo.jpg'] = File.read(Rails.root.join('app/assets/images/logo.jpg'))
     attachments.inline['sellochico.jpg'] = File.read(Rails.root.join('app/assets/images/sellochico.jpg'))
 
-    mail(to: influencer.user.email, subject: "Notificaciones @ Borwin -  Has sido aprobado.")
+    mail(to: influencer.user.email, subject: "Notificaciones @ Social Target -  Has sido aprobado.")
   end
 end

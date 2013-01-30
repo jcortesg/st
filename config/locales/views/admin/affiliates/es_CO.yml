@@ -24,7 +24,7 @@ es_CO:
   state: Estado
   country: País
   postal_code: Código postal
-  how_you_know_borwin: Cómo conoció Borwin
+  how_you_know_borwin: Cómo conoció Social Target
   creation_date: Fecha de creación
   update_date: Fecha de actualización
   can_create_campaigns: Crear campañas?

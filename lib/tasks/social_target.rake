@@ -1,5 +1,5 @@
 # encoding: utf-8
-namespace :borwin do
+namespace :social_target do
   desc 'Updates the influencers twitter data'
   task update_influencer_twitter_data: :environment do
     Influencer.all.each do |influencer|

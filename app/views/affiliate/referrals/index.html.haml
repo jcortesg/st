@@ -5,8 +5,8 @@
     ui_language: 'es',
   }
   var addthis_share = {
-    url: 'http://borwin.net/I#{current_user.invitation_code}',
-    title: 'Registrate en Borwin y ganá dinero por twittear'
+    url: 'http://www.social-target.net/I#{current_user.invitation_code}',
+    title: 'Registrate en Social Target y ganá dinero por twittear'
   }
 
 - if flash.any?
@@ -50,11 +50,11 @@
 
         .share_link
           .twitter_link
-            = link_to("http://borwin.net/I#{current_user.invitation_code}", "http://borwin.net/I#{current_user.invitation_code}", target: "_blank")
+            = link_to("http://www.social-target.net/I#{current_user.invitation_code}", "http://www.social-target.net/I#{current_user.invitation_code}", target: "_blank")
             .center_text
               %a.sharing-button
             :javascript
-              addthis.button('.sharing-button', {}, {url: "http://borwin.net/I#{current_user.invitation_code}", title: "Registrate en Borwin y ganá dinero por twittear"});
+              addthis.button('.sharing-button', {}, {url: "http://www.social-target.net/I#{current_user.invitation_code}", title: "Registrate en Social Target y ganá dinero por twittear"});
 
         %p
           = t('referrals_text_6')
