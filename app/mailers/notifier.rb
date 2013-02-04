@@ -1,19 +1,17 @@
 # encoding: utf-8
 class Notifier < ActionMailer::Base
   default from: "Social Target <noreply@social-target.net>"
+  layout 'notifier'
 
   # Stest mail
   def test_mail
+    attachments.inline['logomail.png'] = File.read(Rails.root.join('app/assets/images/logomail.png'))
     mail(to: "rorra@rorra.com.ar", subject: "Social Target test")
-  end
-
-  # test mail
-  def tester
-    mail(to: "juan.amoros@redmintsolutions.com", subject: "Social Target test")
   end
 
   # Site contact
   def contact(site_contact)
+    attachments.inline['logomail.png'] = File.read(Rails.root.join('app/assets/images/logomail.png'))
     @site_contact = site_contact
     case APP_CONFIG['app_country']
       when 'AR'
@@ -27,6 +25,7 @@ class Notifier < ActionMailer::Base
 
   # Error during tweet publish process
   def error_publishing(tweet)
+    attachments.inline['logomail.png'] = File.read(Rails.root.join('app/assets/images/logomail.png'))
     @tweet = tweet
     case APP_CONFIG['app_country']
       when 'AR'
@@ -40,6 +39,7 @@ class Notifier < ActionMailer::Base
 
   # Site advertiser contact
   def advertiser_contact(site_advertiser_contact)
+    attachments.inline['logomail.png'] = File.read(Rails.root.join('app/assets/images/logomail.png'))
     @site_advertiser_contact = site_advertiser_contact
     case APP_CONFIG['app_country']
       when 'AR'
@@ -53,27 +53,24 @@ class Notifier < ActionMailer::Base
 
   # A user was approved
   def approve(user)
-    @user = user
-    attachments.inline['logo.jpg'] = File.read(Rails.root.join('app/assets/images/logo.jpg'))
-    attachments.inline['sellochico.jpg'] = File.read(Rails.root.join('app/assets/images/sellochico.jpg'))
+    attachments.inline['logomail.png'] = File.read(Rails.root.join('app/assets/images/logomail.png'))
 
+    @user = user
     mail(to: @user.email, subject: "Cuenta Activada @ Social Target - Its time to go social")
   end
 
   # A user was dissapproved
   def disapprove(user)
+    attachments.inline['logomail.png'] = File.read(Rails.root.join('app/assets/images/logomail.png'))
+
     @user = user
-    attachments.inline['logo.jpg'] = File.read(Rails.root.join('app/assets/images/logo.jpg'))
-    attachments.inline['sellochico.jpg'] = File.read(Rails.root.join('app/assets/images/sellochico.jpg'))
-    
+
     mail(to: user.email, subject: "Cuenta Desactivada @ Social Target - Its time to go social")
   end
 
   # An error has occurred
   def twitter_connection_fail()
-
-    attachments.inline['logo.jpg'] = File.read(Rails.root.join('app/assets/images/logo.jpg'))
-    attachments.inline['sellochico.jpg'] = File.read(Rails.root.join('app/assets/images/sellochico.jpg'))
+    attachments.inline['logomail.png'] = File.read(Rails.root.join('app/assets/images/logomail.png'))
 
     case APP_CONFIG['app_country']
       when 'AR'
@@ -92,8 +89,7 @@ class Notifier < ActionMailer::Base
     @referrer = referrer
     @referral = referral
 
-    attachments.inline['logo.jpg'] = File.read(Rails.root.join('app/assets/images/logo.jpg'))
-    attachments.inline['sellochico.jpg'] = File.read(Rails.root.join('app/assets/images/sellochico.jpg'))
+    attachments.inline['logomail.png'] = File.read(Rails.root.join('app/assets/images/logomail.png'))
 
     mail(to: referrer.email, subject: "Notificaciones @ Social Target - Un referido ha generado un ingreso")
   end
@@ -103,8 +99,7 @@ class Notifier < ActionMailer::Base
     @referrer = referrer
     @referral = referral
 
-    attachments.inline['logo.jpg'] = File.read(Rails.root.join('app/assets/images/logo.jpg'))
-    attachments.inline['sellochico.jpg'] = File.read(Rails.root.join('app/assets/images/sellochico.jpg'))
+    attachments.inline['logomail.png'] = File.read(Rails.root.join('app/assets/images/logomail.png'))
     
     mail(to: referrer.email, subject: "Notificaciones @ Social Target - Tienes un nuevo referido")
   end
@@ -113,8 +108,7 @@ class Notifier < ActionMailer::Base
   def user_sign_up(user)
     @user = user
 
-    attachments.inline['logo.jpg'] = File.read(Rails.root.join('app/assets/images/logo.jpg'))
-    attachments.inline['sellochico.jpg'] = File.read(Rails.root.join('app/assets/images/sellochico.jpg'))
+    attachments.inline['logomail.png'] = File.read(Rails.root.join('app/assets/images/logomail.png'))
 
     case APP_CONFIG['app_country']
       when 'AR'
@@ -131,8 +125,7 @@ class Notifier < ActionMailer::Base
   def tweet_creation(tweet)
     @tweet = tweet
 
-    attachments.inline['logo.jpg'] = File.read(Rails.root.join('app/assets/images/logo.jpg'))
-    attachments.inline['sellochico.jpg'] = File.read(Rails.root.join('app/assets/images/sellochico.jpg'))
+    attachments.inline['logomail.png'] = File.read(Rails.root.join('app/assets/images/logomail.png'))
 
     mail(to: tweet.influencer.user.email, subject: "Notificaciones @ Social Target - Recibiste una propuesta para un nuevo tweet")
   end
@@ -141,8 +134,7 @@ class Notifier < ActionMailer::Base
   def tweet_creation_to_admin(tweet)
     @tweet = tweet
 
-    attachments.inline['logo.jpg'] = File.read(Rails.root.join('app/assets/images/logo.jpg'))
-    attachments.inline['sellochico.jpg'] = File.read(Rails.root.join('app/assets/images/sellochico.jpg'))
+    attachments.inline['logomail.png'] = File.read(Rails.root.join('app/assets/images/logomail.png'))
 
     @screen_name = tweet.influencer.user.twitter_screen_name
 
@@ -162,8 +154,7 @@ class Notifier < ActionMailer::Base
   def tweet_reviewed_by_advertiser(tweet)
     @tweet = tweet
 
-    attachments.inline['logo.jpg'] = File.read(Rails.root.join('app/assets/images/logo.jpg'))
-    attachments.inline['sellochico.jpg'] = File.read(Rails.root.join('app/assets/images/sellochico.jpg'))
+    attachments.inline['logomail.png'] = File.read(Rails.root.join('app/assets/images/logomail.png'))
 
     mail(to: tweet.influencer.user.email, subject: "Notificaciones @ Social Target - Uno de tus tweets fue revisado/modificado por una celebridad")
   end
@@ -172,8 +163,7 @@ class Notifier < ActionMailer::Base
   def tweet_reviewed_by_influencer(tweet)
     @tweet = tweet
 
-    attachments.inline['logo.jpg'] = File.read(Rails.root.join('app/assets/images/logo.jpg'))
-    attachments.inline['sellochico.jpg'] = File.read(Rails.root.join('app/assets/images/sellochico.jpg'))
+    attachments.inline['logomail.png'] = File.read(Rails.root.join('app/assets/images/logomail.png'))
 
     mail(to: tweet.campaign.advertiser.user.email, subject: "Notificaciones @ Social Target - Uno de tus tweets fue revisado/modificado por una empresa")
   end
@@ -182,8 +172,7 @@ class Notifier < ActionMailer::Base
   def tweet_accepted_by_advertiser(tweet)
     @tweet = tweet
 
-    attachments.inline['logo.jpg'] = File.read(Rails.root.join('app/assets/images/logo.jpg'))
-    attachments.inline['sellochico.jpg'] = File.read(Rails.root.join('app/assets/images/sellochico.jpg'))
+    attachments.inline['logomail.png'] = File.read(Rails.root.join('app/assets/images/logomail.png'))
 
     mail(to: tweet.influencer.user.email, subject: "Notificaciones @ Social Target - Uno de tus tweets revisados, fue aceptado por una empresa y esta listo para ser públicado")
   end
@@ -192,8 +181,7 @@ class Notifier < ActionMailer::Base
   def tweet_accepted_by_influencer(tweet)
     @tweet = tweet
 
-    attachments.inline['logo.jpg'] = File.read(Rails.root.join('app/assets/images/logo.jpg'))
-    attachments.inline['sellochico.jpg'] = File.read(Rails.root.join('app/assets/images/sellochico.jpg'))
+    attachments.inline['logomail.png'] = File.read(Rails.root.join('app/assets/images/logomail.png'))
 
     mail(to: tweet.campaign.advertiser.user.email, subject: "Notificaciones @ Social Target - Uno de tus tweets fue confirmado y esta listo para ser públicado")
   end
@@ -202,8 +190,7 @@ class Notifier < ActionMailer::Base
   def tweet_rejected_by_advertiser(tweet)
     @tweet = tweet
 
-    attachments.inline['logo.jpg'] = File.read(Rails.root.join('app/assets/images/logo.jpg'))
-    attachments.inline['sellochico.jpg'] = File.read(Rails.root.join('app/assets/images/sellochico.jpg'))
+    attachments.inline['logomail.png'] = File.read(Rails.root.join('app/assets/images/logomail.png'))
 
     mail(to: tweet.influencer.user.email, subject: "Notificaciones @ Social Target - Una propuesta de tweet que has modificado, ha sido rechazada por el anunciante")
   end
@@ -212,8 +199,7 @@ class Notifier < ActionMailer::Base
   def tweet_rejected_by_influencer(tweet)
     @tweet = tweet
 
-    attachments.inline['logo.jpg'] = File.read(Rails.root.join('app/assets/images/logo.jpg'))
-    attachments.inline['sellochico.jpg'] = File.read(Rails.root.join('app/assets/images/sellochico.jpg'))
+    attachments.inline['logomail.png'] = File.read(Rails.root.join('app/assets/images/logomail.png'))
 
     @screen_name = tweet.influencer.user.twitter_screen_name
 
@@ -233,8 +219,7 @@ class Notifier < ActionMailer::Base
   def tweet_rejected_by_influencer_in_dialog(tweet)
     @tweet = tweet
 
-    attachments.inline['logo.jpg'] = File.read(Rails.root.join('app/assets/images/logo.jpg'))
-    attachments.inline['sellochico.jpg'] = File.read(Rails.root.join('app/assets/images/sellochico.jpg'))
+    attachments.inline['logomail.png'] = File.read(Rails.root.join('app/assets/images/logomail.png'))
 
     @screen_name = tweet.influencer.user.twitter_screen_name
 
@@ -259,8 +244,7 @@ class Notifier < ActionMailer::Base
   def tweet_activated_to_advertiser(tweet)
     @tweet = tweet
 
-    attachments.inline['logo.jpg'] = File.read(Rails.root.join('app/assets/images/logo.jpg'))
-    attachments.inline['sellochico.jpg'] = File.read(Rails.root.join('app/assets/images/sellochico.jpg'))
+    attachments.inline['logomail.png'] = File.read(Rails.root.join('app/assets/images/logomail.png'))
 
     mail(to: tweet.campaign.advertiser.user.email, subject: "Notificaciones @ Social Target - Uno de tus tweets fue públicado")
   end
@@ -269,16 +253,14 @@ class Notifier < ActionMailer::Base
   def tweet_activated_to_influencer(tweet)
     @tweet = tweet
 
-    attachments.inline['logo.jpg'] = File.read(Rails.root.join('app/assets/images/logo.jpg'))
-    attachments.inline['sellochico.jpg'] = File.read(Rails.root.join('app/assets/images/sellochico.jpg'))
+    attachments.inline['logomail.png'] = File.read(Rails.root.join('app/assets/images/logomail.png'))
 
     mail(to: tweet.influencer.user.email, subject: "Notificaciones @ Social Target - Uno de tus tweets fue publicado")
   end
 
   # Sends an email to a user that was converted from an advertiser to an affiliate
   def influencer_converted_to_affiliate(user)
-    attachments.inline['logo.jpg'] = File.read(Rails.root.join('app/assets/images/logo.jpg'))
-    attachments.inline['sellochico.jpg'] = File.read(Rails.root.join('app/assets/images/sellochico.jpg'))
+    attachments.inline['logomail.png'] = File.read(Rails.root.join('app/assets/images/logomail.png'))
 
     mail(to: user.email, subject: "Notificaciones @ Social Target - Has sido recategorizado en Social Target")
   end
@@ -288,8 +270,7 @@ class Notifier < ActionMailer::Base
     @advertiser = advertiser
     @campaign = campaign
 
-    attachments.inline['logo.jpg'] = File.read(Rails.root.join('app/assets/images/logo.jpg'))
-    attachments.inline['sellochico.jpg'] = File.read(Rails.root.join('app/assets/images/sellochico.jpg'))
+    attachments.inline['logomail.png'] = File.read(Rails.root.join('app/assets/images/logomail.png'))
 
     mail(to: advertiser.user.email, subject: "Notificaciones @ Social Target - Su campaña ha finalizado")
   end
@@ -298,6 +279,8 @@ class Notifier < ActionMailer::Base
   def expiration_alert_to_admin(tweet, time)
     @tweet = tweet
     @time = time.to_s
+
+    attachments.inline['logomail.png'] = File.read(Rails.root.join('app/assets/images/logomail.png'))
 
     case APP_CONFIG['app_country']
       when 'AR'
@@ -315,8 +298,7 @@ class Notifier < ActionMailer::Base
     @tweet = tweet
     @time = time.to_s
 
-    attachments.inline['logo.jpg'] = File.read(Rails.root.join('app/assets/images/logo.jpg'))
-    attachments.inline['sellochico.jpg'] = File.read(Rails.root.join('app/assets/images/sellochico.jpg'))
+    attachments.inline['logomail.png'] = File.read(Rails.root.join('app/assets/images/logomail.png'))
 
     mail(to: tweet.campaign.advertiser.user.email, subject: "Tweet expira en "+time.to_s+" minutos - Its time to go social")
   end
@@ -326,8 +308,7 @@ class Notifier < ActionMailer::Base
     @tweet = tweet
     @time = time.to_s
 
-    attachments.inline['logo.jpg'] = File.read(Rails.root.join('app/assets/images/logo.jpg'))
-    attachments.inline['sellochico.jpg'] = File.read(Rails.root.join('app/assets/images/sellochico.jpg'))
+    attachments.inline['logomail.png'] = File.read(Rails.root.join('app/assets/images/logomail.png'))
 
     mail(to: tweet.influencer.user.email, subject: "Tweet expira en "+time.to_s+" minutos - Its time to go social")
   end
@@ -336,6 +317,8 @@ class Notifier < ActionMailer::Base
   def low_credit_warning_to_admin(user)
     @user = user
     @advertiser = user.advertiser
+
+    attachments.inline['logomail.png'] = File.read(Rails.root.join('app/assets/images/logomail.png'))
 
     case APP_CONFIG['app_country']
       when 'AR'
@@ -353,8 +336,7 @@ class Notifier < ActionMailer::Base
     @user = user
     @advertiser = user.advertiser
 
-    attachments.inline['logo.jpg'] = File.read(Rails.root.join('app/assets/images/logo.jpg'))
-    attachments.inline['sellochico.jpg'] = File.read(Rails.root.join('app/assets/images/sellochico.jpg'))
+    attachments.inline['logomail.png'] = File.read(Rails.root.join('app/assets/images/logomail.png'))
 
     mail(to: user.email, subject: "Su crédito ha disminuido a $#{sprintf('%.02f', @user.balance)} - Its time to go social")
   end
@@ -362,6 +344,8 @@ class Notifier < ActionMailer::Base
   # Sends a cash out notice to the admin
   def cash_out_notice_to_admin(cash_out)
     @cash_out = cash_out
+
+    attachments.inline['logomail.png'] = File.read(Rails.root.join('app/assets/images/logomail.png'))
 
     if cash_out.user.role == 'influencer'
       subject = "La celebridad #{cash_out.user.full_name} ha solicitado un Cash Out por $#{cash_out.amount}"
@@ -383,8 +367,7 @@ class Notifier < ActionMailer::Base
   def cash_out_paid(cash_out)
     @cash_out = cash_out
 
-    attachments.inline['logo.jpg'] = File.read(Rails.root.join('app/assets/images/logo.jpg'))
-    attachments.inline['sellochico.jpg'] = File.read(Rails.root.join('app/assets/images/sellochico.jpg'))
+    attachments.inline['logomail.png'] = File.read(Rails.root.join('app/assets/images/logomail.png'))
 
     mail(to: cash_out.user.email, subject: "Notificaciones @ Social Target -  Se ha realizado el pago de un Cash Out")
   end
@@ -392,8 +375,7 @@ class Notifier < ActionMailer::Base
   def influencer_need_approval(influencer)
     @influencer = influencer
 
-    attachments.inline['logo.jpg'] = File.read(Rails.root.join('app/assets/images/logo.jpg'))
-    attachments.inline['sellochico.jpg'] = File.read(Rails.root.join('app/assets/images/sellochico.jpg'))
+    attachments.inline['logomail.png'] = File.read(Rails.root.join('app/assets/images/logomail.png'))
 
     case APP_CONFIG['app_country']
       when 'AR'
@@ -408,8 +390,7 @@ class Notifier < ActionMailer::Base
   def influencer_rejected(influencer)
     @influencer = influencer
 
-    attachments.inline['logo.jpg'] = File.read(Rails.root.join('app/assets/images/logo.jpg'))
-    attachments.inline['sellochico.jpg'] = File.read(Rails.root.join('app/assets/images/sellochico.jpg'))
+    attachments.inline['logomail.png'] = File.read(Rails.root.join('app/assets/images/logomail.png'))
 
     mail(to: influencer.user.email, subject: "Notificaciones @ Social Target -  No has sido aprobado.")
   end
@@ -417,8 +398,7 @@ class Notifier < ActionMailer::Base
   def influencer_approved(influencer)
     @influencer = influencer
 
-    attachments.inline['logo.jpg'] = File.read(Rails.root.join('app/assets/images/logo.jpg'))
-    attachments.inline['sellochico.jpg'] = File.read(Rails.root.join('app/assets/images/sellochico.jpg'))
+    attachments.inline['logomail.png'] = File.read(Rails.root.join('app/assets/images/logomail.png'))
 
     mail(to: influencer.user.email, subject: "Notificaciones @ Social Target -  Has sido aprobado.")
   end

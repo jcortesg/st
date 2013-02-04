@@ -1,45 +1,23 @@
-!!!
-%html{:xmlns => "http://www.w3.org/1999/xhtml"}
-  %head
-    %meta{:content => "text/html; charset=ISO-8859-1", "http-equiv" => "Content-Type"}/
-    %title Bienvenido a SOCIAL TARGET!
-    :css
-      .style1 { font-size: 14px; font-family: Calibri; }
-      .style2 { font-size: 12px; font-family: Calibri; color: #666666; }
-      .style3 { color: #333333 }
-      .style4 { font-size: 14px; font-family: Calibri; color: #333333; }
-  %body
-    %p.style1
-      = image_tag attachments['logo.jpg'].url
-    %p.style1
-      %br/
-      %span.style3
 
-    %p.style4
-      = "Uno de tus tweets vence en #{@time} minutos, "
-      = link_to("accede al sitio para aprobar su publicación", [:advertiser, @tweet.campaign, @tweet])
-    %p.style4
-      Campaña:
-      = @tweet.campaign.name
+%p.style1
+  %br/
+  %span.style3
 
-    %p.style4
-      Celebridad:
-      = @tweet.influencer.full_name
+%p.style4
+  = "Uno de tus tweets vence en #{@time} minutos, "
+  = link_to("accede al sitio para aprobar su publicación", [:advertiser, @tweet.campaign, @tweet])
+%p.style4
+  Campaña:
+  = @tweet.campaign.name
 
-    %p.style4
-      Tweet:
-      = @tweet.text
+%p.style4
+  Celebridad:
+  = @tweet.influencer.full_name
 
-    %p.style4
-      Hora de expiración:
-      = @tweet.tweet_at.strftime("%d-%m-%y %H:%M:%S")
+%p.style4
+  Tweet:
+  = @tweet.text
 
-    %p.style4
-      = image_tag attachments['sellochico.jpg'].url
-    %p.style4
-      \--The Social Target Team
-      %br/
-      %em It’s time to go social!
-      %br/
-      %a{:href => "http://www.social-target.net"} http://www.social-target.net
-    %p.style2 © 2012, Social Target Corporation
+%p.style4
+  Hora de expiración:
+  = @tweet.tweet_at.strftime("%d-%m-%y %H:%M:%S")

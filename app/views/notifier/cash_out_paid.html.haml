@@ -1,38 +1,16 @@
-!!!
-%html{:xmlns => "http://www.w3.org/1999/xhtml"}
-  %head
-    %meta{:content => "text/html; charset=ISO-8859-1", "http-equiv" => "Content-Type"}/
-    %title Bienvenido a SOCIAL TARGET!
-    :css
-      .style1 { font-size: 14px; font-family: Calibri; }
-      .style2 { font-size: 12px; font-family: Calibri; color: #666666; }
-      .style3 { color: #333333 }
-      .style4 { font-size: 14px; font-family: Calibri; color: #333333; }
-  %body
-    %p.style1
-      = image_tag attachments['logo.jpg'].url
-    %p.style1
-      %br/
-      %span.style3
+%p.style1
+  %br/
+  %span.style3
 
-    %p.style4
-      Se ha realizado un pago de un Cash Out.
-    %p.style4
-      %ul
-        %li= "Importe: $#{strftime('%.02f', @cash_out.amount)}"
-        %li= "Fecha: #{@cash_out.paid_at.strftime('%d/%m/%Y %H:%M:%S')}"
-    %p.style4
-      Para revisar el cash out
-      - if @cash_out.user.role == 'influencer'
-        = link_to(t('sign_into_your_account'), influencer_cash_out_url(@cash_out))
-      - else
-        = link_to(t('sign_into_your_account'), affiliate_cash_out_url(@cash_out))
-    %p.style4
-      = image_tag attachments['sellochico.jpg'].url
-    %p.style4
-      \--The Social Target Team
-      %br/
-      %em It’s time to go social!
-      %br/
-      %a{:href => "http://www.social-target.net"} http://www.social-target.net
-    %p.style2 © 2012, Social Target Corporation
+%p.style4
+  Se ha realizado un pago de un Cash Out.
+%p.style4
+  %ul
+    %li= "Importe: $#{strftime('%.02f', @cash_out.amount)}"
+    %li= "Fecha: #{@cash_out.paid_at.strftime('%d/%m/%Y %H:%M:%S')}"
+%p.style4
+  Para revisar el cash out
+  - if @cash_out.user.role == 'influencer'
+    = link_to(t('sign_into_your_account'), influencer_cash_out_url(@cash_out))
+  - else
+    = link_to(t('sign_into_your_account'), affiliate_cash_out_url(@cash_out))

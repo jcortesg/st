@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <style type="text/css">
+    body {
+      background-color: #49AFF3;
+    }
+
+    .regla {
+      font-family: Verdana, Geneva, sans-serif;
+    }
+
+    .style1 { font-size: 14px; font-family: Calibri; }
+    .style2 { font-size: 12px; font-family: Calibri; color: #666666; }
+    .style3 { color: #333333 }
+    .style4 { font-size: 14px; font-family: Calibri; color: #333333; }
+
+  </style>
+</head>
+
+<body>
+<table width="600" border="0" align="center" cellpadding="0" cellspacing="0">
+   
+  <tr>       
+    <td bgcolor="#CCCCCC"><img src="<%= attachments['logomail.jpg'].url %>" width="300" height="94" alt="Logo"/></td>    
+  </tr>
+   
+  <tr>
+    <td bgcolor="#FFFFFF">
+      <%= yield %>
+    </td>     
+  </tr>
+   
+  <tr>   
+    <td bgcolor="#CCCCCC">
+      <p class="regla">El equipo de Social Target</p>
+      <p class="regla">The Social Media Marketing Factory</p>
+      <p class="regla">www.social-target.net</p>
+      <p class="regla">@SocialTarget1</p>
+    </td>    
+  </tr>
+</table>
+</body>
+</html>
