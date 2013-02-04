@@ -1,25 +1,7 @@
-!!!
-%html{:xmlns => "http://www.w3.org/1999/xhtml"}
-  %head
-    %meta{:content => "text/html; charset=ISO-8859-1", "http-equiv" => "Content-Type"}/
-    %title Bienvenido a SOCIAL TARGET!
-    :css
-      .style1 { font-size: 14px; font-family: Calibri; }
-      .style2 { font-size: 12px; font-family: Calibri; color: #666666; }
-      .style3 { color: #333333 }
-      .style4 { font-size: 14px; font-family: Calibri; color: #333333; }    
-  %body
-    %p.style4 Bienvenido a Social Target!
-    %p.style4
-      Por favor, haz #{link_to 'click aqui', confirmation_url(@resource, :confirmation_token => @resource.confirmation_token)} para confirmar tu cuenta de email.
-    %p.style4 Si no funciona el link de arriba, por favor pegue el siguiente link en su navegador de Internet:
-    %p.style4
-      = confirmation_url(@resource, :confirmation_token => @resource.confirmation_token)
-    %p.style4 Gracias por utilizar SOCIAL TARGET!
-    %p.style4
-      \--The Social Target Team
-      %br/
-      %em It’s time to go social!
-      %br/
-      %a{:href => "http://www.social-target.net"} http://www.social-target.net
-    %p.style2 © 2012, Social Target Corporation
+%p.style4 Bienvenido a Social Target!
+%p.style4
+  Por favor, haz #{link_to 'click aqui', confirmation_url(@resource, :confirmation_token => @resource.confirmation_token)} para confirmar tu cuenta de email.
+%p.style4 Si no funciona el link de arriba, por favor pegue el siguiente link en su navegador de Internet:
+%p.style4
+  = confirmation_url(@resource, :confirmation_token => @resource.confirmation_token)
+%p.style4 Gracias por utilizar SOCIAL TARGET!
