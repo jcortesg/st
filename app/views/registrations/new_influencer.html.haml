@@ -1,30 +1,29 @@
 .row.registration_container.twitter_registration
-  .span6.offset3
-    .round_form
-      %h1.center_text Regístrate y monetizá tu presencia en Twitter
+  .span10.offset1
+    %h1.center_text Regístrate y monetiza tu presencia en Twitter
 
-      - if session[:referrer_id]
-        - referrer = User.where(id: session[:referrer_id]).first
-        = render partial: '/shared/referrer_invitation', locals: { referrer: referrer }
+    - if session[:referrer_id]
+      - referrer = User.where(id: session[:referrer_id]).first
+      = render partial: '/shared/referrer_invitation', locals: { referrer: referrer }
 
-      %div.center_text
-        = link_to("Registrate con tu cuenta de Twitter", signin_path, class: 'btn btn-large btn-primary')
+    %div.center_text
+      = link_to("Registrate con tu cuenta de Twitter", signin_path, class: 'btn btn-large btn-primary')
+    %br
+
+    %div.terms_and_conditions.center_text
+      %span{style: 'color: #1E92D3;'}
+        SOCIAL TARGET
+      cumple y respeta las normas y políticas de uso de
+      = link_to('Twitter', 'http://twitter.com/tos', target: '_blank')
+
+      %br
       %br
 
-      %div.terms_and_conditions.center_text
-        %span{style: 'color: #1E92D3;'}
-          SOCIAL TARGET
-        cumple y respeta las normas y políticas de uso de
-        = link_to('Twitter', 'http://twitter.com/tos', target: '_blank')
+      Al registrarse acepta los
+      = link_to("Términos y Condiciones", terms_path)
+      del servicio
 
-        %br
-        %br
-
-        Al registrarse acepta los
-        = link_to("Términos y Condiciones", terms_path)
-        del servicio
-
-      .sign-links.center_text
-        = link_to "Iniciar sesión", new_session_path(resource_name)
-        |
-        = link_to "¿Olvidaste tu contraseña?", new_password_path(resource_name)
+    .sign-links.center_text
+      = link_to "Iniciar sesión", new_session_path(resource_name)
+      |
+      = link_to "¿Olvidaste tu contraseña?", new_password_path(resource_name)
