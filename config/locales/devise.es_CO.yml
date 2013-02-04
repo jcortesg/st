@@ -14,6 +14,7 @@ es_CO:
       unauthenticated: 'Tienes que iniciar sesión o registrarte para poder continuar.'
       unconfirmed: 'Tienes que confirmar tu cuenta para poder continuar.'
       locked: 'Tu cuenta está bloqueada.'
+      not_found_in_database: El email o contraseña son invalidos.
       invalid: 'Contraseña o correo inválidos.'
       invalid_token: 'Código de autenticación inválido.'
       timeout: 'Tu sesión expiró, por favor inicia sesión nuevamente para continuar.'
