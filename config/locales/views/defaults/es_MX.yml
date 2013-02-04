@@ -17,7 +17,7 @@ es_MX:
   friends: Amigos
   tweets: Tweets
   retweets: Retweets
-  celebrity: Celebridad
+  celebrity: Influenciador
   men: Hombres
   women: Mujeres
   males: Hombres
@@ -95,7 +95,7 @@ es_MX:
   presentation: Presentación
   exit: Salir
   register: Registrarse
-  advertiser_company: Empresa Anunciante
+  advertiser_company: Marca
   start_session:  Iniciar sesión
   platform: Plataforma
   us: Nosotros
