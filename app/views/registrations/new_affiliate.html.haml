@@ -1,7 +1,11 @@
 .row.registration_container
-  .span6.offset3.round_box
+  .span10.offset1
+    %h1.center_text Regístrate y crea tú mismo campañas de marketing a través del Twitter de los famosos más relevantes!
+    %br
+
+.row
+  .span6.offset3
     = simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :class => "form-horizontal round_form" }) do |f|
-      %h1.form_title Registración de Agencia
       = render '/shared/simple_form_errors', :f => f
       = hidden_field_tag :user_role, resource.role
       = f.input :email

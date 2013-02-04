@@ -1,8 +1,11 @@
 .row.registration_container
-  .span6.offset3.round_box
-    = simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :class => "form-horizontal" }) do |f|
-      %h1.form_title Registración de Anunciante
+  .span10.offset1
+    %h1.center_text Regístrate y crea tú mismo campañas de marketing a través del Twitter de los famosos más relevantes!
+    %br
 
+.row
+  .span6.offset3
+    = simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :class => "form-horizontal" }) do |f|
       - if session[:referrer_id]
         - referrer = User.where(id: session[:referrer_id]).first
         = render partial: '/shared/referrer_invitation', locals: { referrer: referrer }
