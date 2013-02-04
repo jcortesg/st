@@ -14,17 +14,19 @@
         &nbsp;
       = render '/shared/simple_form_errors', :f => f
 
-      %h3.title= t('data')
-      = f.input :name
-      = f.input :campaign_type, :input_html => {:style => 'width:410px;'} , as: :select, collection: ['Generar comunidad','Incrementar los seguidores','Potenciar el lanzamiento de un producto o servicio','Salir de una crisis en las redes sociales', 'Mejorar la imagen positiva', 'Consolidar la marca','Reforzar el posicionamiento','Incrementar ventas','Dirigir usuarios a una URL'], include_blank: false
-      = f.input :objective, :input_html => {:rows=> '10'}
-      = f.input :instructions, label: t('new_campaign_instructions'), :input_html => {:rows=> '10'}
-      = f.input :dialog_campaign
+      %fieldset
+        %legend= t('data')
+        = f.input :name
+        = f.input :campaign_type, :input_html => {:style => 'width:410px;'} , as: :select, collection: ['Generar comunidad','Incrementar los seguidores','Potenciar el lanzamiento de un producto o servicio','Salir de una crisis en las redes sociales', 'Mejorar la imagen positiva', 'Consolidar la marca','Reforzar el posicionamiento','Incrementar ventas','Dirigir usuarios a una URL'], include_blank: false
+        = f.input :objective, :input_html => {:rows=> '10'}
+        = f.input :instructions, label: t('new_campaign_instructions'), :input_html => {:rows=> '10'}
+        = f.input :dialog_campaign
 
-      %h3.title= t('campaign_follow')
-      = f.input :twitter_screen_name
-      = f.input :hashtag
-      = f.input :phrase
+      %fieldset
+        %legend= t('campaign_follow')
+        = f.input :twitter_screen_name
+        = f.input :hashtag
+        = f.input :phrase
 
       - if current_role.can_create_click_fee?
         %h3.title= t('payment_type')
