@@ -1,7 +1,7 @@
 .row.registration_container.twitter_registration
   .span6.offset3
     .round_form
-      %h1.center_text Registración de Celebridad
+      %h1.center_text Regístrate y monetizá tu presencia en Twitter
 
       - if session[:referrer_id]
         - referrer = User.where(id: session[:referrer_id]).first
