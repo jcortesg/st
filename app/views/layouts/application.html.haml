@@ -25,7 +25,8 @@
               %span.icon-bar
               %span.icon-bar
               %span.icon-bar
-            %a.brand{href: root_path } Social Target
+            %a.brand{href: root_path }
+              %img{src: "/assets/logost.png"}
             .nav-collapse.collapse
               %ul.nav
                 - if user_signed_in?
@@ -152,11 +153,9 @@
                       %li= link_to t('work_with_us'), work_with_us_path
                       %li= link_to t('contact_us'), contact_path
                 - if user_signed_in?
-                  = form_tag(destroy_user_session_path, :method => :delete) do
-                    %button.btn.btn-primary{:type => "submit"}= t('exit')
+                  %li= link_to 'Salir', destroy_user_session_path, method: :delete
                 - else
-                  %li
-                    %li= link_to t('start_session'), new_user_session_path
+                  %li= link_to t('start_session'), new_user_session_path
                   %li.dropdown
                     %a{:href => '#', :class => 'dropdown-toggle', 'data-toggle' => 'dropdown'}
                       =t('register')

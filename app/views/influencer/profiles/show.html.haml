@@ -40,7 +40,7 @@
             - else
               = link_to(image_tag('no_photo.jpg'), '#user_photo', 'data-toggle' => 'modal')
 
-      -if @influencer.need_approval? or ! @influencer.approved?
+      - if @influencer.need_approval? or ! @influencer.approved?
         .message{:style => 'margin:20px; padding:6px; border-radius:6px; color: #E01B6A; border: 1px solid #E01B6A; background:#FFABCD'}
           -if @influencer.need_approval? and !@influencer.approval_message.nil?
             %h4 Social Target está analizando tu perfil por no cumplir con los requerimientos mínimos para pertenecer a la plataforma.
