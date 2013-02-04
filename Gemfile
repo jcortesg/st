@@ -7,7 +7,7 @@ gem 'capistrano'                       # Deploy
 gem 'rvm-capistrano'                   # Deploy
 gem 'haml'                             # Vies
 gem 'mysql2'                           # Database
-gem 'devise'                           # Authentication
+gem 'devise', '2.2.2'                  # Authentication
 gem 'omniauth-twitter'                 # Authentication with twitter
 gem 'cancan'                           # Permissions
 gem 'simple_form'                      # Rails form builder
