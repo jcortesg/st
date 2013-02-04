@@ -61,38 +61,52 @@
           .influencer_stats
             .box_container.clearfix
               .box
-                .stat Seguidores:
-                .data= @influencer.audience.followers
-                .stat Amigos:
-                .data= @influencer.audience.friends
-                .stat Tweets:
-                .data= @influencer.audience.tweets
-                .stat Sexo:
-                .data= influencer_sex(@influencer.sex)
-                .stat Años:
-                .data= influencer_age(@influencer.birthday)
-                .stat Ingreso Twitter:
-                .data= @influencer.twitter_joined.strftime("%d/%m/%y")
-                .stat Ingreso TweetGo:
-                .data= @influencer.user.created_at.strftime("%d/%m/%y")
+                .clear
+                  .stat Seguidores:
+                  .data= @influencer.audience.followers
+                .clear
+                  .stat Amigos:
+                  .data= @influencer.audience.friends
+                .clear
+                  .stat Tweets:
+                  .data= @influencer.audience.tweets
+                .clear
+                  .stat Sexo:
+                  .data= influencer_sex(@influencer.sex)
+                .clear
+                  .stat Años:
+                  .data= influencer_age(@influencer.birthday)
+                .clear
+                  .stat Ingreso Twitter:
+                  .data= @influencer.twitter_joined.strftime("%d/%m/%y")
+                .clear
+                  .stat Ingreso TweetGo:
+                  .data= @influencer.user.created_at.strftime("%d/%m/%y")
 
               .box.last
-                .stat Precio Campaña:
-                .data= number_to_currency(@influencer.influencer_campaign_fee)
-                .stat CPC:
-                .data= number_to_currency(@influencer.influencer_cpc_fee)
-                .stat CPC medio:
-                .data= "-"
-                .stat CPC totales:
-                .data= "-"
-                .stat Klout:
-                .data
-                  .mini-flag.score.kscore
-                    .value= @influencer.audience.klout
-                .stat Kred:
-                .data= @influencer.audience.kred
-                .stat PeerIndex:
-                .data= @influencer.audience.peerindex
+                .clear
+                  .stat Precio Campaña:
+                  .data= number_to_currency(@influencer.influencer_campaign_fee)
+                .clear
+                  .stat CPC:
+                  .data= number_to_currency(@influencer.influencer_cpc_fee)
+                .clear
+                  .stat CPC medio:
+                  .data= "-"
+                .clear
+                  .stat CPC totales:
+                  .data= "-"
+                .clear
+                  .stat Klout:
+                  .data
+                    .mini-flag.score.kscore
+                      .value= @influencer.audience.klout
+                .clear
+                  .stat Kred:
+                  .data= @influencer.audience.kred
+                .clear
+                  .stat PeerIndex:
+                  .data= @influencer.audience.peerindex
 
 
       #user_photo.modal.hide.fade
