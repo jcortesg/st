@@ -45,7 +45,7 @@ namespace :social_target do
           puts twitter_tweet.inspect
 
           # Update the tweet fields
-          if ! twitter_tweet.attrs['id_str'].empty?
+          if !twitter_tweet.attrs['id_str'].empty?
             tweet.twitter_id = twitter_tweet.attrs['id_str']
             tweet.twitter_created_at = twitter_tweet.attrs['created_at']
             tweet.retweet_count = 0
