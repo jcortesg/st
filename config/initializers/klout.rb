@@ -1,1 +1,1 @@
-Klout.api_key = 'hz6n9br3rb4fz87rvyx77hu3'
+Klout.api_key = 'qnue9w8du45azvutcn44k2wt'
