@@ -108,3 +108,4 @@ $(document).ready ->
     $(this).attr('checked', true);
     return true;
   )
+

@@ -1,45 +1,45 @@
 == Crontab
 
-50 * * * * /var/www/borwin/shared/twitter_update.rb 1>&2 2>/var/www/borwin/current/log/twitter_update.log
-0,5,10,15,20,25,30,35,40,45,50,55 * * * * /var/www/borwin/shared/twitter_publish.rb 1>&2 2>/var/www/borwin/current/log/twitter_publish.log
-0,5,10,15,20,25,30,35,40,45,50,55 * * * * /var/www/borwin/shared/twitter_expire.rb 1>&2 2>/var/www/borwin/current/log/twitter_expire.log
-0,5,10,15,20,25,30,35,40,45,50,55 * * * * /var/www/borwin/shared/twitter_alerts.rb 1>&2 2>/var/www/borwin/current/log/twitter_alerts.log
-0 * * * * /var/www/borwin/shared/update_klout.rb 1>&2 2>/var/www/borwin/current/log/update_klout.log
-0,15,30,45 * * * * /var/www/borwin/shared/update_campaign_analytics.rb 1>&2 2>/var/www/borwin/current/log/update_campaign.log
-3 * * * * /var/www/borwin/shared/mailchimp_sync.rb 1>&2 2>/var/www/borwin/current/log/mailchimp_sync.log
-0 1 * * 1,2,3,4,5,6 RAILS_ENV=production /usr/bin/python /var/www/borwin/current/python/update_twitter_users.py > /var/www/borwin/current/log/update_twitter_users.log
-0 1 * * 0 RAILS_ENV=production TOTAL_UPDATE=1 /usr/bin/python /var/www/borwin/current/python/update_twitter_users.py > /var/www/borwin/current/log/update_twitter_users.log
-0 4 * * * /var/www/borwin/shared/fetch_screen_names.rb 1>&2 2>/var/www/borwin/current/log/fetch_screen_names.log
-0 7 * * * /var/www/borwin/shared/update_audiences.rb 1>&2 2>/var/www/borwin/current/log/update_audiences.log
-0 0 * * 1 /var/www/borwin/shared/fetch_twitter_user_stats_2.rb 1>&2 2>/var/www/borwin/current/log/fetch_twitter_user_stats_2.log
-0 0 * * 3 /var/www/borwin/shared/update_audiences_with_hobbies.rb 1>&2 2>/var/www/borwin/current/log/update_audiences_with_hobbies.log
+50 * * * * /u/apps/social-target-co/shared/twitter_update.rb 1>&2 2>/u/apps/social-target-co/current/log/twitter_update.log
+0,5,10,15,20,25,30,35,40,45,50,55 * * * * /u/apps/social-target-co/shared/twitter_publish.rb 1>&2 2>/u/apps/social-target-co/current/log/twitter_publish.log
+0,5,10,15,20,25,30,35,40,45,50,55 * * * * /u/apps/social-target-co/shared/twitter_expire.rb 1>&2 2>/u/apps/social-target-co/current/log/twitter_expire.log
+0,5,10,15,20,25,30,35,40,45,50,55 * * * * /u/apps/social-target-co/shared/twitter_alerts.rb 1>&2 2>/u/apps/social-target-co/current/log/twitter_alerts.log
+0 * * * * /u/apps/social-target-co/shared/update_klout.rb 1>&2 2>/u/apps/social-target-co/current/log/update_klout.log
+0,15,30,45 * * * * /u/apps/social-target-co/shared/update_campaign_analytics.rb 1>&2 2>/u/apps/social-target-co/current/log/update_campaign.log
+3 * * * * /u/apps/social-target-co/shared/mailchimp_sync.rb 1>&2 2>/u/apps/social-target-co/current/log/mailchimp_sync.log
+0 1 * * 1,2,3,4,5,6 RAILS_ENV=production /usr/bin/python /u/apps/social-target-co/current/python/update_twitter_users.py > /u/apps/social-target-co/current/log/update_twitter_users.log
+0 1 * * 0 RAILS_ENV=production TOTAL_UPDATE=1 /usr/bin/python /u/apps/social-target-co/current/python/update_twitter_users.py > /u/apps/social-target-co/current/log/update_twitter_users.log
+0 4 * * * /u/apps/social-target-co/shared/fetch_screen_names.rb 1>&2 2>/u/apps/social-target-co/current/log/fetch_screen_names.log
+0 7 * * * /u/apps/social-target-co/shared/update_audiences.rb 1>&2 2>/u/apps/social-target-co/current/log/update_audiences.log
+0 0 * * 1 /u/apps/social-target-co/shared/fetch_twitter_user_stats_2.rb 1>&2 2>/u/apps/social-target-co/current/log/fetch_twitter_user_stats_2.log
+0 0 * * 3 /u/apps/social-target-co/shared/update_audiences_with_hobbies.rb 1>&2 2>/u/apps/social-target-co/current/log/update_audiences_with_hobbies.log
 
-20 * * * * /var/www/borwin-colombia/shared/twitter_update.rb 1>&2 2>/var/www/borwin-colombia/current/log/twitter_update.log
-0,5,10,15,20,25,30,35,40,45,50,55 * * * * /var/www/borwin-colombia/shared/twitter_publish.rb 1>&2 2>/var/www/borwin-colombia/current/log/twitter_publish.log
-0,5,10,15,20,25,30,35,40,45,50,55 * * * * /var/www/borwin-colombia/shared/twitter_expire.rb 1>&2 2>/var/www/borwin-colombia/current/log/twitter_expire.log
-0,5,10,15,20,25,30,35,40,45,50,55 * * * * /var/www/borwin-colombia/shared/twitter_alerts.rb 1>&2 2>/var/www/borwin-colombia/current/log/twitter_alerts.log
-30 * * * * /var/www/borwin-colombia/shared/update_klout.rb 1>&2 2>/var/www/borwin-colombia/current/log/update_klout.log
-0,15,30,45 * * * * /var/www/borwin-colombia/shared/update_campaign_analytics.rb 1>&2 2>/var/www/borwin-colombia/current/log/update_campaign.log
-30 * * * * /var/www/borwin-colombia/shared/mailchimp_sync.rb 1>&2 2>/var/www/borwin-colombia/current/log/mailchimp_sync.log
-0 4 * * 1,2,3,4,5,6 RAILS_ENV=production /usr/bin/python /var/www/borwin-colombia/current/python/update_twitter_users.py > /var/www/borwin-colombia/current/log/update_twitter_users.log
-0 4 * * 0 RAILS_ENV=production TOTAL_UPDATE=1 /usr/bin/python /var/www/borwin-colombia/current/python/update_twitter_users.py > /var/www/borwin-colombia/current/log/update_twitter_users.log
-0 7 * * * /var/www/borwin-colombia/shared/fetch_screen_names.rb 1>&2 2>/var/www/borwin-colombia/current/log/fetch_screen_names.log
-0 11 * * * /var/www/borwin-colombia/shared/update_audiences.rb 1>&2 2>/var/www/borwin-colombia/current/log/update_audiences.log
-0 0 * * 2 /var/www/borwin-colombia/shared/fetch_twitter_user_stats_2.rb 1>&2 2>/var/www/borwin-colombia/current/log/fetch_twitter_user_stats_2.log
-0 0 * * 4 /var/www/borwin-colombia/shared/update_audiences_with_hobbies.rb 1>&2 2>/var/www/borwin-colombia/current/log/update_audiences_with_hobbies.log
+20 * * * * /u/apps/social-target-ar/shared/twitter_update.rb 1>&2 2>/u/apps/social-target-ar/current/log/twitter_update.log
+0,5,10,15,20,25,30,35,40,45,50,55 * * * * /u/apps/social-target-ar/shared/twitter_publish.rb 1>&2 2>/u/apps/social-target-ar/current/log/twitter_publish.log
+0,5,10,15,20,25,30,35,40,45,50,55 * * * * /u/apps/social-target-ar/shared/twitter_expire.rb 1>&2 2>/u/apps/social-target-ar/current/log/twitter_expire.log
+0,5,10,15,20,25,30,35,40,45,50,55 * * * * /u/apps/social-target-ar/shared/twitter_alerts.rb 1>&2 2>/u/apps/social-target-ar/current/log/twitter_alerts.log
+30 * * * * /u/apps/social-target-ar/shared/update_klout.rb 1>&2 2>/u/apps/social-target-ar/current/log/update_klout.log
+0,15,30,45 * * * * /u/apps/social-target-ar/shared/update_campaign_analytics.rb 1>&2 2>/u/apps/social-target-ar/current/log/update_campaign.log
+30 * * * * /u/apps/social-target-ar/shared/mailchimp_sync.rb 1>&2 2>/u/apps/social-target-ar/current/log/mailchimp_sync.log
+0 4 * * 1,2,3,4,5,6 RAILS_ENV=production /usr/bin/python /u/apps/social-target-ar/current/python/update_twitter_users.py > /u/apps/social-target-ar/current/log/update_twitter_users.log
+0 4 * * 0 RAILS_ENV=production TOTAL_UPDATE=1 /usr/bin/python /u/apps/social-target-ar/current/python/update_twitter_users.py > /u/apps/social-target-ar/current/log/update_twitter_users.log
+0 7 * * * /u/apps/social-target-ar/shared/fetch_screen_names.rb 1>&2 2>/u/apps/social-target-ar/current/log/fetch_screen_names.log
+0 11 * * * /u/apps/social-target-ar/shared/update_audiences.rb 1>&2 2>/u/apps/social-target-ar/current/log/update_audiences.log
+0 0 * * 2 /u/apps/social-target-ar/shared/fetch_twitter_user_stats_2.rb 1>&2 2>/u/apps/social-target-ar/current/log/fetch_twitter_user_stats_2.log
+0 0 * * 4 /u/apps/social-target-ar/shared/update_audiences_with_hobbies.rb 1>&2 2>/u/apps/social-target-ar/current/log/update_audiences_with_hobbies.log
 
-30 * * * * /var/www/borwin-mexico/shared/twitter_update.rb 1>&2 2>/var/www/borwin-mexico/current/log/twitter_update.log
-0,5,10,15,20,25,30,35,40,45,50,55 * * * * /var/www/borwin-mexico/shared/twitter_publish.rb 1>&2 2>/var/www/borwin-mexico/current/log/twitter_publish.log
-0,5,10,15,20,25,30,35,40,45,50,55 * * * * /var/www/borwin-mexico/shared/twitter_expire.rb 1>&2 2>/var/www/borwin-mexico/current/log/twitter_expire.log
-0,5,10,15,20,25,30,35,40,45,50,55 * * * * /var/www/borwin-mexico/shared/twitter_alerts.rb 1>&2 2>/var/www/borwin-mexico/current/log/twitter_alerts.log
-45 * * * * /var/www/borwin-mexico/shared/update_klout.rb 1>&2 2>/var/www/borwin-mexico/current/log/update_klout.log
-0,15,30,45 * * * * /var/www/borwin-mexico/shared/update_campaign_analytics.rb 1>&2 2>/var/www/borwin-mexico/current/log/update_campaign.log
-45 * * * * /var/www/borwin-mexico/shared/mailchimp_sync.rb 1>&2 2>/var/www/borwin-mexico/current/log/mailchimp_sync.log
-0,15,30,45 * * * * /var/www/borwin-mexico/shared/update_campaign_analytics.rb 1>&2 2>/var/www/borwin-mexico/current/log/update_campaign.log
-45 * * * * /var/www/borwin-mexico/shared/mailchimp_sync.rb 1>&2 2>/var/www/borwin-mexico/current/log/mailchimp_sync.log
-0 2 * * 1,2,3,4,5,6 RAILS_ENV=production /usr/bin/python /var/www/borwin-mexico/current/python/update_twitter_users.py > /var/www/borwin-mexico/current/log/update_twitter_users.log
-0 5 * * 0 RAILS_ENV=production TOTAL_UPDATE=1 /usr/bin/python /var/www/borwin-mexico/current/python/update_twitter_users.py > /var/www/borwin-mexico/current/log/update_twitter_users.log
-0 3 * * * /var/www/borwin-mexico/shared/fetch_screen_names.rb 1>&2 2>/var/www/borwin-mexico/current/log/fetch_screen_names.log
-0 10 * * * /var/www/borwin-mexico/shared/update_audiences.rb 1>&2 2>/var/www/borwin-mexico/current/log/update_audiences.log
-0 0 * * 4 /var/www/borwin-mexico/shared/fetch_twitter_user_stats_2.rb 1>&2 2>/var/www/borwin-mexico/current/log/fetch_twitter_user_stats_2.log
-0 0 * * 6 /var/www/borwin-mexico/shared/update_audiences_with_hobbies.rb 1>&2 2>/var/www/borwin-mexico/current/log/update_audiences_with_hobbies.log
+30 * * * * /u/apps-social-target-mx/shared/twitter_update.rb 1>&2 2>/u/apps-social-target-mx/current/log/twitter_update.log
+0,5,10,15,20,25,30,35,40,45,50,55 * * * * /u/apps-social-target-mx/shared/twitter_publish.rb 1>&2 2>/u/apps-social-target-mx/current/log/twitter_publish.log
+0,5,10,15,20,25,30,35,40,45,50,55 * * * * /u/apps-social-target-mx/shared/twitter_expire.rb 1>&2 2>/u/apps-social-target-mx/current/log/twitter_expire.log
+0,5,10,15,20,25,30,35,40,45,50,55 * * * * /u/apps-social-target-mx/shared/twitter_alerts.rb 1>&2 2>/u/apps-social-target-mx/current/log/twitter_alerts.log
+45 * * * * /u/apps-social-target-mx/shared/update_klout.rb 1>&2 2>/u/apps-social-target-mx/current/log/update_klout.log
+0,15,30,45 * * * * /u/apps-social-target-mx/shared/update_campaign_analytics.rb 1>&2 2>/u/apps-social-target-mx/current/log/update_campaign.log
+45 * * * * /u/apps-social-target-mx/shared/mailchimp_sync.rb 1>&2 2>/u/apps-social-target-mx/current/log/mailchimp_sync.log
+0,15,30,45 * * * * /u/apps-social-target-mx/shared/update_campaign_analytics.rb 1>&2 2>/u/apps-social-target-mx/current/log/update_campaign.log
+45 * * * * /u/apps-social-target-mx/shared/mailchimp_sync.rb 1>&2 2>/u/apps-social-target-mx/current/log/mailchimp_sync.log
+0 2 * * 1,2,3,4,5,6 RAILS_ENV=production /usr/bin/python /u/apps-social-target-mx/current/python/update_twitter_users.py > /u/apps-social-target-mx/current/log/update_twitter_users.log
+0 5 * * 0 RAILS_ENV=production TOTAL_UPDATE=1 /usr/bin/python /u/apps-social-target-mx/current/python/update_twitter_users.py > /u/apps-social-target-mx/current/log/update_twitter_users.log
+0 3 * * * /u/apps-social-target-mx/shared/fetch_screen_names.rb 1>&2 2>/u/apps-social-target-mx/current/log/fetch_screen_names.log
+0 10 * * * /u/apps-social-target-mx/shared/update_audiences.rb 1>&2 2>/u/apps-social-target-mx/current/log/update_audiences.log
+0 0 * * 4 /u/apps-social-target-mx/shared/fetch_twitter_user_stats_2.rb 1>&2 2>/u/apps-social-target-mx/current/log/fetch_twitter_user_stats_2.log
+0 0 * * 6 /u/apps-social-target-mx/shared/update_audiences_with_hobbies.rb 1>&2 2>/u/apps-social-target-mx/current/log/update_audiences_with_hobbies.log
