@@ -1,4 +1,4 @@
-#= require jquery
+#= require jquery.js
 #= require jquery_ujs
 #= require jquery-ui-1.8.19.custom.min
 #= require bootstrap
