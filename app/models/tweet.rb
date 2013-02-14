@@ -96,7 +96,7 @@ class Tweet < ActiveRecord::Base
     if matches.size > 2
       errors.add(:text, "tiene más de un link")
     else
-      template_text = text.sub(/\b(?:https?:\/\/|www\.)\S+\b/, 'http://bwn.tw/L1234')
+      template_text = text.sub(/\b(?:https?:\/\/|www\.)\S+\b/, 'http://s-t.co/L1234')
       if template_text.size > 157
         errors.add(:text, "tiene #{template_text.size} carácteres, el máximo es de 140")
       end
@@ -174,10 +174,10 @@ class Tweet < ActiveRecord::Base
 
     #page = 1
     #begin
-    #  tweets = Twitter.search("http://bwn.tw/L#{self.link_code}", page: page, rpp: 100)
+    #  tweets = Twitter.search("http://s-t.co/L#{self.link_code}", page: page, rpp: 100)
     #  tweets.each {|t| insert_retweet(t)}
     #  while tweets.count == 100 do
-    #    tweets = Twitter.search("http://bwn.tw/L#{self.link_code}", page: page, rpp: 100)
+    #    tweets = Twitter.search("http://s-t.co/L#{self.link_code}", page: page, rpp: 100)
     #    tweets.each {|t| insert_retweet(t)}
     #  end
     #rescue Exception => e
@@ -243,7 +243,7 @@ class Tweet < ActiveRecord::Base
     matches = text.scan(/\b(?:https?:\/\/|www\.)\S+\b/)
     idx = 0
     matches.each do |link|
-      if !matches[idx].match(/^http:\/\/bwn.tw\//)
+      if !matches[idx].match(/^http:\/\/s-t.co\//)
         self.link_url = matches[idx]
         self.link_url = "http://#{self.link_url}" unless self.link_url =~ /http/
       end
@@ -251,8 +251,8 @@ class Tweet < ActiveRecord::Base
     end
 
     # Finally replace the text link on the text
-    # [^(bwn.tw\/P)] avoid THIS!!!
-    self.text.sub!(/\b((?:https?:\/\/(?!bwn)|www\.(?!bwn)))\S+\b/, "http://bwn.tw/L#{self.link_code}")
+    # [^(s-t.co\/P)] avoid THIS!!!
+    self.text.sub!(/\b((?:https?:\/\/(?!s-t)|www\.(?!s-t)))\S+\b/, "http://s-t.co/L#{self.link_code}")
   end
 
   # Set the prices for the tweet when its created
@@ -340,8 +340,8 @@ class Tweet < ActiveRecord::Base
 
   def update_picture_references
     # updates picture links
-    text.scan(/\bhttp:\/\/bwn.tw\/P\S+\b/).each do |link|
-      code = link.sub(/\bhttp:\/\/bwn.tw\/P/, "")
+    text.scan(/\bhttp:\/\/s-t.co\/P\S+\b/).each do |link|
+      code = link.sub(/\bhttp:\/\/s-t.co\/P/, "")
       picture = Picture.find_all_by_picture_code(code).first
       picture.tweet = self
       picture.save

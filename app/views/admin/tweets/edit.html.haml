@@ -26,7 +26,7 @@
         =# f.input :link_url
         = @tweet.link_url
         %br
-        = "http://bwn.tw/L"+@tweet.link_code.to_s
+        = "http://s-t.co/L"+@tweet.link_code.to_s
         =# f.input :fee_type, as: :radio, collection: [["Precio por Tweet - AR$ #{sprintf("%.02f", @tweet.influencer.tweet_fee)}", 'tweet_fee'], ["Precio por Click - AR$ #{sprintf("%.02f", @tweet.influencer.cpc_fee)}", 'cpc_fee']]
 
         .form-actions

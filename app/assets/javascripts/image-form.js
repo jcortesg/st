@@ -29,8 +29,8 @@
                         if(response == null){
                             $("#picture-error-container").html('<div class="alert alert-error fade in" >' + '<button class="close" data-dismiss="alert">×</button>' + '<strong>No se pudo subir la imagen!</strong> La imagen que subiste no cumple con los requisitos. </div>');
                         }else{
-                            $("#picture-url-"+id).html("<img src='"+response.image.thumb.url+"' style='margin-top:16px;'/> <a target='_blank' href='http://bwn.tw/P"+response.picture_code+"'> http://bwn.tw/P"+response.picture_code+" </a>").load();
-                            $("#tweet_group_tweets_attributes_"+id+"_text").val($("#tweet_group_tweets_attributes_"+id+"_text").val()+" http://bwn.tw/P"+response.picture_code);
+                            $("#picture-url-"+id).html("<img src='"+response.image.thumb.url+"' style='margin-top:16px;'/> <a target='_blank' href='http://s-t.co/P"+response.picture_code+"'> http://s-t.co/P"+response.picture_code+" </a>").load();
+                            $("#tweet_group_tweets_attributes_"+id+"_text").val($("#tweet_group_tweets_attributes_"+id+"_text").val()+" http://s-t.co/P"+response.picture_code);
                             $("#tweet_group_tweets_attributes_"+id+"_text").trigger(jQuery.Event("keyup"))
                         }
                     },
@@ -150,7 +150,7 @@
         var textHtml = text;
         textHtml = textHtml.replace(/@([A-Za-z0-9_]+)/ig, "<a href='#'>@$1</a>")
         textHtml = textHtml.replace(/#([A-Za-z0-9_]+)/ig, "<a href='#'>#$1</a>")
-        return textHtml.replace(exp,"<a href='#'>http://bwn.tw/L1NK5</a>");
+        return textHtml.replace(exp,"<a href='#'>http://s-t.co/L1NK5</a>");
     }
 
 	function ModalTriggerHandler(obj){

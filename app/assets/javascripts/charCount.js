@@ -31,7 +31,7 @@
 		var options = $.extend(defaults, options); 
 		
 		function calculate(obj){
-            var text = $(obj).val().replace(/(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig, "http://bwn.tw/L1NK5");
+            var text = $(obj).val().replace(/(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig, "http://s-t.co/L1NK5");
 			var count = text.length;
 			var available = options.allowed - count;
 			if(available <= options.warning && available >= 0){
