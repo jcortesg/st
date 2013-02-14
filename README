@@ -8,7 +8,7 @@
 0,15,30,45 * * * * /u/apps/social-target-co/shared/update_campaign_analytics.rb 1>&2 2>/u/apps/social-target-co/current/log/update_campaign.log
 3 * * * * /u/apps/social-target-co/shared/mailchimp_sync.rb 1>&2 2>/u/apps/social-target-co/current/log/mailchimp_sync.log
 0 1 * * 1,2,3,4,5,6 RAILS_ENV=production /usr/bin/python /u/apps/social-target-co/current/python/update_twitter_users.py > /u/apps/social-target-co/current/log/update_twitter_users.log
-0 1 * * 0 RAILS_ENV=production TOTAL_UPDATE=1 /usr/bin/python /u/apps/social-target-co/current/python/update_twitter_users.py > /u/apps/social-target-co/current/log/update_twitter_users.log
+#0 1 * * 0 RAILS_ENV=production TOTAL_UPDATE=1 /usr/bin/python /u/apps/social-target-co/current/python/update_twitter_users.py > /u/apps/social-target-co/current/log/update_twitter_users.log
 0 4 * * * /u/apps/social-target-co/shared/fetch_screen_names.rb 1>&2 2>/u/apps/social-target-co/current/log/fetch_screen_names.log
 0 7 * * * /u/apps/social-target-co/shared/update_audiences.rb 1>&2 2>/u/apps/social-target-co/current/log/update_audiences.log
 0 0 * * 1 /u/apps/social-target-co/shared/fetch_twitter_user_stats_2.rb 1>&2 2>/u/apps/social-target-co/current/log/fetch_twitter_user_stats_2.log
