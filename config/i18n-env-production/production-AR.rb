@@ -44,7 +44,7 @@ SocialTarget::Application.configure do
 
   # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
   # config.assets.precompile += %w( search.js )
-  config.assets.precompile += %w(application.js home.js user_profile.js image-form.js jquery.iframe-post-form.js jquery.spin.js spin.min.js highcharts.js admin/admin.js advertiser/new_tweet.js advertiser/audience.js tweet_form.js application.css ie.css print.css admin/admin.css ie.css advertiser/statistics.js advertiser/statistics.css tweet_form.css holder.js)
+  config.assets.precompile += %w(application.js home.js jquery.js user_profile.js image-form.js jquery.iframe-post-form.js jquery.spin.js spin.min.js highcharts.js admin/admin.js advertiser/new_tweet.js advertiser/audience.js tweet_form.js application.css ie.css print.css admin/admin.css ie.css advertiser/statistics.js advertiser/statistics.css tweet_form.css holder.js)
 
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false
