@@ -84,16 +84,7 @@ class Campaign < ActiveRecord::Base
       retries = 0
       begin
         begin
-          ids = []
-          case APP_CONFIG['app_country']
-            when 'AR'
-              ids = [280, 281, 282, 201, 283, 284, 4]
-            when 'CO'
-              ids = [2, 3, 4, 5, 6]
-            when 'MX'
-              ids = [1, 2, 3, 4, 5]
-          end
-          influencer = Influencer.find(ids[rand(ids.count)])
+          influencer = Influencer.first(order: "rand(id)")
           Twitter.configure do |config|
             config.consumer_key = TWITTER_CONSUMER_KEY
             config.consumer_secret = TWITTER_CONSUMER_SECRET
@@ -360,6 +351,7 @@ class Campaign < ActiveRecord::Base
   # Marks the campaign as activated
   def mark_campaign_as_activated
     puts "[INFO] Activando campaña..."
+    $stdout.flush
     self.status = 'active'
     # Start time for the campaign
     self.starts_at = DateTime.now
