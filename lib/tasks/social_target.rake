@@ -660,23 +660,23 @@ namespace :social_target do
           end
 
           # Finally check the country
-          if (!twitter_user.twitter_state.nil? && ["Buenos Aires",  "Catamarca",  "Chaco", "Córdoba", "Corrientes", "Entre Ríos", "Formosa", "Jujuy", "La Pampa", "La Rioja", "Mendoza", "Misiones", "Neuquén", "Rio Negro", "Salta", "San Juan", "San Luis", "Santa Cruz", "Santa Fe", "Sgo. del Estero", "Tierra del Fuego", "Tucumán"].contains(twitter_user.twitter_state.name)) || location.match(/argentin/)
-            twitter_user.twitter_country = TwitterCountry.where(name: 'Argentina').first
-          elsif (!twitter_user.twitter_state.nil? && ["Amazonas", "Antioquia", "Arauca", "Atlántico", "Bolívar", "Boyacá", "Caldas", "Caquetá", "Casanare", "Cauca", "Cesar", "Chocó", "Córdoba", "Cundinamarca", "Guainía", "Guaviare", "Huila", "La Guajira", "Magdalena", "Meta", "Nariño", "Norte de Santander", "Putumayo", "Quindío", "Risaralda", "San Andrés y Providencia", "Santander", "Sucre", "Tolima", "Valle del Cauca", "Vaupés", "Vichada", "Colombia"].contains(twitter_user.twitter_state.name)) || (location.match /colombia/)
-            twitter_user.twitter_country = TwitterCountry.where(name: 'Colombia').first
-          elsif (!twitter_user.twitter_state.nil? && ["Arica y Parinacota", "Tarapacá", "Antofagasta", "Atacama", "Coquimbo", "Valparaíso", "Santiago", "O'Higgins", "Maule", "Biobío", "La Araucanía", "Los Ríos", "Los Lagos", "Aysén", "Magallanes"].contains(twitter_user.twitter_state.name)) || (location.match /chile/)
-            twitter_user.twitter_country = TwitterCountry.where(name: 'Chile').first
-          elsif (!twitter_user.twitter_state.nil? && ["Azuay", "Bolívar", "Cañar", "Carchi", "Chimborazo", "Cotopaxi", "El Oro", "Esmeraldas", "Galápagos", "Guayas", "Imbabura", "Loja", "Los Ríos", "Manabí", "Morona Santiago", "Napo", "Orellana", "Pastaza", "Pichincha", "Santa Elena", "Santo Domingo de los Tsáchilas", "Sucumbíos", "Tungurahua", "Zamora Chinchipe"].contains(twitter_user.twitter_state.name)) || (location.match /ecuador/)
-            twitter_user.twitter_country = TwitterCountry.where(name: 'Ecuador').first
-          elsif (!twitter_user.twitter_state.nil? && ["Asunción", "Concepción", "San Pedro", "Cordillera", "Guairá", "Caaguazú", "Caazapá", "Itapúa", "Misiones", "Paraguarí", "Alto Paraná", "Central", "Ñeembucú", "Amambay", "Canindeyú", "Presidente Hayes", "Alto Paraguay", "Boquerón"].contains(twitter_user.twitter_state.name)) || (location.match /paraguay/)
-            twitter_user.twitter_country = TwitterCountry.where(name: 'Paraguay').first
-          elsif (!twitter_user.twitter_state.nil? && ["Artigas", "Canelones", "Cerro Largo", "Colonia", "Durazno", "Flores", "Florida", "Lavalleja", "Maldonado", "Montevideo", "Paysandú", "Río Negro", "Rivera", "Rocha", "Salto", "San José", "Soriano", "Tacuarembó", "Treinta y Tres"].contains(twitter_user.twitter_state.name)) || (location.match /uruguay/)
-            twitter_user.twitter_country = TwitterCountry.where(name: 'Uruguay').first
-          elsif (!twitter_user.twitter_state.nil? && ["Aguascalientes","Baja California", "Baja California Sur", "Campeche", "Chiapas", "Chihuahua", "Coahuila de Zaragoza", "Colima", "Distrito Federal", "Durango", "Guanajuato", "Guerrero", "Hidalgo", "Jalisco", "México", "Michoacán de Ocampo", "Morelos", "Nayarit", "Nuevo León", "Oaxaca", "Puebla", "Querétaro", "Quintana Roo", "San Luis Potosí", "Sinaloa", "Sonora", "Tabasco", "Tamaulipas", "Tlaxcala", "Veracruz de Ignacio de la Llave", "Yucatán", "Zacatecas"].contains(twitter_user.twitter_state.name)) || (location.match /mexico/)
-            twitter_user.twitter_country = TwitterCountry.where(name: 'Mexico').first
+          if !twitter_user.twitter_state.nil?
+            if (["Buenos Aires",  "Catamarca",  "Chaco", "Córdoba", "Corrientes", "Entre Ríos", "Formosa", "Jujuy", "La Pampa", "La Rioja", "Mendoza", "Misiones", "Neuquén", "Rio Negro", "Salta", "San Juan", "San Luis", "Santa Cruz", "Santa Fe", "Sgo. del Estero", "Tierra del Fuego", "Tucumán"].contains(twitter_user.twitter_state.name)) || location.match(/argentin/)
+              twitter_user.twitter_country = TwitterCountry.where(name: 'Argentina').first
+            elsif (["Amazonas", "Antioquia", "Arauca", "Atlántico", "Bolívar", "Boyacá", "Caldas", "Caquetá", "Casanare", "Cauca", "Cesar", "Chocó", "Córdoba", "Cundinamarca", "Guainía", "Guaviare", "Huila", "La Guajira", "Magdalena", "Meta", "Nariño", "Norte de Santander", "Putumayo", "Quindío", "Risaralda", "San Andrés y Providencia", "Santander", "Sucre", "Tolima", "Valle del Cauca", "Vaupés", "Vichada", "Colombia"].contains(twitter_user.twitter_state.name)) || (location.match /colombia/)
+              twitter_user.twitter_country = TwitterCountry.where(name: 'Colombia').first
+            elsif (["Arica y Parinacota", "Tarapacá", "Antofagasta", "Atacama", "Coquimbo", "Valparaíso", "Santiago", "O'Higgins", "Maule", "Biobío", "La Araucanía", "Los Ríos", "Los Lagos", "Aysén", "Magallanes"].contains(twitter_user.twitter_state.name)) || (location.match /chile/)
+              twitter_user.twitter_country = TwitterCountry.where(name: 'Chile').first
+            elsif (["Azuay", "Bolívar", "Cañar", "Carchi", "Chimborazo", "Cotopaxi", "El Oro", "Esmeraldas", "Galápagos", "Guayas", "Imbabura", "Loja", "Los Ríos", "Manabí", "Morona Santiago", "Napo", "Orellana", "Pastaza", "Pichincha", "Santa Elena", "Santo Domingo de los Tsáchilas", "Sucumbíos", "Tungurahua", "Zamora Chinchipe"].contains(twitter_user.twitter_state.name)) || (location.match /ecuador/)
+              twitter_user.twitter_country = TwitterCountry.where(name: 'Ecuador').first
+            elsif (["Asunción", "Concepción", "San Pedro", "Cordillera", "Guairá", "Caaguazú", "Caazapá", "Itapúa", "Misiones", "Paraguarí", "Alto Paraná", "Central", "Ñeembucú", "Amambay", "Canindeyú", "Presidente Hayes", "Alto Paraguay", "Boquerón"].contains(twitter_user.twitter_state.name)) || (location.match /paraguay/)
+              twitter_user.twitter_country = TwitterCountry.where(name: 'Paraguay').first
+            elsif (["Artigas", "Canelones", "Cerro Largo", "Colonia", "Durazno", "Flores", "Florida", "Lavalleja", "Maldonado", "Montevideo", "Paysandú", "Río Negro", "Rivera", "Rocha", "Salto", "San José", "Soriano", "Tacuarembó", "Treinta y Tres"].contains(twitter_user.twitter_state.name)) || (location.match /uruguay/)
+              twitter_user.twitter_country = TwitterCountry.where(name: 'Uruguay').first
+            elsif (["Aguascalientes","Baja California", "Baja California Sur", "Campeche", "Chiapas", "Chihuahua", "Coahuila de Zaragoza", "Colima", "Distrito Federal", "Durango", "Guanajuato", "Guerrero", "Hidalgo", "Jalisco", "México", "Michoacán de Ocampo", "Morelos", "Nayarit", "Nuevo León", "Oaxaca", "Puebla", "Querétaro", "Quintana Roo", "San Luis Potosí", "Sinaloa", "Sonora", "Tabasco", "Tamaulipas", "Tlaxcala", "Veracruz de Ignacio de la Llave", "Yucatán", "Zacatecas"].contains(twitter_user.twitter_state.name)) || (location.match /mexico/)
+              twitter_user.twitter_country = TwitterCountry.where(name: 'Mexico').first
+            end
           end
-
-          #puts twitter_user.location.to_s + " => " + ((!twitter_user.twitter_country.nil?)? twitter_user.twitter_country.name.to_s : " " )+ " "+  ((!twitter_user.twitter_state.nil?)? twitter_user.twitter_state.name.to_s : " ")
 
           twitter_user.save
         end
