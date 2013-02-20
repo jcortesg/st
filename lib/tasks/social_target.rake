@@ -55,7 +55,7 @@ namespace :social_target do
             tweet.twitter_created_at = twitter_tweet.attrs[:created_at]
             tweet.retweet_count = 0
             tweet.status = 'activated'
-            puts "[SUCCESS] Publicado en Twitter. ID: " + twitter_tweet.attrs['id_str']
+            puts "[SUCCESS] Publicado en Twitter. ID: " + twitter_tweet.attrs[:id_str]
             $stdout.flush
             if tweet.save
               puts "[SUCCESS] Guardado con éxito"
