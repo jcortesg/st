@@ -14,7 +14,7 @@ gem 'simple_form'                      # Rails form builder
 gem 'paperclip'                        # Image Processing
 gem 'kaminari'                         # Pagination
 gem 'meta_search'                      # For column sort and search of tables
-gem 'twitter'                          # Twitter
+gem 'twitter', '2.5.0'                          # Twitter
 gem 'nested_form', :git => 'https://github.com/ryanb/nested_form.git' # Nested forms
 gem 'country_select'                   # For country select on user registration
 gem 'active_attr'                      # Tableless models

@@ -200,20 +200,20 @@ class Tweet < ActiveRecord::Base
 
   # Creates a retweet if it doesn't exists
   def insert_retweet(tweet)
-    if tweet.attrs[:id_str] != self.twitter_id
-      retweet = Retweet.find_or_create_by_twitter_id(tweet.attrs[:id_str])
+    if tweet.attrs['id_str'] != self.twitter_id
+      retweet = Retweet.find_or_create_by_twitter_id(tweet.attrs['id_str'])
       retweet.tweet_id = self.id
-      #retweet.twitter_screen_name = tweet.attrs[:from_user]
-      #retweet.twitter_image_url = tweet.attrs[:profile_image_url]
+      #retweet.twitter_screen_name = tweet.attrs['from_user']
+      #retweet.twitter_image_url = tweet.attrs['profile_image_url']
 
       # Remove if the retweet api is not used
-      retweet.twitter_id = tweet.attrs[:id_str]
-      retweet.twitter_created_at = tweet.attrs[:created_at]
-      retweet.twitter_screen_name = tweet.attrs[:user][:screen_name]
-      retweet.twitter_retweet_count = tweet.attrs[:retweet_count]
-      retweet.twitter_friends_count = tweet.attrs[:user][:friends_count]
-      retweet.twitter_followers_count = tweet.attrs[:user][:followers_count]
-      retweet.twitter_image_url = tweet.attrs[:user][:profile_image_url]
+      retweet.twitter_id = tweet.attrs['id_str']
+      retweet.twitter_created_at = tweet.attrs['created_at']
+      retweet.twitter_screen_name = tweet.attrs['user']['screen_name']
+      retweet.twitter_retweet_count = tweet.attrs['retweet_count']
+      retweet.twitter_friends_count = tweet.attrs['user']['friends_count']
+      retweet.twitter_followers_count = tweet.attrs['user']['followers_count']
+      retweet.twitter_image_url = tweet.attrs['user']['profile_image_url']
 
       retweet.save
     end

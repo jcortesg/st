@@ -50,12 +50,12 @@ namespace :social_target do
           twitter_tweet = Twitter.update(tweet.text)
 
           # Update the tweet fields
-          if !twitter_tweet.attrs[:id_str].empty?
-            tweet.twitter_id = twitter_tweet.attrs[:id_str]
-            tweet.twitter_created_at = twitter_tweet.attrs[:created_at]
+          if !twitter_tweet.attrs['id_str'].empty?
+            tweet.twitter_id = twitter_tweet.attrs['id_str']
+            tweet.twitter_created_at = twitter_tweet.attrs['created_at']
             tweet.retweet_count = 0
             tweet.status = 'activated'
-            puts "[SUCCESS] Publicado en Twitter. ID: " + twitter_tweet.attrs[:id_str]
+            puts "[SUCCESS] Publicado en Twitter. ID: " + twitter_tweet.attrs['id_str']
             $stdout.flush
             if tweet.save
               puts "[SUCCESS] Guardado con éxito"
@@ -1554,12 +1554,12 @@ namespace :social_target do
           twitter_tweet = Twitter.update(tweet.text)
 
           # Update the tweet fields
-          if ! twitter_tweet.attrs[:id_str].empty?
-            tweet.twitter_id = twitter_tweet.attrs[:id_str]
-            tweet.twitter_created_at = twitter_tweet.attrs[:created_at]
+          if ! twitter_tweet.attrs['id_str'].empty?
+            tweet.twitter_id = twitter_tweet.attrs['id_str']
+            tweet.twitter_created_at = twitter_tweet.attrs['created_at']
             tweet.retweet_count = 0
             tweet.status = 'activated'
-            puts "[SUCCESS] Publicado en Twitter. ID: " + twitter_tweet.attrs[:id_str]
+            puts "[SUCCESS] Publicado en Twitter. ID: " + twitter_tweet.attrs['id_str']
             $stdout.flush
             if tweet.save
               puts "[SUCCESS] Guardado con éxito"
