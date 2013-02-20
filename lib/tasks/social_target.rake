@@ -12,23 +12,28 @@ namespace :social_target do
   desc 'Publish active tweets'
   task public_active_tweets: :environment do
     puts "[INFO] Horario de ejecución: " + Time.now.to_s
+    $stdout.flush
 
-    tweets = Tweet.where("status = 'accepted' and tweet_at > ? and tweet_at < ?", Time.now - 4.minutes, Time.now + 4.minutes).order('tweet_at asc').all
+    tweets = Tweet.where("status = 'accepted' and tweet_at >= ? and tweet_at <= ?", Time.now - 4.minutes, Time.now).order('tweet_at asc').all
 
     tweets.each do |tweet|
       begin
         influencer = tweet.influencer
         puts "[INFO] Tweet por publicar a @" + influencer.user.twitter_screen_name + " - " + tweet.tweet_at.to_s
+        $stdout.flush
 
         publish = true
 
         #Checks if its a dialog campaign. Need the acceptance of all influencers involved in.
         if tweet.campaign.dialog_campaign
-          shared_campaign_tweets = Tweet.where("campaign_id = ?", tweet.campaign.id)
+          shared_campaign_tweets = Tweet.where("campaign_id = ?", tweet.campaign_id)
           shared_campaign_tweets.each do |shared_tweet|
             if !(shared_tweet.status == 'accepted' or shared_tweet.status == 'activated')
               publish = false
-              #puts "Tweet de campaña compartida no listo para lanzarse "+ tweet.text.to_s
+
+              puts "Tweet de campaña compartida no listo para lanzarse "+ tweet.text.to_s
+              $stdout.flush
+
               break
             end
           end
@@ -42,7 +47,9 @@ namespace :social_target do
             config.oauth_token_secret = influencer.user.twitter_secret
           end
           twitter_tweet = Twitter.update(tweet.text)
+
           puts twitter_tweet.inspect
+          $stdout.flush
 
           # Update the tweet fields
           if !twitter_tweet.attrs['id_str'].empty?
@@ -51,24 +58,32 @@ namespace :social_target do
             tweet.retweet_count = 0
             tweet.status = 'activated'
             puts "[SUCCESS] Publicado en Twitter. ID: " + twitter_tweet.attrs['id_str']
+            $stdout.flush
             if tweet.save
               puts "[SUCCESS] Guardado con éxito"
+              $stdout.flush
             else
               puts "[ERROR] El tweet no pudo ser guardado!"
+              $stdout.flush
             end
           else
             puts "[ERROR] El tweet no pudo ser publicado!"
+            $stdout.flush
           end
         else
           puts "No publicable. "
+          $stdout.flush
         end
       rescue Exception => e
-        #Logger.rails.info("ERROR: #{e.message}")
+
         puts "[ERROR] #{e.message}"
+        $stdout.flush
+
         Notifier.error_publishing(tweet)
       end
 
-      puts "[INFO] "+Twitter.rate_limit_status.remaining_hits.to_s + " Twitter API request(s) remaining this hour"
+      puts "[INFO] " + Twitter.rate_limit_status.remaining_hits.to_s + " Twitter API request(s) remaining this hour"
+      $stdout.flush
 
       begin
         # Now activates the tweet. Internally activates the campaign if needed
@@ -77,17 +92,23 @@ namespace :social_target do
         # Activate the campaign if needed
         unless tweet.campaign.status == 'active'
           puts "[INFO] La campaña debe ser activada!"
+          $stdout.flush
+
           if (tweet.campaign.activate_campaign rescue nil).nil?
             puts "[ERROR] Error activando campaña"
+            $stdout.flush
           end
         end
+
         # Update campaign reach and share
         if (tweet.campaign.update_reach_and_share rescue nil).nil?
           puts "[ERROR] No se pudo actualizar el Reach & Share de la campaña"
+          $stdout.flush
         end
 
       rescue Exception => e
         puts "[ERROR] #{e.message}"
+        $stdout.flush
       end
     end
   end

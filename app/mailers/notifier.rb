@@ -27,14 +27,7 @@ class Notifier < ActionMailer::Base
   def error_publishing(tweet)
     attachments.inline['logomail.png'] = File.read(Rails.root.join('app/assets/images/logomail.png'))
     @tweet = tweet
-    case APP_CONFIG['app_country']
-      when 'AR'
-        mail(to: 'sebastian@social-target.net', subject: "[ERROR] @ Social Target - Tweet NO publicado!!!")
-      when 'CO'
-        mail(to: 'sebastian@social-target.net', subject: "[ERROR] @ Social Target - Tweet NO publicado!!!")
-      when 'MX'
-        mail(to: 'sebastian@social-target.net', subject: "[ERROR] @ Social Target - Tweet NO publicado!!!")
-    end
+    mail(to: 'sebastian@social-target.net', cc: 'mails@rorra.com.ar', subject: "[ERROR] @ Social Target - Tweet NO publicado!!!")
   end
 
   # Site advertiser contact
