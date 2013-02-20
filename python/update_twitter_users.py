@@ -26,7 +26,7 @@ database_yml_content = open(database_yml_file, 'r').read()
 database_config = load(database_yml_content, Loader = Loader)[RAILS_ENV]
 
 # Twitter configuration
-TWITTER_CONSUMER_KEY = 'Yj1qSpyzySSpDI5ty1dA'
+TWITTER_CONSUMER_KEY = '9Yj1qSpyzySSpDI5ty1dA'
 TWITTER_CONSUMER_SECRET = '46XJ47V8ZhhladFLefR5KVWf5sPfpxzZC8kuSpsY'
 TWITTER_OAUTH_TOKEN = '1133957107-yKNxj8xHXr9kE4vTwKWh9Qzexk7I3GXjty4VBQ8'
 TWITTER_OAUTH_SECRET = 'UPR8I3tl1CpeVUChE0kV3F05f6do8j87FgW53xMU'
