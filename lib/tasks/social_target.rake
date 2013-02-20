@@ -14,7 +14,7 @@ namespace :social_target do
     puts "[INFO] Horario de ejecución: " + Time.now.to_s
     $stdout.flush
 
-    tweets = Tweet.where("status = 'accepted' and tweet_at >= ? and tweet_at <= ?", Time.now - 4.minutes, Time.now).order('tweet_at asc').all
+    tweets = Tweet.where("status = 'accepted' and tweet_at > ? and tweet_at <= ?", Time.now - 5.minutes, Time.now).order('tweet_at asc').all
 
     tweets.each do |tweet|
       begin
