@@ -107,8 +107,6 @@ class Admin::TweetsController < ApplicationController
         Notifier.error_publishing(tweet)
       end
 
-      puts "[INFO] "+Twitter.rate_limit_status.remaining_hits.to_s + " Twitter API request(s) remaining this hour"
-
       begin
         # Now activates the tweet. Internally activates the campaign if needed
         tweet.activate

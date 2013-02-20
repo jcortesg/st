@@ -7,6 +7,7 @@ namespace :social_target do
       influencer.update_audience rescue nil
     end
     puts "#{Influencer.count} influencer accounts updated"
+    $stdout.flush
   end
 
   desc 'Publish active tweets'
@@ -48,13 +49,10 @@ namespace :social_target do
           end
           twitter_tweet = Twitter.update(tweet.text)
 
-          puts twitter_tweet.inspect
-          $stdout.flush
-
           # Update the tweet fields
-          if !twitter_tweet.attrs['id_str'].empty?
-            tweet.twitter_id = twitter_tweet.attrs['id_str']
-            tweet.twitter_created_at = twitter_tweet.attrs['created_at']
+          if !twitter_tweet.attrs[:id_str].empty?
+            tweet.twitter_id = twitter_tweet.attrs[:id_str]
+            tweet.twitter_created_at = twitter_tweet.attrs[:created_at]
             tweet.retweet_count = 0
             tweet.status = 'activated'
             puts "[SUCCESS] Publicado en Twitter. ID: " + twitter_tweet.attrs['id_str']
@@ -81,9 +79,6 @@ namespace :social_target do
 
         Notifier.error_publishing(tweet)
       end
-
-      puts "[INFO] " + Twitter.rate_limit_status.remaining_hits.to_s + " Twitter API request(s) remaining this hour"
-      $stdout.flush
 
       begin
         # Now activates the tweet. Internally activates the campaign if needed
@@ -218,6 +213,8 @@ namespace :social_target do
     # Itarate on every influencer, to get who follows him
     Influencer.joins(:audience).includes(:user).order('audiences.followers asc').all.each do |influencer|
       puts "Fetching #{influencer.full_name} followers"
+      $stdout.flush
+
       # First we get the list of all the followers
       cursor = "-1"
       follower_ids = []
@@ -231,9 +228,12 @@ namespace :social_target do
         end
       rescue Exception => e
         puts "There was a problem fetching followers for #{influencer.full_name}: #{e.message}"
+        $stdout.flush
       end
 
       puts "Updating #{influencer.full_name} followers on twitter"
+      $stdout.flush
+
       TwitterFollower.delete_all(["influencer_id = ?", influencer.id])
 
       # Now we create the user if it doesn't exist
@@ -245,9 +245,11 @@ namespace :social_target do
       end
 
       puts "Followers for #{influencer.full_name} updated"
+      $stdout.flush
     end
 
     puts "Followers update process done"
+    $stdout.flush
   end
 
   desc 'Fetch screen names for the twitter users'
@@ -264,12 +266,16 @@ namespace :social_target do
     TwitterUser.where("twitter_screen_name is null").find_in_batches(batch_size: 100) do |twitter_users|
       begin
         puts "Cycle begins"
+        $stdout.flush
 
         while(remaining_calls < 10)
           i = i + 1
           i = 0 if i > influencers.size
           influencer = influencers[i]
+
           puts "Verificando usuario con id: #{influencer.id}"
+          $stdout.flush
+
           begin
             Twitter.configure do |config|
               config.consumer_key = TWITTER_CONSUMER_KEY
@@ -277,19 +283,24 @@ namespace :social_target do
               config.oauth_token = influencer.twitter_token
               config.oauth_token_secret = influencer.twitter_secret
             end
-            remaining_calls = Twitter.rate_limit_status.remaining_hits.to_i
+            remaining_calls = 150 # Twitter.rate_limit_status.remaining_hits.to_i
             if remaining_calls > 10
               puts "Usando las credenciales de #{influencer.full_name}, #{remaining_calls} disponibles"
+              $stdout.flush
             else
               puts "Credenciales de #{influencer.full_name} no pueden ser usadas: #{remaining_calls} disponibles"
+              $stdout.flush
             end
           rescue
             puts "Credenciales de #{influencer.full_name} no pueden ser usadas, la API no autentifica"
+            $stdout.flush
+
             remaining_calls = 0
           end
         end
 
         puts "Updateando 100 usuarios, credenciales: #{influencer.full_name}, llamadas restantes: #{remaining_calls}"
+        $stdout.flush
 
         # Get the user ids
         twitter_user_ids = twitter_users.collect { |tu| tu.twitter_uid }
@@ -672,8 +683,10 @@ namespace :social_target do
       rescue Exception => e
         if twitter_user_ids && twitter_user_ids.respond_to?(:join)
           puts "There was a problem fetching the twitter user ids: #{twitter_user_ids.join(',')}: #{e.message}"
+          $stdout.flush
         else
           puts "There was a problem fetching the twitter user ids that cannot be join: #{twitter_user_ids}: #{e.message}"
+          $stdout.flush
         end
       ensure
         remaining_calls = remaining_calls - 1
@@ -681,6 +694,7 @@ namespace :social_target do
     end
 
     puts "Screen names fetched"
+    $stdout.flush
   end
 
   desc 'Fetch twitter user stats to update the audiences'
@@ -820,7 +834,7 @@ namespace :social_target do
               config.oauth_token = influencer.twitter_token
               config.oauth_token_secret = influencer.twitter_secret
             end
-            remaining_calls = Twitter.rate_limit_status.remaining_hits.to_i
+            remaining_calls = 150 # Twitter.rate_limit_status.remaining_hits.to_i
             if remaining_calls > 10
               puts "Usando las credenciales de #{influencer.full_name}, #{remaining_calls} disponibles"
               $stdout.flush
@@ -846,12 +860,14 @@ namespace :social_target do
           twitter_user.private_tweets = true
           twitter_user.save(validate: false)
           puts "Private tweets"
+          $stdout.flush
           next
         rescue Exception
           # User doesn't exist
           twitter_user.invalid_page = true
           twitter_user.save(validate: false)
           puts "Doesn't exist"
+          $stdout.flush
           next
         end
 
@@ -875,6 +891,7 @@ namespace :social_target do
         twitter_user.last_sync_at = Time.now
 
         puts "Updated"
+        $stdout.flush
 
         # Update the user
         twitter_user.save
@@ -984,6 +1001,7 @@ namespace :social_target do
       country_uruguay = TwitterUser.joins(:twitter_followers, :twitter_country).where("influencer_id = ?", audience.influencer_id).where("twitter_country_id is not null").where("twitter_countries.name = 'Uruguay'").count
 
       puts "Countries"
+      $stdout.flush
       audience.country_argentina = ((country_argentina * 100) / country_users).round rescue 0
       audience.country_colombia = ((country_colombia * 100) / country_users).round rescue 0
       audience.country_chile = ((country_chile * 100) / country_users).round rescue 0
@@ -994,6 +1012,7 @@ namespace :social_target do
 
       #states Argentina
       puts "Argentina..."
+      $stdout.flush
       states_users = TwitterUser.joins(:twitter_followers, :twitter_country).where("influencer_id = ?", audience.influencer_id).where("twitter_state_id is not null").where("twitter_countries.name = 'Argentina'").count
       state_buenos_aires = TwitterUser.joins(:twitter_followers, :twitter_state).where("influencer_id = ?", audience.influencer_id).where("twitter_state_id is not null").where("twitter_states.name = 'Buenos Aires'").count
       state_catamarca = TwitterUser.joins(:twitter_followers, :twitter_state).where("influencer_id = ?", audience.influencer_id).where("twitter_state_id is not null").where("twitter_states.name = 'Catamarca'").count
@@ -1043,6 +1062,7 @@ namespace :social_target do
 
       #states Colombia
       puts "Colombia..."
+      $stdout.flush
       states_users = TwitterUser.joins(:twitter_followers, :twitter_country).where("influencer_id = ?", audience.influencer_id).where("twitter_state_id is not null").where("twitter_countries.name = 'Colombia'").count
       state_col_amazonas = TwitterUser.joins(:twitter_followers, :twitter_state).where("influencer_id = ?", audience.influencer_id).where("twitter_state_id is not null").where("twitter_states.name = 'Amazonas'").count
       state_col_antioquia = TwitterUser.joins(:twitter_followers, :twitter_state).where("influencer_id = ?", audience.influencer_id).where("twitter_state_id is not null").where("twitter_states.name = 'Antioquia'").count
@@ -1114,6 +1134,7 @@ namespace :social_target do
 
       #states Chile
       puts "Chile..."
+      $stdout.flush
       states_users = TwitterUser.joins(:twitter_followers, :twitter_country).where("influencer_id = ?", audience.influencer_id).where("twitter_state_id is not null").where("twitter_countries.name = 'Chile'").count
       state_chi_arica = TwitterUser.joins(:twitter_followers, :twitter_state).where("influencer_id = ?", audience.influencer_id).where("twitter_state_id is not null").where("twitter_states.name = 'Arica y Parinacota'").count
       state_chi_tarapaca = TwitterUser.joins(:twitter_followers, :twitter_state).where("influencer_id = ?", audience.influencer_id).where("twitter_state_id is not null").where("twitter_states.name = 'Tarapacá'").count
@@ -1149,6 +1170,7 @@ namespace :social_target do
 
       #states Ecuador
       puts "Ecuador..."
+      $stdout.flush
       states_users = TwitterUser.joins(:twitter_followers, :twitter_country).where("influencer_id = ?", audience.influencer_id).where("twitter_state_id is not null").where("twitter_countries.name = 'Ecuador'").count
       state_ecu_azuay = TwitterUser.joins(:twitter_followers, :twitter_state).where("influencer_id = ?", audience.influencer_id).where("twitter_state_id is not null").where("twitter_states.name = 'Azuay'").count
       state_ecu_bolivar = TwitterUser.joins(:twitter_followers, :twitter_state).where("influencer_id = ?", audience.influencer_id).where("twitter_state_id is not null").where("twitter_states.name = 'Bolívar'").count
@@ -1202,6 +1224,7 @@ namespace :social_target do
 
       #states Mexico
       puts "Mexico.."
+      $stdout.flush
       states_users = TwitterUser.joins(:twitter_followers, :twitter_country).where("influencer_id = ?", audience.influencer_id).where("twitter_state_id is not null").where("twitter_countries.name = 'Mexico'").count
       state_mex_aguascalientes = TwitterUser.joins(:twitter_followers, :twitter_state).where("influencer_id = ?", audience.influencer_id).where("twitter_state_id is not null").where("twitter_states.name = 'Aguascalientes'").count
       state_mex_baja_california = TwitterUser.joins(:twitter_followers, :twitter_state).where("influencer_id = ?", audience.influencer_id).where("twitter_state_id is not null").where("twitter_states.name = 'Baja California'").count
@@ -1271,6 +1294,7 @@ namespace :social_target do
 
       #states Paraguay
       puts "Paraguay..."
+      $stdout.flush
       states_users = TwitterUser.joins(:twitter_followers, :twitter_country).where("influencer_id = ?", audience.influencer_id).where("twitter_state_id is not null").where("twitter_countries.name = 'Paraguay'").count
       state_par_asuncion = TwitterUser.joins(:twitter_followers, :twitter_state).where("influencer_id = ?", audience.influencer_id).where("twitter_state_id is not null").where("twitter_states.name = 'Asunción'").count
       state_par_concepcion = TwitterUser.joins(:twitter_followers, :twitter_state).where("influencer_id = ?", audience.influencer_id).where("twitter_state_id is not null").where("twitter_states.name = 'Concepción'").count
@@ -1312,6 +1336,7 @@ namespace :social_target do
 
       #states Uruguay
       puts "Uruguay..."
+      $stdout.flush
       states_users = TwitterUser.joins(:twitter_followers, :twitter_country).where("influencer_id = ?", audience.influencer_id).where("twitter_state_id is not null").where("twitter_countries.name = 'Uruguay'").count
       state_uru_artigas = TwitterUser.joins(:twitter_followers, :twitter_state).where("influencer_id = ?", audience.influencer_id).where("twitter_state_id is not null").where("twitter_states.name = 'Artigas'").count
       state_uru_canelones = TwitterUser.joins(:twitter_followers, :twitter_state).where("influencer_id = ?", audience.influencer_id).where("twitter_state_id is not null").where("twitter_states.name = 'Canelones'").count
@@ -1364,6 +1389,7 @@ namespace :social_target do
   task update_klout: :environment do
     Influencer.includes(:user).order('id').all.each do |influencer|
       puts "Updating klout for #{influencer.full_name}"
+      $stdout.flush
       begin
         klout_id = Klout::Identity.find_by_screen_name(influencer.user.twitter_screen_name)
         user = Klout::User.new(klout_id.id)
@@ -1371,11 +1397,14 @@ namespace :social_target do
         audience.klout = user.score.score.round
         audience.save
         puts "New Klout index: #{audience.klout}"
+        $stdout.flush
       rescue
         puts "Unable to get a klout index for #{influencer.full_name}"
+        $stdout.flush
       end
 
       puts "Updating Kred for #{influencer.full_name}"
+      $stdout.flush
       begin
         # We setup mechanize to start fetching each one of the user details
         agent = Mechanize.new { |agent|
@@ -1391,11 +1420,14 @@ namespace :social_target do
         audience.save
 
         puts "New Kred index: #{audience.kred}"
+        $stdout.flush
       rescue Exception => e
         puts "Algo salió mal obteniendo el KredScore... #{e.message.to_s}"
+        $stdout.flush
       end
 
       puts "Updating PeerIndex for #{influencer.full_name}"
+      $stdout.flush
       begin
         # We setup mechanize to start fetching each one of the user details
         agent = Mechanize.new { |agent|
@@ -1410,8 +1442,10 @@ namespace :social_target do
         audience.save
 
         puts "New PeerIndex index: #{audience.peerindex}"
+        $stdout.flush
       rescue Exception => e
         puts "Algo salió mal obteniendo el PeerIndex... #{e.message.to_s}"
+        $stdout.flush
       end
 
 
@@ -1474,6 +1508,7 @@ namespace :social_target do
   task fix_balances: :environment do
     User.all.each do |user|
       puts "Fixing balance for #{user.full_name}"
+      $stdout.flush
       user.balance = 0
       user.save
       Transaction.where(user_id: user.id).order('id asc').all.each do |transaction|
@@ -1489,6 +1524,7 @@ namespace :social_target do
   task :tester, [:arg1] => :environment do |t, args|
     args.with_defaults(:arg1 => "0")
     puts args.arg1.to_i.to_s
+    $stdout.flush
   end
 
   # rake borwin:public_forced["299"]
@@ -1496,6 +1532,7 @@ namespace :social_target do
   task :public_forced, [:arg1] => :environment do |t, args|
     args.with_defaults(:arg1 => "0")
     puts "[INFO] Horario de ejecución: " + Time.now.to_s
+    $stdout.flush
 
     tweets = Tweet.where("id = #{args.arg1}").all
 
@@ -1503,6 +1540,7 @@ namespace :social_target do
       begin
         influencer = tweet.influencer
         puts "[INFO] Tweet por publicar a @" + influencer.user.twitter_screen_name + " - " + tweet.tweet_at.to_s
+        $stdout.flush
 
         publish = true
 
@@ -1514,7 +1552,6 @@ namespace :social_target do
             config.oauth_token_secret = influencer.user.twitter_secret
           end
           twitter_tweet = Twitter.update(tweet.text)
-          puts twitter_tweet.inspect
 
           # Update the tweet fields
           if ! twitter_tweet.attrs['id_str'].empty?
@@ -1523,24 +1560,28 @@ namespace :social_target do
             tweet.retweet_count = 0
             tweet.status = 'activated'
             puts "[SUCCESS] Publicado en Twitter. ID: " + twitter_tweet.attrs['id_str']
+            $stdout.flush
             if tweet.save
               puts "[SUCCESS] Guardado con éxito"
+              $stdout.flush
             else
               puts "[ERROR] El tweet no pudo ser guardado!"
+              $stdout.flush
             end
           else
             puts "[ERROR] El tweet no pudo ser publicado!"
+            $stdout.flush
           end
         else
           puts "No publicable. "
+          $stdout.flush
         end
       rescue Exception => e
-        #Logger.rails.info("ERROR: #{e.message}")
         puts "[ERROR] #{e.message}"
+        $stdout.flush
+
         Notifier.error_publishing(tweet)
       end
-
-      puts "[INFO] "+Twitter.rate_limit_status.remaining_hits.to_s + " Twitter API request(s) remaining this hour"
 
       begin
         # Now activates the tweet. Internally activates the campaign if needed
@@ -1549,17 +1590,21 @@ namespace :social_target do
         # Activate the campaign if needed
         unless tweet.campaign.status == 'active'
           puts "[INFO] La campaña debe ser activada!"
+          $stdout.flush
           if (tweet.campaign.activate_campaign rescue nil).nil?
             puts "[ERROR] Error activando campaña"
+            $stdout.flush
           end
         end
         # Update campaign reach and share
         if (tweet.campaign.update_reach_and_share rescue nil).nil?
           puts "[ERROR] No se pudo actualizar el Reach & Share de la campaña"
+          $stdout.flush
         end
 
       rescue Exception => e
         puts "[ERROR] #{e.message}"
+        $stdout.flush
       end
     end
   end
