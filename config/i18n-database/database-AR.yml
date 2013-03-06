@@ -6,7 +6,7 @@ development:
   pool: 5
   username: social_target
   password: fdAHIbh38FDwe
-  host: socialtargetdb.calv1pb3okmi.us-east-1.rds.amazonaws.com
+  host: socialtarget.calv1pb3okmi.us-east-1.rds.amazonaws.com
   
 test:
   adapter: mysql2
@@ -15,7 +15,7 @@ test:
   database: social_target_test
   username: social_target
   password: fdAHIbh38FDwe
-  host: socialtargetdb.calv1pb3okmi.us-east-1.rds.amazonaws.com
+  host: socialtarget.calv1pb3okmi.us-east-1.rds.amazonaws.com
 
 production:
   adapter: mysql2
@@ -24,4 +24,4 @@ production:
   database: social_target_ar
   username: social_target
   password: fdAHIbh38FDwe
-  host: socialtargetdb.calv1pb3okmi.us-east-1.rds.amazonaws.com
+  host: socialtarget.calv1pb3okmi.us-east-1.rds.amazonaws.com
