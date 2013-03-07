@@ -60,19 +60,9 @@ SocialTarget::Application.configure do
   config.active_support.deprecation = :notify
   
   # Devise mailer
-  config.action_mailer.default_url_options = { :host => 'argentina.social-target.net' }
+  config.action_mailer.default_url_options = { :host => 'argentina.socialtarget.net' }
 
   config.action_mailer.delivery_method = :sendmail
   config.action_mailer.perform_deliveries = true
 end
 
-#ActionMailer::Base.delivery_method = :smtp
-#ActionMailer::Base.smtp_settings = {
-#  address: "smtp.gmail.com",
-#  port: 587,
-#  domain: 'social-target.net',
-#  user_name: 'noreply@social-target.net',
-#  password: '',
-#  authentication: 'plain',
-#  enable_starttls_auto: true
-#}

@@ -1,9 +1,9 @@
 set :application, "SocialTarget"
 set :repository, "git@bitbucket.org:sjasminoy/social-target.git"
 
-role :web, "www.social-target.net"
-role :app, "www.social-target.net"
-role :db, "www.social-target.net", :primary => true
+role :web, "www.socialtarget.net"
+role :app, "www.socialtarget.net"
+role :db, "www.socialtarget.net", :primary => true
 
 set :user, "deploy"
 set :scm, :git

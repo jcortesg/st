@@ -6,7 +6,7 @@
       ui_language: 'es',
     }
     var addthis_share = {
-      url: 'http://www.social-target.net/I#{current_user.invitation_code}',
+      url: 'http://www.socialtarget.net/I#{current_user.invitation_code}',
       title: 'Registrate en Social Target y ganá dinero por twittear'
     }
 
@@ -63,11 +63,11 @@
 
           .share_link
             .twitter_link
-              = link_to("http://www.social-target.net/I#{current_user.invitation_code}", "http://www.social-target.net/I#{current_user.invitation_code}", target: "_blank")
+              = link_to("http://www.socialtarget.net/I#{current_user.invitation_code}", "http://www.socialtarget.net/I#{current_user.invitation_code}", target: "_blank")
               .center_text
                 %a.sharing-button
               :javascript
-                addthis.button('.sharing-button', {}, {url: "http://www.social-target.net/I#{current_user.invitation_code}", title: "Registrate en Social Target y ganá dinero por twittear"});
+                addthis.button('.sharing-button', {}, {url: "http://www.socialtarget.net/I#{current_user.invitation_code}", title: "Registrate en Social Target y ganá dinero por twittear"});
 
           %p
             =t('influencers_referrals_list_text_4')

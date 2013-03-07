@@ -121,13 +121,13 @@ class HomeController < ApplicationController
     }
     case country
       when 'AR'
-        redirect_to redirecting_path( :url => 'http://argentina.social-target.net')
+        redirect_to redirecting_path( :url => 'http://argentina.socialtarget.net')
       when 'MX'
-        redirect_to redirecting_path( :url => 'http://mexico.social-target.net')
+        redirect_to redirecting_path( :url => 'http://mexico.socialtarget.net')
       when 'CO'
-        redirect_to redirecting_path( :url => 'http://www.social-target.net')
+        redirect_to redirecting_path( :url => 'http://www.socialtarget.net')
       else
-        redirect_to redirecting_path( :url => 'http://www.social-target.net')
+        redirect_to redirecting_path( :url => 'http://www.socialtarget.net')
     end
   end
 
@@ -140,13 +140,13 @@ class HomeController < ApplicationController
     }
     case country
       when 'AR'
-        @redirector = 'http://argentina.social-target.net'
+        @redirector = 'http://argentina.socialtarget.net'
       when 'MX'
-        @redirector = 'http://mexico.social-target.net'
+        @redirector = 'http://mexico.socialtarget.net'
       when 'CO'
-        @redirector = 'http://www.social-target.net'
+        @redirector = 'http://www.socialtarget.net'
       else
-        @redirector = 'http://www.social-target.net'
+        @redirector = 'http://www.socialtarget.net'
       end
   end
 
@@ -158,17 +158,17 @@ class HomeController < ApplicationController
       case params[:invitation_code][0]
         when 'A'
           if APP_CONFIG['app_country'] != 'AR'
-            redirect_to 'http://argentina.social-target.net/I'+params[:invitation_code].to_s
+            redirect_to 'http://argentina.socialtarget.net/I'+params[:invitation_code].to_s
             return
           end
         when 'C'
           if APP_CONFIG['app_country'] != 'CO'
-            redirect_to 'http://www.social-target.net/I'+params[:invitation_code].to_s
+            redirect_to 'http://www.socialtarget.net/I'+params[:invitation_code].to_s
             return
           end
         when 'M'
           if APP_CONFIG['app_country'] != 'MX'
-            redirect_to 'http://mexico.social-target.net/I'+params[:invitation_code].to_s
+            redirect_to 'http://mexico.socialtarget.net/I'+params[:invitation_code].to_s
             return
           end
       end
@@ -193,17 +193,17 @@ class HomeController < ApplicationController
       case params[:link_code][0]
         when 'A'
           if APP_CONFIG['app_country'] != 'AR'
-            redirect_to 'http://argentina.social-target.net/L'+params[:link_code].to_s
+            redirect_to 'http://argentina.socialtarget.net/L'+params[:link_code].to_s
             return
           end
         when 'C'
           if APP_CONFIG['app_country'] != 'CO'
-            redirect_to 'http://www.social-target.net/L'+params[:link_code].to_s
+            redirect_to 'http://www.socialtarget.net/L'+params[:link_code].to_s
             return
           end
         when 'M'
           if APP_CONFIG['app_country'] != 'MX'
-            redirect_to 'http://mexico.social-target.net/L'+params[:link_code].to_s
+            redirect_to 'http://mexico.socialtarget.net/L'+params[:link_code].to_s
             return
           end
       end
@@ -228,17 +228,17 @@ class HomeController < ApplicationController
       case params[:picture_code][0]
         when 'A'
           if APP_CONFIG['app_country'] != 'AR'
-            redirect_to 'http://argentina.social-target.net/P'+params[:picture_code].to_s
+            redirect_to 'http://argentina.socialtarget.net/P'+params[:picture_code].to_s
             return
           end
         when 'C'
           if APP_CONFIG['app_country'] != 'CO'
-            redirect_to 'http://www.social-target.net/P'+params[:picture_code].to_s
+            redirect_to 'http://www.socialtarget.net/P'+params[:picture_code].to_s
             return
           end
         when 'M'
           if APP_CONFIG['app_country'] != 'MX'
-            redirect_to 'http://mexico.social-target.net/P'+params[:picture_code].to_s
+            redirect_to 'http://mexico.socialtarget.net/P'+params[:picture_code].to_s
             return
           end
       end

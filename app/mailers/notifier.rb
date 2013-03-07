@@ -1,6 +1,6 @@
 # encoding: utf-8
 class Notifier < ActionMailer::Base
-  default from: "Social Target <noreply@social-target.net>"
+  default from: "Social Target <noreply@socialtarget.net>"
   layout 'notifier'
 
   # Stest mail
@@ -15,11 +15,11 @@ class Notifier < ActionMailer::Base
     @site_contact = site_contact
     case APP_CONFIG['app_country']
       when 'AR'
-        mail(to: 'sebastian@social-target.net', subject: "Contacto @ Social Target - Its time to go social")
+        mail(to: 'sebastian@socialtarget.net', subject: "Contacto @ Social Target - Its time to go social")
       when 'CO'
-        mail(to: 'sebastian@social-target.net', subject: "Contacto @ Social Target - Its time to go social")
+        mail(to: 'sebastian@socialtarget.net', subject: "Contacto @ Social Target - Its time to go social")
       when 'MX'
-        mail(to: 'sebastian@social-target.net', subject: "Contacto @ Social Target - Its time to go social")
+        mail(to: 'sebastian@socialtarget.net', subject: "Contacto @ Social Target - Its time to go social")
     end
   end
 
@@ -27,7 +27,7 @@ class Notifier < ActionMailer::Base
   def error_publishing(tweet)
     attachments.inline['logomail.png'] = File.read(Rails.root.join('app/assets/images/logomail.png'))
     @tweet = tweet
-    mail(to: 'sebastian@social-target.net', cc: 'mails@rorra.com.ar', subject: "[ERROR] @ Social Target - Tweet NO publicado!!!")
+    mail(to: 'sebastian@socialtarget.net', cc: 'mails@rorra.com.ar', subject: "[ERROR] @ Social Target - Tweet NO publicado!!!")
   end
 
   # Site advertiser contact
@@ -36,11 +36,11 @@ class Notifier < ActionMailer::Base
     @site_advertiser_contact = site_advertiser_contact
     case APP_CONFIG['app_country']
       when 'AR'
-        mail(to: 'sebastian@social-target.net', subject: "Contacto @ Social Target - Its time to go social")
+        mail(to: 'sebastian@socialtarget.net', subject: "Contacto @ Social Target - Its time to go social")
       when 'CO'
-        mail(to: 'sebastian@social-target.net', subject: "Contacto @ Social Target - Its time to go social")
+        mail(to: 'sebastian@socialtarget.net', subject: "Contacto @ Social Target - Its time to go social")
       when 'MX'
-        mail(to: 'sebastian@social-target.net', subject: "Contacto @ Social Target - Its time to go social")
+        mail(to: 'sebastian@socialtarget.net', subject: "Contacto @ Social Target - Its time to go social")
     end
   end
 
@@ -67,11 +67,11 @@ class Notifier < ActionMailer::Base
 
     case APP_CONFIG['app_country']
       when 'AR'
-        mail(to: 'sebastian@social-target.net', subject: "Notificaciones @ Social Target - Error obteniendo conexiones")
+        mail(to: 'sebastian@socialtarget.net', subject: "Notificaciones @ Social Target - Error obteniendo conexiones")
       when 'CO'
-        mail(to: 'sebastian@social-target.net', subject: "Notificaciones @ Social Target - Error obteniendo conexiones")
+        mail(to: 'sebastian@socialtarget.net', subject: "Notificaciones @ Social Target - Error obteniendo conexiones")
       when 'MX'
-        mail(to: 'sebastian@social-target.net', subject: "Notificaciones @ Social Target - Error obteniendo conexiones")
+        mail(to: 'sebastian@socialtarget.net', subject: "Notificaciones @ Social Target - Error obteniendo conexiones")
     end
 
 
@@ -105,11 +105,11 @@ class Notifier < ActionMailer::Base
 
     case APP_CONFIG['app_country']
       when 'AR'
-        mail(to: 'sebastian@social-target.net', subject: "Notificaciones @ Social Target - Nuevo usuario registrado")
+        mail(to: 'sebastian@socialtarget.net', subject: "Notificaciones @ Social Target - Nuevo usuario registrado")
       when 'CO'
-        mail(to: 'sebastian@social-target.net', subject: "Notificaciones @ Social Target - Nuevo usuario registrado")
+        mail(to: 'sebastian@socialtarget.net', subject: "Notificaciones @ Social Target - Nuevo usuario registrado")
       when 'MX'
-        mail(to: 'sebastian@social-target.net', subject: "Notificaciones @ Social Target - Nuevo usuario registrado")
+        mail(to: 'sebastian@socialtarget.net', subject: "Notificaciones @ Social Target - Nuevo usuario registrado")
     end
 
   end
@@ -133,11 +133,11 @@ class Notifier < ActionMailer::Base
 
     case APP_CONFIG['app_country']
       when 'AR'
-        mail(to: 'sebastian@social-target.net', subject: "Notificaciones @ Social Target - @#{@screen_name} recibió una propuesto de Tweet")
+        mail(to: 'sebastian@socialtarget.net', subject: "Notificaciones @ Social Target - @#{@screen_name} recibió una propuesto de Tweet")
       when 'CO'
-        mail(to: 'sebastian@social-target.net', subject: "Notificaciones @ Social Target - @#{@screen_name} recibió una propuesto de Tweet")
+        mail(to: 'sebastian@socialtarget.net', subject: "Notificaciones @ Social Target - @#{@screen_name} recibió una propuesto de Tweet")
       when 'MX'
-        mail(to: 'sebastian@social-target.net', subject: "Notificaciones @ Social Target - @#{@screen_name} recibió una propuesto de Tweet")
+        mail(to: 'sebastian@socialtarget.net', subject: "Notificaciones @ Social Target - @#{@screen_name} recibió una propuesto de Tweet")
     end
 
   end
@@ -199,11 +199,11 @@ class Notifier < ActionMailer::Base
     mail(to: tweet.campaign.advertiser.user.email, subject: "Notificaciones @ Social Target - Tweet rechazado por @"+@screen_name+ ". "+@tweet.reject_cause)
     case APP_CONFIG['app_country']
       when 'AR'
-        mail(to: 'sebastian@social-target.net', subject: "Notificaciones @ Social Target - Un tweet realizado por "+tweet.campaign.advertiser.user.email+" fue rechazado por @"+@screen_name+ ". "+@tweet.reject_cause)
+        mail(to: 'sebastian@socialtarget.net', subject: "Notificaciones @ Social Target - Un tweet realizado por "+tweet.campaign.advertiser.user.email+" fue rechazado por @"+@screen_name+ ". "+@tweet.reject_cause)
       when 'CO'
-        mail(to: 'sebastian@social-target.net', subject: "Notificaciones @ Social Target - Un tweet realizado por "+tweet.campaign.advertiser.user.email+" fue rechazado por @"+@screen_name+ ". "+@tweet.reject_cause)
+        mail(to: 'sebastian@socialtarget.net', subject: "Notificaciones @ Social Target - Un tweet realizado por "+tweet.campaign.advertiser.user.email+" fue rechazado por @"+@screen_name+ ". "+@tweet.reject_cause)
       when 'MX'
-        mail(to: 'sebastian@social-target.net', subject: "Notificaciones @ Social Target - Un tweet realizado por "+tweet.campaign.advertiser.user.email+" fue rechazado por @"+@screen_name+ ". "+@tweet.reject_cause)
+        mail(to: 'sebastian@socialtarget.net', subject: "Notificaciones @ Social Target - Un tweet realizado por "+tweet.campaign.advertiser.user.email+" fue rechazado por @"+@screen_name+ ". "+@tweet.reject_cause)
     end
 
   end
@@ -224,11 +224,11 @@ class Notifier < ActionMailer::Base
 
     case APP_CONFIG['app_country']
       when 'AR'
-        mail(to: 'sebastian@social-target.net', subject: "Notificaciones @ Social Target - Un tweet realizado por "+tweet.campaign.advertiser.user.email+" fue rechazado por @"+@screen_name+ ". "+@tweet.reject_cause)
+        mail(to: 'sebastian@socialtarget.net', subject: "Notificaciones @ Social Target - Un tweet realizado por "+tweet.campaign.advertiser.user.email+" fue rechazado por @"+@screen_name+ ". "+@tweet.reject_cause)
       when 'CO'
-        mail(to: 'sebastian@social-target.net', subject: "Notificaciones @ Social Target - Un tweet realizado por "+tweet.campaign.advertiser.user.email+" fue rechazado por @"+@screen_name+ ". "+@tweet.reject_cause)
+        mail(to: 'sebastian@socialtarget.net', subject: "Notificaciones @ Social Target - Un tweet realizado por "+tweet.campaign.advertiser.user.email+" fue rechazado por @"+@screen_name+ ". "+@tweet.reject_cause)
       when 'MX'
-        mail(to: 'sebastian@social-target.net', subject: "Notificaciones @ Social Target - Un tweet realizado por "+tweet.campaign.advertiser.user.email+" fue rechazado por @"+@screen_name+ ". "+@tweet.reject_cause)
+        mail(to: 'sebastian@socialtarget.net', subject: "Notificaciones @ Social Target - Un tweet realizado por "+tweet.campaign.advertiser.user.email+" fue rechazado por @"+@screen_name+ ". "+@tweet.reject_cause)
     end
 
   end
@@ -277,11 +277,11 @@ class Notifier < ActionMailer::Base
 
     case APP_CONFIG['app_country']
       when 'AR'
-        mail(to: 'sebastian@social-target.net', subject: "Tweet expira en "+time.to_s+" minutos - Its time to go social")
+        mail(to: 'sebastian@socialtarget.net', subject: "Tweet expira en "+time.to_s+" minutos - Its time to go social")
       when 'CO'
-        mail(to: 'sebastian@social-target.net', subject: "Tweet expira en "+time.to_s+" minutos - Its time to go social")
+        mail(to: 'sebastian@socialtarget.net', subject: "Tweet expira en "+time.to_s+" minutos - Its time to go social")
       when 'MX'
-        mail(to: 'sebastian@social-target.net', subject: "Tweet expira en "+time.to_s+" minutos - Its time to go social")
+        mail(to: 'sebastian@socialtarget.net', subject: "Tweet expira en "+time.to_s+" minutos - Its time to go social")
     end
 
   end
@@ -315,11 +315,11 @@ class Notifier < ActionMailer::Base
 
     case APP_CONFIG['app_country']
       when 'AR'
-        mail(to: 'sebastian@social-target.net', subject: "Anunciante con crédito debajo de $1000 - Its time to go social")
+        mail(to: 'sebastian@socialtarget.net', subject: "Anunciante con crédito debajo de $1000 - Its time to go social")
       when 'CO'
-        mail(to: 'sebastian@social-target.net', subject: "Anunciante con crédito debajo de $1000 - Its time to go social")
+        mail(to: 'sebastian@socialtarget.net', subject: "Anunciante con crédito debajo de $1000 - Its time to go social")
       when 'MX'
-        mail(to: 'sebastian@social-target.net', subject: "Anunciante con crédito debajo de $1000 - Its time to go social")
+        mail(to: 'sebastian@socialtarget.net', subject: "Anunciante con crédito debajo de $1000 - Its time to go social")
     end
 
   end
@@ -348,11 +348,11 @@ class Notifier < ActionMailer::Base
 
     case APP_CONFIG['app_country']
       when 'AR'
-        mail(to: 'sebastian@social-target.net', subject: subject)
+        mail(to: 'sebastian@socialtarget.net', subject: subject)
       when 'CO'
-        mail(to: 'sebastian@social-target.net', subject: subject)
+        mail(to: 'sebastian@socialtarget.net', subject: subject)
       when 'MX'
-        mail(to: 'sebastian@social-target.net', subject: subject)
+        mail(to: 'sebastian@socialtarget.net', subject: subject)
     end
   end
 
@@ -372,11 +372,11 @@ class Notifier < ActionMailer::Base
 
     case APP_CONFIG['app_country']
       when 'AR'
-        mail(to: 'sebastian@social-target.net', subject: "Notificaciones @ Social Target -  Usuario requiere aprobación")
+        mail(to: 'sebastian@socialtarget.net', subject: "Notificaciones @ Social Target -  Usuario requiere aprobación")
       when 'CO'
-        mail(to: 'sebastian@social-target.net', subject: "Notificaciones @ Social Target -  Usuario requiere aprobación")
+        mail(to: 'sebastian@socialtarget.net', subject: "Notificaciones @ Social Target -  Usuario requiere aprobación")
       when 'MX'
-        mail(to: 'sebastian@social-target.net', subject: "Notificaciones @ Social Target -  Usuario requiere aprobación")
+        mail(to: 'sebastian@socialtarget.net', subject: "Notificaciones @ Social Target -  Usuario requiere aprobación")
     end
   end
 
