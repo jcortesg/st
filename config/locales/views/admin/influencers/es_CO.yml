@@ -2,7 +2,7 @@ es_CO:
   actor: Actor
   actress: Actriz
   musician: Músico
-  sportsman: deportista
+  sportsman: Deportista
   tv-host: Conductor
   journalist: Periodista
   model: Modelo
@@ -14,6 +14,10 @@ es_CO:
   fashion: Moda
   twitter-guy: Twitteros
   others: Otros
+  blogger: Blogger
+  illustrator: Ilustrador
+  presenter: Presentador
+  photographer: 'Fotógrafo'
   create_celebrity: Crear Celebridad
   are_you_sure: Está seguro que desea eliminar a la celebridad y todo su historial?
   are_you_sure_cant_go_back: Está seguro? Esta acción no puede deshacerse
