@@ -1,0 +1,9 @@
+<tr><td><p class="title">
+  <%= "Tu campaña #{@campaign.name} ha finalizado." %>
+</td></tr>
+<tr><td>
+  <p class="body">
+    Para ver los reportes de la campaña, imprimirlos y descargar en formato PDF,
+    <%= link_to(t('sign_into_your_account'), statistics_advertiser_campaign_url(@campaign)) %>
+  </p>
+</td></tr>
