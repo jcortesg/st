@@ -1,12 +1,7 @@
-
-%p.style1
-  %br/
-  %span.style3
-
-%p.style4
+%p.title
   Uno de tus tweets ha sido públicado en twitter.
-%p.style4
+%p.body
   = render partial: 'tweet_details'
-%p.style4
+%p.body
   Para ver los detalles,
   = link_to("entrá a tu cuenta", influencer_tweet_url(@tweet))

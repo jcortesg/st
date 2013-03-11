@@ -1,8 +1,4 @@
-%p.style1
-  %br/
-  %span.style3
-
-%p.style4
+%p.title
   = "#{@screen_name} recibió una propuesta de tweet de #{@tweet.campaign.advertiser.company}"
-%p.style4
+%p.body
   = render partial: 'tweet_details'

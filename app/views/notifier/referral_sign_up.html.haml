@@ -1,14 +1,9 @@
-
-%p.style1
-  %br/
-  %span.style3
-
-%p.style4
+%p.title
   Social Target® te informa que tienes un nuevo referido!
-%p.style4
+%p.body
   - if @referral.role == 'influencer'
     = "#{@referral.influencer.full_name} (#{link_to("@" + @referral.twitter_screen_name, "http://twitter.com/#!/" + @referral.twitter_screen_name)}"
   - elsif @referral.role == 'advertiser'
     = "#{@referral.advertiser.to_s}"
   se ha registrado en el sitio y ahora es parte de tus referidos.
-%p.style4 Gracias por elegirnos,
+%p.body Gracias por elegirnos,

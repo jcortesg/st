@@ -1,11 +1,7 @@
-%p.style1
-  %br/
-  %span.style3
-
-%p.style4
+%p.title
   =t('tweet_creation_text_1')
-%p.style4
+%p.body
   = render partial: 'tweet_details'
-%p.style4
+%p.body
   Para aceptar, revisar o rechazar el tweet,
   = link_to("entrá a tu cuenta", influencer_tweet_url(@tweet))

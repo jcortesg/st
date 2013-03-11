@@ -1,18 +1,18 @@
-%h1
+%p.title
   Tweet que expira en #{@time} minutos
 
-%p
+%p.body
   Campaña:
   = @tweet.campaign.name
 
-%p
+%p.body
   Celebridad:
   = @tweet.influencer.full_name
 
-%p
+%p.body
   Tweet:
   = @tweet.text
 
-%p
+%p.body
   Hora de expiración:
   = @tweet.tweet_at.strftime("%d-%m-%y %H:%M:%S")

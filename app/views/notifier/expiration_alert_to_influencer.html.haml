@@ -1,24 +1,17 @@
-
-%p.style1
-  %br/
-  %span.style3
-
-%p.style4
+%p.title
   = "Uno de tus tweets vence en #{@time} minutos, "
+%p.body
   = link_to("accede al sitio para aprobar su publicación", [:influencer, @tweet])
-%p.style4
+%p.body
   Campaña:
   = @tweet.campaign.name
-
-%p.style4
+%p.body
   Celebridad:
   = @tweet.influencer.full_name
-
-%p.style4
+%p.body
   Tweet:
   = @tweet.text
-
-%p.style4
+%p.body
   Hora de expiración:
   = @tweet.tweet_at.strftime("%d-%m-%y %H:%M:%S")
 

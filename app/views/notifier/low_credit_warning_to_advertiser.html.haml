@@ -1,14 +1,9 @@
-
-%p.style1
-  %br/
-  %span.style3
-
-%p.style4
+%p.title
   = "Su crédito en Social Target ha disminuido a $#{sprintf("%.02f", @user.balance)}"
 
-%p.style4
+%p.body
   Si desea cargar crédito a fin de crear nuevos Tweets para su campaña, contactese con Social Target.
 
-%p.style4
+%p.body
   Para ver los movimientos de su cuenta,
   = link_to("ingrese a su cuenta", advertiser_transactions_url)

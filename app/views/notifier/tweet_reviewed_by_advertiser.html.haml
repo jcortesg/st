@@ -1,11 +1,7 @@
-%p.style1
-  %br/
-  %span.style3
-
-%p.style4
+%p.title
   = "#{@tweet.campaign.advertiser.company} ha modificado una propuesta de tweet, puedes aceptar la modificación, volver a modificar el tweet o rechazar y cancelar la propuesta."
-%p.style4
+%p.body
   = render partial: 'tweet_details'
-%p.style4
+%p.body
   Para aceptar las modificaciones, rechazar el tweet o realizar una modificación a la propuesta,
   = link_to("entrá a tu cuenta", influencer_tweet_url(@tweet))

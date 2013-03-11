@@ -1,14 +1,11 @@
-%p.style1
-  %br/
-  %span.style3
-
-%p.style4
+%p.title
   Se ha realizado un pago de un Cash Out.
-%p.style4
+
+%p.body
   %ul
     %li= "Importe: $#{strftime('%.02f', @cash_out.amount)}"
     %li= "Fecha: #{@cash_out.paid_at.strftime('%d/%m/%Y %H:%M:%S')}"
-%p.style4
+%p.body
   Para revisar el cash out
   - if @cash_out.user.role == 'influencer'
     = link_to(t('sign_into_your_account'), influencer_cash_out_url(@cash_out))

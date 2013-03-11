@@ -1,11 +1,7 @@
-%p.style1
-  %br/
-  %span.style3
-
-%p.style4
+%p.title
   = "#{@tweet.influencer.full_name} ha aceptado una propuesta de un tweet y esta listo para publicarse."
-%p.style4
+%p.body
   = render partial: 'tweet_details'
-%p.style4
+%p.body
   Para ver los detalles del tweet aceptado
   = link_to("entrá a tu cuenta", advertiser_campaign_tweet_url(@tweet.campaign, @tweet))

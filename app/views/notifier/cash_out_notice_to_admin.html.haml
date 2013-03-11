@@ -1,16 +1,16 @@
-%h1
+%p.title
   - if @cash_out.user.role == 'influencer'
     = "#{@cash_out.user.full_name} ha solicitado un Cash Out"
 
-%p
+%p.body
   Usuario:
   = @cash_out.user.full_name
 
-%p
+%p.body
   Importe:
   = @cash_out.amount
 
-%p
+%p.body
   Fecha
   = @cash_out.created_at.strftime("%d/%m/%Y %H:%M:%S")
 
