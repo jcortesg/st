@@ -15,7 +15,7 @@ class Influencer < ActiveRecord::Base
   validates :influencer_type, :presence => true
   validates :price_category, inclusion: { in: 1..5}
 
-  before_create :update_twitter_data
+  before_create :set_borwin_fee, :update_twitter_data
   after_create :update_audience, :assign_default_prices
   before_update :update_campaign_price
 
@@ -309,6 +309,10 @@ class Influencer < ActiveRecord::Base
   # String presentation
   def to_s
     "#{self.last_name}, #{self.first_name}"
+  end
+
+  def set_borwin_fee
+    self.borwin_fee = 0.6
   end
 
   # Updates the twitter data
