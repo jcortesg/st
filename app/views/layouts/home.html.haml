@@ -20,7 +20,7 @@
     .navbar-wrapper
       .container
         .navbar.navbar-inverse
-          .navbar-inner
+          .none
             %a{:class => 'btn btn-navbar', 'data-target' => '.nav-collapse', 'data-toggle' => 'collapse'}
               %span.icon-bar
               %span.icon-bar
@@ -167,7 +167,7 @@
                       %li= link_to t('affiliate'), affiliate_devise_registration_path
 
 
-    #myCarousel.carousel.slide
+    #myCarousel.carousel.slide.main_car
       .carousel-inner
         .item.active
           = image_tag("slide-01.jpg")
@@ -206,8 +206,16 @@
 
     .container.marketing
       = yield
+    .contact
+      .container
+        .row
+          .span7
+            contacto
+          .span5
+            Form
 
-      #footer.footer
+    #footer.footer
+      .container
         %p.pull-right
           %a Volver arriba
         %p

@@ -3,22 +3,29 @@
 /* Padding below the footer and lighter body text */
 
 body {
-  padding-bottom: 40px;
   color: #5a5a5a;
   font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
 }
 
+
 /* CUSTOMIZE THE NAVBAR
 -------------------------------------------------- */
-
+.navbar{
+  margin-bottom: 0px;
+  .nav{
+    right: 0;
+    float: right;
+  }
+}
 /* Special class on .container surrounding .navbar, used for positioning it into place. */
 .navbar-wrapper {
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
+  background: rgba(0,0,0,0.6);
   z-index: 10;
-  margin-top: 20px;
+  padding: 10px 0px 18px ;
   margin-bottom: -90px; /* Negative margin to pull up carousel. 90px is roughly margins and height of navbar. */
 }
 .navbar-wrapper .navbar {
@@ -57,8 +64,9 @@ body {
 -------------------------------------------------- */
 
 /* Carousel base class */
-.carousel {
+.main_car {
   margin-bottom: 60px;
+  border-bottom: 8px solid #00aef0;
 }
 
 .carousel .container {
@@ -104,6 +112,18 @@ body {
   margin-top: 10px;
 }
 
+.carousel-indicators{
+  li{
+    background-color: #cccccc ;
+    width: 24px;
+    height: 24px;
+    border-radius: 12px;
+    display: inline-block;
+  }
+  .active{
+    background-color: #00aef0
+  }
+}
 
 
 /* MARKETING CONTENT
@@ -133,7 +153,8 @@ body {
   overflow: hidden; /* Vertically center images part 2: clear their floats. */
 }
 .featurette-image {
-  margin-top: -120px; /* Vertically center images part 3: negative margin up the image the same amount of the padding to center it. */
+  position: relative !important;
+  margin-top: 0px; /* Vertically center images part 3: negative margin up the image the same amount of the padding to center it. */
 }
 
 /* Give some space on the sides of the floated elements so text doesn't run right into it. */
@@ -242,4 +263,14 @@ body {
 
 .featurette {
   padding-top: 0;
+}
+/* Footer
+------------------------- */
+.footer{
+  background: #006da4;
+}
+/* CONTACT*/
+
+.contact{
+  background: #00aef0
 }
