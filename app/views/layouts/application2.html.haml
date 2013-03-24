@@ -16,7 +16,7 @@
     %meta{name: 'viewport', content: 'width=device-width, initial-scale=1.0' }
     = csrf_meta_tag
 
-  %body.home
+  %body
     .navbar-wrapper
       .container
         .navbar.navbar-inverse
@@ -167,44 +167,7 @@
                       %li= link_to t('affiliate'), affiliate_devise_registration_path
 
 
-    #myCarousel.carousel.slide
-      .carousel-inner
-        .item.active
-          = image_tag("slide-01.jpg")
-
-          .container
-            .carousel-caption
-              %h1 Crea tú mismo campañas de Marketing y Publicidad a través del Twitter de los famosos.
-              %p.lead Los influenciadores más relevantes lo están esperando!
-              = link_to("Regístrate", advertiser_devise_registration_path, class: 'btn btn-large btn-primary')
-
-        .item
-          = image_tag("slide-02.jpg")
-
-          .container
-            .carousel-caption
-              %h1 Análisis y Mediciones.
-              %p.lead
-                Combinamos sistemas de inteligencia artificial para ofrecerte los datos más adecuados para
-                planificar y ejecutar tu campaña en base a resultados de forma simple y efectiva. En Social Target podrás
-                medir el éxito de tu camapaña!
-              = link_to("Regístrate", advertiser_devise_registration_path, class: 'btn btn-large btn-primary')
-
-        .item
-          = image_tag("slide-03.jpg")
-
-          .container
-            .carousel-caption
-              %h1 Llega al 99% de los usuarios de Twitter de tu país
-              %p.lead
-                Te damos la posibilidad de llegar al 99% de los usuarios de Twitter de tu país. Contamos con
-                las celebridades, deportistas y los twitteros más relevantes de la región.
-              = link_to("Regístrate", advertiser_devise_registration_path, class: 'btn btn-large btn-primary')
-
-      %a.left.carousel-control{:href => "#myCarousel", :"data-slide" => 'prev'} &lsaquo;
-      %a.right.carousel-control{:href => "#myCarousel", :"data-slide" => 'next'} &rsaquo;
-
-    .container.marketing
+    .container.marketing.inner-page
       = yield
 
       #footer.footer

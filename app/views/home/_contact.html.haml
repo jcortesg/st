@@ -1,45 +1,61 @@
-.row
-  .featurette
-    %h2.featurette-heading
-      Contáctenos.
-      %span.muted
-        Siempre tenemos un café listo para recibirte.
-    %p.lead
-      Nuestra  sede principal está ubicada en Bogotá, Colombia.
-      = link_to "contacto@socialtarget.net", "mailto:contacto@socialtarget.net"
-    %p.lead
-      = image_tag "imagenes/empresa.jpg", alt: "Empresa"
-      %br
-      Muy pronto nos encontrarás en todo Latinoamérica.
-    %p.lead
-      Estamos ansiosos de ofrecerte un Taco Mexicano, Ceviche Peruano, una Feijoada Brasilera, Chicharrón de papa Chileno y un Asado Argentino entre otras tantas cosas que queremos compartir con nuestros clientes.
+.contact
+  .container
+    .row
+      .span7
+        %h3 Contáctanos
+        %p
+          %b Siempre tenemos un café listo para recibirte 
+          %br
+          %br
+          Estamos ansiosos de ofrecerte un Taco Mexicano, Ceviche Peruano, una Feijoada Brasilera, Chicharrón de papa Chileno y un Asado Argentino entre otras tantas cosas que queremos compartir con nuestros clientes.
 
-.row
-  .offset1.span4
+      .span5
+        %h3 Necesitas ayuda?
+        %p 
+          %b Escríbenos
+          %br
+          contacto@socialtarget.net
+        - @site_contact = SiteContact.new
+        = simple_form_for @site_contact, :url => process_contact_path   do |f|
 
-    = simple_form_for @site_contact, :url => process_contact_path, :html => {:class => 'form-horizontal lead'} do |f|
+          = render '/shared/simple_form_errors', :f => f
 
-      = render '/shared/simple_form_errors', :f => f
+          = f.input :name , :placeholder => "*Nombre",label: false
+          = f.input :email, :placeholder => "*Email",label: false
+          = f.input :subject, :placeholder => "*Asunto",label: false
+          = f.input :message, :as => :text, :input_html => {:rows => 3, :cols => 60 },:placeholder => "*Mensaje",label: false
+          
+          = f.submit t('send'), :class => 'btn btn-primary '
 
-      = f.input :name
-      = f.input :email
-      = f.input :subject
-      = f.input :message, :as => :text, :input_html => {:rows => 5, :cols => 60 }
-      .form-actions
-        = f.submit t('send'), :class => 'btn btn-primary btn-large'
 
-  .span4.offset1
-    .google_map{style: 'margin-top: 20px'}
-      .iphone_map.clearfix
-        .bg= image_tag('ipad.png')
-        .map{style: 'margin-left: 48px'}
-          = '<iframe width="227" height="172" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=es&amp;geocode=&amp;q=Calle+144,+numero+11-71,+bogota&amp;aq=&amp;sll=37.0625,-95.677068&amp;sspn=39.371738,93.076172&amp;ie=UTF8&amp;hq=&amp;hnear=Calle+144+%23+11-71,+Bogot%C3%A1,+Cundinamarca,+Colombia&amp;t=m&amp;z=14&amp;ll=4.722531,-74.035115&amp;output=embed"></iframe>'.html_safe
-
-    .borwin_twitter
-      .center_text
-        = borwin_twitter_link().html_safe
-        :javascript
-          !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
+#footer.footer
+  .container
+    = image_tag "logo_ft.png"
+    %p
+      Nosotros
+      &middot;
+      Prensa
+      &middot;
+      Parners
+      &middot;
+      Agencias
+      &middot;
+      Anunciantes
+      &middot;
+      Influenciadores
+    %p.priv
+      %a{href: "#"} Privacidad
+      &middot;
+      %a{href: "#"} Términos y condiciones
+      &middot;
+      = link_to 'Argentina', APP_CONFIG['app_country'] == "AR" ? "#" : country_redirector_path(:code => 'AR')
+      &middot;
+      = link_to 'Colombia', APP_CONFIG['app_country'] == "CO" ? "#" : country_redirector_path(:code => 'CO')
+      &middot;
+      = link_to 'México', APP_CONFIG['app_country'] == "MX" ? "#" : country_redirector_path(:code => 'MX')
+    %p.pull-right
+      &copy; 2012 Social Target, Inc.
+      &middot;
 
 
 

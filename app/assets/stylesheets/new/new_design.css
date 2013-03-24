@@ -268,9 +268,11 @@ body {
 ------------------------- */
 .footer{
   background: #006da4;
+  padding: 20px;
 }
 /* CONTACT*/
 
 .contact{
   background: #00aef0
+
 }

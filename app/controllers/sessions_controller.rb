@@ -1,6 +1,7 @@
 # encoding: utf-8
 class SessionsController < ApplicationController
   # Ask the user to autentify his twitter account
+  layout 'application'
   def new
     redirect_to '/auth/twitter'
   end

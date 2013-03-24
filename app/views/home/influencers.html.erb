@@ -5,19 +5,69 @@
 <%= render '/shared/flash', flash: flash %>
 
 <!-- Three columns of text below the carousel -->
-<div class="row"><!-- /.span4 --><!-- /.span4 --><!-- /.span4 -->
-</div><!-- /.row -->
 
-<div class="featurette">
-  <h2 class="featurette-heading">Famosos. <span class="muted">Monetizá tu presencia en Twitter.</span></h2>
-  <p class="lead">Regístrate en Social Target y comienza a recibir ofertas de marcas que te pagan por recomendarlas en Twitter.</p>
-  <p class="lead"><img src="/assets/imagenes/influenciadores.jpg" alt="influenciadores"><br>
-    <br>
-    Si tienes más de 1.500 seguidores en Twitter regístrate y comienza a ganar dinero.</p>
+<div id="#myCarousel" class="carousel slide main_car">
+  <div class="carousel-inner">
+    <div class="active item">
+        <div class="featurette">
+        <%= image_tag("imagenes/slider/Influenciador.png")%>
+        <div class="container center">
+          <div class="carousel-caption">
+          <div class="row">
+            <div class="span4">
+              <%= image_tag ("imagenes/prueba.png") %>
+            </div>
+            <div class="span8">
+              <p>
+                ¿Representas a una marca?
+                ¡Crée en el poder de la influencia y la interactividad!
+
+              </p>
+            </div>
+          </div>
+          
+            
+          </div> 
+        </div>
+        </div>
+    </div>
+
+  </div>
 </div>
-<div class="featurette">
-  <a href="<%= home_influencers_contact_path %>">Más información</a>
-  <a href="<%= influencer_devise_registration_path %>">- Regístrate</a>
+
+<section class="info_page">
+  <div class="container">
+    <p>
+      <h2>Es tu oportunidad</h2>
+      Regístrate ahora y comienza a recibir ofertas atractivas de anunciantes que te pagarán muy bien por tus recomendaciones y por todo tu poder influenciador en twitter. <br>
+
+      Nuestra plataforma ya está siendo utilizada por miles de influenciadores de todo el mundo para ganar dinero a través de sus cuentas de twitter. Si tienes más de 1.000 seguidores no esperes más y regístrate ahora, comienza a ganar dinero con tu cuenta de twitter.
+    </p>
+  </div>
+
+</section>
+
+<div class="container center">
+  <div class="row">
+    <div class="span4">
+      <%= image_tag("imagenes/slider/1.png")%>
+      <p>Regístrate como influenciador aquí</p>
+      <%=link_to 'Registrate' ,influencer_devise_registration_path , :class => "btn btn-large btn-primary" %>
+    </div>
+    <div class="span4">
+      <%= image_tag("imagenes/slider/2.png")%>
+      <p>
+         Nuestra plataforma creará automáticamente tu perfil, analizará tu nivel de influencia e interactividad y te dará una recomendación para el precio de tus tweets. También puedes definir tu propio precio aunque no es recomendable.
+      </p>
+    </div>
+    <div class="span4">
+      <%= image_tag("imagenes/slider/3.png")%>
+      <p>
+        Comienza a recibir ofertas de las marcas que quieren trabajar contigo para que las recomiendes en twitter.  Puedes aceptar, modificar o rechazar las propuestas.
+      </p>
+    </div>
+  </div>
+
 </div>
 
 <hr class="featurette-divider">
