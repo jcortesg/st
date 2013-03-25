@@ -1,36 +1,81 @@
-.row.registration_container
-  .span10.offset1
-    %h1.center_text Regístrate y crea tú mismo campañas de marketing a través del Twitter de los famosos más relevantes!
-    %br
+.container
+  .span7.center
+    %h3
+      Qué tipo de perfil deseas crear
+  .span4
+    .form_advertirser
+      = simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :class => "form-horizontal" }) do |f|
+        - if session[:referrer_id]
+          - referrer = User.where(id: session[:referrer_id]).first
+          = render partial: '/shared/referrer_invitation', locals: { referrer: referrer }
+          %br
 
-.row
-  .span6.offset3
-    = simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :class => "form-horizontal" }) do |f|
+        = render '/shared/simple_form_errors', :f => f
+        = hidden_field_tag :user_role, resource.role
+        = f.input :email
+        = f.input :password, required: true
+        = f.input :password_confirmation, required: true
+        = f.simple_fields_for :advertiser do |a|
+          = a.input :first_name
+          = a.input :last_name
+          = a.input :position
+          = a.input :company
+          = a.input :twitter_screen_name
+          = a.input :phone
+          = a.input :web
+          = a.input :advertising_source
+        - if @referrer
+          = f.input :referrer_id, as: :hidden, input_html: { value: @referrer.id }
+          = f.input :referrer_on, as: :hidden, input_html: { value: Date.today.strftime("%m-%d-%Y") }
+
+        .form-actions
+          = f.submit 'Registrarse', :class => 'btn btn-primary btn-large'
+
+    .form_affiliate
+      = simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :class => "form-horizontal round_form" }) do |f|
+        = render '/shared/simple_form_errors', :f => f
+        = hidden_field_tag :user_role, resource.role
+        = f.input :email
+        = f.input :password, required: true
+        = f.input :password_confirmation, required: true
+        = f.simple_fields_for :affiliate do |a|
+          = a.input :first_name
+          = a.input :last_name
+          = a.input :company
+          = a.input :twitter_screen_name
+          = a.input :phone
+        .form-actions
+          = f.submit 'Registrarse', :class => 'btn btn-primary btn-large'
+    .form_influencer
       - if session[:referrer_id]
         - referrer = User.where(id: session[:referrer_id]).first
         = render partial: '/shared/referrer_invitation', locals: { referrer: referrer }
-        %br
 
-      = render '/shared/simple_form_errors', :f => f
-      = hidden_field_tag :user_role, resource.role
-      = f.input :email
-      = f.input :password, required: true
-      = f.input :password_confirmation, required: true
-      = f.simple_fields_for :advertiser do |a|
-        = a.input :first_name
-        = a.input :last_name
-        = a.input :position
-        = a.input :company
-        = a.input :twitter_screen_name
-        = a.input :phone
-        = a.input :web
-        = a.input :advertising_source
-      - if @referrer
-        = f.input :referrer_id, as: :hidden, input_html: { value: @referrer.id }
-        = f.input :referrer_on, as: :hidden, input_html: { value: Date.today.strftime("%m-%d-%Y") }
+      %div.center_text
+        = link_to("Regístrate con tu cuenta de Twitter", signin_path, class: 'btn btn-large btn-primary')
+      %br
 
-      .form-actions
-        = f.submit 'Registrarse', :class => 'btn btn-primary btn-large'
+    %div.terms_and_conditions.center_text
+      %span{style: 'color: #1E92D3;'}
+        SOCIAL TARGET
+        cumple y respeta las normas y políticas de uso de
+      = link_to('Twitter', 'http://twitter.com/tos', target: '_blank')
+
+      %br
+      %br
+
+      Al registrarse acepta los
+      = link_to("Términos y Condiciones", terms_path)
+      del servicio
+
+    .sign-links.center_text
+      = link_to "Iniciar sesión", new_session_path(resource_name)
+      |
+      = link_to "¿Olvidaste tu contraseña?", new_password_path(resource_name)
+
+.row
+  .span6.offset3
+   
 
     %div.terms_and_conditions.center_text
       Al registrarse acepta los

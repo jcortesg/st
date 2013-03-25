@@ -16,17 +16,17 @@
     %meta{name: 'viewport', content: 'width=device-width, initial-scale=1.0' }
     = csrf_meta_tag
 
-  %body.home
+  %body
     .navbar-wrapper
       .container
         .navbar.navbar-inverse
-          .navbar-inner
+          .none
             %a{:class => 'btn btn-navbar', 'data-target' => '.nav-collapse', 'data-toggle' => 'collapse'}
               %span.icon-bar
               %span.icon-bar
               %span.icon-bar
             %a.brand{href: root_path }
-              %img{src: "/assets/logost.jpg"}
+              %img{src: "/assets/logo_p.png"}
             .nav-collapse.collapse
               %ul.nav
                 - if user_signed_in?
@@ -141,17 +141,6 @@
                   %li= link_to 'Marcas', home_affiliates_path
                   %li= link_to 'Influenciadores', home_influencers_path
 
-                  %li.dropdown
-                    %a{:href => '#', :class => 'dropdown-toggle', 'data-toggle' => 'dropdown'}
-                      = "Nosotros"
-                      %b.caret
-                    %ul.dropdown-menu
-                      %li= link_to t('the_company'), about_us_path
-                      /%li= link_to t('presentation'), presentacion_path
-                      %li= link_to t('press'), press_path
-                      /%li= link_to 'Blog', 'http://blog.socialtarget.net', target: '_blank'
-                      %li= link_to t('work_with_us'), work_with_us_path
-                      %li= link_to t('contact_us'), contact_path
                 - if user_signed_in?
                   %li= link_to 'Salir', destroy_user_session_path, method: :delete
                 - else
@@ -167,10 +156,10 @@
                       %li= link_to t('affiliate'), affiliate_devise_registration_path
 
 
-    #myCarousel.carousel.slide
+    #myCarousel.carousel.slide.main_car
       .carousel-inner
         .item.active
-          = image_tag("slide-01.jpg")
+          = image_tag("imagenes/slider/slider1.png")
 
           .container
             .carousel-caption
@@ -178,47 +167,9 @@
               %p.lead Los influenciadores más relevantes lo están esperando!
               = link_to("Regístrate", advertiser_devise_registration_path, class: 'btn btn-large btn-primary')
 
-        .item
-          = image_tag("slide-02.jpg")
-
-          .container
-            .carousel-caption
-              %h1 Análisis y Mediciones.
-              %p.lead
-                Combinamos sistemas de inteligencia artificial para ofrecerte los datos más adecuados para
-                planificar y ejecutar tu campaña en base a resultados de forma simple y efectiva. En Social Target podrás
-                medir el éxito de tu camapaña!
-              = link_to("Regístrate", advertiser_devise_registration_path, class: 'btn btn-large btn-primary')
-
-        .item
-          = image_tag("slide-03.jpg")
-
-          .container
-            .carousel-caption
-              %h1 Llega al 99% de los usuarios de Twitter de tu país
-              %p.lead
-                Te damos la posibilidad de llegar al 99% de los usuarios de Twitter de tu país. Contamos con
-                las celebridades, deportistas y los twitteros más relevantes de la región.
-              = link_to("Regístrate", advertiser_devise_registration_path, class: 'btn btn-large btn-primary')
-
       %a.left.carousel-control{:href => "#myCarousel", :"data-slide" => 'prev'} &lsaquo;
       %a.right.carousel-control{:href => "#myCarousel", :"data-slide" => 'next'} &rsaquo;
 
     .container.marketing
       = yield
-
-      #footer.footer
-        %p.pull-right
-          %a Volver arriba
-        %p
-          &copy; 2012 Social Target, Inc.
-          &middot;
-          %a{href: "#"} Privacidad
-          &middot;
-          %a{href: "#"} Términos y condiciones
-          &middot;
-          = link_to 'Argentina', APP_CONFIG['app_country'] == "AR" ? "#" : country_redirector_path(:code => 'AR')
-          &middot;
-          = link_to 'Colombia', APP_CONFIG['app_country'] == "CO" ? "#" : country_redirector_path(:code => 'CO')
-          &middot;
-          = link_to 'México', APP_CONFIG['app_country'] == "MX" ? "#" : country_redirector_path(:code => 'MX')
+    =render :partial => 'contact'

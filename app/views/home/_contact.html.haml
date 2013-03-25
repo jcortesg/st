@@ -1,0 +1,61 @@
+.contact
+  .container
+    .row
+      .span7
+        %h3 Contáctanos
+        %p
+          %b Siempre tenemos un café listo para recibirte 
+          %br
+          %br
+          Estamos ansiosos de ofrecerte un Taco Mexicano, Ceviche Peruano, una Feijoada Brasilera, Chicharrón de papa Chileno y un Asado Argentino entre otras tantas cosas que queremos compartir con nuestros clientes.
+
+      .span5
+        %h3 Necesitas ayuda?
+        %p 
+          %b Escríbenos
+          %br
+          contacto@socialtarget.net
+        - @site_contact = SiteContact.new
+        = simple_form_for @site_contact, :url => process_contact_path   do |f|
+
+          = render '/shared/simple_form_errors', :f => f
+
+          = f.input :name , :placeholder => "*Nombre",label: false
+          = f.input :email, :placeholder => "*Email",label: false
+          = f.input :subject, :placeholder => "*Asunto",label: false
+          = f.input :message, :as => :text, :input_html => {:rows => 3, :cols => 60 },:placeholder => "*Mensaje",label: false
+          
+          = f.submit t('send'), :class => 'btn btn-primary '
+
+
+#footer.footer
+  .container
+    = image_tag "logo_ft.png"
+    %p
+      Nosotros
+      &middot;
+      Prensa
+      &middot;
+      Parners
+      &middot;
+      Agencias
+      &middot;
+      Anunciantes
+      &middot;
+      Influenciadores
+    %p.priv
+      %a{href: "#"} Privacidad
+      &middot;
+      %a{href: "#"} Términos y condiciones
+      &middot;
+      = link_to 'Argentina', APP_CONFIG['app_country'] == "AR" ? "#" : country_redirector_path(:code => 'AR')
+      &middot;
+      = link_to 'Colombia', APP_CONFIG['app_country'] == "CO" ? "#" : country_redirector_path(:code => 'CO')
+      &middot;
+      = link_to 'México', APP_CONFIG['app_country'] == "MX" ? "#" : country_redirector_path(:code => 'MX')
+    %p.pull-right
+      &copy; 2012 Social Target, Inc.
+      &middot;
+
+
+

@@ -1,6 +1,23 @@
 # encoding: utf-8
 module ApplicationHelper
   # Gets the home path for the current user profiles
+  def current
+    @user = current_user
+    case @user.role
+      when 'admin'
+        @rol = current_user.advertiser
+      when 'advertiser'
+        #advertiser_dashboard_path
+        @rol = current_user.advertiser
+      when 'affiliate'
+        #affiliate_dashboard_path
+        @rol = current_user.affiliate
+      when 'influencer'
+        @rol = current_user.influencer
+    end
+    @rol
+  end
+
   def home_path_for(user)
     case user.role
       when 'admin'

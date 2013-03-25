@@ -4,8 +4,8 @@ class Affiliate::ProfilesController < ApplicationController
 
   # Shows the affiliate profiles
   def show
-    @affiliate = current_user.affiliate
     @user = current_user
+    @affiliate = current_user.affiliate
   end
 
   # Shows the contact data

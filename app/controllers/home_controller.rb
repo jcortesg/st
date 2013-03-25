@@ -3,11 +3,12 @@ require 'mercadopago.rb'
 
 class HomeController < ApplicationController
   include ApplicationHelper
+  layout "page" 
 
   # Website main page
   def index
     if !cookies[:country].blank? || %w(development test).include?(Rails.env)
-      render layout: 'home'
+      render layout: 'home1'
     else
       ip = request.remote_ip
       begin
@@ -35,13 +36,13 @@ class HomeController < ApplicationController
 
   # Anunciantes
   def advertisers
-    render layout: 'home'
+   
   end
 
   # Anunciantes - Contacto
   def advertisers_contact
     @site_advertiser_contact = SiteAdvertiserContact.new
-    render layout: 'home'
+    
   end
 
   # Anunciantes - Porcess Contact Form
@@ -58,12 +59,12 @@ class HomeController < ApplicationController
 
   # Marcas
   def affiliates
-    render layout: 'home'
+    
   end
 
   # Influenciadores
   def incluencers
-    render layout: 'home'
+    
   end
 
   # Celebridades - Contacto
@@ -73,23 +74,23 @@ class HomeController < ApplicationController
 
   # Nosotros - La Empresa
   def about_us
-    render layout: 'home'
+    
   end
 
   # Nosotros - Prensa
   def press
-    render layout: 'home'
+    
   end
 
   # Nosotros - Trabaja con Nosotros
   def work_with_us
-    render layout: 'home'
+    
   end
 
   # Nosotros - Contactenos
   def contact
     @site_contact = SiteContact.new
-    render layout: 'home'
+    
   end
 
   # Process the contact form
