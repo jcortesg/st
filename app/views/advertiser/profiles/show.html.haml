@@ -12,7 +12,7 @@
     .profile_round_box
       .profile_resume_head
         %h1
-          = @advertiser.company
+          = @advertiser.company 
 
       .profile_body
         .twitter_overview
@@ -31,11 +31,7 @@
             %p
               %strong= t('position')
               = @advertiser.position
-          .twitter_photo
-            - if @advertiser.photo.exists?
-              = link_to(image_tag(@advertiser.photo.url(:profile)), '#user_photo', 'data-toggle' => 'modal')
-            - else
-              = link_to(image_tag('logo_empresas.jpg'), '#user_photo', 'data-toggle' => 'modal')
+          
 
       .profile_data.clearfix
         .influencer_stats

@@ -5,35 +5,21 @@
 <%= render '/shared/flash', flash: flash %>
 
 <!-- Three columns of text below the carousel -->
-
-<div id="#myCarousel" class="carousel slide main_car">
-  <div class="carousel-inner">
-    <div class="active item">
-        <div class="featurette">
-        <%= image_tag("imagenes/slider/Influenciador.png")%>
-        <div class="container center">
-          <div class="carousel-caption">
-          <div class="row">
-            <div class="span4">
-              <%= image_tag ("imagenes/prueba.png") %>
-            </div>
-            <div class="span8">
-              <p>
-                ¿Representas a una marca?
-                ¡Crée en el poder de la influencia y la interactividad!
-
-              </p>
-            </div>
-          </div>
-          
-            
-          </div> 
-        </div>
-        </div>
+<header class="influencer">
+  <div class="container">
+   <div class="row">
+    <div class="span4 center">
+       <%= image_tag ("imagenes/prueba.png"), :class => 'icon' %>
     </div>
-
+    <div class="span6">
+      <h2>¡Haz que tu cuenta de twitter trabaje para ti!</h2> 
+      <p>
+        Todos los días una gran cantidad de marcas y agencias acuden a Social Target en busca de influenciadores adecuados para sus campañas de marketing y publicidad en twitter.
+      </p>
+    </div>
+   </div>
   </div>
-</div>
+</header>
 
 <section class="info_page">
   <div class="container">

@@ -12,12 +12,14 @@
     .profile_round_box
       .profile_resume_head
         %h1
-          = @affiliate.company
+          = @affiliate.company 
 
       .profile_body
         .twitter_overview
           .overview_data.clearfix
+
             %h2
+              holaaa
               - unless @affiliate.twitter_screen_name.blank?
                 = link_to("@#{@affiliate.twitter_screen_name}", "https://twitter.com/#!/#{@affiliate.twitter_screen_name}")
               %span.edit_profile
@@ -36,7 +38,6 @@
               = link_to(image_tag(@affiliate.photo.url(:profile)), '#user_photo', 'data-toggle' => 'modal')
             - else
               = link_to(image_tag('logo_empresas.jpg'), '#user_photo', 'data-toggle' => 'modal')
-
       .profile_data.clearfix
         .influencer_stats
           .box_container.clearfix

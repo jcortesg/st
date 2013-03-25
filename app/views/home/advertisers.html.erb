@@ -4,30 +4,28 @@
 
 <%= render '/shared/flash', flash: flash %>
 
-
-<div id="#myCarousel" class="carousel slide main_car">
-  <div class="carousel-inner">
-    <div class="active item">
-        <%= image_tag("imagenes/slider/Influenciador.png")%>
-        <div class="container">
-          <div class="carousel-caption">
-            ¿Representas a una marca?
-            ¡Crée en el poder de la influencia y la interactividad!
-          </div> 
-        </div>
+<header class="advertisers">
+  <div class="container">
+   <div class="row">
+    <div class="span4 center">
+       <%= image_tag ("imagenes/prueba3.png"), :class => 'icon' %>
     </div>
-
+    <div class="span6">
+      <h2>¡Haz que tu cuenta de twitter trabaje para ti!</h2> 
+      <p>
+        Todos los días una gran cantidad de marcas y agencias acuden a Social Target en busca de influenciadores adecuados para sus campañas de marketing y publicidad en twitter.
+      </p>
+    </div>
+   </div>
   </div>
-</div>
+</header>
 
 
 <section class="info_page">
   <div class="container">
     <p>
       <h2>Es tu oportunidad</h2>
-      Regístrate ahora y comienza a recibir ofertas atractivas de anunciantes que te pagarán muy bien por tus recomendaciones y por todo tu poder influenciador en twitter. <br>
-
-      Nuestra plataforma ya está siendo utilizada por miles de influenciadores de todo el mundo para ganar dinero a través de sus cuentas de twitter. Si tienes más de 1.000 seguidores no esperes más y regístrate ahora, comienza a ganar dinero con tu cuenta de twitter.
+      
     </p>
   </div>
 
@@ -39,14 +37,7 @@
 <div class="row"><!-- /.span4 --><!-- /.span4 --><!-- /.span4 -->
 </div><!-- /.row -->
 
-<div class="featurette">
-  <h2 class="featurette-heading">Agencias. <span class="muted">Nuestro principal partner.</span></h2>
 
-  <p class="lead">Las Agencias son nuestro principal partner y es por eso que la plataforma está desarrollada pensando
-    en simplificarles los objetivos de sus clientes en Twitter. También les ofrecemos un beneficio económico cada vez
-    que realicen campañas con Social Target.</p>
-
-</div>
 <div class="featurette">
   <a href="<%= home_advertisers_contact_path %>">Más información</a>
   <a href="<%= advertiser_devise_registration_path %>">- Regístrate</a>

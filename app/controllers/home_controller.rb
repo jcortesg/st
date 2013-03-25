@@ -3,6 +3,7 @@ require 'mercadopago.rb'
 
 class HomeController < ApplicationController
   include ApplicationHelper
+  layout "page" 
 
   # Website main page
   def index

@@ -6,28 +6,29 @@
 
 <!-- Three columns of text below the carousel -->
 
-<div id="#myCarousel" class="carousel slide main_car">
-  <div class="carousel-inner">
-    <div class="active item">
-        <%= image_tag("imagenes/slider/anunciante.png") %>
-        <div class="container">
-          <div class="carousel-caption">
-            ¿Representas a una marca?
-            ¡Crée en el poder de la influencia y la interactividad!
-          </div> 
-        </div>
+<header class="affiliates">
+  <div class="container">
+   <div class="row">
+    <div class="span4 center">
+       <%= image_tag ("imagenes/prueba2.png"), :class => 'icon' %>
     </div>
-
+    <div class="span6">
+      <h2>¿Representas a una marca?
+¡Crée en el poder de la influencia y la interactividad!</h2> 
+      <p>
+        prepárate porque Social Target es la plataforma “Self-service” que te garantiza los resultados que esperas y te permite crear tu propia campaña de marketing o publicidad obteniendo recomendaciones de los influenciadores más relevantes en twitter.
+      </p>
+    </div>
+   </div>
   </div>
-</div>
+</header>
 
 <section class="info_page">
   <div class="container">
     <p>
-      <h2>Es tu oportunidad</h2>
-      Regístrate ahora y comienza a recibir ofertas atractivas de anunciantes que te pagarán muy bien por tus recomendaciones y por todo tu poder influenciador en twitter. <br>
-
-      Nuestra plataforma ya está siendo utilizada por miles de influenciadores de todo el mundo para ganar dinero a través de sus cuentas de twitter. Si tienes más de 1.000 seguidores no esperes más y regístrate ahora, comienza a ganar dinero con tu cuenta de twitter.
+      <h2>Cómo funciona</h2>
+      <p>En el siguiente video te lo explicaremos.</p>
+      <p>Crear tu propia campaña es realmente fácil y solo te quitará algunos minutos</p>
     </p>
   </div>
 
@@ -35,11 +36,6 @@
 
 
 
-<div class="featurette">
-  <h2 class="featurette-heading">Marcas. <span class="muted">Plataforma &quot;Self-Service&quot;.</span></h2>
-  <p class="lead">Si eres  representante de una marca puedes crear tú mismo una campaña de marketing o publicidad a través del Twitter de los famosos más relevantes. Desde Social Target estamos a tu disposición para asesorarte durante todo el proceso.</p>
-  <p class="lead"><img src="/assets/imagenes/marca.jpg" alt="Marca"></p>
-</div>
 <div class="featurette">
   <a href="<%= contact_path %>">Más información</a>
   <a href="<%= affiliate_devise_registration_path %>">- Regístrate</a>

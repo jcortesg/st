@@ -17,135 +17,18 @@
     = csrf_meta_tag
 
   %body
-    .navbar-wrapper.navsecond
-      .container
-        .navbar.navbar-inverse
-          .none
-            %a{:class => 'btn btn-navbar', 'data-target' => '.nav-collapse', 'data-toggle' => 'collapse'}
-              %span.icon-bar
-              %span.icon-bar
-              %span.icon-bar
-            %a.brand{href: root_path }
-              %img{src: "/assets/logo_n.png"}
-            .nav-collapse.collapse
-              %ul.nav
-                - if user_signed_in?
-                  - if current_user.advertiser?
-                    %li.dropdown
-                      %a{:href => '#', :class => 'dropdown-toggle', 'data-toggle' => 'dropdown'}
-                        = "Campañas"
-                        %b.caret
-                      %ul.dropdown-menu
-                        - if current_user.advertiser.can_create_campaigns?
-                          %li= link_to t('new_campaign'), new_advertiser_campaign_path
-                        %li= link_to t('current_campaigns'), advertiser_campaigns_path
-                        %li= link_to t('historical_campaigns'), archived_advertiser_campaigns_path
-                    - if APP_CONFIG['app_country'] == 'AR'
-                      %li= link_to t('payments'), [:advertiser, :payments]
-                    %li= link_to t('transactions'), [:advertiser, :transactions]
-                    %li.dropdown
-                      %a{:href => '#', :class => 'dropdown-toggle', 'data-toggle' => 'dropdown'}
-                        = t('profile')
-                        %b.caret
-                      %ul.dropdown-menu
-                        %li= link_to t('my_profile'), advertiser_profile_path
-                        %li= link_to t('my_data'), advertiser_profiles_my_data_path
-                        %li= link_to t('change_password'), advertiser_profiles_change_password_path
-                  - elsif current_user.influencer?
-                    -if current_user.influencer.approved?
-                      %li.dropdown
-                        %a{:href => '#', :class => 'dropdown-toggle', 'data-toggle' => 'dropdown'}
-                          = t('profile')
-                          %b.caret
-                        %ul.dropdown-menu
-                          %li= link_to t('my_profile'), influencer_profile_path
-                          %li= link_to t('contact_info'), influencer_profiles_contact_data_path
-                          %li= link_to t('payment_info'), influencer_profiles_payment_data_path
-                          %li= link_to t('change_password'), influencer_profiles_change_password_path
-                          %li= link_to t('best_time_for_tweet'), influencer_profiles_best_time_path
-                      %li.dropdown
-                        %a{:href => '#', :class => 'dropdown-toggle', 'data-toggle' => 'dropdown'}
-                          = "Referidos"
-                          %b.caret
-                        %ul.dropdown-menu
-                          %li= link_to t('information'), influencer_referrals_path
-                          %li= link_to "Mis Referidos", list_influencer_referrals_path
-                      %li= link_to t('tweets'), influencer_tweets_path
-                      %li.dropdown
-                        %a{:href => '#', :class => 'dropdown-toggle', 'data-toggle' => 'dropdown'}
-                          Ingresos
-                          %b.caret
-                        %ul.dropdown-menu
-                          %li= link_to t('income'), [:influencer, :transactions]
-                          %li= link_to t('cash_out'), [:influencer, :cash_outs]
-                  - elsif current_user.affiliate?
-                    %li.dropdown
-                      %a{:href => '#', :class => 'dropdown-toggle', 'data-toggle' => 'dropdown'}
-                        = t('referrals')
-                        %b.caret
-                      %ul.dropdown-menu
-                        %li= link_to t('information'), affiliate_referrals_path
-                        %li= link_to t('my_referrals'), list_affiliate_referrals_path
-                    %li.dropdown
-                      %a{:href => '#', :class => 'dropdown-toggle', 'data-toggle' => 'dropdown'}
-                        = "Perfil"
-                        %b.caret
-                      %ul.dropdown-menu
-                        %li= link_to t('my_profile'), affiliate_profile_path
-                        %li= link_to t('my_data'), affiliate_profiles_my_data_path
-                        %li= link_to t('payment_info'), affiliate_profiles_payment_data_path
-                        %li= link_to t('change_password'), affiliate_profiles_change_password_path
-                    %li.dropdown
-                      %a{:href => '#', :class => 'dropdown-toggle', 'data-toggle' => 'dropdown'}
-                        Ingresos
-                        %b.caret
-                      %ul.dropdown-menu
-                        %li= link_to t('income'), [:affiliate, :transactions]
-                        %li= link_to t('cash_out'), [:affiliate, :cash_outs]
-                  - elsif current_user.admin?
-                    %li.dropdown
-                      %a{:href => '#', :class => 'dropdown-toggle', 'data-toggle' => 'dropdown'}
-                        = "Usuarios"
-                        %b.caret
-                      %ul.dropdown-menu
-                        %li= link_to t('waiting_approval'), waiting_approval_admin_influencers_path
-                        %li= link_to t('authorizations'), admin_users_path
-                        %li= link_to t('affiliates'), admin_affiliates_path
-                        %li= link_to t('advertisers'), admin_advertisers_path
-                        %li= link_to t('celebrities'), admin_influencers_path
-                    %li= link_to t('referrals'), admin_referrers_path
-                    %li.dropdown
-                      %a{:href => '#', :class => 'dropdown-toggle', 'data-toggle' => 'dropdown'}
-                        = t('campaigns')
-                        %b.caret
-                      %ul.dropdown-menu
-                        %li= link_to t('current_campaigns'), admin_campaigns_path
-                        %li= link_to t('historical_campaigns'), archived_admin_campaigns_path
-                    - if APP_CONFIG['app_country'] == 'AR'
-                      %li= link_to t('payments'), [:admin, :payments]
-                    %li.dropdown
-                      %a{:href => '#', :class => 'dropdown-toggle', 'data-toggle' => 'dropdown'}
-                        Transacciones
-                        %b.caret
-                      %ul.dropdown-menu
-                        %li= link_to t('transactions'), [:admin, :transactions]
-                        %li= link_to t('cash_out'), [:admin, :cash_outs]
-                    %li.dropdown
-                      %a{:href => '#', :class => 'dropdown-toggle', 'data-toggle' => 'dropdown'}
-                        = "Twitter"
-                        %b.caret
-                      %ul.dropdown-menu
-                        %li= link_to 'Keywords', [:admin, :keywords]
-                - else
-                  %li= link_to 'Agencias', home_advertisers_path
-                  %li= link_to 'Marcas', home_affiliates_path
-                  %li= link_to 'Influenciadores', home_influencers_path
-
-                - if user_signed_in?
-                  %li= link_to 'Salir', destroy_user_session_path, method: :delete
-                - else
-                  %li= link_to t('start_session'), new_user_session_path
-                  %li= link_to 'Registrarse', new_user_registration_path
-    .page
-      = yield
-    =render :partial => 'contact'
+    =render :partial => '/layouts/nav_with'
+    
+    .container
+      .span2
+        .picture_profile
+          - @rol = current 
+          - if @rol.photo.exists?
+            = link_to(image_tag(@rol.photo.url(:profile)), '#user_photo', 'data-toggle' => 'modal') 
+          - else
+            = link_to(image_tag('logo_empresas.jpg'), '#user_photo', 'data-toggle' => 'modal')
+        = link_to(t('edit_profile'), [current_user.role, :profiles, :edit], :class => 'btn btn-primary')
+      .span9
+        = yield
+    =render :partial => '/home/contact'
+= debug current_user
