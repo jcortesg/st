@@ -1,0 +1,23 @@
+!!!
+%html
+  %head
+    %title Social Target - The Social Media Marketing Factory
+    =# favicon_link_tag '/borwin.ico'
+    = stylesheet_link_tag 'application'
+    - if params[:controller].include?('admin')
+      = stylesheet_link_tag 'admin/admin'
+    = stylesheet_link_tag 'print', :media => 'print'
+    = javascript_include_tag 'application'
+    - if params[:controller].include?('admin')
+      = javascript_include_tag 'admin/admin'
+    /[if lt IE 9]
+      = javascript_include_tag "http://html5shim.googlecode.com/svn/trunk/html5.js"
+    = yield :head
+    %meta{name: 'viewport', content: 'width=device-width, initial-scale=1.0' }
+    = csrf_meta_tag
+
+  %body
+    =render :partial => '/layouts/nav_with'
+    
+    .container
+      = yield
