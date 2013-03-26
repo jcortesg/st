@@ -36,18 +36,18 @@
 
           = render '/shared/simple_form_errors', :f => f
           = hidden_field_tag :user_role, resource.role
-          = f.input :email
-          = f.input :password, required: true
-          = f.input :password_confirmation, required: true
+          = f.input :email, label: false, :placeholder =>"*Email"
+          = f.input :password, required: true, label: false, :placeholder =>"*password"
+          = f.input :password_confirmation, required: true, label: false, :placeholder =>"*password confirmation"
           = f.simple_fields_for :advertiser do |a|
-            = a.input :first_name
-            = a.input :last_name
-            = a.input :position
-            = a.input :company
-            = a.input :twitter_screen_name
-            = a.input :phone
-            = a.input :web
-            = a.input :advertising_source
+            = a.input :first_name, label: false, :placeholder =>" *Nombre"
+            = a.input :last_name, label: false, :placeholder =>"*Apellidos"
+            = a.input :position, label: false, :placeholder =>"*Cargo"
+            = a.input :company, label: false, :placeholder =>"*Compañia"
+            = a.input :twitter_screen_name, label: false, :placeholder =>"*Twitter"
+            = a.input :phone, label: false, :placeholder =>"*Telefono"
+            = a.input :web, label: false, :placeholder =>"Web"
+            = a.input :advertising_source, label: false, :placeholder =>""
           - if @referrer
             = f.input :referrer_id, as: :hidden, input_html: { value: @referrer.id }
             = f.input :referrer_on, as: :hidden, input_html: { value: Date.today.strftime("%m-%d-%Y") }

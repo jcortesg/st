@@ -181,7 +181,7 @@ module ApplicationHelper
     end
   end
 
-  def borwin_twitter_link
+  def social_twitter
     case APP_CONFIG['app_country']
       when 'AR'
         '<a href="https://twitter.com/SocialTarget1" class="twitter-follow-button" data-show-count="false" data-lang="es" data-size="large">Seguir en @SocialTarget1</a>'

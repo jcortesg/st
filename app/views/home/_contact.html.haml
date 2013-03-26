@@ -1,3 +1,9 @@
+.borwin_twitter
+  .center_text
+    = social_twitter().html_safe
+    :javascript
+      !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
+
 .contact
   .container
     .row
@@ -31,7 +37,7 @@
 #footer.footer
   .container
     = image_tag "logo_ft.png"
-    %p
+    %p.menu
       Nosotros
       &middot;
       Prensa
@@ -53,7 +59,7 @@
       = link_to 'Colombia', APP_CONFIG['app_country'] == "CO" ? "#" : country_redirector_path(:code => 'CO')
       &middot;
       = link_to 'México', APP_CONFIG['app_country'] == "MX" ? "#" : country_redirector_path(:code => 'MX')
-    %p.pull-right
+    %p.pull-right.cpy
       &copy; 2012 Social Target, Inc.
       &middot;
 

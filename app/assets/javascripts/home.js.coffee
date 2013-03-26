@@ -10,4 +10,3 @@ $(document).ready ->
 $(document).ready -> 
    $("#one").click -> $("#anunciante").css display: 'block'
    $("#one").click -> $(".form_advertirser").css display: 'block'
-  

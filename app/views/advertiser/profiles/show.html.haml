@@ -42,12 +42,21 @@
           .data
             %ul
               %li
-                = t('active_campaigns')
-                = link_to(@advertiser.campaigns.created_and_active.count, [:advertiser, :campaigns])
+                %span.camp
+                  = link_to(@advertiser.campaigns.created_and_active.count, [:advertiser, :campaigns])  
+                %small
+                  = t('active_campaigns')
+                     
               %li
+                %span.historical
+                  = link_to(@advertiser.campaigns.archived.count, [:archived, :advertiser, :campaigns])
+                %small
                 = t('historical')
-                = link_to(@advertiser.campaigns.archived.count, [:archived, :advertiser, :campaigns])
-      
+              %li
+                %span
+                  = @advertiser.campaigns.archived.count + @advertiser.campaigns.created_and_active.count
+                %small
+                  Total
 
       #user_photo.modal.hide.fade
         = simple_form_for @advertiser, :url => advertiser_profiles_update_photo_path do |f|
