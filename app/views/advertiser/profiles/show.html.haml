@@ -8,60 +8,46 @@
       = render '/shared/flash', flash: flash
 .row
   .span9
-
-    .profile_round_box
-      .profile_resume_head
-        %h1
-          = @advertiser.company 
-
-      .profile_body
-        .twitter_overview
-          .overview_data.clearfix
-            %h2
-              - unless @advertiser.twitter_screen_name.blank?
-                = link_to("@#{@advertiser.twitter_screen_name}", "https://twitter.com/#!/#{@advertiser.twitter_screen_name}")
-              %span.edit_profile
-                = link_to(t('edit_profile'), [:advertiser, :profiles, :edit], :class => 'btn btn-primary')
-            - unless @advertiser.brand.blank?
-              %strong= t('brand')
-              = @advertiser.brand
-            %p
-              %strong= t('name')
-              = @advertiser.full_name
-            %p
-              %strong= t('position')
-              = @advertiser.position
-          
-
-      .profile_data.clearfix
-        .influencer_stats
-          .box_container.clearfix
-            .box
-              .stat= t('web_site')
-              .data= link_to(@advertiser.web, @advertiser.web.include?('http') ? @advertiser.web : "http://#{@advertiser.web}", target: '_blank')
-              .stat= t('address')
-              .data= @advertiser.address
-              .stat= t('city')
-              .data= @advertiser.city
-              .stat= t('state')
-              .data= @advertiser.state
-              .stat= t('country')
-              .data= @advertiser.country
-              .stat= t('postal_code')
-              .data= @advertiser.zip_code
-
-            .box.last
-              .stat= t('tweetgo_income')
-              .data= @advertiser.user.created_at.strftime("%d/%m/%y")
-              .stat= t('active_campaigns')
-              .data= link_to(@advertiser.campaigns.created_and_active.count, [:advertiser, :campaigns])
-              .stat= t('historical')
-              .data= link_to(@advertiser.campaigns.archived.count, [:archived, :advertiser, :campaigns])
-              .stat= t('referrals')
-              .data= link_to(@advertiser.user.referrals.count, [:affiliate, :referrals])
-              .stat= t('income')
-              .data= link_to(number_to_currency(@advertiser.user.total_referral_earnings), [:affiliate, :referrals])
-
+    .row
+      .span4
+        .box.inter
+          %span
+            %label 
+              =t('name')
+            = @advertiser.full_name
+          %span
+            %label 
+              Cargo:
+          %span
+            %label 
+              = t('web_site')
+          %span
+            %label 
+              = t('address')
+          %span
+            %label 
+              = t('city')
+          %span
+            %label 
+              = t('state')
+          %span
+            %label 
+              = t('country')
+          %span 
+            %label Ingreso Social Target:
+            =link_to(number_to_currency(@advertiser.user.total_referral_earnings), [:affiliate, :referrals])
+           
+      .span4.offset1
+        .box
+          .data
+            %ul
+              %li
+                = t('active_campaigns')
+                = link_to(@advertiser.campaigns.created_and_active.count, [:advertiser, :campaigns])
+              %li
+                = t('historical')
+                = link_to(@advertiser.campaigns.archived.count, [:archived, :advertiser, :campaigns])
+      
 
       #user_photo.modal.hide.fade
         = simple_form_for @advertiser, :url => advertiser_profiles_update_photo_path do |f|

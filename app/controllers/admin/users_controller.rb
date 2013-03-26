@@ -2,6 +2,7 @@
 class Admin::UsersController < ApplicationController
   before_filter :authenticate_user!
   before_filter :require_admin
+  layout "admin"
 
   # Shows the list of users that requires authorization to be able to access the website
   def index

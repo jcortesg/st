@@ -1,17 +1,19 @@
-.row.registration_container
-  .span6.offset3.round_box
-    = simple_form_for(@user, :url => advertiser_profiles_update_path, :html => { class: "form-horizontal round_form", method: :put }) do |f|
-      %h1.form_title= t('profile')
-      = render '/shared/simple_form_errors', :f => f
+.row
+  = simple_form_for(@user, :url => advertiser_profiles_update_path, :html => { class: "form-horizontal round_form", method: :put }) do |f|
+    %h1.form_title= t('profile')
+    = render '/shared/simple_form_errors', :f => f
+    
+    .span4
+      %h3 Datos del anunciante
       = f.input :email
       = f.simple_fields_for :advertiser do |a|
+        = a.input :company
+        = a.input :web
+        = a.input :twitter_screen_name
         = a.input :first_name
         = a.input :last_name
         = a.input :position
-        = a.input :company
         = a.input :brand
-        = a.input :twitter_screen_name
-        = a.input :web
         = a.input :address
         = a.input :city
         = a.input :state
@@ -22,3 +24,5 @@
       .form-actions
         = f.submit t('save'), :class => 'btn btn-primary btn-large'
         = link_to t('cancel'), advertiser_profiles_show_path, class: 'btn btn-large'
+    .span4
+      holaa

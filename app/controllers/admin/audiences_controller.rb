@@ -1,6 +1,7 @@
 # encoding: utf-8
 class Admin::AudiencesController < ApplicationController
   before_filter :find_influencer_and_audience
+  layout "admin"
 
   # Shows the audience for a celebrity
   def show

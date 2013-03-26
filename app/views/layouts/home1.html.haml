@@ -145,17 +145,8 @@
                   %li= link_to 'Salir', destroy_user_session_path, method: :delete
                 - else
                   %li= link_to t('start_session'), new_user_session_path
-                  %li.dropdown
-                    %a{:href => '#', :class => 'dropdown-toggle', 'data-toggle' => 'dropdown'}
-                      =t('register')
-                      %b.caret
-
-                    %ul.dropdown-menu
-                      %li= link_to t('celebrity'), influencer_devise_registration_path
-                      %li= link_to t('advertiser_company'), advertiser_devise_registration_path
-                      %li= link_to t('affiliate'), affiliate_devise_registration_path
-
-
+                  %li
+                    = link_to 'Registrarse', new_user_registration_path
     #myCarousel.carousel.slide.main_car
       .carousel-inner
         .item.active
